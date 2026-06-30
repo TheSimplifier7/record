@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Simplifier · The Record</title>
+<meta name="description" content="Every gold and silver call from The Simplifier, named before the move and graded after. Nothing removed." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0F1519; --surface:#161E24; --surface-2:#1B262C; --line:#26333B;
+    --ink:#E9EEF1; --ink-dim:#94A3AD; --ink-faint:#5E6F79;
+    --accent:#46B3A8; --pass:#5DB97F; --miss:#C9795F; --pending:#7390A0;
+    --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1100px 500px at 78% -8%,rgba(70,179,168,.07),transparent 60%);}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+
+  /* masthead */
+  header{padding:54px 0 30px}
+  .mark{display:flex;align-items:center;gap:13px;margin-bottom:26px}
+  .mark svg{width:34px;height:34px;flex:none}
+  .mark .name{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--ink-dim)}
+  h1{font-weight:600;font-size:clamp(38px,7vw,68px);letter-spacing:-.02em;line-height:.98}
+  h1 .the{display:block;font-weight:300;font-size:.34em;letter-spacing:.06em;color:var(--ink-dim);
+    margin-bottom:.25em}
+  .thesis{font-size:clamp(16px,2.3vw,20px);font-weight:300;color:var(--ink);max-width:46ch;margin-top:22px}
+  .thesis b{font-weight:500;color:var(--accent)}
+  .law{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-faint);
+    margin-top:20px;text-transform:uppercase}
+  .law span{color:var(--ink-dim)}
+
+  /* tally */
+  .tally{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:40px 0 14px}
+  .tally .cell{background:var(--surface);padding:22px 20px}
+  .tally .num{font-family:var(--mono);font-weight:500;font-size:34px;letter-spacing:-.01em;line-height:1}
+  .tally .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-dim);margin-top:9px}
+  .tally .correct .num{color:var(--pass)}
+  .tally .open .num{color:var(--pending)}
+  .tally-note{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);letter-spacing:.02em;
+    margin-bottom:36px}
+
+  /* ledger */
+  .ledger-head{display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:4px}
+  .ledger-head h2{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--ink-dim)}
+  .ledger-head .cnt{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+
+  table{width:100%;border-collapse:collapse}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:left;font-weight:500;padding:14px 14px 12px;border-bottom:1px solid var(--line)}
+  tbody td{padding:17px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+  tbody tr:hover{background:rgba(255,255,255,.012)}
+  .c-date{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);white-space:nowrap}
+  .c-type{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .c-type .metal{color:var(--ink-faint);display:block;margin-top:3px}
+  .c-level{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+  .c-call{color:var(--ink);font-weight:300;max-width:30ch}
+  .c-result{color:var(--ink-dim);font-weight:300;max-width:30ch;font-size:13.5px}
+  .grade{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;
+    font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+  .grade::before{content:"";width:7px;height:7px;border-radius:50%;flex:none}
+  .grade.pass{color:var(--pass)} .grade.pass::before{background:var(--pass)}
+  .grade.miss{color:var(--miss)} .grade.miss::before{background:var(--miss)}
+  .grade.pending{color:var(--pending)} .grade.pending::before{background:var(--pending);
+    box-shadow:0 0 0 3px rgba(115,144,160,.16)}
+
+  /* footer */
+  footer{margin:52px 0 70px;padding-top:30px;border-top:1px solid var(--line)}
+  .integrity{font-size:15px;font-weight:300;color:var(--ink);max-width:60ch}
+  .integrity b{font-weight:500}
+  .integrity a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(70,179,168,.35)}
+  .integrity a:hover{border-bottom-color:var(--accent)}
+  .foot-meta{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-top:22px;
+    display:flex;flex-wrap:wrap;gap:6px 20px}
+  .foot-meta a{color:var(--ink-dim);text-decoration:none}
+  .foot-meta a:hover{color:var(--accent)}
+
+  a:focus-visible,th:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  /* responsive: table becomes stacked cards */
+  @media(max-width:720px){
+    .tally{grid-template-columns:1fr 1fr}
+    thead{display:none}
+    table,tbody,tr,td{display:block;width:100%}
+    tbody tr{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;padding:6px 4px;background:var(--surface)}
+    tbody td{border:none;padding:9px 16px;max-width:none}
+    tbody td::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:10px;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px}
+    .c-call,.c-result{max-width:none}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(8px);animation:rise .6s ease forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="reveal">
+    <div class="mark">
+      <!-- staircase mark: ascending levels, the brand glyph -->
+      <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <path d="M3 29h6v-6h6v-6h6v-6h6V5" stroke="#46B3A8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M27 29V11" stroke="#46B3A8" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <h1><span class="the">The</span>Record</h1>
+    <p class="thesis">Every gold and silver call, <b>named before the move</b> and <b>graded after</b>. Wins and misses, in one place, never removed.</p>
+    <p class="law"><span>One read a day</span> · <span>Falsifiable levels only</span> · <span>Nothing deleted</span> · <span>We name the line, we do not forecast</span> · <span>Graded in public</span></p>
+  </header>
+
+  <section class="tally reveal" aria-label="Summary">
+    <div class="cell"><div class="num" id="t-resolved">0</div><div class="lab">Calls resolved</div></div>
+    <div class="cell correct"><div class="num" id="t-correct">0</div><div class="lab">Graded correct</div></div>
+    <div class="cell open"><div class="num" id="t-open">0</div><div class="lab">Open this week</div></div>
+  </section>
+  <p class="tally-note" id="t-note">Misses are shown in full below, never hidden.</p>
+
+  <div class="ledger-head">
+    <h2>The Ledger</h2>
+    <span class="cnt" id="l-count"></span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th><th>Type</th><th>The level</th><th>The call, before the move</th><th>What price did</th><th>Grade</th>
+      </tr>
+    </thead>
+    <tbody id="ledger"></tbody>
+  </table>
+
+  <footer class="reveal">
+    <p class="integrity"><b>Nothing on this page has ever been removed.</b> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full edit history here: <a id="history-link" href="#">[ link to the commit history ]</a>. If a call was wrong, it is still here.</p>
+    <div class="foot-meta">
+      <span>Posted first on X: <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
+      <span id="updated"></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+   THE RECORD  ·  how to update
+
+   To add a call: copy ONE line in the list below, paste it at the TOP,
+   and change the values. Newest call sits at the top. Save the file. Done.
+
+   grade can be:  "pass"  (the call was right)
+                  "miss"  (the call was wrong  -  it STAYS, never delete it)
+                  "pending" (named, not yet graded)
+
+   Only verified calls go on here. Check every entry against the actual
+   posted call before it goes live. This page is the whole brand in one place.
+   ========================================================================= */
+
+const CALLS = [
+
+  { date:"2026-06-29", type:"Map", metal:"Gold", level:"4,500 / 3,809",
+    call:"Falling swing. Turn needs a close above the 4,500 mean; the catch below is the weekly slow mean at 3,809.",
+    result:"Grades Friday.",
+    grade:"pending" },
+
+  { date:"2026-06-22", type:"Map", metal:"Gold", level:"4,098",
+    call:"While price is capped below the 4,098 floor, every green day is a bounce in a falling market, not a turn.",
+    result:"Weekly close 4,088.97, below the floor. The falling market was confirmed.",
+    grade:"pass" },
+
+  /* ---- add your earlier verified calls below, newest first ----
+  { date:"2026-06-DD", type:"Verdict", metal:"Gold", level:"0,000",
+    call:"...",
+    result:"...",
+    grade:"pass" },
+  ------------------------------------------------------------------ */
+
+];
+
+/* ---- set this once, after the GitHub repo exists ---- */
+const HISTORY_URL = "";   // e.g. "https://github.com/youruser/the-record/commits/main"
+
+/* ---------------- render (do not need to edit below) ---------------- */
+const fmt = d => { const [y,m,dd]=d.split("-");
+  const mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m-1];
+  return dd.replace(/^0/,"")+" "+mo+" "+y; };
+const GLABEL = {pass:"Pass",miss:"Miss",pending:"Open"};
+
+const tbody = document.getElementById("ledger");
+tbody.innerHTML = CALLS.map(c => `
+  <tr>
+    <td class="c-date" data-label="Date">${fmt(c.date)}</td>
+    <td class="c-type" data-label="Type">${c.type}<span class="metal">${c.metal}</span></td>
+    <td class="c-level" data-label="Level">${c.level}</td>
+    <td class="c-call" data-label="The call">${c.call}</td>
+    <td class="c-result" data-label="Result">${c.result || "&mdash;"}</td>
+    <td data-label="Grade"><span class="grade ${c.grade}">${GLABEL[c.grade]}</span></td>
+  </tr>`).join("");
+
+const resolved = CALLS.filter(c=>c.grade!=="pending").length;
+const correct  = CALLS.filter(c=>c.grade==="pass").length;
+const open      = CALLS.filter(c=>c.grade==="pending").length;
+document.getElementById("t-resolved").textContent = resolved;
+document.getElementById("t-correct").textContent  = correct;
+document.getElementById("t-open").textContent      = open;
+document.getElementById("l-count").textContent =
+  CALLS.length + (CALLS.length===1?" call":" calls") + " on record";
+document.getElementById("t-note").textContent = resolved
+  ? `${correct} of ${resolved} resolved calls graded correct. Misses are shown in full below, never hidden.`
+  : "Misses are shown in full below, never hidden.";
+
+const hl = document.getElementById("history-link");
+if (HISTORY_URL){ hl.href = HISTORY_URL; } else { hl.removeAttribute("href"); hl.style.opacity=".6"; hl.style.cursor="default"; }
+
+document.getElementById("updated").textContent =
+  "Last updated " + new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+</script>
+</body>
+</html>
