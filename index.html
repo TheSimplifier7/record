@@ -170,21 +170,29 @@
 const CALLS = [
 
   { date:"2026-06-29", type:"Map", metal:"Gold", level:"4,500 / 3,809",
-    call:"Falling swing. Turn needs a close above the 4,500 mean; the catch below is the weekly slow mean at 3,809.",
+    call:"Falling swing. The turn needs a close above the 4,500 mean; the catch below is the weekly slow mean at 3,809.",
     result:"Grades Friday.",
     grade:"pending" },
 
-  { date:"2026-06-22", type:"Map", metal:"Gold", level:"4,098",
-    call:"While price is capped below the 4,098 floor, every green day is a bounce in a falling market, not a turn.",
-    result:"Weekly close 4,088.97, below the floor. The falling market was confirmed.",
+  { date:"2026-06-22", type:"Map", metal:"Gold", level:"4,098 / 4,633",
+    call:"Caught between a floor to hold at 4,098 and a turn at 4,633. Until a close clears the turn, every green day is a bounce in a falling market.",
+    result:"The turn at 4,633 was never reached, nor the gate at 4,307. Every bounce failed. Gold lost the floor and closed 4,088.97.",
     grade:"pass" },
 
-  /* ---- add your earlier verified calls below, newest first ----
-  { date:"2026-06-DD", type:"Verdict", metal:"Gold", level:"0,000",
-    call:"...",
-    result:"...",
+  { date:"2026-06-15", type:"Map", metal:"Gold", level:"4,307",
+    call:"Reclaimed the floor at 4,098 and the gate at 4,307. The gate is the line between a bounce and a repair: hold it and it repairs, lose it and it was a bounce.",
+    result:"Gold gave 4,307 straight back and closed 4,209. The repair stalled exactly there, the floor held. It was a bounce.",
     grade:"pass" },
-  ------------------------------------------------------------------ */
+
+  { date:"2026-06-11", type:"Verdict", metal:"Gold", level:"4,098",
+    call:"After the staircase broke, one signal named in advance: a close back above 4,098 is the first sign of life. Not a bottom, a sign.",
+    result:"It printed that night. Gold touched the 4,020s and closed back above 4,098, then bounced near 4,210. The signal fired; the bounce later failed, as called.",
+    grade:"pass" },
+
+  { date:"2026-06-07", type:"Read", metal:"Gold", level:"4,308",
+    call:"Stated bearish with the exit named: gold sits on the last shelf at 4,308, open air to 4,100 beneath. Only a weekly close back above the line turns it bullish.",
+    result:"Gold broke the shelf and fell through the open air into the 4,020s. The bearish call held.",
+    grade:"pass" },
 
 ];
 
