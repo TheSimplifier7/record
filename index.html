@@ -149,6 +149,7 @@
   <footer class="reveal">
     <p class="integrity"><b>Nothing on this page has ever been removed.</b> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full edit history here: <a id="history-link" href="#">the commit history</a>. If a call was wrong, it is still here.</p>
     <p class="standard-note">Grading standard tightened 3 July 2026: every claim now ships with the condition that would grade it a miss, untested levels are stated as no test rather than counted as wins, and partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention and are preserved unaltered.</p>
+    <p class="standard-note">Correction, 18 July 2026: the Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger below carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated below as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain.</p>
     <div class="foot-meta">
       <span>Posted first on X: <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
       <span id="updated"></span>
@@ -177,6 +178,21 @@
    ========================================================================= */
  
 const CALLS = [
+ 
+  { date:"2026-07-12", type:"Map", metal:"Gold", level:"4,098",
+    call:"4,098 remains the floor after Friday's reclaim. The kill, published with it: a weekly close beneath the floor, and the reclaim is itself reclassified.",
+    result:"The kill fired. Gold closed the week at 4,018.44, eighty dollars beneath the floor. The reclaim is reclassified: a bounce inside a falling market, not a repair. A miss, and it stays. Note: the 17 July Verdict first graded this a pass with the kill quoted backwards. Corrected 18 July; the error and this correction both remain, see the note below the ledger.",
+    grade:"miss" },
+ 
+  { date:"2026-07-12", type:"Map", metal:"Silver", level:"61.02",
+    call:"Locked out of its own house. The floor broken 7 July at 61.02 works the opposite job now, the ceiling, with a falling mean sixty cents above it. Kill: a weekly close back above 61.02 grades the break a trap.",
+    result:"No knock. Silver closed 55.911, five dollars below the ceiling, and never approached it all week. The break stands and the lockout held.",
+    grade:"pass" },
+ 
+  { date:"2026-07-12", type:"Map", metal:"Gold", level:"4,305.32",
+    call:"No repair claimed below the first stair. A weekly close above 4,305.32 is the first stair won back; until then, standing is all this is.",
+    result:"The stair was never reached, stated as no test, untested lines are not wins. The standing itself failed at the floor instead. Ungraded in the 17 July Verdict, entered 18 July with the correction.",
+    grade:"notest" },
  
   { date:"2026-07-08", type:"Level Watch", metal:"Gold", level:"4,098",
     call:"Gold followed silver through its floor, closing 4,074, one night behind the weaker twin. Written into the post before the close: a weekly close back above 4,098 grades the break a trap.",
