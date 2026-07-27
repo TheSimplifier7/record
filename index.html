@@ -81,6 +81,14 @@
   .ledger-head .cnt{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--ink-5)}
 
+  /* lines on record */
+  .lines{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;padding:16px 0 2px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-5)}
+  .lines .eyebrow-inline{letter-spacing:.18em;text-transform:uppercase;color:var(--ink-6);margin-right:4px}
+  .lines .line{color:var(--ink-3)}
+  .lines .line b{font-weight:500;color:var(--gold)}
+  .lines .line i{font-style:normal;color:var(--ink-6)}
+
   /* table */
   .ledger-table{width:100%;table-layout:fixed}
   .ledger-table th{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.16em;
@@ -207,7 +215,7 @@
     <div class="stat">
       <div class="num"><span id="t-rate">0</span><span class="pct">%</span></div>
       <div class="bar"><i id="t-bar" style="width:0%"></i></div>
-      <div class="lab">Strike rate</div>
+      <div class="lab" id="t-rate-lab">Strike rate</div>
     </div>
     <div class="stat">
       <div class="num blue" id="t-open">0</div>
@@ -220,6 +228,8 @@
     <h2>The Ledger</h2>
     <span class="cnt" id="l-count"></span>
   </div>
+
+  <p class="lines" id="lines-on-record"></p>
 
   <table class="ledger-table">
     <thead>
@@ -458,6 +468,37 @@ if (partial) note += ` ${partial} partial, counted against the record.`;
 if (notest)  note += ` ${notest} never tested, counted for neither side.`;
 note += " Misses are shown in full below, never hidden.";
 document.getElementById("t-note").textContent = note.trim();
+
+/* strike rate carries its own base, so the number and its denominator
+   always travel together. A percentage on a small base is not a claim
+   this page gets to make on its own. */
+document.getElementById("t-rate-lab").textContent =
+  resolved ? `Strike rate · ${pass} of ${resolved}` : "Strike rate";
+
+/* Lines on record. Display only, hides nothing, recomputes from the full
+   array every load. Compound levels such as "4,098 / 4,307" count toward
+   both. Only lines named twice or more are shown.
+
+   This strip claims occurrence and nothing else. It must NOT claim a
+   per-level grade: a row graded pass can contain a level that was stated
+   as no test inside it, and a level can be named on a row still open.
+   Row grades do not decompose. Occurrence is the only figure provable
+   from the array. */
+const levelCount = new Map();
+CALLS.forEach(c => String(c.level).split("/").forEach(part => {
+  const lv = part.trim();
+  if (lv) levelCount.set(lv, (levelCount.get(lv) || 0) + 1);
+}));
+const repeated = [...levelCount.entries()]
+  .filter(([, n]) => n > 1)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+document.getElementById("lines-on-record").innerHTML = repeated.length
+  ? `<span class="eyebrow-inline">Lines on record</span>` +
+    repeated.map(([lv, n]) =>
+      `<span class="line"><b>${esc(lv)}</b> <i>named ${n} times</i></span>`
+    ).join("")
+  : "";
 
 document.getElementById("issue-no").textContent = String(CALLS.length).padStart(3, "0");
 document.getElementById("l-count").textContent =
