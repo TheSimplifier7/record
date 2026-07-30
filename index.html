@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
-<meta name="description" content="Every gold and silver call from The Simplifier since 7 June 2026, named before the move and graded after. Wins and misses. Nothing removed." />
+<meta name="description" content="Every gold and silver call from The Simplifier, named before the move and graded after. Wins and misses. Nothing removed." />
 <meta name="theme-color" content="#08090A">
 
-<!-- Open Graph. Create card.png at 1200x630 or change twitter:card to "summary".
-     Keep this copy free of figures so it never drifts from the ledger. -->
+<!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
+     Create card.png at 1200x630, then switch twitter:card to summary_large_image. -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
 <meta property="og:description" content="Every gold and silver call, named before the move and graded after. Wins and misses, in one place, never removed.">
 <meta property="og:image" content="https://thesimplifier7.github.io/record/card.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@TheSimplifier7">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,7 +114,7 @@
   .ledger-table td:last-child{padding:var(--row-pad) 0 var(--row-pad) 16px}
   .ledger-table tbody tr:hover{background:#101214}
   .w-date{width:86px} .w-inst{width:98px} .w-level{width:104px}
-  .w-call{width:30%} .w-grade{width:92px}
+  .w-call{width:30%} .w-grade{width:104px}
   .c-date{font-family:var(--mono);font-size:12px;color:var(--ink-3);white-space:nowrap}
   .c-date .yr{display:block;color:var(--ink-6);font-size:10.5px;letter-spacing:.08em;margin-top:3px}
   .c-metal{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#EDEAE4}
@@ -134,14 +134,18 @@
   .grade::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;background:currentColor}
   .g-pass{color:var(--pass)} .g-miss{color:var(--miss)} .g-partial{color:var(--partial)}
   .g-notest{color:var(--notest)} .g-pending{color:var(--pending)}
+  .prestd{display:block;margin-top:9px;font-family:var(--mono);font-size:9px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-6);white-space:nowrap}
 
   /* cards, narrow only */
   .ledger-cards{display:none;gap:12px;padding-top:16px}
   .card{border:1px solid var(--rule-card);border-radius:12px;background:var(--panel);padding:16px 16px 18px}
-  .card .top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  .card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
     padding-bottom:12px;border-bottom:1px solid #1B1E21}
   .card .top .d{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--ink-3)}
   .card .top .d span{color:var(--ink-6)}
+  .card .gwrap{display:flex;flex-direction:column;align-items:flex-end}
+  .card .prestd{margin-top:7px}
   .card .meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:13px 0 4px}
   .card .meta .lv{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--gold);margin-left:auto}
   .card .claim{font-size:15.5px;line-height:1.55;color:var(--ink-2);padding-top:10px}
@@ -293,7 +297,7 @@
         <div class="notes">
           <div class="note">
             <span class="n">01</span>
-            <p><b>Standard tightened 3 July 2026.</b> Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention and are preserved unaltered. Rows carrying no published kill are marked as such in the ledger.</p>
+            <p><b>Standard tightened 3 July 2026.</b> Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention, are marked pre-standard in the ledger, and are preserved unaltered. No grade is ever restamped to fit a rulebook written after it. Rows carrying no published kill are marked as such.</p>
           </div>
           <div class="note">
             <span class="n red">02</span>
@@ -335,6 +339,9 @@
                              of the tally, never banked as a win.
                   "pending"  named, clock still running
 
+   Grades are never restamped to match a later rulebook. If the standard
+   changes, the boundary moves and the rows get marked. The grades stand.
+
    BRAND LAW: no em dashes, no hashtags, no exclamation marks, no emoji,
    no forecasting language, no fabricated data. Every level verified against
    the chart of record before it goes on this page.
@@ -343,7 +350,8 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED = "2026-07-30";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-07-30";   /* set by hand, with the commit */
+const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 const CALLS = [
 
@@ -456,6 +464,7 @@ const rows = CALLS.map(c => {
     result: c.result || "Not yet graded.",
     gradeLabel: g.label,
     gradeCls: g.cls,
+    pre: c.date < STANDARD_FROM,
   };
 });
 
@@ -465,6 +474,9 @@ const killBlock = k => k
   ? `<span class="kill"><b>Kill</b> ${esc(k)}</span>`
   : `<span class="nokill">No kill published</span>`;
 
+/* Marks which rows note 01 is talking about. Changes no figure. */
+const preTag = p => p ? `<span class="prestd">Pre-standard</span>` : "";
+
 document.getElementById("ledger-rows").innerHTML = rows.map(r => `
   <tr>
     <td class="c-date">${esc(r.day)}<span class="yr">${esc(r.year)}</span></td>
@@ -472,14 +484,17 @@ document.getElementById("ledger-rows").innerHTML = rows.map(r => `
     <td class="c-level">${esc(r.level)}</td>
     <td class="c-call">${esc(r.claim)}${killBlock(r.kill)}</td>
     <td class="c-result">${esc(r.result)}</td>
-    <td><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span></td>
+    <td><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>${preTag(r.pre)}</td>
   </tr>`).join("");
 
 document.getElementById("ledger-cards").innerHTML = rows.map(r => `
   <article class="card">
     <div class="top">
       <span class="d">${esc(r.day)} <span>${esc(r.year)}</span></span>
-      <span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>
+      <span class="gwrap">
+        <span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>
+        ${preTag(r.pre)}
+      </span>
     </div>
     <div class="meta">
       <span class="c-metal">${esc(r.metal)}</span>
