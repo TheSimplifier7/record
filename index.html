@@ -34,7 +34,7 @@
                                                --notest  5.86:1
                                                --pending 6.61:1
 
-     TWO RULES FOR ANYONE EDITING THIS.
+     THREE RULES FOR ANYONE EDITING THIS.
 
      1. Do not add -webkit-font-smoothing:antialiased. On a light ground
         it strips weight off every glyph on macOS and the page goes thin.
@@ -43,17 +43,21 @@
      2. Do not drop the base weight back to 300. Light text on a dark
         ground reads optically heavier than dark text on a light ground at
         the same weight. Body prose is 400 and small mono labels are 500
-        to compensate. Large display type stays at 300 because scale
-        carries it.
+        or 600 to compensate. Large display type stays at 300 because
+        scale carries it.
+
+     3. The Level column is the strongest element in every row. It is the
+        claim. Nothing in the row may outweigh it.
 
      Do not lighten any ink value without recomputing it.
   --------------------------------------------------------------------- */
   :root{
-    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#948A7B; --rule-card:#8B8071;
+    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071; --rule-card:#8B8071;
     --ink:#14110C; --ink-2:#2B2820; --ink-3:#332F26; --ink-4:#3A3529;
     --ink-5:#403A2C; --ink-6:#47412F;
     --gold:#4A360C; --gold-hi:#322408;
     --pass:#163821; --miss:#63220E; --partial:#573107; --notest:#3B3B36; --pending:#1B3646;
+    --band:rgba(20,17,12,.038);
     --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
     --pad:48px; --row-pad:22px;
   }
@@ -108,8 +112,8 @@
   .stat .num .pct{font-size:20px;color:var(--ink-5)}
   .stat .lab{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.14em;
     text-transform:uppercase;color:var(--ink-5);margin-top:12px}
-  .tally-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.75;
-    color:var(--ink-4);padding-top:14px;max-width:88ch}
+  .tally-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
+    color:var(--ink-3);padding-top:14px;max-width:88ch}
 
   /* ledger head */
   .ledger-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
@@ -138,21 +142,28 @@
   .ledger-table th:last-child{padding:14px 0 12px 16px}
   .ledger-table td{padding:var(--row-pad) 16px var(--row-pad) 0;border-bottom:1px solid var(--rule-soft);
     vertical-align:top}
-  .ledger-table td:last-child{padding:var(--row-pad) 0 var(--row-pad) 16px}
-  .ledger-table tbody tr:hover{background:#B9B1A4}
-  .w-date{width:88px} .w-inst{width:100px} .w-level{width:106px}
-  .w-call{width:30%} .w-grade{width:106px}
+  .ledger-table td:first-child{padding-left:14px}
+  .ledger-table td:last-child{padding:var(--row-pad) 14px var(--row-pad) 16px}
+  /* ledger paper. Alternating bands, because row heights swing from three
+     lines to seven and the eye loses the row halfway across. Hover must
+     stay below these in source order or it will not win. */
+  .ledger-table tbody tr:nth-child(odd){background:var(--band)}
+  .ledger-table tbody tr:hover{background:#B6AEA1}
+  .w-date{width:96px} .w-inst{width:104px} .w-level{width:118px}
+  .w-call{width:29%} .w-grade{width:112px}
   .c-date{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--ink-3);white-space:nowrap}
   .c-date .yr{display:block;color:var(--ink-6);font-size:11px;font-weight:400;letter-spacing:.06em;margin-top:3px}
   .c-metal{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;
     text-transform:uppercase;color:var(--ink)}
   .c-type{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;
     text-transform:uppercase;color:var(--ink-6);margin-top:4px}
-  .c-level{font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--gold);line-height:1.5}
+  /* the level is the claim. Nothing in the row outweighs it. */
+  .c-level{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);
+    line-height:1.35;letter-spacing:-.01em}
   .c-call{font-size:15px;line-height:1.58;color:var(--ink-2)}
-  .c-result{font-size:14.5px;line-height:1.58;color:var(--ink-4)}
+  .c-result{font-size:15px;line-height:1.58;color:var(--ink-3)}
   .kill{display:block;margin-top:11px;padding-left:12px;border-left:2px solid var(--rule);
-    font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.7;color:var(--ink-4)}
+    font-family:var(--mono);font-size:12px;font-weight:400;line-height:1.7;color:var(--ink-4)}
   .kill b{font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--miss)}
   .nokill{display:block;margin-top:11px;padding-left:12px;border-left:2px solid var(--rule);
     font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;
@@ -175,13 +186,13 @@
   .card .gwrap{display:flex;flex-direction:column;align-items:flex-end}
   .card .prestd{margin-top:7px}
   .card .meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:13px 0 4px}
-  .card .meta .lv{font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--gold);margin-left:auto}
+  .card .meta .lv{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);margin-left:auto}
   .card .claim{font-size:16px;line-height:1.58;color:var(--ink-2);padding-top:10px}
   .card .kill,.card .nokill{margin-top:12px}
   .card .did{margin-top:16px;padding-top:13px;border-top:1px solid var(--rule-card)}
   .card .did .lab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
     text-transform:uppercase;color:var(--ink-6);margin-bottom:6px}
-  .card .did p{font-size:15.5px;line-height:1.58;color:var(--ink-4)}
+  .card .did p{font-size:15.5px;line-height:1.58;color:var(--ink-3)}
 
   /* footer */
   footer{margin-top:72px;border-top:1px solid var(--ink);padding-top:36px}
@@ -196,8 +207,8 @@
   .note{display:grid;grid-template-columns:26px 1fr;gap:12px}
   .note .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--gold);padding-top:3px}
   .note .n.red{color:var(--miss)}
-  .note p{font-size:14px;line-height:1.68;color:var(--ink-4)}
-  .note p b{font-weight:600;color:var(--ink-2)}
+  .note p{font-size:14.5px;line-height:1.68;color:var(--ink-3)}
+  .note p b{font-weight:600;color:var(--ink)}
 
   /* responsive */
   @media(max-width:1140px){:root{--pad:32px}}
