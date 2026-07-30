@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
-<meta name="description" content="Every gold and silver call from The Simplifier, named before the move and graded after. Nothing removed." />
+<meta name="description" content="Every gold and silver call from The Simplifier since 7 June 2026, named before the move and graded after. Wins and misses. Nothing removed." />
+<meta name="theme-color" content="#08090A">
+
+<!-- Open Graph. Create card.png at 1200x630 or change twitter:card to "summary".
+     Keep this copy free of figures so it never drifts from the ledger. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/">
+<meta property="og:title" content="The Simplifier · The Record">
+<meta property="og:description" content="Every gold and silver call, named before the move and graded after. Wins and misses, in one place, never removed.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@TheSimplifier7">
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -12,14 +24,15 @@
   :root{
     --bg:#08090A; --panel:#0C0E10; --rule:#22262A; --rule-soft:#191C1F; --rule-card:#1F2327;
     --ink:#F5F2EC; --ink-2:#E5E1DA; --ink-3:#C7C3BC; --ink-4:#9BA0A5;
-    --ink-5:#7F8489; --ink-6:#5C6165;
+    --ink-5:#7F8489; --ink-6:#797E83;
     --gold:#D4AF37; --gold-hi:#EFCE6A;
-    --pass:#5FA97C; --miss:#CF7358; --partial:#C9A65F; --notest:#71767B; --pending:#7E9AAB;
+    --pass:#5FA97C; --miss:#CF7358; --partial:#C9A65F; --notest:#767B80; --pending:#7E9AAB;
     --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
     --pad:48px; --row-pad:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{background:var(--bg);color:#EDEAE4;font-family:var(--serif);font-weight:300;
     -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;text-wrap:pretty;
     background-image:radial-gradient(900px 420px at 72% -10%,rgba(201,162,39,.10),transparent 70%)}
@@ -49,7 +62,7 @@
   .thesis{font-size:20px;line-height:1.5;color:#B9B5AE;max-width:34ch;margin-top:24px}
   .thesis em{font-style:italic;color:var(--ink)}
   .law{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
-    color:#62676C;margin-top:26px}
+    color:var(--ink-6);margin-top:26px}
   .spec{display:grid;grid-template-columns:auto 1fr;column-gap:22px;font-family:var(--mono);
     font-size:11px;line-height:1.9;border-top:1px solid var(--rule);padding-top:14px}
   .spec dt{letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5)}
@@ -68,9 +81,6 @@
   .stat .num .pct{font-size:20px;color:var(--ink-5)}
   .stat .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--ink-5);margin-top:12px}
-  .bar{display:flex;height:3px;background:#1D2124;margin-top:14px}
-  .bar i{height:3px;background:var(--pass);display:block}
-  .stat .bar + .lab{margin-top:10px}
   .tally-note{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-5);
     padding-top:14px;max-width:88ch}
 
@@ -89,6 +99,10 @@
   .lines .line b{font-weight:500;color:var(--gold)}
   .lines .line i{font-style:normal;color:var(--ink-6)}
 
+  /* noscript */
+  .noscript{border:1px solid var(--rule);background:var(--panel);padding:20px 22px;margin-top:22px;
+    font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--ink-3)}
+
   /* table */
   .ledger-table{width:100%;table-layout:fixed}
   .ledger-table th{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.16em;
@@ -100,7 +114,7 @@
   .ledger-table td:last-child{padding:var(--row-pad) 0 var(--row-pad) 16px}
   .ledger-table tbody tr:hover{background:#101214}
   .w-date{width:86px} .w-inst{width:98px} .w-level{width:104px}
-  .w-call{width:36%} .w-grade{width:92px}
+  .w-call{width:30%} .w-grade{width:92px}
   .c-date{font-family:var(--mono);font-size:12px;color:var(--ink-3);white-space:nowrap}
   .c-date .yr{display:block;color:var(--ink-6);font-size:10.5px;letter-spacing:.08em;margin-top:3px}
   .c-metal{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#EDEAE4}
@@ -112,6 +126,9 @@
   .kill{display:block;margin-top:10px;padding-left:12px;border-left:2px solid #2C3034;
     font-family:var(--mono);font-size:11px;line-height:1.65;color:#8B9095}
   .kill b{font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--miss)}
+  .nokill{display:block;margin-top:10px;padding-left:12px;border-left:2px solid #2C3034;
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-6)}
   .grade{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
     font-weight:500;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
   .grade::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;background:currentColor}
@@ -128,7 +145,7 @@
   .card .meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:13px 0 4px}
   .card .meta .lv{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--gold);margin-left:auto}
   .card .claim{font-size:15.5px;line-height:1.55;color:var(--ink-2);padding-top:10px}
-  .card .kill{margin-top:12px}
+  .card .kill,.card .nokill{margin-top:12px}
   .card .did{margin-top:16px;padding-top:13px;border-top:1px solid #1B1E21}
   .card .did .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--ink-6);margin-bottom:6px}
@@ -186,9 +203,11 @@
   </div>
   <div class="hairline"></div>
 
+  <main>
+
   <header>
     <div>
-      <div class="issue">Standing ledger · Issue <span id="issue-no">000</span></div>
+      <div class="issue">Standing ledger · Entry <span id="issue-no">000</span></div>
       <h1>The Record</h1>
       <p class="thesis">Every gold and silver call, <em>named before the move</em> and <em>graded after</em>. Wins and misses, in one place, never removed.</p>
       <p class="law">Price is the rudder · The rest is weather</p>
@@ -197,8 +216,9 @@
       <dt>Coverage</dt><dd>Gold · Silver</dd>
       <dt>Cadence</dt><dd>One read a day</dd>
       <dt>Grading</dt><dd>Weekly close, in public</dd>
-      <dt>Method</dt><dd>Falsifiable levels only</dd>
+      <dt>Method</dt><dd>Falsifiable levels, standard from 3 Jul 2026</dd>
       <dt>Revisions</dt><dd>Nothing deleted</dd>
+      <dt>Record begins</dt><dd id="record-begins"></dd>
       <dt>Updated</dt><dd id="updated-spec"></dd>
     </dl>
   </header>
@@ -214,7 +234,6 @@
     </div>
     <div class="stat">
       <div class="num"><span id="t-rate">0</span><span class="pct">%</span></div>
-      <div class="bar"><i id="t-bar" style="width:0%"></i></div>
       <div class="lab" id="t-rate-lab">Strike rate</div>
     </div>
     <div class="stat">
@@ -231,21 +250,33 @@
 
   <p class="lines" id="lines-on-record"></p>
 
+  <noscript>
+    <div class="noscript">
+      This page renders its ledger with JavaScript, which is currently disabled.
+      The full record is readable as plain text in the source file, and every change
+      to it is a public, timestamped commit.<br>
+      <a href="https://github.com/TheSimplifier7/record/blob/main/index.html">Read the raw file</a> ·
+      <a href="https://github.com/TheSimplifier7/record/commits/main">Read the edit history</a>
+    </div>
+  </noscript>
+
   <table class="ledger-table">
     <thead>
       <tr>
-        <th class="w-date">Date</th>
-        <th class="w-inst">Instrument</th>
-        <th class="w-level">Level</th>
-        <th class="w-call">The call, before the move</th>
-        <th>What price did</th>
-        <th class="w-grade">Grade</th>
+        <th scope="col" class="w-date">Date</th>
+        <th scope="col" class="w-inst">Instrument</th>
+        <th scope="col" class="w-level">Level</th>
+        <th scope="col" class="w-call">The call, before the move</th>
+        <th scope="col">What price did</th>
+        <th scope="col" class="w-grade">Grade</th>
       </tr>
     </thead>
     <tbody id="ledger-rows"></tbody>
   </table>
 
   <div class="ledger-cards" id="ledger-cards"></div>
+
+  </main>
 
   <footer>
     <div class="foot-grid">
@@ -262,11 +293,15 @@
         <div class="notes">
           <div class="note">
             <span class="n">01</span>
-            <p><b>Standard tightened 3 July 2026.</b> Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention and are preserved unaltered.</p>
+            <p><b>Standard tightened 3 July 2026.</b> Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention and are preserved unaltered. Rows carrying no published kill are marked as such in the ledger.</p>
           </div>
           <div class="note">
             <span class="n red">02</span>
             <p><b>Correction, 18 July 2026.</b> The Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated here as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain.</p>
+          </div>
+          <div class="note">
+            <span class="n red">03</span>
+            <p><b>Correction, 30 July 2026.</b> The Updated field on this page was rendered from the visitor's own device clock rather than from the file. While that line was live, the page told every reader it had been updated on the day they opened it, whatever the file's actual state. No call, no grade and no figure in the ledger was affected. The field is now set by hand against the commit. The fault is logged here rather than fixed quietly, because a page that claims nothing is hidden does not get to hide this.</p>
           </div>
         </div>
       </div>
@@ -279,11 +314,18 @@
 /* =========================================================================
    THE RECORD  ·  how to update
 
-   To add a call: copy ONE entry below, paste it at the TOP of the list,
-   and change the values. Newest call sits at the top. Save. Done.
+   1. LAST_UPDATED below. Change it with EVERY commit that touches this file,
+      including corrections that add no new call. It is set by hand on purpose:
+      the field claims when the FILE changed, and no automatic value can know
+      that. Never replace it with new Date(). See note 03.
 
-   Put the kill condition in the call string after the word "Kill:".
-   It gets split out and rendered in the kill block automatically.
+   2. To add a call: copy ONE entry, paste it at the TOP of the list, change
+      the values. Newest call sits at the top. Save. Done.
+
+   Put the kill condition in the call string after the word "Kill:" exactly,
+   with the colon. It gets split out and rendered in the kill block. A row
+   with no "Kill:" renders as NO KILL PUBLISHED, which is correct for
+   pre-standard entries and a red flag for anything dated after 3 Jul 2026.
 
    grade can be:  "pass"     the level governed and the kill did not fire
                   "miss"     the kill fired. It STAYS. Never delete it.
@@ -300,6 +342,8 @@
    Only verified calls go on here. Check every entry against the actual
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
+
+const LAST_UPDATED = "2026-07-30";   /* set by hand, with the commit */
 
 const CALLS = [
 
@@ -375,10 +419,9 @@ const CALLS = [
 
 ];
 
-/* ---- optional switches ---- */
-const SHOW_UNGRADED = true;      /* false hides no test and open rows */
-const DENSITY       = "comfortable";   /* or "compact" */
-const HISTORY_URL   = "https://github.com/TheSimplifier7/record/commits/main";
+/* ---- display only. Nothing here can hide a row. ---- */
+const DENSITY     = "comfortable";   /* or "compact" */
+const HISTORY_URL = "https://github.com/TheSimplifier7/record/commits/main";
 
 /* ---------------- render, no need to edit below ---------------- */
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -389,13 +432,16 @@ const GRADES = {
   notest:  { label:"No test", cls:"g-notest" },
   pending: { label:"Open",    cls:"g-pending" },
 };
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const esc = s => String(s).replace(/[&<>"']/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const fmtDate = iso => {
+  const [y, m, d] = iso.split("-");
+  return d.replace(/^0/, "") + " " + MONTHS[+m - 1] + " " + y;
+};
 
 document.documentElement.style.setProperty("--row-pad", DENSITY === "compact" ? "14px" : "22px");
 
-const visible = CALLS.filter(c => SHOW_UNGRADED || (c.grade !== "notest" && c.grade !== "pending"));
-
-const rows = visible.map(c => {
+const rows = CALLS.map(c => {
   const [y, m, d] = c.date.split("-");
   const parts = c.call.split(/\s*Kill:\s*/i);
   const g = GRADES[c.grade] || GRADES.notest;
@@ -413,9 +459,11 @@ const rows = visible.map(c => {
   };
 });
 
+/* A row with no published kill says so. It is never left blank: an empty
+   space reads as an omission, a stated absence reads as the standard. */
 const killBlock = k => k
   ? `<span class="kill"><b>Kill</b> ${esc(k)}</span>`
-  : "";
+  : `<span class="nokill">No kill published</span>`;
 
 document.getElementById("ledger-rows").innerHTML = rows.map(r => `
   <tr>
@@ -439,7 +487,7 @@ document.getElementById("ledger-cards").innerHTML = rows.map(r => `
       <span class="lv">${esc(r.level)}</span>
     </div>
     <p class="claim">${esc(r.claim)}</p>
-    ${r.kill ? `<p class="kill"><b>Kill</b> ${esc(r.kill)}</p>` : ""}
+    ${killBlock(r.kill)}
     <div class="did">
       <div class="lab">What price did</div>
       <p>${esc(r.result)}</p>
@@ -460,7 +508,6 @@ const rate = resolved ? Math.round((pass / resolved) * 100) : 0;
 document.getElementById("t-resolved").textContent = resolved;
 document.getElementById("t-pass").textContent = pass;
 document.getElementById("t-rate").textContent = rate;
-document.getElementById("t-bar").style.width = rate + "%";
 document.getElementById("t-open").textContent = open;
 
 let note = resolved ? `${pass} of ${resolved} resolved calls graded correct.` : "";
@@ -502,9 +549,16 @@ document.getElementById("lines-on-record").innerHTML = repeated.length
 
 document.getElementById("issue-no").textContent = String(CALLS.length).padStart(3, "0");
 document.getElementById("l-count").textContent =
-  visible.length + (visible.length === 1 ? " call" : " calls") + " on record";
+  CALLS.length + (CALLS.length === 1 ? " call" : " calls") + " on record";
 
-const stamp = new Date().toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" });
+/* Record begins: derived from the oldest row, so it can never drift from
+   the ledger. The page states where the record starts rather than leaving
+   the question open. */
+document.getElementById("record-begins").textContent =
+  fmtDate(CALLS.reduce((a, c) => (c.date < a ? c.date : a), CALLS[0].date));
+
+/* Updated: the manual constant, never the visitor's clock. See note 03. */
+const stamp = fmtDate(LAST_UPDATED);
 document.getElementById("updated-spec").textContent = stamp;
 document.getElementById("updated-foot").textContent = stamp;
 
