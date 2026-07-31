@@ -124,7 +124,7 @@
 
   /* standing calls. Their own clocks, their own kills, their own tally.
      These never enter the strike rate above. Two directional calls sitting
-     next to a 91 percent would be exactly the flattery this page refuses. */
+     next to a 92 percent would be exactly the flattery this page refuses. */
   .standing{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px}
   .sc{border:1px solid var(--rule-card);background:var(--panel);padding:22px 24px 20px;
     display:flex;flex-direction:column}
@@ -382,6 +382,10 @@
             <p><b>Standing calls, added 31 July 2026.</b> The directional position runs on a longer clock than a level and resolves on a different question, so it is stated separately and graded separately. Standing calls never enter the strike rate: averaging a call that runs for months with one that resolves on a Friday would flatter both. Each carries the close that ends it, and every figure beside it carries the date it is measured from. When one ends it stays, with the date and what ended it.</p>
           </div>
           <div class="note">
+            <span class="n">05</span>
+            <p><b>Claim shapes, stated 31 July 2026.</b> A claim that price stays on one side of a line is graded on whether the close crossed it, whether or not the line was approached. A claim that requires price to reach a level is stated as no test when it does not. Every standing pass now carries a note saying how close price came, so a grade earned at arm's length cannot be read as one earned under pressure. Where a shape is arguable, the harsher grade is taken.</p>
+          </div>
+          <div class="note">
             <span class="n red">03</span>
             <p><b>Correction, 18 July 2026.</b> The Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated here as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain.</p>
           </div>
@@ -409,9 +413,9 @@
       the values. Newest call sits at the top. Save. Done.
 
    3. Every Friday, with the Verdict: bump LAST_UPDATED, then refresh the
-      figures inside STANDING. The kill levels and the moves are the only
-      numbers on this page that change without a new row, which makes them
-      the only ones that can go stale in silence.
+      figures inside STANDING. Reframe both weekly charts to the secular bull
+      marker before reading the percentages, or the readout measures the
+      visible range instead of the run and silently changes meaning.
 
    Put the kill condition in the call string after the word "Kill:" exactly,
    with the colon. It gets split out and rendered in the kill block. A row
@@ -426,6 +430,10 @@
                              of the tally, never banked as a win.
                   "pending"  named, clock still running
 
+   Every standing pass carries a proximity note: how close price came. A
+   grade earned at arm's length must not read like one earned under
+   pressure. See note 05.
+
    Grades are never restamped to match a later rulebook. If the standard
    changes, the boundary moves and the rows get marked. The grades stand.
 
@@ -437,7 +445,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-07-31";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-07-31";   /* set by hand, with the commit. 08-01 if it lands after midnight */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -472,7 +480,7 @@ const STANDING = [
     claim:   "Every green day is a bounce in a falling market until a close clears the turn.",
     kill:    "a weekly close above the falling weekly fast mean, 4,283 on 31 Jul",
     marks:   [
-      { name:"Gold", move:"-5.8%", from:"from the 4,308 shelf named that day" }
+      { name:"Gold", move:"-6.2%", from:"from the 4,308 shelf named that day" }
       /* Silver goes here once its 7 Jun anchor is verified against the close.
          Format: { name:"Silver", move:"-x.x%", from:"from ... named that day" } */
     ],
@@ -486,6 +494,9 @@ const STANDING = [
     claim:   "A fall inside a bull is not the end of one. Gold's run began in May 2019 and silver's fourteen months later, and neither has given back the line that started it.",
     kill:    "a weekly close beneath the rising weekly slow mean, 3,834 in gold and 46.36 in silver on 31 Jul",
     marks:   [
+      /* REFRAME both weekly charts to the secular bull marker before reading
+         these. The TradingView percentage measures the VISIBLE RANGE, not the
+         run, and it silently changes meaning if the left edge moves. */
       { name:"Gold",   move:"+217.79%", from:"since May 2019" },
       { name:"Silver", move:"+230.38%", from:"since Jul 2020" }
     ],
@@ -495,6 +506,21 @@ const STANDING = [
 ];
 
 const CALLS = [
+
+  { date:"2026-07-27", type:"Map", metal:"Gold", level:"4,098",
+    call:"The door overhead stands and the lockout holds until a close says otherwise. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
+    result:"A standing claim, and it held. Gold came up to the door on Monday at 4,079.46, then spent four days walking away from it. The weekly close printed 4,041.18, fifty-seven dollars under, and the kill never fired. Third week of the lockout, and price finished the week further from the line than it started it. Nearest approach was Monday, within half a percent; the line itself was not touched.",
+    grade:"pass" },
+
+  { date:"2026-07-27", type:"Map", metal:"Gold", level:"3,942",
+    call:"The June floor beneath is the first thing that gives way. Kill: a weekly close beneath 3,942.430 and the last floor under this move is gone.",
+    result:"Never approached. Price held ninety-nine dollars above it all week and closed 4,041.18. Stated as no test, counted for neither side. Under the shape rule this could be argued a standing pass; the harsher grade is taken and the claim is restated for next week rather than banked. See note 05.",
+    grade:"notest" },
+
+  { date:"2026-07-27", type:"Map", metal:"Silver", level:"61.02",
+    call:"The ceiling stands and the lockout holds until the close says otherwise. Kill: a weekly close back above 61.022 grades the break a trap and puts the recovery on two legs.",
+    result:"A standing claim, and it held. Silver closed 57.564, six percent underneath, and never came within five percent of the line at any point in the week. The kill never fired. Fourth week of the lockout, and the gap to gold's own line is four times as wide.",
+    grade:"pass" },
 
   { date:"2026-07-21", type:"Map", metal:"Gold", level:"4,098",
     call:"The failed floor at 4,098.275 works overhead; the second break stands. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
