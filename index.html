@@ -115,12 +115,39 @@
   .tally-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
     color:var(--ink-3);padding-top:14px;max-width:88ch}
 
-  /* ledger head */
+  /* section head, used by Standing Calls and The Ledger */
   .ledger-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
     margin-top:64px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
   .ledger-head h2{font-weight:300;font-size:28px;letter-spacing:-.01em;color:var(--ink)}
   .ledger-head .cnt{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;
     text-transform:uppercase;color:var(--ink-5)}
+
+  /* standing calls. Their own clocks, their own kills, their own tally.
+     These never enter the strike rate above. Two directional calls sitting
+     next to a 91 percent would be exactly the flattery this page refuses. */
+  .standing{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px}
+  .sc{border:1px solid var(--rule-card);background:var(--panel);padding:22px 24px 20px;
+    display:flex;flex-direction:column}
+  .sc-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .sc-clock{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--ink-5)}
+  .sc-status{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .sc-status::before{content:"";width:7px;height:7px;border-radius:50%;flex:none;background:currentColor}
+  .sc-live{color:var(--pending)} .sc-ended{color:var(--notest)}
+  .sc-pos{font-size:34px;font-weight:300;line-height:1.06;letter-spacing:-.02em;
+    color:var(--ink);margin-top:15px}
+  .sc-since{font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--ink-5);margin-top:10px}
+  .sc-claim{font-size:15.5px;line-height:1.58;color:var(--ink-2);margin-top:15px}
+  .sc-marks{display:flex;flex-direction:column;gap:7px;margin-top:auto;padding-top:18px;
+    border-top:1px solid var(--rule-card);font-family:var(--mono);font-size:12.5px;
+    font-weight:500;color:var(--ink-4)}
+  .sc-marks b{font-weight:600;color:var(--ink)}
+  .sc-marks i{font-style:normal;font-weight:400;color:var(--ink-6);letter-spacing:.02em}
+  .sc-asof{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-6);margin-top:5px}
+  .sc-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
+    color:var(--ink-3);padding-top:14px;max-width:88ch}
 
   /* lines on record */
   .lines{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;padding:16px 0 2px;
@@ -139,7 +166,8 @@
   .ledger-table th{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
     text-transform:uppercase;color:var(--ink-5);text-align:left;padding:14px 16px 12px 0;
     border-bottom:1px solid var(--rule)}
-  .ledger-table th:last-child{padding:14px 0 12px 16px}
+  .ledger-table th:first-child{padding-left:14px}
+  .ledger-table th:last-child{padding:14px 14px 12px 16px}
   .ledger-table td{padding:var(--row-pad) 16px var(--row-pad) 0;border-bottom:1px solid var(--rule-soft);
     vertical-align:top}
   .ledger-table td:first-child{padding-left:14px}
@@ -214,6 +242,7 @@
   @media(max-width:1140px){:root{--pad:32px}}
   @media(max-width:999px){
     header{grid-template-columns:minmax(0,1fr);gap:34px}
+    .standing{grid-template-columns:1fr}
     .ledger-table{display:none}
     .ledger-cards{display:grid}
     .foot-grid{grid-template-columns:minmax(0,1fr);gap:40px}
@@ -228,6 +257,8 @@
     .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--rule)}
     .stat:nth-child(3){border-right:1px solid var(--rule)}
     .masthead .desc{display:none}
+    .sc{padding:18px 18px 16px}
+    .sc-pos{font-size:30px}
   }
 </style>
 </head>
@@ -287,6 +318,14 @@
   <p class="tally-note" id="t-note"></p>
 
   <div class="ledger-head">
+    <h2>Standing Calls</h2>
+    <span class="cnt">The direction, and what would end it</span>
+  </div>
+
+  <div class="standing" id="standing"></div>
+  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the strike rate above. When one ends it stays on this page with the date it ended and what ended it.</p>
+
+  <div class="ledger-head">
     <h2>The Ledger</h2>
     <span class="cnt" id="l-count"></span>
   </div>
@@ -339,11 +378,15 @@
             <p><b>Standard tightened 3 July 2026.</b> Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention, are marked pre-standard in the ledger, and are preserved unaltered. No grade is ever restamped to fit a rulebook written after it. Rows carrying no published kill are marked as such.</p>
           </div>
           <div class="note">
-            <span class="n red">02</span>
-            <p><b>Correction, 18 July 2026.</b> The Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated here as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain.</p>
+            <span class="n">02</span>
+            <p><b>Standing calls, added 31 July 2026.</b> The directional position runs on a longer clock than a level and resolves on a different question, so it is stated separately and graded separately. Standing calls never enter the strike rate: averaging a call that runs for months with one that resolves on a Friday would flatter both. Each carries the close that ends it, and every figure beside it carries the date it is measured from. When one ends it stays, with the date and what ended it.</p>
           </div>
           <div class="note">
             <span class="n red">03</span>
+            <p><b>Correction, 18 July 2026.</b> The Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated here as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain.</p>
+          </div>
+          <div class="note">
+            <span class="n red">04</span>
             <p><b>Correction, 30 July 2026.</b> The Updated field on this page was rendered from the visitor's own device clock rather than from the file. While that line was live, the page told every reader it had been updated on the day they opened it, whatever the file's actual state. No call, no grade and no figure in the ledger was affected. The field is now set by hand against the commit. The fault is logged here rather than fixed quietly, because a page that claims nothing is hidden does not get to hide this.</p>
           </div>
         </div>
@@ -360,10 +403,15 @@
    1. LAST_UPDATED below. Change it with EVERY commit that touches this file,
       including corrections that add no new call. It is set by hand on purpose:
       the field claims when the FILE changed, and no automatic value can know
-      that. Never replace it with new Date(). See note 03.
+      that. Never replace it with new Date(). See note 04.
 
    2. To add a call: copy ONE entry, paste it at the TOP of the list, change
       the values. Newest call sits at the top. Save. Done.
+
+   3. Every Friday, with the Verdict: bump LAST_UPDATED, then refresh the
+      figures inside STANDING. The kill levels and the moves are the only
+      numbers on this page that change without a new row, which makes them
+      the only ones that can go stale in silence.
 
    Put the kill condition in the call string after the word "Kill:" exactly,
    with the colon. It gets split out and rendered in the kill block. A row
@@ -389,8 +437,62 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-07-30";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-07-31";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
+
+/* =========================================================================
+   STANDING CALLS  ·  the direction, on its own clock
+
+   Two calls pointing opposite ways is the point. Bearish week to week while
+   the bull holds year to year is only a credible position if both halves
+   carry a close that ends them, so both do.
+
+   These are graded on their own clocks and DO NOT enter the strike rate.
+   Never move one into CALLS. A directional call that runs for months is not
+   the same object as a level that resolves on a Friday, and averaging them
+   would flatter both. See note 02.
+
+   status: "live"  the kill has not fired
+           "ended" the kill fired. Fill endedOn and endedAs. It stays.
+
+   Every level and percentage below is entered by hand, because a market
+   return cannot be derived from this file. Each mark carries a "from"
+   string naming exactly what it is measured against, for the same reason
+   the strike rate carries its denominator: a percentage with no stated
+   base is not a claim this page gets to make. Verify each figure against
+   the chart of record before it ships. A number you cannot source is left
+   out rather than guessed.
+   ========================================================================= */
+
+const STANDING = [
+  {
+    clock:   "The direction, week to week",
+    position:"Bearish",
+    stated:  "2026-06-07",
+    claim:   "Every green day is a bounce in a falling market until a close clears the turn.",
+    kill:    "a weekly close above the falling weekly fast mean, 4,283 on 31 Jul",
+    marks:   [
+      { name:"Gold", move:"-5.8%", from:"from the 4,308 shelf named that day" }
+      /* Silver goes here once its 7 Jun anchor is verified against the close.
+         Format: { name:"Silver", move:"-x.x%", from:"from ... named that day" } */
+    ],
+    asOf:    "2026-07-31",
+    status:  "live", endedOn:"", endedAs:""
+  },
+  {
+    clock:   "The direction, year to year",
+    position:"The bull is intact",
+    stated:  "2026-06-07",
+    claim:   "A fall inside a bull is not the end of one. Gold's run began in May 2019 and silver's fourteen months later, and neither has given back the line that started it.",
+    kill:    "a weekly close beneath the rising weekly slow mean, 3,834 in gold and 46.36 in silver on 31 Jul",
+    marks:   [
+      { name:"Gold",   move:"+217.79%", from:"since May 2019" },
+      { name:"Silver", move:"+230.38%", from:"since Jul 2020" }
+    ],
+    asOf:    "2026-07-31",
+    status:  "live", endedOn:"", endedAs:""
+  }
+];
 
 const CALLS = [
 
@@ -411,7 +513,7 @@ const CALLS = [
 
   { date:"2026-07-12", type:"Map", metal:"Gold", level:"4,098",
     call:"4,098 remains the floor after Friday's reclaim. Kill: a weekly close beneath the floor, and the reclaim is itself reclassified.",
-    result:"The kill fired. Gold closed the week at 4,018.44, eighty dollars beneath the floor. The reclaim is reclassified: a bounce inside a falling market, not a repair. A miss, and it stays. First graded a pass on 17 July with the kill quoted backwards; corrected 18 July, see note 02.",
+    result:"The kill fired. Gold closed the week at 4,018.44, eighty dollars beneath the floor. The reclaim is reclassified: a bounce inside a falling market, not a repair. A miss, and it stays. First graded a pass on 17 July with the kill quoted backwards; corrected 18 July, see note 03.",
     grade:"miss" },
 
   { date:"2026-07-12", type:"Map", metal:"Silver", level:"61.02",
@@ -488,6 +590,41 @@ const fmtDate = iso => {
 
 document.documentElement.style.setProperty("--row-pad", DENSITY === "compact" ? "14px" : "22px");
 
+/* ---------------- standing calls ---------------- */
+/* Duration is computed from the two dates so it can never go stale the way
+   a typed figure would. Everything else in a standing call is entered by
+   hand with its own stated source. */
+const runFor = (from, to) => {
+  const d = Math.round((Date.parse(to + "T00:00:00Z") - Date.parse(from + "T00:00:00Z")) / 86400000);
+  if (!isFinite(d) || d < 0) return "";
+  if (d < 730) return d + " day" + (d === 1 ? "" : "s") + " running";
+  return (d / 365.25).toFixed(1) + " years running";
+};
+
+document.getElementById("standing").innerHTML = STANDING.map(s => {
+  const live = s.status !== "ended";
+  const run  = runFor(s.stated, s.asOf);
+  return `
+  <article class="sc">
+    <div class="sc-top">
+      <span class="sc-clock">${esc(s.clock)}</span>
+      <span class="sc-status ${live ? "sc-live" : "sc-ended"}">${live ? "Live" : "Ended"}</span>
+    </div>
+    <div class="sc-pos">${esc(s.position)}</div>
+    <div class="sc-since">Stated ${esc(fmtDate(s.stated))}${
+      live ? (run ? " &middot; " + esc(run) : "")
+           : " &middot; ended " + esc(fmtDate(s.endedOn)) + ", " + esc(s.endedAs)}</div>
+    <p class="sc-claim">${esc(s.claim)}</p>
+    <span class="kill"><b>Kill</b> ${esc(s.kill)}</span>
+    <div class="sc-marks">
+      ${s.marks.map(m => `<span>${esc(m.name)} <b>${esc(m.move)}</b>${
+        m.from ? ` <i>${esc(m.from)}</i>` : ""}</span>`).join("")}
+      <span class="sc-asof">At the close of ${esc(fmtDate(s.asOf))}</span>
+    </div>
+  </article>`;
+}).join("");
+
+/* ---------------- the ledger ---------------- */
 const rows = CALLS.map(c => {
   const [y, m, d] = c.date.split("-");
   const parts = c.call.split(/\s*Kill:\s*/i);
@@ -548,9 +685,11 @@ document.getElementById("ledger-cards").innerHTML = rows.map(r => `
     </div>
   </article>`).join("");
 
-/* tally per the Grading Standard:
+/* ---------------- the tally ---------------- */
+/* Per the Grading Standard:
    resolved = pass + miss + partial. No tests join neither side.
-   correct  = pass only. Partials count against the record in the note. */
+   correct  = pass only. Partials count against the record in the note.
+   STANDING is deliberately absent from every figure below. See note 02. */
 const pass    = CALLS.filter(c => c.grade === "pass").length;
 const miss    = CALLS.filter(c => c.grade === "miss").length;
 const partial = CALLS.filter(c => c.grade === "partial").length;
@@ -567,18 +706,19 @@ document.getElementById("t-open").textContent = open;
 let note = resolved ? `${pass} of ${resolved} resolved calls graded correct.` : "";
 if (partial) note += ` ${partial} partial, counted against the record.`;
 if (notest)  note += ` ${notest} never tested, counted for neither side.`;
-note += " Misses are shown in full below, never hidden.";
+note += " Misses are shown in full below, never hidden. Standing calls are graded separately and are not in this figure.";
 document.getElementById("t-note").textContent = note.trim();
 
-/* strike rate carries its own base, so the number and its denominator
+/* Strike rate carries its own base, so the number and its denominator
    always travel together. A percentage on a small base is not a claim
    this page gets to make on its own. */
 document.getElementById("t-rate-lab").textContent =
   resolved ? `Strike rate · ${pass} of ${resolved}` : "Strike rate";
 
-/* Lines on record. Display only, hides nothing, recomputes from the full
-   array every load. Compound levels such as "4,098 / 4,307" count toward
-   both. Only lines named twice or more are shown.
+/* ---------------- lines on record ---------------- */
+/* Display only, hides nothing, recomputes from the full array every load.
+   Compound levels such as "4,098 / 4,307" count toward both. Only lines
+   named twice or more are shown.
 
    This strip claims occurrence and nothing else. It must NOT claim a
    per-level grade: a row graded pass can contain a level that was stated
@@ -601,6 +741,7 @@ document.getElementById("lines-on-record").innerHTML = repeated.length
     ).join("")
   : "";
 
+/* ---------------- counts and dates ---------------- */
 document.getElementById("issue-no").textContent = String(CALLS.length).padStart(3, "0");
 document.getElementById("l-count").textContent =
   CALLS.length + (CALLS.length === 1 ? " call" : " calls") + " on record";
@@ -611,7 +752,7 @@ document.getElementById("l-count").textContent =
 document.getElementById("record-begins").textContent =
   fmtDate(CALLS.reduce((a, c) => (c.date < a ? c.date : a), CALLS[0].date));
 
-/* Updated: the manual constant, never the visitor's clock. See note 03. */
+/* Updated: the manual constant, never the visitor's clock. See note 04. */
 const stamp = fmtDate(LAST_UPDATED);
 document.getElementById("updated-spec").textContent = stamp;
 document.getElementById("updated-foot").textContent = stamp;
