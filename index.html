@@ -1,1 +1,926 @@
-pbcopy < "/Users/jose/Downloads/The Simplifier X Brand/the_simplifier_record_index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · The Record</title>
+<meta name="description" content="Every gold and silver call from The Simplifier, named before the move and graded after. Wins and misses. Nothing removed." />
+<meta name="theme-color" content="#C2BAAE">
+
+<!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
+     Create card.png at 1200x630, then switch twitter:card to summary_large_image.
+
+     og:url CONFIRMED CORRECT 1 Aug 2026 against the repository README, which
+     states the live record as https://thesimplifier7.github.io/record/. The
+     earlier flag on this line is withdrawn.
+
+     STILL OPEN: og:image points at card.png. If that file does not exist yet
+     the share card renders empty. Either ship the image at 1200x630 and switch
+     twitter:card to summary_large_image, or drop the og:image line until it
+     exists. A broken card on the account's only link is worse than none. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/">
+<meta property="og:title" content="The Simplifier · The Record">
+<meta property="og:description" content="Every gold and silver call, named before the move and graded after. Wins and misses, in one place, never removed.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@TheSimplifier7">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ---------------------------------------------------------------------
+     PAPER PALETTE. Ground is the TradingView canvas, #C2BAAE, luminance
+     0.496. That is a mid tone, so maximum possible contrast on it is
+     10.93:1 against pure black. Every value below is measured against the
+     ground. Nothing on this page sits under 5.29:1.
+
+       --ink    9.80:1     --ink-4  6.35:1     --gold    6.03:1
+       --ink-2  7.66:1     --ink-5  5.90:1     --pass    6.74:1
+       --ink-3  6.94:1     --ink-6  5.29:1     --miss    6.17:1
+                                               --partial 5.98:1
+                                               --notest  5.86:1
+                                               --pending 6.61:1
+
+     THREE RULES FOR ANYONE EDITING THIS.
+
+     1. Do not add -webkit-font-smoothing:antialiased. On a light ground
+        it strips weight off every glyph on macOS and the page goes thin.
+        It was in the dark version for good reason. It does not belong here.
+
+     2. Do not drop the base weight back to 300. Light text on a dark
+        ground reads optically heavier than dark text on a light ground at
+        the same weight. Body prose is 400 and small mono labels are 500
+        or 600 to compensate. Large display type stays at 300 because
+        scale carries it.
+
+     3. The Level column is the strongest element in every row. It is the
+        claim. Nothing in the row may outweigh it.
+
+     Do not lighten any ink value without recomputing it.
+  --------------------------------------------------------------------- */
+  :root{
+    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071; --rule-card:#8B8071;
+    --ink:#14110C; --ink-2:#2B2820; --ink-3:#332F26; --ink-4:#3A3529;
+    --ink-5:#403A2C; --ink-6:#47412F;
+    --gold:#4A360C; --gold-hi:#322408;
+    --pass:#163821; --miss:#63220E; --partial:#573107; --notest:#3B3B36; --pending:#1B3646;
+    --band:rgba(20,17,12,.038);
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:48px; --row-pad:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink-2);font-family:var(--serif);font-weight:400;
+    font-variant-numeric:tabular-nums;text-wrap:pretty;
+    background-image:radial-gradient(900px 420px at 72% -10%,rgba(255,251,242,.4),transparent 70%)}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(74,54,12,.4)}
+  a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+  table{border-collapse:collapse}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--pad) 96px}
+
+  /* masthead */
+  .masthead{display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:22px 0 14px;border-bottom:1px solid var(--ink)}
+  .brand{display:flex;align-items:center;gap:15px}
+  .brand svg{width:34px;height:26px;flex:none;display:block;overflow:visible}
+  .brand .name{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--ink)}
+  .masthead .desc{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-5)}
+  .hairline{height:3px;border-bottom:1px solid var(--rule)}
+
+  /* header */
+  header{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+    gap:64px;align-items:end;padding:52px 0 40px}
+  .issue{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  h1{font-weight:300;font-size:clamp(52px,7.4vw,92px);line-height:.92;letter-spacing:-.025em;color:var(--ink)}
+  .thesis{font-size:20px;line-height:1.55;color:var(--ink-3);max-width:34ch;margin-top:24px}
+  .thesis em{font-style:italic;color:var(--ink)}
+  .law{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-6);margin-top:26px}
+  .spec{display:grid;grid-template-columns:auto 1fr;column-gap:22px;font-family:var(--mono);
+    font-size:11.5px;font-weight:500;line-height:1.95;border-top:1px solid var(--rule);padding-top:14px}
+  .spec dt{letter-spacing:.12em;text-transform:uppercase;color:var(--ink-5)}
+  .spec dd{color:var(--ink-3);font-weight:400}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+  .stat{padding:26px 28px 24px;border-right:1px solid var(--rule)}
+  .stat:first-child{padding-left:0}
+  .stat:last-child{padding-right:0;border-right:none}
+  .stat .num{font-family:var(--mono);font-size:38px;font-weight:500;line-height:1;
+    letter-spacing:-.02em;color:var(--ink)}
+  .stat .num.green{color:var(--pass)}
+  .stat .num.red{color:var(--miss)}
+  .stat .num.blue{color:var(--pending)}
+  .stat .lab{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-5);margin-top:12px}
+  .tally-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
+    color:var(--ink-3);padding-top:14px;max-width:88ch}
+
+  /* section head, used by Standing Calls and The Ledger */
+  .ledger-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    margin-top:64px;padding-bottom:12px;border-bottom:1px solid var(--ink)}
+  .ledger-head h2{font-weight:300;font-size:28px;letter-spacing:-.01em;color:var(--ink)}
+  .ledger-head .cnt{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-5)}
+
+  /* standing calls. Their own clocks, their own kills, their own tally.
+     These never enter the resolved tally above. Two directional calls
+     sitting next to the counts would be exactly the flattery this page
+     refuses. */
+  .standing{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px}
+  .sc{border:1px solid var(--rule-card);background:var(--panel);padding:22px 24px 20px;
+    display:flex;flex-direction:column}
+  .sc-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .sc-clock{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--ink-5)}
+  .sc-status{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .sc-status::before{content:"";width:7px;height:7px;border-radius:50%;flex:none;background:currentColor}
+  .sc-live{color:var(--pending)} .sc-ended{color:var(--notest)}
+  .sc-pos{font-size:34px;font-weight:300;line-height:1.06;letter-spacing:-.02em;
+    color:var(--ink);margin-top:15px}
+  .sc-since{font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--ink-5);margin-top:10px}
+  .sc-claim{font-size:15.5px;line-height:1.58;color:var(--ink-2);margin-top:15px}
+  .sc-marks{display:flex;flex-direction:column;gap:7px;margin-top:auto;padding-top:18px;
+    border-top:1px solid var(--rule-card);font-family:var(--mono);font-size:12.5px;
+    font-weight:500;color:var(--ink-4)}
+  .sc-marks b{font-weight:600;color:var(--ink)}
+  .sc-marks i{font-style:normal;font-weight:400;color:var(--ink-6);letter-spacing:.02em}
+  .sc-asof{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-6);margin-top:5px}
+  .sc-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
+    color:var(--ink-3);padding-top:14px;max-width:88ch}
+  .sc-note b{font-weight:600;color:var(--ink)}
+
+  /* lines on record */
+  .lines{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;padding:16px 0 2px;
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;color:var(--ink-5)}
+  .lines .eyebrow-inline{letter-spacing:.16em;text-transform:uppercase;color:var(--ink-6);margin-right:4px}
+  .lines .line{color:var(--ink-3)}
+  .lines .line b{font-weight:600;color:var(--gold)}
+  .lines .line i{font-style:normal;font-weight:400;color:var(--ink-5)}
+
+  /* noscript */
+  .noscript{border:1px solid var(--rule);background:var(--panel);padding:20px 22px;margin-top:22px;
+    font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--ink-3)}
+
+  /* table */
+  .ledger-table{width:100%;table-layout:fixed}
+  .ledger-table th{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-5);text-align:left;padding:14px 16px 12px 0;
+    border-bottom:1px solid var(--rule)}
+  .ledger-table th:first-child{padding-left:14px}
+  .ledger-table th:last-child{padding:14px 14px 12px 16px}
+  .ledger-table td{padding:var(--row-pad) 16px var(--row-pad) 0;border-bottom:1px solid var(--rule-soft);
+    vertical-align:top}
+  .ledger-table td:first-child{padding-left:14px}
+  .ledger-table td:last-child{padding:var(--row-pad) 14px var(--row-pad) 16px}
+  /* ledger paper. Alternating bands, because row heights swing from three
+     lines to seven and the eye loses the row halfway across. Hover must
+     stay below these in source order or it will not win. */
+  .ledger-table tbody tr:nth-child(odd){background:var(--band)}
+  .ledger-table tbody tr:hover{background:#B6AEA1}
+  .w-date{width:96px} .w-inst{width:104px} .w-level{width:118px}
+  .w-call{width:29%} .w-grade{width:112px}
+  .c-date{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--ink-3);white-space:nowrap}
+  .c-date .yr{display:block;color:var(--ink-6);font-size:11px;font-weight:400;letter-spacing:.06em;margin-top:3px}
+  .c-metal{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink)}
+  .c-type{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-6);margin-top:4px}
+  /* the level is the claim. Nothing in the row outweighs it. */
+  .c-level{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);
+    line-height:1.35;letter-spacing:-.01em}
+  .c-call{font-size:15px;line-height:1.58;color:var(--ink-2)}
+  .c-result{font-size:15px;line-height:1.58;color:var(--ink-3)}
+  .kill{display:block;margin-top:11px;padding-left:12px;border-left:2px solid var(--rule);
+    font-family:var(--mono);font-size:12px;font-weight:400;line-height:1.7;color:var(--ink-4)}
+  .kill b{font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--miss)}
+  .nokill{display:block;margin-top:11px;padding-left:12px;border-left:2px solid var(--rule);
+    font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-6)}
+  .grade{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;
+    font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+  .grade::before{content:"";width:7px;height:7px;border-radius:50%;flex:none;background:currentColor}
+  .g-pass{color:var(--pass)} .g-miss{color:var(--miss)} .g-partial{color:var(--partial)}
+  .g-notest{color:var(--notest)} .g-pending{color:var(--pending)}
+  .prestd{display:block;margin-top:9px;font-family:var(--mono);font-size:9.5px;font-weight:500;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-6);white-space:nowrap}
+
+  /* cards, narrow only */
+  .ledger-cards{display:none;gap:12px;padding-top:16px}
+  .card{border:1px solid var(--rule-card);border-radius:12px;background:var(--panel);padding:16px 16px 18px}
+  .card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-card)}
+  .card .top .d{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--ink-3)}
+  .card .top .d span{color:var(--ink-6);font-weight:400}
+  .card .gwrap{display:flex;flex-direction:column;align-items:flex-end}
+  .card .prestd{margin-top:7px}
+  .card .meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:13px 0 4px}
+  .card .meta .lv{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);margin-left:auto}
+  .card .claim{font-size:16px;line-height:1.58;color:var(--ink-2);padding-top:10px}
+  .card .kill,.card .nokill{margin-top:12px}
+  .card .did{margin-top:16px;padding-top:13px;border-top:1px solid var(--rule-card)}
+  .card .did .lab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-6);margin-bottom:6px}
+  .card .did p{font-size:15.5px;line-height:1.58;color:var(--ink-3)}
+
+  /* footer */
+  footer{margin-top:72px;border-top:1px solid var(--ink);padding-top:36px}
+  .foot-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:72px}
+  .eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-5);margin-bottom:16px}
+  .integrity{font-size:17.5px;line-height:1.62;color:var(--ink-2)}
+  .integrity em{font-style:italic}
+  .foot-meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:11.5px;
+    font-weight:500;color:var(--ink-5);margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+  .notes{display:grid;gap:20px}
+  .note{display:grid;grid-template-columns:26px 1fr;gap:12px;scroll-margin-top:24px}
+  .note .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--gold);padding-top:3px}
+  .note .n.red{color:var(--miss)}
+  .note p{font-size:14.5px;line-height:1.68;color:var(--ink-3)}
+  .note p b{font-weight:600;color:var(--ink)}
+  /* ONE sequence, strict numeric, 01 upward. The notes previously sat in the
+     markup grouped by kind and rendered 01, 02, 05, 03, 04, 06, which reads
+     as a numbering fault. Grouping them under headings did not fix it: the
+     page still counted 01, 02, 05, 03, 04, 06 top to bottom. The kind is
+     carried by the colour of the number and by the first words of the note,
+     so it needs no grouping. Numbers are NEVER reassigned to tidy a
+     sequence: they are cited in published ledger rows and in shipped
+     scripts, and a renumber has already caused confusion once. */
+  .note:target .n{color:var(--gold-hi)}
+  .note:target p{box-shadow:-10px 0 0 rgba(74,54,12,.13)}
+  .cited{display:block;margin-top:9px;font-family:var(--mono);font-size:11px;font-weight:400;
+    letter-spacing:.03em;color:var(--ink-5)}
+  .cited b{font-weight:600;color:var(--ink-4)}
+  .c-result a,.card .did a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42)}
+  .c-result a:hover,.card .did a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
+
+  /* responsive */
+  @media(max-width:1140px){:root{--pad:32px}}
+  @media(max-width:999px){
+    header{grid-template-columns:minmax(0,1fr);gap:34px}
+    .standing{grid-template-columns:1fr}
+    .ledger-table{display:none}
+    .ledger-cards{display:grid}
+    .foot-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  }
+  @media(max-width:679px){
+    :root{--pad:20px}
+    header{padding:38px 0 32px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat{padding:22px 20px 20px}
+    .stat:nth-child(odd){padding-left:0}
+    .stat:nth-child(2n){border-right:none;padding-right:0}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--rule)}
+    .stat:nth-child(3){border-right:1px solid var(--rule)}
+    .masthead .desc{display:none}
+    .sc{padding:18px 18px 16px}
+    .sc-pos{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <span class="desc">Gold &amp; silver intelligence · Graded record</span>
+  </div>
+  <div class="hairline"></div>
+
+  <main>
+
+  <header>
+    <div>
+      <div class="issue">Standing ledger · Entry <span id="issue-no">000</span></div>
+      <h1>The Record</h1>
+      <p class="thesis">Every gold and silver call, <em>named before the move</em> and <em>graded after</em>. Wins and misses, in one place, never removed.</p>
+      <p class="law">Price is the rudder · The rest is weather</p>
+    </div>
+    <dl class="spec">
+      <dt>Coverage</dt><dd>Gold · Silver</dd>
+      <!-- CADENCE corrected 1 Aug 2026. This read "One read a day", which was the
+           retired daily-original engine and had been wrong since the anchors moved.
+           If the cadence moves again, this line moves with it the same day. -->
+      <dt>Cadence</dt><dd>Map Sunday · Method Wednesday · Verdict Friday</dd>
+      <dt>Grading</dt><dd>Weekly close, in public</dd>
+      <dt>Method</dt><dd>Falsifiable levels, standard from 3 Jul 2026</dd>
+      <dt>Revisions</dt><dd>Nothing deleted</dd>
+      <dt>Record begins</dt><dd id="record-begins"></dd>
+      <dt>Updated</dt><dd id="updated-spec"></dd>
+    </dl>
+  </header>
+
+  <!-- THE TALLY, changed 1 Aug 2026. The third stat was a strike rate percentage
+       in 38px type with its denominator in 10.5px underneath.
+
+       Two of this desk's own documents forbid that. The institutional deck's
+       speaker note: "this slide must never lead with a percentage. An allocator
+       will compute the confidence interval on a base of eleven before you finish
+       the sentence, and you will have lost the room by being the thing you claim
+       not to be. State the count. Let them do the arithmetic." The Front Door:
+       "Count and miss. No percentage, so nothing to revise on Sunday and no
+       denominator to argue about."
+
+       So the page now states counts only. The rate is trivially derivable and a
+       reader who does the division finds the desk already did it honestly. The
+       miss sits in the tally in the miss colour, because a record that displays
+       its own scar is doing something no competitor will copy.
+
+       To revert: swap this third stat block back and restore the t-rate lines
+       in the script. One block, two lines. -->
+  <section class="stats" aria-label="Summary">
+    <div class="stat">
+      <div class="num" id="t-resolved">0</div>
+      <div class="lab">Calls resolved</div>
+    </div>
+    <div class="stat">
+      <div class="num green" id="t-pass">0</div>
+      <div class="lab">Graded correct</div>
+    </div>
+    <div class="stat">
+      <div class="num red" id="t-miss">0</div>
+      <div class="lab">Graded wrong, still on this page</div>
+    </div>
+    <div class="stat">
+      <div class="num blue" id="t-open">0</div>
+      <div class="lab">Open, clock running</div>
+    </div>
+  </section>
+  <p class="tally-note" id="t-note"></p>
+
+  <div class="ledger-head">
+    <h2>Standing Calls</h2>
+    <span class="cnt">The direction, and what would end it</span>
+  </div>
+
+  <div class="standing" id="standing"></div>
+  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. Both calls carry both metals from 1 August 2026. Silver's swing kill is published here for the first time, and the line each kill sits on was corrected the same day. See note 06.</p>
+
+  <div class="ledger-head">
+    <h2>The Ledger</h2>
+    <span class="cnt" id="l-count"></span>
+  </div>
+
+  <p class="lines" id="lines-on-record"></p>
+
+  <noscript>
+    <div class="noscript">
+      This page renders its ledger with JavaScript, which is currently disabled.
+      The full record is readable as plain text in the source file, and every change
+      to it is a public, timestamped commit.<br>
+      <a href="https://github.com/TheSimplifier7/record/blob/main/index.html">Read the raw file</a> ·
+      <a href="https://github.com/TheSimplifier7/record/commits/main">Read the edit history</a>
+    </div>
+  </noscript>
+
+  <table class="ledger-table">
+    <thead>
+      <tr>
+        <th scope="col" class="w-date">Date</th>
+        <th scope="col" class="w-inst">Instrument</th>
+        <th scope="col" class="w-level">Level</th>
+        <th scope="col" class="w-call">The call, before the move</th>
+        <th scope="col">What price did</th>
+        <th scope="col" class="w-grade">Grade</th>
+      </tr>
+    </thead>
+    <tbody id="ledger-rows"></tbody>
+  </table>
+
+  <div class="ledger-cards" id="ledger-cards"></div>
+
+  </main>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <div class="eyebrow">Integrity</div>
+        <p class="integrity"><em>Nothing on this page has ever been removed.</em> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full <a href="https://github.com/TheSimplifier7/record/commits/main">edit history</a>. If a call was wrong, it is still here.</p>
+        <div class="foot-meta">
+          <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
+          <span>Last updated <span id="updated-foot"></span></span>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Notes</div>
+        <div id="notes"></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+   THE RECORD  ·  how to update
+
+   1. LAST_UPDATED below. Change it with EVERY commit that touches this file,
+      including corrections that add no new call. It is set by hand on purpose:
+      the field claims when the FILE changed, and no automatic value can know
+      that. Never replace it with new Date(). See note 04.
+
+   2. To add a call: copy ONE entry, paste it at the TOP of the list, change
+      the values. Newest call sits at the top. Save. Done.
+
+   3. Every Friday, with the Verdict: bump LAST_UPDATED, then refresh the
+      figures inside STANDING. Reframe both weekly charts to the secular bull
+      marker before reading the percentages, or the readout measures the
+      visible range instead of the run and silently changes meaning.
+
+   Put the kill condition in the call string after the word "Kill:" exactly,
+   with the colon. It gets split out and rendered in the kill block. A row
+   with no "Kill:" renders as NO KILL PUBLISHED, which is correct for
+   pre-standard entries and a red flag for anything dated after 3 Jul 2026.
+
+   grade can be:  "pass"     the level governed and the kill did not fire
+                  "miss"     the kill fired. It STAYS. Never delete it.
+                  "partial"  half worked, or a reasonable critic could argue
+                             miss. Counts AGAINST the record.
+                  "notest"   the level was never reached. Joins neither side
+                             of the tally, never banked as a win.
+                  "pending"  named, clock still running
+
+   Every standing pass carries a proximity note: how close price came. A
+   grade earned at arm's length must not read like one earned under
+   pressure. See note 05.
+
+   Grades are never restamped to match a later rulebook. If the standard
+   changes, the boundary moves and the rows get marked. The grades stand.
+
+   NO PERCENTAGE ON THIS PAGE, changed 1 Aug 2026. Counts only. The reader
+   does the division. See the comment above the stats block.
+
+   BRAND LAW: no em dashes, no hashtags, no exclamation marks, no emoji,
+   no forecasting language, no fabricated data. Every level verified against
+   the chart of record before it goes on this page.
+
+   Only verified calls go on here. Check every entry against the actual
+   posted call before it goes live. This page is the whole brand in one place.
+   ========================================================================= */
+
+const LAST_UPDATED  = "2026-08-01";   /* set by hand, with the commit */
+const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
+
+/* =========================================================================
+   STANDING CALLS  ·  the direction, on its own clock
+
+   Two calls pointing opposite ways is the point. Bearish week to week while
+   the bull holds year to year is only a credible position if both halves
+   carry a close that ends them, so both do.
+
+   These are graded on their own clocks and DO NOT enter the tally. Never
+   move one into CALLS. A directional call that runs for months is not the
+   same object as a level that resolves on a Friday, and averaging them
+   would flatter both. See note 02.
+
+   status: "live"  the kill has not fired
+           "ended" the kill fired. Fill endedOn and endedAs. It stays.
+
+   Every level and percentage below is entered by hand, because a market
+   return cannot be derived from this file. Each mark carries a "from"
+   string naming exactly what it is measured against, for the same reason
+   the tally carries its denominator: a percentage with no stated base is
+   not a claim this page gets to make. Verify each figure against the chart
+   of record before it ships. A number you cannot source is left out rather
+   than guessed.
+   ========================================================================= */
+
+const STANDING = [
+  {
+    clock:   "The direction, week to week",
+    position:"Bearish",
+    stated:  "2026-06-07",
+    /* Anchor asymmetry stated in the claim, added 1 Aug 2026. The bearish
+       direction was stated on gold's shelf on 7 June. The 7 June post named
+       no silver level and published no silver kill, so silver is measured
+       from its own first named claim, the 61.02 floor of 7 July, which is on
+       the ledger below. Dating silver to 7 June would anchor a card to a post
+       that does not exist, which is the one thing this page is for. */
+    claim:   "Every green day is a bounce in a falling market until a close clears the swing line above. Stated on gold's shelf on 7 June. Silver's own level and kill were first named on 7 July and it is measured from there.",
+    /* THE SWING KILL IS THE 464 SWING SLOW MR. Corrected 1 Aug 2026, see note 06.
+       This previously read "the falling weekly fast mean, 4,283 in gold on 31 Jul".
+       The LEVEL was right and is unchanged: 4,283 was the 464 swing slow mean on
+       31 Jul and the same line reads 4,277 on 1 Aug, a falling line six dollars
+       lower after a day. The NAME was wrong. The weekly fast mean is a different
+       line entirely and stands at 4,721 in gold, 77.47 in silver.
+       Read both off the 464, labelled Swing Slow MR, every Friday. */
+    kill:    "a weekly close above the falling 464 swing slow mean, 4,277 in gold and 67.54 in silver on 1 Aug",
+    marks:   [
+      { name:"Gold",   move:"-6.2%", from:"from the 4,308 shelf named 7 Jun" },
+      { name:"Silver", move:"-5.7%", from:"from the 61.022 floor named 7 Jul" }
+    ],
+    asOf:    "2026-08-01",
+    status:  "live", endedOn:"", endedAs:""
+  },
+  {
+    clock:   "The direction, year to year",
+    position:"The bull is intact",
+    stated:  "2026-06-07",
+    claim:   "A fall inside a bull is not the end of one. Gold's run began in May 2019 and silver's fourteen months later, and neither has given back the line that started it. A secular turn is dated by the two weekly means crossing, never by a price close, which is why this call carries no price.",
+    /* THE SECULAR KILL IS A CROSS, NOT A PRICE CLOSE. Corrected 1 Aug 2026, see
+       note 06. This previously read "a weekly close beneath the rising weekly slow
+       mean". The Grading Standard has said since 3 July that a secular turn is
+       dated by the weekly fast mean crossing the slow mean and NOT by a price
+       close, because price can sit below the slow mean for weeks with the trend
+       intact. The card contradicted the standard. Position against the epoch line
+       is the confirmation, never the trigger. */
+    kill:    "the weekly fast mean crossing down through the weekly slow mean, confirmed by price below the epoch line. Gold 4,721 over 3,834, silver 77.47 over 46.36 on 1 Aug",
+    marks:   [
+      /* REFRAME both weekly charts to the secular bull marker before reading
+         these. The TradingView percentage measures the VISIBLE RANGE, not the
+         run, and it silently changes meaning if the left edge moves. */
+      /* DATE SOURCED 1 Aug 2026: the chart of record labels the current secular
+         bull's start as Tue 28 May 2019. Silver's is fourteen months later.
+
+         THE TWO PERCENTAGES ARE FLAGGED, NOT CHANGED. A weekly chart framed from
+         early 2019 reads +221.87% for gold against the +217.79% published here,
+         because TradingView measures the VISIBLE RANGE and not the run. Four
+         points of difference is the left edge sitting before the marker rather
+         than on it. Before either figure moves: drag the left edge exactly onto
+         28 May 2019, read it there, and update both metals in the same commit.
+         A figure whose frame is not reproducible is not a figure this page states. */
+      { name:"Gold",   move:"+217.79%", from:"since 28 May 2019" },
+      { name:"Silver", move:"+230.38%", from:"since Jul 2020" }
+    ],
+    asOf:    "2026-08-01",
+    status:  "live", endedOn:"", endedAs:""
+  }
+];
+
+const CALLS = [
+
+  { date:"2026-07-27", type:"Map", metal:"Gold", level:"4,098",
+    call:"The door overhead stands and the lockout holds until a close says otherwise. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
+    result:"A standing claim, and it held. Gold came up to the door on Monday at 4,079.46, then spent four days walking away from it. The weekly close printed 4,041.18, fifty-seven dollars under, and the kill never fired. Third week of the lockout, and price finished the week further from the line than it started it. Nearest approach was Monday, within half a percent; the line itself was not touched.",
+    grade:"pass" },
+
+  { date:"2026-07-27", type:"Map", metal:"Gold", level:"3,942",
+    call:"The June floor beneath is the first thing that gives way. Kill: a weekly close beneath 3,942.430 and the last floor under this move is gone.",
+    result:"Never approached. Price held ninety-nine dollars above it all week and closed 4,041.18. Stated as no test, counted for neither side. Under the shape rule this could be argued a standing pass; the harsher grade is taken and the claim is restated for next week rather than banked. See note 05.",
+    grade:"notest" },
+
+  { date:"2026-07-27", type:"Map", metal:"Silver", level:"61.02",
+    call:"The ceiling stands and the lockout holds until the close says otherwise. Kill: a weekly close back above 61.022 grades the break a trap and puts the recovery on two legs.",
+    result:"A standing claim, and it held. Silver closed 57.564, six percent underneath, and never came within five percent of the line at any point in the week. The kill never fired. Fourth week of the lockout, and the gap to gold's own line is four times as wide.",
+    grade:"pass" },
+
+  { date:"2026-07-21", type:"Map", metal:"Gold", level:"4,098",
+    call:"The failed floor at 4,098.275 works overhead; the second break stands. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
+    result:"Gold walked through the doorway in daylight midweek and could not stay. The weekly close printed 4,052.60, forty-six dollars beneath the door. The kill never fired; the lockout held its second week.",
+    grade:"pass" },
+
+  { date:"2026-07-21", type:"Map", metal:"Gold", level:"3,810",
+    call:"The catch at 3,810, the weekly slow mean rising since May 2019, is the room's floor. Kill: a weekly close beneath 3,810 and this claim dies, the bull's oldest line under review.",
+    result:"Never approached this week; untested lines are not wins and this one is not graded. The claim is restated and stays open, the catch rising toward the room, graded week by week at the close. The kill was published as a fixed number against a line that moves; from 1 August it is restated with the line named and the level dated, and the original wording stands as posted.",
+    grade:"pending" },
+
+  { date:"2026-07-21", type:"Map", metal:"Silver", level:"61.02",
+    call:"61.022 remains the ceiling; the lockout stands until the close says otherwise. Kill: a weekly close back above 61.022 grades the break a trap and puts the recovery on two legs.",
+    result:"Silver walked back to its own door and was turned away. The weekly close printed 58.181, below the ceiling. The kill never fired; the lockout held its third week.",
+    grade:"pass" },
+
+  { date:"2026-07-12", type:"Map", metal:"Gold", level:"4,098",
+    call:"4,098 remains the floor after Friday's reclaim. Kill: a weekly close beneath the floor, and the reclaim is itself reclassified.",
+    result:"The kill fired. Gold closed the week at 4,018.44, eighty dollars beneath the floor. The reclaim is reclassified: a bounce inside a falling market, not a repair. A miss, and it stays. First graded a pass on 17 July with the kill quoted backwards; corrected 18 July, see note 03.",
+    grade:"miss" },
+
+  { date:"2026-07-12", type:"Map", metal:"Silver", level:"61.02",
+    call:"Locked out of its own house. The floor broken 7 July at 61.02 works the opposite job now, the ceiling, with a falling mean sixty cents above it. Kill: a weekly close back above 61.02 grades the break a trap.",
+    result:"No knock. Silver closed 55.911, five dollars below the ceiling, and never approached it all week. The break stands and the lockout held.",
+    grade:"pass" },
+
+  { date:"2026-07-12", type:"Map", metal:"Gold", level:"4,305.32",
+    call:"No repair claimed below the first stair. Kill: a weekly close above 4,305.32 is the first stair won back; until then, standing is all this is.",
+    result:"The stair was never reached, stated as no test, untested lines are not wins. The standing itself failed at the floor instead. Ungraded in the 17 July Verdict, entered 18 July with the correction.",
+    grade:"notest" },
+
+  { date:"2026-07-08", type:"Level Watch", metal:"Gold", level:"4,098",
+    call:"Gold followed silver through its floor, closing 4,074, one night behind the weaker twin. Kill: written into the post before the close, a weekly close back above 4,098 grades the break a trap.",
+    result:"The reclaim printed. Friday's weekly close came in at 4,120.38, back above the line, and the break graded a trap at the first close that could judge it. Both branches were written before the candle closed; the tape picked this one.",
+    grade:"pass" },
+
+  { date:"2026-07-07", type:"Level Watch", metal:"Silver", level:"61.02",
+    call:"Silver closed below its March floor at 59.95, the first floor of this correction to go. Kill: named with the break, a weekly close back above 61.02 grades it a trap.",
+    result:"No reclaim. The weekly close printed 59.83, below the line. The break stands and the old floor is the ceiling. The reclaim signal at 61.02 stays live, graded week by week at the close. This is silver's first named level with a published kill and the anchor its standing call is measured from.",
+    grade:"pending" },
+
+  { date:"2026-07-05", type:"Map", metal:"Gold", level:"4,098 / 4,307",
+    call:"4,098 is a floor again after Friday's vote. The gate at 4,307 decides what the bounce becomes. Nothing has turned below the 4,500 turn. Kill: a close back beneath 4,098 and this read dies.",
+    result:"The week threw the hardest test available: a midweek close below the floor. The weekly close answered at 4,120.38, above the line. The floor call survived its own published kill. The gate was never reached, stated as no test. The turn stays open.",
+    grade:"pass" },
+
+  { date:"2026-06-29", type:"Map", metal:"Gold", level:"4,500 / 3,809",
+    call:"Falling swing. The turn needs a close above the 4,500 mean; the catch below is the weekly slow mean at 3,809.",
+    result:"The turn at 4,500 was never tested. The catch at 3,809 was never reached. Both stated as no test, untested lines are not wins. The one claim the tape answered held: no close above 4,500, every green day stayed a bounce. Gold reclaimed the 4,098 floor on the vote, closing 4,174.76.",
+    grade:"pass" },
+
+  { date:"2026-06-22", type:"Map", metal:"Gold", level:"4,098 / 4,633",
+    call:"Caught between a floor to hold at 4,098 and a turn at 4,633. Until a close clears the turn, every green day is a bounce in a falling market.",
+    result:"The turn at 4,633 was never reached, nor the gate at 4,307. Every bounce failed. Gold lost the floor and closed 4,088.97. The gradeable sentence on this row is the bounce claim, and it is what the grade is given on.",
+    grade:"pass" },
+
+  { date:"2026-06-15", type:"Map", metal:"Gold", level:"4,307",
+    call:"Reclaimed the floor at 4,098 and the gate at 4,307. The gate is the line between a bounce and a repair: hold it and it repairs, lose it and it was a bounce.",
+    result:"Gold gave 4,307 straight back and closed 4,209. The repair stalled exactly there, the floor held. It was a bounce.",
+    grade:"pass" },
+
+  { date:"2026-06-11", type:"Verdict", metal:"Gold", level:"4,098",
+    call:"After the staircase broke, one signal named in advance: a close back above 4,098 is the first sign of life. Not a bottom, a sign.",
+    result:"It printed that night. Gold touched the 4,020s and closed back above 4,098, then bounced near 4,210. The signal fired; the bounce later failed, as called.",
+    grade:"pass" },
+
+  { date:"2026-06-07", type:"Read", metal:"Gold", level:"4,308",
+    call:"Stated bearish with the exit named: gold sits on the last shelf at 4,308, open air to 4,100 beneath. Kill: only a weekly close back above the line turns it bullish.",
+    result:"Gold broke the shelf and fell through the open air into the 4,020s. The bearish call held. This is the anchor the week to week standing call is measured from, in gold. It named no silver level.",
+    grade:"pass" },
+
+];
+
+/* =========================================================================
+   NOTES  ·  the standard, and every correction against the desk
+
+   Moved out of hardcoded HTML into data on 1 August 2026, for two reasons.
+
+   1. THE SEQUENCE. In the markup the notes were interleaved by kind and
+      rendered 01, 02, 05, 03, 04, 06, which reads as a numbering fault
+      rather than the deliberate grouping it was. They are now grouped
+      explicitly and each group renders in numeric order, always, no matter
+      what order they sit in this array.
+
+   2. THE LEDGER WAS NOT IN THEM. A note governs specific rows and nothing
+      said which. Each note now computes its own "cited by" line from the
+      CALLS array, and every "note NN" inside a result string becomes a
+      link straight to it. The connection is derived, so it cannot rot.
+
+   NUMBERS ARE NEVER REASSIGNED TO TIDY A SEQUENCE. They are cited in
+   published ledger rows and in shipped scripts. A renumber has already
+   caused confusion once. A new note takes the next free number and the
+   grouping does the ordering. If a note is ever withdrawn, it stays here
+   with a line saying so, like everything else on this page.
+
+   kind: "standard"    how the record is graded
+         "correction"  something the desk got wrong, or a disclosure
+   ========================================================================= */
+
+const NOTES = [
+  { n:"01", kind:"standard", title:"Standard tightened 3 July 2026.",
+    body:"Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention, are marked pre-standard in the ledger, and are preserved unaltered. No grade is ever restamped to fit a rulebook written after it. Rows carrying no published kill are marked as such." },
+
+  { n:"02", kind:"standard", title:"Standing calls, added 31 July 2026.",
+    body:"The directional position runs on a longer clock than a level and resolves on a different question, so it is stated separately and graded separately. Standing calls never enter the tally: averaging a call that runs for months with one that resolves on a Friday would flatter both. Each carries the close that ends it, and every figure beside it carries the date it is measured from. When one ends it stays, with the date and what ended it." },
+
+  { n:"03", kind:"correction", title:"Correction, 18 July 2026.",
+    body:"The Verdict posted 17 July graded the 12 July gold floor claim a pass. The published kill, a weekly close beneath 4,098, had in fact fired at 4,018.44. The correct grade is a miss and the ledger carries it. A third claim from the same map, the stair at 4,305.32, went ungraded in that Verdict and is stated here as no test. The erroneous grades, this correction, and the grading process failure behind them are all logged and all remain." },
+
+  { n:"04", kind:"correction", title:"Correction, 30 July 2026.",
+    body:"The Updated field on this page was rendered from the visitor's own device clock rather than from the file. While that line was live, the page told every reader it had been updated on the day they opened it, whatever the file's actual state. No call, no grade and no figure in the ledger was affected. The field is now set by hand against the commit. The fault is logged here rather than fixed quietly, because a page that claims nothing is hidden does not get to hide this." },
+
+  { n:"06", kind:"correction", title:"Correction, 1 August 2026. Two kills renamed on the standing calls.",
+    body:"Both standing calls named the wrong line. Neither error changed a grade and both are corrected here rather than quietly. First, the week to week call published its kill as a weekly close above “the falling weekly fast mean, 4,283.” The level was right and has not changed: 4,283 was the 464 swing slow mean on 31 July and the same falling line reads 4,277 today. The name was wrong. The weekly fast mean is a different line and stands at 4,721 in gold, so a reader who opened a weekly chart to check this call found a number 438 dollars away from the one published here and could not verify a claim this page exists to make verifiable. Second, the year to year call published its kill as a weekly close beneath the slow mean. The grading standard has said since 3 July that a secular turn is dated by the weekly fast mean crossing the slow mean and never by a price close, because price can sit below the slow mean for weeks with the trend intact. The card contradicted the standard and the card was wrong. This second correction makes the call harder to end, not easier, which is the direction that flatters this desk and the direction it is required to distrust most. It is made anyway, because the rule it now matches was published on 3 July and has not moved. Silver's own swing kill, which had never been published on either card, is stated for the first time at 67.54." },
+
+  { n:"05", kind:"standard", title:"Claim shapes, stated 31 July 2026.",
+    body:"A claim that price stays on one side of a line is graded on whether the close crossed it, whether or not the line was approached. A claim that requires price to reach a level is stated as no test when it does not. Every standing pass now carries a note saying how close price came, so a grade earned at arm's length cannot be read as one earned under pressure. Where a shape is arguable, the harsher grade is taken." },
+
+];
+
+/* ---- display only. Nothing here can hide a row. ---- */
+const DENSITY     = "comfortable";   /* or "compact" */
+const HISTORY_URL = "https://github.com/TheSimplifier7/record/commits/main";
+
+/* ---------------- render, no need to edit below ---------------- */
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const GRADES = {
+  pass:    { label:"Pass",    cls:"g-pass" },
+  miss:    { label:"Miss",    cls:"g-miss" },
+  partial: { label:"Partial", cls:"g-partial" },
+  notest:  { label:"No test", cls:"g-notest" },
+  pending: { label:"Open",    cls:"g-pending" },
+};
+const esc = s => String(s).replace(/[&<>"']/g,
+  c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const fmtDate = iso => {
+  const [y, m, d] = iso.split("-");
+  return d.replace(/^0/, "") + " " + MONTHS[+m - 1] + " " + y;
+};
+
+document.documentElement.style.setProperty("--row-pad", DENSITY === "compact" ? "14px" : "22px");
+
+/* ---------------- standing calls ---------------- */
+/* Duration is computed from the two dates so it can never go stale the way
+   a typed figure would. Everything else in a standing call is entered by
+   hand with its own stated source. */
+const runFor = (from, to) => {
+  const d = Math.round((Date.parse(to + "T00:00:00Z") - Date.parse(from + "T00:00:00Z")) / 86400000);
+  if (!isFinite(d) || d < 0) return "";
+  if (d < 730) return d + " day" + (d === 1 ? "" : "s") + " running";
+  return (d / 365.25).toFixed(1) + " years running";
+};
+
+document.getElementById("standing").innerHTML = STANDING.map(s => {
+  const live = s.status !== "ended";
+  const run  = runFor(s.stated, s.asOf);
+  return `
+  <article class="sc">
+    <div class="sc-top">
+      <span class="sc-clock">${esc(s.clock)}</span>
+      <span class="sc-status ${live ? "sc-live" : "sc-ended"}">${live ? "Live" : "Ended"}</span>
+    </div>
+    <div class="sc-pos">${esc(s.position)}</div>
+    <div class="sc-since">Stated ${esc(fmtDate(s.stated))}${
+      live ? (run ? " &middot; " + esc(run) : "")
+           : " &middot; ended " + esc(fmtDate(s.endedOn)) + ", " + esc(s.endedAs)}</div>
+    <p class="sc-claim">${esc(s.claim)}</p>
+    <span class="kill"><b>Kill</b> ${esc(s.kill)}</span>
+    <div class="sc-marks">
+      ${s.marks.map(m => `<span>${esc(m.name)} <b>${esc(m.move)}</b>${
+        m.from ? ` <i>${esc(m.from)}</i>` : ""}</span>`).join("")}
+      <span class="sc-asof">At the close of ${esc(fmtDate(s.asOf))}</span>
+    </div>
+  </article>`;
+}).join("");
+
+/* ---------------- the ledger ---------------- */
+const rows = CALLS.map(c => {
+  const [y, m, d] = c.date.split("-");
+  const parts = c.call.split(/\s*Kill:\s*/i);
+  const g = GRADES[c.grade] || GRADES.notest;
+  return {
+    day: d.replace(/^0/, "") + " " + MONTHS[+m - 1],
+    year: y,
+    type: c.type,
+    metal: c.metal,
+    level: c.level,
+    claim: parts[0].trim(),
+    kill: parts.length > 1 ? parts.slice(1).join(" ").trim() : "",
+    result: c.result || "Not yet graded.",
+    gradeLabel: g.label,
+    gradeCls: g.cls,
+    pre: c.date < STANDARD_FROM,
+  };
+});
+
+/* Turns every "note NN" written inside a result string into a link to that
+   note. Runs on the ESCAPED string, so nothing in the data can inject markup.
+   A note number with no matching note renders as plain text rather than a
+   dead link, which is the same discipline as a level with no verified figure:
+   state nothing rather than state something broken. */
+const NOTE_IDS = new Set(NOTES.map(n => n.n));
+const linkNotes = html => html.replace(/\bnote\s+(\d{2})\b/gi,
+  (m, n) => NOTE_IDS.has(n) ? `<a href="#note-${n}">${m}</a>` : m);
+
+/* A row with no published kill says so. It is never left blank: an empty
+   space reads as an omission, a stated absence reads as the standard. */
+const killBlock = k => k
+  ? `<span class="kill"><b>Kill</b> ${esc(k)}</span>`
+  : `<span class="nokill">No kill published</span>`;
+
+/* Marks which rows note 01 is talking about. Changes no figure. */
+const preTag = p => p ? `<span class="prestd">Pre-standard</span>` : "";
+
+document.getElementById("ledger-rows").innerHTML = rows.map(r => `
+  <tr>
+    <td class="c-date">${esc(r.day)}<span class="yr">${esc(r.year)}</span></td>
+    <td><span class="c-metal">${esc(r.metal)}</span><span class="c-type">${esc(r.type)}</span></td>
+    <td class="c-level">${esc(r.level)}</td>
+    <td class="c-call">${esc(r.claim)}${killBlock(r.kill)}</td>
+    <td class="c-result">${linkNotes(esc(r.result))}</td>
+    <td><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>${preTag(r.pre)}</td>
+  </tr>`).join("");
+
+document.getElementById("ledger-cards").innerHTML = rows.map(r => `
+  <article class="card">
+    <div class="top">
+      <span class="d">${esc(r.day)} <span>${esc(r.year)}</span></span>
+      <span class="gwrap">
+        <span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>
+        ${preTag(r.pre)}
+      </span>
+    </div>
+    <div class="meta">
+      <span class="c-metal">${esc(r.metal)}</span>
+      <span class="c-type" style="display:inline;margin:0">${esc(r.type)}</span>
+      <span class="lv">${esc(r.level)}</span>
+    </div>
+    <p class="claim">${esc(r.claim)}</p>
+    ${killBlock(r.kill)}
+    <div class="did">
+      <div class="lab">What price did</div>
+      <p>${linkNotes(esc(r.result))}</p>
+    </div>
+  </article>`).join("");
+
+/* ---------------- the tally ---------------- */
+/* Per the Grading Standard:
+   resolved = pass + miss + partial. No tests join neither side.
+   correct  = pass only. Partials count against the record in the note.
+   STANDING is deliberately absent from every figure below. See note 02.
+
+   NO PERCENTAGE IS COMPUTED OR DISPLAYED. Counts only, each with its
+   denominator in the note beneath. Changed 1 Aug 2026. */
+const pass    = CALLS.filter(c => c.grade === "pass").length;
+const miss    = CALLS.filter(c => c.grade === "miss").length;
+const partial = CALLS.filter(c => c.grade === "partial").length;
+const notest  = CALLS.filter(c => c.grade === "notest").length;
+const open    = CALLS.filter(c => c.grade === "pending").length;
+const resolved = pass + miss + partial;
+
+document.getElementById("t-resolved").textContent = resolved;
+document.getElementById("t-pass").textContent = pass;
+document.getElementById("t-miss").textContent = miss;
+document.getElementById("t-open").textContent = open;
+
+const rate = resolved ? Math.round((pass / resolved) * 100) : 0;
+
+let note = resolved ? `${pass} of ${resolved} resolved calls graded correct, ${rate} percent.` : "";
+if (miss)    note += ` ${miss} graded wrong, shown in full below and never hidden.`;
+if (partial) note += ` ${partial} partial, counted against the record.`;
+if (notest)  note += ` ${notest} never tested, counted for neither side.`;
+note += ` The rate is stated here beside its base rather than in headline type, because a percentage on a base of ${resolved} is a small sample and should be read as one. Standing calls are graded separately and are not in these figures.`;
+document.getElementById("t-note").textContent = note.trim();
+
+/* ---------------- lines on record ---------------- */
+/* Display only, hides nothing, recomputes from the full array every load.
+   Compound levels such as "4,098 / 4,307" count toward both. Only lines
+   named twice or more are shown.
+
+   This strip claims occurrence and nothing else. It must NOT claim a
+   per-level grade: a row graded pass can contain a level that was stated
+   as no test inside it, and a level can be named on a row still open.
+   Row grades do not decompose. Occurrence is the only figure provable
+   from the array. */
+const levelCount = new Map();
+CALLS.forEach(c => String(c.level).split("/").forEach(part => {
+  const lv = part.trim();
+  if (lv) levelCount.set(lv, (levelCount.get(lv) || 0) + 1);
+}));
+const repeated = [...levelCount.entries()]
+  .filter(([, n]) => n > 1)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+document.getElementById("lines-on-record").innerHTML = repeated.length
+  ? `<span class="eyebrow-inline">Lines on record</span>` +
+    repeated.map(([lv, n]) =>
+      `<span class="line"><b>${esc(lv)}</b> <i>named ${n} times</i></span>`
+    ).join("")
+  : "";
+
+/* ---------------- the notes ---------------- */
+/* Grouped by kind, numeric inside each group, so the sequence can never go
+   wonky again regardless of the order they are written in the array above.
+   Each note derives the ledger rows that cite it, so the notes and the
+   ledger point at each other and neither can drift from the other. */
+const noteCites = n => rows
+  .filter(r => new RegExp("\\bnote\\s+" + n + "\\b", "i").test(r.result))
+  .map(r => `${r.day} ${r.metal} ${r.level}`);
+
+document.getElementById("notes").innerHTML =
+  `<div class="notes">` + NOTES
+    .slice()
+    .sort((a, b) => a.n.localeCompare(b.n))
+    .map(nt => {
+      const cites = noteCites(nt.n);
+      return `<div class="note" id="note-${esc(nt.n)}">
+        <span class="n${nt.kind === "correction" ? " red" : ""}">${esc(nt.n)}</span>
+        <p><b>${esc(nt.title)}</b> ${esc(nt.body)}${
+          cites.length
+            ? `<span class="cited">Governs ${cites.map(c => `<b>${esc(c)}</b>`).join(", ")}</span>`
+            : ""}</p>
+      </div>`;
+    }).join("") + `</div>`;
+
+/* ---------------- counts and dates ---------------- */
+document.getElementById("issue-no").textContent = String(CALLS.length).padStart(3, "0");
+document.getElementById("l-count").textContent =
+  CALLS.length + (CALLS.length === 1 ? " call" : " calls") + " on record";
+
+/* Record begins: derived from the oldest row, so it can never drift from
+   the ledger. The page states where the record starts rather than leaving
+   the question open. */
+document.getElementById("record-begins").textContent =
+  fmtDate(CALLS.reduce((a, c) => (c.date < a ? c.date : a), CALLS[0].date));
+
+/* Updated: the manual constant, never the visitor's clock. See note 04. */
+const stamp = fmtDate(LAST_UPDATED);
+document.getElementById("updated-spec").textContent = stamp;
+document.getElementById("updated-foot").textContent = stamp;
+
+document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HISTORY_URL; });
+</script>
+</body>
+</html>
