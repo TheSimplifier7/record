@@ -370,7 +370,7 @@
   </div>
 
   <div class="standing" id="standing"></div>
-  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. The week-to-week swing call for gold ended on the 7 August close and turned bullish the same night; silver continues under its own line. See note 08.</p>
+  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. Gold has been bearish since 13 March. That structure ended on the 7 August close and the swing clock turned bullish the same night. Silver continues under its own line. See note 08.</p>
 
   <div class="ledger-head">
     <h2>The Ledger</h2>
@@ -506,16 +506,17 @@ const STANDING = [
     clock:   "The direction, week to week",
     position:"Bullish in gold · Silver continues",
     stated:  "2026-08-07",
-    /* Prior bearish call for gold, stated 7 June 2026, ended on the 7 August
-       weekly close above the 464 swing slow mean (4,268). The swing clock in
-       gold turns bullish from that close. Silver remains below its own line
-       and the prior claim continues for silver only. Graded per metal under
-       the 7 August ruling. See note 08. */
-    claim:   "From the 7 August close the swing clock in gold turns bullish. It had been bearish since 7 June. Silver does not turn with it; it remains 5.10 percent below its own swing line and the prior claim continues for silver alone.",
+    /* Gold has been bearish since the 13 March Map Floor at 4,098.275.
+       That structure ended on the 7 August weekly close above the 464
+       swing slow mean (4,268). From that close the swing clock in gold
+       turns bullish. Silver remains below its own swing line and continues
+       under the prior claim. Graded per metal under the 7 August ruling.
+       See note 08. */
+    claim:   "Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish. Silver does not turn with it and remains below its own line.",
     kill:    "for gold, a weekly close back below 4,268. For silver, a weekly close above the falling 464 swing slow mean (66.86 on 7 Aug)",
     marks:   [
-      { name:"Gold",   move:"new", from:"bullish from the 7 Aug close that ended the prior bearish call" },
-      { name:"Silver", move:"-5.1%", from:"still below its swing line; prior claim continues" }
+      { name:"Gold",   move:"new", from:"bullish from 7 Aug · bearish since 13 March" },
+      { name:"Silver", move:"-5.1%", from:"still below its swing line · prior claim continues" }
     ],
     asOf:    "2026-08-07",
     status:  "live", endedOn:"", endedAs:""
@@ -708,7 +709,7 @@ const NOTES = [
     body:"A claim that price stays on one side of a line is graded on whether the close crossed it, whether or not the line was approached. A claim that requires price to reach a level is stated as no test when it does not. Every standing pass now carries a note saying how close price came, so a grade earned at arm's length cannot be read as one earned under pressure. Where a shape is arguable, the harsher grade is taken." },
 
   { n:"08", kind:"correction", title:"Resolution, 7 August 2026. Two wrongs, one untested, and the swing clock in gold turns.",
-    body:"Friday 7 August close (TradingView TVC, 23:00 CET): gold 4,342, silver 63.45. The standing ceiling claims at gold 4,098.275 and silver 61.02 both had their kills fire; both are graded wrong and stay on the page. Gold 3,942.430 was never reached and is stated as no test. The week-to-week swing call, graded per metal under the ruling made before the close, ended for gold on the close above the 464 swing slow mean (4,268) and turns bullish from that night; a weekly close back below 4,268 now kills the new gold call. Silver remains below its own swing line and continues under the prior claim. Two rulings made before the close are disclosed here: the swing kill that named both metals in one sentence is graded per metal, and silver 61.02, which sat on more than one row, receives a grade on each under the same standard applied to every gold restatement. Both rulings were taken in the direction that costs this desk more. Tally after this close: twelve correct, three wrong, three never tested." },
+    body:"Friday 7 August close (TradingView TVC, 23:00 CET): gold 4,342, silver 63.45. The standing ceiling claims at gold 4,098.275 and silver 61.02 both had their kills fire; both are graded wrong and stay on the page. Gold 3,942.430 was never reached and is stated as no test. Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish; a weekly close back below 4,268 now kills the new call. Silver remains below its own swing line and continues under the prior claim. Graded per metal under the ruling made before the close. Two rulings disclosed: the swing kill that named both metals in one sentence is graded per metal, and silver 61.02 receives its grade under the same standard applied to every gold restatement. Both rulings taken in the direction that costs this desk more. Tally after this close: twelve correct, three wrong, three never tested." },
 
 ];
 
