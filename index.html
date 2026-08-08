@@ -370,7 +370,7 @@
   </div>
 
   <div class="standing" id="standing"></div>
-  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. Both calls carry both metals from 1 August 2026. Silver's swing kill is published here for the first time, and the line each kill sits on was corrected the same day. See note 06.</p>
+  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. The week-to-week swing call for gold ended on the 7 August close and turned bullish the same night; silver continues under its own line. See note 08.</p>
 
   <div class="ledger-head">
     <h2>The Ledger</h2>
@@ -474,7 +474,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-03";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-08";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -504,28 +504,20 @@ const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 const STANDING = [
   {
     clock:   "The direction, week to week",
-    position:"Bearish",
-    stated:  "2026-06-07",
-    /* Anchor asymmetry stated in the claim, added 1 Aug 2026. The bearish
-       direction was stated on gold's shelf on 7 June. The 7 June post named
-       no silver level and published no silver kill, so silver is measured
-       from its own first named claim, the 61.02 floor of 7 July, which is on
-       the ledger below. Dating silver to 7 June would anchor a card to a post
-       that does not exist, which is the one thing this page is for. */
-    claim:   "Every green day is a bounce in a falling market until a close clears the swing line above. Stated on gold's shelf on 7 June. Silver's own level and kill were first named on 7 July and it is measured from there.",
-    /* THE SWING KILL IS THE 464 SWING SLOW MR. Corrected 1 Aug 2026, see note 06.
-       This previously read "the falling weekly fast mean, 4,283 in gold on 31 Jul".
-       The LEVEL was right and is unchanged: 4,283 was the 464 swing slow mean on
-       31 Jul and the same line reads 4,277 on 1 Aug, a falling line six dollars
-       lower after a day. The NAME was wrong. The weekly fast mean is a different
-       line entirely and stands at 4,721 in gold, 77.47 in silver.
-       Read both off the 464, labelled Swing Slow MR, every Friday. */
-    kill:    "a weekly close above the falling 464 swing slow mean, 4,277 in gold and 67.54 in silver on 1 Aug",
+    position:"Bullish in gold · Silver continues",
+    stated:  "2026-08-07",
+    /* Prior bearish call for gold, stated 7 June 2026, ended on the 7 August
+       weekly close above the 464 swing slow mean (4,268). The swing clock in
+       gold turns bullish from that close. Silver remains below its own line
+       and the prior claim continues for silver only. Graded per metal under
+       the 7 August ruling. See note 08. */
+    claim:   "From the 7 August close the swing clock in gold turns bullish. It had been bearish since 7 June. Silver does not turn with it; it remains 5.10 percent below its own swing line and the prior claim continues for silver alone.",
+    kill:    "for gold, a weekly close back below 4,268. For silver, a weekly close above the falling 464 swing slow mean (66.86 on 7 Aug)",
     marks:   [
-      { name:"Gold",   move:"-6.2%", from:"from the 4,308 shelf named 7 Jun" },
-      { name:"Silver", move:"-5.7%", from:"from the 61.022 floor named 7 Jul" }
+      { name:"Gold",   move:"new", from:"bullish from the 7 Aug close that ended the prior bearish call" },
+      { name:"Silver", move:"-5.1%", from:"still below its swing line; prior claim continues" }
     ],
-    asOf:    "2026-08-01",
+    asOf:    "2026-08-07",
     status:  "live", endedOn:"", endedAs:""
   },
   {
@@ -565,9 +557,24 @@ const STANDING = [
 
 const CALLS = [
 
+  { date:"2026-08-07", type:"Verdict", metal:"Gold", level:"4,098.275",
+    call:"Ceiling, standing since 21 July. The lockout holds until the close says otherwise. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
+    result:"The kill fired. Gold closed the week at 4,342. The ceiling is gone. WRONG. The prior weekly grades for the same level remain on the page as the record of those closes; this row grades the final resolution of the standing claim.",
+    grade:"miss" },
+
+  { date:"2026-08-07", type:"Verdict", metal:"Silver", level:"61.02",
+    call:"The reclaim signal named 7 July and the ceiling claims that followed it. Kill: a weekly close back above 61.022 grades the break a trap.",
+    result:"The kill fired. Silver closed the week at 63.45. One close, and the reclaim signal and every restatement of the same level are graded the same way under the 7 August ruling. WRONG. See note 08.",
+    grade:"miss" },
+
+  { date:"2026-08-07", type:"Verdict", metal:"Gold", level:"3,942.430",
+    call:"The June floor beneath, the first thing that would give way. Kill: a weekly close beneath 3,942.430 and the last floor under this move is gone.",
+    result:"Price went the other way. The weekly close printed 4,342. NEVER REACHED. Untested lines are not wins.",
+    grade:"notest" },
+
   { date:"2026-07-27", type:"Map", metal:"Gold", level:"4,098",
     call:"The door overhead stands and the lockout holds until a close says otherwise. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
-    result:"A standing claim, and it held, and it was tested harder than this page first said. Gold traded above the door on four of the five days that week and closed above it on the Thursday. It could not do it again at the weekly close. The week printed 4,041.18, fifty-seven dollars under, and the kill never fired. Third week of the lockout, and price finished the week further from the line than it started it. Corrected 3 August 2026, see note 07.",
+    result:"A standing claim, and it held, and it was tested harder than this page first said. Gold traded above the door on four of the five days that week and closed above it on the Thursday. It could not do it again at the weekly close. The week printed 4,041.18, fifty-seven dollars under, and the kill never fired. Third week of the lockout, and price finished the week further from the line than it started it. Corrected 3 August 2026, see note 07. The claim continued and was finally resolved on 7 August, see the Verdict row of that date.",
     grade:"pass" },
 
   { date:"2026-07-27", type:"Map", metal:"Gold", level:"3,942",
@@ -617,7 +624,7 @@ const CALLS = [
 
   { date:"2026-07-07", type:"Level Watch", metal:"Silver", level:"61.02",
     call:"Silver closed below its March floor at 59.95, the first floor of this correction to go. Kill: named with the break, a weekly close back above 61.02 grades it a trap.",
-    result:"No reclaim. The weekly close printed 59.83, below the line. The break stands and the old floor is the ceiling. The reclaim signal at 61.02 stays live, graded week by week at the close. This is silver's first named level with a published kill and the anchor its standing call is measured from.",
+    result:"No reclaim on the first close. The weekly close printed 59.83, below the line. The break stood and the old floor became the ceiling. The reclaim signal stayed live and was graded week by week at the close. This is silver's first named level with a published kill and the anchor its later standing claims are measured from. Resolved on the 7 August close; see the Verdict row of that date and note 08.",
     grade:"pending" },
 
   { date:"2026-07-05", type:"Map", metal:"Gold", level:"4,098 / 4,307",
@@ -699,6 +706,9 @@ const NOTES = [
 
   { n:"05", kind:"standard", title:"Claim shapes, stated 31 July 2026.",
     body:"A claim that price stays on one side of a line is graded on whether the close crossed it, whether or not the line was approached. A claim that requires price to reach a level is stated as no test when it does not. Every standing pass now carries a note saying how close price came, so a grade earned at arm's length cannot be read as one earned under pressure. Where a shape is arguable, the harsher grade is taken." },
+
+  { n:"08", kind:"correction", title:"Resolution, 7 August 2026. Two wrongs, one untested, and the swing clock in gold turns.",
+    body:"Friday 7 August close (TradingView TVC, 23:00 CET): gold 4,342, silver 63.45. The standing ceiling claims at gold 4,098.275 and silver 61.02 both had their kills fire; both are graded wrong and stay on the page. Gold 3,942.430 was never reached and is stated as no test. The week-to-week swing call, graded per metal under the ruling made before the close, ended for gold on the close above the 464 swing slow mean (4,268) and turns bullish from that night; a weekly close back below 4,268 now kills the new gold call. Silver remains below its own swing line and continues under the prior claim. Two rulings made before the close are disclosed here: the swing kill that named both metals in one sentence is graded per metal, and silver 61.02, which sat on more than one row, receives a grade on each under the same standard applied to every gold restatement. Both rulings were taken in the direction that costs this desk more. Tally after this close: twelve correct, three wrong, three never tested." },
 
 ];
 
