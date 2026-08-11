@@ -8,22 +8,31 @@
 <meta name="theme-color" content="#C2BAAE">
 
 <!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
-     Create card.png at 1200x630, then switch twitter:card to summary_large_image.
 
      og:url CONFIRMED CORRECT 1 Aug 2026 against the repository README, which
      states the live record as https://thesimplifier7.github.io/record/. The
      earlier flag on this line is withdrawn.
 
-     STILL OPEN: og:image points at card.png. If that file does not exist yet
-     the share card renders empty. Either ship the image at 1200x630 and switch
-     twitter:card to summary_large_image, or drop the og:image line until it
-     exists. A broken card on the account's only link is worse than none. -->
+     CLOSED 10 Aug 2026. card.png now exists at 1200x630 and twitter:card is
+     switched to summary_large_image accordingly.
+
+     THE CARD CARRIES A GRADED ROW, NOT A TALLY, and that is on purpose. The
+     no-figures rule above exists because a share image caches on timelines
+     and cannot be corrected. A count drifts the first Friday a call grades.
+     A resolved row does not: nothing here is ever deleted, so 4,098.275
+     graded WRONG at the 7 August close is true permanently. Source is
+     card.html; every string on it is checked against one CALLS row by
+     verify_card.js. Run that before regenerating, and only regenerate to
+     change the row.
+
+     card.png MUST be committed to the repo root alongside this file, or the
+     preview 404s and a broken card is worse than no card. -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
 <meta property="og:description" content="Every gold and silver call, named before the move and graded after. Wins and misses, in one place, never removed.">
 <meta property="og:image" content="https://thesimplifier7.github.io/record/card.png">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -264,6 +273,53 @@
   .c-result a,.card .did a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42)}
   .c-result a:hover,.card .did a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
 
+  /* THE BOOK TAG. Position, swing or tactical. Renders ONLY when the field is
+     set. Rows named before 10 Aug 2026 have no book and are never guessed at:
+     an unknown attribute left blank is the record's standard, an invented one
+     would be the only fabricated field on the page. */
+  .c-book{display:inline-block;margin-top:7px;padding:2px 7px 3px;
+    border:1px solid var(--rule-card);font-family:var(--mono);font-size:9.5px;
+    font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-5)}
+  .card .c-book{margin-top:0}
+
+  /* THE TWO DOORS. Deliberately the quietest block on the page, and last, under
+     the ledger. The record is the argument. This is only the way out of it, and
+     nothing in here may outweigh a level. No claim, no promise, no figure. */
+  /* A door is HIDDEN until its endpoint is configured, and the hiding is the
+     default state in CSS rather than something JavaScript has to remember to
+     do. If the script never runs, no door renders. A door that posts nowhere
+     is worse than no door, so the failure mode has to be silence. */
+  .doors{display:none;grid-template-columns:1fr 1fr;margin-top:76px;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+  .doors[data-open="1"]{display:grid}
+  .doors[data-open="1"][data-single="1"]{grid-template-columns:1fr}
+  .door{display:none;padding:34px 44px 38px;border-right:1px solid var(--rule)}
+  .door[data-ready="1"]{display:block}
+  .door:first-child{padding-left:0}
+  .door:last-child{padding-right:0;border-right:none}
+  .doors[data-single="1"] .door{padding-left:0;padding-right:0;border-right:none}
+  .door h3{font-weight:300;font-size:27px;letter-spacing:-.012em;color:var(--ink);margin-top:13px}
+  .door p{font-size:15px;line-height:1.6;color:var(--ink-3);margin-top:14px;max-width:46ch}
+  .door .fine{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-6);margin-top:18px;line-height:1.85}
+  .signup{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .signup input[type=email]{flex:1 1 200px;min-width:0;padding:12px 14px;
+    font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--panel);
+    border:1px solid var(--rule);border-radius:0}
+  .signup input[type=email]::placeholder{color:var(--ink-6)}
+  .signup input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .btn{display:inline-block;padding:12px 20px;font-family:var(--mono);font-size:10.5px;
+    font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+    color:var(--bg);background:var(--gold);border:1px solid var(--gold);border-radius:0}
+  a.btn{color:var(--bg);border-bottom:1px solid var(--gold)}
+  .btn:hover,a.btn:hover{background:var(--gold-hi);border-color:var(--gold-hi);color:var(--bg)}
+  .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  /* Shown in place of the form when Kit sends them back here after signing up.
+     Their whole journey stays on this page and on this palette. */
+  .confirmed{margin-top:22px;padding:14px 18px;border-left:3px solid var(--gold);
+    background:var(--panel);font-family:var(--mono);font-size:13.5px;font-weight:500;
+    line-height:1.7;color:var(--ink)}
+
   /* responsive */
   @media(max-width:1140px){:root{--pad:32px}}
   @media(max-width:999px){
@@ -272,6 +328,9 @@
     .ledger-table{display:none}
     .ledger-cards{display:grid}
     .foot-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+    .doors{grid-template-columns:minmax(0,1fr)}
+    .door{padding:30px 0 32px;border-right:none;border-bottom:1px solid var(--rule)}
+    .door:last-child{border-bottom:none}
   }
   @media(max-width:679px){
     :root{--pad:20px}
@@ -405,6 +464,49 @@
 
   <div class="ledger-cards" id="ledger-cards"></div>
 
+  <!-- ====================================================================
+       THE TWO DOORS
+
+       The ledger above is the argument. These are only the ways out of it,
+       and they sit last on purpose. Brand law applies here exactly as it
+       applies to a call: no figure that is not on this page, no promise,
+       no forecast, no income claim, ever. If a line here would need a
+       disclaimer to be honest, it does not go on the page.
+
+       NOTHING IS EDITED HERE. Both endpoints live in the DOORS object at the
+       top of the script, and each door stays hidden until its own endpoint is
+       filled in. Leave one blank and that door does not render. Leave both
+       blank and this whole section does not exist on the page.
+
+       That is deliberate. "Delete the door if the endpoint is not ready" was
+       a checklist item, and a checklist item is something a person forgets at
+       22:50 on a Wednesday. Now it is the default behaviour and forgetting is
+       the safe outcome.
+       ==================================================================== -->
+  <section class="doors" id="doors" aria-label="The two doors">
+
+    <div class="door" id="door-email" data-ready="0">
+      <div class="eyebrow">Free</div>
+      <h3>The Sunday Level</h3>
+      <p>The level, by email, before the market opens. The grade, on Friday's close. The wrong ones arrive in your inbox too.</p>
+      <form class="signup" id="signup-form" method="post">
+        <label for="em" hidden>Email address</label>
+        <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
+        <button class="btn" type="submit">Send it</button>
+      </form>
+      <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
+    </div>
+
+    <div class="door" id="door-apply" data-ready="0">
+      <div class="eyebrow">One to one</div>
+      <h3>Four seats</h3>
+      <p>Three books. Position, swing and tactical, each with its own capital, its own clock and its own ledger. Twelve weeks, one to one, four people at a time.</p>
+      <p style="margin-top:22px"><a class="btn" id="apply-link" href="#">Read the terms and apply</a></p>
+      <p class="fine">Education and training.<br>Not investment advice. No funds are handled.</p>
+    </div>
+
+  </section>
+
   </main>
 
   <footer>
@@ -456,6 +558,26 @@
                              of the tally, never banked as a win.
                   "pending"  named, clock still running
 
+   book is OPTIONAL and names which of the three books the call came from.
+   Added 10 August 2026.
+
+                  "Tide"   position. Months to years.
+                  "Turn"   swing. Days to weeks.
+                  "Tick"   tactical. Minutes to hours.
+
+   OMIT THE FIELD IF YOU DO NOT KNOW. Every row named before 10 August 2026
+   is left without one and none has been back-filled, because which book a
+   March call came from cannot be established from this file and a guess
+   would be the only invented value on the page. An absent book renders as
+   nothing at all, which is the same discipline as a level with no verified
+   figure. Every call from No 18 forward carries one.
+
+   THE TICK IS NOT READY FOR THIS PAGE. A tactical call resolves in hours and
+   cannot be graded at a Friday close, so tagging one "Tick" would drop a
+   same day result into a weekly tally. Either it stays inside the mentorship,
+   or it gets its own section and its own tally, held out of the counts the
+   way STANDING already is. Do not put a Tick row in CALLS until that is built.
+
    Every standing pass carries a proximity note: how close price came. A
    grade earned at arm's length must not read like one earned under
    pressure. See note 05.
@@ -476,6 +598,35 @@
 
 const LAST_UPDATED  = "2026-08-08";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
+
+/* =========================================================================
+   THE DOORS  ·  the only two values on this page that are not a call
+
+   Paste the two endpoints here and nowhere else. Each door renders only when
+   its own value is filled in. A blank value hides that door. Two blanks hide
+   the whole section, borders and all.
+
+   1. kit   The Kit form's POST endpoint, or its full hosted form URL.
+            In Kit: create the form, Embed, choose HTML, and copy the
+            string inside action="...". It looks like
+            https://app.kit.com/forms/1234567/subscriptions
+
+   2. tally The public Tally form URL, straight out of the browser bar.
+            It looks like https://tally.so/r/abc123
+
+   Both must be https. Anything else is ignored and the door stays shut,
+   because a form posting over plain http would put a stranger's email
+   address on the wire in clear text.
+
+   TEST BOTH BEFORE THE STORY SHIPS. Submit the form yourself, from a phone,
+   and confirm the address lands in Kit. An endpoint that is present but
+   wrong is the one failure this file cannot detect for you.
+   ========================================================================= */
+
+const DOORS = {
+  kit:   "https://app.kit.com/forms/9787640/subscriptions",
+  tally: "https://tally.so/r/EkVxJA"
+};
 
 /* =========================================================================
    STANDING CALLS  ·  the direction, on its own clock
@@ -778,6 +929,7 @@ const rows = CALLS.map(c => {
     day: d.replace(/^0/, "") + " " + MONTHS[+m - 1],
     year: y,
     type: c.type,
+    book: c.book || "",
     metal: c.metal,
     level: c.level,
     claim: parts[0].trim(),
@@ -807,10 +959,14 @@ const killBlock = k => k
 /* Marks which rows note 01 is talking about. Changes no figure. */
 const preTag = p => p ? `<span class="prestd">Pre-standard</span>` : "";
 
+/* Renders the book only when one is set. An unset book prints nothing, on
+   purpose: no row is ever labelled with a book it was not named under. */
+const bookTag = b => b ? `<span class="c-book">${esc(b)}</span>` : "";
+
 document.getElementById("ledger-rows").innerHTML = rows.map(r => `
   <tr>
     <td class="c-date">${esc(r.day)}<span class="yr">${esc(r.year)}</span></td>
-    <td><span class="c-metal">${esc(r.metal)}</span><span class="c-type">${esc(r.type)}</span></td>
+    <td><span class="c-metal">${esc(r.metal)}</span><span class="c-type">${esc(r.type)}</span>${bookTag(r.book)}</td>
     <td class="c-level">${esc(r.level)}</td>
     <td class="c-call">${esc(r.claim)}${killBlock(r.kill)}</td>
     <td class="c-result">${linkNotes(esc(r.result))}</td>
@@ -829,6 +985,7 @@ document.getElementById("ledger-cards").innerHTML = rows.map(r => `
     <div class="meta">
       <span class="c-metal">${esc(r.metal)}</span>
       <span class="c-type" style="display:inline;margin:0">${esc(r.type)}</span>
+      ${bookTag(r.book)}
       <span class="lv">${esc(r.level)}</span>
     </div>
     <p class="claim">${esc(r.claim)}</p>
@@ -933,6 +1090,72 @@ document.getElementById("record-begins").textContent =
 const stamp = fmtDate(LAST_UPDATED);
 document.getElementById("updated-spec").textContent = stamp;
 document.getElementById("updated-foot").textContent = stamp;
+
+/* =========================================================================
+   OPEN THE DOORS, one at a time, and only on a real https endpoint.
+
+   Anything that is not an https URL leaves that door shut. That covers the
+   blank default, a pasted placeholder, a stray space, and an http address.
+   The CSS hides both doors by default, so a script that never runs and a
+   script that runs against empty config produce the same page: no doors.
+   ========================================================================= */
+(function openDoors(){
+  const live = v => typeof v === "string" && /^https:\/\/\S+$/i.test(v.trim());
+
+  const emailReady = live(DOORS.kit);
+  const applyReady = live(DOORS.tally);
+
+  if (emailReady) {
+    document.getElementById("signup-form").setAttribute("action", DOORS.kit.trim());
+    document.getElementById("door-email").setAttribute("data-ready", "1");
+  }
+  if (applyReady) {
+    document.getElementById("apply-link").setAttribute("href", DOORS.tally.trim());
+    document.getElementById("door-apply").setAttribute("data-ready", "1");
+  }
+
+  const doors = document.getElementById("doors");
+  const openCount = (emailReady ? 1 : 0) + (applyReady ? 1 : 0);
+  if (openCount > 0) doors.setAttribute("data-open", "1");
+  if (openCount === 1) doors.setAttribute("data-single", "1");
+
+  /* COMING BACK FROM KIT. TWO DIFFERENT MOMENTS, TWO DIFFERENT MESSAGES.
+
+     Double opt-in means the reader passes this page twice, and telling a
+     confirmed subscriber to go and check their inbox would be worse than
+     saying nothing at all.
+
+       ?subscribed=1   they have just submitted the form and an email is
+                       waiting for them. Set in the form's General success
+                       setting. Kit may or may not honour a redirect for a
+                       raw POST from our own markup, so this one is a bonus.
+
+       ?confirmed=1    they have clicked the link in that email and they are
+                       on the list. Set in Settings, Confirmation email,
+                       "After confirming redirect to". This one always fires,
+                       because it is a plain link out of an email.
+
+     All of this is cosmetic. The subscribe itself is an ordinary HTML form
+     POST with no JavaScript in it. If this block never runs the address
+     still reaches Kit and the reader still sees Kit's own page. Nothing is
+     lost, it is only less handsome. Capture never depends on decoration. */
+  const say = msg => {
+    const form = document.getElementById("signup-form");
+    if (!form) return;
+    const done = document.createElement("p");
+    done.className = "confirmed";
+    done.textContent = msg;
+    form.replaceWith(done);
+  };
+
+  if (emailReady) {
+    if (/[?&]confirmed=1(&|$)/.test(location.search)) {
+      say("You are in. The first level is on its way.");
+    } else if (/[?&]subscribed=1(&|$)/.test(location.search)) {
+      say("Check your inbox and confirm it. The first level follows straight after.");
+    }
+  }
+})();
 
 document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HISTORY_URL; });
 </script>
