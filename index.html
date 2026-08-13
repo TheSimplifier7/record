@@ -320,13 +320,131 @@
     background:var(--panel);font-family:var(--mono);font-size:13.5px;font-weight:500;
     line-height:1.7;color:var(--ink)}
 
+  /* =====================================================================
+     THE ACTION BAR. Added 12 Aug 2026.
+
+     The doors do not move. They stay last, under the ledger, because the
+     offer never leads. This bar is not a second offer: it is a route back
+     to the one offer, and it does not exist until the reader has already
+     scrolled past the thesis and is inside the record.
+
+     It states counts and nothing else, the same counts already printed in
+     the tally further up. No figure that is not on this page. No promise.
+     A button here may never outweigh a level in a row.
+
+     FAIL CLOSED, exactly like the doors. Each button is hidden by default
+     in CSS and is only shown by openDoors() when its own endpoint is a
+     real https URL. A button that scrolls to a door that does not exist
+     is worse than no button.
+     ===================================================================== */
+  .actionbar{position:fixed;left:0;right:0;top:0;z-index:40;
+    background:rgba(194,186,174,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--ink);transform:translateY(-100%);
+    transition:transform .22s ease;will-change:transform}
+  .actionbar[data-show="1"]{transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){.actionbar{transition:none}}
+  .ab-in{max-width:1200px;margin:0 auto;padding:10px var(--pad);
+    display:flex;align-items:center;gap:18px}
+  .ab-mark{display:flex;align-items:center;gap:10px;flex:none}
+  .ab-mark svg{width:25px;height:19px;display:block;overflow:visible}
+  .ab-mark .name{font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+  .ab-tally{display:flex;gap:15px;font-family:var(--mono);font-size:10.5px;
+    font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-5);white-space:nowrap}
+  .ab-tally .p{color:var(--pass)}
+  .ab-tally .m{color:var(--miss)}
+  .ab-cta{display:flex;gap:9px;margin-left:auto;flex:none}
+  .ab-cta a{display:none}
+  .ab-cta a[data-ready="1"]{display:inline-block}
+  .btn-quiet{padding:9px 15px;font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+    background:transparent;border:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .btn-quiet:hover{border-color:var(--ink);color:var(--ink);background:transparent}
+  .ab-cta .btn{padding:9px 15px;font-size:10px;letter-spacing:.13em}
+  @media(max-width:859px){.ab-tally,.ab-mark .name{display:none}}
+  @media(max-width:519px){.ab-cta .btn-quiet{display:none}}
+
+  /* =====================================================================
+     THE LEDGER, AS ROWS THAT OPEN. Added 12 Aug 2026.
+
+     Twenty rows was a table. A hundred rows is a wall, and a wall is the
+     one shape that makes a complete record read like a brochure, because
+     nobody reaches the bottom of it.
+
+     EVERY ROW IS STILL ON THE PAGE AND EVERY GRADE IS STILL READABLE
+     CLOSED. Only the reasoning folds. Nothing is removed, nothing is
+     filtered out by default, and a miss reads exactly as loudly shut as
+     it does open. A record that tucked its misses one click further away
+     than its passes would be the only dishonest object on this page. If a
+     future edit ever collapses the grade into the fold, revert it.
+
+     This one renderer replaced the table and the card list. They were two
+     markups of the same rows, every row change had to be made twice, and
+     they had already drifted once.
+     ===================================================================== */
+  .ledger-list{border-top:1px solid var(--rule)}
+  .lrow{border-bottom:1px solid var(--rule-soft)}
+  .lrow:nth-of-type(odd){background:var(--band)}
+  .lrow[hidden]{display:none}
+  .lrow>summary{list-style:none;cursor:pointer;display:grid;
+    grid-template-columns:92px 128px minmax(0,1fr) 118px 20px;
+    align-items:baseline;gap:18px;padding:17px 14px}
+  .lrow>summary::-webkit-details-marker{display:none}
+  .lrow>summary::marker{content:""}
+  .lrow>summary:hover{background:#B6AEA1}
+  .lrow>summary:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .lrow[open]>summary{background:#B6AEA1}
+  .s-date{font-family:var(--mono);font-size:12.5px;font-weight:500;
+    color:var(--ink-3);white-space:nowrap}
+  .s-date span{color:var(--ink-6);font-weight:400}
+  .s-inst{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
+  .s-inst i{font-style:normal;font-weight:500;color:var(--ink-6);letter-spacing:.08em}
+  /* The level is the claim. Nothing in the line outweighs it. */
+  .s-level{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);
+    letter-spacing:-.01em}
+  .s-chev{justify-self:end;font-family:var(--mono);font-size:14px;color:var(--ink-5);
+    line-height:1;transition:transform .16s ease}
+  .lrow[open] .s-chev{transform:rotate(90deg)}
+  @media(prefers-reduced-motion:reduce){.s-chev{transition:none}}
+  .lbody{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:2px 14px 26px}
+  .lbody .lab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-6);margin-bottom:9px}
+  .lbody p{font-size:15px;line-height:1.58;color:var(--ink-2)}
+  .lbody p.res{color:var(--ink-3)}
+  .lbody a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42)}
+  .lbody a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
+  .lbody .c-book{margin-top:12px}
+
+  /* The filter. "Show me the ones you got wrong" is the most persuasive
+     click available to this brand, so it is a first-class control and not
+     a footnote. Default is All, and All is never not an option. */
+  .lfilter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:18px 0 16px}
+  .lfilter .fl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-6);margin-right:4px}
+  .chip{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;padding:7px 13px;cursor:pointer;color:var(--ink-4);
+    background:transparent;border:1px solid var(--rule)}
+  .chip:hover{border-color:var(--ink);color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+  .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .chip .n{font-weight:500;opacity:.7;margin-left:6px}
+  .lempty{font-family:var(--mono);font-size:12.5px;line-height:1.8;
+    color:var(--ink-5);padding:28px 14px}
+
+  /* The bar is fixed, so anything the bar scrolls to needs to clear it.
+     #door-email is here because the Tally decline page links straight to
+     it. A declined reader must land on the free door, not on the apply
+     door they were just turned away from. */
+  #doors,#door-email,.ledger-head{scroll-margin-top:78px}
+
   /* responsive */
   @media(max-width:1140px){:root{--pad:32px}}
   @media(max-width:999px){
     header{grid-template-columns:minmax(0,1fr);gap:34px}
     .standing{grid-template-columns:1fr}
-    .ledger-table{display:none}
-    .ledger-cards{display:grid}
+    .lbody{grid-template-columns:1fr;gap:22px}
     .foot-grid{grid-template-columns:minmax(0,1fr);gap:40px}
     .doors{grid-template-columns:minmax(0,1fr)}
     .door{padding:30px 0 32px;border-right:none;border-bottom:1px solid var(--rule)}
@@ -344,10 +462,41 @@
     .masthead .desc{display:none}
     .sc{padding:18px 18px 16px}
     .sc-pos{font-size:30px}
+    /* The summary keeps date, level and grade on one line and drops the
+       instrument to a second. The grade never leaves the closed row. */
+    .lrow>summary{grid-template-columns:1fr auto auto;gap:8px 14px;padding:15px 4px}
+    .s-date{order:1}
+    .s-level{order:2;justify-self:end}
+    .s-chev{order:3}
+    .s-inst{order:4;grid-column:1/-1}
+    .s-grade{order:5;grid-column:1/-1;margin-top:2px}
+    .lbody{padding:2px 4px 22px}
+    .lfilter{gap:6px}
+    .chip{padding:6px 10px;font-size:10px}
   }
 </style>
 </head>
 <body>
+
+<!-- THE ACTION BAR. Hidden until the reader is past the header, and each
+     button hidden until its own door is open. See openDoors(). -->
+<div class="actionbar" id="actionbar" data-show="0">
+  <div class="ab-in">
+    <span class="ab-mark">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </span>
+    <span class="ab-tally" id="ab-tally"></span>
+    <span class="ab-cta">
+      <a class="btn-quiet" id="ab-apply" href="#doors" data-ready="0">Four seats</a>
+      <a class="btn" id="ab-email" href="#doors" data-ready="0">Get the Sunday level</a>
+    </span>
+  </div>
+</div>
+
 <div class="wrap">
 
   <div class="masthead">
@@ -375,8 +524,24 @@
       <dt>Coverage</dt><dd>Gold · Silver</dd>
       <!-- CADENCE corrected 1 Aug 2026. This read "One read a day", which was the
            retired daily-original engine and had been wrong since the anchors moved.
-           If the cadence moves again, this line moves with it the same day. -->
-      <dt>Cadence</dt><dd>Map Sunday · Method Wednesday · Verdict Friday</dd>
+           If the cadence moves again, this line moves with it the same day.
+
+           MOVED AGAIN 11 Aug 2026, as that instruction requires. This read
+           "Map Sunday · Method Wednesday · Verdict Friday" and it disagreed with
+           THE_WEEK.md. Founder confirmed THE_WEEK.md is the correct schedule and
+           this page was the stale one.
+
+           The Wednesday Method beat no longer exists. The teach now runs Tuesday
+           and Thursday, and neither of those adds a row to this page. So the line
+           states only the two events that touch the ledger: named Sunday, graded
+           Friday. The mid-week posts are deliberately absent, because they are
+           content and this is the record.
+
+           NOT "Standing Tuesday", which was the obvious alignment and is wrong.
+           On this page "standing" already means the two directional calls running
+           on their own clocks. THE_WEEK.md uses the same word for a status update
+           on an open weekly call. Two meanings, one word, one page. -->
+      <dt>Cadence</dt><dd>Map Sunday · Verdict Friday</dd>
       <dt>Grading</dt><dd>Weekly close, in public</dd>
       <dt>Method</dt><dd>Falsifiable levels, standard from 3 Jul 2026</dd>
       <dt>Revisions</dt><dd>Nothing deleted</dd>
@@ -448,21 +613,20 @@
     </div>
   </noscript>
 
-  <table class="ledger-table">
-    <thead>
-      <tr>
-        <th scope="col" class="w-date">Date</th>
-        <th scope="col" class="w-inst">Instrument</th>
-        <th scope="col" class="w-level">Level</th>
-        <th scope="col" class="w-call">The call, before the move</th>
-        <th scope="col">What price did</th>
-        <th scope="col" class="w-grade">Grade</th>
-      </tr>
-    </thead>
-    <tbody id="ledger-rows"></tbody>
-  </table>
+  <!-- The filter is a view, never a delete. All is the default and every
+       count below is computed from the rows themselves, so a chip can
+       never claim a number the ledger does not contain. -->
+  <div class="lfilter" id="lfilter">
+    <span class="fl">Show</span>
+    <button class="chip" type="button" data-f="all"    aria-pressed="true">All<span class="n" data-c="all"></span></button>
+    <button class="chip" type="button" data-f="pass"   aria-pressed="false">Correct<span class="n" data-c="pass"></span></button>
+    <button class="chip" type="button" data-f="miss"   aria-pressed="false">Wrong<span class="n" data-c="miss"></span></button>
+    <button class="chip" type="button" data-f="notest" aria-pressed="false">Never reached<span class="n" data-c="notest"></span></button>
+    <button class="chip" type="button" data-f="open"   aria-pressed="false">Open<span class="n" data-c="open"></span></button>
+  </div>
 
-  <div class="ledger-cards" id="ledger-cards"></div>
+  <div class="ledger-list" id="ledger-list"></div>
+  <p class="lempty" id="l-empty" hidden>No rows under that filter. Nothing has been removed. Choose All to see the whole record.</p>
 
   <!-- ====================================================================
        THE TWO DOORS
@@ -938,6 +1102,11 @@ const rows = CALLS.map(c => {
     gradeLabel: g.label,
     gradeCls: g.cls,
     pre: c.date < STANDARD_FROM,
+    /* Filter bucket. "partial" files under WRONG on purpose. The rule at
+       the top of this file already says a partial counts against the
+       record, so it cannot be allowed to hide from the reader who clicks
+       the one chip that matters. */
+    group: ({ pass:"pass", miss:"miss", partial:"miss", notest:"notest", pending:"open" })[c.grade] || "notest",
   };
 });
 
@@ -963,38 +1132,71 @@ const preTag = p => p ? `<span class="prestd">Pre-standard</span>` : "";
    purpose: no row is ever labelled with a book it was not named under. */
 const bookTag = b => b ? `<span class="c-book">${esc(b)}</span>` : "";
 
-document.getElementById("ledger-rows").innerHTML = rows.map(r => `
-  <tr>
-    <td class="c-date">${esc(r.day)}<span class="yr">${esc(r.year)}</span></td>
-    <td><span class="c-metal">${esc(r.metal)}</span><span class="c-type">${esc(r.type)}</span>${bookTag(r.book)}</td>
-    <td class="c-level">${esc(r.level)}</td>
-    <td class="c-call">${esc(r.claim)}${killBlock(r.kill)}</td>
-    <td class="c-result">${linkNotes(esc(r.result))}</td>
-    <td><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>${preTag(r.pre)}</td>
-  </tr>`).join("");
+/* ONE renderer, every width. The summary line carries the four things a
+   reader scans: when, what, the level, and the grade. The level stays the
+   strongest element in the line and the grade never moves inside the fold.
+   Both of those are rules, not preferences. */
+document.getElementById("ledger-list").innerHTML = rows.map(r => `
+  <details class="lrow" data-grade="${esc(r.group)}">
+    <summary>
+      <span class="s-date">${esc(r.day)} <span>${esc(r.year)}</span></span>
+      <span class="s-inst">${esc(r.metal)} <i>${esc(r.type)}</i></span>
+      <span class="s-level">${esc(r.level)}</span>
+      <span class="s-grade"><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>${preTag(r.pre)}</span>
+      <span class="s-chev" aria-hidden="true">&rsaquo;</span>
+    </summary>
+    <div class="lbody">
+      <div>
+        <div class="lab">The call, before the move</div>
+        <p>${esc(r.claim)}</p>
+        ${killBlock(r.kill)}
+        ${bookTag(r.book)}
+      </div>
+      <div>
+        <div class="lab">What price did</div>
+        <p class="res">${linkNotes(esc(r.result))}</p>
+      </div>
+    </div>
+  </details>`).join("");
 
-document.getElementById("ledger-cards").innerHTML = rows.map(r => `
-  <article class="card">
-    <div class="top">
-      <span class="d">${esc(r.day)} <span>${esc(r.year)}</span></span>
-      <span class="gwrap">
-        <span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>
-        ${preTag(r.pre)}
-      </span>
-    </div>
-    <div class="meta">
-      <span class="c-metal">${esc(r.metal)}</span>
-      <span class="c-type" style="display:inline;margin:0">${esc(r.type)}</span>
-      ${bookTag(r.book)}
-      <span class="lv">${esc(r.level)}</span>
-    </div>
-    <p class="claim">${esc(r.claim)}</p>
-    ${killBlock(r.kill)}
-    <div class="did">
-      <div class="lab">What price did</div>
-      <p>${linkNotes(esc(r.result))}</p>
-    </div>
-  </article>`).join("");
+/* ---------------- the filter ----------------
+   A view, never a delete. Counts come off the rendered rows, so a chip
+   cannot state a number this page does not hold. Changing the filter
+   closes any row it hides, so nothing is left open behind a view. */
+(function ledgerFilter(){
+  const bar   = document.getElementById("lfilter");
+  const list  = document.getElementById("ledger-list");
+  const empty = document.getElementById("l-empty");
+  if (!bar || !list) return;
+
+  const all = Array.from(list.querySelectorAll(".lrow"));
+  const tally = { all: all.length, pass:0, miss:0, notest:0, open:0 };
+  all.forEach(r => { tally[r.dataset.grade] = (tally[r.dataset.grade] || 0) + 1; });
+
+  bar.querySelectorAll(".n").forEach(n => {
+    const v = tally[n.dataset.c] || 0;
+    n.textContent = v;
+    /* A chip for a bucket the ledger does not contain is removed rather
+       than shown reading zero. All always stays. */
+    if (v === 0 && n.dataset.c !== "all") n.closest(".chip").remove();
+  });
+
+  bar.addEventListener("click", e => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    const want = chip.dataset.f;
+    bar.querySelectorAll(".chip").forEach(c =>
+      c.setAttribute("aria-pressed", String(c === chip)));
+    let shown = 0;
+    all.forEach(r => {
+      const on = want === "all" || r.dataset.grade === want;
+      r.hidden = !on;
+      if (!on) r.open = false;
+      if (on) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+  });
+})();
 
 /* ---------------- the tally ---------------- */
 /* Per the Grading Standard:
@@ -1108,10 +1310,16 @@ document.getElementById("updated-foot").textContent = stamp;
   if (emailReady) {
     document.getElementById("signup-form").setAttribute("action", DOORS.kit.trim());
     document.getElementById("door-email").setAttribute("data-ready", "1");
+    /* The bar button routes to the door. It never carries its own form:
+       two forms posting the same endpoint is two things to keep in step
+       and one of them will rot. One form, one endpoint, one place. */
+    document.getElementById("ab-email").setAttribute("data-ready", "1");
   }
   if (applyReady) {
     document.getElementById("apply-link").setAttribute("href", DOORS.tally.trim());
     document.getElementById("door-apply").setAttribute("data-ready", "1");
+    document.getElementById("ab-apply").setAttribute("href", DOORS.tally.trim());
+    document.getElementById("ab-apply").setAttribute("data-ready", "1");
   }
 
   const doors = document.getElementById("doors");
@@ -1158,6 +1366,38 @@ document.getElementById("updated-foot").textContent = stamp;
 })();
 
 document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HISTORY_URL; });
+
+/* =========================================================================
+   THE ACTION BAR
+
+   Counts only, taken from the same variables the tally block uses, so the
+   bar cannot drift from the page. It appears once the header has scrolled
+   away and not before: the reader meets the thesis first, and the route to
+   a door only exists after they have chosen to go into the record.
+
+   If IntersectionObserver is missing the bar simply never shows. The doors
+   at the foot of the page are unaffected, exactly as the ledger is
+   unaffected by the notes. Decoration never carries capture.
+   ========================================================================= */
+(function actionBar(){
+  const bar = document.getElementById("actionbar");
+  const hdr = document.querySelector("header");
+  if (!bar || !hdr) return;
+
+  const t = document.getElementById("ab-tally");
+  if (t) {
+    t.innerHTML =
+      `<span>${resolved} resolved</span>` +
+      `<span class="p">${pass} correct</span>` +
+      `<span class="m">${miss + partial} wrong</span>`;
+  }
+
+  if (!("IntersectionObserver" in window)) return;
+  new IntersectionObserver(
+    ([e]) => bar.setAttribute("data-show", e.isIntersecting ? "0" : "1"),
+    { threshold: 0 }
+  ).observe(hdr);
+})();
 </script>
 </body>
 </html>
