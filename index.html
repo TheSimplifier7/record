@@ -760,7 +760,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-08";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-14";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -829,11 +829,20 @@ const STANDING = [
        See note 08. */
     claim:   "Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish. Silver does not turn with it and remains below its own line.",
     kill:    "for gold, a weekly close back below 4,268. For silver, a weekly close above the falling 464 swing slow mean (66.86 on 7 Aug)",
+    /* WEEK OF 14 AUGUST 2026. Both figures below are sourced, not derived.
+       Gold: the 7 August weekly close is 4,342, stated in this file's own
+       Verdict row of that date. The 14 August weekly close is 4,376.160,
+       read off the 464 weekly chart with the market shut. 34.16 on 4,342
+       is +0.79%.
+       Silver: the door read 66.8607 and the close printed 64.7080 on the
+       same chart. That is 2.15 under, which is 3.22% below the line. The
+       previous mark was a percentage with no stated base, which this page
+       does not permit, so it has been replaced with the gap, which has one. */
     marks:   [
-      { name:"Gold",   move:"new", from:"bullish from 7 Aug · bearish since 13 March" },
-      { name:"Silver", move:"-5.1%", from:"still below its swing line · prior claim continues" }
+      { name:"Gold",   move:"+0.79%", from:"since the 7 Aug close · bullish from 7 Aug" },
+      { name:"Silver", move:"-3.22%", from:"below the door at 66.8607 · touched it, never closed through" }
     ],
-    asOf:    "2026-08-07",
+    asOf:    "2026-08-14",
     status:  "live", endedOn:"", endedAs:""
   },
   {
@@ -871,7 +880,48 @@ const STANDING = [
   }
 ];
 
+/* =========================================================================
+   WHEN A WEEK GETS A ROW. Ruled 16 Aug 2026 by the founder.
+
+   Asked three times in four days, so it lives here now instead of in a
+   conversation.
+
+   THE SUNDAY CALL GETS A ROW EVERY WEEK, EVEN WHEN THE LEVEL IS ALREADY
+   A STANDING KILL.
+
+   They are two different claims that happen to share a number. A standing
+   call is directional and open ended, and it is graded on its own clock
+   against no fixed date. A Sunday call is a one week claim with a named
+   resolution at Friday's close. The same level can carry both, and the
+   week is a real claim whether or not the direction behind it is.
+
+   THE COST OF THIS RULE, STATED SO NOBODY DISCOVERS IT LATER. A level
+   that holds for ten weeks produces ten passes. That is the flattery the
+   STANDING block warns about, accepted here on purpose, because a weekly
+   call that resolves on a Friday is the thing this page exists to record
+   and refusing to record it would leave most weeks blank.
+
+   The two clocks stay separate everywhere else. STANDING is still absent
+   from the tally, still graded on its own clock, and still never moved
+   into CALLS. See note 02.
+
+   Worked example, week of 9 August 2026: gold held 4,268 and the kill
+   never fired, so it grades pass. Silver touched 66.86 and never closed
+   through, so under the wick rule it was never reached and it grades
+   notest, banked for neither side.
+   ========================================================================= */
+
 const CALLS = [
+
+  { date:"2026-08-14", type:"Verdict", metal:"Gold", level:"4,268",
+    call:"Gold holds above the floor it reclaimed on the 7 August close. Named before the week opened. Kill: a weekly close back below 4,268.",
+    result:"The kill never fired and price never came back to test it. Gold closed the week at 4,376.160, more than a hundred dollars clear of the floor.",
+    grade:"pass" },
+
+  { date:"2026-08-14", type:"Verdict", metal:"Silver", level:"66.86",
+    call:"Silver clears the door overhead on a weekly close or the turn stays unconfirmed. Named before the week opened. Kill: a weekly close above 66.86.",
+    result:"Silver climbed to the line and touched it during the week. It never closed through. The week printed 64.7080, 2.15 underneath. A wick through a level is weather and only the close is tape, so the door was never reached. NEVER REACHED. Nothing is banked on either side.",
+    grade:"notest" },
 
   { date:"2026-08-07", type:"Verdict", metal:"Gold", level:"4,098.275",
     call:"Ceiling, standing since 21 July. The lockout holds until the close says otherwise. Kill: a weekly close back above 4,098.275 grades the break a trap and puts gold back inside the house.",
