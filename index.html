@@ -760,7 +760,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-14";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-16";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -828,7 +828,7 @@ const STANDING = [
        under the prior claim. Graded per metal under the 7 August ruling.
        See note 08. */
     claim:   "Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish. Silver does not turn with it and remains below its own line.",
-    kill:    "for gold, a weekly close back below 4,268. For silver, a weekly close above the falling 464 swing slow mean (66.86 on 7 Aug)",
+    kill:    "for gold, a weekly close back below the rising 464 swing slow mean (4,281 on 16 Aug; 4,268 when stated 7 Aug). For silver, a weekly close above the falling 464 swing slow mean (66.60 on 16 Aug; 66.86 when stated 7 Aug)",
     /* WEEK OF 14 AUGUST 2026. Both figures below are sourced, not derived.
        Gold: the 7 August weekly close is 4,342, stated in this file's own
        Verdict row of that date. The 14 August weekly close is 4,376.160,
@@ -912,6 +912,20 @@ const STANDING = [
    ========================================================================= */
 
 const CALLS = [
+
+  /* WEEK OF 16 AUGUST. Two rows under the founder's weekly-row ruling.
+     Drafted from the desk's report of tonight's post. FOUNDER: confirm both
+     levels and both kill readings against the post as published and the
+     chart of record before this commits. Grade Friday 21 August. */
+  { date:"2026-08-16", type:"Map", metal:"Gold", level:"4,281",
+    call:"Gold holds above the rising 464 swing slow mean, read 4,281 tonight. The swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 4,281 at naming.",
+    result:"",
+    grade:"pending" },
+
+  { date:"2026-08-16", type:"Map", metal:"Silver", level:"66.60",
+    call:"Silver stays below the falling 464 swing slow mean, read 66.60 tonight. The door overhead holds and the turn stays unconfirmed until a close says otherwise. Named before the week opened. Kill: a weekly close above the 464 swing slow mean, 66.60 at naming.",
+    result:"",
+    grade:"pending" },
 
   { date:"2026-08-14", type:"Verdict", metal:"Gold", level:"4,268",
     call:"Gold holds above the floor it reclaimed on the 7 August close. Named before the week opened. Kill: a weekly close back below 4,268.",
@@ -1076,6 +1090,13 @@ const NOTES = [
   { n:"08", kind:"correction", title:"Resolution, 7 August 2026. Two wrongs, one untested, and the swing clock in gold turns.",
     body:"Friday 7 August close (TradingView TVC, 23:00 CET): gold 4,342, silver 63.45. The standing ceiling claims at gold 4,098.275 and silver 61.02 both had their kills fire; both are graded wrong and stay on the page. Gold 3,942.430 was never reached and is stated as no test. Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish; a weekly close back below 4,268 now kills the new call. Silver remains below its own swing line and continues under the prior claim. Graded per metal under the ruling made before the close. Two rulings disclosed: the swing kill that named both metals in one sentence is graded per metal, and silver 61.02 receives its grade under the same standard applied to every gold restatement. Both rulings taken in the direction that costs this desk more. Tally after this close: twelve correct, three wrong, three never tested." },
 
+
+  /* FOUNDER: the bracketed sentence below is the one part of this note only
+     you can write. State what the caption actually said and what was true,
+     in one line, then delete the brackets. The note does not ship with a
+     blank and it does not ship without the specifics. */
+  { n:"09", kind:"correction", title:"Correction, 16 August 2026. A caption misdated its own claim.",
+    body:"The 9 August post restated the standing swing call as though named that night. [FOUNDER: one line, exactly what the caption said against what was true.] The call it restated was stated 7 August, and the page carried the correct date throughout. The post is not deleted and its reach, roughly nineteen thousand impressions before this note was published, is stated rather than hidden. The error was the caption's date framing, not the level, the kill, or any grade. Logged the week it was caught, under the same rule as every other correction on this page." },
 ];
 
 /* ---- display only. Nothing here can hide a row. ---- */
