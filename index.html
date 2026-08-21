@@ -760,7 +760,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-17";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-21";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -819,30 +819,29 @@ const DOORS = {
 const STANDING = [
   {
     clock:   "The direction, week to week",
-    position:"Bullish in gold · Silver continues",
-    stated:  "2026-08-07",
-    /* Gold has been bearish since the 13 March Map Floor at 4,098.275.
-       That structure ended on the 7 August weekly close above the 464
-       swing slow mean (4,268). From that close the swing clock in gold
-       turns bullish. Silver remains below its own swing line and continues
-       under the prior claim. Graded per metal under the 7 August ruling.
-       See note 08. */
-    claim:   "Gold has been bearish since 13 March. That structure ended on the 7 August close above the 464 swing slow mean at 4,268. From that close the swing clock in gold turns bullish. Silver does not turn with it and remains below its own line.",
-    kill:    "for gold, a weekly close back below the rising 464 swing slow mean (4,281 on 16 Aug; 4,268 when stated 7 Aug). For silver, a weekly close above the falling 464 swing slow mean (66.60 on 16 Aug; 66.86 when stated 7 Aug)",
-    /* WEEK OF 14 AUGUST 2026. Both figures below are sourced, not derived.
+    position:"Bullish in gold · Bullish in silver",
+    stated:  "2026-08-21",
+    /* Gold's swing clock turned bullish on the 7 August weekly close above
+       the 464 swing slow mean (4,268); see note 08. Silver stayed below its
+       own line through 14 August (touched 66.8607, never closed through) and
+       closed through it on 21 August: door 66.6600, close 68.9460. Under the
+       per-metal standard of 7 August, silver's half of the prior entry had
+       its kill fire on that close and the entry is restated here, the way
+       the 7 August entry restated the one before it. See note 10. */
+    claim:   "Gold's swing clock has been bullish since the 7 August close above the 464 swing slow mean at 4,268. Silver stayed below its own line until the 21 August close printed 68.9460 through the door at 66.6600. From that close the swing clock in silver turns bullish too. Graded per metal under the 7 August ruling.",
+    kill:    "for gold, a weekly close back below the rising 464 swing slow mean (4,308.037 on 21 Aug; 4,281 on 16 Aug; 4,268 when stated 7 Aug). For silver, a weekly close back below the 464 swing slow mean (66.6600 on 21 Aug, the close it turned on)",
+    /* WEEK OF 21 AUGUST 2026. Both figures below are sourced, not derived.
        Gold: the 7 August weekly close is 4,342, stated in this file's own
-       Verdict row of that date. The 14 August weekly close is 4,376.160,
-       read off the 464 weekly chart with the market shut. 34.16 on 4,342
-       is +0.79%.
-       Silver: the door read 66.8607 and the close printed 64.7080 on the
-       same chart. That is 2.15 under, which is 3.22% below the line. The
-       previous mark was a percentage with no stated base, which this page
-       does not permit, so it has been replaced with the gap, which has one. */
+       Verdict row of that date. The 21 August weekly close is 4,602.660,
+       read off the TVC chart at 23:00 CEST with the market shut. 260.66 on
+       4,342 is +6.00%.
+       Silver: the door read 66.6600 and the close printed 68.9460 on the
+       same chart. That is 2.286 over, which is 3.43% above the line. */
     marks:   [
-      { name:"Gold",   move:"+0.79%", from:"since the 7 Aug close · bullish from 7 Aug" },
-      { name:"Silver", move:"-3.22%", from:"below the door at 66.8607 · touched it, never closed through" }
+      { name:"Gold",   move:"+6.00%", from:"since the 7 Aug close · bullish from 7 Aug" },
+      { name:"Silver", move:"+3.43%", from:"above the door at 66.6600 · closed through it 21 Aug · bullish from 21 Aug" }
     ],
-    asOf:    "2026-08-14",
+    asOf:    "2026-08-21",
     status:  "live", endedOn:"", endedAs:""
   },
   {
@@ -918,13 +917,13 @@ const CALLS = [
      Grade Friday 21 August. */
   { date:"2026-08-16", type:"Map", metal:"Gold", level:"4,281",
     call:"Gold holds above the rising 464 swing slow mean, read 4,281 tonight. The swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 4,281 at naming.",
-    result:"",
-    grade:"pending" },
+    result:"The kill never fired. The weekly close printed 4,602.660 with the 464 swing slow mean read at 4,308.037 tonight (4,281 at naming), 294.62 above the line. PASS. Close and line read off the TVC chart at 23:00 CEST, 21 August.",
+    grade:"pass" },
 
   { date:"2026-08-16", type:"Map", metal:"Silver", level:"66.60",
     call:"Silver stays below the falling 464 swing slow mean, read 66.60 tonight. The door overhead holds and the turn stays unconfirmed until a close says otherwise. Named before the week opened. Kill: a weekly close above the 464 swing slow mean, 66.60 at naming.",
-    result:"",
-    grade:"pending" },
+    result:"The kill fired. Silver closed the week at 68.9460, through the door, which read 66.6600 tonight (66.60 at naming). The turn the claim called unconfirmed is confirmed by this close. WRONG. See note 10.",
+    grade:"miss" },
 
   { date:"2026-08-14", type:"Verdict", metal:"Gold", level:"4,268",
     call:"Gold holds above the floor it reclaimed on the 7 August close. Named before the week opened. Kill: a weekly close back below 4,268.",
@@ -973,8 +972,8 @@ const CALLS = [
 
   { date:"2026-07-21", type:"Map", metal:"Gold", level:"3,810",
     call:"The catch at 3,810, the weekly slow mean rising since May 2019, is the room's floor. Kill: a weekly close beneath 3,810 and this claim dies, the bull's oldest line under review.",
-    result:"Never approached this week; untested lines are not wins and this one is not graded. The claim is restated and stays open, the catch rising toward the room, graded week by week at the close. The kill was published as a fixed number against a line that moves; from 1 August it is restated with the line named and the level dated, and the original wording stands as posted.",
-    grade:"pending" },
+    result:"Never approached this week; untested lines are not wins and this one is not graded. The claim is restated and stays open, the catch rising toward the room, graded week by week at the close. The kill was published as a fixed number against a line that moves; from 1 August it is restated with the line named and the level dated, and the original wording stands as posted. Resolved 21 August: five weekly closes later price has gone the other way, 4,602.660 tonight, and the line was never approached. NEVER REACHED. Untested lines are not wins, the standard applied to 3,942.430 on 7 August. The floor itself lives on as the epoch line inside the year-to-year standing call. See note 10.",
+    grade:"notest" },
 
   { date:"2026-07-21", type:"Map", metal:"Silver", level:"61.02",
     call:"61.022 remains the ceiling; the lockout stands until the close says otherwise. Kill: a weekly close back above 61.022 grades the break a trap and puts the recovery on two legs.",
@@ -1003,8 +1002,8 @@ const CALLS = [
 
   { date:"2026-07-07", type:"Level Watch", metal:"Silver", level:"61.02",
     call:"Silver closed below its March floor at 59.95, the first floor of this correction to go. Kill: named with the break, a weekly close back above 61.02 grades it a trap.",
-    result:"No reclaim on the first close. The weekly close printed 59.83, below the line. The break stood and the old floor became the ceiling. The reclaim signal stayed live and was graded week by week at the close. This is silver's first named level with a published kill and the anchor its later standing claims are measured from. Resolved on the 7 August close; see the Verdict row of that date and note 08.",
-    grade:"pending" },
+    result:"No reclaim on the first close. The weekly close printed 59.83, below the line. The break stood and the old floor became the ceiling. The reclaim signal stayed live and was graded week by week at the close. This is silver's first named level with a published kill and the anchor its later standing claims are measured from. Resolved on the 7 August close; see the Verdict row of that date and note 08. Graded 21 August for its own week, the week the break stood, under the standard applied to the gold Level Watch of 8 July; the final resolution of the level is the 7 August Verdict row, WRONG. See note 10.",
+    grade:"pass" },
 
   { date:"2026-07-05", type:"Map", metal:"Gold", level:"4,098 / 4,307",
     call:"4,098 is a floor again after Friday's vote. The gate at 4,307 decides what the bounce becomes. Nothing has turned below the 4,500 turn. Kill: a close back beneath 4,098 and this read dies.",
@@ -1065,6 +1064,8 @@ const CALLS = [
    ========================================================================= */
 
 const NOTES = [
+  { n:"10", kind:"correction", title:"Resolution, 21 August 2026. One pass, one wrong, two aged rows closed, and the swing clock in silver turns.",
+    body:"Friday 21 August close (TradingView TVC, 23:00 CEST): gold 4,602.660, silver 68.9460. The 16 August gold call, holds above the 464 swing slow mean, passes; the line read 4,308.037 tonight and the close sat 294.62 above it. The 16 August silver call, the door at the 464 swing slow mean holds, is WRONG: the door read 66.6600 and the close printed 68.9460, through it. Under the per-metal standard of 7 August, silver's half of the standing week-to-week call had its kill fire on this close; from this close the swing clock in silver turns bullish, and a weekly close back below 66.6600 now kills the new call. Gold continues, 6.00% above the 7 August close. Two aged rows resolve tonight. Gold 3,810 of 21 July is stated as no test under the standard applied to 3,942.430 on 7 August: five weekly closes, price went the other way, the line never approached; the floor lives on as the epoch line in the year-to-year call. Silver 61.02 of 7 July receives its own week's grade, a pass, under the standard applied to the gold Level Watch of 8 July; its final resolution was already graded WRONG in the 7 August Verdict row. Both rulings taken the way the page already rules, not the way that flatters it. Tally after this close: fifteen correct, four wrong, five never tested, nothing open." },
   { n:"01", kind:"standard", title:"Standard tightened 3 July 2026.",
     body:"Every claim now ships with the condition that would grade it a miss; untested levels are stated as no test rather than counted as wins; partial grades count against the record in any ratio quoted. Earlier entries were graded under the prior convention, are marked pre-standard in the ledger, and are preserved unaltered. No grade is ever restamped to fit a rulebook written after it. Rows carrying no published kill are marked as such." },
 

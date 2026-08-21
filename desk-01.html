@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DESK 01 · THE SIMPLIFIER</title>
+<!-- CLIENT LEDGER SHELL · built 21 August 2026 by the strategist.
+     One file per client, same palette as the record, same grading vocabulary.
+     HANDLE is the working handle until the client chooses theirs at intake;
+     the page renders nothing but a pending line while HANDLE is empty, and
+     verify_ledger.js blocks a commit in that state. Run before every commit:
+     node verify_ledger.js
+     A row is a claim and a grade. Never balances, sizes, profit or loss. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071;
+    --ink:#14110C; --gold:#4A360C; --pass:#163821; --miss:#63220E;
+    --notest:#3B3B36; --pending:#1B3646; --band:rgba(20,17,12,.038);
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);padding:48px 32px;min-height:100vh}
+  .wrap{max-width:900px;margin:0 auto}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--gold)}
+  h1{font-size:34px;font-weight:600;margin:10px 0 4px}
+  .law{font-family:var(--mono);font-size:12px;color:var(--rule);margin:6px 0 26px}
+  .cond{border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:14px 0;font-size:15px;line-height:1.55;margin-bottom:28px}
+  .cond b{color:var(--gold)}
+  .tally{display:flex;gap:28px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;margin-bottom:26px}
+  .tally span b{display:block;font-size:22px;letter-spacing:0;margin-top:4px}
+  .t-pass b{color:var(--pass)} .t-miss b{color:var(--miss)} .t-open b{color:var(--pending)}
+  table{width:100%;border-collapse:collapse;background:var(--panel);font-size:13.5px}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-align:left;color:var(--rule);border-bottom:1px solid var(--rule);padding:10px 12px;text-transform:uppercase}
+  td{padding:18px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  td.g{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .pass{color:var(--pass)} .miss{color:var(--miss)} .notest{color:var(--notest)} .pending{color:var(--pending)}
+  .empty td{font-style:italic;color:var(--rule);text-align:center;padding:44px 12px;background:var(--band)}
+  .foot{font-family:var(--mono);font-size:11px;color:var(--rule);margin-top:26px;line-height:1.7}
+  #pendingHandle{font-family:var(--mono);font-size:12px;color:var(--rule);padding:40px 0;display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="pendingHandle">Ledger handle pending. This page publishes nothing until the handle is set at intake.</div>
+  <div id="page">
+    <div class="kicker">THE SIMPLIFIER · CLIENT LEDGER</div>
+    <h1 id="handle"></h1>
+    <div class="law">Named before. Graded after. Nothing deleted.</div>
+    <div class="cond">
+      This ledger publishes under a handle. Naming is a <b>separate opt-in, withdrawable at any time</b>;
+      withdrawal changes the name shown, never the rows. A row is a claim and a grade.
+      It never carries balances, position sizes, profit or loss.
+    </div>
+    <div class="tally">
+      <span>RESOLVED<b id="t-resolved">0</b></span>
+      <span class="t-pass">PASS<b id="t-pass">0</b></span>
+      <span class="t-miss">MISS<b id="t-miss">0</b></span>
+      <span class="t-open">OPEN<b id="t-open">0</b></span>
+    </div>
+    <table>
+      <thead><tr><th>Date</th><th>Book</th><th>Instrument</th><th>Level</th><th>Call, including the kill</th><th>Result</th><th>Grade</th></tr></thead>
+      <tbody id="ledger-list"></tbody>
+    </table>
+    <div class="foot" id="foot"></div>
+  </div>
+</div>
+<script>
+/* ============================================================
+   HOW TO UPDATE. Same law as the record page.
+   1. LAST_UPDATED with every commit that touches this file.
+   2. Add a row: copy one entry, paste at the TOP, newest first.
+      Rows are written in the client's own words, grades at the close:
+      grade is one of "pass" | "miss" | "notest" | "pending".
+      book is "tide" | "turn" | "tick" (tick rows stay off this public
+      instance until the first cohort finishes, as ruled for the record).
+   3. No currency symbol ever appears in a row. The verifier blocks it.
+   ============================================================ */
+const HANDLE       = "DESK 01";      /* working handle until intake sets the client's own */
+const LAST_UPDATED = "2026-08-21";   /* set by hand, with the commit */
+const OPENED       = "2026-08-21";
+const CALLS = [
+  /* { date:"2026-09-14", book:"tide", instrument:"gold", level:"0,000",
+       call:"Named in the client's words, including the kill.",
+       result:"", grade:"pending" }, */
+];
+
+(function(){
+  const pend=document.getElementById('pendingHandle'), page=document.getElementById('page');
+  if(!HANDLE || !HANDLE.trim()){ pend.style.display='block'; page.style.display='none'; return; }
+  document.getElementById('handle').textContent=HANDLE;
+  const G={pass:'PASS',miss:'WRONG',notest:'NEVER REACHED',pending:'pending'};
+  let pass=0,miss=0,open=0;
+  const list=document.getElementById('ledger-list');
+  if(!CALLS.length){
+    list.innerHTML='<tr class="empty lrow"><td colspan="7">Row one is written in session 4A and grades from 5B. Every row is named before the move, in the client\'s own words.</td></tr>';
+  } else {
+    list.innerHTML=CALLS.map(c=>{
+      if(c.grade==='pass')pass++; else if(c.grade==='miss')miss++; else if(c.grade==='pending')open++;
+      return '<tr class="lrow"><td>'+c.date+'</td><td>'+c.book+'</td><td>'+c.instrument+'</td><td>'+c.level+'</td><td>'+c.call+'</td><td>'+(c.result||'')+'</td><td class="g '+c.grade+'">'+(G[c.grade]||c.grade)+'</td></tr>';
+    }).join('');
+  }
+  document.getElementById('t-resolved').textContent=pass+miss;
+  document.getElementById('t-pass').textContent=pass;
+  document.getElementById('t-miss').textContent=miss;
+  document.getElementById('t-open').textContent=open;
+  document.getElementById('foot').textContent=HANDLE+' · founding client · instance opened '+OPENED+' · graded to the same standard as the public record · updated '+LAST_UPDATED;
+})();
+</script>
+</body>
+</html>
