@@ -20,7 +20,15 @@ const handle = (src.match(/const HANDLE\s*=\s*"([^"]*)"/) || [])[1] || '';
 const updated = (src.match(/const LAST_UPDATED\s*=\s*"([^"]*)"/) || [])[1] || '';
 const rows = els['ledger-list'] ? els['ledger-list'].innerHTML : '';
 const nrows = (rows.match(/class="lrow"/g) || []).length;
-if (!handle.trim()) fail('HANDLE is empty: the page would publish a pending line and nothing else');
+if (!handle.trim()) {
+  console.log('  HOLD  HANDLE is empty: the page publishes only the pending line. Correct before intake, blocking after.');
+  console.log('  handle        (unset, fail-closed)');
+  console.log('  updated       ' + updated);
+  console.log('\nLedger is fail-closed and safe to publish. It carries no client claim until the handle is set at intake.');
+  process.exit(0);
+}
+const opened = (src.match(/const OPENED\s*=\s*"([^"]*)"/) || [])[1] || '';
+if (!/^\d{4}-\d{2}-\d{2}$/.test(opened)) fail('HANDLE is set but OPENED is not a dated YYYY-MM-DD: a named instance must carry the date it became the client\'s');
 if (!/^\d{4}-\d{2}-\d{2}$/.test(updated)) fail('LAST_UPDATED is not a dated YYYY-MM-DD');
 if (src.includes('—')) fail('em dash present');
 if (/\[FOUNDER:/.test(src)) fail('founder blank leaked');

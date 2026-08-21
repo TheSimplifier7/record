@@ -78,9 +78,11 @@
       instance until the first cohort finishes, as ruled for the record).
    3. No currency symbol ever appears in a row. The verifier blocks it.
    ============================================================ */
-const HANDLE       = "DESK 01";      /* working handle until intake sets the client's own */
+const HANDLE       = "";             /* SET AT INTAKE, in the client's own choice. Empty = this page
+                                        publishes nothing but the pending line. Never guess it,
+                                        never pre-fill it, never date it before the client signs. */
 const LAST_UPDATED = "2026-08-21";   /* set by hand, with the commit */
-const OPENED       = "2026-08-21";
+const OPENED       = "";             /* the day the instance becomes the client's, set with the handle */
 const CALLS = [
   /* { date:"2026-09-14", book:"tide", instrument:"gold", level:"0,000",
        call:"Named in the client's words, including the kill.",
