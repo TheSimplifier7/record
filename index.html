@@ -177,6 +177,15 @@
   .lines .line b{font-weight:600;color:var(--gold)}
   .lines .line i{font-style:normal;font-weight:400;color:var(--ink-5)}
 
+  /* Visually hidden but read aloud. The page had no such class, which is why
+     the email label had to be hidden outright. Added 22 Aug 2026. */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .skip{position:absolute;left:-9999px;top:0;z-index:60;
+    font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;padding:12px 16px;background:var(--ink);color:var(--bg)}
+  .skip:focus{left:0}
+
   /* noscript */
   .noscript{border:1px solid var(--rule);background:var(--panel);padding:20px 22px;margin-top:22px;
     font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--ink-3)}
@@ -303,9 +312,13 @@
   .door .fine{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;
     text-transform:uppercase;color:var(--ink-6);margin-top:18px;line-height:1.85}
   .signup{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
-  .signup input[type=email]{flex:1 1 200px;min-width:0;padding:12px 14px;
-    font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--panel);
-    border:1px solid var(--rule);border-radius:0}
+  /* 16px is the iOS Safari auto-zoom threshold, not a style choice. Any value
+     below it makes Safari zoom the viewport when the field is focused, which
+     breaks the layout at the exact moment a reader tries to sign up. 58% of
+     this audience is on iOS. Do not lower it. Fixed 22 Aug 2026. */
+  .signup input[type=email]{flex:1 1 200px;min-width:0;padding:13px 14px;
+    font-family:var(--mono);font-size:16px;min-height:48px;color:var(--ink);
+    background:var(--panel);border:1px solid var(--rule);border-radius:0}
   .signup input[type=email]::placeholder{color:var(--ink-6)}
   .signup input[type=email]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   .btn{display:inline-block;padding:12px 20px;font-family:var(--mono);font-size:10.5px;
@@ -363,7 +376,12 @@
   .btn-quiet:hover{border-color:var(--ink);color:var(--ink);background:transparent}
   .ab-cta .btn{padding:9px 15px;font-size:10px;letter-spacing:.13em}
   @media(max-width:859px){.ab-tally,.ab-mark .name{display:none}}
-  @media(max-width:519px){.ab-cta .btn-quiet{display:none}}
+  /* Specificity note, 22 Aug 2026. This selector must carry a class, an
+     attribute AND an element to outrank .ab-cta a[data-ready="1"] (0,2,1)
+     above. Media queries add no specificity, so the earlier, simpler form
+     of this rule silently never applied and both buttons shipped on a
+     375px screen. */
+  @media(max-width:519px){.ab-cta a.btn-quiet[data-ready="1"]{display:none}}
 
   /* =====================================================================
      THE LEDGER, AS ROWS THAT OPEN. Added 12 Aug 2026.
@@ -413,7 +431,12 @@
     text-transform:uppercase;color:var(--ink-6);margin-bottom:9px}
   .lbody p{font-size:15px;line-height:1.58;color:var(--ink-2)}
   .lbody p.res{color:var(--ink-3)}
-  .lbody a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42)}
+  /* The inline note links were 16px tall, under the 24px WCAG 2.2 floor and
+     the only real target-size failure on the page. The negative margin cancels
+     the padding for layout, so the hit box grows and the line rhythm does not
+     move a pixel. Added 22 Aug 2026. */
+  .lbody a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42);
+    display:inline-block;padding:12px 6px;margin:-12px -6px}
   .lbody a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
   .lbody .c-book{margin-top:12px}
 
@@ -443,6 +466,10 @@
   @media(max-width:1140px){:root{--pad:32px}}
   @media(max-width:999px){
     header{grid-template-columns:minmax(0,1fr);gap:34px}
+    /* Portrait tablet and large phones in landscape. Four tiles at this width
+       give each about 170px, and "Graded wrong, still on this page" wraps to
+       four lines and breaks the row's baseline. Added 22 Aug 2026. */
+    .stats{grid-template-columns:repeat(2,1fr)}
     .standing{grid-template-columns:1fr}
     .lbody{grid-template-columns:1fr;gap:22px}
     .foot-grid{grid-template-columns:minmax(0,1fr);gap:40px}
@@ -477,6 +504,10 @@
 </style>
 </head>
 <body>
+
+<!-- Past a fixed action bar and a 92px masthead in one key. Visible only
+     when focused. Added 22 Aug 2026. -->
+<a class="skip" href="#ledger-list">Skip to the ledger</a>
 
 <!-- THE ACTION BAR. Hidden until the reader is past the header, and each
      button hidden until its own door is open. See openDoors(). -->
@@ -613,11 +644,30 @@
     </div>
   </noscript>
 
+  <!-- FAIL CLOSED ON THE RENDERER ITSELF, added 22 Aug 2026. The noscript block
+       above fires when JavaScript is disabled. It does NOT fire when the script
+       throws, and a single bad character in a CALLS string would otherwise ship
+       a masthead above an empty page with no error and no way out. This twin is
+       hidden in normal operation and revealed by the error handler at the top of
+       the script, or by the completeness check at the end of it. Same instinct as
+       the doors: if the machine cannot prove it worked, it says so. -->
+  <div class="noscript" id="render-fallback" hidden>
+    The ledger failed to render in this browser, which is a fault on this end and
+    not on yours. Nothing has been lost. The full record is readable as plain text
+    in the source file, and every change to it is a public, timestamped commit.<br>
+    <a href="https://github.com/TheSimplifier7/record/blob/main/index.html">Read the raw file</a> ·
+    <a href="https://github.com/TheSimplifier7/record/commits/main">Read the edit history</a>
+  </div>
+
   <!-- The filter is a view, never a delete. All is the default and every
        count below is computed from the rows themselves, so a chip can
        never claim a number the ledger does not contain. -->
   <div class="lfilter" id="lfilter">
     <span class="fl">Show</span>
+    <!-- Pressing a chip hides rows. Without this a screen reader hears the
+         button state change and then silence about the rows that vanished.
+         Added 22 Aug 2026. -->
+    <p id="l-status" class="sr-only" aria-live="polite"></p>
     <button class="chip" type="button" data-f="all"    aria-pressed="true">All<span class="n" data-c="all"></span></button>
     <button class="chip" type="button" data-f="pass"   aria-pressed="false">Correct<span class="n" data-c="pass"></span></button>
     <button class="chip" type="button" data-f="miss"   aria-pressed="false">Wrong<span class="n" data-c="miss"></span></button>
@@ -1100,6 +1150,15 @@ const DENSITY     = "comfortable";   /* or "compact" */
 const HISTORY_URL = "https://github.com/TheSimplifier7/record/commits/main";
 
 /* ---------------- render, no need to edit below ---------------- */
+
+/* FAIL CLOSED ON THE RENDERER, added 22 Aug 2026. Registered before any
+   render work so that anything thrown below reveals the static fallback
+   instead of leaving a masthead above an empty page. Paired with the
+   completeness check at the very end of this script. */
+window.addEventListener("error", function () {
+  var fb = document.getElementById("render-fallback");
+  if (fb) fb.hidden = false;
+});
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const GRADES = {
   pass:    { label:"Pass",    cls:"g-pass" },
@@ -1120,7 +1179,21 @@ document.documentElement.style.setProperty("--row-pad", DENSITY === "compact" ? 
 /* ---------------- standing calls ---------------- */
 /* Duration is computed from the two dates so it can never go stale the way
    a typed figure would. Everything else in a standing call is entered by
-   hand with its own stated source. */
+   hand with its own stated source.
+
+   CORRECTED 22 Aug 2026. This previously counted from the stated date to
+   asOf, which is the hand-typed date the marks were last refreshed, so a
+   call stated 7 June read "55 days running" on 22 August when the true
+   figure was 76, and a call stated and marked the same day read "0 days
+   running". A live call now counts to today and an ended call counts to
+   the day it ended, which is what "running" means.
+
+   This is the ONE figure on the page allowed to read the clock, and the
+   distinction matters: LAST_UPDATED claims when the FILE changed and must
+   stay in the founder's hand per note 04. This claims how long a live
+   position has been open, which is a fact about the calendar and not about
+   the file. No claim, no grade and no level is ever computed this way. */
+const TODAY = new Date().toISOString().slice(0, 10);
 const runFor = (from, to) => {
   const d = Math.round((Date.parse(to + "T00:00:00Z") - Date.parse(from + "T00:00:00Z")) / 86400000);
   if (!isFinite(d) || d < 0) return "";
@@ -1130,7 +1203,7 @@ const runFor = (from, to) => {
 
 document.getElementById("standing").innerHTML = STANDING.map(s => {
   const live = s.status !== "ended";
-  const run  = runFor(s.stated, s.asOf);
+  const run  = runFor(s.stated, live ? TODAY : (s.endedOn || s.asOf));
   return `
   <article class="sc">
     <div class="sc-top">
@@ -1262,6 +1335,11 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => `
       if (on) shown++;
     });
     if (empty) empty.hidden = shown > 0;
+    const status = document.getElementById("l-status");
+    if (status) {
+      status.textContent = "Showing " + shown + " of " + all.length +
+        " calls" + (want === "all" ? "" : ", filtered by " + chip.textContent.replace(/\d+$/, "").trim().toLowerCase());
+    }
   });
 })();
 
@@ -1464,6 +1542,19 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
     ([e]) => bar.setAttribute("data-show", e.isIntersecting ? "0" : "1"),
     { threshold: 0 }
   ).observe(hdr);
+})();
+
+/* COMPLETENESS CHECK, added 22 Aug 2026. A script can also fail without
+   throwing: a selector that stops matching after an edit renders nothing and
+   reports no error. If the ledger produced no rows, that is a failure whatever
+   the console says, and the page says so rather than showing a masthead above
+   nothing. The check is the same standard the ledger itself runs on: an
+   untested claim is not a pass. */
+(function () {
+  const list = document.getElementById("ledger-list");
+  const fb   = document.getElementById("render-fallback");
+  if (!fb) return;
+  if (!list || list.querySelectorAll(".lrow").length === 0) fb.hidden = false;
 })();
 </script>
 </body>
