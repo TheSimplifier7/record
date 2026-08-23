@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
-<meta name="description" content="Every gold and silver call from The Simplifier, named before the move and graded after. Wins and misses. Nothing removed." />
+<meta name="description" content="Every metals call from The Simplifier, named before the move and graded after. Wins and misses. Nothing removed." />
 <meta name="theme-color" content="#C2BAAE">
 
 <!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
@@ -30,7 +30,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
-<meta property="og:description" content="Every gold and silver call, named before the move and graded after. Wins and misses, in one place, never removed.">
+<meta property="og:description" content="Every metals call, named before the move and graded after. Wins and misses, in one place, never removed.">
 <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-08-16_gold_4281.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
@@ -538,7 +538,7 @@
       </svg>
       <span class="name">The Simplifier</span>
     </div>
-    <span class="desc">Gold &amp; silver intelligence · Graded record</span>
+    <span class="desc">Metals intelligence · Graded record</span>
   </div>
   <div class="hairline"></div>
 
@@ -548,11 +548,11 @@
     <div>
       <div class="issue">Standing ledger · Entry <span id="issue-no">000</span></div>
       <h1>The Record</h1>
-      <p class="thesis">Every gold and silver call, <em>named before the move</em> and <em>graded after</em>. Wins and misses, in one place, never removed.</p>
+      <p class="thesis">Every metals call, <em>named before the move</em> and <em>graded after</em>. Wins and misses, in one place, never removed.</p>
       <p class="law">Price is the rudder · The rest is weather</p>
     </div>
     <dl class="spec">
-      <dt>Coverage</dt><dd>Gold · Silver</dd>
+      <dt>Coverage</dt><dd>Gold · Silver · Platinum</dd>
       <!-- CADENCE corrected 1 Aug 2026. This read "One read a day", which was the
            retired daily-original engine and had been wrong since the anchors moved.
            If the cadence moves again, this line moves with it the same day.
@@ -702,7 +702,7 @@
     <div class="door" id="door-email" data-ready="0">
       <div class="eyebrow">Free</div>
       <h3>The Sunday Level</h3>
-      <p>The level, by email, before the market opens. The grade, on Friday's close. The wrong ones arrive in your inbox too.</p>
+      <p>The levels, by email, before the market opens. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
       <form class="signup" id="signup-form" method="post">
         <label for="em" hidden>Email address</label>
         <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
@@ -810,7 +810,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-21";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-23";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -961,6 +961,25 @@ const STANDING = [
    ========================================================================= */
 
 const CALLS = [
+
+  /* WEEK OF 23 AUGUST. Three rows under the founder's weekly-row ruling,
+     platinum's first row on this page. Levels read off the founder's
+     stamped charts of 23 August, market shut, and confirmed by the founder
+     with the 23 August push. Grade Friday 28 August. */
+  { date:"2026-08-23", type:"Map", metal:"Gold", level:"4,308", book:"Turn",
+    call:"Gold holds above the rising 464 swing slow mean, read 4,308 tonight. The swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 4,308 at naming.",
+    result:"",
+    grade:"pending" },
+
+  { date:"2026-08-23", type:"Map", metal:"Silver", level:"66.66", book:"Turn",
+    call:"Silver holds above the 464 swing slow mean it closed through on 21 August, read 66.66 tonight. The door is now the floor and the swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 66.66 at naming.",
+    result:"",
+    grade:"pending" },
+
+  { date:"2026-08-23", type:"Map", metal:"Platinum", level:"1,790.84", book:"Turn",
+    call:"Platinum, on this page for the first time, same method, same rule. Price has climbed back above the 464 swing slow mean, read 1,790.84 tonight. The swing clock is bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 1,790.84 at naming.",
+    result:"",
+    grade:"pending" },
 
   /* WEEK OF 16 AUGUST. Two rows under the founder's weekly-row ruling,
      levels confirmed by the founder with the 16 August push.
