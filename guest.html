@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · For producers and hosts</title>
+<meta name="description" content="Ten years on the Cazenove gold desk. Publishes a level before the week opens, publishes what would prove it wrong, and grades it at Friday's close.">
+<meta name="robots" content="noindex">
+
+<!-- =========================================================================
+     THE GUEST PAGE  ·  23 August 2026
+
+     One page, for one job: a producer or host has received a pitch and wants
+     to know in thirty seconds whether this man can talk and whether booking
+     him is a risk. It answers both and then gets out of the way.
+
+     WHAT THIS PAGE DOES NOT DO, deliberately.
+     It does not sell the mentorship. There is no seat, no price and no
+     application link anywhere on it. A booker who smells a sales page stops
+     reading, and the moment the offer appears the appearance becomes an
+     advert rather than a segment. The only link out is the record.
+
+     It also carries the scope line in plain sight, because the fastest way
+     to lose a booking in this sector is for a producer to worry about what
+     their guest might say on air. Saying it first removes the worry.
+
+     WHAT IS DELIBERATELY ABSENT. The founder's personal reason for building the
+     method is his and is not marketing material. A driver is private; the solution
+     is what is public. The hook on this page is the ledger, which is checkable by
+     a stranger, rather than a confession, which is not. Do not add it back.
+
+     noindex on purpose: this is a page you send, not a page you rank.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071;
+    --ink:#14110C; --ink-3:#332F26; --ink-5:#403A2C; --ink-6:#47412F;
+    --gold:#4A360C; --miss:#63220E; --pass:#163821;
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:44px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);
+    font-variant-numeric:tabular-nums;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-wrap:pretty}
+  .wrap{max-width:820px;margin:0 auto;padding:52px var(--pad) 64px}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(74,54,12,.42)}
+  a:hover{color:var(--ink)}
+
+  header{border-bottom:1px solid var(--ink);padding-bottom:18px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand svg{width:34px;height:26px;display:block;overflow:visible}
+  .brand .name{font-family:var(--mono);font-size:12.5px;font-weight:600;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-5)}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  h1{font-size:clamp(34px,5.4vw,54px);font-weight:300;line-height:1.06;
+    letter-spacing:-.02em;color:var(--ink);margin:34px 0 20px}
+  .lede{font-size:19px;line-height:1.55;color:var(--ink);max-width:56ch}
+  .lede em{font-style:italic}
+
+  h2{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-5);margin:44px 0 16px;
+    padding-top:20px;border-top:1px solid var(--rule-soft)}
+
+  .bio p{margin-bottom:14px;max-width:60ch}
+
+  .record{background:var(--panel);border:1px solid var(--rule);padding:24px 26px;margin-top:6px}
+  .record .k{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-5)}
+  .tally{display:flex;gap:30px;margin:14px 0 16px;flex-wrap:wrap}
+  .tally b{display:block;font-family:var(--mono);font-size:27px;font-weight:600;line-height:1}
+  .tally span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-5);display:block;margin-top:5px}
+  .t-pass b{color:var(--pass)} .t-miss b{color:var(--miss)}
+  .record .url{font-family:var(--mono);font-size:14px;font-weight:500}
+
+  ol{list-style:none;counter-reset:a}
+  ol li{counter-increment:a;position:relative;padding-left:38px;margin-bottom:20px;max-width:58ch}
+  ol li:before{content:counter(a,decimal-leading-zero);position:absolute;left:0;top:2px;
+    font-family:var(--mono);font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.1em}
+  ol li b{display:block;font-family:var(--serif);font-size:17.5px;color:var(--ink);
+    font-weight:400;margin-bottom:5px}
+  ol li span{font-size:14.5px;color:var(--ink-5)}
+
+  .scope{border-left:3px solid var(--rule);padding:2px 0 2px 16px;
+    font-family:var(--mono);font-size:13.5px;line-height:1.7;color:var(--ink-5);max-width:60ch}
+  .scope b{color:var(--miss);font-weight:600}
+
+  .practical{font-family:var(--mono);font-size:13px;line-height:2;color:var(--ink-5)}
+  .practical b{color:var(--ink);font-weight:600;letter-spacing:.04em}
+
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-6);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media(max-width:640px){:root{--pad:22px} .tally{gap:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <div class="desc">For producers and hosts</div>
+  </header>
+
+  <div class="eyebrow">Bradley van Eden · Gold and silver</div>
+  <h1>The one who publishes<br>his wrong calls.</h1>
+  <p class="lede">Ten years on an institutional gold desk. What he runs now is a public
+  ledger where every call is named <em>before</em> the week opens, the exact condition that
+  would prove it wrong is published beside it, and it is graded at Friday's close.
+  The wrong ones stay up, and nothing has ever been deleted.</p>
+
+  <h2>The short version</h2>
+  <div class="bio">
+    <p>A decade on the Cazenove institutional gold desk in London, trading his own capital
+    since 2003, now based in Spain.</p>
+    <p>The method splits capital into three books by timeframe, ranked one way, with the
+    fastest book the smallest and the last to open. It is the opposite of how this industry
+    usually sells trading.</p>
+    <p>Every call it produces is published in advance with the condition that would kill it,
+    and graded in public on the close. That ledger is the only thing he asks anyone to
+    judge him on.</p>
+  </div>
+
+  <h2>The record, which is the whole point</h2>
+  <div class="record">
+    <div class="k">Public, dated, and never edited</div>
+    <div class="tally">
+      <div><b>24</b><span>Rows on record</span></div>
+      <div class="t-pass"><b>16</b><span>Correct</span></div>
+      <div class="t-miss"><b>3</b><span>Wrong, still published</span></div>
+      <div><b>5</b><span>Never tested</span></div>
+    </div>
+    <div class="url"><a href="https://thesimplifier7.github.io/record/">thesimplifier7.github.io/record</a></div>
+  </div>
+
+  <h2>Three segments he can carry</h2>
+  <ol>
+    <li><b>The three calls that were wrong, and why the kill condition mattered more than the call.</b>
+    <span>Nobody in this sector publishes what would prove them wrong. He walks through the ones that fired.</span></li>
+    <li><b>What an institutional gold desk does that retail never sees.</b>
+    <span>Ten years of it, told as process rather than nostalgia.</span></li>
+    <li><b>Why the fastest book is the smallest and opens last.</b>
+    <span>The arithmetic most traders never run: a short holding period keeps a fraction of the move, carries most of the noise, and pays the full spread either way. The spread does not get smaller because you were quick.</span></li>
+  </ol>
+
+  <h2>Scope, so nobody has to ask</h2>
+  <p class="scope"><b>Education only.</b> He is not an authorised or regulated investment
+  adviser in any jurisdiction. He does not give price targets, does not name trades, and
+  does not give a view on any live position, on air or anywhere else. He discusses method,
+  process, and calls that are already published and already graded. Producers get the
+  benefit of a guest who cannot say anything that creates a problem for the show.</p>
+
+  <h2>Practical</h2>
+  <p class="practical">
+    <b>Based</b> Spain, Central European Time, comfortable with US and UK recording hours<br>
+    <b>Format</b> Remote video or audio, own microphone, wired connection<br>
+    <b>Screen share</b> Yes, if the show wants the record walked through live<br>
+    <b>Contact</b> <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a> on X
+  </p>
+
+  <footer>
+    <span>Named before · Graded after · Nothing deleted</span>
+    <span>thesimplifier7.github.io/record</span>
+  </footer>
+
+</div>
+</body>
+</html>
