@@ -144,7 +144,19 @@
      These never enter the resolved tally above. Two directional calls
      sitting next to the counts would be exactly the flattery this page
      refuses. */
-  .standing{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px}
+  /* align-items:start ADDED 29 Aug 2026, and it is the whole fix for the
+     empty second card. A grid row defaults to stretch, so the two cards were
+     locked to one height and the shorter one padded itself out with 893px of
+     nothing under its marks. Every alternative considered would have filled
+     that space with something: a graphic sized to the hole, or a board told
+     to grow. Both are a picture whose size says something the facts do not,
+     which is the sin state-board rule 1 was written against. The cards now
+     size to their own content and the second one is allowed to be shorter,
+     because it IS shorter. Do not put a height, a min-height or a flex grow
+     back on .sc or .sc-board. Measured at 1280px with the folds in all four
+     open/closed combinations: slack zero in every one. */
+  .standing{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px;
+    align-items:start}
   .sc{border:1px solid var(--rule-card);background:var(--panel);padding:22px 24px 20px;
     display:flex;flex-direction:column}
   .sc-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
@@ -168,6 +180,325 @@
   .sc-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
     color:var(--ink-3);padding-top:14px;max-width:88ch}
   .sc-note b{font-weight:600;color:var(--ink)}
+
+  /* =====================================================================
+     THE STATE BOARD. Added 29 Aug 2026, with the 28 August grade.
+
+     It replaces no existing rule. It sits between the stated line and the
+     claim inside a standing card and answers, before a word is read, the
+     one question every call on this page asks: which side of its own
+     published line did the week close on. The prose under it is unchanged
+     in kind and still carries the record.
+
+     FOUR RULES THAT LOOK LIKE STYLE AND ARE NOT.
+
+     1. NO LENGTH ENCODES DISTANCE. Every stem is the same 18px and every
+        cap the same 11px, in every column, forever. The kill fires on
+        SIDE, not on distance: gold at +3.38% and gold at +0.01% are the
+        same grade, alive. An earlier draft scaled the mark by distance and
+        drew the week's two passes at 121px and 62px against the week's
+        only failure at 16px, so a week that graded one of three wrong read
+        at a glance as a clean sweep with a rounding error against it. That
+        is the reading note 05 was written on 31 July to prevent. If you are
+        ever tempted to make a comfortable margin look comfortable, this is
+        the rule written against that temptation.
+
+     2. THE AXIS NUMBER IS THE CLAIM AND OUTRANKS EVERYTHING IN ITS COLUMN.
+        16px mono 600 in --gold, the same treatment as .c-level in the
+        ledger, because it is the same object: the level. DO NOT ENLARGE
+        THE PERCENTAGE. A percentage in 38px mono with its base in small
+        type underneath was removed from this page on 1 Aug 2026 with a
+        written justification. Putting one back into the standing cards
+        would reinstate it three columns at a time, two hundred pixels
+        under the tally it was removed from.
+
+     3. BOTH BANDS ARE ALWAYS DRAWN, AT THE SAME MINIMUM HEIGHT, AND THE
+        KILL SIDE IS ALWAYS TINTED, EMPTY OR NOT. The desk grades eighteen
+        correct to four wrong, so most weeks nothing at all sits under the
+        rule. An empty kill side that is drawn and tinted is a week with
+        nothing in it. A kill side that collapses to nothing is a picture
+        of a desk that never falls below its line, which is flattery drawn
+        in CSS and would be invisible in the one week it mattered.
+
+     4. THE BLOCK HUGS THE RULE AND GROWS OUTWARD, ON BOTH SIDES. The whole
+        signal is that one name lands a band above the rule and another a
+        band below it, an offset the eye resolves before it reads a
+        character. If you change the spacing, change it in .sc-bblk where
+        both sides inherit it, never on one side only.
+
+     Contrast, measured against --panel, which is the card ground:
+       --ink 10.88   --gold 6.65   --pass 7.48   --miss 6.87   --ink-5 6.53
+       --ink-6 5.88
+     Smallest type here is 10px, which is .sc-clock, .sc-status and
+     .sc-asof already.
+
+     THE KILL-SIDE WASH CARRIES NO MEANING ON ITS OWN and is not asked to.
+     Side is carried by position, by cap shape (filled square for a live
+     claim, cross for a fired kill), by the sign on the printed figure and
+     by the words in the block. Four carriers before colour, because red
+     against green alone is not a carrier.
+     ===================================================================== */
+  /* THE HEAD OF EVERY GRAPHIC ON THESE CARDS. Added 29 Aug 2026. One line:
+     what this picture draws, and the stamp.
+
+     THE STAMP NAMES THE EVENT, NOT ONLY THE DAY. "At the 28 Aug 2026 close"
+     and "At the 1 Aug 2026 read" are different kinds of fact, and two
+     graphics of different vintages cannot sit three hundred pixels apart
+     without each saying which it is. Neither half is typed as a sentence:
+     the day is s.asOf through fmtDate and the verb is s.read, the same two
+     values the marks line at the foot of the card prints, so a card cannot
+     carry one date at the top and another at the bottom. Note 09 is on this
+     page because a surface dated a claim it did not make that day, and a
+     frame does that silently: it dates everything inside it whether the
+     words admit it or not. boardHeadFault refuses to draw a graphic whose
+     card carries neither value. */
+  .sc-bhead{display:flex;align-items:baseline;justify-content:space-between;
+    gap:10px 18px;flex-wrap:wrap;margin-top:18px;padding-bottom:9px;
+    border-bottom:1px solid var(--rule-card)}
+  .sc-bsub{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-4);line-height:1.4}
+  .sc-bwhen{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--gold);white-space:nowrap;line-height:1.4}
+
+  /* FIVE ROWS, NOT THREE. The two outer rows are the band captions and they
+     sit in the space the blocks never reach: a block hugs the rule and grows
+     outward, so the far edge of each band is exactly the dead corner. They
+     are real grid rows and not an overlay, because an overlay collides with
+     a block the first week a state word wraps to three lines on a phone. */
+  .sc-board{--sc-band:120px;display:grid;
+    grid-template-columns:repeat(var(--sc-cols,3),minmax(0,1fr));
+    grid-template-rows:auto minmax(var(--sc-band),auto) auto minmax(var(--sc-band),auto) auto;
+    margin-top:12px}
+  /* THE BANDS SAY WHAT THEY ARE. Added 29 Aug 2026, and it is rule 3 being
+     kept rather than rule 3 being widened. Rule 3 says the kill side is
+     always drawn and always tinted, empty or not, because a kill side that
+     collapses is a picture of a desk that never falls below its line. The
+     29 August ruling then took the tint off every row on this board, and
+     correctly: nothing here dies from position any more. What it left was
+     120px of nothing carrying no tint and no word, which is rule 3 obeyed
+     on the letter and dead on the substance. The caption is the substance.
+     On a cross board the lower band is named for what it truly is, the side
+     where confirmation runs against the claim, which is where silver stands
+     tonight and is the least flattering thing this card has to say. A tint
+     would have said death zone and been wrong. A word says the true thing
+     and cannot be missed. Explicit grid-row on all five so the captions
+     cannot be pushed out of place by a future column count. */
+  .sc-bband{grid-column:1/-1;font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-6);line-height:1.35}
+  .sc-bband.is-up{grid-row:1;padding:0 0 9px}
+  .sc-bband.is-dn{grid-row:5;padding:9px 0 0;align-self:end}
+  /* Zero column gap on purpose. The rule is drawn per cell and the
+     segments only join into one continuous axis if the cells touch.
+     Breathing room is padding INSIDE the cell. Add a gap here and the
+     board stops being one axis and becomes three small charts. */
+  .sc-bcell{display:flex;justify-content:center;padding:0 6px;min-width:0}
+  .sc-bup{align-items:flex-end;grid-row:2}
+  .sc-bdn{align-items:flex-start;grid-row:4}
+  .sc-bcell.is-kill{background:rgba(99,34,14,.065)}
+  .sc-bdn.is-kill{border-bottom:1px solid var(--rule-soft)}
+  .sc-bup.is-kill{border-top:1px solid var(--rule-soft)}
+
+  .sc-bblk{display:flex;flex-direction:column;align-items:center;gap:5px;
+    text-align:center;min-width:0;padding:4px 0}
+  /* The mirror. One property flips the whole stack, so an above column
+     and a below column are true reflections and cannot drift apart in a
+     later edit. Do not reorder the spans to fix the lower band; reorder
+     them and you have broken the upper one. */
+  .sc-bdn .sc-bblk{flex-direction:column-reverse}
+  .sc-bblk.is-live{color:var(--pass)}
+  .sc-bblk.is-killed{color:var(--miss)}
+  /* Dormant is a metal whose kill fired at an EARLIER close and which has
+     not re-earned its line. It is drained to ink because the desk holds
+     no claim either way, and it keeps the cross, because a kill did fire.
+     It is NOT --notest. --notest is the grade for a level never reached,
+     and dressing a fired kill in the never-reached colour would be the
+     neutral colouring this page forbids. Any reader who learned the
+     palette from the ledger two screens down would read it wrong. */
+  .sc-bblk.is-dormant{color:var(--ink-5)}
+
+  .sc-bname{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink);line-height:1}
+  .sc-bstate{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;line-height:1.4}
+  .sc-bfig{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;
+    gap:1px 9px;min-width:0}
+  .sc-bclose{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--ink-2);
+    line-height:1.2;letter-spacing:-.01em}
+  .sc-bpct{font-family:var(--mono);font-size:15px;font-weight:600;line-height:1.2;
+    letter-spacing:-.01em}
+  .sc-bdist{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.04em;
+    color:var(--ink-6);line-height:1.3}
+
+  /* The cap is the second carrier and the one that survives greyscale,
+     monochrome print, deuteranopia and protanopia. Filled square: the
+     kill has not fired. Cross: it has. Keep them the same 11px box so
+     neither state reads as larger than the other. */
+  .sc-cap{width:11px;height:11px;flex:none;position:relative}
+  .sc-cap.is-mark{background:currentColor}
+  .sc-cap.is-cross::before,.sc-cap.is-cross::after{content:"";position:absolute;
+    left:50%;top:-1px;bottom:-1px;width:2.5px;margin-left:-1.25px;background:currentColor}
+  .sc-cap.is-cross::before{transform:rotate(45deg)}
+  .sc-cap.is-cross::after{transform:rotate(-45deg)}
+  /* Fixed. This is a leader line from the axis to the mark, never an
+     arrow and never scaled. It has no head and it never will: an
+     arrowhead on this page would read as a projection and the first law
+     of these cards is that they state where price IS. */
+  .sc-stem{width:2px;height:18px;flex:none;background:currentColor}
+
+  /* THE AXIS. The rule is drawn behind the number and the number knocks
+     it out with the card's own ground, so the published kill sits ON the
+     line it names. That is the point of the whole graphic: the origin is
+     not zero, it is the level. */
+  .sc-baxis{grid-row:3;position:relative;display:flex;align-items:center;justify-content:center;
+    padding:9px 0;min-width:0}
+  .sc-baxis::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;
+    margin-top:-1px;background:var(--ink)}
+  .sc-baxis b{position:relative;background:var(--panel);padding:0 8px;
+    font-family:var(--mono);font-size:16px;font-weight:600;letter-spacing:-.01em;
+    color:var(--gold);white-space:nowrap}
+
+  .sc-bfoot{font-family:var(--mono);font-size:11px;font-weight:400;line-height:1.75;
+    color:var(--ink-3);margin-top:12px}
+
+  /* =====================================================================
+     THE KILL GATE. Added 29 Aug 2026 to the year-to-year card.
+
+     IT IS NOT THE STATE BOARD AND IT MUST NEVER BE MADE TO LOOK LIKE ONE.
+     The board answers one question, which side of one published line the
+     week closed on, and its grammar is POSITION. The secular call cannot be
+     drawn that way, and the reason is a fact rather than a preference: its
+     kill is a CONJUNCTION, two conditions that must both be true, so there
+     is no side of anything that ends it and no band a metal can sit in that
+     kills it. Drawing it as a position board would paint a death band under
+     a claim this desk has ruled cannot die from position, which is the
+     exact mistake the wash amendment one screen up was written against.
+
+     AND THERE IS NO PRICE TO DRAW. The second condition is price below the
+     epoch line, and this page publishes no price against that line on any
+     date. So the gate prints what is published, names the gap where the gap
+     is, and does not fill it. "A number you cannot source is left out
+     rather than guessed" is already the rule at the head of STANDING; this
+     is the first graphic on the page that has had to obey it out loud.
+
+     NO GREEN, AND NO STATE WORDS. On the board green is earned: the block
+     carrying it also carries a signed distance that can be negative, and in
+     silver tonight it is. A condition that has simply not occurred has no
+     distance and no sign, so green there would be a lamp with nothing
+     behind it, and two lamps side by side is a two-nil scoreboard. Standing
+     calls never carry one. Whether this call is alive is stated once on the
+     card, by the badge at the top, and once is where it stays.
+
+     THE SHARED CRAFT IS DELIBERATE AND THE SHARED SCALE IS REFUSED. Both
+     graphics knock a word out of a rule; the board knocks out a LEVEL in
+     --gold and the gate knocks out the conjunction in --miss. Same hand,
+     different sentence. What the gate does not have is a scale: it prints
+     no percentage, no distance and no axis, so there is nothing on it a
+     reader can measure against the board's +3.38% and nothing that invites
+     the comparison. 4,721 is never set on a rule and never set alone.
+     ===================================================================== */
+  .sc-gate{margin-top:12px;border:1px solid var(--rule-card);border-left:2px solid var(--miss)}
+  .sc-gcond{display:grid;grid-template-columns:30px minmax(0,1fr);gap:0 10px;
+    padding:15px 16px 16px}
+  .sc-gnum{grid-row:1/span 2;font-family:var(--mono);font-size:10.5px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-6);line-height:1.45}
+  .sc-glabel{font-size:15px;line-height:1.45;color:var(--ink)}
+  .sc-gpairs{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+  .sc-gpair{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink-3)}
+  .sc-gpair b{display:inline-block;min-width:64px;font-size:10.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-5)}
+  .sc-gpair i{font-style:normal;font-weight:600;color:var(--gold);letter-spacing:-.01em}
+  /* The published gap, printed and not filled. --ink-6 and never --miss: a
+     figure this page has not read is not a loss, and dressing it in the
+     wrong-grade colour would be grading it. */
+  .sc-gnone{font-family:var(--mono);font-size:11px;font-weight:400;line-height:1.7;
+    color:var(--ink-6);margin-top:10px}
+  /* The joint, drawn the way the axis is drawn, so the two cards are plainly
+     the same hand. It reads AND because the published kill reads "confirmed
+     by", and a reader who takes it for OR has been told this call is twice
+     as easy to end as it is. The knockout ground is --panel, the card's own,
+     which is why the gate carries no fill of its own. */
+  .sc-gjoin{position:relative;display:flex;align-items:center;justify-content:center;
+    padding:6px 0;margin:0 16px}
+  .sc-gjoin::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;
+    margin-top:-.5px;background:var(--rule-card)}
+  .sc-gjoin b{position:relative;background:var(--panel);padding:0 10px;
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--miss);white-space:nowrap}
+
+  /* =====================================================================
+     THE FOLD. Added 29 Aug 2026, on the founder's note that the card should
+     carry the diagram and the short descriptions, and that the explanation
+     should be there when it is wanted rather than always on the screen.
+
+     Nothing is deleted. Every word is still on the page, in the same order,
+     under a control that says what it opens.
+
+     NATIVE <details>, AND NOT A BUTTON WITH A CLASS ON IT. The ledger has
+     run twenty-seven rows on this element since the page shipped. It is
+     focusable, it toggles on Enter and on Space, it announces its own
+     expanded state without an aria attribute, its target is the full width
+     of the card, and it opens with no script at all. Hover tints it exactly
+     the way a ledger row tints, and hover is never the only way in.
+
+     IT SHIPS OPEN AND IS CLOSED BY SCRIPT, WHICH IS BACKWARDS ON PURPOSE.
+     If closeFolds never runs, every card renders as verbose as it rendered
+     yesterday: ugly, and complete. Ship them closed and the same failure
+     leaves two controls that answer nothing, on a page whose entire
+     argument is that it hides nothing.
+
+     AND THE COVENANT, WHICH IS THE PART THAT EARNS THE REST. A card whose
+     graphic did not draw gets no fold at all: the prose renders on the face,
+     open, with no control on it. The one state where the picture stops
+     standing in for the words is the state where the words come back
+     unasked. A control that cannot close anything is not rendered as a
+     control, so there is nothing here that lies about what it does.
+     ===================================================================== */
+  .sc-fold{margin-top:15px;border-top:1px solid var(--rule-card)}
+  .sc-fsum{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;
+    padding:13px 6px;margin:0 -6px;font-family:var(--mono);font-size:10.5px;
+    font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
+  .sc-fsum::-webkit-details-marker{display:none}
+  .sc-fsum::marker{content:""}
+  .sc-fsum:hover{background:#B6AEA1;color:var(--ink)}
+  .sc-fsum:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .sc-fold[open]>.sc-fsum{color:var(--ink)}
+  /* No colour of its own. The ledger's chevron is --ink-5 and sits on the
+     #B6AEA1 hover ground at 5.14:1, under the 5.29 floor this page states at
+     the top of the stylesheet. That is one instance too many already and
+     this is not the place to add a second: the chevron inherits, so it is
+     7.05:1 at rest and 8.57:1 under the pointer. */
+  .sc-fchev{font-family:var(--mono);font-size:14px;font-weight:400;
+    line-height:1;margin-left:auto;transition:transform .16s ease}
+  .sc-fold[open] .sc-fchev{transform:rotate(90deg)}
+  @media(prefers-reduced-motion:reduce){.sc-fchev{transition:none}}
+  .sc-fbody{padding-bottom:2px}
+  /* The unfolded body, used when a graphic is withheld. Same content, same
+     order, no control. */
+  .sc-open{margin-top:2px}
+
+  /* PER-METAL CLOCKS. One line each, from that metal's own turning close.
+     A metal with no turning close on this page prints no date and no day
+     count, and says so. */
+  .sc-clocks{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:16px;
+    padding-top:14px;border-top:1px solid var(--rule-card);font-family:var(--mono);
+    font-size:12px;font-weight:400;line-height:1.5;color:var(--ink-4)}
+  .sc-clocks b{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink);margin-right:7px}
+  .sc-clocks i{font-style:normal;color:var(--ink-6);letter-spacing:.02em}
+
+  /* Warns the reader that the board's percent and the mark's percent are
+     measured from different things. Renders only where marksLabel is set. */
+  .sc-mlab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-6);margin-bottom:1px}
+
+  /* The board is WITHHELD rather than drawn wrong. A reader who sees this
+     has lost nothing; every figure the board would have drawn is printed
+     below it in the claim, the kill and the marks. */
+  .sc-withheld{display:block;margin-top:18px;padding:11px 13px;
+    border-left:2px solid var(--miss);background:rgba(99,34,14,.065);
+    font-family:var(--mono);font-size:11.5px;font-weight:500;line-height:1.7;
+    color:var(--ink-3)}
+  .sc-withheld b{font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--miss)}
 
   /* lines on record */
   .lines{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;padding:16px 0 2px;
@@ -489,6 +820,20 @@
     .masthead .desc{display:none}
     .sc{padding:18px 18px 16px}
     .sc-pos{font-size:30px}
+    /* The band GROWS here rather than the type shrinking further, because
+       at this width "Kill fired 28 Aug" wraps to two lines, and a clipped
+       state word is the one thing on this card that must never clip. */
+    .sc-board{--sc-band:148px}
+    .sc-bcell{padding:0 3px}
+    .sc-bclose,.sc-bpct{font-size:13.5px}
+    .sc-baxis b{font-size:14.5px;padding:0 5px}
+    /* The head stacks rather than shrinking. The stamp is the half that
+       stops two graphics of different vintages being read as one, so it
+       never competes for a line with the subject at this width. */
+    .sc-bhead{flex-direction:column;align-items:flex-start;gap:5px}
+    .sc-gcond{grid-template-columns:26px minmax(0,1fr);padding:14px 13px 15px}
+    .sc-gpair b{display:block;min-width:0;margin-bottom:2px}
+    .sc-gjoin{margin:0 13px}
     /* The summary keeps date, level and grade on one line and drops the
        instrument to a second. The grade never leaves the closed row. */
     .lrow>summary{grid-template-columns:1fr auto auto;gap:8px 14px;padding:15px 4px}
@@ -625,7 +970,15 @@
   </div>
 
   <div class="standing" id="standing"></div>
-  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it. Gold has been bearish since 13 March. That structure ended on the 7 August close and the swing clock turned bullish the same night. Silver continues under its own line. See note 08.</p>
+  <!-- SC-NOTE corrected 29 Aug 2026, with the 28 August grade. This read
+       "Silver continues under its own line. See note 08."
+       That sentence was written on 7 August and was true on 7 August. It
+       stopped being true on the 21 August close, when silver closed through
+       its line, and it was not moved when the standing entry was restated
+       that night, so a stale sentence rode the page for a week. Corrected
+       here, disclosed in note 11, old text kept above, which is where this
+       file keeps copy it has replaced. -->
+  <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it, and when one metal inside a two-metal call ends, the end is written into the call and the call stays. Gold has been bearish since 13 March. That structure ended on the 7 August close, the swing clock turned bullish the same night, and it is bullish still. Silver turned bullish on the 21 August close and closed under its line on 28 August without the structure turning, so the claim stands: from 29 August this page dates a swing turn by the epoch midline crossing the slow mean reversion line, never by a price close, which is the standard the secular clock has run on since 1 August. The weekly rows keep their own published price kills and are graded on them, which is why the silver row of 23 August grades wrong and stays. Platinum's first row on this page passed at the same close and on the same rule, and its swing clock runs from the 19 August close. See notes 06, 08, 10 and 11.</p>
 
   <div class="ledger-head">
     <h2>The Ledger</h2>
@@ -810,7 +1163,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-23";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-08-29";   /* set by hand, with the commit */
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -857,6 +1210,16 @@ const DOORS = {
    status: "live"  the kill has not fired
            "ended" the kill fired. Fill endedOn and endedAs. It stays.
 
+   STATUS DESCRIBES THE WHOLE ENTRY, NOT A METAL. Added 29 Aug 2026, after the
+   third time this was nearly got wrong. A call naming two metals is graded per
+   metal under the 7 August ruling, and one metal's kill firing does not end the
+   entry. When that happens the entry is RESTATED IN PLACE: the ended half goes
+   into the position, the claim, the kill and the marks, the marks keep the
+   metal with its return stated negative, status stays live while any half
+   lives, and the ruling is logged in a note. Done three times now: gold
+   7 Aug, silver 21 Aug, silver 28 Aug. See notes 08, 10 and 11. Only set
+   "ended" when every metal in the entry has lost its claim.
+
    Every level and percentage below is entered by hand, because a market
    return cannot be derived from this file. Each mark carries a "from"
    string naming exactly what it is measured against, for the same reason
@@ -869,35 +1232,262 @@ const DOORS = {
 const STANDING = [
   {
     clock:   "The direction, week to week",
-    position:"Bullish in gold · Bullish in silver",
+    /* REPLACED COPY, KEPT. Amended 29 Aug 2026 when the state board went in
+       and platinum joined the position line. The position and claim strings
+       that stood here between the 28 August grade and that amendment read:
+
+         position: "Bullish in gold · Silver ended 28 August, its kill fired"
+         claim:    "...and the 28 August close printed 4,453.670, 145.63
+                    above the line. Silver turned bullish on the 21 August
+                    close and its kill fired at the first weekly test: the
+                    28 August close printed 66.3700 against the line at
+                    66.6600, 0.29 below. The swing clock in silver ends
+                    there, seven days after it started..."
+
+       Every print that paragraph recited now renders LARGER on the board
+       than it did in the prose, which is the whole reason the sentences
+       could be cut. Nothing was dropped to make room. */
+    /* THE SWING CLOCK TURNS ON A CROSS, NOT A PRICE CLOSE. Ruled by the
+       founder 29 Aug 2026, and it is the same doctrine this page already
+       runs on the secular clock: see note 06 and the kill field of the
+       year-to-year entry, where a turn is dated by the means crossing and
+       NEVER by a price close, because price can sit the wrong side of a
+       line for weeks with the structure intact. Position against the line
+       is the confirmation, never the trigger.
+
+       WHAT THIS RULING DOES AND DOES NOT REACH, because the distinction is
+       the whole of note 11. It governs THIS ENTRY, the standing direction.
+       It does NOT reach the weekly rows in CALLS. Those name a price level
+       and publish a price close as the kill, before the week, and they are
+       graded on exactly what they published. The silver row of 23 August
+       named "a weekly close back below the 464 swing slow mean, 66.66 at
+       naming", that close printed 66.3700, and the row grades WRONG and
+       stays wrong. Note 01 has said since 3 July that no grade is ever
+       restamped to fit a rulebook written after it, and note 03 is the
+       precedent where this desk corrected a row in the harsher direction
+       for precisely this reason. A ruling that reached backwards into a
+       graded row would be the one thing this page cannot survive. */
+    position:"Bullish in gold, silver and platinum",
     stated:  "2026-08-21",
+    /* ONE DATE AND ONE VERB PER CARD. Added 29 Aug 2026 with the fold. read
+       is the noun for the event asOf names, and it is the ONLY place on this
+       card that noun is written: the board's stamp, the restatement line and
+       the marks line all take it from here. A weekly close and a chart read
+       are not the same kind of fact and the card has to say which it has.
+       The board no longer carries an asOf of its own, and that is a deletion
+       rather than a reconciliation: a second copy of a date is a thing that
+       drifts, and note 11 is the log of one fact living in two places.
+       Allowed values are "close" and "read". There is deliberately no
+       default, because a missing verb defaulting to "close" would assert a
+       weekly close for figures nobody said were read at one. */
+    read:    "close",
+    /* A SOURCED RESTATEMENT DATE, replacing the derived entry-level day
+       counter on this card. Trace: note 11, "The standing week-to-week call
+       is restated, not ended." The per-metal clocks below the board now
+       carry the running figures, each from its own turning close, which is
+       what a reader always assumed that counter meant. */
+    restated:"2026-08-28",
+    marksLabel:"Each mark against its own stated base",
+    /* THE FIRST CLAUSE OF THE KILL, FOR THE FACE OF THE CARD. It must be a
+       LITERAL PREFIX of kill below, character for character. killLede throws
+       away any lede that is not and prints the whole kill on the face
+       instead, so the only way to make the short statement disagree with the
+       long one is to make the short one vanish. The failure direction is
+       verbose, which is the direction this page has always failed in. Do not
+       "tidy" this string: edit the kill and copy the front of it. */
+    killLede:"the epoch midline crossing the slow mean reversion line, per metal",
+    /* NOT MOVED TO 28 AUGUST. Tonight subtracted a metal; it stated nothing
+       new. Gold's claim is unchanged from 21 August and its clock has run
+       since 7 August, which the claim and the gold mark both name. Moving
+       this date would restart the days running counter on a live position,
+       the error the 22 August renderer correction exists to prevent, and
+       would date a restatement as though it were named tonight, the error
+       logged in note 09. The rendered run figure counts from the entry's
+       last statement, not from the gold clock's start; note 11 says so. */
     /* Gold's swing clock turned bullish on the 7 August weekly close above
        the 464 swing slow mean (4,268); see note 08. Silver stayed below its
        own line through 14 August (touched 66.8607, never closed through) and
        closed through it on 21 August: door 66.6600, close 68.9460. Under the
        per-metal standard of 7 August, silver's 'remains below' ended on that
        close and the entry is restated here, the way the 7 August entry
-       restated the one before it. See note 10. */
-    claim:   "Gold's swing clock has been bullish since the 7 August close above the 464 swing slow mean at 4,268. Silver stayed below its own line until the 21 August close printed 68.9460 through the door at 66.6600. From that close the swing clock in silver turns bullish too. Graded per metal under the 7 August ruling.",
-    kill:    "for gold, a weekly close back below the rising 464 swing slow mean (4,308.037 on 21 Aug; 4,281 on 16 Aug; 4,268 when stated 7 Aug). For silver, a weekly close back below the 464 swing slow mean (66.6600 on 21 Aug, the close it turned on)",
+       restated the one before it. See note 10.
+
+       RESTATED AGAIN ON THE 28 AUGUST CLOSE, and this one is a subtraction.
+       Silver's kill fired at its first weekly test: the close printed 66.3700
+       against the line at 66.6600, 0.29 under. The swing clock in silver ends
+       on that close and NO new claim replaces it, which is the first time
+       this entry has shed a metal rather than turned one. Handled the way
+       7 and 21 August were handled, because that is the only precedent this
+       page has for a per-metal end: the entry is restated in place, the ended
+       half is written into the position, the claim, the kill and the marks,
+       and nothing is removed. Three conditions inside this entry have now
+       fired, gold's on 7 August, silver's remains-below on 21 August, and
+       silver's bullish half tonight, and none of the three ended the entry.
+       status stays live because gold's clock is untouched. endedOn and
+       endedAs stay empty because they end the WHOLE entry. stated is not
+       moved, for the reason written against it above. The founder's ruling
+       on the half with no successor is logged in note 11. */
+    claim:   "All three metals carry a bullish swing clock. What dates a turn on this clock is the epoch midline crossing the slow mean reversion line, not a price close: price can sit under the line for weeks with the structure intact, which is the same standard this page has applied to the secular clock since 1 August. Gold has been bullish since the 7 August close and platinum since the 19 August close. Silver closed the week of 28 August under its line at 66.3700 against 66.6600, and that is confirmation moving against the claim, not the event that ends it. The weekly rows are a different object on a different clock: the silver row of 23 August published a price close as its kill, that kill fired, and the row grades wrong and stays wrong. See note 11.",
+    kill:    "the epoch midline crossing the slow mean reversion line, per metal, ruled 29 August 2026. Position against the line is the confirmation and never the trigger. No price close ends this call, which is why the 28 August close beneath the line in silver did not end it. The line reads: gold 4,308.037, silver 66.6600, platinum 1,790.84, all at the 28 August close. The weekly rows in the ledger below carry their own kills, published before each week, and those ARE price closes",
+    /* =====================================================================
+       THE BOARD'S DATA. Every figure below already exists on this page and
+       is traced in the comment under the marks. The renderer recomputes the
+       distance and the percent from close and line and REFUSES TO DRAW if a
+       typed figure disagrees, so a transposed digit stops the graphic
+       instead of publishing it.
+
+       THERE IS DELIBERATELY NO TYPED "SIDE" FIELD. A typed side can
+       disagree with the two prints sitting beside it. A subtraction cannot.
+
+       "holds" is the side the CLAIM prefers, not the side price is on, and
+       under the 29 August ruling it is no longer the side that DECIDES.
+
+       killEvent, added 29 Aug 2026 with that ruling, is what actually ends
+       the claim:
+         "close"  a weekly close through the line. State and side must then
+                  agree, and the gate enforces it.
+         "cross"  the epoch midline crossing the slow mean reversion line.
+                  Price may sit either side with the claim intact, so the
+                  gate does NOT infer state from side. It demands a dated
+                  read instead, in "ruled", because a state nobody can
+                  derive from the prints must carry the day it was read and
+                  who read it, or it is an assertion with no source.
+       ===================================================================== */
+    board: {
+      /* subject is what this picture draws, printed at the head of it. A
+         graphic that does not say what it draws means whatever the reader
+         assumes, and the reader assumes the card above it. Required by
+         boardHeadFault; a board without one is withheld. */
+      subject: "Where each metal closed against its own line",
+      foot: "One rule, three metals. Each column's rule is that metal's own 464 swing slow mean at the 28 August close, printed on the rule, and the block shows which side the week closed on. Under the 29 August ruling that side is confirmation and not the trigger: what ends a swing claim is the epoch midline crossing the slow mean reversion line. Silver closed under its line with its claim intact. The weekly rows in the ledger carry their own kills, and those are price closes.",
+      /* THE FOOT MOVED BEHIND THE FOLD, and this is the paragraph the
+         founder was looking at when he asked for the diagram without the
+         prose. Every print it recites is drawn larger on the board than it
+         is written here. It is one click away and it is not shortened. */
+      srLede: "The graphic that follows this table places each metal above or below one rule. The rule is that metal's own 464 swing slow mean at the 28 August close, printed on it. Which side a metal closed is confirmation only: under the ruling of 29 August 2026 a swing claim ends when the epoch midline crosses the slow mean reversion line, not on a price close, so silver appears below its line with its claim still live. The table carries the same figures the graphic draws.",
+      /* ROW ORDER IS THE LEDGER'S ORDER for the week of 23 August: gold,
+         silver, platinum. Not alphabetical and not worst-last. A reader
+         comparing the board to the three rows of 23 August finds the same
+         sequence, and the week's one failure sits in the middle of the
+         board rather than tucked at the end of it. */
+      rows: [
+        { name:"Gold", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
+          line:"4,308.037", close:"4,453.670", dist:"+145.633", pct:"+3.38%",
+          since:"2026-08-07", killedOn:"", noClock:"" },
+        /* SILVER IS LIVE AND CLOSED UNDER ITS LINE, and that pairing is the
+           whole point of the 29 August ruling rather than an error the gate
+           missed. Under the old price-close reading this row was marked
+           killed on the night of the grade. The founder ruled the event is
+           the cross, read it on his own chart on 29 August, and the state
+           here is that read. It is NOT derived from the two prints beside
+           it and it never can be, which is why "ruled" carries the date. */
+        { name:"Silver", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
+          line:"66.6600", close:"66.3700", dist:"-0.290", pct:"-0.44%",
+          since:"2026-08-21", killedOn:"", noClock:"" },
+        /* PLATINUM'S TURNING CLOSE, read off the founder's chart and given
+           29 Aug 2026: the 19 August close. The comment at the foot of the
+           marks array said this figure was the one thing missing before
+           platinum could carry a clock. It is no longer missing, so the
+           clock counts from here like the other two and noClock is empty. */
+        { name:"Platinum", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
+          line:"1,790.84", close:"1,821.80", dist:"+30.96", pct:"+1.73%",
+          since:"2026-08-19", killedOn:"", noClock:"" }
+      ]
+    },
     /* WEEK OF 21 AUGUST 2026. Both figures below are sourced, not derived.
        Gold: the 7 August weekly close is 4,342, stated in this file's own
        Verdict row of that date. The 21 August weekly close is 4,602.660,
        read off the TVC chart at 23:00 CEST with the market shut. 260.66 on
        4,342 is +6.00%.
        Silver: the door read 66.6600 and the close printed 68.9460 on the
-       same chart. That is 2.286 over, which is 3.43% above the line. */
+       same chart. That is 2.286 over, which is 3.43% above the line.
+
+       WEEK OF 28 AUGUST 2026, refreshed on tonight's close. Same bases as
+       last week, so the two weeks can be read against each other.
+       Gold: the 28 August weekly close is 4,453.670 against the same 7 August
+       base of 4,342. 111.670 on 4,342 is +2.57%, down from +6.00%. The line
+       read 4,308.037 and the close sat 145.63 above it. Both prints are the
+       ones in the 23 August gold row, off the TVC chart with the market shut,
+       02:02 CEST 29 August.
+       Silver: the close printed 66.3700 against the same line at 66.6600.
+       That is 0.29 under, which is 0.44% below the line, and the mark is
+       stated negative because the position it measures is dead. Against last
+       week's close of 68.9460 silver fell 2.576, or 3.74% on the week; that
+       figure is kept in this comment and off the card, because the silver
+       mark's base has been the line since 21 August and a base that moves
+       between commits is not a base. */
     marks:   [
-      { name:"Gold",   move:"+6.00%", from:"since the 7 Aug close · bullish from 7 Aug" },
-      { name:"Silver", move:"+3.43%", from:"above the door at 66.6600 · closed through it 21 Aug · bullish from 21 Aug" }
+      { name:"Gold",     move:"+2.57%", from:"since the 7 Aug close, down from +6.00% last week" },
+      { name:"Silver",   move:"-0.44%", from:"0.290 under the line at 66.6600 · bullish since 21 Aug, the claim intact under the 29 Aug ruling" },
+      { name:"Platinum", move:"+1.73%", from:"30.96 above the line at 1,790.84 · bullish since the 19 Aug close" }
+      /* DO NOT DELETE THE GOLD MARK BECAUSE THE BOARD ALSO PRINTS A GOLD
+         PERCENTAGE. They are measured from different things and they answer
+         different questions. The board's +3.38% is distance from the kill
+         line. This mark's +2.57% is gold's return since the close that
+         turned its clock, and it is the ONLY figure on this page showing
+         gold's cushion halving from +6.00%, which is the least flattering
+         thing tonight's close says about gold. A board cannot show it,
+         because distance from a line is not a return. Both bases are
+         stated, which is the standing rule for every percentage here.
+
+         PLATINUM'S CLOCK, RESOLVED 29 Aug 2026. For one day this entry
+         carried platinum on the board with no clock, because the close that
+         turned it was not on this page: the 23 August row said price had
+         climbed back above the line without ever naming the close that did
+         it. The founder read that close off his own chart on 29 August and
+         it is the 19 August close, so platinum now counts like the other
+         two and the noClock string is empty.
+
+         THE SPLIT THAT MADE THAT POSSIBLE IS KEPT, because the next metal
+         will arrive the same way. The BOARD is a picture of ONE CLOSE:
+         which side of its own line each metal finished the week on, and it
+         dates no claim. The CLOCK STRIP is the thing that dates a claim. A
+         metal can therefore appear on the board the day it is graded and
+         wait for its clock, which is what platinum did, rather than being
+         held off the card entirely or given an invented start.
+
+         THE MISTAKE THAT SPLIT EXISTS TO PREVENT is note 09's, which was a
+         surface dating a claim it did not make that day. A platinum column
+         sitting under a header reading "Stated 21 Aug 2026" would be that
+         error rebuilt in layout instead of in a caption, and worse, because
+         a frame dates everything inside it whether the words admit it or
+         not. That is why the clocks are per metal and never inherited from
+         the entry.
+
+         AND IF A FUTURE METAL ARRIVES WITHOUT ITS DATE: leave since empty
+         and say what is not known in noClock. Do not write "start not
+         published", which asserts a determinate date being withheld. "Not
+         established" is the true claim and the harsher one, and the harsher
+         one is the one this page takes. */
     ],
-    asOf:    "2026-08-21",
+    asOf:    "2026-08-28",
     status:  "live", endedOn:"", endedAs:""
+    /* STATUS IS THE WHOLE ENTRY, NOT A METAL. Silver's clock ended on the
+       28 August close and gold's did not, so this entry is live. endedOn
+       and endedAs are for the day the WHOLE entry dies; filling them now
+       would publish a gold claim as dead whose kill never fired, and the
+       renderer would stop the days running counter on a position that is
+       still open. The ended half is carried in position, claim, kill and
+       marks above, which is how 7 August and 21 August were handled. The
+       badge will read Live while the position line reads that silver
+       ended: that pairing is deliberate and note 11 states it. */
   },
   {
     clock:   "The direction, year to year",
     position:"The bull is intact",
     stated:  "2026-06-07",
+    /* read:"read", NOT "close", and the correction is small and real. 1 August
+       2026 is a Saturday. This card's figures are a chart read taken that day,
+       which is what note 06 describes and what the marks comment below says in
+       as many words ("DATE SOURCED 1 Aug 2026: the chart of record labels..."),
+       and the marks line has been printing "At the close of 1 Aug 2026" since
+       it shipped. The date was always right. The verb was wrong, and it went
+       unnoticed while it was the only date on the card. It stops being
+       survivable the moment a second graphic on the same screen is stamped at
+       a real weekly close, because then the two verbs are the only thing
+       telling a reader that 4,721 and 4,453.670 are not the same kind of
+       number twenty-seven days apart. Nothing below is recomputed. */
+    read:    "read",
     claim:   "A fall inside a bull is not the end of one. Gold's run began in May 2019 and silver's fourteen months later, and neither has given back the line that started it. A secular turn is dated by the two weekly means crossing, never by a price close, which is why this call carries no price.",
     /* THE SECULAR KILL IS A CROSS, NOT A PRICE CLOSE. Corrected 1 Aug 2026, see
        note 06. This previously read "a weekly close beneath the rising weekly slow
@@ -907,6 +1497,59 @@ const STANDING = [
        intact. The card contradicted the standard. Position against the epoch line
        is the confirmation, never the trigger. */
     kill:    "the weekly fast mean crossing down through the weekly slow mean, confirmed by price below the epoch line. Gold 4,721 over 3,834, silver 77.47 over 46.36 on 1 Aug",
+    /* A literal prefix of the kill above, checked by killLede. It stops at the
+       full stop, so the face carries both halves of the conjunction and none
+       of the figures; the figures are drawn on the gate. */
+    killLede:"the weekly fast mean crossing down through the weekly slow mean, confirmed by price below the epoch line",
+    /* =====================================================================
+       THE KILL GATE'S DATA. Added 29 Aug 2026.
+
+       EVERY STRING BELOW IS LIFTED OUT OF THE KILL ABOVE, and gateFault
+       proves it at render time: each label and each metal-and-pair must
+       appear in that sentence as a literal substring, or the graphic is
+       withheld. Not each number found somewhere in the sentence, which is a
+       bag-of-digits check that would happily print silver's pair under
+       gold's name. The whole of "Gold 4,721 over 3,834" as one string, so a
+       figure cannot be moved to another metal, cannot be re-paired and
+       cannot be relabelled. Note 06 is on this page because a line kept its
+       level and lost its name.
+
+       NOTHING HERE SAYS WHICH OF A PAIR IS THE FAST MEAN. The published kill
+       says "4,721 over 3,834" and this page independently names only one of
+       those four figures: note 06's body states 4,721 as gold's weekly fast
+       mean. Silver's two are named nowhere but by the word order of one
+       sentence. So the gate prints the published word, "over", and asserts
+       no role. Inferring the labels from grammar and printing them in mono
+       under a figure is precisely the error note 06 exists to log, and it
+       would be uncheckable by any gate, because the page holds nothing to
+       check it against.
+
+       AND NOTHING HERE IS SUBTRACTED. 4,721 minus 3,834 is 887 and it is a
+       true subtraction, but the founder has never read 887 off a chart and
+       no surface on this page has published it. The board next door earns
+       its arithmetic because a close minus a line is the claim being made.
+       The distance between two means is not this claim: the claim is that
+       one has not crossed the other, and a gap of 887 drawn beside a gap of
+       145.633 invites a comparison of two things measured from different
+       objects at two different dates. Left out.
+
+       THE SECOND CONDITION CARRIES NO FIGURE AND SAYS SO. Price below the
+       epoch line has no published price against it on this page, on any
+       date. "Not established" is the true claim and the harsher one, and the
+       harsher one is the one this page takes. See the open question at the
+       foot of this entry. */
+    board: {
+      subject: "The two conditions that end this call",
+      join:    "And, not either alone",
+      conds: [
+        { label:"The weekly fast mean crossing down through the weekly slow mean",
+          pairs:[ { name:"Gold",   pair:"4,721 over 3,834" },
+                  { name:"Silver", pair:"77.47 over 46.36" } ] },
+        { label:"Price below the epoch line",
+          none:"No price is published against this line on this page, on any date. The condition is drawn because the kill states it, and the figure is left out rather than guessed." }
+      ],
+      foot: "Both conditions must be true together, and either one alone leaves the call standing. That makes this kill harder to fire than a weekly close would be, and note 06 recorded on 1 August that the correction which made it so runs in the direction that flatters this desk and the direction it is required to distrust most. The pair beside each metal is the pair published in the kill above, read on the chart of record and unchanged since. The second condition carries no published figure and says so on its face."
+    },
     marks:   [
       /* REFRAME both weekly charts to the secular bull marker before reading
          these. The TradingView percentage measures the VISIBLE RANGE, not the
@@ -968,20 +1611,22 @@ const CALLS = [
      with the 23 August push. Grade Friday 28 August. */
   { date:"2026-08-23", type:"Map", metal:"Gold", level:"4,308", book:"Turn",
     call:"Gold holds above the rising 464 swing slow mean, read 4,308 tonight. The swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 4,308 at naming.",
-    result:"The kill never fired. The weekly close printed 4,453.670 with the 464 swing slow mean read at 4,308.037 tonight (4,308 at naming), 145.63 above the line. PASS. Close and line read off the TVC chart, market shut, 02:02 CEST 29 August.",
+    result:"The kill never fired. The weekly close printed 4,453.670 with the 464 swing slow mean read at 4,308.037 tonight (4,308 at naming), 145.63 above the line. PASS. Close and line read off the TVC chart, market shut, 02:02 CEST 29 August. See note 11.",
     grade:"pass" },
 
   { date:"2026-08-23", type:"Map", metal:"Silver", level:"66.66", book:"Turn",
     call:"Silver holds above the 464 swing slow mean it closed through on 21 August, read 66.66 tonight. The door is now the floor and the swing clock stays bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 66.66 at naming.",
-    result:"The kill fired. The weekly close printed 66.3700 with the 464 swing slow mean read at 66.6600 tonight (66.66 at naming), 0.29 below the line. The door that became the floor on 21 August gave way at its first weekly test. MISS. The row stays, and the swing clock in silver is no longer bullish until a weekly close re-earns the line; the standing entry records the end under note 02. Close and line read off the TVC chart, market shut, 02:04 CEST 29 August.",
+    result:"The kill fired. The weekly close printed 66.3700 with the 464 swing slow mean read at 66.6600 tonight (66.66 at naming), 0.29 below the line. The door that became the floor on 21 August gave way at its first weekly test. MISS. The row stays, and the swing clock in silver is no longer bullish until a weekly close re-earns the line; the standing entry records the end under note 02, and the restatement is logged in note 11. Close and line read off the TVC chart, market shut, 02:04 CEST 29 August.",
     grade:"miss" },
 
-  /* PLATINUM CLOSE AND LINE AWAIT THE FOUNDER'S CHART READ. The grade is
-     certain, the two prints are not on the desk's captures. Grep for "[[",
-     fill both tokens here and in note 11, and only then push. */
+  /* PLATINUM'S TWO PRINTS, filled 13:13 CEST 29 August from the founder's own
+     chart with the market shut: close 1,821.80, the 464 swing slow mean at
+     1,790.84, which is 30.96 above. The line read is identical to the level
+     named on 23 August, which is why the row can quote one number twice
+     without contradicting itself. */
   { date:"2026-08-23", type:"Map", metal:"Platinum", level:"1,790.84", book:"Turn",
     call:"Platinum, on this page for the first time, same method, same rule. Price has climbed back above the 464 swing slow mean, read 1,790.84 tonight. The swing clock is bullish while the close stays above the line. Named before the week opened. Kill: a weekly close back below the 464 swing slow mean, 1,790.84 at naming.",
-    result:"The kill never fired. The weekly close printed [[PLATINUM CLOSE]] with the 464 swing slow mean read at [[PLATINUM LINE READ]] tonight (1,790.84 at naming), [[MARGIN]] above the line. PASS. First row, first grade, same method, same rule. Close and line read off the TVC chart, market shut, 29 August.",
+    result:"The kill never fired. The weekly close printed 1,821.80 with the 464 swing slow mean read at 1,790.84 tonight (1,790.84 at naming), 30.96 above the line. PASS. First row, first grade, same method, same rule. Close and line read off the TVC chart, market shut, 29 August. See note 11.",
     grade:"pass" },
 
   /* WEEK OF 16 AUGUST. Two rows under the founder's weekly-row ruling,
@@ -1136,6 +1781,10 @@ const CALLS = [
    ========================================================================= */
 
 const NOTES = [
+  { n:"12", kind:"correction", title:"Correction, 29 August 2026. The year-to-year card called a chart read a weekly close.",
+    body:"The standing year-to-year call has carried the line \"At the close of 1 Aug 2026\" under its figures since it was last refreshed. 1 August 2026 was a Saturday, and there is no weekly close on a Saturday. The figures beneath that line are a chart read taken that day, which the entry's own working note has always said: it records that the chart of record was read on 1 August for the date the secular bull began. The date was right and the verb was wrong, and the card now reads \"At the 1 Aug 2026 read\". No figure moved. The two returns on that card, gold since 28 May 2019 and silver since July 2020, are the same figures they were, unrecomputed, and the rule against touching them without reframing the chart to the marker still stands. Why it is logged rather than quietly fixed: it survived four weeks because it was the only date on that card and nothing sat beside it to disagree with. On 29 August a second graphic arrived on the same screen, stamped at a real weekly close, and two graphics of different vintages three hundred pixels apart cannot each say \"close\" when only one of them means it. That is note 09's defect in a new place, a surface dating a claim it did not make that day, and this page logs those rather than tidying them. Every date on both standing cards is now derived from one field per card and printed with the verb that field names, so the head, the graphic and the marks can no longer drift apart." },
+  { n:"11", kind:"correction", title:"Resolution, 28 August 2026. Two held, one broke, platinum's first grade, and a ruling on what ends a swing call.",
+    body:"Friday 28 August close (TradingView TVC, market shut, read 02:02 to 02:04 CEST on 29 August): gold 4,453.670, silver 66.3700, platinum 1,821.80. Three floors were named on Sunday 23 August with the market shut, each published with the weekly close that would kill it. The gold call passes; the 464 swing slow mean read 4,308.037, the same read as 21 August, and the close sat 145.63 above it. The platinum call passes on the first platinum row this page has ever carried; the line read 1,790.84, the same read as the level named on Sunday, and the close sat 30.96 above it, same method, same rule, third metal. The silver call fails; the line read 66.6600 and the close printed 66.3700, 0.29 under it, so the kill fired exactly as it was published on Sunday night. The row grades wrong and it stays, where every wrong row on this page stays. The standing week-to-week call is restated, not ended, and on 29 August it was restated a second time by a ruling that reached it and not the rows. THE SWING CLOCK TURNS ON A CROSS, NOT A PRICE CLOSE: what dates a turn is the epoch midline crossing the slow mean reversion line, and position against the line is the confirmation, never the trigger. That is not a new idea on this page, it is the standard already applied to the secular clock since 1 August under note 06, extended by the founder to the swing clock and read on his own chart on 29 August. Under it, silver's swing claim did not end on the 28 August close. Silver closed 0.29 under its line and the structure never turned, so the standing direction stands in all three metals. THE RULING DOES NOT REACH THE ROW, and the distinction is the reason this note is long. The weekly rows are a different object on a different clock: each names a level before the week and publishes a price close as the kill, and each is graded on exactly what it published. The silver row of 23 August named a weekly close back below 66.66 as its kill, the close printed 66.3700, and that kill fired. The row grades WRONG and it stays wrong. Note 01 has said since 3 July that no grade is ever restamped to fit a rulebook written after it, and note 03 is the precedent where this desk applied that in the direction that cost it a win. A desk that re-reads its own rulebook on a Saturday and finds its Friday loss was never a loss has stopped keeping a record. The tally is unchanged by the ruling: eighteen correct, four wrong. What the ruling does change, and this is the process defect worth naming, is that the Sunday rows have been publishing a kill that does not match the method the desk actually trades. The row's kill was honest, published and fired; it was also the wrong question to ask of a swing claim. From the next Sunday call, a row naming swing direction states the event that truly ends it, and a row naming a price level keeps a price kill and says which of the two it is. Gold's mark is 2.57% above the 7 August close, down from 6.00% last week. The entry keeps the status live and keeps its stated date of 21 August because nothing was newly stated tonight. Two disclosures with it. First, the paragraph under the standing calls told every reader that silver continues under its own line. That sentence was written on 7 August and was true then. It stopped being true on the 21 August close and was not moved with the entry that night, so it stood stale for one week. It is corrected tonight and logged rather than tidied. Second, platinum's close and its line read were entered separately from gold's and silver's, off the founder's own chart, because the capture taken at the close had the chart's own label covered. Platinum's swing clock is dated from the 19 August close, read off the same chart and supplied on 29 August; for one day this page carried platinum with a graded row and no dated clock, and said so rather than inventing a start. The grade was never in doubt; the two prints were, and they were read before this note published. Tally after this close: eighteen correct, four wrong, five never tested, twenty-seven rows, nothing open." },
   { n:"10", kind:"correction", title:"Resolution, 21 August 2026. Two passes, one correction, two aged rows closed, and the swing clock in silver turns.",
     body:"Friday 21 August close (TradingView TVC, 23:00 CEST): gold 4,602.660, silver 68.9460. The 16 August gold call, holds above the 464 swing slow mean, passes; the line read 4,308.037 tonight and the close sat 294.62 above it. The 16 August silver call passes, with a correction disclosed. The stance was published before the week, on X on 10 August: silver needs to clear the line at 66.86, bullish unconfirmed. The row staged on 16 August carried that conditional in its text and then named a close above the line as its kill, which inverted the stance; the page's own 14 August grade of no test, when the line was touched and not closed through, shows the claim was always the conditional and never that the door holds. Tonight the line read 66.6600 and the close printed 68.9460, through it. The conditional resolved as named: PASS. The kill wording stands as posted and is disclosed here as the error. Disclosed too: this row went live graded WRONG on the first 21 August push and was corrected the same night, on the evidence above, before the next close. From this close the swing clock in silver turns bullish, graded per metal under the 7 August standard, and a weekly close back below 66.6600 now kills the new call. Gold continues, 6.00% above the 7 August close. Two aged rows resolve tonight. Gold 3,810 of 21 July is stated as no test under the standard applied to 3,942.430 on 7 August: five weekly closes, price went the other way, the line never approached; the floor lives on as the epoch line in the year-to-year call. Silver 61.02 of 7 July receives its own week's grade, a pass, under the standard applied to the gold Level Watch of 8 July; its final resolution was already graded WRONG in the 7 August Verdict row. Both rulings taken the way the page already rules, not the way that flatters it. Tally after this close: sixteen correct, three wrong, five never tested, nothing open." },
   { n:"01", kind:"standard", title:"Standard tightened 3 July 2026.",
@@ -1223,28 +1872,599 @@ const runFor = (from, to) => {
   return (d / 365.25).toFixed(1) + " years running";
 };
 
-document.getElementById("standing").innerHTML = STANDING.map(s => {
-  const live = s.status !== "ended";
-  const run  = runFor(s.stated, live ? TODAY : (s.endedOn || s.asOf));
-  return `
-  <article class="sc">
+/* An ended clock says how long it RAN. Same arithmetic, past tense. A dead
+   clock printed in the present tense of a live one is how a reader comes
+   away thinking silver is still open. */
+const ranFor = (from, to) => {
+  const t = runFor(from, to);
+  return t ? "ran " + t.replace(/ running$/, "") : "";
+};
+
+/* Day and month only, for the 10px state word inside a board block, where
+   the year does not fit. The year is never dropped anywhere a reader might
+   be relying on it: the clock strip, the screen reader table and the board
+   footer all print the full date. */
+const shortDate = iso => {
+  const [y, m, d] = iso.split("-");
+  return d.replace(/^0/, "") + " " + MONTHS[+m - 1];
+};
+
+/* =========================================================================
+   THE STATE BOARD  ·  one subtraction, drawn
+
+   Every call this page makes has one shape: price against one published
+   line, killed by a weekly close through it. So the standing record reduces
+   to one question per metal, which side did the week close on, and the
+   board answers it with geometry instead of four hundred words.
+
+   ONE SUBTRACTION DRIVES THE PICTURE. Which band a metal is drawn in, and
+   the words beside it, come from close minus line, computed here. There is
+   deliberately NO typed "side" field. A typed side can disagree with the
+   two prints sitting next to it; a subtraction cannot. The distance and the
+   percent ARE typed, because a person should have to state them, and they
+   are then checked against the subtraction. A transposed digit stops the
+   graphic instead of publishing it. This is the first check on this page
+   that can catch the desk in a typo before a reader does. Do not loosen the
+   tolerances to get an edit through at 02:00.
+
+   STATE IS DATA, GEOMETRY IS ARITHMETIC, AND THE GATE MAKES THEM AGREE.
+     "live"     a claim is running and its kill has not fired. Requires the
+                close on the holding side.
+     "killed"   the kill fired AT THIS CLOSE. Requires the close on the kill
+                side. killedOn must be set.
+     "dormant"  the kill fired at an EARLIER close and no close has
+                re-earned the line. The close may sit either side, because
+                the desk holds no claim either way. killedOn must be set.
+
+   THE MISTAKE THE THREE-WAY SPLIT EXISTS TO PREVENT. Silver's kill fired on
+   the 28 August close and this page says silver carries no direction until
+   a weekly close re-earns the line. A board that read state off price alone
+   would, on the first Friday silver drifts back over 66.66, lift silver
+   above the rule into the live treatment beside a stale "kill fired"
+   caption, and assert a bullish position this desk never took, with nobody
+   having typed anything wrong. So state never follows price. When the two
+   disagree the board is WITHHELD and the founder has to rule: dormant, or
+   re-earned and live. The page refusing to draw is the correct outcome. The
+   page quietly healing itself into a pass is not, and it is the outcome
+   that flatters, which is why it is the one this file distrusts most.
+
+   NOTHING HERE IS SCALED BY DISTANCE. The reason is in the CSS block.
+   ========================================================================= */
+const DIST_TOL = 0.0015;   /* three decimal places of slack, no more */
+const PCT_TOL  = 0.01;     /* two decimal places of slack, no more */
+
+/* Commas, percent signs and a leading plus are display, not value. */
+const bNum = v => Number(String(v).replace(/[,%\s]/g, ""));
+
+/* Which band kills this column's claim. Every row today holds "above", so
+   every kill side is "dn"; the day an entry carries a metal that holds
+   BELOW, this returns "up" for it and the tint follows it up there. */
+const killBand = r => r.holds === "below" ? "up" : "dn";
+
+/* Where the metal is DRAWN, from the prints alone.
+
+   A close exactly ON the line draws on the kill side. Note 05: where a
+   shape is arguable the harsher grade is taken, and the harsher reading of
+   a close sitting on its own published kill is that the claim was not held.
+   An earlier draft resolved this with pct < 0 ? "below" : "above", which
+   handed the tie to the desk by default and did it silently. */
+function boardSide(r) {
+  const dist = bNum(r.close) - bNum(r.line);
+  if (dist === 0) return killBand(r);
+  return dist > 0 ? "up" : "dn";
+}
+
+/* Returns the reason this row must not be drawn, or "" if it may be. Every
+   branch below is a page that would have shipped wrong. */
+function boardFault(r) {
+  if (!/^(live|killed|dormant)$/.test(String(r.state)))
+    return r.name + " carries a state this board has no drawing for";
+  const line = bNum(r.line), close = bNum(r.close);
+  if (!isFinite(line) || !isFinite(close) || line === 0)
+    return "the close or the line for " + r.name + " did not read as a number";
+  const dist = close - line;
+  const pct  = (dist / line) * 100;
+  /* A HOLE CLOSED 29 Aug 2026. bNum("") is Number("") is 0, so a row that
+     simply never typed its distance reconciled perfectly against a mark
+     sitting exactly on its line, and the board drew a figure nobody had
+     stated. The reconciliation is only worth having if there is something on
+     the other side of it, so both figures must actually be present before
+     the subtraction is asked to agree with them. */
+  if (!String(r.dist).trim() || !String(r.pct).trim())
+    return r.name + " has no stated distance or percent for the arithmetic to check";
+  if (Math.abs(dist - bNum(r.dist)) > DIST_TOL)
+    return "the stated distance for " + r.name + " is not the close minus the line";
+  if (Math.abs(pct - bNum(r.pct)) > PCT_TOL)
+    return "the stated percent for " + r.name + " is not the distance over the line";
+  if (r.state !== "live" && !r.killedOn)
+    return r.name + " has no date for the close its kill fired on";
+
+  /* THE SIDE-VERSUS-STATE CHECK APPLIES ONLY TO A PRICE-CLOSE KILL. Amended
+     29 Aug 2026 with the founder's ruling that a swing clock turns on the
+     epoch midline crossing the slow mean reversion line.
+
+     The original of this function hard-coded the price-close doctrine: it
+     refused any row marked live whose close sat the wrong side of its line.
+     That was right while a close was the event and it is wrong now, and it
+     is worth naming why, because the failure mode inverted. Under the old
+     rule the danger was a board healing itself into a pass. Under a cross
+     rule the danger is the opposite: a board declaring a claim dead because
+     price dipped through a line, when the structure never turned. Silver on
+     the 28 August close is exactly that case, 0.29 under and intact.
+
+     So for a cross row the state is not derivable from the prints AT ALL,
+     and the gate does the only honest thing available to it: it stops
+     pretending it can check the state and instead demands the state carry a
+     dated read. An undated assertion is what this page calls a claim with
+     no source. The arithmetic checks above still run on every row, because
+     the distance and the percentage are still just subtraction. */
+  const byClose = (r.killEvent || "close") === "close";
+  if (!byClose && !r.ruled)
+    return r.name + " carries a claim ended by a cross with no dated read behind its state";
+  if (byClose) {
+    const onSide = r.holds === "below" ? dist < 0 : dist > 0;
+    if (r.state === "live" && !onSide)
+      return r.name + " is marked live but the close is on the kill side of its line";
+    if (r.state === "killed" && onSide)
+      return r.name + " is marked killed but the close is on the holding side of its line";
+  }
+  return "";
+}
+
+/* WHICH BAND KILLS, AS ITS OWN PREDICATE. Split out 29 Aug 2026 from the
+   expression that used to sit inline in boardMarkup. It answers one
+   question and it must never be made to answer a second: whether a graphic
+   may draw a death band in this cell. It is NOT the question "can this
+   claim end", and it is NOT the question "can the gate read state off the
+   prints". Those are three different questions that happened to have the
+   same answer on the night this board was built, and a helper asked to
+   carry all three is a helper that will paint a death band under the one
+   card whose claim cannot die from position at all. */
+const killsHere = (r, band) => (r.killEvent || "close") === "close" && killBand(r) === band;
+
+/* WHICH GRAPHIC AN ENTRY CARRIES, AND THE RENDERER NEVER GUESSES.
+     "state"  the position board: one published line per metal, and which
+              side the week closed on. Its grammar is position.
+     "gate"   the kill gate: the conditions that end a claim, in the order
+              the published kill states them. It has no side and no scale.
+     ""       no graphic, which is not a failure.
+   The two are different objects and the whole point of naming the kind is
+   that no function downstream is allowed to treat one as the other. */
+function boardKind(b) {
+  if (!b) return "";
+  if (b.rows  && b.rows.length)  return "state";
+  if (b.conds && b.conds.length) return "gate";
+  return "";
+}
+
+/* THE HEAD IS A DECLARATION AND THE GATE MAKES IT COMPULSORY. A graphic
+   that does not say what it draws and when its figures were read means
+   whatever the reader assumes, and what a reader assumes is the date of the
+   card above it. Note 09 is on this page because a surface dated a claim it
+   did not make that day; a frame does the same thing and does it silently.
+
+   THE DATE AND THE VERB COME FROM THE ENTRY, NOT FROM THE BOARD. One date
+   and one verb per card, written once in the data, printed at the head of
+   the graphic, in the restatement line and in the marks line at the foot.
+   A board carrying its own copy of either is a copy that drifts, and note 11
+   is the log of one fact living in two places. */
+function boardHeadFault(s, b) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(s.asOf)))
+    return "this call carries no read date its graphic can be stamped with";
+  if (s.read !== "close" && s.read !== "read")
+    return "this call does not say whether its figures come from a close or a chart read";
+  if (!b.subject || !String(b.subject).trim())
+    return "this graphic does not say what it draws";
+  return "";
+}
+
+function boardHead(s, b) {
+  return `<div class="sc-bhead"><span class="sc-bsub">${esc(b.subject)}</span>` +
+    `<span class="sc-bwhen">At the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</span></div>`;
+}
+
+/* WHAT EACH BAND MEANS, IN WORDS, ONCE PER BOARD.
+
+   Returns { up:{side,means}, dn:{side,means} } or null.
+
+   NO CAPTION AT ALL ON A MIXED BOARD. If two rows end on different events,
+   or hold on different sides, no one sentence is true of both bands and
+   this returns null. A caption true of two columns out of three is worse
+   than no caption, because the reader has no way to know which two. */
+function bandWords(b) {
+  const rows = b.rows, ev = r => (r.killEvent || "close");
+  if (!rows.every(r => ev(r) === ev(rows[0]))) return null;
+  if (!rows.every(r => (r.holds === "below") === (rows[0].holds === "below"))) return null;
+  const byClose  = ev(rows[0]) === "close";
+  const holdBand = rows[0].holds === "below" ? "dn" : "up";
+  const means = isHold => isHold ? "confirming the claim"
+    : (byClose ? "the kill fires here" : "confirmation against it, never the kill");
+  return { up:{ side:"Above the line", means: means(holdBand === "up") },
+           dn:{ side:"Below the line", means: means(holdBand === "dn") } };
+}
+
+function boardWords(r, long) {
+  const d = iso => long ? fmtDate(iso) : shortDate(iso);
+  if (r.state === "live")   return "Kill not fired";
+  if (r.state === "killed") return "Kill fired " + d(r.killedOn);
+  return "No claim since " + d(r.killedOn);
+}
+
+function boardBlock(r) {
+  const cap  = r.state === "live" ? "is-mark" : "is-cross";
+  const tone = r.state === "live" ? "is-live" : (r.state === "killed" ? "is-killed" : "is-dormant");
+  const away = boardSide(r) === "up" ? "above the line" : "under the line";
+  /* The sign is stripped from the distance because the word beside it
+     carries the direction, and "-0.290 under the line" is a double negative
+     a tired reader resolves the wrong way. The sign stays on the
+     percentage, where it is the only place it appears. */
+  return `<div class="sc-bblk ${tone}">
+        <span class="sc-bname">${esc(r.name)}</span>
+        <span class="sc-bstate">${esc(boardWords(r, false))}</span>
+        <span class="sc-bfig"><span class="sc-bclose">${esc(r.close)}</span><span class="sc-bpct">${esc(r.pct)}</span></span>
+        <span class="sc-bdist">${esc(String(r.dist).replace(/^[+-]/, ""))} ${esc(away)}</span>
+        <span class="sc-cap ${cap}"></span><span class="sc-stem"></span>
+      </div>`;
+}
+
+/* Emits nine cells for three metals, in grid order: every upper cell, then
+   every axis cell, then every lower cell. The empty cells are emitted too
+   and that is the point, not an oversight. An empty kill side that is drawn
+   and tinted is a week with nothing in it; a kill side that collapses is a
+   picture of a desk that never falls below its line. */
+/* THE KILL-SIDE WASH IS ONLY DRAWN WHERE A SIDE CAN KILL. Amended 29 Aug
+   2026. It marks the band a price close would die in, so on a row whose
+   claim ends by a cross there is no such band and no wash is drawn. Tinting
+   it anyway would tell the reader, in the loudest channel the board has,
+   that silver sits in a death zone, on the very night this desk ruled that
+   it does not. A graphic must not contradict the ruling it is drawn under. */
+function boardMarkup(b) {
+  const cell = (r, band) =>
+    `<div class="sc-bcell sc-b${band}${killsHere(r, band) ? " is-kill" : ""}">${
+      boardSide(r) === band ? boardBlock(r) : ""}</div>`;
+  /* The captions are emitted first and last and are placed by grid-row in
+     the CSS, so the cells auto-flow into rows 2, 3 and 4 in exactly the
+     order they always did. Nothing about the nine cells changed. */
+  const bw   = bandWords(b);
+  const band = (which, w) => w
+    ? `<div class="sc-bband is-${which}">${esc(w.side)} &middot; ${esc(w.means)}</div>` : "";
+  return `<div class="sc-board" style="--sc-cols:${b.rows.length}" aria-hidden="true">` +
+    band("up", bw && bw.up) +
+    b.rows.map(r => cell(r, "up")).join("") +
+    b.rows.map(r => `<div class="sc-baxis"><b>${esc(r.line)}</b></div>`).join("") +
+    b.rows.map(r => cell(r, "dn")).join("") +
+    band("dn", bw && bw.dn) +
+    `</div>`;
+}
+
+/* =========================================================================
+   THE KILL GATE  ·  the conditions, in the order the kill states them
+
+   The board reconciles its picture against arithmetic. A gate has no
+   arithmetic in it, so it reconciles against THE PUBLISHED KILL, character
+   for character: every label it prints and every metal-and-pair it prints
+   must appear inside s.kill as a literal substring, or nothing is drawn.
+
+   Compared lowercased, and only lowercased, because the kill writes "Gold"
+   with a capital and "silver" without one in the same clause. Case is the
+   one thing this check cannot police and the one thing that cannot mislead.
+
+   WHAT IT DELIBERATELY DOES NOT CHECK is whether either condition has
+   happened. Nothing on this page derives that and no arithmetic can. It is
+   stated once, by status, in the badge at the top of the card, and the gate
+   prints no state word of its own precisely so there is nothing here to
+   disagree with it.
+
+   A CONDITION WITH NO FIGURE MUST SAY WHAT IS MISSING. Silence would read
+   as a condition with nothing to publish rather than one whose figure this
+   page has never read, and those are different admissions.
+   ========================================================================= */
+function gateFault(s, b) {
+  const head = boardHeadFault(s, b);
+  if (head) return head;
+  const kill = String(s.kill).toLowerCase();
+  for (const c of b.conds) {
+    if (!c.label || kill.indexOf(String(c.label).toLowerCase()) < 0)
+      return "a condition drawn on this gate is not written in the published kill";
+    const pairs = c.pairs || [];
+    for (const p of pairs) {
+      if (kill.indexOf((p.name + " " + p.pair).toLowerCase()) < 0)
+        return "the figures printed for " + p.name + " are not the pair published in the kill";
+    }
+    if (!pairs.length && !String(c.none || "").trim())
+      return "a condition on this gate publishes no figure and does not say what is missing";
+  }
+  if (!String(b.join || "").trim())
+    return "this gate does not say how its conditions are joined";
+  return "";
+}
+
+/* Ordinals are visible text and not a CSS counter, so a screen reader and a
+   sighted reader get the same two words in the same two places. The joint is
+   an ordinary element for the same reason: AND is the meaning of this
+   graphic, and a reader who takes it for OR has been told the call is twice
+   as easy to end as it is. Nothing here is aria-hidden. */
+const GATE_ORD = ["One", "Two", "Three", "Four", "Five"];
+function gateMarkup(b) {
+  const cond = (c, i) =>
+    `<div class="sc-gcond"><span class="sc-gnum">${esc(GATE_ORD[i] || String(i + 1))}</span>` +
+    `<span class="sc-glabel">${esc(c.label)}</span>` +
+    ((c.pairs && c.pairs.length)
+      ? `<span class="sc-gpairs">` + c.pairs.map(p =>
+          `<span class="sc-gpair"><b>${esc(p.name)}</b><i>${esc(p.pair)}</i></span>`).join("") +
+        `</span>`
+      : `<span class="sc-gnone">${esc(c.none)}</span>`) + `</div>`;
+  const joint = `<div class="sc-gjoin"><b>${esc(b.join)}</b></div>`;
+  return `<div class="sc-gate">` + b.conds.map(cond).join(joint) + `</div>`;
+}
+
+/* One clock per metal, from that metal's own turning close.
+
+   NO DATE IS EVER INVENTED IN HERE. A metal with no turning close on this
+   page gets no start date and NO DAY COUNT, and its noClock string says so.
+   Do not call runFor with an empty date to make a line match the others: a
+   day count measured from a close nobody has read would be the only
+   fabricated figure on this page. */
+function clockLine(r) {
+  const dir = r.holds === "below" ? "Bearish" : "Bullish";
+  if (!r.since) return { body: r.state === "live"
+      ? dir + " at this close"
+      : "The kill fired on the " + fmtDate(r.killedOn) + " close",
+    tail: r.noClock || "" };
+  if (r.state === "live") return { body: dir + " since the " + fmtDate(r.since) + " close",
+    tail: runFor(r.since, TODAY) };
+  return { body: dir + " " + fmtDate(r.since) + ", ended " + fmtDate(r.killedOn) + " when the kill fired",
+    tail: ranFor(r.since, r.killedOn) };
+}
+
+/* THE CLOCKS OBEY THE BOARD'S GATE. Added 29 Aug 2026 after a gate test
+   caught this: clearing silver's killedOn made the board withhold itself
+   correctly, and then the clock strip, reading the same unvalidated row,
+   called fmtDate("") and threw. The board was refused and the section died
+   anyway, which is the reconciliation doing half a job.
+
+   The clocks are part of the board's apparatus and read the board's data, so
+   they render only when the board drew. When it is withheld the reader loses
+   nothing that is proven: the claim, the kill and the marks below carry the
+   same record, and the withheld notice says so. Do not "fix" a future throw
+   in here by making fmtDate tolerant. fmtDate is strict everywhere on this
+   page on purpose, and a date that does not parse is a fault to be refused,
+   never a blank to be printed. */
+function clocksHtml(s, drawn) {
+  /* STATE BOARDS ONLY. A gate has no metals and no turning closes in it, so
+     there is nothing here for it to count from. Guarded on the KIND rather
+     than on the presence of s.board, because the day a gate entry grew a
+     rows array by accident is the day this would print clocks for a claim
+     that has none. */
+  if (!drawn || boardKind(s.board) !== "state") return "";
+  return `<ul class="sc-clocks">` + s.board.rows.map(r => {
+    const c = clockLine(r);
+    return `<li><b>${esc(r.name)}</b>${esc(c.body)}${
+      c.tail ? ` &middot; <i>${esc(c.tail)}</i>` : ""}</li>`;
+  }).join("") + `</ul>`;
+}
+
+/* The board read aloud. The board itself is aria-hidden, so this table is
+   the whole graphic for a screen reader.
+
+   IT CARRIES EXACTLY WHAT THE BOARD DRAWS AND NOT ONE FIGURE MORE. An
+   earlier draft gave the screen reader a fuller account of silver's week
+   than the sighted card carried, which is backwards: the fullest statement
+   of a loss ended up in the layer almost nobody reads. If you add a column
+   here, add it to the block above first. It states no count of metals above
+   or below, because a running count of standing outcomes is a second
+   scoreboard and standing calls never carry one. */
+function boardTable(s, drawn) {
+  const b = s.board;
+  /* GATED WITH THE BOARD, for the reason written above clocksHtml. This
+     table is the graphic's accessible equivalent and reads the same
+     unvalidated rows, so it renders only when the board drew. A withheld
+     board is announced by the withheld notice, which is ordinary text and
+     is read aloud like any other sentence on the page, so a screen reader
+     is told exactly what a sighted reader is told: the graphic could not
+     prove itself, and the figures below carry the record. */
+  if (!drawn || boardKind(b) !== "state") return "";
+  const body = b.rows.map(r => {
+    const dist = bNum(r.close) - bNum(r.line);
+    const side = dist > 0 ? "Closed above its line"
+      : (dist < 0 ? "Closed below its line" : "Closed exactly on its line");
+    return `<tr><th scope="row">${esc(r.name)}</th><td>${esc(side)}</td>` +
+      `<td>${esc(r.close)}</td><td>${esc(r.line)}</td>` +
+      `<td>${esc(String(r.dist).replace(/^[+-]/, ""))}, ${esc(r.pct)}</td>` +
+      `<td>${esc(boardWords(r, true))}</td></tr>`;
+  }).join("");
+  /* THE BAND CAPTIONS ARE READ ALOUD TOO, and from the same function that
+     draws them, because the board itself is aria-hidden and the captions
+     live inside it. Two surfaces, one source. If you ever caption a band by
+     hand, you have built the second place a fact can drift to. */
+  const bw = bandWords(b);
+  const bands = bw
+    ? `<p>${esc(bw.up.side)} means ${esc(bw.up.means)}. ${esc(bw.dn.side)} means ${esc(bw.dn.means)}.</p>`
+    : "";
+  return `<div class="sr-only"><p>${esc(b.srLede)}</p>${bands}<table>` +
+    `<caption>Standing call state at the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</caption>` +
+    `<thead><tr><th scope="col">Metal</th><th scope="col">Side of its line</th>` +
+    `<th scope="col">Weekly close</th><th scope="col">Its published line</th>` +
+    `<th scope="col">Distance</th><th scope="col">State</th></tr></thead>` +
+    `<tbody>${body}</tbody></table></div>`;
+}
+
+const withheldNotice = why =>
+  `<span class="sc-withheld"><b>Board withheld</b> ${esc(why)}. The figures below are ` +
+  `unchanged and carry the same record. A graphic that cannot prove itself against its ` +
+  `own prints is not drawn on this page.</span>`;
+
+/* Returns { html, state } where state is "drawn", "withheld" or "none".
+
+   "none" is an entry with no board, which is the year-to-year call and is
+   correct, not a failure. "withheld" is the machine WORKING: a graphic that
+   cannot reconcile against its own prints is refused, and the prose under
+   it carries the same record it always did. Only a thrown error is a real
+   failure, and the catch below turns that into a withheld board too, so one
+   bad character in one row can never take the standing section down. */
+/* Returns { html, foot, state, kind }.
+
+   "none" is an entry with no graphic, which is correct and not a failure.
+   "withheld" is the machine WORKING: a picture that cannot reconcile against
+   its own source is refused, and the prose carries the same record it always
+   did. Only a thrown error is a real failure, and the catch turns that into a
+   withheld graphic too, so one bad character in one row can never take the
+   standing section down.
+
+   THE FOOT IS RETURNED SEPARATELY AND NOT CONCATENATED, because it now
+   renders behind the fold while the graphic renders on the face. It used to
+   have the read date appended to it here; the head carries that now, and the
+   date is stated once on the card instead of twice. */
+function standingBoard(s) {
+  const kind = boardKind(s.board);
+  if (!kind) return { html:"", foot:"", state:"none", kind:"" };
+  const b = s.board;
+  try {
+    if (kind === "state") {
+      const head = boardHeadFault(s, b);
+      if (head) return { html: withheldNotice(head), foot:"", state:"withheld", kind };
+      for (const r of b.rows) {
+        const fault = boardFault(r);
+        if (fault) return { html: withheldNotice(fault), foot:"", state:"withheld", kind };
+      }
+      return { html: boardHead(s, b) + boardMarkup(b), foot: b.foot || "", state:"drawn", kind };
+    }
+    const fault = gateFault(s, b);
+    if (fault) return { html: withheldNotice(fault), foot:"", state:"withheld", kind };
+    return { html: boardHead(s, b) + gateMarkup(b), foot: b.foot || "", state:"drawn", kind };
+  } catch (e) {
+    return { html: withheldNotice("the state graphic threw while it was being drawn"),
+      foot:"", state:"withheld", kind };
+  }
+}
+
+/* THE FACE CARRIES THE FIRST CLAUSE OF THE KILL. THE FOLD CARRIES ALL OF IT.
+
+   They are not two statements of one fact, and this function is the reason.
+   A lede that is not a LITERAL PREFIX of the published kill is thrown away
+   and the whole kill is printed on the face instead, so the only way to make
+   the short statement disagree with the long one is to make the short one
+   disappear. Note 11's defect is one fact living in two places and drifting;
+   a prefix cannot drift, and when it tries, the page gets longer rather than
+   wronger. */
+function killLede(s) {
+  const kill = String(s.kill), lede = String(s.killLede || "");
+  return (lede && kill.indexOf(lede) === 0) ? lede : kill;
+}
+
+/* THE FOLD, AND THE COVENANT INSIDE IT.
+
+   A drawn graphic earns a fold: the claim, the whole kill and the graphic's
+   own footnote go behind one control that says what it opens, and the face
+   keeps the picture, the clocks and the first clause of the kill.
+
+   A GRAPHIC THAT DID NOT DRAW GETS NO FOLD AT ALL. Not a fold shipped open,
+   which leaves a control offering to hide the only account of the call still
+   standing; no control. The one state where the picture stops standing in
+   for the words is the state where the words come back to the face unasked,
+   and that is the thing that earns this page the right to fold anything.
+
+   IT SHIPS OPEN AND closeFolds SHUTS IT, WHICH IS BACKWARDS ON PURPOSE. If
+   that pass never runs, every card renders as verbose as it rendered
+   yesterday: ugly, and complete. Ship them closed and the same failure
+   leaves two controls that answer nothing. */
+function foldHtml(s, board) {
+  const body =
+    `<p class="sc-claim">${esc(s.claim)}</p>` +
+    `<span class="kill"><b>Kill, in full</b> ${esc(s.kill)}</span>` +
+    (board.foot ? `<p class="sc-bfoot">${esc(board.foot)}</p>` : "");
+  if (board.state !== "drawn") return `<div class="sc-open sc-fbody">${body}</div>`;
+  return `<details class="sc-fold" open>` +
+    `<summary class="sc-fsum">Read the call in full` +
+    `<span class="sr-only">: ${esc(s.clock)}</span>` +
+    `<span class="sc-fchev" aria-hidden="true">&rsaquo;</span></summary>` +
+    `<div class="sc-fbody">${body}</div></details>`;
+}
+
+(function renderStanding () {
+  const host = document.getElementById("standing");
+  /* NOT a silent "if (!host) return". A renamed or missing container would
+     ship the Standing Calls masthead over an empty section, throwing
+     nothing and revealing nothing. The line this replaced reached into the
+     DOM with no guard at all, so that fault threw into the window error
+     handler and the reader was told. A guard that swallows it is worse than
+     no guard, so this one raises the fallback instead. */
+  if (!host) {
+    const fb = document.getElementById("render-fallback");
+    if (fb) fb.hidden = false;
+    return;
+  }
+
+  host.innerHTML = STANDING.map(s => {
+    const live  = s.status !== "ended";
+    const board = standingBoard(s);
+    const run   = runFor(s.stated, live ? TODAY : (s.endedOn || s.asOf));
+
+    /* THE "DAYS RUNNING" COUNTER IS DROPPED ON RESTATED ENTRIES, AND THE
+       DISCRIMINATOR IS THE RESTATEMENT. Amended 29 Aug 2026.
+
+       It used to key off whether the entry carried a board, which put a real
+       figure at the mercy of a graphic: withhold the board and the counter
+       came back, reading "8 days running" beside a position whose gold clock
+       has run twenty-two, in the exact state where the per-metal clock strip
+       is gone and nothing is left to correct it. The board was never the
+       reason. The reason is that this counter measures from the entry's LAST
+       STATEMENT, so on a restated entry it counts the wrong event and note 11
+       had to say so in prose. A figure that needs a paragraph to stop it
+       misleading is the wrong figure.
+
+       An entry that has never been restated has one statement to count from,
+       so it keeps the counter, in every graphic state including withheld.
+       The verb comes from s.read, so a card cannot say "restated on the
+       28 Aug 2026 close" at the top and "At the 28 Aug 2026 read" below. */
+    const ended = live ? ""
+      : " &middot; ended " + esc(fmtDate(s.endedOn)) + ", " + esc(s.endedAs);
+    const since = s.restated
+      ? `Stated ${esc(fmtDate(s.stated))} &middot; restated on the ` +
+        `${esc(fmtDate(s.restated))} ${esc(s.read === "read" ? "read" : "close")}${ended}`
+      : `Stated ${esc(fmtDate(s.stated))}${live && run ? " &middot; " + esc(run) : ""}${ended}`;
+
+    return `
+  <article class="sc" data-board="${esc(board.state)}" data-kind="${esc(board.kind)}">
     <div class="sc-top">
       <span class="sc-clock">${esc(s.clock)}</span>
       <span class="sc-status ${live ? "sc-live" : "sc-ended"}">${live ? "Live" : "Ended"}</span>
     </div>
     <div class="sc-pos">${esc(s.position)}</div>
-    <div class="sc-since">Stated ${esc(fmtDate(s.stated))}${
-      live ? (run ? " &middot; " + esc(run) : "")
-           : " &middot; ended " + esc(fmtDate(s.endedOn)) + ", " + esc(s.endedAs)}</div>
-    <p class="sc-claim">${esc(s.claim)}</p>
-    <span class="kill"><b>Kill</b> ${esc(s.kill)}</span>
+    <div class="sc-since">${since}</div>
+    ${boardTable(s, board.state === "drawn")}
+    ${board.html}
+    ${clocksHtml(s, board.state === "drawn")}
+    <span class="kill"><b>Kill</b> ${esc(killLede(s))}</span>
+    ${foldHtml(s, board)}
     <div class="sc-marks">
+      ${s.marksLabel ? `<span class="sc-mlab">${esc(s.marksLabel)}</span>` : ""}
       ${s.marks.map(m => `<span>${esc(m.name)} <b>${esc(m.move)}</b>${
         m.from ? ` <i>${esc(m.from)}</i>` : ""}</span>`).join("")}
-      <span class="sc-asof">At the close of ${esc(fmtDate(s.asOf))}</span>
+      <span class="sc-asof">At the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</span>
     </div>
   </article>`;
-}).join("");
+  }).join("");
+
+  /* THE FOLDS ARE SHUT HERE, IN THE SAME TASK AS THE innerHTML ABOVE AND
+     BEFORE THE BROWSER PAINTS. Two things follow from that and both matter.
+
+     First, there is no flash of open cards, because nothing has been drawn
+     yet when this runs. Do not move it into a listener, a rAF or a timeout
+     to "be safe": every one of those paints the open state first.
+
+     Second, and this is the reason it is written this way round, if this
+     block is ever deleted, throws, or stops matching, the cards render fully
+     verbose. That is the state the founder complained about, and it is the
+     correct failure: the page is uglier and every word is still on it. The
+     inverse design, markup that ships shut and script that opens, fails to a
+     page that has quietly hidden its own claims and its own kills with no
+     way in and nothing to say it happened.
+
+     It touches only .sc-fold. A withheld graphic renders .sc-open instead,
+     which has no control on it and is never closed by anything. */
+  Array.from(host.querySelectorAll("details.sc-fold")).forEach(d => { d.open = false; });
+})();
 
 /* ---------------- the ledger ---------------- */
 const rows = CALLS.map(c => {
@@ -1577,6 +2797,50 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
   const fb   = document.getElementById("render-fallback");
   if (!fb) return;
   if (!list || list.querySelectorAll(".lrow").length === 0) fb.hidden = false;
+})();
+
+/* COMPLETENESS CHECK, THE STANDING CARDS. Added 29 Aug 2026 with the state
+   board. The check above counts ledger rows and would pass a page whose whole
+   standing section rendered nothing, which is now the likeliest silent failure
+   on this page because the board is the newest and most breakable thing on it.
+
+   COUNTING ARTICLES IS NOT ENOUGH EITHER. If every board row were dropped, two
+   articles would still render, the count would still be two, and the page would
+   ship its largest graphic as a bare horizontal line with nothing on it. So
+   this counts drawn blocks against declared rows.
+
+   A WITHHELD BOARD IS NOT A FAILURE and is skipped deliberately. It is the
+   machine working: the reconciliation refused a graphic it could not prove,
+   said so on the page, and left every figure in place underneath. Firing the
+   fallback on it would tell a reader the ledger broke when it did not. */
+(function () {
+  const fb  = document.getElementById("render-fallback");
+  const std = document.getElementById("standing");
+  if (!fb) return;
+  if (!std || std.querySelectorAll(".sc").length !== STANDING.length) { fb.hidden = false; return; }
+  Array.from(std.querySelectorAll(".sc")).forEach((el, i) => {
+    const s = STANDING[i] || {};
+    /* THE PROSE IS CHECKED FIRST AND ON EVERY CARD. Added 29 Aug 2026 with
+       the fold. The claim and the kill now live inside a container that a
+       future edit can rename, and if that container stops rendering the card
+       still shows a position, a graphic and a set of marks: a page that looks
+       finished and has quietly dropped the two sentences it exists to
+       publish. That is the new likeliest silent failure on this page and it
+       is the one worth failing loudly for.
+
+       AN OPEN FOLD IS NEVER A FAILURE and is not checked. Open is the
+       fail-safe direction; a card sitting open has lost nothing. */
+    if (!el.querySelector(".sc-fbody")) { fb.hidden = false; return; }
+    const b = s.board, kind = boardKind(b);
+    if (!kind || el.dataset.board === "withheld") return;
+    /* Counted per kind, because the two graphics are different objects and
+       a gate has no blocks in it. Before this was split, a gate entry asked
+       for b.rows.length, got undefined, and failed a check it was never
+       drawn to pass. */
+    const want = kind === "state" ? b.rows.length : b.conds.length;
+    const sel  = kind === "state" ? ".sc-bblk"    : ".sc-gcond";
+    if (el.querySelectorAll(sel).length !== want) fb.hidden = false;
+  });
 })();
 </script>
 </body>
