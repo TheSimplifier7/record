@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
-<meta name="description" content="Every metals call from The Simplifier, named before the move and graded after. Wins and misses. Nothing removed." />
+<meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." />
 <meta name="theme-color" content="#C2BAAE">
 
 <!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
@@ -30,7 +30,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
-<meta property="og:description" content="Every metals call, named before the move and graded after. Wins and misses, in one place, never removed.">
+<meta property="og:description" content="Gold, silver and platinum levels named before the week opens, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed.">
 <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-08-16_gold_4281.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
@@ -110,6 +110,15 @@
   h1{font-weight:300;font-size:clamp(52px,7.4vw,92px);line-height:.92;letter-spacing:-.025em;color:var(--ink)}
   .thesis{font-size:20px;line-height:1.55;color:var(--ink-3);max-width:34ch;margin-top:24px}
   .thesis em{font-style:italic;color:var(--ink)}
+  .thesis-2{font-size:15.5px;line-height:1.6;color:var(--ink-4);max-width:46ch;margin-top:16px}
+  .legend{font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--ink-4);
+    padding:12px 0 0;max-width:88ch;border-top:1px solid var(--rule-soft);margin-top:12px}
+  .legend b{font-weight:600;color:var(--ink)}
+  .next-verdict{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-top:14px}
+  .sc-plain{font-size:17px;line-height:1.55;color:var(--ink-3);max-width:60ch;margin:22px 0 6px}
+  .sc-plain em{font-style:italic;color:var(--ink)}
+  .cadence{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-4);margin-top:10px}
   .law{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.18em;
     text-transform:uppercase;color:var(--ink-6);margin-top:26px}
   .spec{display:grid;grid-template-columns:auto 1fr;column-gap:22px;font-family:var(--mono);
@@ -893,7 +902,14 @@
     <div>
       <div class="issue">Standing ledger · Entry <span id="issue-no">000</span></div>
       <h1>The Record</h1>
-      <p class="thesis">Every metals call, <em>named before the move</em> and <em>graded after</em>. Wins and misses, in one place, never removed.</p>
+      <!-- THESIS rewritten 3 Sep 2026 for the stranger, not the desk. This read
+           "Every metals call, named before the move and graded after. Wins and
+           misses, in one place, never removed." That sentence states the rule.
+           The reader arriving from a promoted post has a moment, not a rule:
+           he followed a call, it was wrong, and it vanished. The fold now opens
+           on his moment and states the rule second. See note 14. -->
+      <p class="thesis"><em>You have followed a gold call that was wrong and watched it disappear.</em> Here it does not disappear.</p>
+      <p class="thesis-2">Every gold, silver and platinum level on this page was named before the week opened, with the close that would prove it wrong written beside it. On Friday it is graded against that close. The wrong rows stay up next to the right ones, in the order they happened.</p>
       <p class="law">Price is the rudder · The rest is weather</p>
     </div>
     <dl class="spec">
@@ -946,15 +962,15 @@
        in the script. One block, two lines. -->
   <section class="stats" aria-label="Summary">
     <div class="stat">
-      <div class="num" id="t-resolved">0</div>
+      <div class="num" id="t-resolved">22</div>
       <div class="lab">Calls resolved</div>
     </div>
     <div class="stat">
-      <div class="num green" id="t-pass">0</div>
+      <div class="num green" id="t-pass">18</div>
       <div class="lab">Graded correct</div>
     </div>
     <div class="stat">
-      <div class="num red" id="t-miss">0</div>
+      <div class="num red" id="t-miss">4</div>
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
@@ -963,12 +979,22 @@
     </div>
   </section>
   <p class="tally-note" id="t-note"></p>
+  <!-- LEGEND and NEXT VERDICT added 3 Sep 2026. The grade words are desk
+       language and a stranger should not have to translate them. The next
+       verdict line is computed as the next Friday after the stamp, so the page
+       says when it is next graded without a hand-set date that can rot. -->
+  <p class="legend"><b>Held</b> the close stayed on the right side of the named line. <b>Wrong</b> the close crossed it; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Kill</b> the close, named with the call, that would grade it wrong.</p>
+  <p class="next-verdict" id="next-verdict"></p>
 
   <div class="ledger-head">
     <h2>Standing Calls</h2>
     <span class="cnt">The direction, and what would end it</span>
   </div>
 
+  <!-- PLAIN REGISTER added 3 Sep 2026. One sentence a stranger can read
+       before the cards, which carry the desk language and the exact kills.
+       Dates and directions here restate the cards and must move with them. -->
+  <p class="sc-plain">In plain words: <em>gold has been bullish on this page since the 7 August close, silver since 21 August, platinum since 19 August</em>, and the year-to-year call has been bullish since 7 June. Each card below names the exact line that ends it.</p>
   <div class="standing" id="standing"></div>
   <!-- SC-NOTE corrected 29 Aug 2026, with the 28 August grade. This read
        "Silver continues under its own line. See note 08."
@@ -1061,6 +1087,7 @@
         <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
         <button class="btn" type="submit">Send it</button>
       </form>
+      <p class="cadence">One email Sunday, one email Friday, nothing else.</p>
       <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
     </div>
 
@@ -1077,8 +1104,15 @@
            changes hands. Nothing about the offer is sold harder for being
            accurate; it is just true, which is the only thing this page has
            ever traded on. -->
+      <!-- SEAT COPY rewritten 3 Sep 2026 to say what changes for the reader.
+           This read "Three books. Position, swing and tactical, each with its
+           own capital, its own clock and its own ledger. Twelve weeks, one to
+           one, four people at a time. One seat is taken." That describes the
+           structure, which belongs on the terms page. The fill state rule of
+           29 Aug still applies: the seat count is a number on this page and
+           moves the day a seat changes hands. -->
       <h3>Three seats open</h3>
-      <p>Three books. Position, swing and tactical, each with its own capital, its own clock and its own ledger. Twelve weeks, one to one, four people at a time. One seat is taken.</p>
+      <p>For one person at a time who has followed calls long enough to know he wants to stop. Twelve weeks, one to one, gold, silver and platinum. You leave naming the level, the kill and the grade yourself, on your own chart, in a ledger you keep. Four people at a time. One seat is taken. The terms and the price are on the next page.</p>
       <p style="margin-top:22px"><a class="btn" id="apply-link" href="#">Read the terms and apply</a></p>
       <p class="fine">Education and training.<br>Not investment advice. No funds are handled.</p>
     </div>
@@ -1792,6 +1826,8 @@ const CALLS = [
    ========================================================================= */
 
 const NOTES = [
+  { n:"14", kind:"standard", title:"Copy for the reader, 3 September 2026. The fold, the legend, the standing sentence and the seat door.",
+    body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
   { n:"13", kind:"correction", title:"Disclosure, 29 August 2026. Ten of the eighteen correct rows sit on two levels, and both of those levels broke.",
     body:"This page grades one row per week, and the founder's ruling of 16 August gives the Sunday call a row every week even when the level has not moved. The cost of that rule is arithmetic: a level that holds for eight weeks produces eight passes. Until tonight the reader was never told, and the reader is the only person the count is for. Gold 4,098 was named in eight rows between 11 June and 7 August and six of them are graded correct. Silver 61.02 was named in five rows between 7 July and 7 August and four of them are graded correct. That is thirteen of the twenty-seven rows on this page, ten of the eighteen correct rows, and three of the four wrongs. Both levels broke. Gold's kill fired first on 12 July at 4,018.44, which note 03 corrected from a pass to a miss six days later, and the level was named again, held two more weeks, and went for good on the 7 August close. Silver's kill fired on that same close. Both wrong rows are still here, where every wrong row on this page stays. The clearest illustration is note 10. On 21 August this desk graded the silver 61.02 row of 7 July a pass for its own week, two weeks after the level itself had already failed, and that note says the rulings were taken the way the page already rules and not the way that flatters it. That was true of the ruling. It was not true of the arithmetic underneath it. The correct count went up on a level that had already broken, and nothing on the page said so. The desk knew before the reader did, which is the part worth logging. The working comment written into this file on 16 August, the day the rule was made, states that a level holding for ten weeks produces ten passes, calls it the flattery the standing block warns about, and says it is accepted here on purpose. Accepted on purpose is defensible, and the reason given still holds. Accepted on purpose and visible only to whoever opens the source file is a different thing and a worse one. Note 02 has refused since 31 July to average a standing call into the tally, on the ground that a claim running for months and a claim resolving on a Friday cannot share a denominator. That is the same fault. It was sitting inside the weekly rows the whole time, unreached by the rule written to catch it. From tonight the tally is published twice, and the count that makes this desk look worse is printed with it rather than after it. Read by week it is eighteen correct, four wrong, five never tested, twenty-seven rows, unchanged. Read by level it is fourteen levels named, seven ended held, three ended broken, four never tested, with four of those levels carried across more than one week, producing twelve of the eighteen correct rows, and two of those four finally broken. Both figures are derived from the ledger on every load rather than typed, so neither can drift from the rows it counts. The grouping rule is stated so a stranger can reproduce the number without asking. A level family is the metal plus the first number in the level field, whole units for gold and platinum, two decimals for silver. It is deliberately the generous rule. It counts gold 4,305, 4,307 and 4,308 as three separate levels when they are plainly one line moving, so the concentration reported is the smallest defensible figure rather than the largest. A stricter grouping makes this page look worse, not better, and anyone who applies one will find the desk said so first. Why both counts are published and not only the harsher one. Each of those thirteen rows was staged before its week with a kill that could have fired on any Friday, and on three of those Fridays it did. A week that was genuinely at risk and survived is a week that survived, and striking it would be an edit of exactly the kind this page refuses everywhere else. But eight surviving weeks are not eight ideas. They are one idea, tested eight times, that was finally wrong. A reader shown only the weekly number is being told this desk was right eighteen times, when what it did was be right about fewer things for longer. Neither figure alone is the truth, so both stand, each beside its base. No grade changes. Not one. No row is moved, renamed or removed, and the 16 August rule stands, because a weekly claim that resolves at a named close is the thing this page exists to record and refusing to record it would leave most weeks blank. What changes is what a reader can see without opening the file. This is published tonight rather than whenever someone else assembles it, which on this ledger takes about ten minutes with a sort and a pencil, because a page that keeps its wrong calls up forever does not get to keep the flattering arithmetic to itself." },
   { n:"12", kind:"correction", title:"Correction, 29 August 2026. The year-to-year card called a chart read a weekly close.",
@@ -2751,6 +2787,20 @@ document.getElementById("record-begins").textContent =
 const stamp = fmtDate(LAST_UPDATED);
 document.getElementById("updated-spec").textContent = stamp;
 document.getElementById("updated-foot").textContent = stamp;
+
+/* Next verdict: the first Friday strictly after LAST_UPDATED, derived from the
+   stamp and never from the visitor's clock (note 04). If the stamp is itself a
+   Friday grade, the next verdict is the following Friday. */
+(function(){
+  const el = document.getElementById("next-verdict");
+  if (!el) return;
+  const d = new Date(LAST_UPDATED + "T12:00:00Z");
+  if (isNaN(d)) return;
+  const day = d.getUTCDay();               // 0 Sun .. 5 Fri .. 6 Sat
+  let add = (5 - day + 7) % 7; if (add === 0) add = 7;
+  d.setUTCDate(d.getUTCDate() + add);
+  el.textContent = "Next verdict · Friday " + fmtDate(d.toISOString().slice(0,10)) + " · at the close";
+})();
 
 /* =========================================================================
    OPEN THE DOORS, one at a time, and only on a real https endpoint.
