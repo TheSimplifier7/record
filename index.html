@@ -112,7 +112,7 @@
   .thesis em{font-style:italic;color:var(--ink)}
   .thesis-2{font-size:15.5px;line-height:1.6;color:var(--ink-4);max-width:46ch;margin-top:16px}
   .legend{font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--ink-4);
-    padding:12px 0 0;max-width:88ch;border-top:1px solid var(--rule-soft);margin-top:12px}
+    padding:12px 0 0;border-top:1px solid var(--rule-soft);margin-top:16px}
   .legend b{font-weight:600;color:var(--ink)}
   .next-verdict{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;
     text-transform:uppercase;color:var(--gold);margin-top:14px}
@@ -139,8 +139,53 @@
   .stat .num.blue{color:var(--pending)}
   .stat .lab{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.14em;
     text-transform:uppercase;color:var(--ink-5);margin-top:12px}
+  /* TALLY NOTE split into two registers, 3 Sep 2026: by week and by level, side by
+     side at full width. One paragraph in one column read as a wall. */
+  .tally-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;padding-top:14px}
+  .tally-grid .eyebrow{margin-bottom:8px}
   .tally-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
-    color:var(--ink-3);padding-top:14px;max-width:88ch}
+    color:var(--ink-3)}
+  @media(max-width:760px){.tally-grid{grid-template-columns:1fr;gap:18px}}
+
+  /* THE STRIP, 3 Sep 2026. Every row on the record as one square, oldest to
+     newest, in its grade colour. It is the whole page in one glance and it
+     is derived from the array, never typed. A square is a link to its row. */
+  .strip-wrap{margin-top:22px;padding-top:16px;border-top:1px solid var(--rule-soft)}
+  .strip-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .strip{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .strip a{display:block;width:22px;height:22px;border:1.5px solid var(--rule);border-bottom-width:1.5px;
+    box-sizing:border-box;transition:transform .12s ease}
+  .strip a:hover,.strip a:focus-visible{transform:translateY(-2px);outline:2px solid var(--gold);outline-offset:1px}
+  .strip a.pass{background:var(--pass);border-color:var(--pass)}
+  .strip a.miss{background:var(--miss);border-color:var(--miss)}
+  .strip a.notest{background:transparent;border-color:var(--ink-6)}
+  .strip a.open{background:var(--pending);border-color:var(--pending)}
+  .strip a.pre{opacity:.55}
+  .strip-key{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5)}
+  .strip-key i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;border:1.5px solid var(--ink-6);box-sizing:border-box}
+  .strip-key i.pass{background:var(--pass);border-color:var(--pass)}
+  .strip-key i.miss{background:var(--miss);border-color:var(--miss)}
+  @media(prefers-reduced-motion:reduce){.strip a{transition:none}}
+
+  /* WEEK DIVIDERS in the ledger, 3 Sep 2026. Rows are named on a Sunday in
+     threes; the divider says which Sunday and how that week graded. */
+  .lweek{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-5);padding:22px 14px 8px;display:flex;gap:18px;flex-wrap:wrap}
+  .lweek b{color:var(--ink);font-weight:600}
+  .lweek[hidden]{display:none}
+
+  /* THE GAUGE in an opened row, 3 Sep 2026. The named level as a line, the
+     graded close as a mark, the distance in words. Drawn only when the close
+     is stated in the row's own result text and the level is a single number;
+     otherwise nothing is drawn, because nothing is guessed. */
+  .gauge{grid-column:1 / -1;padding:14px 0 6px;border-bottom:1px solid var(--rule-soft);margin-bottom:6px}
+  .gauge svg{width:100%;height:40px;display:block}
+  .gauge .gcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px;
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em}
+  .gauge .gcap .ink{color:var(--ink)}
+  .gauge .gcap .pass{color:var(--pass)}
+  .gauge .gcap .miss{color:var(--miss)}
 
   /* section head, used by Standing Calls and The Ledger */
   .ledger-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
@@ -600,12 +645,30 @@
   .integrity em{font-style:italic}
   .foot-meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:11.5px;
     font-weight:500;color:var(--ink-5);margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
-  .notes{display:grid;gap:20px}
-  .note{display:grid;grid-template-columns:26px 1fr;gap:12px;scroll-margin-top:24px}
+  /* NOTES as folds, 3 Sep 2026. Fourteen notes in full were a page on their
+     own. Each note is now a native details element, the same control the
+     ledger uses: number and title on the summary line, body inside. A note
+     linked from a row opens itself. Nothing is removed and every word is
+     still in the source. */
+  .notes{display:grid;gap:0;border-top:1px solid var(--rule)}
+  .note{scroll-margin-top:78px;border-bottom:1px solid var(--rule-soft)}
+  .note>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:26px 1fr 16px;gap:12px;
+    align-items:baseline;padding:12px 4px}
+  .note>summary::-webkit-details-marker{display:none}
+  .note>summary::marker{content:""}
+  .note>summary:hover{background:#B6AEA1}
+  .note>summary:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
   .note .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--gold);padding-top:3px}
   .note .n.red{color:var(--miss)}
-  .note p{font-size:14.5px;line-height:1.68;color:var(--ink-3)}
+  .note .nt{font-size:14.5px;line-height:1.5;font-weight:600;color:var(--ink)}
+  .note .nc{font-family:var(--mono);font-size:13px;color:var(--ink-5);justify-self:end;transition:transform .16s ease}
+  .note[open] .nc{transform:rotate(90deg)}
+  .note p{font-size:14.5px;line-height:1.68;color:var(--ink-3);padding:0 4px 16px 38px}
   .note p b{font-weight:600;color:var(--ink)}
+  .notes-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+  .notes-head button{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-5);background:none;border:1px solid var(--rule);padding:5px 9px;cursor:pointer}
+  .notes-head button:hover,.notes-head button:focus-visible{color:var(--ink);border-color:var(--ink);outline:none}
   /* ONE sequence, strict numeric, 01 upward. The notes previously sat in the
      markup grouped by kind and rendered 01, 02, 05, 03, 04, 06, which reads
      as a numbering fault. Grouping them under headings did not fix it: the
@@ -615,7 +678,7 @@
      sequence: they are cited in published ledger rows and in shipped
      scripts, and a renumber has already caused confusion once. */
   .note:target .n{color:var(--gold-hi)}
-  .note:target p{box-shadow:-10px 0 0 rgba(74,54,12,.13)}
+  .note:target>summary{box-shadow:-10px 0 0 rgba(74,54,12,.13)}
   .cited{display:block;margin-top:9px;font-family:var(--mono);font-size:11px;font-weight:400;
     letter-spacing:.03em;color:var(--ink-5)}
   .cited b{font-weight:600;color:var(--ink-4)}
@@ -775,9 +838,12 @@
      the only real target-size failure on the page. The negative margin cancels
      the padding for layout, so the hit box grows and the line rhythm does not
      move a pixel. Added 22 Aug 2026. */
-  .lbody a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42);
-    display:inline-block;padding:12px 6px;margin:-12px -6px}
-  .lbody a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
+  /* Corrected 3 Sep 2026: the enlarged hit box kept its border-bottom, so the
+     underline sat 12px under the link and drew a line through the next row of
+     text. The underline is now a text decoration and the hit box is unchanged. */
+  .lbody a{color:var(--gold);border-bottom:none;text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:rgba(74,54,12,.42);display:inline-block;padding:12px 6px;margin:-12px -6px}
+  .lbody a:hover{color:var(--gold-hi);text-decoration-color:var(--gold-hi)}
   .lbody .c-book{margin-top:12px}
 
   /* The filter. "Show me the ones you got wrong" is the most persuasive
@@ -978,7 +1044,17 @@
       <div class="lab">Open, clock running</div>
     </div>
   </section>
-  <p class="tally-note" id="t-note"></p>
+  <div class="tally-grid">
+    <div><div class="eyebrow">By week, the count this page keeps</div><p class="tally-note" id="t-note"></p></div>
+    <div><div class="eyebrow">By level, the count that flatters it less</div><p class="tally-note" id="t-note-level"></p></div>
+  </div>
+  <div class="strip-wrap" id="strip-wrap">
+    <div class="strip-head">
+      <div class="eyebrow" style="margin:0">Every row on the record, oldest to newest. Click a square to open its row.</div>
+      <div class="strip-key"><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i></i>never reached</span></div>
+    </div>
+    <div class="strip" id="strip"></div>
+  </div>
   <!-- LEGEND and NEXT VERDICT added 3 Sep 2026. The grade words are desk
        language and a stranger should not have to translate them. The next
        verdict line is computed as the next Friday after the stamp, so the page
@@ -1827,7 +1903,7 @@ const CALLS = [
 
 const NOTES = [
   { n:"14", kind:"standard", title:"Copy for the reader, 3 September 2026. The fold, the legend, the standing sentence and the seat door.",
-    body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
+    body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. The tally note is split into its two counts, by week and by level, side by side. A strip of squares draws every row on the record oldest to newest in its grade colour, each a link to its row. The ledger carries a divider per naming Sunday with that week's grades, and an opened row that states its graded close draws the close against the level as named; a row that does not state a close draws nothing. The notes fold like the rows. A link underline that had been drawing a line through the next row of text is corrected. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
   { n:"13", kind:"correction", title:"Disclosure, 29 August 2026. Ten of the eighteen correct rows sit on two levels, and both of those levels broke.",
     body:"This page grades one row per week, and the founder's ruling of 16 August gives the Sunday call a row every week even when the level has not moved. The cost of that rule is arithmetic: a level that holds for eight weeks produces eight passes. Until tonight the reader was never told, and the reader is the only person the count is for. Gold 4,098 was named in eight rows between 11 June and 7 August and six of them are graded correct. Silver 61.02 was named in five rows between 7 July and 7 August and four of them are graded correct. That is thirteen of the twenty-seven rows on this page, ten of the eighteen correct rows, and three of the four wrongs. Both levels broke. Gold's kill fired first on 12 July at 4,018.44, which note 03 corrected from a pass to a miss six days later, and the level was named again, held two more weeks, and went for good on the 7 August close. Silver's kill fired on that same close. Both wrong rows are still here, where every wrong row on this page stays. The clearest illustration is note 10. On 21 August this desk graded the silver 61.02 row of 7 July a pass for its own week, two weeks after the level itself had already failed, and that note says the rulings were taken the way the page already rules and not the way that flatters it. That was true of the ruling. It was not true of the arithmetic underneath it. The correct count went up on a level that had already broken, and nothing on the page said so. The desk knew before the reader did, which is the part worth logging. The working comment written into this file on 16 August, the day the rule was made, states that a level holding for ten weeks produces ten passes, calls it the flattery the standing block warns about, and says it is accepted here on purpose. Accepted on purpose is defensible, and the reason given still holds. Accepted on purpose and visible only to whoever opens the source file is a different thing and a worse one. Note 02 has refused since 31 July to average a standing call into the tally, on the ground that a claim running for months and a claim resolving on a Friday cannot share a denominator. That is the same fault. It was sitting inside the weekly rows the whole time, unreached by the rule written to catch it. From tonight the tally is published twice, and the count that makes this desk look worse is printed with it rather than after it. Read by week it is eighteen correct, four wrong, five never tested, twenty-seven rows, unchanged. Read by level it is fourteen levels named, seven ended held, three ended broken, four never tested, with four of those levels carried across more than one week, producing twelve of the eighteen correct rows, and two of those four finally broken. Both figures are derived from the ledger on every load rather than typed, so neither can drift from the rows it counts. The grouping rule is stated so a stranger can reproduce the number without asking. A level family is the metal plus the first number in the level field, whole units for gold and platinum, two decimals for silver. It is deliberately the generous rule. It counts gold 4,305, 4,307 and 4,308 as three separate levels when they are plainly one line moving, so the concentration reported is the smallest defensible figure rather than the largest. A stricter grouping makes this page look worse, not better, and anyone who applies one will find the desk said so first. Why both counts are published and not only the harsher one. Each of those thirteen rows was staged before its week with a kill that could have fired on any Friday, and on three of those Fridays it did. A week that was genuinely at risk and survived is a week that survived, and striking it would be an edit of exactly the kind this page refuses everywhere else. But eight surviving weeks are not eight ideas. They are one idea, tested eight times, that was finally wrong. A reader shown only the weekly number is being told this desk was right eighteen times, when what it did was be right about fewer things for longer. Neither figure alone is the truth, so both stand, each beside its base. No grade changes. Not one. No row is moved, renamed or removed, and the 16 August rule stands, because a weekly claim that resolves at a named close is the thing this page exists to record and refusing to record it would leave most weeks blank. What changes is what a reader can see without opening the file. This is published tonight rather than whenever someone else assembles it, which on this ledger takes about ten minutes with a sort and a pencil, because a page that keeps its wrong calls up forever does not get to keep the flattering arithmetic to itself." },
   { n:"12", kind:"correction", title:"Correction, 29 August 2026. The year-to-year card called a chart read a weekly close.",
@@ -2516,7 +2592,7 @@ function foldHtml(s, board) {
 })();
 
 /* ---------------- the ledger ---------------- */
-const rows = CALLS.map(c => {
+const rows = CALLS.map((c, i) => {
   const [y, m, d] = c.date.split("-");
   const parts = c.call.split(/\s*Kill:\s*/i);
   const g = GRADES[c.grade] || GRADES.notest;
@@ -2532,6 +2608,9 @@ const rows = CALLS.map(c => {
     result: c.result || "Not yet graded.",
     gradeLabel: g.label,
     gradeCls: g.cls,
+    idx: i,
+    date: c.date,
+    grade: c.grade,
     pre: c.date < STANDARD_FROM,
     /* Filter bucket. "partial" files under WRONG on purpose. The rule at
        the top of this file already says a partial counts against the
@@ -2567,8 +2646,57 @@ const bookTag = b => b ? `<span class="c-book">${esc(b)}</span>` : "";
    reader scans: when, what, the level, and the grade. The level stays the
    strongest element in the line and the grade never moves inside the fold.
    Both of those are rules, not preferences. */
-document.getElementById("ledger-list").innerHTML = rows.map(r => `
-  <details class="lrow" data-grade="${esc(r.group)}">
+/* THE GAUGE. Reads the graded close out of the row's own result text, in the
+   forms this file has used: "close printed N", "closed the week at N",
+   "closed at N". Anything else draws nothing. The level is the level as
+   named; the distance is close minus level, which is the fact a stranger
+   wants and the one no row on this page can dispute. */
+const parseNum = t => parseFloat(String(t).replace(/,/g, ""));
+const closeOf = txt => {
+  const m = /(?:close printed|closed the week at|closed at|weekly close printed)\s+([\d,]+(?:\.\d+)?)/i.exec(txt);
+  return m ? parseNum(m[1]) : NaN;
+};
+const gaugeBlock = r => {
+  if (r.grade !== "pass" && r.grade !== "miss") return "";
+  if (String(r.level).includes("/")) return "";
+  const lv = parseNum(r.level), cl = closeOf(r.result);
+  if (!isFinite(lv) || !isFinite(cl) || lv <= 0) return "";
+  const diff = cl - lv, pct = diff / lv * 100;
+  const span = Math.max(1, Math.min(8, Math.abs(pct) * 1.25));      // scale: at least ±1 percent, at most ±8
+  const W = 900, L = 60, R = 840, mid = (L + R) / 2;
+  const x = mid + (pct / span) * (R - L) / 2;
+  const cls = r.grade === "pass" ? "pass" : "miss";
+  const dec = r.metal === "Silver" ? 2 : 2;
+  const fmt = n => n.toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  const side = diff >= 0 ? "above" : "below";
+  return `<div class="gauge"><svg viewBox="0 0 ${W} 40" preserveAspectRatio="none" role="img" aria-label="Level ${esc(r.level)} as named, close ${fmt(cl)}, ${fmt(Math.abs(diff))} ${side} the level">
+    <line x1="${L}" y1="20" x2="${R}" y2="20" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    <line x1="${mid}" y1="4" x2="${mid}" y2="36" stroke="var(--gold)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <line x1="${mid}" y1="20" x2="${x.toFixed(1)}" y2="20" stroke="var(--${cls})" stroke-width="3" vector-effect="non-scaling-stroke"/>
+    <rect x="${(x-5).toFixed(1)}" y="14" width="10" height="12" fill="var(--${cls})"/>
+  </svg><div class="gcap"><span class="ink">level ${esc(r.level)} as named</span><span class="${cls}">close ${fmt(cl)} · ${fmt(Math.abs(diff))} ${side} the level</span></div></div>`;
+};
+
+/* WEEK DIVIDERS. One per naming date, in array order, carrying that week's
+   own grade count. Hidden by the filter when none of its rows is shown. */
+const weekLine = (r, group) => {
+  const held = group.filter(g => g.grade === "pass").length;
+  const wrong = group.filter(g => g.grade === "miss" || g.grade === "partial").length;
+  const nr = group.filter(g => g.grade === "notest").length;
+  const openN = group.filter(g => g.grade === "pending").length;
+  const bits = [];
+  if (held) bits.push(`<b>${held}</b> held`);
+  if (wrong) bits.push(`<b>${wrong}</b> wrong`);
+  if (nr) bits.push(`<b>${nr}</b> never reached`);
+  if (openN) bits.push(`<b>${openN}</b> open`);
+  return `<div class="lweek" data-week="${esc(r.date)}"><span>Named <b>${esc(fmtDate(r.date))}</b></span>${bits.map(b => `<span>${b}</span>`).join("")}</div>`;
+};
+const byDate = {};
+rows.forEach(r => { (byDate[r.date] = byDate[r.date] || []).push(r); });
+let lastDate = null;
+
+document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== lastDate ? (lastDate = r.date, weekLine(r, byDate[r.date])) : "") + `
+  <details class="lrow" id="lrow-${r.idx}" data-grade="${esc(r.group)}" data-week="${esc(r.date)}">
     <summary>
       <span class="s-date">${esc(r.day)} <span>${esc(r.year)}</span></span>
       <span class="s-inst">${esc(r.metal)} <i>${esc(r.type)}</i></span>
@@ -2577,6 +2705,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => `
       <span class="s-chev" aria-hidden="true">&rsaquo;</span>
     </summary>
     <div class="lbody">
+      ${gaugeBlock(r)}
       <div>
         <div class="lab">The call, before the move</div>
         <p>${esc(r.claim)}</p>
@@ -2626,6 +2755,10 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => `
       if (on) shown++;
     });
     if (empty) empty.hidden = shown > 0;
+    list.querySelectorAll(".lweek").forEach(w => {
+      const any = all.some(r => r.dataset.week === w.dataset.week && !r.hidden);
+      w.hidden = !any;
+    });
     const status = document.getElementById("l-status");
     if (status) {
       status.textContent = "Showing " + shown + " of " + all.length +
@@ -2713,14 +2846,36 @@ const carried   = famList.filter(f => f.rows > 1);
 const carriedPass = carried.reduce((a, f) => a + f.pass, 0);
 const carriedBroke = carried.filter(f => f.final === "miss").length;
 
+let noteLevel = "";
 if (pass && carried.length) {
-  note += ` Read by level rather than by week, because one level is re-named every week it survives:` +
+  noteLevel += `Read by level rather than by week, because one level is re-named every week it survives:` +
     ` ${levels} levels have been named here, ${lvHeld} ended held, ${lvBroke} ended broken, ${lvUntested} were never tested.` +
     ` ${carried.length} of those levels were carried across more than one week and produced ${carriedPass} of the ${pass} correct rows above,` +
     ` and ${carriedBroke} of those ${carried.length} finally broke.` +
     ` Both counts are published because the weekly one flatters this desk and the level one does not.`;
 }
 document.getElementById("t-note").textContent = note.trim();
+document.getElementById("t-note-level").textContent = noteLevel.trim();
+
+/* ---------------- the strip ---------------- */
+(function renderStrip(){
+  const host = document.getElementById("strip");
+  if (!host) return;
+  const grp = g => ({ pass:"pass", miss:"miss", partial:"miss", notest:"notest", pending:"open" })[g] || "notest";
+  const word = g => ({ pass:"held", miss:"wrong", partial:"partial, counted as wrong", notest:"never reached", pending:"open" })[g] || "never reached";
+  const idx = CALLS.map((c, i) => ({ c, i })).sort((a, b) => a.c.date.localeCompare(b.c.date) || a.i - b.i);
+  host.innerHTML = idx.map(({ c, i }) => {
+    const pre = c.date < STANDARD_FROM ? " pre" : "";
+    return `<a class="${grp(c.grade)}${pre}" href="#lrow-${i}" title="${esc(fmtDate(c.date))} · ${esc(c.metal)} ${esc(c.level)} · ${word(c.grade)}${pre ? " · pre-standard" : ""}" aria-label="${esc(fmtDate(c.date))} ${esc(c.metal)} ${esc(c.level)}, ${word(c.grade)}"></a>`;
+  }).join("");
+  host.addEventListener("click", e => {
+    const a = e.target.closest("a"); if (!a) return;
+    const row = document.querySelector(a.getAttribute("href"));
+    if (!row) return;
+    const chip = document.querySelector('#lfilter .chip[data-f="all"]'); if (chip && chip.getAttribute("aria-pressed") !== "true") chip.click();
+    row.open = true;
+  });
+})();
 
 /* ---------------- lines on record ---------------- */
 /* Display only, hides nothing, recomputes from the full array every load.
@@ -2758,19 +2913,43 @@ const noteCites = n => rows
   .map(r => `${r.day} ${r.metal} ${r.level}`);
 
 document.getElementById("notes").innerHTML =
+  `<div class="notes-head"><span class="eyebrow" style="margin:0">${NOTES.length} notes · standards in gold, corrections in red</span><button type="button" id="notes-toggle">Open all</button></div>` +
   `<div class="notes">` + NOTES
     .slice()
     .sort((a, b) => a.n.localeCompare(b.n))
     .map(nt => {
       const cites = noteCites(nt.n);
-      return `<div class="note" id="note-${esc(nt.n)}">
-        <span class="n${nt.kind === "correction" ? " red" : ""}">${esc(nt.n)}</span>
-        <p><b>${esc(nt.title)}</b> ${esc(nt.body)}${
+      return `<details class="note" id="note-${esc(nt.n)}">
+        <summary>
+          <span class="n${nt.kind === "correction" ? " red" : ""}">${esc(nt.n)}</span>
+          <span class="nt">${esc(nt.title)}</span>
+          <span class="nc" aria-hidden="true">&rsaquo;</span>
+        </summary>
+        <p>${esc(nt.body)}${
           cites.length
             ? `<span class="cited">Governs ${cites.map(c => `<b>${esc(c)}</b>`).join(", ")}</span>`
             : ""}</p>
-      </div>`;
+      </details>`;
     }).join("") + `</div>`;
+
+/* A note or a row reached by link opens itself; the toggle opens or shuts
+   every note at once. */
+(function noteLinks(){
+  const openTarget = () => {
+    const id = location.hash.slice(1); if (!id) return;
+    const el = document.getElementById(id);
+    if (el && el.tagName === "DETAILS") el.open = true;
+  };
+  window.addEventListener("hashchange", openTarget);
+  openTarget();
+  const t = document.getElementById("notes-toggle");
+  if (t) t.addEventListener("click", () => {
+    const all = Array.from(document.querySelectorAll("details.note"));
+    const anyShut = all.some(d => !d.open);
+    all.forEach(d => { d.open = anyShut; });
+    t.textContent = anyShut ? "Close all" : "Open all";
+  });
+})();
 
 /* ---------------- counts and dates ---------------- */
 document.getElementById("issue-no").textContent = String(CALLS.length).padStart(3, "0");
