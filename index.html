@@ -223,6 +223,34 @@
   .sc-pos{font-size:34px;font-weight:300;line-height:1.06;letter-spacing:-.02em;
     color:var(--ink);margin-top:15px}
   .sc-since{font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--ink-5);margin-top:10px}
+  /* THE PLAIN FACE, 3 Sep 2026. A stranger reads the standing call in one
+     pass: each metal on its own row with the close drawn against its line,
+     a state chip, and what ends the call in plain words. The board graphic,
+     the clocks strip, the marks and the full kill are unchanged and sit
+     behind the fold, which is where the desk language now lives. */
+  .sc-face{margin-top:18px;border-top:1px solid var(--rule-card);padding-top:6px}
+  .sc-row{display:grid;grid-template-columns:132px minmax(0,1fr) 150px;gap:6px 16px;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--rule-card)}
+  .sc-row .m{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  .sc-row .m i{display:block;font-style:normal;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--ink-6);font-size:10.5px;margin-top:3px}
+  .sc-row .g svg{width:100%;height:30px;display:block}
+  .sc-row .g .w{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);margin-top:4px;letter-spacing:.02em}
+  .sc-row .g .w b{font-weight:600;color:var(--ink)}
+  .sc-chip{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:5px 8px;border:1px solid;text-align:center;justify-self:end;min-width:140px;line-height:1.35}
+  .sc-chip.ok{color:var(--pass);border-color:var(--pass)}
+  .sc-chip.warn{color:var(--gold);border-color:var(--gold)}
+  .sc-chip.dead{color:var(--miss);border-color:var(--miss)}
+  .sc-ends{margin-top:14px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+  .sc-ends b{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5);display:block;margin-bottom:4px}
+  .sc-ends em{font-style:italic;color:var(--ink)}
+  .sc-ends .mv{font-family:var(--mono);font-weight:600;color:var(--pass)}
+  .sc-why{font-family:var(--mono);font-size:10.5px;line-height:1.6;color:var(--ink-5);margin-top:6px}
+  .sc-face .sc-gate{display:grid;grid-template-columns:28px 1fr;gap:8px 12px;margin-top:8px}
+  .sc-face .sc-gate .k{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--gold);padding-top:4px}
+  .sc-face .sc-gate p{font-size:15px;line-height:1.5;color:var(--ink-2)}
+  .sc-face .sc-gate p i{display:block;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-5);margin-top:3px}
+  @media(max-width:560px){.sc-row{grid-template-columns:1fr;gap:6px}.sc-chip{justify-self:start}}
   .sc-claim{font-size:15.5px;line-height:1.58;color:var(--ink-2);margin-top:15px}
   .sc-marks{display:flex;flex-direction:column;gap:7px;margin-top:auto;padding-top:18px;
     border-top:1px solid var(--rule-card);font-family:var(--mono);font-size:12.5px;
@@ -1903,7 +1931,7 @@ const CALLS = [
 
 const NOTES = [
   { n:"14", kind:"standard", title:"Copy for the reader, 3 September 2026. The fold, the legend, the standing sentence and the seat door.",
-    body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. The tally note is split into its two counts, by week and by level, side by side. A strip of squares draws every row on the record oldest to newest in its grade colour, each a link to its row. The ledger carries a divider per naming Sunday with that week's grades, and an opened row that states its graded close draws the close against the level as named; a row that does not state a close draws nothing. The notes fold like the rows. A link underline that had been drawing a line through the next row of text is corrected. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
+    body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. The tally note is split into its two counts, by week and by level, side by side. A strip of squares draws every row on the record oldest to newest in its grade colour, each a link to its row. The ledger carries a divider per naming Sunday with that week's grades, and an opened row that states its graded close draws the close against the level as named; a row that does not state a close draws nothing. The standing cards carry a plain face: one row per metal with the close drawn against its own line, a state chip, and what ends the call in plain words; the desk graphic, the clocks and the marks are unchanged behind the fold. The notes fold like the rows. A link underline that had been drawing a line through the next row of text is corrected. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
   { n:"13", kind:"correction", title:"Disclosure, 29 August 2026. Ten of the eighteen correct rows sit on two levels, and both of those levels broke.",
     body:"This page grades one row per week, and the founder's ruling of 16 August gives the Sunday call a row every week even when the level has not moved. The cost of that rule is arithmetic: a level that holds for eight weeks produces eight passes. Until tonight the reader was never told, and the reader is the only person the count is for. Gold 4,098 was named in eight rows between 11 June and 7 August and six of them are graded correct. Silver 61.02 was named in five rows between 7 July and 7 August and four of them are graded correct. That is thirteen of the twenty-seven rows on this page, ten of the eighteen correct rows, and three of the four wrongs. Both levels broke. Gold's kill fired first on 12 July at 4,018.44, which note 03 corrected from a pass to a miss six days later, and the level was named again, held two more weeks, and went for good on the 7 August close. Silver's kill fired on that same close. Both wrong rows are still here, where every wrong row on this page stays. The clearest illustration is note 10. On 21 August this desk graded the silver 61.02 row of 7 July a pass for its own week, two weeks after the level itself had already failed, and that note says the rulings were taken the way the page already rules and not the way that flatters it. That was true of the ruling. It was not true of the arithmetic underneath it. The correct count went up on a level that had already broken, and nothing on the page said so. The desk knew before the reader did, which is the part worth logging. The working comment written into this file on 16 August, the day the rule was made, states that a level holding for ten weeks produces ten passes, calls it the flattery the standing block warns about, and says it is accepted here on purpose. Accepted on purpose is defensible, and the reason given still holds. Accepted on purpose and visible only to whoever opens the source file is a different thing and a worse one. Note 02 has refused since 31 July to average a standing call into the tally, on the ground that a claim running for months and a claim resolving on a Friday cannot share a denominator. That is the same fault. It was sitting inside the weekly rows the whole time, unreached by the rule written to catch it. From tonight the tally is published twice, and the count that makes this desk look worse is printed with it rather than after it. Read by week it is eighteen correct, four wrong, five never tested, twenty-seven rows, unchanged. Read by level it is fourteen levels named, seven ended held, three ended broken, four never tested, with four of those levels carried across more than one week, producing twelve of the eighteen correct rows, and two of those four finally broken. Both figures are derived from the ledger on every load rather than typed, so neither can drift from the rows it counts. The grouping rule is stated so a stranger can reproduce the number without asking. A level family is the metal plus the first number in the level field, whole units for gold and platinum, two decimals for silver. It is deliberately the generous rule. It counts gold 4,305, 4,307 and 4,308 as three separate levels when they are plainly one line moving, so the concentration reported is the smallest defensible figure rather than the largest. A stricter grouping makes this page look worse, not better, and anyone who applies one will find the desk said so first. Why both counts are published and not only the harsher one. Each of those thirteen rows was staged before its week with a kill that could have fired on any Friday, and on three of those Fridays it did. A week that was genuinely at risk and survived is a week that survived, and striking it would be an edit of exactly the kind this page refuses everywhere else. But eight surviving weeks are not eight ideas. They are one idea, tested eight times, that was finally wrong. A reader shown only the weekly number is being told this desk was right eighteen times, when what it did was be right about fewer things for longer. Neither figure alone is the truth, so both stand, each beside its base. No grade changes. Not one. No row is moved, renamed or removed, and the 16 August rule stands, because a weekly claim that resolves at a named close is the thing this page exists to record and refusing to record it would leave most weeks blank. What changes is what a reader can see without opening the file. This is published tonight rather than whenever someone else assembles it, which on this ledger takes about ten minutes with a sort and a pencil, because a page that keeps its wrong calls up forever does not get to keep the flattering arithmetic to itself." },
   { n:"12", kind:"correction", title:"Correction, 29 August 2026. The year-to-year card called a chart read a weekly close.",
@@ -2493,17 +2521,80 @@ function killLede(s) {
    that pass never runs, every card renders as verbose as it rendered
    yesterday: ugly, and complete. Ship them closed and the same failure
    leaves two controls that answer nothing. */
-function foldHtml(s, board) {
+function foldHtml(s, board, extra) {
   const body =
+    (extra || "") +
     `<p class="sc-claim">${esc(s.claim)}</p>` +
     `<span class="kill"><b>Kill, in full</b> ${esc(s.kill)}</span>` +
     (board.foot ? `<p class="sc-bfoot">${esc(board.foot)}</p>` : "");
   if (board.state !== "drawn") return `<div class="sc-open sc-fbody">${body}</div>`;
   return `<details class="sc-fold" open>` +
-    `<summary class="sc-fsum">Read the call in full` +
+    `<summary class="sc-fsum">Read the call in full, with the desk graphic` +
     `<span class="sr-only">: ${esc(s.clock)}</span>` +
     `<span class="sc-fchev" aria-hidden="true">&rsaquo;</span></summary>` +
     `<div class="sc-fbody">${body}</div></details>`;
+}
+
+/* THE PLAIN FACE. Derived from the same board rows the graphic reads, so it
+   cannot say a number the board does not hold. Words only where the data
+   licenses them: the side of the line is arithmetic on the row's own prints,
+   the days are the row's own since date, and what ends the call is the kill
+   event the row names. */
+const plainNum = t => parseFloat(String(t).replace(/,/g, ""));
+function faceRow(r, s) {
+  const line = plainNum(r.line), close = plainNum(r.close);
+  if (!isFinite(line) || !isFinite(close) || line <= 0) return "";
+  const diff = close - line, pct = diff / line * 100;
+  const span = Math.max(1, Math.min(8, Math.abs(pct) * 1.25));
+  const W = 600, L = 20, R = 580, mid = 300;
+  const x = mid + (pct / span) * (R - L) / 2;
+  const above = diff >= 0;
+  const live = r.state === "live";
+  const col = !live ? "miss" : (above ? "pass" : "gold");
+  const chip = !live
+    ? `<span class="sc-chip dead">Ended${r.killedOn ? " " + esc(fmtDate(r.killedOn)) : ""}</span>`
+    : (above ? `<span class="sc-chip ok">Above its line<br>call standing</span>`
+             : `<span class="sc-chip warn">Under its line<br>call standing</span>`);
+  const run = r.since ? runFor(r.since, live ? TODAY : (r.killedOn || s.asOf)) : "";
+  const dec = r.name === "Silver" ? 2 : 2;
+  const f = n => n.toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  return `<div class="sc-row">
+    <div class="m">${esc(r.name)}<i>${live ? "bullish" : "ended"} since ${esc(fmtDate(r.since))}${run ? " · " + esc(run) : ""}</i></div>
+    <div class="g"><svg viewBox="0 0 ${W} 30" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="${L}" y1="15" x2="${R}" y2="15" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <line x1="${mid}" y1="3" x2="${mid}" y2="27" stroke="var(--gold)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      <line x1="${mid}" y1="15" x2="${x.toFixed(1)}" y2="15" stroke="var(--${col})" stroke-width="3" vector-effect="non-scaling-stroke"/>
+      <rect x="${(x-4).toFixed(1)}" y="10" width="8" height="10" fill="var(--${col})"/>
+    </svg><div class="w">closed <b>${esc(r.close)}</b> · <b>${f(Math.abs(diff))}</b> ${above ? "above" : "under"} its line at ${esc(r.line)} (${esc(r.pct)})</div></div>
+    ${chip}
+  </div>`;
+}
+function faceHtml(s, board) {
+  const b = s.board || {};
+  if (board.kind === "state" && Array.isArray(b.rows)) {
+    const rows = b.rows.map(r => faceRow(r, s)).join("");
+    const under = b.rows.filter(r => r.state === "live" && plainNum(r.close) < plainNum(r.line));
+    const why = under.length
+      ? `<p class="sc-why">${esc(under.map(r => r.name).join(" and "))} closed under ${under.length > 1 ? "their lines" : "its line"} at the ${esc(fmtDate(s.asOf))} ${esc(s.read)}. The call still stands, because what ends it is the lines crossing and not a close, and they have not crossed. The weekly row for that metal is a separate call with its own price kill, and it is graded on that kill in the ledger below.</p>`
+      : "";
+    const ends = (b.rows[0] && b.rows[0].killEvent === "cross")
+      ? `<div class="sc-ends"><b>What ends it</b>For each metal, <em>its midline crossing down through its slow line</em>. A close under the line does not end it; the cross does. Each metal ends on its own, and the others stand.</div>`
+      : "";
+    return `<div class="sc-face">${rows}${why}${ends}</div>`;
+  }
+  if (board.kind === "gate" && Array.isArray(b.conds)) {
+    const marks = (s.marks || []).map(m => `${esc(m.name)} is up <span class="mv">${esc(m.move).replace(/^\+/, "")}</span> ${esc(m.from)}`).join(" and ");
+    const conds = b.conds.map((c, i) => {
+      const pairs = (c.pairs || []).map(p => `${esc(p.name)} ${esc(p.pair)}`).join(" · ");
+      return `<span class="k">${i === 0 ? "ONE" : "TWO"}</span><p>${esc(c.label)}${pairs ? `<i>${pairs} at the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</i>` : (c.none ? `<i>no figure published; the condition is drawn because the kill states it</i>` : "")}</p>`;
+    }).join("");
+    return `<div class="sc-face">
+      <div class="sc-ends" style="margin-top:8px">${marks ? `${marks}, at the ${esc(fmtDate(s.asOf))} ${esc(s.read)}. ` : ""}Neither has given back the line that started its run.</div>
+      <div class="sc-ends"><b>What ends it</b><em>Two things, together.</em> Either one alone leaves the call standing.</div>
+      <div class="sc-gate">${conds}</div>
+    </div>`;
+  }
+  return "";
 }
 
 (function renderStanding () {
@@ -2558,16 +2649,14 @@ function foldHtml(s, board) {
     <div class="sc-pos">${esc(s.position)}</div>
     <div class="sc-since">${since}</div>
     ${boardTable(s, board.state === "drawn")}
-    ${board.html}
-    ${clocksHtml(s, board.state === "drawn")}
+    ${faceHtml(s, board)}
     <span class="kill"><b>Kill</b> ${esc(killLede(s))}</span>
-    ${foldHtml(s, board)}
-    <div class="sc-marks">
+    ${foldHtml(s, board, board.html + clocksHtml(s, board.state === "drawn") + `<div class="sc-marks">
       ${s.marksLabel ? `<span class="sc-mlab">${esc(s.marksLabel)}</span>` : ""}
       ${s.marks.map(m => `<span>${esc(m.name)} <b>${esc(m.move)}</b>${
         m.from ? ` <i>${esc(m.from)}</i>` : ""}</span>`).join("")}
       <span class="sc-asof">At the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</span>
-    </div>
+    </div>`)}
   </article>`;
   }).join("");
 
