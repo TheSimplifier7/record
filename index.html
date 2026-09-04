@@ -179,6 +179,63 @@
      graded close as a mark, the distance in words. Drawn only when the close
      is stated in the row's own result text and the level is a single number;
      otherwise nothing is drawn, because nothing is guessed. */
+  .prov{grid-column:1 / -1;display:block;margin-top:4px;padding-top:12px;border-top:1px solid var(--rule-soft);
+    font-family:var(--mono);font-size:10.5px;line-height:1.7;letter-spacing:.03em;color:var(--ink-5)}
+  .prov a{color:var(--gold);padding:12px 6px;margin:-12px -6px;display:inline-block;text-decoration:underline;text-underline-offset:3px;border-bottom:none}
+
+  /* THE LADDER, 4 Sep 2026. Every level ever named, per metal, on one
+     horizontal price line. Levels within half a percent join one band and
+     read as a range. Band colour is the last grade; the words carry the full
+     count. Labels alternate between two shelves above the line. Derived from
+     the rows, nothing typed. */
+  .ladder{display:grid;gap:14px;margin-top:22px}
+  .lx{border:1px solid var(--rule-card);border-radius:12px;background:var(--panel);padding:14px 18px 12px}
+  .lx-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .lx-head h4{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+  .lx-head span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-5)}
+  .lx-plot{position:relative;height:184px;margin-top:6px}
+  .lx-axis{position:absolute;left:0;right:0;top:130px;border-top:1px solid var(--rule)}
+  .lx-tick{position:absolute;top:130px;height:6px;border-left:1px solid var(--rule)}
+  .lx-tick span{position:absolute;top:9px;left:0;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;color:var(--ink-6);white-space:nowrap}
+  .lx-band{position:absolute;top:118px;height:24px;min-width:4px;transform:translateX(-2px);background:var(--ink-6)}
+  .lx-band.pass{background:var(--pass)} .lx-band.miss{background:var(--miss)}
+  .lx-band.notest{background:transparent;border-left:3px dashed var(--ink-6);min-width:0}
+  .lx-lead{position:absolute;width:0;border-left:1px solid var(--rule)}
+  .lx-lead.a{top:78px;height:40px} .lx-lead.b{top:44px;height:74px} .lx-lead.c{top:10px;height:108px}
+  .lx-lab{position:absolute;font-family:var(--mono);white-space:nowrap;padding-left:6px;line-height:1.3}
+  .lx-lab.a{top:74px} .lx-lab.b{top:40px} .lx-lab.c{top:6px}
+  .lx-lab.flip{transform:translateX(-100%);padding-left:0;padding-right:6px;text-align:right}
+  .lx-lab b{display:block;font-size:12.5px;font-weight:600}
+  .lx-lab b.pass{color:var(--pass)} .lx-lab b.miss{color:var(--miss)} .lx-lab b.notest{color:var(--ink-4)}
+  .lx-lab span{display:block;font-size:9.5px;color:var(--ink-5);letter-spacing:.02em}
+  .lx-close{position:absolute;top:130px}
+  .lx-close i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;background:var(--ink);transform:rotate(45deg)}
+  .lx-close span{position:absolute;left:10px;top:20px;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--ink);white-space:nowrap}
+  .lx-close.flip span{left:auto;right:10px}
+  .ladder-key .k{display:inline-block;width:14px;height:0;border-top:2.5px solid var(--ink-6);margin-right:6px;vertical-align:3px}
+  .ladder-key .k.pass{border-color:var(--pass)} .ladder-key .k.miss{border-color:var(--miss)} .ladder-key .k.notest{border-top-style:dashed}
+  .ladder-key{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5);margin-top:10px;display:flex;gap:18px;flex-wrap:wrap}
+  .lx-list{display:none;list-style:none;margin-top:8px}
+  .lx-list li{display:grid;grid-template-columns:14px 1fr;gap:2px 10px;padding:8px 0;border-top:1px solid var(--rule-card);align-items:baseline;font-family:var(--mono)}
+  .lx-list li i{width:12px;height:0;border-top:2.5px solid var(--ink-6);align-self:center}
+  .lx-list li i.pass{border-color:var(--pass)} .lx-list li i.miss{border-color:var(--miss)} .lx-list li i.notest{border-top-style:dashed}
+  .lx-list li b{font-size:12.5px;font-weight:600} .lx-list li b.pass{color:var(--pass)} .lx-list li b.miss{color:var(--miss)} .lx-list li b.notest{color:var(--ink-4)}
+  .lx-list li span{grid-column:2;font-size:10px;color:var(--ink-5)}
+  .lx-list li.lx-lc i{width:9px;height:9px;background:var(--ink);border:none;transform:rotate(45deg)}
+  @media(max-width:640px){.lx-plot{display:none}.lx-list{display:block}}
+
+  /* THE FOUR WRONG, 4 Sep 2026. The misses, above the ledger, each with the
+     first words of its own result. Derived from the rows. */
+  .wrong-wrap{margin-top:22px;border:1px solid var(--miss);border-radius:12px;padding:16px 18px 6px;background:var(--panel)}
+  .wrong-wrap .eyebrow{color:var(--miss);margin-bottom:10px}
+  .wrong{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;padding:12px 0;border-top:1px solid var(--rule-card)}
+  .wrong:first-of-type{border-top:none}
+  .wrong .w-id{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.6}
+  .wrong .w-id i{display:block;font-style:normal;font-weight:400;color:var(--ink-5);font-size:10.5px}
+  .wrong .w-id b{color:var(--miss);font-size:15px}
+  .wrong p{font-size:14.5px;line-height:1.6;color:var(--ink-3)}
+  .wrong p a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;border-bottom:none}
+  @media(max-width:560px){.wrong{grid-template-columns:1fr}}
   .gauge{grid-column:1 / -1;padding:14px 0 6px;border-bottom:1px solid var(--rule-soft);margin-bottom:6px}
   .gauge svg{width:100%;height:40px;display:block}
   .gauge .gcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px;
@@ -1091,6 +1148,14 @@
   <p class="next-verdict" id="next-verdict"></p>
 
   <div class="ledger-head">
+    <h2>The Ladder</h2>
+    <span class="cnt">Every level named, on the price axis</span>
+  </div>
+  <p class="sc-plain" style="margin-bottom:0">The ledger reads by date. This reads by price: <em>every line this page has ever named, where it sits, how many weeks it was named, and how the last week that carried it ended</em>. The diamond is the last close on the standing cards.</p>
+  <div class="ladder" id="ladder"></div>
+  <div class="ladder-key"><span><i class="k pass"></i>ended held</span><span><i class="k miss"></i>ended wrong</span><span><i class="k notest"></i>never reached</span><span>diamond: the last close on the standing cards</span></div>
+
+  <div class="ledger-head">
     <h2>Standing Calls</h2>
     <span class="cnt">The direction, and what would end it</span>
   </div>
@@ -1109,6 +1174,11 @@
        here, disclosed in note 11, old text kept above, which is where this
        file keeps copy it has replaced. -->
   <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it, and when one metal inside a two-metal call ends, the end is written into the call and the call stays. Gold has been bearish since 13 March. That structure ended on the 7 August close, the swing clock turned bullish the same night, and it is bullish still. Silver turned bullish on the 21 August close and closed under its line on 28 August without the structure turning, so the claim stands: from 29 August this page dates a swing turn by the epoch midline crossing the slow mean reversion line, never by a price close, which is the standard the secular clock has run on since 1 August. The weekly rows keep their own published price kills and are graded on them, which is why the silver row of 23 August grades wrong and stays. Platinum's first row on this page passed at the same close and on the same rule, and its swing clock runs from the 19 August close. See notes 06, 08, 10 and 11.</p>
+
+  <div class="wrong-wrap" id="wrong-wrap">
+    <div class="eyebrow">The ones this desk got wrong</div>
+    <div id="wrong-list"></div>
+  </div>
 
   <div class="ledger-head">
     <h2>The Ledger</h2>
@@ -1191,7 +1261,7 @@
         <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
         <button class="btn" type="submit">Send it</button>
       </form>
-      <p class="cadence">One email Sunday, one email Friday, nothing else.</p>
+      <p class="cadence">One email Sunday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
       <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
     </div>
 
@@ -1233,6 +1303,7 @@
         <div class="foot-meta">
           <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
           <span>Last updated <span id="updated-foot"></span></span>
+          <span>The record as data · <a href="record.json">record.json</a></span>
         </div>
       </div>
       <div>
@@ -1313,6 +1384,49 @@
    ========================================================================= */
 
 const LAST_UPDATED  = "2026-08-29";   /* set by hand, with the commit */
+
+/* =========================================================================
+   PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
+
+   Keyed by the naming date the rows carry, because every row named on one
+   Sunday is graded at the same Friday close and written in the same commit.
+   graded is the date of the close the row was graded against, always the
+   23:00 CEST close. written is the date of the commit, commit its short
+   hash, both read off the repository's own history, so the timestamp a
+   reader checks is GitHub's and not this desk's. Rows named before the
+   standard of 3 July carry no grade commit of their own: they were carried
+   in the record's first upload of 30 June, and say so.
+
+   A row whose date is missing here renders no provenance line rather than
+   a guessed one. Add the new Sunday here every Friday, with the hash.
+   ========================================================================= */
+const REPO = "https://github.com/TheSimplifier7/record";
+const PROVENANCE = {
+  "2026-08-23": { graded:"2026-08-28", written:"2026-08-29", commit:"2e4ddff" },
+  "2026-08-16": { graded:"2026-08-21", written:"2026-08-21", commit:"a0e26cb" },
+  "2026-08-14": { graded:"2026-08-14", written:"2026-08-16", commit:"38fdc34" },
+  "2026-08-07": { graded:"2026-08-07", written:"2026-08-08", commit:"5d671f6" },
+  "2026-07-27": { graded:"2026-07-31", written:"2026-07-31", commit:"c03276a" },
+  "2026-07-21": { graded:"2026-07-24", written:"2026-07-25", commit:"3d124fa" },
+  "2026-07-12": { graded:"2026-07-17", written:"2026-07-18", commit:"a500967" },
+  "2026-07-08": { graded:"2026-07-10", written:"2026-07-11", commit:"093f6ae" },
+  "2026-07-07": { graded:"2026-07-10", written:"2026-07-11", commit:"093f6ae" },
+  "2026-07-05": { graded:"2026-07-10", written:"2026-07-11", commit:"093f6ae" },
+  "2026-06-29": { graded:"2026-07-03", written:"2026-07-04", commit:"7e9b339" },
+  "2026-06-22": { first:"2026-06-30" },
+  "2026-06-15": { first:"2026-06-30" },
+  "2026-06-11": { first:"2026-06-30" },
+  "2026-06-07": { first:"2026-06-30" }
+};
+const provenanceLine = date => {
+  const p = PROVENANCE[date];
+  if (!p) return "";
+  if (p.first) {
+    const url = `${REPO}/commits/main?since=${p.first}&until=${p.first}`;
+    return `<span class="prov">Published with the record\'s first upload, ${esc(fmtDate(p.first))} · <a href="${url}">the commits of that day</a></span>`;
+  }
+  return `<span class="prov">Graded on the ${esc(fmtDate(p.graded))} close, 23:00 CEST · written to the record ${esc(fmtDate(p.written))} · <a href="${REPO}/commit/${esc(p.commit)}">commit ${esc(p.commit)}</a></span>`;
+};
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 /* =========================================================================
@@ -1341,7 +1455,11 @@ const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 
 const DOORS = {
   kit:   "https://app.kit.com/forms/9787640/subscriptions",
-  tally: "https://tally.so/r/EkVxJA"
+  tally: "https://tally.so/r/EkVxJA",
+  /* 3. sample  A public link to one past Sunday email, so a stranger reads
+              what lands before handing over an address. Blank hides the
+              line. Added 4 Sep 2026. */
+  sample: ""
 };
 
 /* =========================================================================
@@ -1930,6 +2048,8 @@ const CALLS = [
    ========================================================================= */
 
 const NOTES = [
+  { n:"15", kind:"standard", title:"Provenance per row, the ladder, and the record as data, 4 September 2026.",
+    body:"Every graded row now names the close it was graded on, the date it was written to this file, and the commit that wrote it, linked to the repository so the timestamp a reader checks is GitHub\'s and not this desk\'s. Rows named before the standard of 3 July were carried in the record\'s first upload of 30 June and say so instead. A ladder above the standing calls draws every level ever named on the price axis, per metal, with how many weeks it was named and how the last week that carried it ended, derived from the rows. The misses are gathered above the ledger with the first words of their own results. The ledger is also published as record.json beside this page, so anyone can check the arithmetic without trusting the page that states it." },
   { n:"14", kind:"standard", title:"Copy for the reader, 3 September 2026. The fold, the legend, the standing sentence and the seat door.",
     body:"Four pieces of copy on this page were rewritten for a stranger arriving from a post rather than for the desk that keeps it. The opening line now names the reader's own experience before it states the rule. A legend under the tally defines held, wrong, never reached and kill in plain words. One plain sentence sits above the standing cards. The seat door says what a person can do at the end of twelve weeks rather than how the programme is structured, and moves the structure to the terms page. A next verdict line is derived from the Updated stamp. The tally note is split into its two counts, by week and by level, side by side. A strip of squares draws every row on the record oldest to newest in its grade colour, each a link to its row. The ledger carries a divider per naming Sunday with that week's grades, and an opened row that states its graded close draws the close against the level as named; a row that does not state a close draws nothing. The standing cards carry a plain face: one row per metal with the close drawn against its own line, a state chip, and what ends the call in plain words; the desk graphic, the clocks and the marks are unchanged behind the fold. The notes fold like the rows. A link underline that had been drawing a line through the next row of text is corrected. No call, no grade, no figure, no kill and no date in the ledger was touched. The replaced copy is kept in the source beside the new, which is where this file keeps everything it replaces." },
   { n:"13", kind:"correction", title:"Disclosure, 29 August 2026. Ten of the eighteen correct rows sit on two levels, and both of those levels broke.",
@@ -2805,6 +2925,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
         <div class="lab">What price did</div>
         <p class="res">${linkNotes(esc(r.result))}</p>
       </div>
+      ${provenanceLine(r.date)}
     </div>
   </details>`).join("");
 
@@ -2966,6 +3087,115 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
   });
 })();
 
+/* ---------------- the ladder ---------------- */
+/* Every level ever named, per metal, on one horizontal price line. Levels
+   within half a percent of each other join one band and are labelled as a
+   range, so a moving line named three ways over three weeks reads as one
+   thing. The band colour is the last grade it received; the words carry the
+   full count. Labels alternate between two shelves above the line so none
+   overprints. Derived from the rows, nothing typed. */
+(function renderLadder(){
+  const host = document.getElementById("ladder");
+  if (!host) return;
+  const num = t => parseFloat(String(t).replace(/,/g, ""));
+  const lastClose = {};
+  try {
+    (STANDING[0].board.rows || []).forEach(r => { lastClose[r.name] = { v: num(r.close), asOf: STANDING[0].asOf, txt: r.close }; });
+  } catch (e) {}
+  const metals = ["Gold", "Silver", "Platinum"];
+  const byMetal = {};
+  CALLS.slice().sort((a, b) => a.date.localeCompare(b.date)).forEach(c => {
+    String(c.level).split("/").map(t => t.trim()).filter(Boolean).forEach(lv => {
+      const m = byMetal[c.metal] = byMetal[c.metal] || {};
+      const e = m[lv] = m[lv] || { lv, v: num(lv), n: 0, grades: [], lastDate: c.date };
+      e.n++; e.grades.push(c.grade); e.lastDate = c.date;
+    });
+  });
+  const cls = g => g === "pass" ? "pass" : (g === "miss" || g === "partial") ? "miss" : "notest";
+  const tickFmt = (v, metal) => metal === "Silver" ? v.toFixed(0) : Math.round(v).toLocaleString("en-GB");
+  function niceStep(raw) {
+    const p = Math.pow(10, Math.floor(Math.log10(raw)));
+    const m = raw / p;
+    return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p;
+  }
+  host.innerHTML = metals.map(metal => {
+    const levels = Object.values(byMetal[metal] || {}).filter(e => isFinite(e.v)).sort((a, b) => a.v - b.v);
+    if (!levels.length) return "";
+    const bands = [];
+    levels.forEach(e => {
+      const last = bands[bands.length - 1];
+      if (last && (e.v - last.hi) / last.hi < 0.005) { last.hi = e.v; last.hiStr = e.lv; last.members.push(e); }
+      else bands.push({ lo: e.v, hi: e.v, loStr: e.lv, hiStr: e.lv, members: [e] });
+    });
+    bands.forEach(bd => {
+      bd.weeks = bd.members.reduce((a, e) => a + e.n, 0);
+      const gs = bd.members.flatMap(e => e.grades);
+      bd.held = gs.filter(g => g === "pass").length;
+      bd.wrong = gs.filter(g => g === "miss" || g === "partial").length;
+      bd.nr = gs.filter(g => g === "notest").length;
+      const latest = bd.members.slice().sort((a, b) => b.lastDate.localeCompare(a.lastDate))[0];
+      bd.last = latest.grades[latest.grades.length - 1];
+      bd.label = bd.members.length > 1 ? `${bd.loStr} to ${bd.hiStr}` : bd.loStr;
+    });
+    const lc = lastClose[metal];
+    const vals = bands.flatMap(bd => [bd.lo, bd.hi]).concat(lc && isFinite(lc.v) ? [lc.v] : []);
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const range = (hi - lo) || hi * 0.04;
+    const left = lo - range * 0.10, right = hi + range * 0.10;
+    const x = v => ((v - left) / (right - left) * 100);
+    const step = niceStep((right - left) / 5);
+    const ticks = [];
+    for (let t = Math.ceil(left / step) * step; t <= right; t += step) ticks.push(t);
+    const axis = ticks.map(t => `<div class="lx-tick" style="left:${x(t).toFixed(2)}%"><span>${esc(tickFmt(t, metal))}</span></div>`).join("");
+    const bandsHtml = bands.map((bd, i) => {
+      const l = x(bd.lo), w = Math.max(0.35, x(bd.hi) - x(bd.lo));
+      const shelf = ["a", "b", "c"][i % 3];
+      const flip = l > 72 ? " flip" : "";
+      const parts = [];
+      if (bd.held) parts.push(`${bd.held} held`);
+      if (bd.wrong) parts.push(`${bd.wrong} wrong`);
+      if (bd.nr) parts.push(`${bd.nr} never reached`);
+      return `<div class="lx-band ${cls(bd.last)}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%"></div>
+        <div class="lx-lead ${shelf}" style="left:${l.toFixed(2)}%"></div>
+        <div class="lx-lab ${shelf}${flip}" style="left:${l.toFixed(2)}%"><b class="${cls(bd.last)}">${esc(bd.label)}</b><span>${bd.weeks} ${bd.weeks === 1 ? "week" : "weeks"}${bd.members.length > 1 ? ", " + bd.members.length + " lines" : ""} · ${esc(parts.join(", "))}</span></div>`;
+    }).join("");
+    const closeHtml = lc && isFinite(lc.v)
+      ? `<div class="lx-close${x(lc.v) > 72 ? " flip" : ""}" style="left:${x(lc.v).toFixed(2)}%"><i></i><span>close ${esc(lc.txt)} · ${esc(fmtDate(lc.asOf))}</span></div>` : "";
+    const sr = bands.map(bd => `${bd.label}: ${bd.weeks} weeks, ${bd.held} held, ${bd.wrong} wrong, ${bd.nr} never reached`).join("; ");
+    /* the same bands as a list, shown in place of the plot on narrow screens */
+    const listHtml = `<ul class="lx-list">` + bands.slice().reverse().map(bd => {
+      const parts = [];
+      if (bd.held) parts.push(`${bd.held} held`);
+      if (bd.wrong) parts.push(`${bd.wrong} wrong`);
+      if (bd.nr) parts.push(`${bd.nr} never reached`);
+      return `<li><i class="${cls(bd.last)}"></i><b class="${cls(bd.last)}">${esc(bd.label)}</b><span>${bd.weeks} ${bd.weeks === 1 ? "week" : "weeks"} · ${esc(parts.join(", "))}</span></li>`;
+    }).join("") + (lc ? `<li class="lx-lc"><i></i><b>close ${esc(lc.txt)}</b><span>${esc(fmtDate(lc.asOf))}</span></li>` : "") + `</ul>`;
+    return `<div class="lx"><div class="lx-head"><h4>${esc(metal)}</h4><span>${levels.length} ${levels.length === 1 ? "line" : "lines"} named on the record</span></div>
+      <div class="lx-plot" role="img" aria-label="${esc(metal)} levels on a price line: ${esc(sr)}">${axis}<div class="lx-axis"></div>${bandsHtml}${closeHtml}</div>${listHtml}</div>`;
+  }).join("");
+})();
+
+/* ---------------- the ones this desk got wrong ---------------- */
+(function renderWrong(){
+  const host = document.getElementById("wrong-list");
+  const wrap = document.getElementById("wrong-wrap");
+  if (!host) return;
+  const misses = rows.filter(r => r.grade === "miss" || r.grade === "partial");
+  if (!misses.length) { if (wrap) wrap.hidden = true; return; }
+  const firstWords = t => {
+    const parts = String(t).split(/(?<=[.])\s+(?=[A-Z])/);
+    return parts.slice(0, 2).join(" ").trim();
+  };
+  host.innerHTML = misses.map(r => `<div class="wrong">
+    <div class="w-id"><b>${esc(r.metal)} ${esc(r.level)}</b><i>named ${esc(r.day)} ${esc(r.year)} · ${esc(r.type)}</i></div>
+    <p>${linkNotes(esc(firstWords(r.result)))} <a href="#lrow-${r.idx}">Read the row.</a></p>
+  </div>`).join("");
+  host.addEventListener("click", e => {
+    const a = e.target.closest("a[href^='#lrow-']"); if (!a) return;
+    const row = document.querySelector(a.getAttribute("href")); if (row) row.open = true;
+  });
+})();
+
 /* ---------------- lines on record ---------------- */
 /* Display only, hides nothing, recomputes from the full array every load.
    Compound levels such as "4,098 / 4,307" count toward both. Only lines
@@ -3084,6 +3314,10 @@ document.getElementById("updated-foot").textContent = stamp;
   const emailReady = live(DOORS.kit);
   const applyReady = live(DOORS.tally);
 
+  if (live(DOORS.sample)) {
+    const el = document.getElementById("door-sample");
+    if (el) { el.setAttribute("href", DOORS.sample.trim()); el.hidden = false; }
+  }
   if (emailReady) {
     document.getElementById("signup-form").setAttribute("action", DOORS.kit.trim());
     document.getElementById("door-email").setAttribute("data-ready", "1");
