@@ -140,19 +140,21 @@
   <h2>The record, which is the whole point</h2>
   <div class="record">
     <div class="k">Public, dated, and never edited</div>
-    <div class="tally">
-      <div><b>24</b><span>Rows on record</span></div>
-      <div class="t-pass"><b>16</b><span>Correct</span></div>
-      <div class="t-miss"><b>3</b><span>Wrong, still published</span></div>
-      <div><b>5</b><span>Never tested</span></div>
-    </div>
+    <!-- TALLY REPLACED 5 Sep 2026. This read, hard-coded:
+           24 rows on record · 16 correct · 3 wrong · 5 never tested
+         and the record read 29 · 20 · 4 · 5 the day it was caught, so a
+         producer opening this page was shown a ledger three weeks stale.
+         The figures now come from record.json at load, through the same
+         embed any publisher can use. Old markup kept above, where this
+         desk keeps everything it replaces. -->
+    <script src="record-embed.js" data-rows="2" async></script>
     <div class="url"><a href="https://thesimplifier7.github.io/record/">thesimplifier7.github.io/record</a></div>
   </div>
 
   <h2>Three segments he can carry</h2>
   <ol>
-    <li><b>The three calls that were wrong, and why the kill condition mattered more than the call.</b>
-    <span>Nobody in this sector publishes what would prove them wrong. He walks through the ones that fired.</span></li>
+    <li><b>The calls that were wrong, and why the kill condition mattered more than the call.</b>
+    <span>Nobody in this sector publishes what would prove them wrong. He walks through <a href="misses.html">the ones that fired</a>, with their kills and their closes.</span></li>
     <li><b>What an institutional gold desk does that retail never sees.</b>
     <span>Ten years of it, told as process rather than nostalgia.</span></li>
     <li><b>Why the fastest book is the smallest and opens last.</b>

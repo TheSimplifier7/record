@@ -29,10 +29,14 @@ const STANDING = literal("STANDING");
 const NOTES = literal("NOTES");
 let PROVENANCE = {};
 try { PROVENANCE = literal("PROVENANCE"); } catch (e) {}
+/* 5 Sep 2026: the crowd and guest arrays. Both may be empty. Neither is in the tally. */
+let CROWD = [], GUEST = [];
+try { CROWD = literal("CROWD"); } catch (e) {}
+try { GUEST = literal("GUEST"); } catch (e) {}
 const LAST_UPDATED = scalar("LAST_UPDATED");
 const STANDARD_FROM = scalar("STANDARD_FROM");
 
-const grades = { pass: "held", miss: "wrong", partial: "partial, counted as wrong", notest: "never reached", pending: "open" };
+const grades = { pass: "held", miss: "wrong", partial: "partial, counted as wrong", notest: "never reached", pending: "open", nokill: "no kill possible" };
 const rows = CALLS.map((c, i) => {
   const parts = String(c.call).split(/\s*Kill:\s*/i);
   const p = PROVENANCE[c.date] || {};
@@ -79,7 +83,15 @@ const out = {
     board: s.board && s.board.rows ? s.board.rows.map(r => ({ metal: r.name, line: r.line, close: r.close, distance: r.dist, pct: r.pct, since: r.since, state: r.state })) : null,
     marks: s.marks || null
   })),
-  notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body }))
+  notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body })),
+  crowd: {
+    note: "Claims made in public by others, quoted exactly, given the kill they were published without, graded on the same close. Not this desk's calls. Not in the tally. See note 18.",
+    rows: CROWD.map((c, i) => ({ id: "crow-" + i, published: c.date, source: c.source, quote: c.quote, link: c.link, metal: c.metal, kill_assigned: c.kill, graded_on_close: c.gradeDate || null, result: c.result || null, grade: c.grade, grade_word: grades[c.grade] || c.grade }))
+  },
+  guest: {
+    note: "Levels submitted by others, graded by this desk's standard on the same close. Eight per week. Not in the tally. See note 18.",
+    rows: GUEST.map((g, i) => ({ id: "grow-" + i, named: g.date, handle: g.handle, metal: g.metal, level: g.level, kill: g.kill, named_at_close: g.namedAt || null, result: g.result || null, grade: g.grade, grade_word: grades[g.grade] || g.grade }))
+  }
 };
 fs.writeFileSync("record.json", JSON.stringify(out, null, 2) + "\n");
-console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally));
+console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally) + ", crowd " + CROWD.length + ", guest " + GUEST.length);

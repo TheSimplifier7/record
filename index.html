@@ -958,6 +958,21 @@
   .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
   .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   .chip .n{font-weight:500;opacity:.7;margin-left:6px}
+  /* crowd and guest sections, 5 Sep 2026. Same row grammar as the ledger,
+     marked apart by a rule in gold so a reader never mistakes them for the
+     desk's own rows. */
+  .crowd,.guest{margin-top:44px;padding-top:6px;border-top:2px solid var(--gold)}
+  .crowd .lrow,.guest .lrow{border-left:3px solid var(--gold)}
+  .crowd .lrow summary,.guest .lrow summary{padding-left:14px}
+  .crowd .lrow .lbody,.guest .lrow .lbody{padding-left:14px}
+  .quote{font-style:italic;color:var(--ink-2)}
+  .quote a{font-style:normal;font-family:var(--mono);font-size:11px;margin-left:6px}
+  .assigned{font-family:var(--mono);font-size:11.5px;color:var(--ink-4);margin-top:8px}
+  .guest-invite{margin:14px 0 6px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .guest-invite .fine{font-family:var(--mono);font-size:10.5px;color:var(--ink-5)}
+  /* countdown on an open row, 5 Sep 2026 */
+  .countdown,.lbody p.countdown{font-family:var(--mono);font-size:11px;line-height:1.5;font-weight:600;letter-spacing:.06em;color:var(--pending);margin-top:8px}
+  .countdown.due,.lbody p.countdown.due{color:var(--gold)}
   .lempty{font-family:var(--mono);font-size:12.5px;line-height:1.8;
     color:var(--ink-5);padding:28px 14px}
 
@@ -1246,6 +1261,35 @@
   <p class="lempty" id="l-empty" hidden>No rows under that filter. Nothing has been removed. Choose All to see the whole record.</p>
 
   <!-- ====================================================================
+       GRADED FROM THE CROWD  ·  added 5 Sep 2026  ·  note 18
+       Renders nothing while the CROWD array is empty. Never in the tally.
+       ==================================================================== -->
+  <section class="crowd" id="crowd" hidden aria-label="Graded from the crowd">
+    <div class="ledger-head">
+      <h2>Graded from the crowd</h2>
+      <span class="cnt" id="crowd-count"></span>
+    </div>
+    <p class="sc-plain">A claim made in public, quoted exactly, given the kill it was published without, and graded on the same close as every row above. <em>The claim, never the person.</em> These are not this desk's calls and they are not in the tally.</p>
+    <div class="ledger-list" id="crowd-list"></div>
+  </section>
+
+  <!-- ====================================================================
+       THE GUEST LEDGER  ·  added 5 Sep 2026  ·  note 18
+       Renders nothing while GUEST is empty and GUEST_FORM is blank. Never in
+       the tally. Eight rows per naming week, the rest held over and counted.
+       ==================================================================== -->
+  <section class="guest" id="guest" hidden aria-label="The guest ledger">
+    <div class="ledger-head">
+      <h2>The guest ledger</h2>
+      <span class="cnt" id="guest-count"></span>
+    </div>
+    <p class="sc-plain">Other people's levels, graded here by the same rule on the same close. <em>A metal, a level and the weekly close that proves it wrong, submitted before Sunday's close, graded Friday, kept whichever way it went.</em> Eight a week. Not in the tally.</p>
+    <p class="guest-invite" id="guest-invite" hidden><a class="btn" id="guest-link" href="#">Submit a level for Friday</a> <span class="fine">Metal, level, kill. Nothing else is read.</span></p>
+    <div class="ledger-list" id="guest-list"></div>
+    <p class="lempty" id="guest-heldover" hidden></p>
+  </section>
+
+  <!-- ====================================================================
        THE TWO DOORS
 
        The ledger above is the argument. These are only the ways out of it,
@@ -1318,6 +1362,8 @@
           <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
           <span>Last updated <span id="updated-foot"></span></span>
           <span>The record as data · <a href="record.json">record.json</a></span>
+          <span>The record on your page · <a href="embed.html">one script tag</a></span>
+          <span>The wrong ones · <a href="misses.html">in full</a></span>
         </div>
       </div>
       <div>
@@ -1489,6 +1535,29 @@ const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
    and confirm the address lands in Kit. An endpoint that is present but
    wrong is the one failure this file cannot detect for you.
    ========================================================================= */
+
+/* =========================================================================
+   THE COUNTER  ·  added 5 September 2026
+
+   Until today the most important asset this brand owns had no idea how many
+   people read it. A page that grades itself to the cent and cannot count its
+   own readers is missing the one number every other decision depends on.
+
+   GoatCounter: open source, no cookies, no personal data, one script tag.
+   Same fail-closed rule as the doors: blank string, nothing loads. Only an
+   https URL loads anything. Nothing about the tally, the rows or the grades
+   depends on it in any way.
+   ========================================================================= */
+const COUNTER = "";   /* e.g. "https://thesimplifier.goatcounter.com/count". Blank = off. */
+
+/* =========================================================================
+   THE GUEST FORM  ·  added 5 September 2026
+
+   Where a stranger submits a level and its kill for the guest ledger below.
+   Blank hides the invitation; the guest section still renders any rows that
+   exist. Only https loads.
+   ========================================================================= */
+const GUEST_FORM = "";   /* a Tally URL. Blank = no invitation shown. */
 
 const DOORS = {
   kit:   "https://app.kit.com/forms/9787640/subscriptions",
@@ -2111,7 +2180,87 @@ const CALLS = [
          "correction"  something the desk got wrong, or a disclosure
    ========================================================================= */
 
+/* =========================================================================
+   GRADED FROM THE CROWD  ·  added 5 September 2026  ·  see note 18
+
+   The thesis line at the top of this page is about other people's calls:
+   the ones that were wrong and disappeared. This array is where one of them,
+   now and then, does not disappear.
+
+   THE RULES. They are the whole point and none of them bends.
+   1. The claim, never the person. The handle is recorded because a quote
+      without a source is a fabrication, and then the person is not mentioned
+      again. No adjective about the account, its record, its motives or its
+      audience appears anywhere in the row or in any post built from it.
+   2. Exact quote. Copied, not paraphrased, with the link to the post. If the
+      post is later deleted, the row says so and the screenshot stands.
+   3. The kill is ASSIGNED BY THIS DESK and the rule for assigning it is
+      stated in the row, because the original claim did not carry one. That
+      is the finding, and it is stated as a finding, not as a taunt: "this
+      claim was published without the condition that would prove it wrong."
+   4. Graded on the same TVC close, the same Friday, the same words, as
+      every row above. Held, wrong, never reached. Nothing softer.
+   5. NEVER ENTERS THE TALLY. These are not this desk's calls. Same principle
+      as the standing calls under note 02: a different object, graded
+      separately, never averaged in.
+   6. When this desk has a miss of its own in the same week, that miss is
+      named in the same post, first. A crowd grade published from a clean
+      sheet is a stone thrown; published beside your own wrong row it is a
+      standard applied.
+   7. One claim per edition, and only when the material is there. The
+      section renders nothing when this array is empty, and empty is fine.
+
+   Fields: date (the day the claim was published), source (handle), quote
+   (exact), link, metal, kill (assigned, with its rule), gradeDate, result,
+   grade (pass | miss | notest | pending).
+   ========================================================================= */
+const CROWD = [
+];
+
+/* =========================================================================
+   THE GUEST LEDGER  ·  added 5 September 2026  ·  see note 18
+
+   Other people's levels, graded here, by the same rule, on the same close.
+   A stranger submits a metal, a level and the weekly close that would prove
+   it wrong, before Sunday's close. On Friday it is graded in the same three
+   words as everything above it and it stays, whichever way it went.
+
+   Why this exists. A record kept by one man is a diary. A record where
+   strangers are graded as hard as the owner is a standard, and the only
+   proof a standard is neutral is a stranger graded wrong on it, in public,
+   next to the owner's own wrong rows.
+
+   THE RULES.
+   1. A submission carries a metal, a level and a kill, or it is not a row.
+      "Bullish" is not a level. "Gold higher" is not a kill.
+   2. Graded on the TVC close at 23:00 CEST Friday, against the level as
+      submitted, by the desk's own standard: held, wrong, never reached.
+   3. At most EIGHT rows per naming week, in the order received. The rest
+      are held over and the section says how many. The cap keeps this page
+      readable and keeps it this desk's page.
+   4. Never enters the tally. Same reason as CROWD.
+   5. A guest row is never deleted, never edited after grading, and never
+      gets a video. The page is the whole reward.
+   6. The desk does not comment on a guest's level. It grades it.
+
+   7. EVERY GUEST ROW STATES HOW FAR THE LEVEL WAS FROM PRICE WHEN NAMED.
+      namedAt is the metal's last close on the naming Sunday, read off the
+      desk's chart, and the row prints the distance. Without it a level
+      parked eight percent from price collects a free "held" every week and
+      the section fills with cheap green. Note 13 exists to refuse exactly
+      that arithmetic on this desk's own rows; the guests do not get a softer
+      rule. A row without namedAt still renders, and says the distance was
+      not recorded, which is its own disclosure.
+
+   Fields: date (the naming Sunday), handle, metal, level, kill, namedAt
+   (the Sunday close), result, grade (pass | miss | notest | pending).
+   ========================================================================= */
+const GUEST = [
+];
+
 const NOTES = [
+  { n:"18", kind:"standard", title:"Four additions, 5 September 2026. The countdown, the counter, the crowd and the guest ledger.",
+    body:"Four things were added to this page today and none of them touches a grade, a row, a figure or a date in the ledger above. Each is stated here with the rule that governs it. THE COUNTDOWN. An open row now shows how long until the close that grades it, and the next verdict line carries the same clock while anything is open. Note 04 forbids deriving the Updated stamp from the visitor's clock, because that stamp is a claim about this file and a visitor's clock cannot know it. The countdown is a different object. The close that grades a row is a fixed fact derived from the row's own naming date, Friday at 23:00 in Madrid, and the visitor's clock is used only to say how far away that fixed point is. If a visitor's clock is wrong the countdown is wrong and nothing on the record moves. When the close has passed and the row is still open, the line says so instead of counting into negative numbers. THE COUNTER. Until today this page had no idea how many people read it. A record that grades itself to the cent and cannot count its own readers is missing the one number every other decision about it depends on. A privacy-respecting counter is wired in, no cookies, no personal data, open source, and it loads only when its address is filled in, on the same fail-closed rule as the doors. It cannot see, change or influence a single row. GRADED FROM THE CROWD. The sentence at the top of this page has always been about other people's calls: the ones that were wrong and disappeared. From today, now and then, one of them does not disappear. A claim made in public about gold, silver or platinum, quoted exactly with a link to where it was made, is given the kill it was published without, and graded on the same close in the same words as every row above it. The rules are written into the source beside the array and the ones that matter most are these. The claim, never the person: a handle is recorded because a quote without a source is a fabrication, and the person is not mentioned again, in the row or anywhere built from it. The kill is assigned by this desk and the rule for assigning it is stated, because the finding is not that the claim was wrong, it is that the claim was published with no way to be wrong. These rows never enter the tally, for the same reason the standing calls never do under note 02: they are a different object and averaging them in would flatter or damn this desk with somebody else's arithmetic. And when this desk has a wrong row of its own in the same week, that row is named first in any post that carries a crowd grade, because a standard applied from a clean sheet is a stone thrown. THE GUEST LEDGER. Other people's levels, graded here. A stranger submits a metal, a level and the weekly close that would prove it wrong before Sunday's close, and on Friday it is graded on the TVC close by this desk's standard, held, wrong or never reached, and kept whichever way it went. Eight rows a week at most, in the order received, the rest held over and counted rather than dropped. Never in the tally. Never edited after grading. Never given a video. The desk does not comment on a guest's level, it grades it. Why this exists is the reason this page exists: a record kept by one man is a diary, and a record where strangers are graded as hard as the owner is a standard. The only proof that a standard is neutral is a stranger graded wrong on it, in public, beside the owner's own wrong rows, and this section is where that proof accumulates or fails to. Both new sections render nothing while their arrays are empty, and empty is an acceptable state. This page has never padded a section to look busy and it will not start with these." },
   { n:"17", kind:"correction", title:"Resolution, 4 September 2026. Two floors held, and the metal with no number stayed without one.",
     body:"Friday 4 September close, read off the TVC chart with the market shut at 03:03 to 03:04 CEST on 5 September: gold 4,430.520, platinum 1,819.60, silver 66.1940. Two floors were named on 30 August with the market shut, each published with the weekly close that would kill it, and both are graded here. Gold's 464 swing slow mean reads 4,350.628 tonight, the same read as the chart label the level was taken from on Sunday, and the close sat 80.52 above the number as published. PASS. Platinum's line reads 1,797.40, the same figure as the level named, and the close sat 22.20 above it. PASS. Second row for platinum on this page, second pass, same method, same rule. SILVER, WHICH IS THE ROW THAT IS NOT HERE. Silver's floor broke on the 28 August close, graded wrong above and staying there. The map of 30 August did not replace that number, it published a condition to earn one back: a weekly close above 66.80, which is the 464 swing slow mean, read 66.8082 that night. Tonight the condition was tested and it was not met. Silver closed 66.1940 with the line reading 66.8082, so the close sat 0.61 under the line and 0.61 under the number as published. Silver therefore carries no row for a second week and gets no level, no direction and no stated position until a weekly close clears that line. This is written out at length for one reason. A metal that goes wrong and then quietly stops appearing in a weekly ledger is indistinguishable, to a reader, from a metal that was dropped because it was embarrassing. Note 16 promised that the absence would be stated every week it holds. This is the first of those statements and there will be one every Friday silver stays under its line. The condition is unchanged, it was published before the week, and it is not moving down to meet the price. THE PROVENANCE ON THESE TWO ROWS CHANGED SHAPE TONIGHT, and the change is the point of note 16. Both rows were written into this file before the close that graded them, and while they were open their provenance line said so and linked to the commits of the day they were written, so a reader could check GitHub's timestamp rather than this desk's word. That line is now replaced with the graded shape, and the shape it replaced is kept in the source beside it, which is where this file keeps everything it replaces. The commit is named by its day rather than by a hash because the hash does not exist until the push that writes this note. Tally after this close: twenty correct, four wrong, five never tested, twenty-nine rows, nothing open. Both grades tonight were passes, which is the direction this desk is required to distrust most, so it is worth stating plainly what they are and are not. Two floors named on a Sunday held through a Friday close. That is two weeks of two claims, not two ideas proven, and the count by level published beside the count by week exists so that a reader can see the difference without being told." },
   { n:"16", kind:"standard", title:"Open rows, 4 September 2026. Named before, written before, graded in place, and one metal deliberately without a number.",
@@ -2178,6 +2327,11 @@ const GRADES = {
   partial: { label:"Partial", cls:"g-partial" },
   notest:  { label:"No test", cls:"g-notest" },
   pending: { label:"Open",    cls:"g-pending" },
+  /* nokill, 5 Sep 2026: used ONLY by the crowd rows, never by this desk's
+     own. A claim that names two directions and no clock has no close it can
+     be graded on, so it gets the one honest word available. It is a
+     category, not a verdict on the numbers. Never counted anywhere. */
+  nokill:  { label:"No kill", cls:"g-notest" },
 };
 const esc = s => String(s).replace(/[&<>"']/g,
   c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
@@ -2968,6 +3122,54 @@ const weekLine = (r, group) => {
   if (openN) bits.push(`<b>${openN}</b> open`);
   return `<div class="lweek" data-week="${esc(r.date)}"><span>Named <b>${esc(fmtDate(r.date))}</b></span>${bits.map(b => `<span>${b}</span>`).join("")}</div>`;
 };
+/* ---------------- the countdown on an open row ----------------
+   Added 5 Sep 2026. Note 04 forbids deriving the UPDATED stamp from the
+   visitor's clock, because that stamp is a claim about the file. This is a
+   different object: the close that grades an open row is a fixed fact
+   derived from the row's own date, Friday 23:00 in Madrid, and the visitor's
+   clock is used only to say how far away that fixed point is. If the clock
+   is wrong the countdown is wrong and nothing on the record moves. When the
+   close has passed and the row is still open, it says so rather than
+   pretending. */
+const madridOffsetMin = d => {
+  try {
+    const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", timeZoneName: "longOffset" }).formatToParts(d);
+    const tz = (parts.find(x => x.type === "timeZoneName") || {}).value || "";
+    const m = tz.match(/([+-])(\d{2}):?(\d{2})?/);
+    if (!m) return 120;
+    return (m[1] === "-" ? -1 : 1) * (parseInt(m[2], 10) * 60 + parseInt(m[3] || "0", 10));
+  } catch (e) { return 120; }
+};
+const gradeCloseFor = iso => {
+  const d = new Date(iso + "T12:00:00Z");
+  if (isNaN(d)) return null;
+  const day = d.getUTCDay(); let add = (5 - day + 7) % 7; if (add === 0) add = 7;
+  d.setUTCDate(d.getUTCDate() + add);
+  const guess = new Date(d.toISOString().slice(0, 10) + "T23:00:00Z");
+  return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
+};
+const countdownText = close => {
+  const ms = close.getTime() - Date.now();
+  if (ms <= 0) return "Close printed. Grade pending.";
+  const h = Math.floor(ms / 3600000), dd = Math.floor(h / 24), hh = h % 24, mm = Math.floor((ms % 3600000) / 60000);
+  return "Graded in " + (dd ? dd + "d " : "") + hh + "h " + (dd ? "" : mm + "m ") + "· Friday " + fmtDate(close.toISOString().slice(0, 10)) + " · 23:00 CEST";
+};
+const countdownLine = r => {
+  if (r.grade !== "pending") return "";
+  const close = gradeCloseFor(r.date);
+  if (!close) return "";
+  return `<p class="countdown" data-close="${close.toISOString()}">${esc(countdownText(close))}</p>`;
+};
+const tickCountdowns = () => {
+  document.querySelectorAll(".countdown[data-close]").forEach(el => {
+    const c = new Date(el.getAttribute("data-close"));
+    if (isNaN(c)) return;
+    el.textContent = (el.getAttribute("data-prefix") || "") + countdownText(c);
+    el.classList.toggle("due", c.getTime() <= Date.now());
+  });
+};
+setInterval(tickCountdowns, 60000);
+
 const byDate = {};
 rows.forEach(r => { (byDate[r.date] = byDate[r.date] || []).push(r); });
 let lastDate = null;
@@ -2992,6 +3194,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
       <div>
         <div class="lab">What price did</div>
         <p class="res">${linkNotes(esc(r.result))}</p>
+        ${countdownLine(r)}
       </div>
       ${provenanceLine(r.date)}
     </div>
@@ -3320,7 +3523,10 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
   host.innerHTML = misses.map(r => `<div class="wrong">
     <div class="w-id"><b>${esc(r.metal)} ${esc(r.level)}</b><i>named ${esc(r.day)} ${esc(r.year)} · ${esc(r.type)}</i></div>
     <p>${linkNotes(esc(firstWords(r.result)))} <a href="#lrow-${r.idx}">Read the row.</a></p>
-  </div>`).join("");
+  </div>`).join("") +
+  /* 5 Sep 2026: the wrong rows also live on one page of their own, in full,
+     generated from this ledger by make_misses.js so it cannot drift. */
+  `<p class="sc-plain" style="margin-top:14px"><a href="misses.html">All ${misses.length} in full, with their kills, their closes and every correction that followed.</a></p>`;
   host.addEventListener("click", e => {
     const a = e.target.closest("a[href^='#lrow-']"); if (!a) return;
     const row = document.querySelector(a.getAttribute("href")); if (row) row.open = true;
@@ -3439,6 +3645,140 @@ document.getElementById("updated-foot").textContent = stamp;
   let add = (5 - day + 7) % 7; if (add === 0 && !stillOpen) add = 7;
   d.setUTCDate(d.getUTCDate() + add);
   el.textContent = "Next verdict · Friday " + fmtDate(d.toISOString().slice(0,10)) + " · at the close";
+  /* 5 Sep 2026: with rows open, the line also carries the clock. */
+  if (stillOpen) {
+    const close = gradeCloseFor(CALLS.find(c => c.grade === "pending").date);
+    if (close) {
+      const cd = document.createElement("span");
+      cd.className = "countdown"; cd.setAttribute("data-close", close.toISOString());
+      cd.style.marginLeft = "12px"; cd.setAttribute("data-prefix", "· "); cd.textContent = "· " + countdownText(close);
+      el.appendChild(cd);
+    }
+  }
+})();
+
+/* =========================================================================
+   GRADED FROM THE CROWD  ·  render  ·  5 Sep 2026  ·  note 18
+   Fail closed: empty array, section stays hidden. Never touches the tally.
+   ========================================================================= */
+(function renderCrowd(){
+  const sec = document.getElementById("crowd"), host = document.getElementById("crowd-list"), cnt = document.getElementById("crowd-count");
+  if (!sec || !host) return;
+  const ok = Array.isArray(CROWD) && CROWD.length && CROWD.every(c => c && c.date && c.source && c.quote && c.link && c.metal && c.kill && c.grade);
+  if (!ok) { sec.hidden = true; return; }
+  const rows = CROWD.slice().sort((a, b) => b.date.localeCompare(a.date));
+  host.innerHTML = rows.map((c, i) => {
+    const g = GRADES[c.grade] || GRADES.notest;
+    const [y, m, d] = c.date.split("-");
+    const link = /^https:\/\//.test(c.link) ? `<a href="${esc(c.link)}" rel="nofollow noopener">the post</a>` : "";
+    return `<details class="lrow" id="crow-${i}" data-grade="${esc(c.grade)}">
+      <summary>
+        <span class="s-date">${esc(d.replace(/^0/, "") + " " + MONTHS[+m - 1])} <span>${esc(y)}</span></span>
+        <span class="s-inst">${esc(c.metal)} <i>Crowd</i></span>
+        <span class="s-level">${esc(c.source)}</span>
+        <span class="s-grade"><span class="grade ${g.cls}">${esc(g.label)}</span></span>
+        <span class="s-chev" aria-hidden="true">&rsaquo;</span>
+      </summary>
+      <div class="lbody">
+        <div>
+          <div class="lab">The claim, as published</div>
+          <p class="quote">"${esc(c.quote)}"${link}</p>
+          <div class="assigned">Published without a kill. The one this desk assigned, and why:</div>
+          ${killBlock(c.kill)}
+        </div>
+        <div>
+          <div class="lab">What price did</div>
+          <p class="res">${linkNotes(esc(c.result || "Not yet graded."))}</p>
+          ${c.grade === "pending" && c.gradeDate ? `<p class="countdown" data-close="${gradeCloseFor(c.date) ? gradeCloseFor(c.date).toISOString() : ""}"></p>` : ""}
+        </div>
+        ${c.gradeDate ? `<span class="prov">Graded on the ${esc(fmtDate(c.gradeDate))} close, 23:00 CEST · the claim is not this desk's and is not in the tally</span>` : ""}
+      </div>
+    </details>`;
+  }).join("");
+  if (cnt) cnt.textContent = rows.length + (rows.length === 1 ? " claim graded" : " claims graded");
+  sec.hidden = false;
+  tickCountdowns();
+})();
+
+/* =========================================================================
+   THE GUEST LEDGER  ·  render  ·  5 Sep 2026  ·  note 18
+   Hidden while GUEST is empty and GUEST_FORM is blank. Eight per naming
+   week; the rest are counted, never dropped. Never touches the tally.
+   ========================================================================= */
+/* How far a guest level sat from price when it was named. A held at eight
+   percent is not a held worth reading; the row says the number so the reader
+   can weigh it. 5 Sep 2026. */
+const guestDistance = g => {
+  const lv = bNum(g.level), px = bNum(g.namedAt);
+  if (!isFinite(lv) || !isFinite(px) || !px) return "Distance from price at naming: not recorded.";
+  const pct = ((lv - px) / px) * 100, side = lv >= px ? "above" : "below";
+  return `Named ${Math.abs(pct).toFixed(1)} percent ${side} the ${esc(g.metal.toLowerCase())} close of ${esc(g.namedAt)} on ${esc(fmtDate(g.date))}.`;
+};
+(function renderGuest(){
+  const sec = document.getElementById("guest"), host = document.getElementById("guest-list"),
+        cnt = document.getElementById("guest-count"), inv = document.getElementById("guest-invite"),
+        lnk = document.getElementById("guest-link"), held = document.getElementById("guest-heldover");
+  if (!sec || !host) return;
+  const formOk = typeof GUEST_FORM === "string" && /^https:\/\/\S+$/.test(GUEST_FORM.trim());
+  const rowsOk = Array.isArray(GUEST) && GUEST.length && GUEST.every(g => g && g.date && g.handle && g.metal && g.level && g.kill && g.grade);
+  if (!formOk && !rowsOk) { sec.hidden = true; return; }
+  if (formOk && inv && lnk) { lnk.href = GUEST_FORM.trim(); inv.hidden = false; }
+  if (rowsOk) {
+    const CAP = 8, byWeek = {};
+    GUEST.forEach((g, i) => { (byWeek[g.date] = byWeek[g.date] || []).push({ g, i }); });
+    let heldOver = 0;
+    const shown = [];
+    Object.keys(byWeek).sort((a, b) => b.localeCompare(a)).forEach(w => {
+      const list = byWeek[w];
+      shown.push(...list.slice(0, CAP));
+      heldOver += Math.max(0, list.length - CAP);
+    });
+    host.innerHTML = shown.map(({ g, i }) => {
+      const gr = GRADES[g.grade] || GRADES.notest;
+      const [y, m, d] = g.date.split("-");
+      return `<details class="lrow" id="grow-${i}" data-grade="${esc(g.grade)}">
+        <summary>
+          <span class="s-date">${esc(d.replace(/^0/, "") + " " + MONTHS[+m - 1])} <span>${esc(y)}</span></span>
+          <span class="s-inst">${esc(g.metal)} <i>${esc(g.handle)}</i></span>
+          <span class="s-level">${esc(g.level)}</span>
+          <span class="s-grade"><span class="grade ${gr.cls}">${esc(gr.label)}</span></span>
+          <span class="s-chev" aria-hidden="true">&rsaquo;</span>
+        </summary>
+        <div class="lbody">
+          <div>
+            <div class="lab">The level, as submitted</div>
+            <p>${esc(g.metal)} ${esc(g.level)}, submitted by ${esc(g.handle)} before the ${esc(fmtDate(g.date))} close.</p>
+            <p class="assigned">${guestDistance(g)}</p>
+            ${killBlock(g.kill)}
+          </div>
+          <div>
+            <div class="lab">What price did</div>
+            <p class="res">${linkNotes(esc(g.result || "Not yet graded."))}</p>
+            ${g.grade === "pending" ? `<p class="countdown" data-close="${gradeCloseFor(g.date) ? gradeCloseFor(g.date).toISOString() : ""}"></p>` : ""}
+          </div>
+          <span class="prov">Graded by this desk's standard on the TVC close · not this desk's call · not in the tally</span>
+        </div>
+      </details>`;
+    }).join("");
+    if (cnt) cnt.textContent = shown.length + (shown.length === 1 ? " level" : " levels") + " graded";
+    if (held) { held.hidden = !heldOver; held.textContent = heldOver ? `${heldOver} more ${heldOver === 1 ? "submission" : "submissions"} held over: eight per week is the cap, and nothing is dropped.` : ""; }
+  } else if (cnt) cnt.textContent = "Open for submissions";
+  sec.hidden = false;
+  tickCountdowns();
+})();
+
+/* =========================================================================
+   THE COUNTER  ·  5 Sep 2026  ·  note 18
+   Only an https URL loads anything. Blank string, nothing happens.
+   ========================================================================= */
+(function loadCounter(){
+  if (typeof COUNTER !== "string") return;
+  const u = COUNTER.trim();
+  if (!/^https:\/\/[^\s"'<>]+\/count$/.test(u)) return;
+  const sc = document.createElement("script");
+  sc.setAttribute("data-goatcounter", u);
+  sc.async = true; sc.src = "https://gc.zgo.at/count.js";
+  document.head.appendChild(sc);
 })();
 
 /* =========================================================================

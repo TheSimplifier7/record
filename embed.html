@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · Put the record on your page</title>
+<meta name="description" content="One script tag. The live tally and the last graded row from The Simplifier's record, on any page. Nothing typed, nothing cached, nothing tracked.">
+<meta name="robots" content="noindex">
+<!-- =========================================================================
+     THE EMBED PAGE  ·  5 September 2026
+     For a newsletter writer, a blogger or a show producer who wants the
+     record beside their own words. One job: show them what it looks like,
+     hand them the tag, get out of the way. No seat, no price, no sale.
+     ========================================================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#C2BAAE;--panel:#CBC4B9;--rule:#8B8071;--ink:#191510;--ink-3:#3E372C;--ink-5:#736A5C;--gold:#8A6A1F;
+    --serif:'Newsreader',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:56px 28px 80px}
+  .kicker{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-5);margin-bottom:16px}
+  h1{font-weight:500;font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.015em;color:var(--ink);max-width:18ch;margin-bottom:18px}
+  p{max-width:60ch;font-size:17px;margin-bottom:1em}
+  .demo{margin:36px 0 12px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:640px){.demo{grid-template-columns:1fr}}
+  .demo > div{padding:18px;border:1px dashed var(--rule)}
+  .demo .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-5);margin-bottom:10px}
+  .darkbox{background:#141210}
+  pre{font-family:var(--mono);font-size:12.5px;line-height:1.55;background:var(--panel);border:1px solid var(--rule);padding:14px 16px;overflow-x:auto;margin:14px 0 26px;color:var(--ink)}
+  h2{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:38px 0 10px}
+  ul{max-width:60ch;padding-left:18px;font-size:16px}
+  li{margin-bottom:8px}
+  .law{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-5);margin-top:52px;padding-top:16px;border-top:1px solid var(--rule)}
+  a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">The Simplifier · The record · for publishers</div>
+  <h1>Put the record on your page.</h1>
+  <p>One line of code. The live tally and the last graded row from the record, on your newsletter, your blog, your show notes. The numbers come from the ledger at the moment your page loads. Nobody types them, nobody can flatter them, and when a call is wrong your readers see it before this desk does.</p>
+
+  <div class="demo">
+    <div><div class="lab">Light</div><script src="record-embed.js" data-theme="light" data-rows="2" async></script></div>
+    <div class="darkbox"><div class="lab" style="color:#8E8474">Dark</div><script src="record-embed.js" data-theme="dark" data-rows="2" async></script></div>
+  </div>
+
+  <h2>The tag</h2>
+<pre>&lt;script src="https://thesimplifier7.github.io/record/record-embed.js" async&gt;&lt;/script&gt;</pre>
+  <p>Paste it where you want the card. It sizes to its container up to 420 pixels wide.</p>
+
+  <h2>Options</h2>
+<pre>data-theme="dark"      dark card, default light
+data-width="320px"     fixed width, default fills the container
+data-rows="2"          latest graded rows shown, 0 to 3, default 1</pre>
+
+  <h2>What it does not do</h2>
+  <ul>
+    <li>No cookies, no tracking, no third party. It fetches one JSON file from the record and nothing else.</li>
+    <li>It never shows a stale number. If the record cannot be reached it renders one plain link and no figures.</li>
+    <li>It cannot be edited to say something the ledger does not. Every figure is read from <a href="record.json">record.json</a>, which is generated from the same file that renders the page.</li>
+    <li>It does not sell anything. There is no seat, no price and no application on the card. The only link is the record.</li>
+  </ul>
+
+  <h2>Substack</h2>
+  <p>Substack does not run scripts in posts. Use the card image instead: save the latest <a href="tally_card_landscape.png">tally card</a> and link it to the record. It is regenerated every Friday from the same JSON.</p>
+
+  <p class="law">Named before · Graded after · Nothing deleted</p>
+</div>
+</body>
+</html>
