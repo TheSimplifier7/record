@@ -165,6 +165,7 @@
     letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5)}
   .strip-key i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;border:1.5px solid var(--ink-6);box-sizing:border-box}
   .strip-key i.pass{background:var(--pass);border-color:var(--pass)}
+  .strip-key i.open{background:var(--pending);border-color:var(--pending)}
   .strip-key i.miss{background:var(--miss);border-color:var(--miss)}
   @media(prefers-reduced-motion:reduce){.strip a{transition:none}}
 
@@ -193,33 +194,46 @@
   .lx-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
   .lx-head h4{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
   .lx-head span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-5)}
-  .lx-plot{position:relative;height:184px;margin-top:6px}
-  .lx-axis{position:absolute;left:0;right:0;top:130px;border-top:1px solid var(--rule)}
-  .lx-tick{position:absolute;top:130px;height:6px;border-left:1px solid var(--rule)}
+  /* Plot grew by one shelf on 4 Sep 2026. It was height:184px with the axis
+     at 130 and three label shelves; gold now carries eight bands and three
+     shelves could not hold them without one label running through another. */
+  .lx-plot{position:relative;height:218px;margin-top:6px}
+  .lx-axis{position:absolute;left:0;right:0;top:164px;border-top:1px solid var(--rule)}
+  .lx-tick{position:absolute;top:164px;height:6px;border-left:1px solid var(--rule)}
   .lx-tick span{position:absolute;top:9px;left:0;transform:translateX(-50%);font-family:var(--mono);font-size:9.5px;color:var(--ink-6);white-space:nowrap}
-  .lx-band{position:absolute;top:118px;height:24px;min-width:4px;transform:translateX(-2px);background:var(--ink-6)}
+  .lx-band{position:absolute;top:152px;height:24px;min-width:4px;transform:translateX(-2px);background:var(--ink-6)}
   .lx-band.pass{background:var(--pass)} .lx-band.miss{background:var(--miss)}
   .lx-band.notest{background:transparent;border-left:3px dashed var(--ink-6);min-width:0}
-  .lx-lead{position:absolute;width:0;border-left:1px solid var(--rule)}
-  .lx-lead.a{top:78px;height:40px} .lx-lead.b{top:44px;height:74px} .lx-lead.c{top:10px;height:108px}
-  .lx-lab{position:absolute;font-family:var(--mono);white-space:nowrap;padding-left:6px;line-height:1.3}
-  .lx-lab.a{top:74px} .lx-lab.b{top:40px} .lx-lab.c{top:6px}
+  .lx-band.open{background:var(--pending)}
+  .lx-lead{position:absolute;width:0;border-left:1px solid var(--rule);z-index:1}
+  .lx-lead.a{top:112px;height:40px} .lx-lead.b{top:78px;height:74px} .lx-lead.c{top:44px;height:108px}
+  .lx-lead.d{top:10px;height:142px}
+  /* Labels sit ON the panel colour and above the leader lines, added 4 Sep
+     2026, so a leader rising to a higher shelf no longer draws a hairline
+     through the words of the label beside it. */
+  .lx-lab{position:absolute;font-family:var(--mono);white-space:nowrap;padding-left:6px;line-height:1.3;
+          background:var(--panel);z-index:2;padding-right:4px}
+  .lx-lab.a{top:108px} .lx-lab.b{top:74px} .lx-lab.c{top:40px} .lx-lab.d{top:6px}
   .lx-lab.flip{transform:translateX(-100%);padding-left:0;padding-right:6px;text-align:right}
   .lx-lab b{display:block;font-size:12.5px;font-weight:600}
   .lx-lab b.pass{color:var(--pass)} .lx-lab b.miss{color:var(--miss)} .lx-lab b.notest{color:var(--ink-4)}
+  .lx-lab b.open{color:var(--pending)}
   .lx-lab span{display:block;font-size:9.5px;color:var(--ink-5);letter-spacing:.02em}
-  .lx-close{position:absolute;top:130px}
+  .lx-close{position:absolute;top:164px}
   .lx-close i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;background:var(--ink);transform:rotate(45deg)}
   .lx-close span{position:absolute;left:10px;top:20px;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--ink);white-space:nowrap}
   .lx-close.flip span{left:auto;right:10px}
   .ladder-key .k{display:inline-block;width:14px;height:0;border-top:2.5px solid var(--ink-6);margin-right:6px;vertical-align:3px}
   .ladder-key .k.pass{border-color:var(--pass)} .ladder-key .k.miss{border-color:var(--miss)} .ladder-key .k.notest{border-top-style:dashed}
+  .ladder-key .k.open{border-color:var(--pending)}
   .ladder-key{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5);margin-top:10px;display:flex;gap:18px;flex-wrap:wrap}
   .lx-list{display:none;list-style:none;margin-top:8px}
   .lx-list li{display:grid;grid-template-columns:14px 1fr;gap:2px 10px;padding:8px 0;border-top:1px solid var(--rule-card);align-items:baseline;font-family:var(--mono)}
   .lx-list li i{width:12px;height:0;border-top:2.5px solid var(--ink-6);align-self:center}
   .lx-list li i.pass{border-color:var(--pass)} .lx-list li i.miss{border-color:var(--miss)} .lx-list li i.notest{border-top-style:dashed}
+  .lx-list li i.open{border-color:var(--pending)}
   .lx-list li b{font-size:12.5px;font-weight:600} .lx-list li b.pass{color:var(--pass)} .lx-list li b.miss{color:var(--miss)} .lx-list li b.notest{color:var(--ink-4)}
+  .lx-list li b.open{color:var(--pending)}
   .lx-list li span{grid-column:2;font-size:10px;color:var(--ink-5)}
   .lx-list li.lx-lc i{width:9px;height:9px;background:var(--ink);border:none;transform:rotate(45deg)}
   @media(max-width:640px){.lx-plot{display:none}.lx-list{display:block}}
@@ -1113,11 +1127,11 @@
        in the script. One block, two lines. -->
   <section class="stats" aria-label="Summary">
     <div class="stat">
-      <div class="num" id="t-resolved">22</div>
+      <div class="num" id="t-resolved">24</div>
       <div class="lab">Calls resolved</div>
     </div>
     <div class="stat">
-      <div class="num green" id="t-pass">18</div>
+      <div class="num green" id="t-pass">20</div>
       <div class="lab">Graded correct</div>
     </div>
     <div class="stat">
@@ -1136,7 +1150,7 @@
   <div class="strip-wrap" id="strip-wrap">
     <div class="strip-head">
       <div class="eyebrow" style="margin:0">Every row on the record, oldest to newest. Click a square to open its row.</div>
-      <div class="strip-key"><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i></i>never reached</span></div>
+      <div class="strip-key"><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i></i>never reached</span><span><i class="open"></i>open, clock running</span></div>
     </div>
     <div class="strip" id="strip"></div>
   </div>
@@ -1144,7 +1158,7 @@
        language and a stranger should not have to translate them. The next
        verdict line is computed as the next Friday after the stamp, so the page
        says when it is next graded without a hand-set date that can rot. -->
-  <p class="legend"><b>Held</b> the close stayed on the right side of the named line. <b>Wrong</b> the close crossed it; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Kill</b> the close, named with the call, that would grade it wrong.</p>
+  <p class="legend"><b>Held</b> the close stayed on the right side of the named line. <b>Wrong</b> the close crossed it; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Open</b> the level is named and the clock is still running, so it is counted for neither side until the close that grades it. <b>Kill</b> the close, named with the call, that would grade it wrong.</p>
   <p class="next-verdict" id="next-verdict"></p>
 
   <div class="ledger-head">
@@ -1153,7 +1167,7 @@
   </div>
   <p class="sc-plain" style="margin-bottom:0">The ledger reads by date. This reads by price: <em>every line this page has ever named, where it sits, how many weeks it was named, and how the last week that carried it ended</em>. The diamond is the last close on the standing cards.</p>
   <div class="ladder" id="ladder"></div>
-  <div class="ladder-key"><span><i class="k pass"></i>ended held</span><span><i class="k miss"></i>ended wrong</span><span><i class="k notest"></i>never reached</span><span>diamond: the last close on the standing cards</span></div>
+  <div class="ladder-key"><span><i class="k pass"></i>ended held</span><span><i class="k miss"></i>ended wrong</span><span><i class="k notest"></i>never reached</span><span><i class="k open"></i>open, clock running</span><span>diamond: the last close on the standing cards</span></div>
 
   <div class="ledger-head">
     <h2>Standing Calls</h2>
@@ -1383,7 +1397,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-08-29";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-09-05";   /* set by hand, with the commit */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1402,6 +1416,21 @@ const LAST_UPDATED  = "2026-08-29";   /* set by hand, with the commit */
    ========================================================================= */
 const REPO = "https://github.com/TheSimplifier7/record";
 const PROVENANCE = {
+  /* An OPEN row has no grade yet, so it cannot name the close it was graded
+     on and it cannot name the commit that wrote the grade. What it CAN name,
+     and what matters more, is that it was written to this file before the
+     tape that will decide it. That claim is checkable on GitHub and not here,
+     which is the point: the link goes to the commits of the day the row was
+     written, and the reader reads GitHub's timestamp rather than this desk's.
+     When the row is graded, this entry is replaced by the normal shape with
+     the graded date and the hash, and the old shape is kept beside it. */
+  /* WAS, while the rows were open and before the close that graded them:
+       "2026-08-30": { written:"2026-09-04", open:true },
+     Graded on the 4 September close. The commit that carried the rows is
+     named by the day rather than by a hash because the hash does not exist
+     until the push that writes this line; swap in the hash on the next push
+     and this comment stays where it is. */
+  "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", dayLink:true },
   "2026-08-23": { graded:"2026-08-28", written:"2026-08-29", commit:"2e4ddff" },
   "2026-08-16": { graded:"2026-08-21", written:"2026-08-21", commit:"a0e26cb" },
   "2026-08-14": { graded:"2026-08-14", written:"2026-08-16", commit:"38fdc34" },
@@ -1421,6 +1450,14 @@ const PROVENANCE = {
 const provenanceLine = date => {
   const p = PROVENANCE[date];
   if (!p) return "";
+  if (p.open) {
+    const url = `${REPO}/commits/main?since=${p.written}&until=${p.written}`;
+    return `<span class="prov">Named ${esc(fmtDate(date))} · written to the record ${esc(fmtDate(p.written))}, before the close that grades it · <a href="${url}">the commits of that day</a></span>`;
+  }
+  if (p.dayLink) {
+    const url = `${REPO}/commits/main?since=${p.written}&until=${p.written}`;
+    return `<span class="prov">Graded on the ${esc(fmtDate(p.graded))} close, 23:00 CEST · written to the record ${esc(fmtDate(p.written))} · <a href="${url}">the commits of that day</a></span>`;
+  }
   if (p.first) {
     const url = `${REPO}/commits/main?since=${p.first}&until=${p.first}`;
     return `<span class="prov">Published with the record\'s first upload, ${esc(fmtDate(p.first))} · <a href="${url}">the commits of that day</a></span>`;
@@ -1872,6 +1909,33 @@ const STANDING = [
 
 const CALLS = [
 
+  /* WEEK OF 30 AUGUST. TWO rows, not three, and the missing one is the point.
+     Silver's floor broke on the 28 August close (note 11). The map published
+     on 30 August did not give silver a replacement number: it gave it a
+     condition to earn one back, a weekly close above 66.80, and a condition
+     is not a call. So silver carries no row this week. That is stated here
+     and in note 16 rather than left as a gap in the ledger for a reader to
+     explain to himself, because a metal quietly dropped from the record the
+     week after it was wrong is exactly the shape this page exists to refuse.
+
+     Levels read off the founder's own charts of 30 August, market shut,
+     23:41 CEST. Gold's floor carried the chart label 4,350.628 and was
+     published as 4,350; the row is graded against the number as PUBLISHED.
+     Platinum's is 1,797.40 on both the chart and the post.
+
+     These two rows are written to this file BEFORE the close that grades
+     them, which is the entire reason for writing them tonight rather than
+     after. Grade Friday 4 September at the 23:00 CEST close. */
+  { date:"2026-08-30", type:"Map", metal:"Gold", level:"4,350", book:"Turn",
+    call:"Gold holds above the floor read off the 30 August chart, labelled 4,350.628 and published as 4,350. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 4,350.",
+    result:"The kill never fired. The weekly close printed 4,430.520 with the 464 swing slow mean read at 4,350.628 tonight, the same read as the label the level was taken from on 30 August. The close sat 80.52 above the level as named and 79.89 above the line as it reads tonight; the row is graded on the number as published, which is 4,350. PASS. Close and line read off the TVC chart, market shut, 03:04 CEST 5 September. See note 17.",
+    grade:"pass" },
+
+  { date:"2026-08-30", type:"Map", metal:"Platinum", level:"1,797.40", book:"Turn",
+    call:"Platinum holds above the floor read off the 30 August chart, 1,797.40. Second row for the newest metal on this page, same method, same rule, one week after its first grade. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 1,797.40.",
+    result:"The kill never fired. The weekly close printed 1,819.60 with the 464 swing slow mean read at 1,797.40 tonight, which is the same figure as the level named on 30 August, so this row quotes one number twice for the same reason the 23 August platinum row did. The close sat 22.20 above the line. PASS. Second row for platinum, second pass. Close and line read off the TVC chart, market shut, 03:04 CEST 5 September. See note 17.",
+    grade:"pass" },
+
   /* WEEK OF 23 AUGUST. Three rows under the founder's weekly-row ruling,
      platinum's first row on this page. Levels read off the founder's
      stamped charts of 23 August, market shut, and confirmed by the founder
@@ -2048,6 +2112,10 @@ const CALLS = [
    ========================================================================= */
 
 const NOTES = [
+  { n:"17", kind:"correction", title:"Resolution, 4 September 2026. Two floors held, and the metal with no number stayed without one.",
+    body:"Friday 4 September close, read off the TVC chart with the market shut at 03:03 to 03:04 CEST on 5 September: gold 4,430.520, platinum 1,819.60, silver 66.1940. Two floors were named on 30 August with the market shut, each published with the weekly close that would kill it, and both are graded here. Gold's 464 swing slow mean reads 4,350.628 tonight, the same read as the chart label the level was taken from on Sunday, and the close sat 80.52 above the number as published. PASS. Platinum's line reads 1,797.40, the same figure as the level named, and the close sat 22.20 above it. PASS. Second row for platinum on this page, second pass, same method, same rule. SILVER, WHICH IS THE ROW THAT IS NOT HERE. Silver's floor broke on the 28 August close, graded wrong above and staying there. The map of 30 August did not replace that number, it published a condition to earn one back: a weekly close above 66.80, which is the 464 swing slow mean, read 66.8082 that night. Tonight the condition was tested and it was not met. Silver closed 66.1940 with the line reading 66.8082, so the close sat 0.61 under the line and 0.61 under the number as published. Silver therefore carries no row for a second week and gets no level, no direction and no stated position until a weekly close clears that line. This is written out at length for one reason. A metal that goes wrong and then quietly stops appearing in a weekly ledger is indistinguishable, to a reader, from a metal that was dropped because it was embarrassing. Note 16 promised that the absence would be stated every week it holds. This is the first of those statements and there will be one every Friday silver stays under its line. The condition is unchanged, it was published before the week, and it is not moving down to meet the price. THE PROVENANCE ON THESE TWO ROWS CHANGED SHAPE TONIGHT, and the change is the point of note 16. Both rows were written into this file before the close that graded them, and while they were open their provenance line said so and linked to the commits of the day they were written, so a reader could check GitHub's timestamp rather than this desk's word. That line is now replaced with the graded shape, and the shape it replaced is kept in the source beside it, which is where this file keeps everything it replaces. The commit is named by its day rather than by a hash because the hash does not exist until the push that writes this note. Tally after this close: twenty correct, four wrong, five never tested, twenty-nine rows, nothing open. Both grades tonight were passes, which is the direction this desk is required to distrust most, so it is worth stating plainly what they are and are not. Two floors named on a Sunday held through a Friday close. That is two weeks of two claims, not two ideas proven, and the count by level published beside the count by week exists so that a reader can see the difference without being told." },
+  { n:"16", kind:"standard", title:"Open rows, 4 September 2026. Named before, written before, graded in place, and one metal deliberately without a number.",
+    body:"For the first time this page carries rows that are named and not yet graded. Two floors went out on the map of 30 August, gold 4,350 and platinum 1,797.40, and both are written into this file tonight, before the close that will decide them. That is the whole reason for writing them now rather than after. Every row above this one was written to the record in the hours following the close that graded it, which is fast and still, strictly, afterwards; a reader had to take this desk's word that the level had been named before the week rather than fitted to it. These two rows do not ask for that word. They sit in a commit whose timestamp belongs to GitHub, hours before the tape exists, and the provenance line under them links to the commits of the day so the reader checks that timestamp somewhere this desk cannot edit. From tonight the standing intention is that every Sunday call is written to this file open, in the week it is named, and graded in place. SILVER CARRIES NO ROW THIS WEEK, and that absence is deliberate rather than an oversight, so it is stated here rather than left as a gap. Silver's floor at 66.66 broke on the 28 August close and is graded wrong above, where it stays. The map published on 30 August did not give silver a replacement number. It gave it a condition to earn one back, a weekly close above 66.80, and a condition is not a call: there is nothing in it that can be wrong on Friday, so there is nothing in it to grade, and a row that cannot lose is not a row this page will carry. Two metals were named and two metals are on the clock. A reader who counts three metals on the standing cards and two rows in the week should read that as the desk declining to name a number it had not earned, and should hold it against the record if silver quietly reappears with a number that was never published on a Sunday. THE OPEN STATE, on every surface. The tally gains a fourth figure, counted and never estimated, and open rows stay out of the resolved base entirely: they are not correct, not wrong, and not never reached, and folding them into any of those three would move a number that has not been earned. The strip draws an open square in its own colour, the legend defines the word in plain language, and the ladder draws an open line in that same colour rather than in the never-reached grey. TWO DEFECTS THE OPEN STATE EXPOSED, both caught before this file was published and both logged anyway. First, the next verdict line, which derives the next grading date from the Updated stamp rather than from the visitor's clock under note 04, was written when the stamp was only ever set after a grade. On that assumption a Friday stamp meant the week had already been ruled and the next verdict was the following Friday. Setting the stamp before a grade, which is what writing an open row requires, turned that assumption into a false statement: the page would have told a reader on Friday evening that the next verdict was a week away while two rows sat open and due at that evening's close. It now names that Friday whenever anything is still open. Second, the ladder colours a band by the last grade its lines received, and the map from grade to colour sent anything that was not a pass or a miss to the never-reached grey. Platinum's 1,790.84 and its 1,797.40 sit within half a percent of each other and therefore cluster into one band, so an open line joining a graded pass would have turned that pass grey on sight. Neither error reached a reader. Both are written down because a page that logs only the faults it is caught at is keeping a different kind of record than this one claims to keep. As always, no call, no grade, no figure, no kill and no date above this note was touched, and every line of copy replaced tonight is kept in the source beside the line that replaced it." },
   { n:"15", kind:"standard", title:"Provenance per row, the ladder, and the record as data, 4 September 2026.",
     body:"Every graded row now names the close it was graded on, the date it was written to this file, and the commit that wrote it, linked to the repository so the timestamp a reader checks is GitHub\'s and not this desk\'s. Rows named before the standard of 3 July were carried in the record\'s first upload of 30 June and say so instead. A ladder above the standing calls draws every level ever named on the price axis, per metal, with how many weeks it was named and how the last week that carried it ended, derived from the rows. The misses are gathered above the ledger with the first words of their own results. The ledger is also published as record.json beside this page, so anyone can check the arithmetic without trusting the page that states it." },
   { n:"14", kind:"standard", title:"Copy for the reader, 3 September 2026. The fold, the legend, the standing sentence and the seat door.",
@@ -3003,6 +3071,10 @@ let note = resolved ? `${pass} of ${resolved} resolved calls graded correct, ${r
 if (miss)    note += ` ${miss} graded wrong, shown in full below and never hidden.`;
 if (partial) note += ` ${partial} partial, counted against the record.`;
 if (notest)  note += ` ${notest} never tested, counted for neither side.`;
+/* Added 4 Sep 2026. An open row is in no part of the base above and the
+   sentence has to say so, or the reader adds 18, 4 and 5 against 29 rows in
+   the ledger and finds two missing with nothing on the page to explain them. */
+if (open)    note += ` ${open} named and not yet graded, in none of the figures above until the close that decides ${open === 1 ? "it" : "them"}.`;
 note += ` The rate is stated here beside its base rather than in headline type, because a percentage on a base of ${resolved} is a small sample and should be read as one. Standing calls are graded separately and are not in these figures.`;
 
 /* =========================================================================
@@ -3051,7 +3123,16 @@ const famList = Object.values(fams).map(rows => {
 const levels    = famList.length;
 const lvHeld    = famList.filter(f => f.final === "pass").length;
 const lvBroke   = famList.filter(f => f.final === "miss").length;
-const lvUntested = levels - lvHeld - lvBroke;
+/* Corrected 4 Sep 2026, with the first open rows. This read:
+     const lvUntested = levels - lvHeld - lvBroke;
+   which swept every level that was neither held nor broken into "never
+   tested". That was exact while every row on the page was graded. A level
+   that is named and still running has not been tested and has not failed to
+   be tested; it is open, and counting it as never tested would have told the
+   reader that gold 4,350 had come and gone without the market going near it
+   on the very evening it was due to be graded. */
+const lvOpen     = famList.filter(f => f.final === "pending").length;
+const lvUntested = levels - lvHeld - lvBroke - lvOpen;
 const carried   = famList.filter(f => f.rows > 1);
 const carriedPass = carried.reduce((a, f) => a + f.pass, 0);
 const carriedBroke = carried.filter(f => f.final === "miss").length;
@@ -3059,7 +3140,8 @@ const carriedBroke = carried.filter(f => f.final === "miss").length;
 let noteLevel = "";
 if (pass && carried.length) {
   noteLevel += `Read by level rather than by week, because one level is re-named every week it survives:` +
-    ` ${levels} levels have been named here, ${lvHeld} ended held, ${lvBroke} ended broken, ${lvUntested} were never tested.` +
+    ` ${levels} levels have been named here, ${lvHeld} ended held, ${lvBroke} ended broken, ${lvUntested} were never tested` +
+    (lvOpen ? `, and ${lvOpen} ${lvOpen === 1 ? "is" : "are"} open with the clock still running.` : `.`) +
     ` ${carried.length} of those levels were carried across more than one week and produced ${carriedPass} of the ${pass} correct rows above,` +
     ` and ${carriedBroke} of those ${carried.length} finally broke.` +
     ` Both counts are published because the weekly one flatters this desk and the level one does not.`;
@@ -3111,7 +3193,13 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
       e.n++; e.grades.push(c.grade); e.lastDate = c.date;
     });
   });
-  const cls = g => g === "pass" ? "pass" : (g === "miss" || g === "partial") ? "miss" : "notest";
+  /* Added 4 Sep 2026 with the first open rows. This read:
+       g === "pass" ? "pass" : (g === "miss" || g === "partial") ? "miss" : "notest"
+     which sent an OPEN band to the never-reached grey. A band whose newest
+     line is still running has not been reached and not missed; it is open,
+     and platinum's two lines cluster into one band, so the old rule would
+     have turned a graded pass grey the moment an open line joined it. */
+  const cls = g => g === "pass" ? "pass" : (g === "miss" || g === "partial") ? "miss" : g === "pending" ? "open" : "notest";
   const tickFmt = (v, metal) => metal === "Silver" ? v.toFixed(0) : Math.round(v).toLocaleString("en-GB");
   function niceStep(raw) {
     const p = Math.pow(10, Math.floor(Math.log10(raw)));
@@ -3133,6 +3221,7 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
       bd.held = gs.filter(g => g === "pass").length;
       bd.wrong = gs.filter(g => g === "miss" || g === "partial").length;
       bd.nr = gs.filter(g => g === "notest").length;
+      bd.open = gs.filter(g => g === "pending").length;
       const latest = bd.members.slice().sort((a, b) => b.lastDate.localeCompare(a.lastDate))[0];
       bd.last = latest.grades[latest.grades.length - 1];
       bd.label = bd.members.length > 1 ? `${bd.loStr} to ${bd.hiStr}` : bd.loStr;
@@ -3149,30 +3238,72 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
     const axis = ticks.map(t => `<div class="lx-tick" style="left:${x(t).toFixed(2)}%"><span>${esc(tickFmt(t, metal))}</span></div>`).join("");
     const bandsHtml = bands.map((bd, i) => {
       const l = x(bd.lo), w = Math.max(0.35, x(bd.hi) - x(bd.lo));
-      const shelf = ["a", "b", "c"][i % 3];
+      const shelf = ["a", "b", "c", "d"][i % 4];
       const flip = l > 72 ? " flip" : "";
       const parts = [];
       if (bd.held) parts.push(`${bd.held} held`);
       if (bd.wrong) parts.push(`${bd.wrong} wrong`);
       if (bd.nr) parts.push(`${bd.nr} never reached`);
+      if (bd.open) parts.push(`${bd.open} open`);
       return `<div class="lx-band ${cls(bd.last)}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%"></div>
-        <div class="lx-lead ${shelf}" style="left:${l.toFixed(2)}%"></div>
-        <div class="lx-lab ${shelf}${flip}" style="left:${l.toFixed(2)}%"><b class="${cls(bd.last)}">${esc(bd.label)}</b><span>${bd.weeks} ${bd.weeks === 1 ? "week" : "weeks"}${bd.members.length > 1 ? ", " + bd.members.length + " lines" : ""} · ${esc(parts.join(", "))}</span></div>`;
+        <div class="lx-lead ${shelf}" data-i="${i}" style="left:${l.toFixed(2)}%"></div>
+        <div class="lx-lab ${shelf}${flip}" data-i="${i}" style="left:${l.toFixed(2)}%"><b class="${cls(bd.last)}">${esc(bd.label)}</b><span>${bd.weeks} ${bd.weeks === 1 ? "week" : "weeks"}${bd.members.length > 1 ? ", " + bd.members.length + " lines" : ""} · ${esc(parts.join(", "))}</span></div>`;
     }).join("");
     const closeHtml = lc && isFinite(lc.v)
       ? `<div class="lx-close${x(lc.v) > 72 ? " flip" : ""}" style="left:${x(lc.v).toFixed(2)}%"><i></i><span>close ${esc(lc.txt)} · ${esc(fmtDate(lc.asOf))}</span></div>` : "";
-    const sr = bands.map(bd => `${bd.label}: ${bd.weeks} weeks, ${bd.held} held, ${bd.wrong} wrong, ${bd.nr} never reached`).join("; ");
+    const sr = bands.map(bd => `${bd.label}: ${bd.weeks} weeks, ${bd.held} held, ${bd.wrong} wrong, ${bd.nr} never reached, ${bd.open} open`).join("; ");
     /* the same bands as a list, shown in place of the plot on narrow screens */
     const listHtml = `<ul class="lx-list">` + bands.slice().reverse().map(bd => {
       const parts = [];
       if (bd.held) parts.push(`${bd.held} held`);
       if (bd.wrong) parts.push(`${bd.wrong} wrong`);
       if (bd.nr) parts.push(`${bd.nr} never reached`);
+      if (bd.open) parts.push(`${bd.open} open`);
       return `<li><i class="${cls(bd.last)}"></i><b class="${cls(bd.last)}">${esc(bd.label)}</b><span>${bd.weeks} ${bd.weeks === 1 ? "week" : "weeks"} · ${esc(parts.join(", "))}</span></li>`;
     }).join("") + (lc ? `<li class="lx-lc"><i></i><b>close ${esc(lc.txt)}</b><span>${esc(fmtDate(lc.asOf))}</span></li>` : "") + `</ul>`;
     return `<div class="lx"><div class="lx-head"><h4>${esc(metal)}</h4><span>${levels.length} ${levels.length === 1 ? "line" : "lines"} named on the record</span></div>
       <div class="lx-plot" role="img" aria-label="${esc(metal)} levels on a price line: ${esc(sr)}">${axis}<div class="lx-axis"></div>${bandsHtml}${closeHtml}</div>${listHtml}</div>`;
   }).join("");
+
+  /* RE-SHELF, added 4 Sep 2026. Shelves were assigned by band index modulo
+     three. That is fine while a metal's levels are spread out and wrong the
+     moment two of them sit close together, because two neighbouring bands
+     three apart in the index land on the same shelf and draw one label
+     through the other. Gold now carries seven bands and the collision was
+     visible on sight. Each label is measured after it is in the document and
+     given the lowest shelf whose last occupant it clears, left to right, with
+     its leader line moved to match. Measured rather than estimated: the font
+     is monospace and a width could be guessed, but a guess is what put two
+     labels on top of each other in the first place. If a label clears no
+     shelf at all it keeps the roomiest one and drops its second line, so the
+     level and its colour survive and only the count is lost. */
+  host.querySelectorAll(".lx-plot").forEach(plot => {
+    /* Filled from the axis upward, so a metal with two levels keeps both
+       labels beside the line instead of floating them at the top of the box. */
+    const SHELVES = ["a", "b", "c", "d"], GAP = 10;
+    const labs = Array.from(plot.querySelectorAll(".lx-lab"));
+    if (labs.length < 2) return;
+    labs.forEach(el => el.classList.remove("a", "b", "c", "d"));
+    const order = labs.map(el => ({ el, x: el.getBoundingClientRect().left })).sort((a, b) => a.x - b.x);
+    const rightOf = {};
+    order.forEach(({ el }) => {
+      let placed = "";
+      for (const sh of SHELVES) {
+        el.classList.add(sh);
+        const r = el.getBoundingClientRect();
+        if (rightOf[sh] === undefined || r.left >= rightOf[sh] + GAP) { rightOf[sh] = r.right; placed = sh; break; }
+        el.classList.remove(sh);
+      }
+      if (!placed) {
+        placed = "d";
+        el.classList.add(placed);
+        const span = el.querySelector("span"); if (span) span.remove();
+        rightOf[placed] = el.getBoundingClientRect().right;
+      }
+      const lead = plot.querySelector(`.lx-lead[data-i="${el.getAttribute("data-i")}"]`);
+      if (lead) { lead.classList.remove("a", "b", "c", "d"); lead.classList.add(placed); }
+    });
+  });
 })();
 
 /* ---------------- the ones this desk got wrong ---------------- */
@@ -3295,7 +3426,17 @@ document.getElementById("updated-foot").textContent = stamp;
   const d = new Date(LAST_UPDATED + "T12:00:00Z");
   if (isNaN(d)) return;
   const day = d.getUTCDay();               // 0 Sun .. 5 Fri .. 6 Sat
-  let add = (5 - day + 7) % 7; if (add === 0) add = 7;
+  /* Corrected 4 Sep 2026, with the first open rows. This read:
+       let add = (5 - day + 7) % 7; if (add === 0) add = 7;
+     which was right while the stamp was only ever set AFTER a grade: a Friday
+     stamp then meant the week was already ruled, so the next verdict was the
+     following Friday. From tonight the stamp is also set BEFORE a grade, on
+     the commit that writes an open row, and on that file the same rule told
+     the reader the next verdict was a week away while two rows sat open and
+     due at that evening's close. If the stamp is a Friday and anything is
+     still open, the verdict named is that Friday. */
+  const stillOpen = CALLS.filter(c => c.grade === "pending").length;
+  let add = (5 - day + 7) % 7; if (add === 0 && !stillOpen) add = 7;
   d.setUTCDate(d.getUTCDate() + add);
   el.textContent = "Next verdict · Friday " + fmtDate(d.toISOString().slice(0,10)) + " · at the close";
 })();
