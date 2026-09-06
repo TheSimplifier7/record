@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
 <meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." />
-<meta name="theme-color" content="#C2BAAE">
+<meta name="theme-color" content="#141210" id="meta-theme">
+<meta name="color-scheme" content="dark light">
+<script>
+/* THEME. Dark is the ground for everyone (note 20). "theme" in localStorage
+   is "light" only when the reader has pressed the switch on this device;
+   applied here, before first paint, so nothing flashes. */
+(function(){
+  var t=null; try{ t=localStorage.getItem("theme"); }catch(e){}
+  if(t==="light") document.documentElement.setAttribute("data-theme","light");
+})();
+</script>
 
 <!-- Open Graph. Copy stays free of figures so it can never drift from the ledger.
 
@@ -40,7 +50,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   /* ---------------------------------------------------------------------
-     PAPER PALETTE. Ground is the TradingView canvas, #C2BAAE, luminance
+     PAPER PALETTE, the launch ground, opt-in since 6 September 2026 (see
+     the dark block below and note 20). Measurements kept as written.
+     Ground is the TradingView canvas, #C2BAAE, luminance
      0.496. That is a mid tone, so maximum possible contrast on it is
      10.93:1 against pure black. Every value below is measured against the
      ground. Nothing on this page sits under 5.29:1.
@@ -69,23 +81,63 @@
 
      Do not lighten any ink value without recomputing it.
   --------------------------------------------------------------------- */
+  /* ---------------------------------------------------------------------
+     THE GROUND IS DARK. Founder's ruling, 6 September 2026 (note 20): the
+     paper the page launched on was hard to read and the chart, the card and
+     the embed had already gone to #141210. So #141210 is the ground for
+     everyone, not a preference. Paper survives behind the switch in the
+     masthead for a reader who asks for it, stored on that device only.
+     Same ink scale inverted, same four brand hues as THE METHOD v2. Every
+     value measured against #141210; nothing under 5.29:1, the floor the
+     paper palette set and kept:
+
+       --ink   15.35:1   --ink-4   9.83:1   --gold     7.93:1
+       --ink-2 13.70:1   --ink-5   8.53:1   --pass     6.36:1
+       --ink-3 11.05:1   --ink-6   6.90:1   --miss     5.72:1
+                                            --partial  8.12:1
+                                            --notest   5.94:1
+                                            --pending  6.84:1
+
+     The paper values are kept below under [data-theme="light"], measured
+     in their own comment further down, which stays where it was written. */
   :root{
+    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C; --rule-card:#4A4238;
+    --ink:#EFE8DC; --ink-2:#E3DCCE; --ink-3:#CFC6B8; --ink-4:#C4BBAC;
+    --ink-5:#B8AE9E; --ink-6:#A69C8C;
+    --gold:#CBA43C; --gold-hi:#E0C878;
+    --pass:#5FA57A; --miss:#D2764A; --partial:#D9A05B; --notest:#9C9282; --pending:#6BA3C7;
+    --band:rgba(239,232,220,.035);
+    --hover:#26221D; --glow:rgba(203,164,60,.07);
+    --link-rule:rgba(203,164,60,.45); --link-rule-2:rgba(203,164,60,.5);
+    --kill-bg:rgba(210,118,74,.10); --target-shadow:rgba(203,164,60,.18);
+    --sticky-bg:rgba(20,18,16,.94);
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:48px; --row-pad:22px;
+    color-scheme:dark;
+  }
+  body{-webkit-font-smoothing:antialiased}
+  /* PAPER, opt-in. The launch palette, unchanged, behind the switch. */
+  :root[data-theme="light"]{
     --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071; --rule-card:#8B8071;
     --ink:#14110C; --ink-2:#2B2820; --ink-3:#332F26; --ink-4:#3A3529;
     --ink-5:#403A2C; --ink-6:#47412F;
     --gold:#4A360C; --gold-hi:#322408;
     --pass:#163821; --miss:#63220E; --partial:#573107; --notest:#3B3B36; --pending:#1B3646;
     --band:rgba(20,17,12,.038);
-    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
-    --pad:48px; --row-pad:22px;
+    --hover:#B6AEA1; --glow:rgba(255,251,242,.4);
+    --link-rule:rgba(74,54,12,.4); --link-rule-2:rgba(74,54,12,.42);
+    --kill-bg:rgba(99,34,14,.065); --target-shadow:rgba(74,54,12,.13);
+    --sticky-bg:rgba(194,186,174,.94);
+    color-scheme:light;
   }
+  :root[data-theme="light"] body{-webkit-font-smoothing:auto}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{background:var(--bg);color:var(--ink-2);font-family:var(--serif);font-weight:400;
     font-variant-numeric:tabular-nums;text-wrap:pretty;
-    background-image:radial-gradient(900px 420px at 72% -10%,rgba(255,251,242,.4),transparent 70%)}
-  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(74,54,12,.4)}
+    background-image:radial-gradient(900px 420px at 72% -10%,var(--glow),transparent 70%)}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--link-rule)}
   a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
   a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
   table{border-collapse:collapse}
@@ -98,6 +150,9 @@
   .brand svg{width:34px;height:26px;flex:none;display:block;overflow:visible}
   .brand .name{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.28em;
     text-transform:uppercase;color:var(--ink)}
+  .theme-sw{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-5);background:none;border:1px solid var(--rule);padding:6px 10px;cursor:pointer;flex:none}
+  .theme-sw:hover{color:var(--ink);border-color:var(--ink)}
   .masthead .desc{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.16em;
     text-transform:uppercase;color:var(--ink-5)}
   .hairline{height:3px;border-bottom:1px solid var(--rule)}
@@ -447,7 +502,7 @@
   .sc-bcell{display:flex;justify-content:center;padding:0 6px;min-width:0}
   .sc-bup{align-items:flex-end;grid-row:2}
   .sc-bdn{align-items:flex-start;grid-row:4}
-  .sc-bcell.is-kill{background:rgba(99,34,14,.065)}
+  .sc-bcell.is-kill{background:var(--kill-bg)}
   .sc-bdn.is-kill{border-bottom:1px solid var(--rule-soft)}
   .sc-bup.is-kill{border-top:1px solid var(--rule-soft)}
 
@@ -612,7 +667,7 @@
     font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
   .sc-fsum::-webkit-details-marker{display:none}
   .sc-fsum::marker{content:""}
-  .sc-fsum:hover{background:#B6AEA1;color:var(--ink)}
+  .sc-fsum:hover{background:var(--hover);color:var(--ink)}
   .sc-fsum:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
   .sc-fold[open]>.sc-fsum{color:var(--ink)}
   /* No colour of its own. The ledger's chevron is --ink-5 and sits on the
@@ -648,7 +703,7 @@
      has lost nothing; every figure the board would have drawn is printed
      below it in the claim, the kill and the marks. */
   .sc-withheld{display:block;margin-top:18px;padding:11px 13px;
-    border-left:2px solid var(--miss);background:rgba(99,34,14,.065);
+    border-left:2px solid var(--miss);background:var(--kill-bg);
     font-family:var(--mono);font-size:11.5px;font-weight:500;line-height:1.7;
     color:var(--ink-3)}
   .sc-withheld b{font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--miss)}
@@ -689,7 +744,7 @@
      lines to seven and the eye loses the row halfway across. Hover must
      stay below these in source order or it will not win. */
   .ledger-table tbody tr:nth-child(odd){background:var(--band)}
-  .ledger-table tbody tr:hover{background:#B6AEA1}
+  .ledger-table tbody tr:hover{background:var(--hover)}
   .w-date{width:96px} .w-inst{width:104px} .w-level{width:118px}
   .w-call{width:29%} .w-grade{width:112px}
   .c-date{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--ink-3);white-space:nowrap}
@@ -755,7 +810,7 @@
     align-items:baseline;padding:12px 4px}
   .note>summary::-webkit-details-marker{display:none}
   .note>summary::marker{content:""}
-  .note>summary:hover{background:#B6AEA1}
+  .note>summary:hover{background:var(--hover)}
   .note>summary:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
   .note .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--gold);padding-top:3px}
   .note .n.red{color:var(--miss)}
@@ -777,11 +832,11 @@
      sequence: they are cited in published ledger rows and in shipped
      scripts, and a renumber has already caused confusion once. */
   .note:target .n{color:var(--gold-hi)}
-  .note:target>summary{box-shadow:-10px 0 0 rgba(74,54,12,.13)}
+  .note:target>summary{box-shadow:-10px 0 0 var(--target-shadow)}
   .cited{display:block;margin-top:9px;font-family:var(--mono);font-size:11px;font-weight:400;
     letter-spacing:.03em;color:var(--ink-5)}
   .cited b{font-weight:600;color:var(--ink-4)}
-  .c-result a,.card .did a{color:var(--gold);border-bottom:1px solid rgba(74,54,12,.42)}
+  .c-result a,.card .did a{color:var(--gold);border-bottom:1px solid var(--link-rule-2)}
   .c-result a:hover,.card .did a:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
 
   /* THE BOOK TAG. Position, swing or tactical. Renders ONLY when the field is
@@ -853,7 +908,7 @@
      is worse than no button.
      ===================================================================== */
   .actionbar{position:fixed;left:0;right:0;top:0;z-index:40;
-    background:rgba(194,186,174,.94);backdrop-filter:blur(8px);
+    background:var(--sticky-bg);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--ink);transform:translateY(-100%);
     transition:transform .22s ease;will-change:transform}
   .actionbar[data-show="1"]{transform:translateY(0)}
@@ -912,9 +967,9 @@
     align-items:baseline;gap:18px;padding:17px 14px}
   .lrow>summary::-webkit-details-marker{display:none}
   .lrow>summary::marker{content:""}
-  .lrow>summary:hover{background:#B6AEA1}
+  .lrow>summary:hover{background:var(--hover)}
   .lrow>summary:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
-  .lrow[open]>summary{background:#B6AEA1}
+  .lrow[open]>summary{background:var(--hover)}
   .s-date{font-family:var(--mono);font-size:12.5px;font-weight:500;
     color:var(--ink-3);white-space:nowrap}
   .s-date span{color:var(--ink-6);font-weight:400}
@@ -941,7 +996,7 @@
      underline sat 12px under the link and drew a line through the next row of
      text. The underline is now a text decoration and the hit box is unchanged. */
   .lbody a{color:var(--gold);border-bottom:none;text-decoration:underline;text-underline-offset:3px;
-    text-decoration-color:rgba(74,54,12,.42);display:inline-block;padding:12px 6px;margin:-12px -6px}
+    text-decoration-color:var(--link-rule-2);display:inline-block;padding:12px 6px;margin:-12px -6px}
   .lbody a:hover{color:var(--gold-hi);text-decoration-color:var(--gold-hi)}
   .lbody .c-book{margin-top:12px}
 
@@ -1049,8 +1104,8 @@
   <div class="ab-in">
     <span class="ab-mark">
       <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
-        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
-        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" style="stroke:var(--gold)" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" style="fill:var(--gold)"></circle>
       </svg>
       <span class="name">The Simplifier</span>
     </span>
@@ -1067,12 +1122,13 @@
   <div class="masthead">
     <div class="brand">
       <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
-        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
-        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" style="stroke:var(--gold)" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" style="fill:var(--gold)"></circle>
       </svg>
       <span class="name">The Simplifier</span>
     </div>
     <span class="desc">Metals intelligence · Graded record</span>
+    <button class="theme-sw" id="theme-sw" type="button" aria-label="Switch between dark and paper">Paper</button>
   </div>
   <div class="hairline"></div>
 
@@ -1154,7 +1210,7 @@
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">0</div>
+      <div class="num blue" id="t-open">2</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
@@ -1443,7 +1499,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-05";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-09-06";   /* set by hand, with the commit */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1476,7 +1532,10 @@ const PROVENANCE = {
      named by the day rather than by a hash because the hash does not exist
      until the push that writes this line; swap in the hash on the next push
      and this comment stays where it is. */
-  "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", dayLink:true },
+  "2026-09-06": { written:"2026-09-06", open:true },
+  /* WAS, until the hash of the 5 September push was known:
+       "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", dayLink:true }, */
+  "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", commit:"3b563f4" },
   "2026-08-23": { graded:"2026-08-28", written:"2026-08-29", commit:"2e4ddff" },
   "2026-08-16": { graded:"2026-08-21", written:"2026-08-21", commit:"a0e26cb" },
   "2026-08-14": { graded:"2026-08-14", written:"2026-08-16", commit:"38fdc34" },
@@ -1700,8 +1759,11 @@ const STANDING = [
        endedAs stay empty because they end the WHOLE entry. stated is not
        moved, for the reason written against it above. The founder's ruling
        on the half with no successor is logged in note 11. */
-    claim:   "All three metals carry a bullish swing clock. What dates a turn on this clock is the epoch midline crossing the slow mean reversion line, not a price close: price can sit under the line for weeks with the structure intact, which is the same standard this page has applied to the secular clock since 1 August. Gold has been bullish since the 7 August close and platinum since the 19 August close. Silver closed the week of 28 August under its line at 66.3700 against 66.6600, and that is confirmation moving against the claim, not the event that ends it. The weekly rows are a different object on a different clock: the silver row of 23 August published a price close as its kill, that kill fired, and the row grades wrong and stays wrong. See note 11.",
-    kill:    "the epoch midline crossing the slow mean reversion line, per metal, ruled 29 August 2026. Position against the line is the confirmation and never the trigger. No price close ends this call, which is why the 28 August close beneath the line in silver did not end it. The line reads: gold 4,308.037, silver 66.6600, platinum 1,790.84, all at the 28 August close. The weekly rows in the ledger below carry their own kills, published before each week, and those ARE price closes",
+    /* WAS, at the 28 August close, until the 6 September upload (note 19):
+       claim: "...Silver closed the week of 28 August under its line at 66.3700 against 66.6600..."
+       kill:  "...The line reads: gold 4,308.037, silver 66.6600, platinum 1,790.84, all at the 28 August close..." */
+    claim:   "All three metals carry a bullish swing clock. What dates a turn on this clock is the epoch midline crossing the slow mean reversion line, not a price close: price can sit under the line for weeks with the structure intact, which is the same standard this page has applied to the secular clock since 1 August. Gold has been bullish since the 7 August close and platinum since the 19 August close. Silver closed the week of 4 September under its line for a second week, 66.1940 against 66.8082, and that is confirmation moving against the claim, not the event that ends it. The weekly rows are a different object on a different clock: the silver row of 23 August published a price close as its kill, that kill fired, and the row grades wrong and stays wrong. See note 11.",
+    kill:    "the epoch midline crossing the slow mean reversion line, per metal, ruled 29 August 2026. Position against the line is the confirmation and never the trigger. No price close ends this call, which is why two closes beneath the line in silver, 28 August and 4 September, have not ended it. The line reads: gold 4,350.628, silver 66.8082, platinum 1,797.40, all at the 4 September close. The weekly rows in the ledger below carry their own kills, published before each week, and those ARE price closes",
     /* =====================================================================
        THE BOARD'S DATA. Every figure below already exists on this page and
        is traced in the comment under the marks. The renderer recomputes the
@@ -1732,20 +1794,22 @@ const STANDING = [
          assumes, and the reader assumes the card above it. Required by
          boardHeadFault; a board without one is withheld. */
       subject: "Where each metal closed against its own line",
-      foot: "One rule, three metals. Each column's rule is that metal's own 464 swing slow mean at the 28 August close, printed on the rule, and the block shows which side the week closed on. Under the 29 August ruling that side is confirmation and not the trigger: what ends a swing claim is the epoch midline crossing the slow mean reversion line. Silver closed under its line with its claim intact. The weekly rows in the ledger carry their own kills, and those are price closes.",
+      foot: "One rule, three metals. Each column's rule is that metal's own 464 swing slow mean at the 4 September close, printed on the rule, and the block shows which side the week closed on. Under the 29 August ruling that side is confirmation and not the trigger: what ends a swing claim is the epoch midline crossing the slow mean reversion line. Silver closed under its line with its claim intact. The weekly rows in the ledger carry their own kills, and those are price closes.",
       /* THE FOOT MOVED BEHIND THE FOLD, and this is the paragraph the
          founder was looking at when he asked for the diagram without the
          prose. Every print it recites is drawn larger on the board than it
          is written here. It is one click away and it is not shortened. */
-      srLede: "The graphic that follows this table places each metal above or below one rule. The rule is that metal's own 464 swing slow mean at the 28 August close, printed on it. Which side a metal closed is confirmation only: under the ruling of 29 August 2026 a swing claim ends when the epoch midline crosses the slow mean reversion line, not on a price close, so silver appears below its line with its claim still live. The table carries the same figures the graphic draws.",
+      srLede: "The graphic that follows this table places each metal above or below one rule. The rule is that metal's own 464 swing slow mean at the 4 September close, printed on it. Which side a metal closed is confirmation only: under the ruling of 29 August 2026 a swing claim ends when the epoch midline crosses the slow mean reversion line, not on a price close, so silver appears below its line with its claim still live. The table carries the same figures the graphic draws.",
       /* ROW ORDER IS THE LEDGER'S ORDER for the week of 23 August: gold,
          silver, platinum. Not alphabetical and not worst-last. A reader
          comparing the board to the three rows of 23 August finds the same
          sequence, and the week's one failure sits in the middle of the
          board rather than tucked at the end of it. */
       rows: [
+        /* WAS, at the 28 August close: line 4,308.037, close 4,453.670, dist +145.633, pct +3.38%.
+           Refreshed 6 September for the 4 September close, one upload late (note 19). */
         { name:"Gold", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
-          line:"4,308.037", close:"4,453.670", dist:"+145.633", pct:"+3.38%",
+          line:"4,350.628", close:"4,430.520", dist:"+79.892", pct:"+1.84%",
           since:"2026-08-07", killedOn:"", noClock:"" },
         /* SILVER IS LIVE AND CLOSED UNDER ITS LINE, and that pairing is the
            whole point of the 29 August ruling rather than an error the gate
@@ -1754,16 +1818,18 @@ const STANDING = [
            the cross, read it on his own chart on 29 August, and the state
            here is that read. It is NOT derived from the two prints beside
            it and it never can be, which is why "ruled" carries the date. */
+        /* WAS, at the 28 August close: line 66.6600, close 66.3700, dist -0.290, pct -0.44%. */
         { name:"Silver", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
-          line:"66.6600", close:"66.3700", dist:"-0.290", pct:"-0.44%",
+          line:"66.8082", close:"66.1940", dist:"-0.6142", pct:"-0.92%",
           since:"2026-08-21", killedOn:"", noClock:"" },
         /* PLATINUM'S TURNING CLOSE, read off the founder's chart and given
            29 Aug 2026: the 19 August close. The comment at the foot of the
            marks array said this figure was the one thing missing before
            platinum could carry a clock. It is no longer missing, so the
            clock counts from here like the other two and noClock is empty. */
+        /* WAS, at the 28 August close: line 1,790.84, close 1,821.80, dist +30.96, pct +1.73%. */
         { name:"Platinum", holds:"above", state:"live", killEvent:"cross", ruled:"2026-08-29",
-          line:"1,790.84", close:"1,821.80", dist:"+30.96", pct:"+1.73%",
+          line:"1,797.40", close:"1,819.60", dist:"+22.20", pct:"+1.24%",
           since:"2026-08-19", killedOn:"", noClock:"" }
       ]
     },
@@ -1788,11 +1854,31 @@ const STANDING = [
        week's close of 68.9460 silver fell 2.576, or 3.74% on the week; that
        figure is kept in this comment and off the card, because the silver
        mark's base has been the line since 21 August and a base that moves
-       between commits is not a base. */
+       between commits is not a base.
+
+       WEEK OF 4 SEPTEMBER 2026, refreshed 6 September, one upload late. The
+       5 September upload graded the two rows of 30 August and left this
+       entry and its board at the 28 August close; the card said so in its
+       own date and the ladder's close marker read 28 August beside rows
+       graded on 4 September. Logged in note 19 rather than tidied.
+       Gold: the 4 September weekly close is 4,430.520 against the same 7
+       August base of 4,342. 88.520 on 4,342 is +2.04%, down from +2.57%.
+       The line read 4,350.628 and the close sat 79.892 above it, +1.84%.
+       Both prints are the ones in the 30 August gold row, off the TVC chart
+       with the market shut, 03:04 CEST 5 September.
+       Silver: the close printed 66.1940 against the line at 66.8082. That is
+       0.6142 under, which is 0.92% below the line, the second weekly close
+       under it. Against the 28 August close of 66.3700 silver fell 0.176 on
+       the week; kept here and off the card for the reason above.
+       Platinum: the close printed 1,819.60 against the line at 1,797.40,
+       22.20 above, +1.24%. Both prints are in the 30 August platinum row.
+       WAS: Gold +2.57% "since the 7 Aug close, down from +6.00% last week";
+       Silver -0.44% "0.290 under the line at 66.6600 ..."; Platinum +1.73%
+       "30.96 above the line at 1,790.84 ...". */
     marks:   [
-      { name:"Gold",     move:"+2.57%", from:"since the 7 Aug close, down from +6.00% last week" },
-      { name:"Silver",   move:"-0.44%", from:"0.290 under the line at 66.6600 · bullish since 21 Aug, the claim intact under the 29 Aug ruling" },
-      { name:"Platinum", move:"+1.73%", from:"30.96 above the line at 1,790.84 · bullish since the 19 Aug close" }
+      { name:"Gold",     move:"+2.04%", from:"since the 7 Aug close, down from +2.57% last week" },
+      { name:"Silver",   move:"-0.92%", from:"0.6142 under the line at 66.8082 · second weekly close under it · bullish since 21 Aug, the claim intact under the 29 Aug ruling" },
+      { name:"Platinum", move:"+1.24%", from:"22.20 above the line at 1,797.40 · bullish since the 19 Aug close" }
       /* DO NOT DELETE THE GOLD MARK BECAUSE THE BOARD ALSO PRINTS A GOLD
          PERCENTAGE. They are measured from different things and they answer
          different questions. The board's +3.38% is distance from the kill
@@ -1833,7 +1919,7 @@ const STANDING = [
          established" is the true claim and the harsher one, and the harsher
          one is the one this page takes. */
     ],
-    asOf:    "2026-08-28",
+    asOf:    "2026-09-04",   /* WAS "2026-08-28" until 6 September, note 19 */
     status:  "live", endedOn:"", endedAs:""
     /* STATUS IS THE WHOLE ENTRY, NOT A METAL. Silver's clock ended on the
        28 August close and gold's did not, so this entry is live. endedOn
@@ -1977,6 +2063,29 @@ const STANDING = [
    ========================================================================= */
 
 const CALLS = [
+
+  /* WEEK OF 6 SEPTEMBER. Two rows, open, written before the week they grade.
+     Silver carries no row for a third week: the condition published on 30
+     August, a weekly close above 66.80, was not met on 4 September (66.1940,
+     note 17) and it stands unchanged. The 464 swing slow mean on the 6
+     September chart reads 66.6878, below the published door. The door does
+     not come down to meet the price; the test never gets easier.
+
+     Levels read off the founder's own 8h TVC charts stamped 6 September,
+     market shut, 03:44 CEST. Gold's line carried the label 4,357.307, up from
+     4,350.628 a week ago, and the floor moves up with it: published as 4,357.
+     Platinum's line reads 1,797.35, five cents under the floor named on 30
+     August; a floor does not follow a line down, so 1,797.40 stands and is
+     graded as published.
+
+     Grade Friday 11 September at the 23:00 CEST close. */
+  { date:"2026-09-06", type:"Map", metal:"Gold", level:"4,357", book:"Turn",
+    call:"Gold holds above the floor read off the 6 September chart, labelled 4,357.307 and published as 4,357. The line moved up from 4,350.628 in a week and the floor moved with it; it would not have moved the other way. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 4,357.",
+    grade:"pending" },
+
+  { date:"2026-09-06", type:"Map", metal:"Platinum", level:"1,797.40", book:"Turn",
+    call:"Platinum holds above 1,797.40, the floor named on 30 August and held on the 4 September close. The 464 swing slow mean reads 1,797.35 on the 6 September chart, five cents lower; a floor does not follow a line down, so the published number stands for a second week. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 1,797.40.",
+    grade:"pending" },
 
   /* WEEK OF 30 AUGUST. TWO rows, not three, and the missing one is the point.
      Silver's floor broke on the 28 August close (note 11). The map published
@@ -2259,6 +2368,10 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"20", kind:"standard", title:"The dark ground, 6 September 2026. The page is dark, and paper stays behind a switch.",
+    body:"This page launched on paper, the founder's chart canvas at the time, and paper was the wrong ground for two thousand words read on a phone at midnight: hard to read, and out of step with the chart the videos are cut from, which went to a near-black canvas today for the same reason. So the ground is dark for everyone from tonight, the same #141210 as the video chart, the tally card and the embed, and it is a ruling, not a preference detected from a device. The launch palette is not deleted: a Paper switch in the masthead restores it on the device that presses it, and that choice never leaves the browser. The dark ground is the same ink scale inverted and the same four brand colours, slate, copper, gold and flat, and every colour on it was measured against the ground the way the paper palette was measured: nothing sits under the 5.29 to 1 floor the paper comment states, and the measurements are in the source beside the values. No figure, grade, date, kill or rule changes with the ground." },
+  { n:"19", kind:"correction", title:"Correction, 6 September 2026. The standing card and the ladder's close marker stood one week stale.",
+    body:"The upload of 5 September graded the two rows of 30 August on the 4 September close and left the standing swing-clock entry, its board and its marks at the 28 August close. The card said so in its own date, so it did not misstate a figure, but for a day and a half the page carried rows graded on 4 September above a standing card and a ladder marker that read 28 August, and a reader comparing the two would have been right to ask which week this page was on. Refreshed tonight, before the two open rows of 6 September went up: gold closed 4,430.520 against its line at 4,350.628, 79.892 above, and its mark since the 7 August close is now +2.04%, down from +2.57%; silver closed 66.1940 against 66.8082, 0.6142 under, its second weekly close under the line, and under the 29 August ruling the claim stands because the event that ends it is the cross and not the close; platinum closed 1,819.60 against 1,797.40, 22.20 above. Every replaced figure is kept in the source beside the new one. The Friday routine now carries the standing refresh as a named step so the card and the rows cannot be graded on different weeks again. Nothing in the ledger, the tally or any grade changes." },
   { n:"18", kind:"standard", title:"Four additions, 5 September 2026. The countdown, the counter, the crowd and the guest ledger.",
     body:"Four things were added to this page today and none of them touches a grade, a row, a figure or a date in the ledger above. Each is stated here with the rule that governs it. THE COUNTDOWN. An open row now shows how long until the close that grades it, and the next verdict line carries the same clock while anything is open. Note 04 forbids deriving the Updated stamp from the visitor's clock, because that stamp is a claim about this file and a visitor's clock cannot know it. The countdown is a different object. The close that grades a row is a fixed fact derived from the row's own naming date, Friday at 23:00 in Madrid, and the visitor's clock is used only to say how far away that fixed point is. If a visitor's clock is wrong the countdown is wrong and nothing on the record moves. When the close has passed and the row is still open, the line says so instead of counting into negative numbers. THE COUNTER. Until today this page had no idea how many people read it. A record that grades itself to the cent and cannot count its own readers is missing the one number every other decision about it depends on. A privacy-respecting counter is wired in, no cookies, no personal data, open source, and it loads only when its address is filled in, on the same fail-closed rule as the doors. It cannot see, change or influence a single row. GRADED FROM THE CROWD. The sentence at the top of this page has always been about other people's calls: the ones that were wrong and disappeared. From today, now and then, one of them does not disappear. A claim made in public about gold, silver or platinum, quoted exactly with a link to where it was made, is given the kill it was published without, and graded on the same close in the same words as every row above it. The rules are written into the source beside the array and the ones that matter most are these. The claim, never the person: a handle is recorded because a quote without a source is a fabrication, and the person is not mentioned again, in the row or anywhere built from it. The kill is assigned by this desk and the rule for assigning it is stated, because the finding is not that the claim was wrong, it is that the claim was published with no way to be wrong. These rows never enter the tally, for the same reason the standing calls never do under note 02: they are a different object and averaging them in would flatter or damn this desk with somebody else's arithmetic. And when this desk has a wrong row of its own in the same week, that row is named first in any post that carries a crowd grade, because a standard applied from a clean sheet is a stone thrown. THE GUEST LEDGER. Other people's levels, graded here. A stranger submits a metal, a level and the weekly close that would prove it wrong before Sunday's close, and on Friday it is graded on the TVC close by this desk's standard, held, wrong or never reached, and kept whichever way it went. Eight rows a week at most, in the order received, the rest held over and counted rather than dropped. Never in the tally. Never edited after grading. Never given a video. The desk does not comment on a guest's level, it grades it. Why this exists is the reason this page exists: a record kept by one man is a diary, and a record where strangers are graded as hard as the owner is a standard. The only proof that a standard is neutral is a stranger graded wrong on it, in public, beside the owner's own wrong rows, and this section is where that proof accumulates or fails to. Both new sections render nothing while their arrays are empty, and empty is an acceptable state. This page has never padded a section to look busy and it will not start with these." },
   { n:"17", kind:"correction", title:"Resolution, 4 September 2026. Two floors held, and the metal with no number stayed without one.",
@@ -3946,6 +4059,28 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
     const sel  = kind === "state" ? ".sc-bblk"    : ".sc-gcond";
     if (el.querySelectorAll(sel).length !== want) fb.hidden = false;
   });
+})();
+
+/* THE THEME SWITCH (note 20). Dark is the ground; the button offers paper and
+   names the theme it would switch TO. The choice is stored on this device
+   only; nothing about it leaves the browser. The theme-color meta follows so
+   the phone's status bar matches the ground. */
+(function(){
+  var root = document.documentElement, sw = document.getElementById("theme-sw"), meta = document.getElementById("meta-theme");
+  if (!sw) return;
+  function effective(){ return root.getAttribute("data-theme") === "light" ? "light" : "dark"; }
+  function paint(){
+    var e = effective();
+    sw.textContent = e === "dark" ? "Paper" : "Dark";
+    if (meta) meta.setAttribute("content", e === "dark" ? "#141210" : "#C2BAAE");
+  }
+  sw.addEventListener("click", function(){
+    var next = effective() === "dark" ? "light" : "dark";
+    if (next === "light") root.setAttribute("data-theme", "light"); else root.removeAttribute("data-theme");
+    try { if (next === "light") localStorage.setItem("theme", "light"); else localStorage.removeItem("theme"); } catch (e) {}
+    paint();
+  });
+  paint();
 })();
 </script>
 </body>

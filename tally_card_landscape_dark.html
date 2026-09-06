@@ -6,36 +6,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#C2BAAE; --rule:#7D7263; --ink:#14110C; --ink-3:#332F26; --ink-5:#403A2C; --ink-6:#6B6155;
-    --gold:#4A360C; --miss:#63220E; --pass:#163821; --open:#1B3646;
+    --bg:#141210; --rule:#4A4238; --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#8E8474;
+    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --open:#6BA3C7;
     --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{width:1080px;height:1920px;overflow:hidden}
+  html,body{width:1920px;height:1080px;overflow:hidden}
   body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;
-    background-image:radial-gradient(864px 672px at 74% -10%,rgba(255,251,242,.42),transparent 70%)}
-  .card{width:1080px;height:1920px;display:flex;flex-direction:column;padding:86px 76px}
-  .mast{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:23px;border-bottom:2px solid var(--ink)}
+    background-image:radial-gradient(1536px 378px at 74% -10%,rgba(203,164,60,.10),transparent 70%)}
+  .card{width:1920px;height:1080px;display:flex;flex-direction:column;padding:49px 134px}
+  .mast{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:13px;border-bottom:2px solid var(--ink)}
   .mast .name{font-family:var(--mono);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
   .mast .desc{font-family:var(--mono);font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
   .body{flex:1;display:flex;flex-direction:column;justify-content:center}
   .grid{display:grid;gap:0}
-  .stat{display:flex;align-items:baseline;gap:32px;padding:35px 0;border-bottom:1px solid var(--rule)}
+  .stat{display:flex;align-items:baseline;gap:58px;padding:19px 0;border-bottom:1px solid var(--rule)}
   .stat:last-child{border-bottom:0}
-  .num{font-family:var(--mono);font-weight:600;line-height:.95;letter-spacing:-.03em;min-width:302px;text-align:right}
+  .num{font-family:var(--mono);font-weight:600;line-height:.95;letter-spacing:-.03em;min-width:538px;text-align:right}
   .lab{font-family:var(--mono);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-5)}
   .pass{color:var(--pass)} .miss{color:var(--miss)} .nr{color:var(--ink-6)} .open{color:var(--open)}
-  .foot.stack{flex-direction:column;align-items:flex-start;gap:15px}
+  .foot.stack{flex-direction:column;align-items:flex-start;gap:9px}
   .kicker{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .kicker{font-family:var(--mono);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:38px}
-  .foot{display:flex;justify-content:space-between;align-items:baseline;padding-top:27px;border-top:1px solid var(--rule)}
+  .kicker{font-family:var(--mono);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+  .foot{display:flex;justify-content:space-between;align-items:baseline;padding-top:15px;border-top:1px solid var(--rule)}
   .law{font-family:var(--mono);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
   .handle{font-family:var(--mono);font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
 
-  .mast .name{font-size:24px} .mast .desc{font-size:20px}
-  .num{font-size:324px} .lab{font-size:30px} .kicker{font-size:23px}
-  .law{font-size:23px} .handle{font-size:22px}
-  
+  .mast .name{font-size:26px} .mast .desc{font-size:22px}
+  .num{font-size:324px} .lab{font-size:32px} .kicker{font-size:25px}
+  .law{font-size:25px} .handle{font-size:23px}
+  .grid{grid-template-columns:1fr 1fr;gap:0 115px} .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)} .stat:nth-last-child(-n+2){border-bottom:0}
 </style></head><body>
 <div class="card">
   <div class="mast"><span class="name">The Simplifier</span><span class="desc">Metals · The record</span></div>
@@ -48,6 +48,6 @@
       <div class="stat"><span class="num open">2</span><span class="lab">open, clock running</span></div>
     </div>
   </div>
-  <div class="foot stack"><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">@TheSimplifier7</span></div>
+  <div class="foot"><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">@TheSimplifier7</span></div>
 </div>
 </body></html>

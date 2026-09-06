@@ -37,9 +37,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#C2BAAE; --panel:#CBC4B9; --rule:#7D7263; --rule-soft:#8B8071;
-    --ink:#14110C; --ink-3:#332F26; --ink-5:#403A2C; --ink-6:#47412F;
-    --gold:#4A360C; --miss:#63220E; --pass:#163821;
+    /* Dark ground from 6 September 2026, matching the record (note 20). Paper: bg #C2BAAE, panel #CBC4B9,
+       rule #7D7263, rule-soft #8B8071, ink #14110C, ink-3 #332F26, ink-5 #403A2C, ink-6 #47412F,
+       gold #4A360C, miss #63220E, pass #163821. */
+    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
+    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
+    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A;
     --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
     --pad:44px;
   }
@@ -110,8 +113,8 @@
   <header>
     <div class="brand">
       <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
-        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#4A360C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
-        <circle cx="33.5" cy="29" r="2.9" fill="#4A360C"></circle>
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" style="stroke:var(--gold)" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" style="fill:var(--gold)"></circle>
       </svg>
       <span class="name">The Simplifier</span>
     </div>
@@ -147,7 +150,7 @@
          The figures now come from record.json at load, through the same
          embed any publisher can use. Old markup kept above, where this
          desk keeps everything it replaces. -->
-    <script src="record-embed.js" data-rows="2" async></script>
+    <script src="record-embed.js" data-rows="2" data-theme="dark" async></script>
     <div class="url"><a href="https://thesimplifier7.github.io/record/">thesimplifier7.github.io/record</a></div>
   </div>
 

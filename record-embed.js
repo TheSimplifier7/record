@@ -6,7 +6,7 @@
      <script src="https://thesimplifier7.github.io/record/record-embed.js" async></script>
 
    Optional attributes on the tag:
-     data-theme="light" | "dark"      default light
+     data-theme="dark" | "light"      default dark, the record's own ground since 6 September 2026
      data-width="320px"               default 100% of the container, max 420px
      data-rows="1"                    how many of the latest graded rows to show, 0 to 3
 
@@ -33,7 +33,7 @@
   var BASE = (me.src || RECORD).replace(/record-embed\.js.*$/, "");
   var JSON_URL = BASE + "record.json";
 
-  var theme = (me.getAttribute("data-theme") || "light").toLowerCase() === "dark" ? "dark" : "light";
+  var theme = (me.getAttribute("data-theme") || "dark").toLowerCase() === "light" ? "light" : "dark";
   var width = me.getAttribute("data-width") || "";
   var rowsN = Math.max(0, Math.min(3, parseInt(me.getAttribute("data-rows") || "1", 10) || 0));
 
