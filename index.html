@@ -4,7 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Record</title>
-<meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." />
+<!-- META DESCRIPTION, figure-free since 6 September 2026. The line above it
+     used to carry the tally (22 resolved, 18 correct, 4 wrong) and was found
+     two grades stale against the page's own count, the exact drift the
+     Open Graph rule below was written to prevent. Search snippets cache like
+     share cards. Counts live on the page, where they are computed, not here.
+     Replaced line kept:
+     <meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." /> -->
+<meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." />
 <meta name="theme-color" content="#141210" id="meta-theme">
 <meta name="color-scheme" content="dark light">
 <script>
@@ -36,12 +43,25 @@
      change the row.
 
      card.png MUST be committed to the repo root alongside this file, or the
-     preview 404s and a broken card is worse than no card. -->
+     preview 404s and a broken card is worse than no card.
+
+     6 SEPTEMBER 2026. The card moved to the dark ground with the page (note
+     20) and is now GENERATED, not typed: make_share_card.js reads one graded
+     CALLS row, verifies every string on the card against it, writes
+     share_card.html and renders share_<date>_<metal>_<level>.png. The file
+     is named by its row so X and WhatsApp, which cache by URL, fetch the new
+     card the first time the link is posted after a change. card.html,
+     verify_card.js, card.png and card_2026-08-16_gold_4281.png are
+     superseded and leave the repo; the commit history keeps them.
+     Replaced line kept:
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-08-16_gold_4281.png"> -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
 <meta property="og:description" content="Gold, silver and platinum levels named before the week opens, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed.">
-<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-08-16_gold_4281.png">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
 

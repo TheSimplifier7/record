@@ -3,9 +3,9 @@
    Added 5 September 2026.
 
    Reads record.json (never index.html directly, never a typed number) and
-   writes two HTML files beside it:
-     tally_card_vertical.html    1080 x 1920, the first frame of a phone video
-     tally_card_landscape.html   1920 x 1080, the first frame of a desktop cut
+   writes two HTML files beside it, dark ground, the record's own palette:
+     tally_card_vertical_dark.html    1080 x 1920, the first frame of a phone video
+     tally_card_landscape_dark.html   1920 x 1080, the first frame of a desktop cut
    Every figure on the card comes from record.json, so a card can never claim
    a count the ledger does not hold. Run it after make_record_json.js, every
    Friday, before the video is cut.
@@ -14,7 +14,7 @@
      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
        --headless --disable-gpu --hide-scrollbars \
        --window-size=1080,1920 \
-       --screenshot="tally_card_vertical.png" "tally_card_vertical.html"
+       --screenshot="tally_card_vertical_dark.png" "tally_card_vertical_dark.html"
    and the same with 1920,1080 for the landscape file.
 
    BRAND LAW APPLIES. No em dashes, no hashtags, no exclamation marks, no
@@ -102,8 +102,34 @@ const build = (w, h, v, p) => {
 </body></html>`;
 };
 
-fs.writeFileSync("tally_card_vertical.html", build(1080, 1920, true, PALETTE.paper));
-fs.writeFileSync("tally_card_landscape.html", build(1920, 1080, false, PALETTE.paper));
+/* DARK IS THE ONLY CARD SHIPPED since 6 September 2026 (note 20: dark is the
+   ground for everyone). Paper is kept behind a flag for the one day it is
+   asked for, and its files are never in the upload:
+     node make_tally_card.js          dark only
+     node make_tally_card.js --paper  dark, and the paper pair beside it */
 fs.writeFileSync("tally_card_vertical_dark.html", build(1080, 1920, true, PALETTE.dark));
 fs.writeFileSync("tally_card_landscape_dark.html", build(1920, 1080, false, PALETTE.dark));
-console.log(`tally cards written from record.json (paper and dark): ${t.held} held, ${t.wrong} wrong, ${t.never_reached} never reached, ${t.open} open, graded on ${gradedOn}`);
+const paper = process.argv.includes("--paper");
+if (paper) {
+  fs.writeFileSync("tally_card_vertical.html", build(1080, 1920, true, PALETTE.paper));
+  fs.writeFileSync("tally_card_landscape.html", build(1920, 1080, false, PALETTE.paper));
+}
+console.log(`tally cards written from record.json (dark${paper ? " and paper" : ""}): ${t.held} held, ${t.wrong} wrong, ${t.never_reached} never reached, ${t.open} open, graded on ${gradedOn}`);
+
+/* Render the PNGs here when playwright is present; otherwise render by hand
+   as the header documents. */
+(async () => {
+  let chromium; try { ({ chromium } = require("playwright")); } catch (e) { return; }
+  const path = require("path");
+  const b = await chromium.launch();
+  const jobs = [["tally_card_vertical_dark", 1080, 1920], ["tally_card_landscape_dark", 1920, 1080]];
+  if (paper) jobs.push(["tally_card_vertical", 1080, 1920], ["tally_card_landscape", 1920, 1080]);
+  for (const [name, w, h] of jobs) {
+    const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    await p.goto("file://" + path.resolve(name + ".html"), { waitUntil: "networkidle" });
+    await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(400);
+    await p.screenshot({ path: name + ".png" }); await p.close();
+  }
+  await b.close();
+  console.log(`rendered: ${jobs.map(j => j[0] + ".png").join(", ")}`);
+})();
