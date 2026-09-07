@@ -1,0 +1,6 @@
+.env
+last_post.json
+replies_*.json
+__pycache__/
+.DS_Store
+node_modules/
