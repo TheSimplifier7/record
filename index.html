@@ -1428,7 +1428,8 @@
         <thead><tr><th>Published</th><th>Source</th><th>Target</th><th>Window</th><th>As published</th><th>Grade</th></tr></thead>
         <tbody id="board-rows"></tbody>
       </table></div>
-      <p class="board-foot">One rule. Held if a weekly close on the target's side of it prints on or before the last weekly close inside the window; wrong if the window closes without one. A range is graded on its nearer bound. Averages, "toward", "approach" and claims with no window are not targets and are not on the board; they are listed by name, with the reason, on <a href="targets.html">the full board</a>, with every quote. A row is never graded on a print this desk has not read off its own chart.</p>
+      <p class="board-foot">One rule. Held if a weekly close on the target's side of it prints on or before the last weekly close inside the window; wrong if the window closes without one. A range is graded on its nearer bound. Averages, "toward", "approach" and claims with no window are not targets and are not on the board; they are listed by name, with the reason, on <a href="targets.html">the full board</a>, with every quote. Every close on this board is read off this desk's own chart; where one is not yet, the row says as reported and the figure is replaced when it is read. A grade never turns on the decimals.</p>
+      <!-- 8 Sep 2026: the last sentence read "A row is never graded on a print this desk has not read off its own chart." until the Citi March row was graded on reported February closes, five months after its window shut, and the sentence had to be made true again. -->
     </div>
   </section>
 
@@ -2537,7 +2538,16 @@ const TARGETS = [
     quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
     link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
     kill:"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
-    note:"The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.", grade:"pending", result:"" },
+    /* Graded 8 Sep 2026. Until then this row read:
+         note:"The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.", grade:"pending", result:""
+       The founder ruled on 8 September that a window five months shut is
+       graded, not left open. The February closes are as reported (Kitco,
+       27 February 2026; FOREX.com, 23 February 2026) and the figure is
+       replaced by the founder's TVC read when he supplies it. The grade
+       cannot move: the margin over the line is more than four percent. */
+    note:"Graded 8 September 2026, five months after the window shut, because the board did not exist until then. The desk's own weekly closes begin in June 2026; the February closes are as reported and the figure is replaced by the founder's chart read when supplied. The grade does not depend on the decimals.",
+    grade:"pass",
+    result:"Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks." },
 ];
 
 /* Claims examined and left off the board, by name, with the reason. Dated. */
@@ -4154,6 +4164,10 @@ function renderBoard(){
   const open = rows.filter(t => t.grade === "pending").length, held = rows.filter(t => t.grade === "pass").length, wrong = rows.filter(t => t.grade === "miss").length;
   if (cnt) cnt.textContent = [open ? open + " open" : "", held ? held + " held" : "", wrong ? wrong + " wrong" : ""].filter(Boolean).join(" · ");
   block.hidden = false;
+  /* 8 Sep 2026: the first target graded, so the crowd line says how many
+     are on the clock and how many are graded rather than counting all as
+     on the clock. */
+  renderBoard.counts = { n: rows.length, open, held, wrong };
   return rows.length;
 }
 
@@ -4164,7 +4178,9 @@ function renderBoard(){
   /* 8 Sep 2026 (note 22): the section now also carries the bank board, so it
      hides only when both are empty. The board renders itself below. */
   const boardN = renderBoard();
-  if (!ok) { sec.hidden = boardN === 0; if (cnt && boardN) cnt.textContent = boardN + " targets on the clock"; return; }
+  const bc = renderBoard.counts || { open: boardN, held: 0, wrong: 0 };
+  const boardText = [bc.open ? bc.open + (bc.open === 1 ? " target" : " targets") + " on the clock" : "", bc.held ? bc.held + " held" : "", bc.wrong ? bc.wrong + " wrong" : ""].filter(Boolean).join(", ");
+  if (!ok) { sec.hidden = boardN === 0; if (cnt && boardN) cnt.textContent = boardText; return; }
   const rows = CROWD.slice().sort((a, b) => b.date.localeCompare(a.date));
   host.innerHTML = rows.map((c, i) => {
     const g = GRADES[c.grade] || GRADES.notest;
@@ -4197,7 +4213,7 @@ function renderBoard(){
   /* Counted as graded and open, not "graded" while the first one is still on
      the clock. 7 Sep 2026. */
   const openN = rows.filter(c => c.grade === "pending").length, gradedN = rows.length - openN;
-  if (cnt) cnt.textContent = [gradedN ? gradedN + (gradedN === 1 ? " claim graded" : " claims graded") : "", openN ? openN + " open" : "", boardN ? boardN + " targets on the clock" : ""].filter(Boolean).join(" · ");
+  if (cnt) cnt.textContent = [gradedN ? gradedN + (gradedN === 1 ? " claim graded" : " claims graded") : "", openN ? openN + " open" : "", boardText].filter(Boolean).join(" · ");
   sec.hidden = false;
   tickCountdowns();
 })();

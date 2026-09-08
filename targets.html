@@ -43,8 +43,11 @@
           and is graded on its own window.
 
      Every close used to grade a row is read off the founder's own chart and
-     is already on the record page. The desk never grades a row on a print it
-     has not read itself; until then the row is open and says so.
+     is already on the record page, except where a window shut before this
+     desk's own weekly reads begin (June 2026): that row is graded on the
+     reported print, says "as reported", and takes the founder's figure when
+     he reads it. Ruled 8 September 2026 on the Citi March row. A grade never
+     turns on the decimals; if one ever did, the row would stay open.
 
      Rendering fails closed: a row missing any required field is not drawn,
      and the page says how many were held back.
@@ -66,7 +69,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
-  .wrap{max-width:980px;margin:0 auto;padding:52px var(--pad) 64px}
+  .wrap{max-width:1080px;margin:0 auto;padding:52px var(--pad) 64px}
   a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
   a:hover{color:var(--ink)}
   header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -88,10 +91,14 @@
   th{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-6);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-weight:500;white-space:nowrap}
   td{padding:14px 12px 14px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
   td.d{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
-  td.src{color:var(--ink);white-space:nowrap}
+  td.src{color:var(--ink);max-width:20ch}
   td.lv{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--gold);white-space:nowrap}
   td.win{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
-  td.q{font-size:14.5px;color:var(--ink-3);max-width:52ch;min-width:34ch}
+  td.q{font-size:14.5px;color:var(--ink-3);max-width:38ch;min-width:28ch}
+  /* 8 Sep 2026: the grade column carries a result once a row is graded, so
+     it is given room; before, the quote column took it all and the first
+     result wrapped one word to a line. */
+  td.gr{min-width:24ch;max-width:30ch}
   td.q a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;margin-left:6px}
   .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1.5px solid currentColor;white-space:nowrap}
   .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
@@ -135,7 +142,8 @@
     <div><div class="n" id="c-all">·</div><div class="t">targets on the board</div></div>
   </div>
 
-  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if a weekly close on the target's side of it, at or above for a target above price, at or below for a target below, prints on or before the last weekly close inside the window. Wrong if the window closes without one. A range is graded on its nearer bound. Graded on the TVC weekly close, read off this desk's own chart, the same close every row on the record is graded on. A bank's target is usually read as a print on any day; this page grades closes and nothing else, and says so here so nobody is surprised.</div>
+  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if a weekly close on the target's side of it, at or above for a target above price, at or below for a target below, prints on or before the last weekly close inside the window. Wrong if the window closes without one. A range is graded on its nearer bound. Graded on the TVC weekly close, read off this desk's own chart, the same close every row on the record is graded on; where a close predates this desk's own reads the row says as reported and the figure is replaced when it is read, and a grade never turns on the decimals. A bank's target is usually read as a print on any day; this page grades closes and nothing else, and says so here so nobody is surprised.</div>
+  <!-- 8 Sep 2026: the sentence on this desk's own chart gained its "as reported" clause when the Citi March row was graded on reported February closes. -->
 
   <div class="tbl">
     <table id="board">
@@ -218,7 +226,7 @@ function render(){
       <td class="win">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmt(t.window))}</span></td>
       <td class="q">“${esc(t.quote)}”<a href="${esc(t.link)}" rel="nofollow noopener">source</a>${t.note ? `<div class="res">${esc(t.note)}</div>` : ""}
         <details class="kill"><summary>The kill, assigned</summary><p>${esc(t.kill)}</p></details></td>
-      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}</td>
+      <td class="gr"><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}</td>
     </tr>`;
   }).join("");
   const c = k => ok.filter(t => t.grade === k).length;

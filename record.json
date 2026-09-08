@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-09-09",
-  "generated": "2026-09-08T19:44:15.391Z",
+  "generated": "2026-09-08T20:31:11.767Z",
   "tally": {
     "resolved": 24,
     "held": 20,
@@ -904,9 +904,9 @@
       "quote": "Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
       "link": "https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
       "kill": "Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
-      "note": "The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.",
-      "grade": "pending",
-      "result": ""
+      "note": "Graded 8 September 2026, five months after the window shut, because the board did not exist until then. The desk's own weekly closes begin in June 2026; the February closes are as reported and the figure is replaced by the founder's chart read when supplied. The grade does not depend on the decimals.",
+      "grade": "pass",
+      "result": "Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks."
     }
   ],
   "targets_left_off": [
