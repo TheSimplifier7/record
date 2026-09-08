@@ -30,8 +30,11 @@ const NOTES = literal("NOTES");
 let PROVENANCE = {};
 try { PROVENANCE = literal("PROVENANCE"); } catch (e) {}
 /* 5 Sep 2026: the crowd and guest arrays. Both may be empty. Neither is in the tally. */
-let CROWD = [], GUEST = [];
+let CROWD = [], GUEST = [], TARGETS = [], OUT = [];
 try { CROWD = literal("CROWD"); } catch (e) {}
+/* 8 Sep 2026: the bank board and the claims left off it, note 22. */
+try { TARGETS = literal("TARGETS"); } catch (e) {}
+try { OUT = literal("OUT"); } catch (e) {}
 try { GUEST = literal("GUEST"); } catch (e) {}
 const LAST_UPDATED = scalar("LAST_UPDATED");
 const STANDARD_FROM = scalar("STANDARD_FROM");
@@ -84,6 +87,8 @@ const out = {
     marks: s.marks || null
   })),
   notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body })),
+  targets: TARGETS,
+  targets_left_off: OUT,
   crowd: {
     note: "Claims made in public by others, quoted exactly, given the kill they were published without, graded on the same close. Not this desk's calls. Not in the tally. See note 18.",
     rows: CROWD.map((c, i) => ({ id: "crow-" + i, published: c.date, source: c.source, quote: c.quote, link: c.link, metal: c.metal, kill_assigned: c.kill, graded_on_close: c.gradeDate || null, result: c.result || null, grade: c.grade, grade_word: grades[c.grade] || c.grade }))
@@ -94,4 +99,4 @@ const out = {
   }
 };
 fs.writeFileSync("record.json", JSON.stringify(out, null, 2) + "\n");
-console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally) + ", crowd " + CROWD.length + ", guest " + GUEST.length);
+console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally) + ", crowd " + CROWD.length + ", targets " + TARGETS.length + ", guest " + GUEST.length);

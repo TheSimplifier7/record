@@ -879,6 +879,47 @@
     border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
   .doors[data-open="1"]{display:grid}
   .doors[data-open="1"][data-single="1"]{grid-template-columns:1fr}
+  /* THREE DOORS, 8 Sep 2026 (note 22). The Method sits between the free door
+     and the seat. Below 900px the doors stack; before this rule two doors
+     shared a phone screen at 34px padding each. */
+  .doors[data-open="1"][data-count="3"]{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:900px){
+    .doors[data-open="1"],.doors[data-open="1"][data-count="3"]{grid-template-columns:1fr}
+    .door{border-right:none;padding-left:0;padding-right:0;border-bottom:1px solid var(--rule)}
+    .door:last-child{border-bottom:none}
+  }
+  /* THE NAV ROW under the masthead, 8 Sep 2026 (note 22). Five words, five
+     places. The record was one page with two doors at the bottom; it is
+     now the record, the board, the wrong ones, the tool and the seat, and a
+     stranger should see the five without scrolling. Anchors and pages only. */
+  .nav{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0 0;font-family:var(--mono);
+    font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .nav a{color:var(--ink-5);border-bottom:1px solid transparent;padding-bottom:2px}
+  .nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+  .nav a.here{color:var(--ink);border-bottom-color:var(--gold)}
+  /* THE BOARD inside the crowd section, 8 Sep 2026 (note 22). */
+  .board-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    margin-top:38px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+  .board-head h3{font-weight:300;font-size:22px;letter-spacing:-.01em;color:var(--ink)}
+  .board-wrap{overflow-x:auto}
+  .board{width:100%;min-width:640px;border-collapse:collapse;font-size:14px}
+  .board th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-6);font-weight:500;text-align:left;padding:10px 12px 8px 0;border-bottom:1px solid var(--rule-soft)}
+  .board td{padding:12px 12px 12px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  .board td.d{font-family:var(--mono);font-size:12px;color:var(--ink-5);white-space:nowrap}
+  .board td.s{color:var(--ink);white-space:nowrap}
+  .board td.l{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--gold);white-space:nowrap}
+  .board td.w{font-family:var(--mono);font-size:12px;color:var(--ink-5);white-space:nowrap}
+  .board details summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-6);cursor:pointer;list-style:none}
+  .board details summary::-webkit-details-marker{display:none}
+  .board details p{font-size:14px;color:var(--ink-3);margin-top:8px;max-width:60ch}
+  .board details .kl{font-family:var(--mono);font-size:12px;color:var(--ink-5);margin-top:6px;max-width:60ch;line-height:1.6}
+  .board .g{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;padding:4px 9px;border:1.5px solid currentColor;white-space:nowrap}
+  .board .g i{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+  .board .g.pending{color:var(--pending)} .board .g.pass{color:var(--pass)} .board .g.miss{color:var(--miss)} .board .g.notest{color:var(--notest)}
+  .board-foot{font-family:var(--mono);font-size:12px;color:var(--ink-6);line-height:1.7;margin-top:12px;max-width:80ch}
   .door{display:none;padding:34px 44px 38px;border-right:1px solid var(--rule)}
   .door[data-ready="1"]{display:block}
   .door:first-child{padding-left:0}
@@ -953,6 +994,7 @@
   .btn-quiet:hover{border-color:var(--ink);color:var(--ink);background:transparent}
   .ab-cta .btn{padding:9px 15px;font-size:10px;letter-spacing:.13em}
   @media(max-width:859px){.ab-tally,.ab-mark .name{display:none}}
+  @media(max-width:600px){.ab-cta a#ab-method[data-ready="1"]{display:none}}
   /* Specificity note, 22 Aug 2026. This selector must carry a class, an
      attribute AND an element to outrank .ab-cta a[data-ready="1"] (0,2,1)
      above. Media queries add no specificity, so the earlier, simpler form
@@ -1131,6 +1173,7 @@
     </span>
     <span class="ab-tally" id="ab-tally"></span>
     <span class="ab-cta">
+      <a class="btn-quiet" id="ab-method" href="method.html" data-ready="1">The Method</a>
       <a class="btn-quiet" id="ab-apply" href="#doors" data-ready="0">Three seats open</a>
       <a class="btn" id="ab-email" href="#doors" data-ready="0">Get the Sunday level</a>
     </span>
@@ -1150,6 +1193,14 @@
     <span class="desc">Metals intelligence · Graded record</span>
     <button class="theme-sw" id="theme-sw" type="button" aria-label="Switch between dark and paper">Paper</button>
   </div>
+  <!-- THE NAV ROW. Added 8 Sep 2026, note 22. -->
+  <nav class="nav" aria-label="Pages">
+    <a href="#ledger" class="here">The record</a>
+    <a href="#crowd">The banks, graded</a>
+    <a href="misses.html">The wrong ones</a>
+    <a href="method.html">The Method</a>
+    <a href="#doors">The seat</a>
+  </nav>
   <div class="hairline"></div>
 
   <main>
@@ -1345,8 +1396,23 @@
       <h2>Graded from the crowd</h2>
       <span class="cnt" id="crowd-count"></span>
     </div>
-    <p class="sc-plain">A claim made in public, quoted exactly, given the kill it was published without, and graded on the same close as every row above. <em>The claim, never the person.</em> These are not this desk's calls and they are not in the tally.</p>
+    <!-- LEDE rewritten 8 Sep 2026 (note 22). This read "A claim made in public,
+         quoted exactly, given the kill it was published without, and graded on
+         the same close as every row above. The claim, never the person. These
+         are not this desk's calls and they are not in the tally." -->
+    <p class="sc-plain">Every call this desk can find with a level and a window is graded here, by the rule the rows above are graded by. The banks' targets and the loud accounts' claims, quoted exactly with their date and their source, given the kill they were published without, and graded on the weekly close when their window shuts. Held, wrong, or never reached; nothing softer, and nothing removed when the number is revised. <em>The claim, never the person.</em> None of it is in this desk's tally, and this desk's own wrong rows sit above, where they were first.</p>
     <div class="ledger-list" id="crowd-list"></div>
+
+    <!-- THE BOARD. The banks' targets, on the page. Added 8 Sep 2026, note 22.
+         Rendered from TARGETS below; a row missing any field is not drawn. -->
+    <div id="board-block" hidden>
+      <div class="board-head"><h3>The banks' targets</h3><span class="cnt" id="board-count"></span></div>
+      <div class="board-wrap"><table class="board" aria-label="The banks' gold targets, graded on the close">
+        <thead><tr><th>Published</th><th>Source</th><th>Target</th><th>Window</th><th>As published</th><th>Grade</th></tr></thead>
+        <tbody id="board-rows"></tbody>
+      </table></div>
+      <p class="board-foot">One rule. Held if a weekly close on the target's side of it prints on or before the last weekly close inside the window; wrong if the window closes without one. A range is graded on its nearer bound. Averages, "toward", "approach" and claims with no window are not targets and are not on the board; they are listed by name, with the reason, on <a href="targets.html">the full board</a>, with every quote. A row is never graded on a print this desk has not read off its own chart.</p>
+    </div>
   </section>
 
   <!-- ====================================================================
@@ -1397,6 +1463,17 @@
       </form>
       <p class="cadence">One email Sunday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
       <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
+    </div>
+
+    <!-- THE METHOD DOOR. Added 8 Sep 2026, note 22. Ready whenever method.html
+         exists beside this file; the page itself sells nothing until its own
+         four URLs are filled, so this door can never lead to a dead end. -->
+    <div class="door" id="door-method" data-ready="0">
+      <div class="eyebrow">By invitation</div>
+      <h3>The Method</h3>
+      <p>The indicator every level on this page is read from, on your own TradingView chart. The cloud, the fan, the three lines. It draws structure. It does not tell you what to do. By the quarter or by the year, one username.</p>
+      <p style="margin-top:22px"><a class="btn-quiet" id="method-link" href="method.html">What it is, and the terms</a></p>
+      <p class="fine">A tool licence. Not a signal.<br>Education and training. Not investment advice.</p>
     </div>
 
     <div class="door" id="door-apply" data-ready="0">
@@ -2369,6 +2446,95 @@ const CROWD = [
 ];
 
 /* =========================================================================
+   THE BANK BOARD  ·  added 8 September 2026  ·  see note 22
+
+   A dated ledger of the gold targets the banks and the large houses publish,
+   each with the kill it was published without, each graded on the TVC weekly
+   close when its window closes, none of them removed. Banks revise targets
+   quietly; the board keeps the first number and the revision, as two rows.
+
+   THE RULES are the crowd section's rules applied to a standing ledger:
+   1. The claim, never the person. The institution is recorded as the source
+      because a quote without a source is a fabrication. No adjective.
+   2. Exact quote, dated, with the link to where it was reported.
+   3. ONE grading rule: held if a weekly close on the target's side of it
+      prints on or before the last weekly close inside the window; wrong if
+      the window closes without one. A range is graded on its nearer bound.
+   4. Not on the board: averages for a year, "toward", "approach", "could",
+      ranges with no window, claims with no window. Listed by name with the
+      reason in OUT below, rendered on targets.html.
+   5. Never in the tally. 6. Nothing deleted; a revision is a new row.
+   Every close used to grade a row is read off the founder's own chart. A row
+   whose window has closed stays "pending" until then, and says so.
+
+   Fields: published, source, quote, link, level, side ("above" or "below",
+   the side the target must be reached from), window (ISO, last day of the
+   claim's window), windowText, kill, note, grade (pending | pass | miss |
+   notest), result (filled when graded). December 2026 windows grade on the
+   last weekly close of 2026.
+   ========================================================================= */
+const TARGETS = [
+  { published:"2026-09-04", source:"Citi Research", level:4800, side:"above", window:"2026-12-04", windowText:"0 to 3 months",
+    quote:"The bank sets its 0-3 month point price target for gold at $4,800 per ounce and its 6-12 month forecast at $5,000 per ounce.",
+    link:"https://www.investing.com/news/commodities-news/citi-says-the-dip-in-gold-prices-is-a-buying-opportunity-93CH-4889056",
+    kill:"Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one.",
+    note:"First raised to 4,800 from 4,500 on 24 August 2026 (Reuters). Also the first crowd row on the record, named 9 September.", grade:"pending", result:"" },
+
+  { published:"2026-09-02", source:"Goldman Sachs Research", level:4900, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Goldman Sachs sees gold price at $4,900/oz by year-end.",
+    link:"http://www.kitco.com/news/article/2026-09-02/goldman-sachs-sees-gold-price-4900oz-year-end-investors-hedging-through",
+    kill:"Held if a weekly close at or above 4,900 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Set at 4,900 on 19 June 2026, cut from 5,400; restated 2 September. Quote is the report's headline; the analysts' text projects gains into the second half without restating the figure.", grade:"pending", result:"" },
+
+  { published:"2026-05-27", source:"UBS", level:5500, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Swiss banking giant UBS has cut its year-end 2026 gold price forecast from $5,900 to $5,500 per ounce.",
+    link:"https://www.kitco.com/news/article/2026-05-27/ubs-lowers-2026-gold-price-forecast-5500oz-markets-are-rediscovering",
+    kill:"Held if a weekly close at or above 5,500 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"The 5,900 it was cut from, and a March 2026 note reading toward 5,900 to 6,200 this year, are listed below the board as not gradeable: toward is not a level.", grade:"pending", result:"" },
+
+  { published:"2026-02-25", source:"J.P. Morgan Global Research", level:6300, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Gold price will rise 22% above current level to reach $6,300 by year-end 2026.",
+    link:"https://www.kitco.com/news/article/2026-02-25/gold-price-will-rise-22-above-current-level-reach-6300-year-end-2026-jp",
+    kill:"Held if a weekly close at or above 6,300 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Quote is the report's headline. On 23 June 2026 the same house moved 6,300 to end-2027 and held about 6,000 for Q4 2026; that revision is its own row. This row stays as published.", grade:"pending", result:"" },
+
+  { published:"2026-06-23", source:"J.P. Morgan Global Research, as reported", level:6000, side:"above", window:"2026-12-31", windowText:"Q4 2026",
+    quote:"Q4 2026: ~$6,000/oz. End of 2027: ~$6,300/oz potential.",
+    link:"https://www.canadianminingreport.com/blog/jpmorgan-s-latest-gold-forecast-what-the-world-s-largest-bank-is-telling-investors",
+    kill:"Held if a weekly close at or above 6,000 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Reported second-hand; the desk will replace the link with the primary note when it has one. The 2026 average of 5,243 in the same note is not on the board: an average cannot be graded on a close.", grade:"pending", result:"" },
+
+  { published:"2026-05-19", source:"MKS PAMP", level:5800, side:"above", window:"2026-12-31", windowText:"second half of 2026",
+    quote:"Gold is still expected to average $4,500/oz in 2026, with a new higher all-time high of $5,800/oz a fair target for the second half of the year.",
+    link:"https://www.kitco.com/news/article/2026-05-19/gold-will-hit-5800-ath-december-silver-has-highest-upside-platinum-has",
+    kill:"Held if a weekly close at or above 5,800 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"The 4,500 average in the same sentence is not on the board.", grade:"pending", result:"" },
+
+  { published:"2025-06-17", source:"Citi Research", level:2700, side:"below", window:"2026-12-31", windowText:"the second half of 2026",
+    quote:"Gold could return to around $2,500-$2,700/oz by the second half of 2026.",
+    link:"https://finance.yahoo.com/news/citi-sees-gold-below-3-091750805.html",
+    kill:"A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.",
+    note:"Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.", grade:"pending", result:"" },
+
+  { published:"2026-01-13", source:"Citi Research", level:5000, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
+    quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
+    link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
+    kill:"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
+    note:"The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.", grade:"pending", result:"" },
+];
+
+/* Claims examined and left off the board, by name, with the reason. Dated. */
+const OUT = [
+  ["31 Aug 2026", "TD Securities", "gold falling toward the lower end of the recent $4,200 to $4,700 trading range by year-end", "toward, and a range with no side stated; not a level"],
+  ["2 Sep 2026", "RBC", "gold will approach $5,000 in 2026, $5,300 in 2027", "approach is not a level"],
+  ["31 Aug 2026", "Crescat Capital", "gold price is going to $20,000", "no window"],
+  ["1 Sep 2026", "World Gold Council", "at risk of pullback to $4,215 as short-term momentum fades", "at risk of, and no window; a technical note, not a target"],
+  ["23 Jun 2026", "J.P. Morgan", "2026 average lowered to $5,243 from $5,708", "an average for a year cannot be graded on a close"],
+  ["8 Jul 2026", "Bank of America", "2026 average $4,360, cut from $5,093", "an average; primary source not yet in the desk's hands"],
+  ["Mar 2026", "UBS", "gold prices should rise toward USD 5,900 to 6,200/oz this year", "toward, and a range"],
+];
+
+/* =========================================================================
    THE GUEST LEDGER  ·  added 5 September 2026  ·  see note 18
 
    Other people's levels, graded here, by the same rule, on the same close.
@@ -2410,6 +2576,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"22", kind:"standard", title:"The board on the page, 9 September 2026. The banks' targets, a third door, and five words under the masthead.",
+    body:"Three things changed on the page tonight and none of them touches a row, a grade, a figure or a date in the ledger. THE BOARD. The crowd section now carries the banks' gold targets as a standing ledger under the collision rows: each one an exact quote with its date and its source, the kill this desk assigned by one rule, the window, and the grade when the window shuts. The rule is the rule the rows above are graded by, stated once on the board: held if a weekly close on the target's side of it prints on or before the last weekly close inside the window, wrong if the window closes without one, a range on its nearer bound. What is not a target is not on the board and is listed by name with the reason on the full page, targets.html: averages for a year, toward, approach, could, and anything with no window. A revised target is a new row and the first one stays; that is the whole point of keeping it. A row whose window has already closed stays open until the founder has read the closes off his own chart, and says so; the first such row is on the board tonight. The board is never in the tally. THE THIRD DOOR. The indicator every level on this page is read from is available by invitation, on the reader's own chart, and it has a door beside the free one and the seat. The door leads to a page that describes the tool and sells nothing until its own terms and links exist, so it can never lead anywhere dead, which is the rule every door on this page has kept since the first one. THE FIVE WORDS. A row under the masthead names the five places this page now is: the record, the banks graded, the wrong ones, the Method, the seat. The record was one page with two doors at the bottom, and a stranger should not have to scroll to the footer to find that the banks are graded here. The lede of the crowd section was rewritten to say what the section has become; the replaced sentence is kept in the source. Nothing above this note was touched. The tally does not know any of this exists." },
   { n:"21", kind:"standard", title:"The first crowd row, 9 September 2026. Named before, graded after, applied to somebody else's number.",
     body:"The section below the ledger carries its first claim tonight, and the shape of it is worth stating because it is not the shape note 18 assumed. Note 18 imagined a claim quoted and graded in the same breath, on the same Friday close as the rows above. The first claim the desk could source that passed every test, an institution's zero to three month target with a level, a window and no condition, does not resolve for thirteen weeks, and none of the loud claims in the market resolve at all, because they carry no clock. So the crowd row goes on the page the way this desk's own rows have gone on since 30 August: open, with its kill assigned and its grade date stated, and graded in place when that close prints. That is the more honest version of the format and it is now the standing one. A crowd row is named on the day it is written here and graded on the last weekly close inside the claim's own window; the countdown under it counts to that close and not to this page's naming week, and the code was changed tonight to make it do so. TWO RULES TOUCHED. Rule 2 of the crowd section said the link to the post. It now says the link to where the claim was made, in any dated public medium, because the loud claims are made everywhere at once and a dated article is the harder exhibit to delete; the founder ruled on 7 September that he will not search X for a claim to grade, and the desk does the finding from the open record instead, on a fixed day, by six tests written into the collision file. Rule 1 stands exactly: the source is recorded on the row because a quote without a source is a fabrication, and it is not spoken or written anywhere built from the row. WHAT THE FIRST ROW IS AND IS NOT. It is a target of 4,800 with a window that closes on 4 December, published without the close that would grade it. The finding is that sentence and only that sentence. The row does not say the number is wrong, does not say who will be right, and carries no adjective about the desk that published it. What the page adds is the kill the note did not carry, stated with the rule for assigning it, and the closes the note did not mention: the same desk's target has read 4,000, 4,500 and 4,800 since June, each move after the price had moved, and the same desk saw the second half of 2026 at 2,500 to 2,700 when it wrote in June 2025, against a 4 September close of 4,430.520. Those are dated figures with sources and they are on the row's frames, not in this note, because this note is about the rule and the frames are about the claim. Nothing above this note was touched. The tally does not know this row exists." },
   { n:"20", kind:"standard", title:"The dark ground, 6 September 2026. The page is dark, and paper stays behind a switch.",
@@ -3828,11 +3996,40 @@ document.getElementById("updated-foot").textContent = stamp;
    GRADED FROM THE CROWD  ·  render  ·  5 Sep 2026  ·  note 18
    Fail closed: empty array, section stays hidden. Never touches the tally.
    ========================================================================= */
+/* THE BOARD, 8 Sep 2026 (note 22). Fails closed per row; returns the count drawn. */
+function renderBoard(){
+  const block = document.getElementById("board-block"), host = document.getElementById("board-rows"), cnt = document.getElementById("board-count");
+  if (!block || !host || typeof TARGETS === "undefined" || !Array.isArray(TARGETS)) return 0;
+  const GL = { pending:["Open","pending"], pass:["Held","pass"], miss:["Wrong","miss"], notest:["Never reached","notest"] };
+  const need = ["published","source","quote","link","level","side","window","windowText","kill","grade"];
+  const rows = TARGETS.filter(t => t && need.every(k => t[k] !== undefined && t[k] !== "") && /^https?:\/\//.test(t.link) && GL[t.grade] && /^(above|below)$/.test(t.side))
+    .sort((a, b) => a.window.localeCompare(b.window) || b.published.localeCompare(a.published));
+  if (!rows.length) { block.hidden = true; return 0; }
+  host.innerHTML = rows.map(t => {
+    const g = GL[t.grade];
+    return `<tr>
+      <td class="d">${esc(fmtDate(t.published))}</td>
+      <td class="s">${esc(t.source)}</td>
+      <td class="l">${Number(t.level).toLocaleString("en-US")}<div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="w">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmtDate(t.window))}</span></td>
+      <td><details><summary>The quote, and the kill</summary><p>"${esc(t.quote)}" <a href="${esc(t.link)}" rel="nofollow noopener">source</a></p><div class="kl">${esc(t.kill)}</div>${t.note ? `<div class="kl">${esc(t.note)}</div>` : ""}</details></td>
+      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}</td>
+    </tr>`;
+  }).join("");
+  const open = rows.filter(t => t.grade === "pending").length, held = rows.filter(t => t.grade === "pass").length, wrong = rows.filter(t => t.grade === "miss").length;
+  if (cnt) cnt.textContent = [open ? open + " open" : "", held ? held + " held" : "", wrong ? wrong + " wrong" : ""].filter(Boolean).join(" · ");
+  block.hidden = false;
+  return rows.length;
+}
+
 (function renderCrowd(){
   const sec = document.getElementById("crowd"), host = document.getElementById("crowd-list"), cnt = document.getElementById("crowd-count");
   if (!sec || !host) return;
   const ok = Array.isArray(CROWD) && CROWD.length && CROWD.every(c => c && c.date && c.source && c.quote && c.link && c.metal && c.kill && c.grade);
-  if (!ok) { sec.hidden = true; return; }
+  /* 8 Sep 2026 (note 22): the section now also carries the bank board, so it
+     hides only when both are empty. The board renders itself below. */
+  const boardN = renderBoard();
+  if (!ok) { sec.hidden = boardN === 0; if (cnt && boardN) cnt.textContent = boardN + " targets on the clock"; return; }
   const rows = CROWD.slice().sort((a, b) => b.date.localeCompare(a.date));
   host.innerHTML = rows.map((c, i) => {
     const g = GRADES[c.grade] || GRADES.notest;
@@ -3865,7 +4062,7 @@ document.getElementById("updated-foot").textContent = stamp;
   /* Counted as graded and open, not "graded" while the first one is still on
      the clock. 7 Sep 2026. */
   const openN = rows.filter(c => c.grade === "pending").length, gradedN = rows.length - openN;
-  if (cnt) cnt.textContent = [gradedN ? gradedN + (gradedN === 1 ? " claim graded" : " claims graded") : "", openN ? openN + " open" : ""].filter(Boolean).join(" · ");
+  if (cnt) cnt.textContent = [gradedN ? gradedN + (gradedN === 1 ? " claim graded" : " claims graded") : "", openN ? openN + " open" : "", boardN ? boardN + " targets on the clock" : ""].filter(Boolean).join(" · ");
   sec.hidden = false;
   tickCountdowns();
 })();
@@ -3984,10 +4181,17 @@ const guestDistance = g => {
     document.getElementById("ab-apply").setAttribute("data-ready", "1");
   }
 
+  /* The Method door, 8 Sep 2026 (note 22): opens with the others, because
+     method.html describes the tool and sells nothing until its own URLs are
+     filled, so the door cannot lead anywhere dead. */
+  const methodReady = true;
+  document.getElementById("door-method").setAttribute("data-ready", "1");
+
   const doors = document.getElementById("doors");
-  const openCount = (emailReady ? 1 : 0) + (applyReady ? 1 : 0);
+  const openCount = (emailReady ? 1 : 0) + (applyReady ? 1 : 0) + (methodReady ? 1 : 0);
   if (openCount > 0) doors.setAttribute("data-open", "1");
   if (openCount === 1) doors.setAttribute("data-single", "1");
+  if (openCount === 3) doors.setAttribute("data-count", "3");
 
   /* COMING BACK FROM KIT. TWO DIFFERENT MOMENTS, TWO DIFFERENT MESSAGES.
 

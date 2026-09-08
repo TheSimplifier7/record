@@ -174,66 +174,10 @@
    2026, which prints on Thursday 31 December because Friday 1 January is a
    holiday; the row says which close it used when it is graded.
    ========================================================================= */
-const TARGETS = [
-  { published:"2026-09-04", source:"Citi Research", level:4800, side:"above", window:"2026-12-04", windowText:"0 to 3 months",
-    quote:"The bank sets its 0-3 month point price target for gold at $4,800 per ounce and its 6-12 month forecast at $5,000 per ounce.",
-    link:"https://www.investing.com/news/commodities-news/citi-says-the-dip-in-gold-prices-is-a-buying-opportunity-93CH-4889056",
-    kill:"Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one.",
-    note:"First raised to 4,800 from 4,500 on 24 August 2026 (Reuters). Also the first crowd row on the record, named 9 September.", grade:"pending", result:"" },
-
-  { published:"2026-09-02", source:"Goldman Sachs Research", level:4900, side:"above", window:"2026-12-31", windowText:"year-end 2026",
-    quote:"Goldman Sachs sees gold price at $4,900/oz by year-end.",
-    link:"http://www.kitco.com/news/article/2026-09-02/goldman-sachs-sees-gold-price-4900oz-year-end-investors-hedging-through",
-    kill:"Held if a weekly close at or above 4,900 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
-    note:"Set at 4,900 on 19 June 2026, cut from 5,400; restated 2 September. Quote is the report's headline; the analysts' text projects gains into the second half without restating the figure.", grade:"pending", result:"" },
-
-  { published:"2026-05-27", source:"UBS", level:5500, side:"above", window:"2026-12-31", windowText:"year-end 2026",
-    quote:"Swiss banking giant UBS has cut its year-end 2026 gold price forecast from $5,900 to $5,500 per ounce.",
-    link:"https://www.kitco.com/news/article/2026-05-27/ubs-lowers-2026-gold-price-forecast-5500oz-markets-are-rediscovering",
-    kill:"Held if a weekly close at or above 5,500 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
-    note:"The 5,900 it was cut from, and a March 2026 note reading toward 5,900 to 6,200 this year, are listed below the board as not gradeable: toward is not a level.", grade:"pending", result:"" },
-
-  { published:"2026-02-25", source:"J.P. Morgan Global Research", level:6300, side:"above", window:"2026-12-31", windowText:"year-end 2026",
-    quote:"Gold price will rise 22% above current level to reach $6,300 by year-end 2026.",
-    link:"https://www.kitco.com/news/article/2026-02-25/gold-price-will-rise-22-above-current-level-reach-6300-year-end-2026-jp",
-    kill:"Held if a weekly close at or above 6,300 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
-    note:"Quote is the report's headline. On 23 June 2026 the same house moved 6,300 to end-2027 and held about 6,000 for Q4 2026; that revision is its own row. This row stays as published.", grade:"pending", result:"" },
-
-  { published:"2026-06-23", source:"J.P. Morgan Global Research, as reported", level:6000, side:"above", window:"2026-12-31", windowText:"Q4 2026",
-    quote:"Q4 2026: ~$6,000/oz. End of 2027: ~$6,300/oz potential.",
-    link:"https://www.canadianminingreport.com/blog/jpmorgan-s-latest-gold-forecast-what-the-world-s-largest-bank-is-telling-investors",
-    kill:"Held if a weekly close at or above 6,000 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
-    note:"Reported second-hand; the desk will replace the link with the primary note when it has one. The 2026 average of 5,243 in the same note is not on the board: an average cannot be graded on a close.", grade:"pending", result:"" },
-
-  { published:"2026-05-19", source:"MKS PAMP", level:5800, side:"above", window:"2026-12-31", windowText:"second half of 2026",
-    quote:"Gold is still expected to average $4,500/oz in 2026, with a new higher all-time high of $5,800/oz a fair target for the second half of the year.",
-    link:"https://www.kitco.com/news/article/2026-05-19/gold-will-hit-5800-ath-december-silver-has-highest-upside-platinum-has",
-    kill:"Held if a weekly close at or above 5,800 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
-    note:"The 4,500 average in the same sentence is not on the board.", grade:"pending", result:"" },
-
-  { published:"2025-06-17", source:"Citi Research", level:2700, side:"below", window:"2026-12-31", windowText:"the second half of 2026",
-    quote:"Gold could return to around $2,500-$2,700/oz by the second half of 2026.",
-    link:"https://finance.yahoo.com/news/citi-sees-gold-below-3-091750805.html",
-    kill:"A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.",
-    note:"Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.", grade:"pending", result:"" },
-
-  { published:"2026-01-13", source:"Citi Research", level:5000, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
-    quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
-    link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
-    kill:"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
-    note:"The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.", grade:"pending", result:"" },
-];
+let TARGETS = [];
 
 /* Claims examined and left off, by name, with the reason. Dated. */
-const OUT = [
-  ["31 Aug 2026", "TD Securities", "gold falling toward the lower end of the recent $4,200 to $4,700 trading range by year-end", "toward, and a range with no side stated; not a level"],
-  ["2 Sep 2026", "RBC", "gold will approach $5,000 in 2026, $5,300 in 2027", "approach is not a level"],
-  ["31 Aug 2026", "Crescat Capital", "gold price is going to $20,000", "no window"],
-  ["1 Sep 2026", "World Gold Council", "at risk of pullback to $4,215 as short-term momentum fades", "at risk of, and no window; a technical note, not a target"],
-  ["23 Jun 2026", "J.P. Morgan", "2026 average lowered to $5,243 from $5,708", "an average for a year cannot be graded on a close"],
-  ["8 Jul 2026", "Bank of America", "2026 average $4,360, cut from $5,093", "an average; primary source not yet in the desk's hands"],
-  ["Mar 2026", "UBS", "gold prices should rise toward USD 5,900 to 6,200/oz this year", "toward, and a range"],
-];
+let OUT = [];
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const fmt = iso => { const [y,m,d] = iso.split("-"); return `${+d} ${MONTHS[+m-1]} ${y}`; };
@@ -242,7 +186,26 @@ const num = n => n.toLocaleString("en-US");
 const GL = { pending:["Open","pending"], pass:["Held","pass"], miss:["Wrong","miss"], notest:["Never reached","notest"] };
 const need = ["published","source","quote","link","level","side","window","windowText","kill","grade"];
 
-(function render(){
+/* SINGLE SOURCE, 8 Sep 2026: the arrays live in index.html beside CALLS and
+   CROWD and reach this page through record.json, written by
+   make_record_json.js. If the fetch fails the page says so and points at the
+   record; it never draws a row it did not receive. */
+async function load(){
+  try {
+    const r = await fetch("./record.json", { cache: "no-store" });
+    if (!r.ok) throw new Error(String(r.status));
+    const j = await r.json();
+    TARGETS = Array.isArray(j.targets) ? j.targets : [];
+    OUT = Array.isArray(j.targets_left_off) ? j.targets_left_off : [];
+  } catch (e) {
+    const hb = document.getElementById("heldback");
+    hb.textContent = "The board could not be read from the record just now. It is on the record page itself, under Graded from the crowd.";
+    hb.hidden = false;
+    return;
+  }
+  render();
+}
+function render(){
   const ok = TARGETS.filter(t => need.every(k => t[k] !== undefined && t[k] !== "") && /^https?:\/\//.test(t.link) && GL[t.grade] && /^(above|below)$/.test(t.side));
   const held = TARGETS.length - ok.length;
   const rows = ok.slice().sort((a,b) => a.window.localeCompare(b.window) || b.published.localeCompare(a.published));
@@ -267,7 +230,8 @@ const need = ["published","source","quote","link","level","side","window","windo
   const hb = document.getElementById("heldback");
   if (held) { hb.textContent = held + (held === 1 ? " row" : " rows") + " held back: a required field is missing and the board does not draw a row it cannot stand behind."; hb.hidden = false; }
   document.getElementById("out").innerHTML = OUT.map(o => `<li><span style="font-family:var(--mono);font-size:12px;color:var(--ink-5)">${esc(o[0])} · ${esc(o[1])}</span><br>“${esc(o[2])}” <span style="font-family:var(--mono);font-size:12px;color:var(--ink-6)">· ${esc(o[3])}</span></li>`).join("");
-})();
+}
+load();
 </script>
 </body>
 </html>
