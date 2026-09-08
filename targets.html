@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · The Bank Board</title>
+<meta name="description" content="Every dated gold target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay. Nothing removed.">
+<meta name="theme-color" content="#141210">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/targets.html">
+<meta property="og:title" content="The Simplifier · The Bank Board">
+<meta property="og:description" content="Every dated gold target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- =========================================================================
+     THE BANK BOARD  ·  8 September 2026
+
+     One page, one job: a dated ledger of the gold targets the banks and the
+     large houses publish, each with the kill it was published without, each
+     graded on the TVC weekly close when its window closes, and none of them
+     ever removed. Banks revise targets quietly; this board remembers the
+     first one and the revision, as two rows.
+
+     THE RULES, and they are the crowd section's rules (index.html, note 18
+     and note 21) applied to a standing ledger instead of an edition:
+       1. The claim, never the person. The institution is the source and it is
+          recorded because a quote without a source is a fabrication. No
+          adjective about it appears anywhere.
+       2. Exact quote, dated, with the link to where it was reported. If the
+          source is later removed the row says so and the desk's copy stands.
+       3. The kill is assigned by this desk, by ONE rule stated on the page:
+          held if a weekly close on the target's side of it prints on or
+          before the last weekly close inside the window; wrong if the window
+          closes without one. A range is graded on its nearer bound. Nothing
+          softer.
+       4. Not on the board: averages for a year (no close can grade an
+          average), "toward", "approach", "could", ranges with no window,
+          and claims with no window at all. They are listed below the board
+          by name so the reader can see what was left out and why.
+       5. Never in the record's tally. These are not this desk's calls.
+       6. Nothing deleted. A revised target is a new row; the old row stays
+          and is graded on its own window.
+
+     Every close used to grade a row is read off the founder's own chart and
+     is already on the record page. The desk never grades a row on a print it
+     has not read itself; until then the row is open and says so.
+
+     Rendering fails closed: a row missing any required field is not drawn,
+     and the page says how many were held back.
+
+     BRAND LAW APPLIES. No em dashes, hashtags, exclamation marks, emoji,
+     forecasting or fabricated data.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
+    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
+    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --notest:#9C9282; --pending:#6BA3C7;
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:44px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  .wrap{max-width:980px;margin:0 auto;padding:52px var(--pad) 64px}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
+  a:hover{color:var(--ink)}
+  header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand svg{width:34px;height:26px;display:block;overflow:visible}
+  .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
+  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
+  h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
+  .lede{font-size:21px;color:var(--ink);margin:0 0 26px;max-width:44ch}
+  p.body{font-size:17px;margin:0 0 14px;max-width:66ch}
+  .k{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:34px 0 12px}
+  .count{display:flex;gap:26px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--rule-soft);padding:18px 20px;margin:22px 0}
+  .count div{font-family:var(--mono)} .count .n{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+  .count .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-5)}
+  .count .pass .n{color:var(--pass)} .count .miss .n{color:var(--miss)} .count .open .n{color:var(--pending)}
+  .rule-box{font-family:var(--mono);font-size:13.5px;line-height:1.75;color:var(--ink-5);padding-left:14px;border-left:3px solid var(--rule);margin:22px 0;max-width:80ch}
+  .tbl{overflow-x:auto;margin:10px 0 0}
+  table{border-collapse:collapse;width:100%;min-width:900px;font-size:15px}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-6);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-weight:500;white-space:nowrap}
+  td{padding:14px 12px 14px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  td.d{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
+  td.src{color:var(--ink);white-space:nowrap}
+  td.lv{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--gold);white-space:nowrap}
+  td.win{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
+  td.q{font-size:14.5px;color:var(--ink-3);max-width:52ch;min-width:34ch}
+  td.q a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;margin-left:6px}
+  .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1.5px solid currentColor;white-space:nowrap}
+  .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+  .g.pending{color:var(--pending)} .g.pass{color:var(--pass)} .g.miss{color:var(--miss)} .g.notest{color:var(--notest)}
+  .res{font-family:var(--mono);font-size:11.5px;color:var(--ink-5);margin-top:6px;max-width:52ch;line-height:1.6}
+  details.kill{margin-top:6px} details.kill summary{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-6);cursor:pointer;list-style:none}
+  details.kill summary::-webkit-details-marker{display:none}
+  details.kill p{font-family:var(--mono);font-size:12px;color:var(--ink-5);margin-top:6px;max-width:44ch;line-height:1.6}
+  ul.out{margin:6px 0 0 1.1em;font-size:15.5px;max-width:70ch} ul.out li{margin-bottom:8px}
+  .fine{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-6);margin-top:12px}
+  [hidden]{display:none !important}
+  footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
+  @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The bank board</div>
+  </header>
+
+  <h1>The bank board</h1>
+  <p class="lede">Every dated gold target the banks publish, with the close that would grade it. Graded when the window closes. The wrong ones stay.</p>
+
+  <p class="body">A bank publishes a target with a level and a window and nothing that could prove it wrong. When the window passes the target is revised, and the first number is gone. This board keeps the first number. Each row is an exact quote with its date and its source, the kill this desk assigned by the one rule below, and the weekly close that decided it. A revision is a new row; the old row stays and is graded on its own window. None of this is in <a href="./">the record's</a> tally. These are not this desk's calls. This desk's own wrong rows are <a href="misses.html">here</a>, and they were on the page first.</p>
+
+  <div class="count" id="count" hidden>
+    <div class="open"><div class="n" id="c-open">·</div><div class="t">open, clock running</div></div>
+    <div class="pass"><div class="n" id="c-pass">·</div><div class="t">held</div></div>
+    <div class="miss"><div class="n" id="c-miss">·</div><div class="t">wrong, kept</div></div>
+    <div><div class="n" id="c-all">·</div><div class="t">targets on the board</div></div>
+  </div>
+
+  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if a weekly close on the target's side of it, at or above for a target above price, at or below for a target below, prints on or before the last weekly close inside the window. Wrong if the window closes without one. A range is graded on its nearer bound. Graded on the TVC weekly close, read off this desk's own chart, the same close every row on the record is graded on. A bank's target is usually read as a print on any day; this page grades closes and nothing else, and says so here so nobody is surprised.</div>
+
+  <div class="tbl">
+    <table id="board">
+      <thead><tr><th>Published</th><th>Source</th><th>Target</th><th>Window</th><th>As published</th><th>Grade</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="fine" id="heldback" hidden></p>
+
+  <div class="k">Not on the board, and why</div>
+  <ul class="out" id="out"></ul>
+  <p class="fine">A claim with no window cannot be graded and is not a target; it is a view. Averages for a year cannot be graded on a close. "Toward", "approach" and "could" are not levels. The board leaves them out by name so the leaving out is itself on the record.</p>
+
+  <div class="k">How a row gets here</div>
+  <p class="body">The desk reads the wires and the banks' own research notes as they are reported, on a fixed day each week, and takes a row only when it has an institution, one direction, a level, and a window that closes on a date. The quote is copied, never paraphrased. When the window's last weekly close prints, the row is graded on that close and the result is written beside it, and it does not move again. Seen a dated target that is not here? The desk takes them by message, with the link. One rule, whoever published it.</p>
+
+  <footer>
+    <span class="law">Named before · Graded after · Nothing deleted</span>
+    <span class="handle">@TheSimplifier7</span>
+  </footer>
+</div>
+
+<script>
+/* =========================================================================
+   THE TARGETS. Fields: published (ISO), source, quote (exact), link, level
+   (number), side ("above" or "below" price at publication, which is the
+   side the target must be reached from), window (ISO, the last calendar day
+   of the claim's window), windowText (as the claim said it), kill (the
+   assigned kill, in words), note (optional context, dated, never an
+   adjective), grade (pending | pass | miss | notest), result (the close and
+   the date, filled when graded). A range row carries level = the nearer
+   bound and says so in the note.
+
+   Every window's grading close is the last TVC weekly close on or before the
+   window date. December 2026 windows grade on the last weekly close of
+   2026, which prints on Thursday 31 December because Friday 1 January is a
+   holiday; the row says which close it used when it is graded.
+   ========================================================================= */
+const TARGETS = [
+  { published:"2026-09-04", source:"Citi Research", level:4800, side:"above", window:"2026-12-04", windowText:"0 to 3 months",
+    quote:"The bank sets its 0-3 month point price target for gold at $4,800 per ounce and its 6-12 month forecast at $5,000 per ounce.",
+    link:"https://www.investing.com/news/commodities-news/citi-says-the-dip-in-gold-prices-is-a-buying-opportunity-93CH-4889056",
+    kill:"Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one.",
+    note:"First raised to 4,800 from 4,500 on 24 August 2026 (Reuters). Also the first crowd row on the record, named 9 September.", grade:"pending", result:"" },
+
+  { published:"2026-09-02", source:"Goldman Sachs Research", level:4900, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Goldman Sachs sees gold price at $4,900/oz by year-end.",
+    link:"http://www.kitco.com/news/article/2026-09-02/goldman-sachs-sees-gold-price-4900oz-year-end-investors-hedging-through",
+    kill:"Held if a weekly close at or above 4,900 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Set at 4,900 on 19 June 2026, cut from 5,400; restated 2 September. Quote is the report's headline; the analysts' text projects gains into the second half without restating the figure.", grade:"pending", result:"" },
+
+  { published:"2026-05-27", source:"UBS", level:5500, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Swiss banking giant UBS has cut its year-end 2026 gold price forecast from $5,900 to $5,500 per ounce.",
+    link:"https://www.kitco.com/news/article/2026-05-27/ubs-lowers-2026-gold-price-forecast-5500oz-markets-are-rediscovering",
+    kill:"Held if a weekly close at or above 5,500 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"The 5,900 it was cut from, and a March 2026 note reading toward 5,900 to 6,200 this year, are listed below the board as not gradeable: toward is not a level.", grade:"pending", result:"" },
+
+  { published:"2026-02-25", source:"J.P. Morgan Global Research", level:6300, side:"above", window:"2026-12-31", windowText:"year-end 2026",
+    quote:"Gold price will rise 22% above current level to reach $6,300 by year-end 2026.",
+    link:"https://www.kitco.com/news/article/2026-02-25/gold-price-will-rise-22-above-current-level-reach-6300-year-end-2026-jp",
+    kill:"Held if a weekly close at or above 6,300 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Quote is the report's headline. On 23 June 2026 the same house moved 6,300 to end-2027 and held about 6,000 for Q4 2026; that revision is its own row. This row stays as published.", grade:"pending", result:"" },
+
+  { published:"2026-06-23", source:"J.P. Morgan Global Research, as reported", level:6000, side:"above", window:"2026-12-31", windowText:"Q4 2026",
+    quote:"Q4 2026: ~$6,000/oz. End of 2027: ~$6,300/oz potential.",
+    link:"https://www.canadianminingreport.com/blog/jpmorgan-s-latest-gold-forecast-what-the-world-s-largest-bank-is-telling-investors",
+    kill:"Held if a weekly close at or above 6,000 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"Reported second-hand; the desk will replace the link with the primary note when it has one. The 2026 average of 5,243 in the same note is not on the board: an average cannot be graded on a close.", grade:"pending", result:"" },
+
+  { published:"2026-05-19", source:"MKS PAMP", level:5800, side:"above", window:"2026-12-31", windowText:"second half of 2026",
+    quote:"Gold is still expected to average $4,500/oz in 2026, with a new higher all-time high of $5,800/oz a fair target for the second half of the year.",
+    link:"https://www.kitco.com/news/article/2026-05-19/gold-will-hit-5800-ath-december-silver-has-highest-upside-platinum-has",
+    kill:"Held if a weekly close at or above 5,800 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
+    note:"The 4,500 average in the same sentence is not on the board.", grade:"pending", result:"" },
+
+  { published:"2025-06-17", source:"Citi Research", level:2700, side:"below", window:"2026-12-31", windowText:"the second half of 2026",
+    quote:"Gold could return to around $2,500-$2,700/oz by the second half of 2026.",
+    link:"https://finance.yahoo.com/news/citi-sees-gold-below-3-091750805.html",
+    kill:"A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.",
+    note:"Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.", grade:"pending", result:"" },
+
+  { published:"2026-01-13", source:"Citi Research", level:5000, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
+    quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
+    link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
+    kill:"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
+    note:"The window has closed. This row is graded when the founder reads the first-quarter weekly closes off his own chart; the desk does not grade on a print it has not read. Until then it is open and says so.", grade:"pending", result:"" },
+];
+
+/* Claims examined and left off, by name, with the reason. Dated. */
+const OUT = [
+  ["31 Aug 2026", "TD Securities", "gold falling toward the lower end of the recent $4,200 to $4,700 trading range by year-end", "toward, and a range with no side stated; not a level"],
+  ["2 Sep 2026", "RBC", "gold will approach $5,000 in 2026, $5,300 in 2027", "approach is not a level"],
+  ["31 Aug 2026", "Crescat Capital", "gold price is going to $20,000", "no window"],
+  ["1 Sep 2026", "World Gold Council", "at risk of pullback to $4,215 as short-term momentum fades", "at risk of, and no window; a technical note, not a target"],
+  ["23 Jun 2026", "J.P. Morgan", "2026 average lowered to $5,243 from $5,708", "an average for a year cannot be graded on a close"],
+  ["8 Jul 2026", "Bank of America", "2026 average $4,360, cut from $5,093", "an average; primary source not yet in the desk's hands"],
+  ["Mar 2026", "UBS", "gold prices should rise toward USD 5,900 to 6,200/oz this year", "toward, and a range"],
+];
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmt = iso => { const [y,m,d] = iso.split("-"); return `${+d} ${MONTHS[+m-1]} ${y}`; };
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const num = n => n.toLocaleString("en-US");
+const GL = { pending:["Open","pending"], pass:["Held","pass"], miss:["Wrong","miss"], notest:["Never reached","notest"] };
+const need = ["published","source","quote","link","level","side","window","windowText","kill","grade"];
+
+(function render(){
+  const ok = TARGETS.filter(t => need.every(k => t[k] !== undefined && t[k] !== "") && /^https?:\/\//.test(t.link) && GL[t.grade] && /^(above|below)$/.test(t.side));
+  const held = TARGETS.length - ok.length;
+  const rows = ok.slice().sort((a,b) => a.window.localeCompare(b.window) || b.published.localeCompare(a.published));
+  document.getElementById("rows").innerHTML = rows.map(t => {
+    const g = GL[t.grade];
+    return `<tr>
+      <td class="d">${esc(fmt(t.published))}</td>
+      <td class="src">${esc(t.source)}</td>
+      <td class="lv">${num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="win">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmt(t.window))}</span></td>
+      <td class="q">“${esc(t.quote)}”<a href="${esc(t.link)}" rel="nofollow noopener">source</a>${t.note ? `<div class="res">${esc(t.note)}</div>` : ""}
+        <details class="kill"><summary>The kill, assigned</summary><p>${esc(t.kill)}</p></details></td>
+      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}</td>
+    </tr>`;
+  }).join("");
+  const c = k => ok.filter(t => t.grade === k).length;
+  document.getElementById("c-open").textContent = c("pending");
+  document.getElementById("c-pass").textContent = c("pass");
+  document.getElementById("c-miss").textContent = c("miss");
+  document.getElementById("c-all").textContent = ok.length;
+  document.getElementById("count").hidden = ok.length === 0;
+  const hb = document.getElementById("heldback");
+  if (held) { hb.textContent = held + (held === 1 ? " row" : " rows") + " held back: a required field is missing and the board does not draw a row it cannot stand behind."; hb.hidden = false; }
+  document.getElementById("out").innerHTML = OUT.map(o => `<li><span style="font-family:var(--mono);font-size:12px;color:var(--ink-5)">${esc(o[0])} · ${esc(o[1])}</span><br>“${esc(o[2])}” <span style="font-family:var(--mono);font-size:12px;color:var(--ink-6)">· ${esc(o[3])}</span></li>`).join("");
+})();
+</script>
+</body>
+</html>
