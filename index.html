@@ -1519,7 +1519,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-06";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-09-09";   /* set by hand, with the commit */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2321,8 +2321,12 @@ const CALLS = [
       without a source is a fabrication, and then the person is not mentioned
       again. No adjective about the account, its record, its motives or its
       audience appears anywhere in the row or in any post built from it.
-   2. Exact quote. Copied, not paraphrased, with the link to the post. If the
-      post is later deleted, the row says so and the screenshot stands.
+   2. Exact quote. Copied, not paraphrased, with the link to where it was
+      made. Widened 7 September 2026: the source is any dated public medium,
+      a post, an interview, an article, a research note as reported by a
+      wire, because the loud claims are made everywhere at once and a dated
+      article is the harder exhibit to delete. If the source is later
+      removed, the row says so and the desk's copy stands.
    3. The kill is ASSIGNED BY THIS DESK and the rule for assigning it is
       stated in the row, because the original claim did not carry one. That
       is the finding, and it is stated as a finding, not as a taunt: "this
@@ -2344,6 +2348,23 @@ const CALLS = [
    grade (pass | miss | notest | pending).
    ========================================================================= */
 const CROWD = [
+  /* EDITION ONE · named Wednesday 9 September 2026, graded 4 December 2026.
+     The claim is an institution's, which is why it is first: it cannot be
+     punched down at, it will not respond, and every later row reads as the
+     same standard. Sources, the desk's fetch of 7 September 07:00 UTC:
+     Investing.com 4 Sep 2026 (the sentence quoted); Reuters 24 Aug 2026,
+     "Citi Raises 0-3 Month Gold Price Target To $4,800/Oz From $4,500/Oz".
+     The window is 0 to 3 months from the 4 September restatement, and the
+     last weekly close inside it is Friday 4 December. See note 21. */
+  { date:"2026-09-04",
+    source:"Citi Research, via Investing.com and Reuters",
+    quote:"The bank sets its 0-3 month point price target for gold at $4,800 per ounce and its 6-12 month forecast at $5,000 per ounce.",
+    link:"https://www.investing.com/news/commodities-news/citi-says-the-dip-in-gold-prices-is-a-buying-opportunity-93CH-4889056",
+    metal:"Gold",
+    kill:"Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one. Assigned because the claim names a level and a window and no condition, so the level and the window are the only honest kill available. Graded on the TVC weekly close, as every row on this page, which is stated here because a bank's target is usually read as a print on any day and this page grades closes and nothing else.",
+    gradeDate:"2026-12-04",
+    result:"",
+    grade:"pending" },
 ];
 
 /* =========================================================================
@@ -2388,6 +2409,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"21", kind:"standard", title:"The first crowd row, 9 September 2026. Named before, graded after, applied to somebody else's number.",
+    body:"The section below the ledger carries its first claim tonight, and the shape of it is worth stating because it is not the shape note 18 assumed. Note 18 imagined a claim quoted and graded in the same breath, on the same Friday close as the rows above. The first claim the desk could source that passed every test, an institution's zero to three month target with a level, a window and no condition, does not resolve for thirteen weeks, and none of the loud claims in the market resolve at all, because they carry no clock. So the crowd row goes on the page the way this desk's own rows have gone on since 30 August: open, with its kill assigned and its grade date stated, and graded in place when that close prints. That is the more honest version of the format and it is now the standing one. A crowd row is named on the day it is written here and graded on the last weekly close inside the claim's own window; the countdown under it counts to that close and not to this page's naming week, and the code was changed tonight to make it do so. TWO RULES TOUCHED. Rule 2 of the crowd section said the link to the post. It now says the link to where the claim was made, in any dated public medium, because the loud claims are made everywhere at once and a dated article is the harder exhibit to delete; the founder ruled on 7 September that he will not search X for a claim to grade, and the desk does the finding from the open record instead, on a fixed day, by six tests written into the collision file. Rule 1 stands exactly: the source is recorded on the row because a quote without a source is a fabrication, and it is not spoken or written anywhere built from the row. WHAT THE FIRST ROW IS AND IS NOT. It is a target of 4,800 with a window that closes on 4 December, published without the close that would grade it. The finding is that sentence and only that sentence. The row does not say the number is wrong, does not say who will be right, and carries no adjective about the desk that published it. What the page adds is the kill the note did not carry, stated with the rule for assigning it, and the closes the note did not mention: the same desk's target has read 4,000, 4,500 and 4,800 since June, each move after the price had moved, and the same desk saw the second half of 2026 at 2,500 to 2,700 when it wrote in June 2025, against a 4 September close of 4,430.520. Those are dated figures with sources and they are on the row's frames, not in this note, because this note is about the rule and the frames are about the claim. Nothing above this note was touched. The tally does not know this row exists." },
   { n:"20", kind:"standard", title:"The dark ground, 6 September 2026. The page is dark, and paper stays behind a switch.",
     body:"This page launched on paper, the founder's chart canvas at the time, and paper was the wrong ground for two thousand words read on a phone at midnight: hard to read, and out of step with the chart the videos are cut from, which went to a near-black canvas today for the same reason. So the ground is dark for everyone from tonight, the same #141210 as the video chart, the tally card and the embed, and it is a ruling, not a preference detected from a device. The launch palette is not deleted: a Paper switch in the masthead restores it on the device that presses it, and that choice never leaves the browser. The dark ground is the same ink scale inverted and the same four brand colours, slate, copper, gold and flat, and every colour on it was measured against the ground the way the paper palette was measured: nothing sits under the 5.29 to 1 floor the paper comment states, and the measurements are in the source beside the values. No figure, grade, date, kill or rule changes with the ground." },
   { n:"19", kind:"correction", title:"Correction, 6 September 2026. The standing card and the ladder's close marker stood one week stale.",
@@ -3281,11 +3304,21 @@ const gradeCloseFor = iso => {
   const guess = new Date(d.toISOString().slice(0, 10) + "T23:00:00Z");
   return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
 };
+/* The 23:00 Madrid close of a stated date. Crowd rows carry their grade
+   date explicitly, because a claim's window is the claim's, not this page's
+   naming week. 7 Sep 2026. */
+const closeOn = iso => {
+  const guess = new Date(iso + "T23:00:00Z");
+  if (isNaN(guess)) return null;
+  return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
+};
 const countdownText = close => {
   const ms = close.getTime() - Date.now();
   if (ms <= 0) return "Close printed. Grade pending.";
   const h = Math.floor(ms / 3600000), dd = Math.floor(h / 24), hh = h % 24, mm = Math.floor((ms % 3600000) / 60000);
-  return "Graded in " + (dd ? dd + "d " : "") + hh + "h " + (dd ? "" : mm + "m ") + "· Friday " + fmtDate(close.toISOString().slice(0, 10)) + " · 23:00 CEST";
+  /* CET or CEST by the close's own offset, not by the visitor's. 7 Sep 2026:
+     the first crowd row grades on 4 December, which is winter time. */
+  return "Graded in " + (dd ? dd + "d " : "") + hh + "h " + (dd ? "" : mm + "m ") + "· Friday " + fmtDate(close.toISOString().slice(0, 10)) + " · 23:00 " + (madridOffsetMin(close) === 60 ? "CET" : "CEST");
 };
 const countdownLine = r => {
   if (r.grade !== "pending") return "";
@@ -3803,7 +3836,7 @@ document.getElementById("updated-foot").textContent = stamp;
   host.innerHTML = rows.map((c, i) => {
     const g = GRADES[c.grade] || GRADES.notest;
     const [y, m, d] = c.date.split("-");
-    const link = /^https:\/\//.test(c.link) ? `<a href="${esc(c.link)}" rel="nofollow noopener">the post</a>` : "";
+    const link = /^https:\/\//.test(c.link) ? `<a href="${esc(c.link)}" rel="nofollow noopener">the source</a>` : "";
     return `<details class="lrow" id="crow-${i}" data-grade="${esc(c.grade)}">
       <summary>
         <span class="s-date">${esc(d.replace(/^0/, "") + " " + MONTHS[+m - 1])} <span>${esc(y)}</span></span>
@@ -3822,13 +3855,16 @@ document.getElementById("updated-foot").textContent = stamp;
         <div>
           <div class="lab">What price did</div>
           <p class="res">${linkNotes(esc(c.result || "Not yet graded."))}</p>
-          ${c.grade === "pending" && c.gradeDate ? `<p class="countdown" data-close="${gradeCloseFor(c.date) ? gradeCloseFor(c.date).toISOString() : ""}"></p>` : ""}
+          ${c.grade === "pending" && c.gradeDate && closeOn(c.gradeDate) ? `<p class="countdown" data-close="${closeOn(c.gradeDate).toISOString()}"></p>` : ""}
         </div>
-        ${c.gradeDate ? `<span class="prov">Graded on the ${esc(fmtDate(c.gradeDate))} close, 23:00 CEST · the claim is not this desk's and is not in the tally</span>` : ""}
+        ${c.gradeDate ? `<span class="prov">${c.grade === "pending" ? "Grades" : "Graded"} on the ${esc(fmtDate(c.gradeDate))} close, 23:00 ${closeOn(c.gradeDate) && madridOffsetMin(closeOn(c.gradeDate)) === 60 ? "CET" : "CEST"} · the claim is not this desk's and is not in the tally</span>` : ""}
       </div>
     </details>`;
   }).join("");
-  if (cnt) cnt.textContent = rows.length + (rows.length === 1 ? " claim graded" : " claims graded");
+  /* Counted as graded and open, not "graded" while the first one is still on
+     the clock. 7 Sep 2026. */
+  const openN = rows.filter(c => c.grade === "pending").length, gradedN = rows.length - openN;
+  if (cnt) cnt.textContent = [gradedN ? gradedN + (gradedN === 1 ? " claim graded" : " claims graded") : "", openN ? openN + " open" : ""].filter(Boolean).join(" · ");
   sec.hidden = false;
   tickCountdowns();
 })();

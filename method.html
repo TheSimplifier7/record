@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · The Method</title>
+<meta name="description" content="The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation.">
+<meta name="theme-color" content="#141210">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/method.html">
+<meta property="og:title" content="The Simplifier · The Method">
+<meta property="og:description" content="The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- =========================================================================
+     THE METHOD  ·  access page  ·  7 September 2026
+
+     One page, one job: a reader who has seen the record and wants the
+     indicator it is read from can request access and pay. Ruled by the
+     founder on 7 September: THE METHOD is sold on its own, to anyone, as a
+     TradingView public invite-only script, by the quarter or by the year.
+     Full reasoning, the ladder, the listing text, the licence draft and the
+     flow are in THE_METHOD_ACCESS.md in the studio.
+
+     FAIL CLOSED, the same way the doors on the record work. The request
+     button renders only when METHOD_FORM is a valid https URL, the payment
+     buttons only when METHOD_PAY_QUARTER and METHOD_PAY_YEAR are, and the
+     licence link only when METHOD_TERMS is. With all four blank the page says
+     what the tool is and points at the record, and sells nothing.
+
+     WHAT THIS PAGE NEVER SAYS. Accurate, profitable, edge, win, works, signal,
+     buy, sell. It says what the tool draws and where the receipts are, and it
+     says the desk that built it is wrong in public some weeks, because that
+     sentence has to be on the page before the first buyer is.
+
+     BRAND LAW APPLIES. No em dashes, no hashtags, no exclamation marks, no
+     emoji, no forecasting, no fabricated data.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
+    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
+    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --pending:#6BA3C7;
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:44px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  .wrap{max-width:820px;margin:0 auto;padding:52px var(--pad) 64px}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
+  a:hover{color:var(--ink)}
+  header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand svg{width:34px;height:26px;display:block;overflow:visible}
+  .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
+  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
+  h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
+  .lede{font-size:21px;color:var(--ink);margin:0 0 30px;max-width:34ch}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0}
+  .three > div{background:var(--panel);border-top:2px solid var(--gold);padding:16px 16px 18px}
+  .three .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .three p{font-size:15.5px;color:var(--ink-3)}
+  .rule{border-top:1px solid var(--rule);margin:32px 0}
+  p.body{font-size:18px;margin:0 0 16px;max-width:60ch}
+  .stmt{font-family:var(--mono);font-size:14px;line-height:1.7;color:var(--ink-5);padding-left:14px;border-left:3px solid var(--rule);margin:26px 0}
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}
+  .price > div{background:var(--panel);padding:20px 18px;border:1px solid var(--rule-soft)}
+  .price .n{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--gold);letter-spacing:-.02em}
+  .price .t{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-5);margin:6px 0 12px}
+  .btn{display:inline-block;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:12px 18px;border:0}
+  .btn:hover{background:var(--ink);color:var(--bg)}
+  .btn-quiet{display:inline-block;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:11px 18px}
+  .btn-quiet:hover{color:var(--ink);border-color:var(--ink)}
+  .fine{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-6);margin-top:10px}
+  [hidden]{display:none !important}
+  footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
+  @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} .three,.price{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The Method</div>
+  </header>
+
+  <h1>The Method</h1>
+  <p class="lede">The indicator the record is read from.</p>
+
+  <div class="three">
+    <div><div class="k">The cloud</div><p>Where the market has actually traded, weighted by time, rather than where it is printing.</p></div>
+    <div><div class="k">The fan</div><p>How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.</p></div>
+    <div><div class="k">The three lines</div><p>The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart.</p></div>
+  </div>
+
+  <p class="body">It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction.</p>
+  <p class="body">Every Sunday since June a level has been read off it by a man who then decided, published before the week opened with the close that would prove it wrong, and graded on Friday. The wrong ones are still on <a href="./">the record</a>. Read those first. The desk that built this tool is wrong in public some weeks, and the tool draws exactly the same lines on those weeks as on the others. The deciding is the part that is not for sale.</p>
+
+  <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
+
+  <div class="price" id="price">
+    <div>
+      <div class="n">€3,750</div>
+      <div class="t">a quarter · paid in advance · thirteen closes</div>
+      <a class="btn" id="pay-quarter" href="#" hidden>Take it by the quarter</a>
+    </div>
+    <div>
+      <div class="n">€12,000</div>
+      <div class="t">a year · paid once</div>
+      <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
+    </div>
+  </div>
+
+  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access opens shortly. The record is open now.</span></p>
+  <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a></p>
+
+  <div class="rule"></div>
+  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time. The tool comes with it.</p>
+
+  <footer>
+    <span class="law">Named before · Graded after · Nothing deleted</span>
+    <span class="handle">@TheSimplifier7</span>
+  </footer>
+</div>
+
+<script>
+/* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
+   describes. Same rule as COUNTER and GUEST_FORM on the record. */
+const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
+const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €3,750 a quarter */
+const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €12,000 a year */
+const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
+const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
+const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
+const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
+show("terms-link", METHOD_TERMS);
+if (m || y || r) document.getElementById("closed-line").hidden = true;
+</script>
+</body>
+</html>
