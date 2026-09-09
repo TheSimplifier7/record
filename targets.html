@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The Bank Board</title>
-<meta name="description" content="Every dated gold target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay. Nothing removed.">
+<meta name="description" content="Every dated gold, silver and platinum target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay. Nothing removed.">
 <meta name="theme-color" content="#141210">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/targets.html">
 <meta property="og:title" content="The Simplifier · The Bank Board">
-<meta property="og:description" content="Every dated gold target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay.">
+<meta property="og:description" content="Every dated gold, silver and platinum target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay.">
 <meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -77,6 +77,10 @@
   .brand svg{width:34px;height:26px;display:block;overflow:visible}
   .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
   header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
+  .nav{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0 0;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .nav a{color:var(--ink-5);border-bottom:1px solid transparent;padding-bottom:2px}
+  .nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+  .nav a.here{color:var(--ink);border-bottom-color:var(--gold)}
   h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
   .lede{font-size:21px;color:var(--ink);margin:0 0 26px;max-width:44ch}
   p.body{font-size:17px;margin:0 0 14px;max-width:66ch}
@@ -129,9 +133,19 @@
     </div>
     <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The bank board</div>
   </header>
+  <!-- THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. -->
+  <nav class="nav" aria-label="Pages">
+    <a href="./">The record</a>
+    <a href="targets.html" class="here">The banks, graded</a>
+    <a href="misses.html">The wrong ones</a>
+    <a href="tick.html">The tick book</a>
+    <a href="method.html">The Method</a>
+    <a href="./#doors">The seat</a>
+  </nav>
 
   <h1>The bank board</h1>
-  <p class="lede">Every dated gold target the banks publish, with the close that would grade it. Graded when the window closes. The wrong ones stay.</p>
+  <!-- 9 Sep 2026: "gold target" became "gold, silver and platinum target" with the first silver row. -->
+  <p class="lede">Every dated gold, silver and platinum target the banks publish, with the close that would grade it. Graded when the window closes. The wrong ones stay.</p>
 
   <p class="body">A bank publishes a target with a level and a window and nothing that could prove it wrong. When the window passes the target is revised, and the first number is gone. This board keeps the first number. Each row is an exact quote with its date and its source, the kill this desk assigned by the one rule below, and the weekly close that decided it. A revision is a new row; the old row stays and is graded on its own window. None of this is in <a href="./">the record's</a> tally. These are not this desk's calls. This desk's own wrong rows are <a href="misses.html">here</a>, and they were on the page first.</p>
 
@@ -222,7 +236,7 @@ function render(){
     return `<tr>
       <td class="d">${esc(fmt(t.published))}</td>
       <td class="src">${esc(t.source)}</td>
-      <td class="lv">${num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="lv">${num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="win">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmt(t.window))}</span></td>
       <td class="q">“${esc(t.quote)}”<a href="${esc(t.link)}" rel="nofollow noopener">source</a>${t.note ? `<div class="res">${esc(t.note)}</div>` : ""}
         <details class="kill"><summary>The kill, assigned</summary><p>${esc(t.kill)}</p></details></td>

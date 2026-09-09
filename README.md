@@ -32,7 +32,7 @@ Two directional calls run on their own clocks, one for the year and one for the 
 
 ## What else is here
 
-The wrong ones, in full, at https://thesimplifier7.github.io/record/misses.html. Guest rows, graded by the same rule, at https://thesimplifier7.github.io/record/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.github.io/record/embed.html.
+The wrong ones, in full, at https://thesimplifier7.github.io/record/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.github.io/record/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.github.io/record/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.github.io/record/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.github.io/record/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.github.io/record/embed.html.
 
 The page is dark by default since 6 September 2026. A switch in the masthead turns the paper ground on for a reader who wants it, and remembers the choice on that device.
 

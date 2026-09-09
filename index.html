@@ -372,6 +372,7 @@
      the clocks strip, the marks and the full kill are unchanged and sit
      behind the fold, which is where the desk language now lives. */
   .sc-face{margin-top:18px;border-top:1px solid var(--rule-card);padding-top:6px}
+  .sc-when{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-6);padding:8px 0 2px}
   .sc-row{display:grid;grid-template-columns:132px minmax(0,1fr) 150px;gap:6px 16px;align-items:center;
     padding:12px 0;border-bottom:1px solid var(--rule-card)}
   .sc-row .m{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
@@ -402,6 +403,11 @@
   .sc-marks i{font-style:normal;font-weight:400;color:var(--ink-6);letter-spacing:.02em}
   .sc-asof{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;
     text-transform:uppercase;color:var(--ink-6);margin-top:5px}
+  .sc-fold{margin-top:16px;border-top:1px solid var(--rule-soft);padding-top:8px}
+  .sc-fold>summary{list-style:none;cursor:pointer;font-family:var(--mono);font-size:11.5px;color:var(--ink-5);padding:6px 0}
+  .sc-fold>summary::-webkit-details-marker{display:none} .sc-fold>summary::marker{content:""}
+  .sc-fold>summary::before{content:"+ ";color:var(--gold)} .sc-fold[open]>summary::before{content:"\2212  "}
+  .sc-fold>summary:hover{color:var(--ink)}
   .sc-note{font-family:var(--mono);font-size:11.5px;font-weight:400;line-height:1.8;
     color:var(--ink-3);padding-top:14px;max-width:88ch}
   .sc-note b{font-weight:600;color:var(--ink)}
@@ -919,7 +925,15 @@
     color:var(--ink-6);font-weight:500;text-align:left;padding:10px 12px 8px 0;border-bottom:1px solid var(--rule-soft)}
   .board td{padding:12px 12px 12px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
   .board td.d{font-family:var(--mono);font-size:12px;color:var(--ink-5);white-space:nowrap}
-  .board td.s{color:var(--ink);white-space:nowrap}
+  .board td.s{color:var(--ink);min-width:15ch;max-width:22ch}
+  .board td:last-child{width:27%}
+  /* 9 Sep 2026: the quote is on the face of the board. It was behind a fold
+     labelled "the quote, and the kill", so the page that says the claim is
+     the whole point showed a bank and a number and hid the claim. */
+  .board td.q{min-width:34ch;max-width:48ch}
+  .board td.q .bq{font-size:14px;color:var(--ink-3);line-height:1.5}
+  .board td.q .bq a{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;margin-left:6px}
+  .board td.q details{margin-top:6px}
   .board td.l{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--gold);white-space:nowrap}
   .board td.w{font-family:var(--mono);font-size:12px;color:var(--ink-5);white-space:nowrap}
   .board details summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
@@ -1037,8 +1051,9 @@
   .lrow:nth-of-type(odd){background:var(--band)}
   .lrow[hidden]{display:none}
   .lrow>summary{list-style:none;cursor:pointer;display:grid;
-    grid-template-columns:92px 128px minmax(0,1fr) 118px 20px;
+    grid-template-columns:92px 128px 150px minmax(0,1fr) 118px 20px;
     align-items:baseline;gap:18px;padding:17px 14px}
+  .s-kc{font-family:var(--mono);font-size:11.5px;color:var(--ink-5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .lrow>summary::-webkit-details-marker{display:none}
   .lrow>summary::marker{content:""}
   .lrow>summary:hover{background:var(--hover)}
@@ -1053,6 +1068,7 @@
   /* The level is the claim. Nothing in the line outweighs it. */
   .s-level{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--gold);
     letter-spacing:-.01em}
+  .lrow[id^="crow-"] .s-level{font-size:13px;line-height:1.35}
   .s-chev{justify-self:end;font-family:var(--mono);font-size:14px;color:var(--ink-5);
     line-height:1;transition:transform .16s ease}
   .lrow[open] .s-chev{transform:rotate(90deg)}
@@ -1155,6 +1171,7 @@
     /* The summary keeps date, level and grade on one line and drops the
        instrument to a second. The grade never leaves the closed row. */
     .lrow>summary{grid-template-columns:1fr auto auto;gap:8px 14px;padding:15px 4px}
+    .s-kc{display:none}
     .s-date{order:1}
     .s-level{order:2;justify-self:end}
     .s-chev{order:3}
@@ -1210,6 +1227,7 @@
     <a href="#ledger" class="here">The record</a>
     <a href="#crowd">The banks, graded</a>
     <a href="misses.html">The wrong ones</a>
+    <a href="tick.html">The tick book</a>
     <a href="method.html">The Method</a>
     <a href="#doors">The seat</a>
   </nav>
@@ -1286,7 +1304,7 @@
     </div>
     <div class="stat">
       <div class="num green" id="t-pass">20</div>
-      <div class="lab">Graded correct</div>
+      <div class="lab">Held</div>
     </div>
     <div class="stat">
       <div class="num red" id="t-miss">4</div>
@@ -1346,7 +1364,13 @@
        that night, so a stale sentence rode the page for a week. Corrected
        here, disclosed in note 11, old text kept above, which is where this
        file keeps copy it has replaced. -->
+  <!-- TRIMMED 9 Sep 2026, founder's ruling: the desk's paragraph under the
+       standing cards folds behind one line. Every word is still here, one
+       click in. -->
+  <details class="sc-fold">
+    <summary>Graded on their own clocks, never counted in the tally above. The desk's note on the clocks, and what turned when</summary>
   <p class="sc-note">Graded on their own clocks against a named close, never restamped, and never counted in the tally above. When one ends it stays on this page with the date it ended and what ended it, and when one metal inside a two-metal call ends, the end is written into the call and the call stays. Gold has been bearish since 13 March. That structure ended on the 7 August close, the swing clock turned bullish the same night, and it is bullish still. Silver turned bullish on the 21 August close and closed under its line on 28 August without the structure turning, so the claim stands: from 29 August this page dates a swing turn by the epoch midline crossing the slow mean reversion line, never by a price close, which is the standard the secular clock has run on since 1 August. The weekly rows keep their own published price kills and are graded on them, which is why the silver row of 23 August grades wrong and stays. Platinum's first row on this page passed at the same close and on the same rule, and its swing clock runs from the 19 August close. See notes 06, 08, 10 and 11.</p>
+  </details>
 
   <div class="wrong-wrap" id="wrong-wrap">
     <div class="eyebrow">The ones this desk got wrong</div>
@@ -1395,7 +1419,7 @@
          Added 22 Aug 2026. -->
     <p id="l-status" class="sr-only" aria-live="polite"></p>
     <button class="chip" type="button" data-f="all"    aria-pressed="true">All<span class="n" data-c="all"></span></button>
-    <button class="chip" type="button" data-f="pass"   aria-pressed="false">Correct<span class="n" data-c="pass"></span></button>
+    <button class="chip" type="button" data-f="pass"   aria-pressed="false">Held<span class="n" data-c="pass"></span></button>
     <button class="chip" type="button" data-f="miss"   aria-pressed="false">Wrong<span class="n" data-c="miss"></span></button>
     <button class="chip" type="button" data-f="notest" aria-pressed="false">Never reached<span class="n" data-c="notest"></span></button>
     <button class="chip" type="button" data-f="open"   aria-pressed="false">Open<span class="n" data-c="open"></span></button>
@@ -1417,7 +1441,16 @@
          quoted exactly, given the kill it was published without, and graded on
          the same close as every row above. The claim, never the person. These
          are not this desk's calls and they are not in the tally." -->
-    <p class="sc-plain">Every call this desk can find with a level and a window is graded here, by the rule the rows above are graded by. The banks' targets and the loud accounts' claims, quoted exactly with their date and their source, given the kill they were published without, and graded on the weekly close when their window shuts. Held, wrong, or never reached; nothing softer, and nothing removed when the number is revised. <em>The claim, never the person.</em> None of it is in this desk's tally, and this desk's own wrong rows sit above, where they were first.</p>
+    <!-- TRIMMED 9 Sep 2026. This read: "Every call this desk can find with a
+         level and a window is graded here, by the rule the rows above are
+         graded by. The banks' targets and the loud accounts' claims, quoted
+         exactly with their date and their source, given the kill they were
+         published without, and graded on the weekly close when their window
+         shuts. Held, wrong, or never reached; nothing softer, and nothing
+         removed when the number is revised. The claim, never the person.
+         None of it is in this desk's tally, and this desk's own wrong rows
+         sit above, where they were first." -->
+    <p class="sc-plain">The banks' targets and the loud accounts' claims, quoted exactly with their date and their source, given the kill they were published without, and graded on the close when the window shuts. Nothing removed when the number is revised. <em>The claim, never the person.</em> None of it is in this desk's tally.</p>
     <div class="ledger-list" id="crowd-list"></div>
 
     <!-- THE BOARD. The banks' targets, on the page. Added 8 Sep 2026, note 22.
@@ -1541,6 +1574,7 @@
           <span>The record on your page · <a href="embed.html">one script tag</a></span>
           <span>The wrong ones · <a href="misses.html">in full</a></span>
           <span>The banks' targets · <a href="targets.html">graded on the close</a></span>
+          <span>The tick book · <a href="tick.html">the five-minute clock, graded</a></span>
         </div>
       </div>
       <div>
@@ -2539,7 +2573,17 @@ const TARGETS = [
     kill:"A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.",
     note:"Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.", grade:"pending", result:"" },
 
-  { published:"2026-01-13", source:"Citi Research", level:5000, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
+  /* METAL, added 9 Sep 2026 with the first silver row. Rows without the
+     field are gold; the page never guesses another metal. */
+  { published:"2026-01-13", source:"Citi Research", metal:"Silver", level:100, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
+    quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
+    link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
+    kill:"Held if a weekly close at or above 100 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
+    note:"The same note as the gold 5,000 row, graded on its own metal. Graded 9 September 2026 on a reported close; the founder's chart read replaces the figure when supplied.",
+    grade:"pass",
+    result:"Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks." },
+
+  { published:"2026-01-13", source:"Citi Research", metal:"Gold", level:5000, side:"above", window:"2026-03-31", windowText:"0 to 3 months, by March",
     quote:"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
     link:"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
     kill:"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
@@ -2608,6 +2652,10 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"25", kind:"standard", title:"The tick book opens, the board takes silver, six places on every page, 9 September 2026.",
+    body:"THE TICK BOOK. From tonight this desk keeps a second ledger, tick.html, for the tactical clock: a metal, a side, a level and a kill on the five-minute chart, written and posted before the trade, graded on the 23:00 Madrid close of the day the row names. Held if the grading close sits on the row's side of the level and no five-minute close printed through the kill first; wrong if one did, at any time before the grading close; never reached if price never traded to the level. Two timestamps per row that this desk cannot edit, the post that named it and the commit that wrote it. No size and no profit or loss on any row, ever; the book is a claim about price and a close and nothing else, and it never enters the weekly tally. The founder has said in private that the day trading is where the edge is. Until tonight nothing public could support or refute that sentence. The book opens empty, and it is published empty on purpose, so the first row cannot be the one that looked good afterwards. THE BOARD. The first silver row: Citi's 13 January note named silver at 100 in the same breath as gold at 5,000, and silver crossed 100 on Friday 23 January and ended that week above 103.50, as reported. Held, ten days after it was published. The board's copy now says gold, silver and platinum, each row carries its metal, and the page never guesses a metal for a row that does not state one. THE PAGES. Every page carries the same six places under its masthead, the record, the banks, the wrong ones, the tick book, the Method and the seat, so a reader who lands anywhere can reach everywhere. The Method page carries the chart itself, gold on the 8 hour with the tool on it and the July break that the record grades wrong in frame, because a page selling a chart with no chart on it was selling a sentence. THE TRIMS. The desk's paragraph under the standing cards folds behind one line and the crowd lede is four sentences shorter; every replaced word is in the source. Nothing in the ledger, the tally or any grade changes." },
+  { n:"24", kind:"standard", title:"One word per grade, the kill and the close on every line, 9 September 2026.",
+    body:"Six surface changes, made after the founder asked whether the page was perfect and the desk said no; none touches a row, a grade, a figure, a kill or a date. ONE VOCABULARY. The row chips read Pass, Miss and No test while the dividers, the strip, the legend, the tally cards and the standing cards read held, wrong and never reached, and the tally and the masthead read correct. A stranger was translating between four words for one grade. Every surface now reads held, wrong, never reached and open. The desk's own results keep PASS and MISS in their prose, because that is the word the grade was given in and the record does not rewrite its own past. THE LINE. Every ledger row now carries its kill and, once graded, its close on the summary line, read off the row's own kill sentence and result by the same rule the gauge uses, so the ledger can be audited without opening thirty-one rows; a row that states neither shows nothing there. THE BOARD. The banks' quotes were behind a fold on the record page, so the section whose first rule is the claim, never the person, showed a bank and a number and hid the claim. The quote is on the face; the kill folds. THE FACE. The standing card's plain face now states the date of its figures, because the head named the restatement of 28 August and the rows carried the 4 September close with nothing between them saying so. THE NEXT VERDICT line printed its Friday twice. THE SEAT's price is said on the call and not printed on the form, ruled by the founder, and method.html, which carried two prices and no way to ask, now says how to ask. Every replaced line is kept in the source." },
   { n:"23", kind:"standard", title:"The ladder stood up and the notes folded, 9 September 2026.",
     body:"Two surfaces on this page were rebuilt tonight and neither touches a row, a grade, a figure, a kill or a date in the ledger. THE LADDER. Since 4 September it drew each metal on a horizontal axis with its labels stacked on shelves above the line. Three panels of height went to the empty space between levels, gold's labels still ran into each other whenever two lines sat close, and phones were given a list instead of the picture. It now stands the way a ladder stands on a desk: one column per metal, price running up a spine, every level ever named drawn as a bar at its price, and the last close on the standing cards drawn as a line across the whole column, so what sits above the close and what sits below it is read on sight. Every level states its distance from that close in the metal's own units, derived on every load from the standing card's figure and never typed. Levels within half a percent still join one band, and a band whose lines sit within a tenth of a percent of each other, one line named at two precisions or moved by a dollar, is labelled with the line named the most weeks rather than as a range of forty cents; its count line says how many lines it holds and every one of them is listed when the label is hovered. Each level is a link to the last row that named it. Labels are measured once they are on the page and pushed apart so none overprints and none crosses the close line, which is the only way the record has found to keep a plot honest as it fills. THE NOTES. Twenty-two of them, each already behind its own fold, still stood as twenty-two summary lines and a screen of the footer. They now sit behind one fold, shut on load, whose face carries the count and the newest note's title; a note reached by a link from a row opens the fold and then itself, and the open all control is inside. Every note is on the page in full, one click further away than it was. The plot this replaces and the head line it replaces are in the edit history and the source." },
   { n:"22", kind:"standard", title:"The board on the page, 9 September 2026. The banks' targets, a third door, and five words under the masthead.",
@@ -2681,10 +2729,15 @@ window.addEventListener("error", function () {
 });
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const GRADES = {
-  pass:    { label:"Pass",    cls:"g-pass" },
-  miss:    { label:"Miss",    cls:"g-miss" },
+  /* 9 Sep 2026: one vocabulary on every surface. The chips read Pass, Miss
+     and No test while the dividers, the strip, the legend and the cards read
+     held, wrong and never reached, and a stranger was translating between
+     four words for the same grade. The desk's own results keep PASS in
+     their prose; that is the grading word, this is the reading word. */
+  pass:    { label:"Held",    cls:"g-pass" },
+  miss:    { label:"Wrong",   cls:"g-miss" },
   partial: { label:"Partial", cls:"g-partial" },
-  notest:  { label:"No test", cls:"g-notest" },
+  notest:  { label:"Never reached", cls:"g-notest" },
   pending: { label:"Open",    cls:"g-pending" },
   /* nokill, 5 Sep 2026: used ONLY by the crowd rows, never by this desk's
      own. A claim that names two directions and no clock has no close it can
@@ -3273,7 +3326,11 @@ function faceRow(r, s) {
 function faceHtml(s, board) {
   const b = s.board || {};
   if (board.kind === "state" && Array.isArray(b.rows)) {
-    const rows = b.rows.map(r => faceRow(r, s)).join("");
+    /* 9 Sep 2026: the face states the date of its figures. The head names
+       the statement and the restatement; the rows carried a close with no
+       date on the face, so a reader saw 28 August at the top and figures
+       from 4 September underneath with nothing between them saying so. */
+    const rows = `<div class="sc-when">At the ${esc(fmtDate(s.asOf))} ${esc(s.read)}</div>` + b.rows.map(r => faceRow(r, s)).join("");
     const under = b.rows.filter(r => r.state === "live" && plainNum(r.close) < plainNum(r.line));
     const why = under.length
       ? `<p class="sc-why">${esc(under.map(r => r.name).join(" and "))} closed under ${under.length > 1 ? "their lines" : "its line"} at the ${esc(fmtDate(s.asOf))} ${esc(s.read)}. The call still stands, because what ends it is the lines crossing and not a close, and they have not crossed. The weekly row for that metal is a separate call with its own price kill, and it is graded on that kill in the ledger below.</p>`
@@ -3467,6 +3524,29 @@ const gaugeBlock = r => {
   </svg><div class="gcap"><span class="ink">level ${esc(r.level)} as named</span><span class="${cls}">close ${fmt(cl)} · ${fmt(Math.abs(diff))} ${side} the level</span></div></div>`;
 };
 
+/* THE SUMMARY LINE'S KILL AND CLOSE, 9 Sep 2026. A ledger a reader had to
+   open row by row to see what was at stake and what printed is a ledger
+   nobody audits. The kill's side and figure are read off the row's own kill
+   sentence, the close off the result by the same rule the gauge uses; a row
+   that states neither shows nothing here rather than something guessed. */
+const killShort = k => {
+  const t = String(k);
+  /* "below 4,308", or "below the 464 swing slow mean, 4,308 at naming" */
+  const m = /\b(below|under|beneath|above|over|through)\s+(?:([\d,]+(?:\.\d+)?)|the\b[^,.;]*?,\s*([\d,]+(?:\.\d+)?)\s+at naming)/i.exec(t);
+  if (!m) return "";
+  const side = /^(below|under|beneath)$/i.test(m[1]) ? "under" : "over";
+  return `kill ${side} ${m[2] || m[3]}`;
+};
+const summaryKC = r => {
+  const parts = [];
+  const k = killShort(r.kill); if (k) parts.push(k);
+  if (r.grade === "pass" || r.grade === "miss" || r.grade === "partial") {
+    const m = /(?:close printed|closed the week at|closed at|weekly close printed)\s+([\d,]+(?:\.\d+)?)/i.exec(r.result);
+    if (m) parts.push(`closed ${m[1]}`);
+  } else if (r.grade === "notest") parts.push("never reached");
+  return parts.join(" · ");
+};
+
 /* WEEK DIVIDERS. One per naming date, in array order, carrying that week's
    own grade count. Hidden by the filter when none of its rows is shown. */
 const weekLine = (r, group) => {
@@ -3515,13 +3595,15 @@ const closeOn = iso => {
   if (isNaN(guess)) return null;
   return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
 };
-const countdownText = close => {
+const countdownText = (close, short) => {
   const ms = close.getTime() - Date.now();
   if (ms <= 0) return "Close printed. Grade pending.";
   const h = Math.floor(ms / 3600000), dd = Math.floor(h / 24), hh = h % 24, mm = Math.floor((ms % 3600000) / 60000);
   /* CET or CEST by the close's own offset, not by the visitor's. 7 Sep 2026:
-     the first crowd row grades on 4 December, which is winter time. */
-  return "Graded in " + (dd ? dd + "d " : "") + hh + "h " + (dd ? "" : mm + "m ") + "· Friday " + fmtDate(close.toISOString().slice(0, 10)) + " · 23:00 " + (madridOffsetMin(close) === 60 ? "CET" : "CEST");
+     the first crowd row grades on 4 December, which is winter time.
+     9 Sep 2026: "short" drops the day, for a line that has already named it;
+     the next verdict line was printing the same Friday twice. */
+  return "Graded in " + (dd ? dd + "d " : "") + hh + "h " + (dd ? "" : mm + "m ") + (short ? "" : "· Friday " + fmtDate(close.toISOString().slice(0, 10)) + " ") + "· 23:00 " + (madridOffsetMin(close) === 60 ? "CET" : "CEST");
 };
 const countdownLine = r => {
   if (r.grade !== "pending") return "";
@@ -3533,7 +3615,7 @@ const tickCountdowns = () => {
   document.querySelectorAll(".countdown[data-close]").forEach(el => {
     const c = new Date(el.getAttribute("data-close"));
     if (isNaN(c)) return;
-    el.textContent = (el.getAttribute("data-prefix") || "") + countdownText(c);
+    el.textContent = (el.getAttribute("data-prefix") || "") + countdownText(c, el.hasAttribute("data-short"));
     el.classList.toggle("due", c.getTime() <= Date.now());
   });
 };
@@ -3549,6 +3631,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
       <span class="s-date">${esc(r.day)} <span>${esc(r.year)}</span></span>
       <span class="s-inst">${esc(r.metal)} <i>${esc(r.type)}</i></span>
       <span class="s-level">${esc(r.level)}</span>
+      <span class="s-kc">${esc(summaryKC(r))}</span>
       <span class="s-grade"><span class="grade ${r.gradeCls}">${esc(r.gradeLabel)}</span>${preTag(r.pre)}</span>
       <span class="s-chev" aria-hidden="true">&rsaquo;</span>
     </summary>
@@ -3639,7 +3722,7 @@ document.getElementById("t-open").textContent = open;
 
 const rate = resolved ? Math.round((pass / resolved) * 100) : 0;
 
-let note = resolved ? `${pass} of ${resolved} resolved calls graded correct, ${rate} percent.` : "";
+let note = resolved ? `${pass} of ${resolved} resolved calls held, ${rate} percent.` : "";
 if (miss)    note += ` ${miss} graded wrong, shown in full below and never hidden.`;
 if (partial) note += ` ${partial} partial, counted against the record.`;
 if (notest)  note += ` ${notest} never tested, counted for neither side.`;
@@ -4136,7 +4219,7 @@ document.getElementById("updated-foot").textContent = stamp;
     if (close) {
       const cd = document.createElement("span");
       cd.className = "countdown"; cd.setAttribute("data-close", close.toISOString());
-      cd.style.marginLeft = "12px"; cd.setAttribute("data-prefix", "· "); cd.textContent = "· " + countdownText(close);
+      cd.style.marginLeft = "12px"; cd.setAttribute("data-prefix", "· "); cd.setAttribute("data-short", "1"); cd.textContent = "· " + countdownText(close, true);
       el.appendChild(cd);
     }
   }
@@ -4160,9 +4243,9 @@ function renderBoard(){
     return `<tr>
       <td class="d">${esc(fmtDate(t.published))}</td>
       <td class="s">${esc(t.source)}</td>
-      <td class="l">${Number(t.level).toLocaleString("en-US")}<div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="l">${Number(t.level).toLocaleString("en-US")}<div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="w">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmtDate(t.window))}</span></td>
-      <td><details><summary>The quote, and the kill</summary><p>"${esc(t.quote)}" <a href="${esc(t.link)}" rel="nofollow noopener">source</a></p><div class="kl">${esc(t.kill)}</div>${t.note ? `<div class="kl">${esc(t.note)}</div>` : ""}</details></td>
+      <td class="q"><p class="bq">"${esc(t.quote)}" <a href="${esc(t.link)}" rel="nofollow noopener">source</a></p><details><summary>The kill, assigned</summary><div class="kl">${esc(t.kill)}</div>${t.note ? `<div class="kl">${esc(t.note)}</div>` : ""}</details></td>
       <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}</td>
     </tr>`;
   }).join("");
@@ -4196,6 +4279,7 @@ function renderBoard(){
         <span class="s-date">${esc(d.replace(/^0/, "") + " " + MONTHS[+m - 1])} <span>${esc(y)}</span></span>
         <span class="s-inst">${esc(c.metal)} <i>Crowd</i></span>
         <span class="s-level">${esc(c.source)}</span>
+        <span class="s-kc">${esc([killShort(c.kill), c.gradeDate ? (c.grade === "pending" ? "grades " : "graded ") + fmtDate(c.gradeDate) : ""].filter(Boolean).join(" · "))}</span>
         <span class="s-grade"><span class="grade ${g.cls}">${esc(g.label)}</span></span>
         <span class="s-chev" aria-hidden="true">&rsaquo;</span>
       </summary>
@@ -4264,6 +4348,7 @@ const guestDistance = g => {
           <span class="s-date">${esc(d.replace(/^0/, "") + " " + MONTHS[+m - 1])} <span>${esc(y)}</span></span>
           <span class="s-inst">${esc(g.metal)} <i>${esc(g.handle)}</i></span>
           <span class="s-level">${esc(g.level)}</span>
+          <span class="s-kc">${esc(killShort(g.kill || ""))}</span>
           <span class="s-grade"><span class="grade ${gr.cls}">${esc(gr.label)}</span></span>
           <span class="s-chev" aria-hidden="true">&rsaquo;</span>
         </summary>
@@ -4410,7 +4495,7 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
   if (t) {
     t.innerHTML =
       `<span>${resolved} resolved</span>` +
-      `<span class="p">${pass} correct</span>` +
+      `<span class="p">${pass} held</span>` +
       `<span class="m">${miss + partial} wrong</span>`;
   }
 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Simplifier · The Tick Book</title>
+<meta name="description" content="Intraday calls in gold, silver and platinum on the five-minute clock, named and posted before the trade, graded on the day's close. The wrong ones stay.">
+<meta name="theme-color" content="#141210">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/tick.html">
+<meta property="og:title" content="The Simplifier · The Tick Book">
+<meta property="og:description" content="Intraday calls on the five-minute clock, named and posted before the trade, graded on the day's close. The wrong ones stay.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- =========================================================================
+     THE TICK BOOK  ·  opened 9 September 2026
+
+     The record grades the swing clock: one level a week, graded on Friday.
+     This page grades the tactical clock: a level, a side and a kill on the
+     five-minute chart, written and posted before the trade, graded on the
+     23:00 Madrid close of the day it names. Same law. Nothing deleted, the
+     wrong ones stay, corrections logged, never in the weekly tally.
+
+     WHY IT EXISTS. The founder says the day trading is where the edge is.
+     Until this page, nothing public could support or refute that sentence.
+     Now every intraday call has a row, a timestamp it cannot move, and a
+     grade it did not choose.
+
+     THE RULE, stated once on the page and applied without exception:
+       held           the grading close sits on the row's side of the level
+                      and no five-minute close printed through the kill first
+       wrong          a five-minute close printed through the kill at any
+                      time before the grading close
+       never reached  price never traded to the level
+     A row not graded by the next day's open is graded late and says so.
+
+     PROVENANCE. Two timestamps per row, neither this desk's to edit: the X
+     post that named it, and the GitHub commit that wrote it. The row's
+     "named" minute is the desk's own statement and is checked against both.
+
+     Rows live in ticks.js beside this page so the record page stays light.
+     Rendering fails closed: a row missing any required field is not drawn
+     and the page says how many were held back. With no rows the page says
+     so and states the rule, and sells nothing.
+
+     BRAND LAW APPLIES. No em dashes, hashtags, exclamation marks, emoji,
+     forecasting, fabricated data. No size, no P and L, ever.
+     ========================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
+    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
+    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --notest:#9C9282; --pending:#6BA3C7;
+    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --pad:44px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  .wrap{max-width:1080px;margin:0 auto;padding:52px var(--pad) 64px}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
+  a:hover{color:var(--ink)}
+  header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand svg{width:34px;height:26px;display:block;overflow:visible}
+  .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
+  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
+  .nav{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0 0;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .nav a{color:var(--ink-5);border-bottom:1px solid transparent;padding-bottom:2px}
+  .nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
+  .nav a.here{color:var(--ink);border-bottom-color:var(--gold)}
+  h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
+  .lede{font-size:21px;color:var(--ink);margin:0 0 26px;max-width:44ch}
+  p.body{font-size:17px;margin:0 0 14px;max-width:66ch}
+  .k{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:34px 0 12px}
+  .count{display:flex;gap:26px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--rule-soft);padding:18px 20px;margin:22px 0}
+  .count div{font-family:var(--mono)} .count .n{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+  .count .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-5)}
+  .count .pass .n{color:var(--pass)} .count .miss .n{color:var(--miss)} .count .open .n{color:var(--pending)}
+  .rule-box{font-family:var(--mono);font-size:13.5px;line-height:1.75;color:var(--ink-5);padding-left:14px;border-left:3px solid var(--rule);margin:22px 0;max-width:80ch}
+  .tbl{overflow-x:auto;margin:10px 0 0}
+  table{border-collapse:collapse;width:100%;min-width:860px;font-size:15px}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-6);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-weight:500;white-space:nowrap}
+  td{padding:14px 12px 14px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  td.d{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
+  td.d b{display:block;color:var(--ink);font-weight:600}
+  td.m{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+  td.m i{display:block;font-style:normal;font-weight:500;color:var(--ink-6);letter-spacing:.08em;margin-top:3px}
+  td.lv{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--gold);white-space:nowrap}
+  td.kl{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
+  td.kl b{color:var(--miss);font-weight:600}
+  td.res{font-size:14.5px;color:var(--ink-3);max-width:52ch;min-width:28ch}
+  td.res .late{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--miss);margin-top:6px}
+  td.res .prov{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-6);margin-top:6px}
+  .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1.5px solid currentColor;white-space:nowrap}
+  .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+  .g.pending{color:var(--pending)} .g.pass{color:var(--pass)} .g.miss{color:var(--miss)} .g.notest{color:var(--notest)}
+  .empty{font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink-5);padding:22px 20px;border:1px dashed var(--rule);margin-top:14px;max-width:80ch}
+  .fine{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-6);margin-top:12px}
+  [hidden]{display:none !important}
+  footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
+  @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The tick book</div>
+  </header>
+  <nav class="nav" aria-label="Pages">
+    <a href="./">The record</a>
+    <a href="targets.html">The banks, graded</a>
+    <a href="misses.html">The wrong ones</a>
+    <a href="tick.html" class="here">The tick book</a>
+    <a href="method.html">The Method</a>
+    <a href="./#doors">The seat</a>
+  </nav>
+
+  <h1>The tick book</h1>
+  <p class="lede">Intraday calls on the five-minute clock. Named and posted before the trade, graded on the day's close. The wrong ones stay.</p>
+
+  <p class="body"><a href="./">The record</a> grades one level a week on Friday's close. This page grades the tactical clock by the same law: a metal, a side, a level and a kill, written and posted before the trade, and graded on the 23:00 Madrid close of the day the row names. Two timestamps per row that this desk cannot edit, the post that named it and the commit that wrote it. No size, no profit or loss, ever: a row is a claim about price and a close, and nothing else is on it. None of this enters the weekly tally.</p>
+
+  <div class="count" id="count" hidden>
+    <div class="pass"><div class="n" id="c-pass">·</div><div class="t">held</div></div>
+    <div class="miss"><div class="n" id="c-miss">·</div><div class="t">wrong, kept</div></div>
+    <div><div class="n" id="c-notest">·</div><div class="t">never reached</div></div>
+    <div class="open"><div class="n" id="c-open">·</div><div class="t">open, clock running</div></div>
+    <div><div class="n" id="c-all">·</div><div class="t">rows in the book</div></div>
+  </div>
+
+  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if the grading close sits on the row's side of the level and no five-minute close printed through the kill before it. Wrong if a five-minute close printed through the kill at any time before the grading close. Never reached if price never traded to the level. The grading close is the 23:00 Madrid close of the day the row names, read off this desk's own TVC chart. A row not graded by the next day's open is graded late and says so on the row.</div>
+
+  <div class="tbl" id="tbl" hidden>
+    <table id="book">
+      <thead><tr><th>Named</th><th>Metal</th><th>Level</th><th>Kill</th><th>What price did</th><th>Grade</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="empty" id="empty" hidden></p>
+  <p class="fine" id="heldback" hidden></p>
+
+  <div class="k">How a row gets here</div>
+  <p class="body">Before the trade, the level, the side and the kill are posted on X, and the row is written to <a href="ticks.js">ticks.js</a> and pushed, so the post and the commit both carry a time the desk did not choose. After the day's close the row is graded and the result written. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays. A row that names a level price never traded to is never reached, and counts for neither side.</p>
+
+  <footer>
+    <span class="law">Named before · Graded after · Nothing deleted</span>
+    <span class="handle">@TheSimplifier7</span>
+  </footer>
+</div>
+
+<script src="ticks.js"></script>
+<script>
+(function(){
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+  const fmtDay = iso => { const [y,m,d] = iso.split("-"); return `${+d} ${MONTHS[+m-1]} ${y}`; };
+  const fmtNamed = iso => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})([+-]\d{2}:\d{2}|Z)?$/.exec(iso);
+    if (!m) return "";
+    return `${+m[3]} ${MONTHS[+m[2]-1]} ${m[1]}|${m[4]}:${m[5]}${m[6] && m[6] !== "Z" ? " UTC" + m[6].replace(":00","") : m[6] ? " UTC" : ""}`;
+  };
+  const GL = { pending:["Open","pending"], pass:["Held","pass"], miss:["Wrong","miss"], notest:["Never reached","notest"] };
+  const need = ["named","metal","side","level","kill","grades","grade"];
+  const all = (typeof TICKS !== "undefined" && Array.isArray(TICKS)) ? TICKS : [];
+  const ok = all.filter(t => t && need.every(k => t[k] !== undefined && t[k] !== "") && GL[t.grade] && /^(long|short)$/.test(t.side) && /^(Gold|Silver|Platinum)$/.test(t.metal) && /^\d{4}-\d{2}-\d{2}$/.test(t.grades) && fmtNamed(t.named));
+  const held = all.length - ok.length;
+  const empty = document.getElementById("empty"), tbl = document.getElementById("tbl"), hb = document.getElementById("heldback");
+  if (held) { hb.textContent = held + (held === 1 ? " row is" : " rows are") + " held back for a missing field and not drawn."; hb.hidden = false; }
+  if (!ok.length) {
+    empty.textContent = "No rows yet. The book opened on 9 September 2026 and the first row goes in before the first trade, not after it. Until then this page is the rule and nothing else.";
+    empty.hidden = false;
+    return;
+  }
+  const today = new Date();
+  const rows = ok.slice().sort((a, b) => b.named.localeCompare(a.named));
+  document.getElementById("rows").innerHTML = rows.map(t => {
+    const g = GL[t.grade];
+    const [dn, tm] = fmtNamed(t.named).split("|");
+    const late = t.grade === "pending" && (new Date(t.grades + "T23:00:00+02:00").getTime() + 12 * 3600000) < today.getTime();
+    return `<tr>
+      <td class="d"><b>${esc(dn)}</b>${esc(tm)}${t.post ? `<br><a href="${esc(t.post)}" rel="nofollow noopener">the post</a>` : ""}</td>
+      <td class="m">${esc(t.metal)}<i>${esc(t.side)}</i></td>
+      <td class="lv">${esc(t.level)}</td>
+      <td class="kl">5m close <b>${t.side === "long" ? "under" : "over"} ${esc(t.kill)}</b><br>grades on the ${esc(fmtDay(t.grades))} close</td>
+      <td class="res">${t.result ? esc(t.result) : "Not yet graded."}${late ? `<span class="late">Graded late</span>` : ""}<span class="prov">Written before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.</span></td>
+      <td><span class="g ${g[1]}"><i></i>${g[0]}</span></td>
+    </tr>`;
+  }).join("");
+  tbl.hidden = false;
+  const n = k => ok.filter(t => t.grade === k).length;
+  document.getElementById("c-pass").textContent = n("pass");
+  document.getElementById("c-miss").textContent = n("miss");
+  document.getElementById("c-notest").textContent = n("notest");
+  document.getElementById("c-open").textContent = n("pending");
+  document.getElementById("c-all").textContent = ok.length;
+  document.getElementById("count").hidden = false;
+})();
+</script>
+</body>
+</html>

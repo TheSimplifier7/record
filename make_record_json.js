@@ -36,6 +36,14 @@ try { CROWD = literal("CROWD"); } catch (e) {}
 try { TARGETS = literal("TARGETS"); } catch (e) {}
 try { OUT = literal("OUT"); } catch (e) {}
 try { GUEST = literal("GUEST"); } catch (e) {}
+/* THE TICK BOOK, 9 Sep 2026: rows live in ticks.js beside the page. */
+let TICKS = [];
+try {
+  const tj = fs.readFileSync("ticks.js", "utf8");
+  const o = tj.indexOf("const TICKS = ") + "const TICKS = ".length;
+  const e = tj.indexOf("\n];", o) + 2;
+  TICKS = vm.runInNewContext("(" + tj.slice(o, e) + ")", {});
+} catch (e) {}
 const LAST_UPDATED = scalar("LAST_UPDATED");
 const STANDARD_FROM = scalar("STANDARD_FROM");
 
@@ -96,7 +104,12 @@ const out = {
   guest: {
     note: "Levels submitted by others, graded by this desk's standard on the same close. Eight per week. Not in the tally. See note 18.",
     rows: GUEST.map((g, i) => ({ id: "grow-" + i, named: g.date, handle: g.handle, metal: g.metal, level: g.level, kill: g.kill, named_at_close: g.namedAt || null, result: g.result || null, grade: g.grade, grade_word: grades[g.grade] || g.grade }))
+  },
+  tick_book: {
+    note: "Intraday calls on the five-minute clock, named and posted before the trade, graded on the 23:00 Madrid close of the day named. Never in the weekly tally. See tick.html.",
+    tally: { held: TICKS.filter(t => t.grade === "pass").length, wrong: TICKS.filter(t => t.grade === "miss").length, never_reached: TICKS.filter(t => t.grade === "notest").length, open: TICKS.filter(t => t.grade === "pending").length },
+    rows: TICKS.map(t => ({ named: t.named, post: t.post || null, metal: t.metal, side: t.side, level: t.level, kill: t.kill, grades_on: t.grades, result: t.result || null, grade: t.grade, grade_word: grades[t.grade] || t.grade }))
   }
 };
 fs.writeFileSync("record.json", JSON.stringify(out, null, 2) + "\n");
-console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally) + ", crowd " + CROWD.length + ", targets " + TARGETS.length + ", guest " + GUEST.length);
+console.log("record.json written: " + rows.length + " rows, tally " + JSON.stringify(out.tally) + ", crowd " + CROWD.length + ", targets " + TARGETS.length + ", guest " + GUEST.length + ", ticks " + TICKS.length);

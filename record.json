@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-09-09",
-  "generated": "2026-09-08T20:31:11.767Z",
+  "generated": "2026-09-09T16:28:29.712Z",
   "tally": {
     "resolved": 24,
     "held": 20,
@@ -793,6 +793,18 @@
       "kind": "standard",
       "title": "The ladder stood up and the notes folded, 9 September 2026.",
       "body": "Two surfaces on this page were rebuilt tonight and neither touches a row, a grade, a figure, a kill or a date in the ledger. THE LADDER. Since 4 September it drew each metal on a horizontal axis with its labels stacked on shelves above the line. Three panels of height went to the empty space between levels, gold's labels still ran into each other whenever two lines sat close, and phones were given a list instead of the picture. It now stands the way a ladder stands on a desk: one column per metal, price running up a spine, every level ever named drawn as a bar at its price, and the last close on the standing cards drawn as a line across the whole column, so what sits above the close and what sits below it is read on sight. Every level states its distance from that close in the metal's own units, derived on every load from the standing card's figure and never typed. Levels within half a percent still join one band, and a band whose lines sit within a tenth of a percent of each other, one line named at two precisions or moved by a dollar, is labelled with the line named the most weeks rather than as a range of forty cents; its count line says how many lines it holds and every one of them is listed when the label is hovered. Each level is a link to the last row that named it. Labels are measured once they are on the page and pushed apart so none overprints and none crosses the close line, which is the only way the record has found to keep a plot honest as it fills. THE NOTES. Twenty-two of them, each already behind its own fold, still stood as twenty-two summary lines and a screen of the footer. They now sit behind one fold, shut on load, whose face carries the count and the newest note's title; a note reached by a link from a row opens the fold and then itself, and the open all control is inside. Every note is on the page in full, one click further away than it was. The plot this replaces and the head line it replaces are in the edit history and the source."
+    },
+    {
+      "n": "24",
+      "kind": "standard",
+      "title": "One word per grade, the kill and the close on every line, 9 September 2026.",
+      "body": "Six surface changes, made after the founder asked whether the page was perfect and the desk said no; none touches a row, a grade, a figure, a kill or a date. ONE VOCABULARY. The row chips read Pass, Miss and No test while the dividers, the strip, the legend, the tally cards and the standing cards read held, wrong and never reached, and the tally and the masthead read correct. A stranger was translating between four words for one grade. Every surface now reads held, wrong, never reached and open. The desk's own results keep PASS and MISS in their prose, because that is the word the grade was given in and the record does not rewrite its own past. THE LINE. Every ledger row now carries its kill and, once graded, its close on the summary line, read off the row's own kill sentence and result by the same rule the gauge uses, so the ledger can be audited without opening thirty-one rows; a row that states neither shows nothing there. THE BOARD. The banks' quotes were behind a fold on the record page, so the section whose first rule is the claim, never the person, showed a bank and a number and hid the claim. The quote is on the face; the kill folds. THE FACE. The standing card's plain face now states the date of its figures, because the head named the restatement of 28 August and the rows carried the 4 September close with nothing between them saying so. THE NEXT VERDICT line printed its Friday twice. THE SEAT's price is said on the call and not printed on the form, ruled by the founder, and method.html, which carried two prices and no way to ask, now says how to ask. Every replaced line is kept in the source."
+    },
+    {
+      "n": "25",
+      "kind": "standard",
+      "title": "The tick book opens, the board takes silver, six places on every page, 9 September 2026.",
+      "body": "THE TICK BOOK. From tonight this desk keeps a second ledger, tick.html, for the tactical clock: a metal, a side, a level and a kill on the five-minute chart, written and posted before the trade, graded on the 23:00 Madrid close of the day the row names. Held if the grading close sits on the row's side of the level and no five-minute close printed through the kill first; wrong if one did, at any time before the grading close; never reached if price never traded to the level. Two timestamps per row that this desk cannot edit, the post that named it and the commit that wrote it. No size and no profit or loss on any row, ever; the book is a claim about price and a close and nothing else, and it never enters the weekly tally. The founder has said in private that the day trading is where the edge is. Until tonight nothing public could support or refute that sentence. The book opens empty, and it is published empty on purpose, so the first row cannot be the one that looked good afterwards. THE BOARD. The first silver row: Citi's 13 January note named silver at 100 in the same breath as gold at 5,000, and silver crossed 100 on Friday 23 January and ended that week above 103.50, as reported. Held, ten days after it was published. The board's copy now says gold, silver and platinum, each row carries its metal, and the page never guesses a metal for a row that does not state one. THE PAGES. Every page carries the same six places under its masthead, the record, the banks, the wrong ones, the tick book, the Method and the seat, so a reader who lands anywhere can reach everywhere. The Method page carries the chart itself, gold on the 8 hour with the tool on it and the July break that the record grades wrong in frame, because a page selling a chart with no chart on it was selling a sentence. THE TRIMS. The desk's paragraph under the standing cards folds behind one line and the crowd lede is four sentences shorter; every replaced word is in the source. Nothing in the ledger, the tally or any grade changes."
     }
   ],
   "targets": [
@@ -897,6 +909,22 @@
     {
       "published": "2026-01-13",
       "source": "Citi Research",
+      "metal": "Silver",
+      "level": 100,
+      "side": "above",
+      "window": "2026-03-31",
+      "windowText": "0 to 3 months, by March",
+      "quote": "Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.",
+      "link": "https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction",
+      "kill": "Held if a weekly close at or above 100 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
+      "note": "The same note as the gold 5,000 row, graded on its own metal. Graded 9 September 2026 on a reported close; the founder's chart read replaces the figure when supplied.",
+      "grade": "pass",
+      "result": "Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks."
+    },
+    {
+      "published": "2026-01-13",
+      "source": "Citi Research",
+      "metal": "Gold",
       "level": 5000,
       "side": "above",
       "window": "2026-03-31",
@@ -973,6 +1001,16 @@
   },
   "guest": {
     "note": "Levels submitted by others, graded by this desk's standard on the same close. Eight per week. Not in the tally. See note 18.",
+    "rows": []
+  },
+  "tick_book": {
+    "note": "Intraday calls on the five-minute clock, named and posted before the trade, graded on the 23:00 Madrid close of the day named. Never in the weekly tally. See tick.html.",
+    "tally": {
+      "held": 0,
+      "wrong": 0,
+      "never_reached": 0,
+      "open": 0
+    },
     "rows": []
   }
 }
