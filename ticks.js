@@ -24,11 +24,23 @@
      grade   "pending" | "pass" | "miss" | "notest"
      result  ""          what price did, written after the grading close
 
-   THE RULE. Held if the grading close sits on the row's side of the level
-   and no 5-minute close printed through the kill before it. Wrong if a
-   5-minute close printed through the kill at any time before the grading
-   close. Never reached if price never traded to the level. A row that is
-   not graded by the next day's open is graded late and says so.
+   THE RULE. Never reached if price never traded to the level after it was
+   named. Wrong if the level was reached and either a five-minute close
+   printed through the kill before the grading close, or the grading close
+   is not on the row's side of the level. Held if the level was reached, no
+   close printed through the kill, and the grading close is on the row's
+   side. A row not graded by the next day's open is graded late and says so.
+
+   HOW A ROW IS GRADED. Never by hand. After 23:00 Madrid, export the
+   five-minute chart of that metal for that day from TradingView (Export
+   chart data; ISO or UNIX time, either is fine) and save it as
+     ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv
+   then run
+     node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv          to see the grades
+     node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv --write  to write them here
+     node verify_ticks.js                                          before upload
+     node make_record_json.js                                      so record.json carries them
+   Upload ticks.js, record.json and the CSV together.
 
    A row missing any required field is not drawn; the page says how many
    were held back.

@@ -44,6 +44,12 @@ After any edit to index.html:
 
     node make_record_json.js && node make_tally_card.js && node make_misses.js && node verify_record.js
 
+The tick book, after 23:00 Madrid on a day with rows: export the five-minute chart of that metal for that day from TradingView and save it as ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv, then
+
+    node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv --write && node verify_ticks.js && node make_record_json.js
+
+and upload ticks.js, record.json and the CSV together. Rows are graded from the bars on file by the rule on tick.html and never by hand; verify_ticks.js refuses any graded row whose bars are not beside the page or disagree with its grade.
+
 ---
 
 I name the line. I do not forecast. I grade in public.

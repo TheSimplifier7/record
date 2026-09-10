@@ -28,12 +28,15 @@
      grade it did not choose.
 
      THE RULE, stated once on the page and applied without exception:
-       held           the grading close sits on the row's side of the level
-                      and no five-minute close printed through the kill first
-       wrong          a five-minute close printed through the kill at any
-                      time before the grading close
-       never reached  price never traded to the level
+       never reached  price never traded to the level after it was named
+       wrong          the level was reached and either a five-minute close
+                      printed through the kill before the grading close, or
+                      the grading close is not on the row's side of the level
+       held           the level was reached, no close printed through the
+                      kill, and the grading close is on the row's side
      A row not graded by the next day's open is graded late and says so.
+     Graded by grade_tick.js from the exported bars in ticks/, verified by
+     verify_ticks.js before upload. The page never grades by hand.
 
      PROVENANCE. Two timestamps per row, neither this desk's to edit: the X
      post that named it, and the GitHub commit that wrote it. The row's
@@ -143,7 +146,11 @@
     <div><div class="n" id="c-all">·</div><div class="t">rows in the book</div></div>
   </div>
 
-  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if the grading close sits on the row's side of the level and no five-minute close printed through the kill before it. Wrong if a five-minute close printed through the kill at any time before the grading close. Never reached if price never traded to the level. The grading close is the 23:00 Madrid close of the day the row names, read off this desk's own TVC chart. A row not graded by the next day's open is graded late and says so on the row.</div>
+  <!-- 10 Sep 2026, before any row existed: the rule gained its third leg. As
+       first written a row whose close came back between the level and the
+       kill was neither held nor wrong. It is wrong: the close is not on the
+       row's side. -->
+  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if price traded to the level, no five-minute close printed through the kill before the grading close, and the grading close sits on the row's side of the level. Wrong if price traded to the level and either a five-minute close printed through the kill at any time before the grading close, or the grading close is not on the row's side. Never reached if price never traded to the level. The grading close is the last five-minute close before 23:00 Madrid on the day the row names, taken from the exported bars kept beside this page. A row not graded by the next day's open is graded late and says so on the row.</div>
 
   <div class="tbl" id="tbl" hidden>
     <table id="book">
@@ -155,7 +162,7 @@
   <p class="fine" id="heldback" hidden></p>
 
   <div class="k">How a row gets here</div>
-  <p class="body">Before the trade, the level, the side and the kill are posted on X, and the row is written to <a href="ticks.js">ticks.js</a> and pushed, so the post and the commit both carry a time the desk did not choose. After the day's close the row is graded and the result written. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays. A row that names a level price never traded to is never reached, and counts for neither side.</p>
+  <p class="body">Before the trade, the level, the side and the kill are posted on X, and the row is written to <a href="ticks.js">ticks.js</a> and pushed, so the post and the commit both carry a time the desk did not choose. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
 
   <footer>
     <span class="law">Named before · Graded after · Nothing deleted</span>
@@ -197,7 +204,7 @@
       <td class="m">${esc(t.metal)}<i>${esc(t.side)}</i></td>
       <td class="lv">${esc(t.level)}</td>
       <td class="kl">5m close <b>${t.side === "long" ? "under" : "over"} ${esc(t.kill)}</b><br>grades on the ${esc(fmtDay(t.grades))} close</td>
-      <td class="res">${t.result ? esc(t.result) : "Not yet graded."}${late ? `<span class="late">Graded late</span>` : ""}<span class="prov">Written before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.</span></td>
+      <td class="res">${t.result ? esc(t.result) : "Not yet graded."}${late ? `<span class="late">Graded late</span>` : ""}<span class="prov">Written before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${t.grade !== "pending" ? ` <a href="ticks/${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
       <td><span class="g ${g[1]}"><i></i>${g[0]}</span></td>
     </tr>`;
   }).join("");
