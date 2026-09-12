@@ -7,11 +7,12 @@
    wrong row stays, a correction is logged, replaced copy kept in comments.
 
    HOW A ROW IS WRITTEN. Before the trade: post the level, the side and the
-   kill on X (the post's timestamp is the public proof), then add the row
-   here with grade "pending" and push it (the commit is the second proof).
-   After the grading close: fill result and grade, push again. Never edit
-   level, kill, side or named after the first push; if one was wrong, say so
-   in result and leave it.
+   kill on X. The post's minute is the naming and goes in "named". The row
+   is added here with grade "pending" the same day, before the grading
+   close; every naming post gets a row whatever price did. After the grading
+   close: grade_tick.js fills result and grade from the exported bars. Never
+   edit level, kill, side or named after the first push; if one was wrong,
+   say so in result and leave it.
 
    FIELDS, all required except post and result:
      named   "2026-09-10T09:12+02:00"   the minute it was named, with offset

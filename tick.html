@@ -162,7 +162,15 @@
   <p class="fine" id="heldback" hidden></p>
 
   <div class="k">How a row gets here</div>
-  <p class="body">Before the trade, the level, the side and the kill are posted on X, and the row is written to <a href="ticks.js">ticks.js</a> and pushed, so the post and the commit both carry a time the desk did not choose. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
+  <!-- 10 Sep 2026: the protocol as first written asked for the commit before
+       the trade as well as the post. On the five-minute clock that is a
+       minute the trade does not have. The post is the naming and it comes
+       first; the row follows the same day, before the close, and every
+       naming post gets a row whatever price did. This read: "Before the
+       trade, the level, the side and the kill are posted on X, and the row is
+       written to ticks.js and pushed, so the post and the commit both carry
+       a time the desk did not choose." -->
+  <p class="body">Before the trade, the level, the side and the kill are posted on X; the post's timestamp is the naming, and it is the one this desk cannot move. The row is written to <a href="ticks.js">ticks.js</a> the same day, before the grading close, and every naming post gets a row whatever price did afterwards, so the feed and the book can be laid side by side. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
 
   <footer>
     <span class="law">Named before · Graded after · Nothing deleted</span>

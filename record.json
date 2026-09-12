@@ -4,14 +4,14 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-09-09",
-  "generated": "2026-09-10T08:59:47.647Z",
+  "last_updated": "2026-09-12",
+  "generated": "2026-09-12T01:17:23.484Z",
   "tally": {
-    "resolved": 24,
+    "resolved": 26,
     "held": 20,
-    "wrong": 4,
+    "wrong": 6,
     "never_reached": 5,
-    "open": 2,
+    "open": 0,
     "note": "Never reached counts for neither side. Standing calls are not in these figures."
   },
   "rows": [
@@ -24,13 +24,13 @@
       "book": "Turn",
       "call": "Gold holds above the floor read off the 6 September chart, labelled 4,357.307 and published as 4,357. The line moved up from 4,350.628 in a week and the floor moved with it; it would not have moved the other way. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened.",
       "kill": "a weekly close below 4,357.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "The kill fired. The weekly close printed 4,347.760 with the 464 swing slow mean read at 4,357.307 tonight, the same read as the label the level was taken from on 6 September. The close sat 9.24 below the level as named and 9.547 below the line as it reads tonight; the row is graded on the number as published, which is 4,357. MISS. The floor had held on the 4 September close by 80.52 and it was moved up 7 dollars for this week because the line moved up; the close then printed under both the old floor and the new one, so the move did not decide the grade. First weekly close under gold's line since the 7 August close that turned its clock. Close and line read off the TVC chart, market shut, 03:09 CEST 12 September. See note 26.",
+      "grade": "miss",
+      "grade_word": "wrong",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-09-06",
+      "graded_on_close": "2026-09-11",
+      "graded_at": "2026-09-11T23:00:00+02:00",
+      "written": "2026-09-12",
       "commit": null
     },
     {
@@ -42,13 +42,13 @@
       "book": "Turn",
       "call": "Platinum holds above 1,797.40, the floor named on 30 August and held on the 4 September close. The 464 swing slow mean reads 1,797.35 on the 6 September chart, five cents lower; a floor does not follow a line down, so the published number stands for a second week. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened.",
       "kill": "a weekly close below 1,797.40.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "The kill fired. The weekly close printed 1,791.50 with the 464 swing slow mean read at 1,797.35 tonight, unchanged from the 6 September read and five cents under the number as published. The close sat 5.90 below the level as named and 5.85 below the line as it reads tonight; the row is graded on the number as published, which is 1,797.40, and the five cents did not decide anything. MISS. Third row for platinum on this page and its first wrong one, after two held. First weekly close under platinum's line since the 19 August close that turned its clock. Close and line read off the TVC chart, market shut, 03:10 CEST 12 September. See note 26.",
+      "grade": "miss",
+      "grade_word": "wrong",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-09-06",
+      "graded_on_close": "2026-09-11",
+      "graded_at": "2026-09-11T23:00:00+02:00",
+      "written": "2026-09-12",
       "commit": null
     },
     {
@@ -580,35 +580,35 @@
       "position": "Bullish in gold, silver and platinum",
       "stated": "2026-08-21",
       "restated": "2026-08-28",
-      "as_of": "2026-09-04",
+      "as_of": "2026-09-11",
       "read": "close",
       "status": "live",
-      "kill": "the epoch midline crossing the slow mean reversion line, per metal, ruled 29 August 2026. Position against the line is the confirmation and never the trigger. No price close ends this call, which is why two closes beneath the line in silver, 28 August and 4 September, have not ended it. The line reads: gold 4,350.628, silver 66.8082, platinum 1,797.40, all at the 4 September close. The weekly rows in the ledger below carry their own kills, published before each week, and those ARE price closes",
+      "kill": "the epoch midline crossing the slow mean reversion line, per metal, ruled 29 August 2026. Position against the line is the confirmation and never the trigger. No price close ends this call, which is why three closes beneath the line in silver, 28 August, 4 September and 11 September, and one each in gold and platinum on 11 September, have not ended it. The line reads: gold 4,357.307, silver 66.6878, platinum 1,797.35, all at the 11 September close. The weekly rows in the ledger below carry their own kills, published before each week, and those ARE price closes",
       "board": [
         {
           "metal": "Gold",
-          "line": "4,350.628",
-          "close": "4,430.520",
-          "distance": "+79.892",
-          "pct": "+1.84%",
+          "line": "4,357.307",
+          "close": "4,347.760",
+          "distance": "-9.547",
+          "pct": "-0.22%",
           "since": "2026-08-07",
           "state": "live"
         },
         {
           "metal": "Silver",
-          "line": "66.8082",
-          "close": "66.1940",
-          "distance": "-0.6142",
-          "pct": "-0.92%",
+          "line": "66.6878",
+          "close": "64.4810",
+          "distance": "-2.2068",
+          "pct": "-3.31%",
           "since": "2026-08-21",
           "state": "live"
         },
         {
           "metal": "Platinum",
-          "line": "1,797.40",
-          "close": "1,819.60",
-          "distance": "+22.20",
-          "pct": "+1.24%",
+          "line": "1,797.35",
+          "close": "1,791.50",
+          "distance": "-5.85",
+          "pct": "-0.33%",
           "since": "2026-08-19",
           "state": "live"
         }
@@ -616,18 +616,18 @@
       "marks": [
         {
           "name": "Gold",
-          "move": "+2.04%",
-          "from": "since the 7 Aug close, down from +2.57% last week"
+          "move": "+0.13%",
+          "from": "since the 7 Aug close, down from +2.04% last week · 9.547 under the line at 4,357.307, the first weekly close under it since the clock turned"
         },
         {
           "name": "Silver",
-          "move": "-0.92%",
-          "from": "0.6142 under the line at 66.8082 · second weekly close under it · bullish since 21 Aug, the claim intact under the 29 Aug ruling"
+          "move": "-3.31%",
+          "from": "2.2068 under the line at 66.6878 · third weekly close under it · bullish since 21 Aug, the claim intact under the 29 Aug ruling"
         },
         {
           "name": "Platinum",
-          "move": "+1.24%",
-          "from": "22.20 above the line at 1,797.40 · bullish since the 19 Aug close"
+          "move": "-0.33%",
+          "from": "5.85 under the line at 1,797.35 · first weekly close under it · bullish since the 19 Aug close, the claim intact under the 29 Aug ruling"
         }
       ]
     },
@@ -805,6 +805,12 @@
       "kind": "standard",
       "title": "The tick book opens, the board takes silver, six places on every page, 9 September 2026.",
       "body": "THE TICK BOOK. From tonight this desk keeps a second ledger, tick.html, for the tactical clock: a metal, a side, a level and a kill on the five-minute chart, written and posted before the trade, graded on the 23:00 Madrid close of the day the row names. Held if the grading close sits on the row's side of the level and no five-minute close printed through the kill first; wrong if one did, at any time before the grading close; never reached if price never traded to the level. Two timestamps per row that this desk cannot edit, the post that named it and the commit that wrote it. No size and no profit or loss on any row, ever; the book is a claim about price and a close and nothing else, and it never enters the weekly tally. The founder has said in private that the day trading is where the edge is. Until tonight nothing public could support or refute that sentence. The book opens empty, and it is published empty on purpose, so the first row cannot be the one that looked good afterwards. THE BOARD. The first silver row: Citi's 13 January note named silver at 100 in the same breath as gold at 5,000, and silver crossed 100 on Friday 23 January and ended that week above 103.50, as reported. Held, ten days after it was published. The board's copy now says gold, silver and platinum, each row carries its metal, and the page never guesses a metal for a row that does not state one. THE PAGES. Every page carries the same six places under its masthead, the record, the banks, the wrong ones, the tick book, the Method and the seat, so a reader who lands anywhere can reach everywhere. The Method page carries the chart itself, gold on the 8 hour with the tool on it and the July break that the record grades wrong in frame, because a page selling a chart with no chart on it was selling a sentence. THE TRIMS. The desk's paragraph under the standing cards folds behind one line and the crowd lede is four sentences shorter; every replaced word is in the source. Nothing in the ledger, the tally or any grade changes."
+    },
+    {
+      "n": "26",
+      "kind": "correction",
+      "title": "Resolution, 11 September 2026. Two floors broke, both by less than ten dollars, and both stay.",
+      "body": "Friday 11 September close, read off the founder's 8h TVC charts stamped 12 September with the market shut, 03:09 CEST for gold and 03:10 for silver and platinum: gold 4,347.760, silver 64.4810, platinum 1,791.50. Two floors were named on 6 September before the week opened, each published with the weekly close that would kill it, and both kills fired. GOLD. The floor was 4,357, taken from a line labelled 4,357.307 and rounded down to the dollar. The close printed 4,347.760, which is 9.24 under the number as published and 9.547 under the line as it reads tonight, unchanged from Sunday. MISS. The rounding is disclosed because the Sunday session raised it as a standard question: rounding a floor down makes the test easier by the cents dropped, 30.7 of them this week. It did not decide anything tonight, because the close sat under the label as well as under the number, and it has not decided any grade on this page. Whether floors round up or print to the cent from here is the founder's ruling and it will be logged as its own note when he makes it; it changes no grade already written. PLATINUM. The floor was 1,797.40, named on 30 August, held on 4 September, and kept for a second week although the line had drifted five cents under it, because a floor does not follow a line down. The close printed 1,791.50, which is 5.90 under the number as published and 5.85 under the line. MISS. Third row for platinum, first wrong. SILVER, THE ROW THAT IS STILL NOT HERE. The door published on 30 August was a weekly close above 66.80. Tonight silver closed 64.4810 with the line reading 66.6878, so the close sat 2.319 under the door and 2.207 under the line. The condition is not met for a third week and silver carries no row again, stated here rather than left as a gap, for the reason note 17 gave. THE STANDING CARD. All three metals closed under their lines on the same night, gold and platinum for the first time since their clocks turned and silver for the third week running. Under the ruling of 29 August that is confirmation moving against the claim and not the event that ends it; the event is the epoch midline crossing the slow mean reversion line, read off the founder's chart and dated. No such read has been ruled tonight, so the card stands as last read and says so in its own words. If the founder rules a cross on any metal, the state, the date and the reason go on the card and this note is not edited. THE TALLY. Twenty-six rows resolved, twenty held, six wrong, five never reached, none open. The six wrong rows sit in the ledger below in the same type as the twenty, and misses.html lists them alone. THE TICK BOOK. The first rows in the second ledger, tick.html, are written from Monday 14 September, each posted before the trade and graded on that day's 23:00 close, under note 25 and the rule printed on that page."
     }
   ],
   "targets": [
