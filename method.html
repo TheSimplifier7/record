@@ -141,13 +141,15 @@
   <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
 
   <div class="price" id="price">
+    <!-- 12 Sep 2026: the founder re-priced the tool. Until then this read
+         €3,750 a quarter and €12,000 a year (ruled 7 September, evening). -->
     <div>
-      <div class="n">€3,750</div>
+      <div class="n">€4,500</div>
       <div class="t">a quarter · paid in advance · thirteen closes</div>
       <a class="btn" id="pay-quarter" href="#" hidden>Take it by the quarter</a>
     </div>
     <div>
-      <div class="n">€12,000</div>
+      <div class="n">€16,000</div>
       <div class="t">a year · paid once</div>
       <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
     </div>
@@ -172,8 +174,8 @@
 /* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
    describes. Same rule as COUNTER and GUEST_FORM on the record. */
 const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
-const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €3,750 a quarter */
-const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €12,000 a year */
+const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026) */
+const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
 const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
 const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
 const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
