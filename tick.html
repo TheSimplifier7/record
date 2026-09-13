@@ -94,8 +94,11 @@
   td.m{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
   td.m i{display:block;font-style:normal;font-weight:500;color:var(--ink-6);letter-spacing:.08em;margin-top:3px}
   td.lv{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--gold);white-space:nowrap}
+  td.lv .sealed{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-6)}
+  td.lv .hash{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--rule);word-break:break-all;white-space:normal;max-width:20ch;margin-top:3px}
   td.kl{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
   td.kl b{color:var(--miss);font-weight:600}
+  td.res .seal-str{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-6);word-break:break-all;white-space:normal;margin-top:6px}
   td.res{font-size:14.5px;color:var(--ink-3);max-width:52ch;min-width:28ch}
   td.res .late{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--miss);margin-top:6px}
   td.res .prov{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-6);margin-top:6px}
@@ -143,6 +146,7 @@
     <div class="miss"><div class="n" id="c-miss">·</div><div class="t">wrong, kept</div></div>
     <div><div class="n" id="c-notest">·</div><div class="t">never reached</div></div>
     <div class="open"><div class="n" id="c-open">·</div><div class="t">open, clock running</div></div>
+    <div><div class="n" id="c-sealed">·</div><div class="t">sealed, not opened</div></div>
     <div><div class="n" id="c-all">·</div><div class="t">rows in the book</div></div>
   </div>
 
@@ -151,6 +155,16 @@
        kill was neither held nor wrong. It is wrong: the close is not on the
        row's side. -->
   <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if price traded to the level, no five-minute close printed through the kill before the grading close, and the grading close sits on the row's side of the level. Wrong if price traded to the level and either a five-minute close printed through the kill at any time before the grading close, or the grading close is not on the row's side. Never reached if price never traded to the level. The grading close is the last five-minute close before 23:00 Madrid on the day the row names, taken from the exported bars kept beside this page. A row not graded by the next day's open is graded late and says so on the row.</div>
+
+  <!-- 13 Sep 2026, before the first row: the seal. As first written the page
+       published the level and the kill at the moment of naming, which named
+       the call before the trade and also handed it to anyone reading. The
+       naming is now a SHA-256 seal of the call, posted at the minute; the
+       level and the kill open on Friday with every other seal of that week.
+       The evidence is unchanged because the seal cannot be moved after the
+       fact. What changed is that the call is no longer free to a stranger
+       while it is live. -->
+  <div class="rule-box"><b style="color:var(--ink)">The seal.</b> A row is named by posting a SHA-256 seal of the call at the minute it is made: the metal, the side, the level, the kill, the grading day and a random nonce, hashed. The seal proves the call existed at that minute and that no part of it moved afterwards, and it reveals nothing while the trade is live. Every seal opens on the Friday of its week, all of them together, with the string that produced it so anyone can recompute the hash. <b style="color:var(--ink)">Every seal published is opened, and a seal that is not opened counts as wrong.</b> That rule is what makes the count worth reading without taking this desk's word for anything.</div>
 
   <div class="tbl" id="tbl" hidden>
     <table id="book">
@@ -170,7 +184,7 @@
        trade, the level, the side and the kill are posted on X, and the row is
        written to ticks.js and pushed, so the post and the commit both carry
        a time the desk did not choose." -->
-  <p class="body">Before the trade, the level, the side and the kill are posted on X; the post's timestamp is the naming, and it is the one this desk cannot move. The row is written to <a href="ticks.js">ticks.js</a> the same day, before the grading close, and every naming post gets a row whatever price did afterwards, so the feed and the book can be laid side by side. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
+  <p class="body">Before the trade, the call is hashed and the seal is posted on X with the metal and the minute; the post's timestamp is the naming, and it is the one this desk cannot move. The level and the kill open on the Friday of that week, every seal of the week at once, with the string that produced each hash so anyone can recompute it. A seal that is never opened counts as wrong. The row is written to <a href="ticks.js">ticks.js</a> the same day, before the grading close, and every seal posted gets a row whatever price did afterwards, so the feed and the book can be laid side by side. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
 
   <footer>
     <span class="law">Named before · Graded after · Nothing deleted</span>
@@ -203,16 +217,33 @@
   }
   const today = new Date();
   const rows = ok.slice().sort((a, b) => b.named.localeCompare(a.named));
+  // A row with no seal was never sealed and is open by definition. A sealed
+  // row opens only when revealed is true; until then the level, the kill and
+  // the result are not drawn, because the result carries the numbers.
+  const isOpen = t => t.revealed === true || !t.seal;
   document.getElementById("rows").innerHTML = rows.map(t => {
     const g = GL[t.grade];
     const [dn, tm] = fmtNamed(t.named).split("|");
     const late = t.grade === "pending" && (new Date(t.grades + "T23:00:00+02:00").getTime() + 12 * 3600000) < today.getTime();
+    const open = isOpen(t);
+    const lv = open
+      ? esc(t.level)
+      : `<span class="sealed">Sealed</span><span class="hash">${esc(String(t.seal).slice(0, 12))}</span>`;
+    const kl = open
+      ? `5m close <b>${t.side === "long" ? "under" : "over"} ${esc(t.kill)}</b><br>grades on the ${esc(fmtDay(t.grades))} close`
+      : `opens with the week<br>grades on the ${esc(fmtDay(t.grades))} close`;
+    const res = open
+      ? `${t.result ? esc(t.result) : "Not yet graded."}`
+      : (t.grade === "pending" ? "Sealed and running." : "Graded on the close. The numbers open with the week.");
+    const sealStr = open && t.seal && t.nonce
+      ? `<span class="seal-str">Seal string: ${esc(t.metal)}|${esc(t.side)}|${esc(t.level)}|${esc(t.kill)}|${esc(t.grades)}|${esc(t.nonce)}<br>SHA-256: ${esc(t.seal)}</span>`
+      : "";
     return `<tr>
       <td class="d"><b>${esc(dn)}</b>${esc(tm)}${t.post ? `<br><a href="${esc(t.post)}" rel="nofollow noopener">the post</a>` : ""}</td>
-      <td class="m">${esc(t.metal)}<i>${esc(t.side)}</i></td>
-      <td class="lv">${esc(t.level)}</td>
-      <td class="kl">5m close <b>${t.side === "long" ? "under" : "over"} ${esc(t.kill)}</b><br>grades on the ${esc(fmtDay(t.grades))} close</td>
-      <td class="res">${t.result ? esc(t.result) : "Not yet graded."}${late ? `<span class="late">Graded late</span>` : ""}<span class="prov">Written before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${t.grade !== "pending" ? ` <a href="ticks/${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
+      <td class="m">${esc(t.metal)}${open ? `<i>${esc(t.side)}</i>` : ""}</td>
+      <td class="lv">${lv}</td>
+      <td class="kl">${kl}</td>
+      <td class="res">${res}${late ? `<span class="late">Graded late</span>` : ""}${sealStr}<span class="prov">Sealed before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${open && t.grade !== "pending" ? ` <a href="ticks/${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
       <td><span class="g ${g[1]}"><i></i>${g[0]}</span></td>
     </tr>`;
   }).join("");
@@ -222,6 +253,7 @@
   document.getElementById("c-miss").textContent = n("miss");
   document.getElementById("c-notest").textContent = n("notest");
   document.getElementById("c-open").textContent = n("pending");
+  document.getElementById("c-sealed").textContent = ok.filter(t => !isOpen(t)).length;
   document.getElementById("c-all").textContent = ok.length;
   document.getElementById("count").hidden = false;
 })();

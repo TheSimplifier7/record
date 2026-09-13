@@ -1654,7 +1654,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-12";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-09-13";   /* set by hand, with the commit */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1692,7 +1692,9 @@ const PROVENANCE = {
      Graded on the 11 September close, written 12 September. Named by the
      day rather than by a hash because the hash does not exist until the
      push that writes this line; swap in the hash on the next push. */
-  "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", dayLink:true },
+  /* WAS, until the hash of the 12 September push was known:
+       "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", dayLink:true }, */
+  "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", commit:"10cf76a" },
   /* WAS, until the hash of the 5 September push was known:
        "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", dayLink:true }, */
   "2026-08-30": { graded:"2026-09-04", written:"2026-09-05", commit:"3b563f4" },
@@ -2252,6 +2254,22 @@ const STANDING = [
 
 const CALLS = [
 
+  /* WEEK OF 13 SEPTEMBER. No rows. Three conditions. The first week this page
+     has carried nothing open, and the absence is the ruling, not a gap.
+     The 11 September close graded gold wrong by 9.24 against 4,357 and
+     platinum wrong by 5.90 against 1,797.40 (note 26). Under the precedent
+     set for silver on 30 August (notes 16 and 17), a broken floor is not
+     replaced by a lower one; the metal earns its number back with a weekly
+     close above the door, and the door does not come down to meet the price.
+     Gold's door is 4,357. Platinum's is 1,797.40. Silver's is 66.80,
+     unchanged since 30 August and not met on 4 or 11 September.
+     The rule was written at silver's 3.3 percent break and is applied tonight
+     at gold's 0.21 percent and platinum's 0.33 without adjustment.
+     Closes read off the founder's own 8h TVC charts stamped 13 September,
+     market shut, 21:54 to 21:57 CEST: gold 4,347.760, silver 64.4810,
+     platinum 1,791.50. No new figure is named. See note 28.
+     Conditions read Friday 18 September at the 23:00 CEST close. */
+
   /* WEEK OF 6 SEPTEMBER. Two rows, open, written before the week they grade.
      Silver carries no row for a third week: the condition published on 30
      August, a weekly close above 66.80, was not met on 4 September (66.1940,
@@ -2694,6 +2712,12 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"28", kind:"standard", title:"Map of 13 September 2026. Three doors and no floor, the first week with nothing open.",
+    body:"The 11 September close graded gold and platinum wrong by 9.24 and 5.90 (note 26). Silver's floor broke on 28 August by 3.3 percent (note 11), and the map of 30 August did not replace it with a lower number; it published a door, a weekly close above 66.80, and the door has not been met on three Fridays or lowered on any of them (notes 16, 17). Tonight the same rule is applied to gold and platinum. A broken floor is not replaced by a lower one. Gold's door is 4,357 and platinum's is 1,797.40, the numbers that broke, and neither comes down to meet the price. The rule was written at a 3.3 percent break and is applied at 0.21 and 0.33 without adjustment, because a rule that is obeyed only when it costs nothing is not a rule. No row is named tonight. This is the first week the page carries nothing open, and the absence is stated here rather than left for a reader to explain to himself. The three conditions are read on the 18 September close: a metal whose weekly close prints above its door earns a floor back on the map of 20 September, read off the chart that night. The fixed frame of the Sunday map, one number on the page, is not spoken this week; the reason there is none takes its place. Closes read off the founder's own 8h TVC charts stamped 13 September with the market shut, 21:54 to 21:57 CEST: gold 4,347.760, silver 64.4810, platinum 1,791.50." },
+
+  { n:"27", kind:"correction", title:"Correction, 13 September 2026. The wrong-calls page printed a total its own table contradicted.",
+    body:"The page that lists the wrong calls in full, misses.html, is generated from the ledger on this page so that it can never name a wrong row the record does not, or omit one it does. One sentence on it was not generated. The closing paragraph read that two of these four were the same idea, restated for weeks while it held, and then wrong, and the word four was typed by hand on 5 September, when four rows on this record had been graded wrong. The 11 September close graded two more. The upload of 12 September therefore put six wrong rows in the table with a sentence under them that still said four, and it stood that way until tonight. No grade is touched by this and no row is affected. The tally on this page, the tally line on that page and the count in its own head were all six throughout, so the page contradicted itself in one paragraph rather than misstating the record. That is still the defect worth naming, because the reason that page exists is a count that cannot drift, and a number typed once will always drift eventually. Both numbers in that sentence are now counted out of the ledger. The pair the sentence points at is found by the rule the ladder already uses under note 23, which is that two levels are the same line when they sit within a tenth of a percent of each other on the same metal, and today that pair is gold 4,098 named on 12 July and gold 4,098.275 named on 7 August, which is what the sentence has always been about. If a week comes when no pair repeats, the sentence about repeats is not printed at all rather than reworded into something the ledger does not say. The verifier that refuses an upload gained a check for it, so a prose count on that page which disagrees with the ledger now stops the upload instead of shipping. The replaced sentence is kept in the generator's source with its date, in the ordinary way. The three older mentions of four wrong rows that remain on that page sit inside notes 11, 13 and 17, where they are correct: each records the tally on the day it was written, and a note is never restamped to match a later count." },
+
   { n:"26", kind:"correction", title:"Resolution, 11 September 2026. Two floors broke, both by less than ten dollars, and both stay.",
     body:"Friday 11 September close, read off the founder's 8h TVC charts stamped 12 September with the market shut, 03:09 CEST for gold and 03:10 for silver and platinum: gold 4,347.760, silver 64.4810, platinum 1,791.50. Two floors were named on 6 September before the week opened, each published with the weekly close that would kill it, and both kills fired. GOLD. The floor was 4,357, taken from a line labelled 4,357.307 and rounded down to the dollar. The close printed 4,347.760, which is 9.24 under the number as published and 9.547 under the line as it reads tonight, unchanged from Sunday. MISS. The rounding is disclosed because the Sunday session raised it as a standard question: rounding a floor down makes the test easier by the cents dropped, 30.7 of them this week. It did not decide anything tonight, because the close sat under the label as well as under the number, and it has not decided any grade on this page. Whether floors round up or print to the cent from here is the founder's ruling and it will be logged as its own note when he makes it; it changes no grade already written. PLATINUM. The floor was 1,797.40, named on 30 August, held on 4 September, and kept for a second week although the line had drifted five cents under it, because a floor does not follow a line down. The close printed 1,791.50, which is 5.90 under the number as published and 5.85 under the line. MISS. Third row for platinum, first wrong. SILVER, THE ROW THAT IS STILL NOT HERE. The door published on 30 August was a weekly close above 66.80. Tonight silver closed 64.4810 with the line reading 66.6878, so the close sat 2.319 under the door and 2.207 under the line. The condition is not met for a third week and silver carries no row again, stated here rather than left as a gap, for the reason note 17 gave. THE STANDING CARD. All three metals closed under their lines on the same night, gold and platinum for the first time since their clocks turned and silver for the third week running. Under the ruling of 29 August that is confirmation moving against the claim and not the event that ends it; the event is the epoch midline crossing the slow mean reversion line, read off the founder's chart and dated. No such read has been ruled tonight, so the card stands as last read and says so in its own words. If the founder rules a cross on any metal, the state, the date and the reason go on the card and this note is not edited. THE TALLY. Twenty-six rows resolved, twenty held, six wrong, five never reached, none open. The six wrong rows sit in the ledger below in the same type as the twenty, and misses.html lists them alone. THE TICK BOOK. The first rows in the second ledger, tick.html, are written from Monday 14 September, each posted before the trade and graded on that day's 23:00 close, under note 25 and the rule printed on that page." },
   { n:"25", kind:"standard", title:"The tick book opens, the board takes silver, six places on every page, 9 September 2026.",

@@ -13,8 +13,9 @@
    WHY. The record's own law says the graded miss is the one thing on this
    platform nobody can fake, and the wrong rows are the best content the desk
    owns. They were sitting in a ledger of twenty-nine that nobody scrolls to.
-   This page is the four of them, with their kills, their closes and the
-   corrections that followed, and nothing else on it.
+   This page is every one of them, with their kills, their closes and the
+   corrections that followed, and nothing else on it. Every count on it is
+   counted from CALLS, including the ones inside sentences.
 
    BRAND LAW APPLIES. No em dashes, hashtags, exclamation marks, emoji,
    forecasting or fabricated data. Every word about a call is the row's own. */
@@ -45,6 +46,31 @@ const pass = CALLS.filter(c => c.grade === "pass").length;
 const notest = CALLS.filter(c => c.grade === "notest").length;
 const open = CALLS.filter(c => c.grade === "pending").length;
 const resolved = pass + misses.length;
+
+/* THE REPEAT SENTENCE, derived 13 September 2026, was hard coded until tonight.
+   It read "Two of these four were the same idea" while the ledger above it
+   showed six wrong rows, because the count moved on the 11 September grade and
+   the sentence did not. A page whose whole claim is that it counts itself
+   exactly cannot print a total its own table contradicts. Both numbers now
+   come out of CALLS, and the repeat is found on the band rule the ladder
+   already uses (note 23): two levels are the same line when they sit within
+   0.1 percent of each other on the same metal. Today that is gold 4,098 from
+   12 July and gold 4,098.275 from 7 August, which is the pair the sentence has
+   always been about. If no pair repeats, the sentence about repeats is not
+   printed at all rather than reworded into something the data does not say.
+   See note 27. */
+const numOf = s => parseFloat(String(s).replace(/,/g, ""));
+const WORD = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+const word = n => (n < WORD.length ? WORD[n] : String(n));
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const sameLine = (a, b) => {
+  const x = numOf(a.level), y = numOf(b.level);
+  return a.metal === b.metal && isFinite(x) && isFinite(y) && Math.abs(x - y) <= 0.001 * Math.max(x, y);
+};
+const repeats = misses.filter((a, i) => misses.some((b, j) => j !== i && sameLine(a, b))).length;
+const afterText = repeats >= 2
+  ? `${cap(word(repeats))} of these ${word(misses.length)} were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="index.html#note-13">note 13</a>, which counts the calls by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`
+  : `The record counts these by level as well as by week in <a href="index.html#note-13">note 13</a>, because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`;
 
 const notesFor = c => {
   const ids = new Set();
@@ -163,7 +189,7 @@ if(t==="light")document.documentElement.setAttribute("data-theme","light");})();
   <p class="stand">You have followed a gold call that was wrong and watched it disappear. These did not. Every call on the record that the close proved wrong, in full: the level as named, the kill published with it before the week, the close that fired it, and everything written about it afterwards. They are here because a record that keeps only its wins is not a record.</p>
   <p class="tally"><b>${misses.length}</b> wrong · <b>${pass}</b> held · <b>${notest}</b> never reached${open ? ` · <b>${open}</b> open` : ""} · ${CALLS.length} rows on the record. The wrong ones are ${resolved ? Math.round(misses.length / resolved * 100) : 0} percent of the ${resolved} resolved, stated beside its base because a percentage on a base this size is a small sample and should be read as one.</p>
 ${misses.map(section).join("\n")}
-  <p class="after">Two of these four were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="index.html#note-13">note 13</a>, which counts the calls by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.</p>
+  <p class="after">${afterText}</p>
   <p class="law"><a href="index.html">Every row, including these</a> · Named before · Graded after · Nothing deleted</p>
 </div>
 </body>

@@ -122,6 +122,17 @@ const missesText = fs.existsSync(path.join(HERE, "misses.html")) ? rd("misses.ht
 check(missesText.includes(`${tally.miss} calls, named before the move, graded wrong`) || missesText.includes(`content="${tally.miss} `),
   `misses.html states ${tally.miss} wrong rows (run node make_misses.js after any grade)`);
 
+/* 11b. THE COUNT INSIDE A SENTENCE, added 13 September 2026, note 27.
+   The closing paragraph of misses.html said "Two of these four" for a day
+   while the table above it listed six, because that number was typed once and
+   the ledger moved. Any prose count of the wrong rows on that page is checked
+   against the ledger here, so the same defect cannot ship twice. */
+const WORDN = { one:1, two:2, three:3, four:4, five:5, six:6, seven:7, eight:8, nine:9, ten:10, eleven:11, twelve:12 };
+const afterM = missesText.match(/<p class="after">([\s\S]*?)<\/p>/);
+const ofThese = afterM && afterM[1].match(/of these ([a-z]+)/i);
+check(!ofThese || WORDN[ofThese[1].toLowerCase()] === tally.miss,
+  `misses.html prose count agrees with the ledger` + (ofThese ? ` ("of these ${ofThese[1]}" against ${tally.miss} wrong)` : " (no prose count on the page)"));
+
 /* 12. nothing stale beside the page */
 const STALE = ["card.png", "card.html", "card_2026-08-16_gold_4281.png", "desk-01.html", "verify_page.js", "verify_card.js", "verify_ledger.js",
   "xdesk.py", "last_post.json", "__pycache__", "tally_card_vertical.png", "tally_card_vertical.html", "tally_card_landscape.png", "tally_card_landscape.html"];
