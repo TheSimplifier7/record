@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Seal</title>
+<!-- =========================================================================
+     THE SEAL  ·  13 September 2026
+
+     Makes the sealed naming for a tick call, in the browser, on any device.
+     Same commitment string as seal_tick.js, byte for byte:
+       metal|side|level|kill|grades|nonce   ->   SHA-256, hex
+     so verify_ticks.js reproduces it on Friday.
+
+     THIS PAGE MAKES NO NETWORK REQUEST. No fonts, no scripts, no analytics,
+     nothing leaves the device. The nonce comes from crypto.getRandomValues,
+     never Math.random. A nonce lost is a seal that cannot be opened, and an
+     unopened seal counts as wrong, so the row is shown first and copied
+     first.
+
+     Seal means POSTED. A hash on this screen commits nothing until it is on
+     X. Seal when the level is drawn, minutes before any trigger. At the
+     trigger, the only word is trade.
+     ========================================================================= -->
+<style>
+  :root{--bg:#141210;--panel:#1D1A16;--rule:#4A4238;--ink:#EFE8DC;--ink5:#B8AE9E;--gold:#CBA43C;--miss:#D2764A;--pass:#5FA57A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:15px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:18px 16px 40px;max-width:560px;margin:0 auto}
+  h1{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink5);margin-bottom:5px}
+  select,input{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--rule);padding:12px;font:inherit;font-size:17px;border-radius:0;-webkit-appearance:none}
+  input:focus,select:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+  button{width:100%;background:var(--gold);color:#141210;border:0;padding:15px;font:inherit;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:6px;cursor:pointer}
+  button:active{opacity:.85}
+  .err{color:var(--miss);font-size:13px;margin-top:10px;min-height:1.4em}
+  .out{margin-top:22px;display:none}
+  .out.on{display:block}
+  .blk{background:var(--panel);border:1px solid var(--rule);padding:12px;margin-bottom:12px;position:relative}
+  .blk .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;padding-right:76px}
+  .blk pre{white-space:pre-wrap;word-break:break-all;font:inherit;font-size:13.5px;color:var(--ink)}
+  .blk.first{border-color:var(--gold)}
+  .cp{position:absolute;top:8px;right:8px;width:auto;margin:0;padding:6px 10px;font-size:10px;background:transparent;color:var(--ink5);border:1px solid var(--rule)}
+  .cp.done{color:var(--pass);border-color:var(--pass)}
+  .hold{color:var(--ink5);font-size:12px}
+  .law{margin-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink5);text-align:center}
+</style>
+</head>
+<body>
+<h1>The seal</h1>
+
+<div class="row">
+  <div><label>Metal</label><select id="metal"><option>Gold</option><option>Silver</option><option>Platinum</option></select></div>
+  <div><label>Side</label><select id="side"><option>short</option><option>long</option></select></div>
+</div>
+<div class="row">
+  <div><label>Level</label><input id="level" inputmode="decimal" placeholder="4399"></div>
+  <div><label>Kill</label><input id="kill" inputmode="decimal" placeholder="4406"></div>
+</div>
+<button id="go">Seal</button>
+<div class="err" id="err"></div>
+
+<div class="out" id="out">
+  <div class="blk first"><div class="k">1 · The row · send this to the clerk now, before anything else</div><button class="cp" data-for="row">copy</button><pre id="row"></pre></div>
+  <div class="blk"><div class="k">2 · The X post · reply in today's thread, then trade</div><button class="cp" data-for="post">copy</button><pre id="post"></pre></div>
+  <div class="blk"><div class="k">3 · The alert · set it on TradingView</div><button class="cp" data-for="alert">copy</button><pre id="alert"></pre></div>
+  <div class="blk"><div class="k">Hold until Friday · do not post</div><pre id="reveal" class="hold"></pre></div>
+</div>
+
+<div class="law">Seal first · Order second · Row before 23:00</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+
+  // Madrid clock with offset, same rule as seal_tick.js: +02:00 until 03:00 on 25 October 2026, +01:00 after.
+  function madrid(){
+    const now=new Date(), change=new Date('2026-10-25T01:00:00Z');
+    const off=now<change?2:1;
+    const l=new Date(now.getTime()+off*3600e3);
+    const p=n=>String(n).padStart(2,'0');
+    const date=`${l.getUTCFullYear()}-${p(l.getUTCMonth()+1)}-${p(l.getUTCDate())}`;
+    const hhmm=`${p(l.getUTCHours())}:${p(l.getUTCMinutes())}`;
+    return {stamp:`${date}T${hhmm}+0${off}:00`, date, hhmm, past23:l.getUTCHours()>=23};
+  }
+  function nextDay(d){const x=new Date(d+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+1);return x.toISOString().slice(0,10);}
+
+  // Number formatting identical to seal_tick.js fmt(): silver to two decimals, gold and platinum en-US thousands.
+  function fmt(metal,raw){
+    const n=Number(String(raw).replace(/,/g,'').trim());
+    if(!isFinite(n)||raw==='')throw new Error('Not a number: '+raw);
+    return metal==='Silver'?n.toFixed(2):n.toLocaleString('en-US');
+  }
+  function hex(buf){return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+  async function sha256(s){return hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)));}
+  function nonce(){const b=new Uint8Array(8);crypto.getRandomValues(b);return hex(b.buffer);}
+
+  async function seal(){
+    $('err').textContent='';$('out').classList.remove('on');
+    try{
+      const metal=$('metal').value, side=$('side').value;
+      const level=fmt(metal,$('level').value), kill=fmt(metal,$('kill').value);
+      const lv=Number(level.replace(/,/g,'')), kv=Number(kill.replace(/,/g,''));
+      if(side==='short'&&kv<=lv)throw new Error('A short kill must sit above the level. No row.');
+      if(side==='long'&&kv>=lv)throw new Error('A long kill must sit under the level. No row.');
+      const c=madrid();
+      const grades=c.past23?nextDay(c.date):c.date;
+      const n=nonce();
+      const commit=`${metal}|${side}|${level}|${kill}|${grades}|${n}`;
+      const s=await sha256(commit);
+      const when=grades===c.date?"today's 23:00 close":`the 23:00 close on ${grades}`;
+      const word=side==='short'?'over':'under';
+
+      $('row').textContent=`  { named:"${c.stamp}", post:"", metal:"${metal}", side:"${side}", level:"${level}", kill:"${kill}", grades:"${grades}", grade:"pending", result:"", nonce:"${n}", seal:"${s}", revealed:false },`;
+      $('post').textContent=`${metal}. Sealed ${c.hhmm} Madrid. Grades on ${when}.\n${s}`;
+      $('alert').textContent=`TradingView alert, ${metal} 5m, Close crossing ${side==='short'?'up':'down'} ${kill}, once per bar close.`;
+      $('reveal').textContent=`${metal}, ${side} from ${level}. Kill: a five-minute close ${word} ${kill}.\nSeal string: ${commit}`;
+      $('out').classList.add('on');
+      document.querySelectorAll('.cp').forEach(b=>{b.textContent='copy';b.classList.remove('done');});
+      $('out').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(e){$('err').textContent=e.message;}
+  }
+
+  $('go').addEventListener('click',seal);
+  ['level','kill'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')seal();}));
+  document.querySelectorAll('.cp').forEach(b=>b.addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText($(b.dataset.for).textContent);b.textContent='copied';b.classList.add('done');}
+    catch(_){b.textContent='select and copy';}
+  }));
+  if(!crypto||!crypto.subtle){$('err').textContent='This browser has no Web Crypto. Use seal_tick.js.';$('go').disabled=true;}
+})();
+</script>
+</body>
+</html>
