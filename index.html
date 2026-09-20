@@ -1311,7 +1311,7 @@
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">0</div>
+      <div class="num blue" id="t-open">3</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
@@ -1654,7 +1654,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-13";   /* set by hand, with the commit */
+const LAST_UPDATED  = "2026-09-20";   /* set by hand, with the commit. WAS "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1692,6 +1692,10 @@ const PROVENANCE = {
      Graded on the 11 September close, written 12 September. Named by the
      day rather than by a hash because the hash does not exist until the
      push that writes this line; swap in the hash on the next push. */
+  /* Three rows named 20 September, open, written before the week they grade.
+     The week of 13 September carried no rows (note 28), so there is no
+     13 September entry here and none is owed. */
+  "2026-09-20": { written:"2026-09-20", open:true },
   /* WAS, until the hash of the 12 September push was known:
        "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", dayLink:true }, */
   "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", commit:"10cf76a" },
@@ -2254,6 +2258,42 @@ const STANDING = [
 
 const CALLS = [
 
+  /* WEEK OF 20 SEPTEMBER. Three rows, open, written before the week they
+     grade, and the object changes tonight by the founder's ruling (note 29).
+     From this week the rows name the OPENING BOX: the first sixteen hours of
+     each week, boxed and frozen, its edges run right for the rest of the week,
+     drawn by THE METHOD v4.0 shipped 20 September. The 464 swing slow mean
+     floors and the three doors of 13 September are retired as the weekly
+     object. Their last reads on the 18 September close are stated in the
+     block below and in note 29; nothing is deleted.
+
+     Box of the week of 14 September, read off the founder's own 8h TVC charts
+     stamped 20 September, market shut, 23:19 CEST (gold, silver) and 23:20
+     (platinum), published to the dollar and the cent as written on each row:
+       gold      4,251 to 4,337   closed 4,377.290, out the top by 40
+       silver    62.31 to 64.08   closed 66.2210,  out the top by 2.14
+       platinum  1,746 to 1,803   closed 1,800.40, inside, 2.60 under the top
+     A metal that left its box through the top holds the top. Platinum, still
+     inside, holds the bottom, and its top is named on the row so the reader
+     has both edges. Each row is graded on the number as published.
+
+     Where each new line sits against the door it replaces, stated so nobody
+     finds it later: gold 4,337 is 20 under 4,357; silver 64.08 is 2.72 under
+     66.80; platinum 1,746 is 51.40 under 1,797.40.
+
+     Grade Friday 25 September at the 23:00 CEST close. */
+  { date:"2026-09-20", type:"Map", metal:"Gold", level:"4,337", book:"Turn",
+    call:"Gold holds above 4,337, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 4,337. The Fed wick of 16 September went under the bottom of that box without a close; gold then left it through the top and finished the week 40 above it at 4,377.290. First row on the opening box, the object the record moves to tonight by the founder's ruling (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 4,337.",
+    grade:"pending" },
+
+  { date:"2026-09-20", type:"Map", metal:"Silver", level:"64.08", book:"Turn",
+    call:"Silver holds above 64.08, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 64.08. Silver left that box through the top and finished the week 2.14 above it at 66.2210. First row for silver since 23 August. The retired door of 66.80 sits 2.72 above this line, and that is said here rather than left for a reader to find (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 64.08.",
+    grade:"pending" },
+
+  { date:"2026-09-20", type:"Map", metal:"Platinum", level:"1,746", book:"Turn",
+    call:"Platinum holds above 1,746, the bottom of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 1,746. Platinum is the one metal that finished the week inside its box, 1,800.40 against a top of 1,803, so the row names the edge that would take it out the bottom and states the top so the reader has both. Fourth row for platinum on this page. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 1,746.",
+    grade:"pending" },
+
   /* WEEK OF 13 SEPTEMBER. No rows. Three conditions. The first week this page
      has carried nothing open, and the absence is the ruling, not a gap.
      The 11 September close graded gold wrong by 9.24 against 4,357 and
@@ -2268,7 +2308,13 @@ const CALLS = [
      Closes read off the founder's own 8h TVC charts stamped 13 September,
      market shut, 21:54 to 21:57 CEST: gold 4,347.760, silver 64.4810,
      platinum 1,791.50. No new figure is named. See note 28.
-     Conditions read Friday 18 September at the 23:00 CEST close. */
+     Conditions read Friday 18 September at the 23:00 CEST close.
+     READ on the 18 September close, off the founder's 8h TVC charts stamped
+     19 September, market shut, 00:06 and 00:07 CEST (note 29): gold 4,377.290,
+     met; platinum 1,800.40, met; silver 66.2210, not met, a fourth Friday.
+     The same night the founder retired the doors with the object they belonged
+     to, so no floor is carried forward from them; the week of 20 September
+     above names the opening box instead, and the last reads stay here. */
 
   /* WEEK OF 6 SEPTEMBER. Two rows, open, written before the week they grade.
      Silver carries no row for a third week: the condition published on 30
@@ -2712,6 +2758,9 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"29", kind:"standard", title:"Map of 20 September 2026. The rows move to the opening box, by the founder's ruling, and the three doors are closed out.",
+    body:"Friday 18 September close, read off the founder's own 8h TVC charts stamped 19 September with the market shut, 00:06 CEST for gold and silver and 00:07 for platinum: gold 4,377.290, silver 66.2210, platinum 1,800.40. No row was open. Note 28 named three conditions in place of rows and said they would be read tonight. Read: gold closed 20.29 above its door of 4,357, met; platinum 3.00 above 1,797.40, met; silver 0.579 under 66.80, not met, the fourth Friday running. THE RULING. On 20 September the founder retired the 464 swing slow mean floors as the object the weekly rows are named on. From tonight the rows name the opening box: the first sixteen hours of each week, Sunday's open through Monday's Asia and London morning, boxed and frozen, with its edges run right for the rest of the week, drawn by THE METHOD v4.0 shipped the same day. A metal that closed the week above the top of its box holds the top. A metal still inside holds the bottom and has its top stated beside it. The kill is what it has always been, a weekly close through the published number, and the grade is on the number as published. THE DOORS ARE CLOSED OUT, NOT CARRIED. Gold and platinum met theirs on this close and would have earned floors back under note 28; those floors are not named, because the object they belonged to is retired the same night, and a floor carried from a retired object would be one number living under two rules. Silver's door was not met on four Fridays and is retired unmet. All three last reads stand in the ledger and here. WHERE THE NEW LINES SIT. Every new line is under the door it replaces and the figures are given so nobody finds them later: gold 4,337 against 4,357, twenty under; silver 64.08 against 66.80, 2.72 under; platinum 1,746 against 1,797.40, 51.40 under. Notes 16, 17 and 28 refused to lower a broken floor within one object, and that rule stands within the new one: a box edge that breaks is not replaced by a lower edge the following Sunday. Tonight is a change of object, ruled and logged, not a lowering inside one. THE BOX OF 14 SEPTEMBER, read off the founder's 8h TVC charts stamped 20 September, market shut, 23:19 CEST for gold and silver and 23:20 for platinum: gold 4,251 to 4,337, the Fed wick of 16 September under the bottom without a close, the week closed out the top by 40; silver 62.31 to 64.08, closed out the top by 2.14; platinum 1,746 to 1,803, closed inside, 2.60 under the top. Published to the dollar and to the cent as written on each row and graded on those numbers. THE STANDING CARD stands at the 11 September read. It is graded on the swing clock, a different object on a different rule, and the 18 September charts carried no read of its line, so it is not refreshed tonight rather than refreshed against a line nobody read. Stated here the way note 19 stated a stale card on 6 September. Three rows are named for the week of 20 September, gold 4,337, silver 64.08 and platinum 1,746, written to this file before the week opened." },
+
   { n:"28", kind:"standard", title:"Map of 13 September 2026. Three doors and no floor, the first week with nothing open.",
     body:"The 11 September close graded gold and platinum wrong by 9.24 and 5.90 (note 26). Silver's floor broke on 28 August by 3.3 percent (note 11), and the map of 30 August did not replace it with a lower number; it published a door, a weekly close above 66.80, and the door has not been met on three Fridays or lowered on any of them (notes 16, 17). Tonight the same rule is applied to gold and platinum. A broken floor is not replaced by a lower one. Gold's door is 4,357 and platinum's is 1,797.40, the numbers that broke, and neither comes down to meet the price. The rule was written at a 3.3 percent break and is applied at 0.21 and 0.33 without adjustment, because a rule that is obeyed only when it costs nothing is not a rule. No row is named tonight. This is the first week the page carries nothing open, and the absence is stated here rather than left for a reader to explain to himself. The three conditions are read on the 18 September close: a metal whose weekly close prints above its door earns a floor back on the map of 20 September, read off the chart that night. The fixed frame of the Sunday map, one number on the page, is not spoken this week; the reason there is none takes its place. Closes read off the founder's own 8h TVC charts stamped 13 September with the market shut, 21:54 to 21:57 CEST: gold 4,347.760, silver 64.4810, platinum 1,791.50." },
 

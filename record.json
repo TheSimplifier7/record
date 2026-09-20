@@ -4,19 +4,73 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-09-13",
-  "generated": "2026-09-13T21:33:45.644Z",
+  "last_updated": "2026-09-20",
+  "generated": "2026-09-20T21:59:51.759Z",
   "tally": {
     "resolved": 26,
     "held": 20,
     "wrong": 6,
     "never_reached": 5,
-    "open": 0,
+    "open": 3,
     "note": "Never reached counts for neither side. Standing calls are not in these figures."
   },
   "rows": [
     {
       "id": "lrow-0",
+      "named": "2026-09-20",
+      "type": "Map",
+      "metal": "Gold",
+      "level": "4,337",
+      "book": "Turn",
+      "call": "Gold holds above 4,337, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 4,337. The Fed wick of 16 September went under the bottom of that box without a close; gold then left it through the top and finished the week 40 above it at 4,377.290. First row on the opening box, the object the record moves to tonight by the founder's ruling (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened.",
+      "kill": "a weekly close below 4,337.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-09-20",
+      "commit": null
+    },
+    {
+      "id": "lrow-1",
+      "named": "2026-09-20",
+      "type": "Map",
+      "metal": "Silver",
+      "level": "64.08",
+      "book": "Turn",
+      "call": "Silver holds above 64.08, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 64.08. Silver left that box through the top and finished the week 2.14 above it at 66.2210. First row for silver since 23 August. The retired door of 66.80 sits 2.72 above this line, and that is said here rather than left for a reader to find (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened.",
+      "kill": "a weekly close below 64.08.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-09-20",
+      "commit": null
+    },
+    {
+      "id": "lrow-2",
+      "named": "2026-09-20",
+      "type": "Map",
+      "metal": "Platinum",
+      "level": "1,746",
+      "book": "Turn",
+      "call": "Platinum holds above 1,746, the bottom of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 1,746. Platinum is the one metal that finished the week inside its box, 1,800.40 against a top of 1,803, so the row names the edge that would take it out the bottom and states the top so the reader has both. Fourth row for platinum on this page. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened.",
+      "kill": "a weekly close below 1,746.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-09-20",
+      "commit": null
+    },
+    {
+      "id": "lrow-3",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Gold",
@@ -34,7 +88,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-1",
+      "id": "lrow-4",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Platinum",
@@ -52,7 +106,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-2",
+      "id": "lrow-5",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Gold",
@@ -70,7 +124,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-3",
+      "id": "lrow-6",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Platinum",
@@ -88,7 +142,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-4",
+      "id": "lrow-7",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Gold",
@@ -106,7 +160,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-5",
+      "id": "lrow-8",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Silver",
@@ -124,7 +178,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-6",
+      "id": "lrow-9",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Platinum",
@@ -142,7 +196,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-7",
+      "id": "lrow-10",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Gold",
@@ -160,7 +214,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-8",
+      "id": "lrow-11",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Silver",
@@ -178,7 +232,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-9",
+      "id": "lrow-12",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Gold",
@@ -196,7 +250,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-10",
+      "id": "lrow-13",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Silver",
@@ -214,7 +268,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-11",
+      "id": "lrow-14",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -232,7 +286,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-12",
+      "id": "lrow-15",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Silver",
@@ -250,7 +304,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-13",
+      "id": "lrow-16",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -268,7 +322,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-14",
+      "id": "lrow-17",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -286,7 +340,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-15",
+      "id": "lrow-18",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -304,7 +358,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-16",
+      "id": "lrow-19",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Silver",
@@ -322,7 +376,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-17",
+      "id": "lrow-20",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -340,7 +394,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-18",
+      "id": "lrow-21",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -358,7 +412,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-19",
+      "id": "lrow-22",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Silver",
@@ -376,7 +430,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-20",
+      "id": "lrow-23",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -394,7 +448,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-21",
+      "id": "lrow-24",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Silver",
@@ -412,7 +466,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-22",
+      "id": "lrow-25",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -430,7 +484,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-23",
+      "id": "lrow-26",
       "named": "2026-07-08",
       "type": "Level Watch",
       "metal": "Gold",
@@ -448,7 +502,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-24",
+      "id": "lrow-27",
       "named": "2026-07-07",
       "type": "Level Watch",
       "metal": "Silver",
@@ -466,7 +520,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-25",
+      "id": "lrow-28",
       "named": "2026-07-05",
       "type": "Map",
       "metal": "Gold",
@@ -484,7 +538,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-26",
+      "id": "lrow-29",
       "named": "2026-06-29",
       "type": "Map",
       "metal": "Gold",
@@ -502,7 +556,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/7e9b339"
     },
     {
-      "id": "lrow-27",
+      "id": "lrow-30",
       "named": "2026-06-22",
       "type": "Map",
       "metal": "Gold",
@@ -520,7 +574,7 @@
       "commit": null
     },
     {
-      "id": "lrow-28",
+      "id": "lrow-31",
       "named": "2026-06-15",
       "type": "Map",
       "metal": "Gold",
@@ -538,7 +592,7 @@
       "commit": null
     },
     {
-      "id": "lrow-29",
+      "id": "lrow-32",
       "named": "2026-06-11",
       "type": "Verdict",
       "metal": "Gold",
@@ -556,7 +610,7 @@
       "commit": null
     },
     {
-      "id": "lrow-30",
+      "id": "lrow-33",
       "named": "2026-06-07",
       "type": "Read",
       "metal": "Gold",
@@ -823,6 +877,12 @@
       "kind": "standard",
       "title": "Map of 13 September 2026. Three doors and no floor, the first week with nothing open.",
       "body": "The 11 September close graded gold and platinum wrong by 9.24 and 5.90 (note 26). Silver's floor broke on 28 August by 3.3 percent (note 11), and the map of 30 August did not replace it with a lower number; it published a door, a weekly close above 66.80, and the door has not been met on three Fridays or lowered on any of them (notes 16, 17). Tonight the same rule is applied to gold and platinum. A broken floor is not replaced by a lower one. Gold's door is 4,357 and platinum's is 1,797.40, the numbers that broke, and neither comes down to meet the price. The rule was written at a 3.3 percent break and is applied at 0.21 and 0.33 without adjustment, because a rule that is obeyed only when it costs nothing is not a rule. No row is named tonight. This is the first week the page carries nothing open, and the absence is stated here rather than left for a reader to explain to himself. The three conditions are read on the 18 September close: a metal whose weekly close prints above its door earns a floor back on the map of 20 September, read off the chart that night. The fixed frame of the Sunday map, one number on the page, is not spoken this week; the reason there is none takes its place. Closes read off the founder's own 8h TVC charts stamped 13 September with the market shut, 21:54 to 21:57 CEST: gold 4,347.760, silver 64.4810, platinum 1,791.50."
+    },
+    {
+      "n": "29",
+      "kind": "standard",
+      "title": "Map of 20 September 2026. The rows move to the opening box, by the founder's ruling, and the three doors are closed out.",
+      "body": "Friday 18 September close, read off the founder's own 8h TVC charts stamped 19 September with the market shut, 00:06 CEST for gold and silver and 00:07 for platinum: gold 4,377.290, silver 66.2210, platinum 1,800.40. No row was open. Note 28 named three conditions in place of rows and said they would be read tonight. Read: gold closed 20.29 above its door of 4,357, met; platinum 3.00 above 1,797.40, met; silver 0.579 under 66.80, not met, the fourth Friday running. THE RULING. On 20 September the founder retired the 464 swing slow mean floors as the object the weekly rows are named on. From tonight the rows name the opening box: the first sixteen hours of each week, Sunday's open through Monday's Asia and London morning, boxed and frozen, with its edges run right for the rest of the week, drawn by THE METHOD v4.0 shipped the same day. A metal that closed the week above the top of its box holds the top. A metal still inside holds the bottom and has its top stated beside it. The kill is what it has always been, a weekly close through the published number, and the grade is on the number as published. THE DOORS ARE CLOSED OUT, NOT CARRIED. Gold and platinum met theirs on this close and would have earned floors back under note 28; those floors are not named, because the object they belonged to is retired the same night, and a floor carried from a retired object would be one number living under two rules. Silver's door was not met on four Fridays and is retired unmet. All three last reads stand in the ledger and here. WHERE THE NEW LINES SIT. Every new line is under the door it replaces and the figures are given so nobody finds them later: gold 4,337 against 4,357, twenty under; silver 64.08 against 66.80, 2.72 under; platinum 1,746 against 1,797.40, 51.40 under. Notes 16, 17 and 28 refused to lower a broken floor within one object, and that rule stands within the new one: a box edge that breaks is not replaced by a lower edge the following Sunday. Tonight is a change of object, ruled and logged, not a lowering inside one. THE BOX OF 14 SEPTEMBER, read off the founder's 8h TVC charts stamped 20 September, market shut, 23:19 CEST for gold and silver and 23:20 for platinum: gold 4,251 to 4,337, the Fed wick of 16 September under the bottom without a close, the week closed out the top by 40; silver 62.31 to 64.08, closed out the top by 2.14; platinum 1,746 to 1,803, closed inside, 2.60 under the top. Published to the dollar and to the cent as written on each row and graded on those numbers. THE STANDING CARD stands at the 11 September read. It is graded on the swing clock, a different object on a different rule, and the 18 September charts carried no read of its line, so it is not refreshed tonight rather than refreshed against a line nobody read. Stated here the way note 19 stated a stale card on 6 September. Three rows are named for the week of 20 September, gold 4,337, silver 64.08 and platinum 1,746, written to this file before the week opened."
     }
   ],
   "targets": [
