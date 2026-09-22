@@ -84,6 +84,19 @@ for (const r of boardRows) {
     `standing board ${r.name}: ${r.close} against ${r.line} is ${r.dist}, ${r.pct}`);
 }
 
+/* 5b. THE CLOSES, added 22 September 2026, note 32. The ladder and This Week
+   anchor on the last entry of CLOSES, so a Friday grade written without its
+   closes would ship a first screen measured from last week. */
+let CLOSES = [];
+try { CLOSES = grab("CLOSES", "\\[", "\\]"); } catch (e) {}
+let recRows = [];
+try { recRows = JSON.parse(rd("record.json")).rows || []; } catch (e) {}
+const lastGraded = recRows.map(r => r.graded_on_close).filter(Boolean).sort().pop() || "";
+const lastClose = CLOSES.length ? CLOSES[CLOSES.length - 1].date : "";
+check(CLOSES.length > 0 && lastClose >= lastGraded, `CLOSES ends on ${lastClose || "nothing"}, not behind the newest graded close ${lastGraded}`);
+check(CLOSES.every((c, i) => /^\d{4}-\d{2}-\d{2}$/.test(c.date) && new Date(c.date + "T12:00:00Z").getUTCDay() === 5 && (i === 0 || c.date > CLOSES[i - 1].date)),
+  "every CLOSES entry is a Friday, in date order");
+
 /* 6. og:image */
 const og = (head.match(/<meta property="og:image" content="[^"]*\/([^"\/]+)">/) || [])[1];
 const ogPath = og && path.join(HERE, og);

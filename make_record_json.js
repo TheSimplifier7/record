@@ -36,6 +36,9 @@ try { CROWD = literal("CROWD"); } catch (e) {}
 try { TARGETS = literal("TARGETS"); } catch (e) {}
 try { OUT = literal("OUT"); } catch (e) {}
 try { GUEST = literal("GUEST"); } catch (e) {}
+/* 22 Sep 2026, note 32: the Friday closes the page grades on, the ladder's and This Week's anchor. */
+let CLOSES = [];
+try { CLOSES = literal("CLOSES"); } catch (e) {}
 /* THE TICK BOOK, 9 Sep 2026: rows live in ticks.js beside the page. */
 let TICKS = [];
 try {
@@ -97,6 +100,7 @@ const out = {
   notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body })),
   targets: TARGETS,
   targets_left_off: OUT,
+  closes: CLOSES,
   crowd: {
     note: "Claims made in public by others, quoted exactly, given the kill they were published without, graded on the same close. Not this desk's calls. Not in the tally. See note 18.",
     rows: CROWD.map((c, i) => ({ id: "crow-" + i, published: c.date, source: c.source, quote: c.quote, link: c.link, metal: c.metal, kill_assigned: c.kill, graded_on_close: c.gradeDate || null, result: c.result || null, grade: c.grade, grade_word: grades[c.grade] || c.grade }))
