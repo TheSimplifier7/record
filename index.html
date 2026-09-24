@@ -1403,6 +1403,107 @@
   @media(max-width:760px){.path{padding:12px 10px 10px}.cv button{padding:9px 12px}}
   @media(prefers-reduced-motion:reduce){.path-plot .pp-row{transition:none}}
   @media(hover:none){.path-plot{cursor:auto}}
+  /* ==========================================================================
+     THE PHONE, 24 Sep 2026, note 37. Measured on a 390 by 844 phone before
+     this note: no figure on the first screen, This Week starting 916px down,
+     the page 19,757px long, 742 of its 1,342 pieces of text under 12px, and a
+     nav of three rows whose links were 22px tall. At 760px and under:
+       This Week sits under the title, a card per metal.
+       The standing calls show their state, their dates and the live kill;
+       the rest opens under "Open the call".
+       The banks' targets show their count and the next to grade; the table
+       opens under "Show the board here", and the board page has all of it.
+       The ledger opens on the four latest weeks named, one tap from all.
+       Reading text is 12px at least; labels in capitals stay small.
+       Buttons and places in the nav are 44px tall, the strip's squares
+       26px, and the nav is one row that scrolls.
+     No row, grade, figure or date changes. Wider screens are as they were.
+     ========================================================================== */
+  .sc-more,.bd-sum,.l-more,.chip-recent{display:none}
+  .l-more:not([hidden]){display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;margin:18px 0 6px;
+    font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--ink-5)}
+  .l-more button{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    background:none;border:1px solid var(--link-rule);border-radius:3px;padding:0 16px;min-height:44px;cursor:pointer}
+  .l-more button:hover{border-color:var(--gold-hi);color:var(--gold-hi)}
+  .l-more button:focus-visible,.sc-more:focus-visible,.bd-open:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  #ledger{scroll-margin-top:78px}
+  @media(max-width:760px){
+    /* the first screen */
+    .masthead{padding:12px 0 10px}
+    header{padding:22px 0 26px}
+    .issue{margin-bottom:12px}
+    .tw.tw-up{margin:18px 0 4px}
+    .tw-card{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:center;padding:10px 12px 11px}
+    .tw-card>.h,.tw-card>.r{grid-column:1 / -1}
+    .tw-card>.lv{grid-column:1;font-size:27px;margin:3px 0 5px}
+    .tw-card>.tw-meter,.tw-card>.rmini{grid-column:2;margin:0}
+    .tw-card .r{font-size:12px;line-height:1.5}
+    .tw-cards{gap:8px}
+    .tw-head{margin-bottom:10px}
+    .tw-foot{font-size:14px;margin-top:10px}
+
+    /* one row of places, each a thumb wide */
+    .nav{position:relative;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:0;margin-top:2px;font-size:11px;letter-spacing:.13em}
+    .nav::-webkit-scrollbar{display:none}
+    .nav a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;white-space:nowrap;border-bottom:0}
+    .nav a:first-child{padding-left:0}
+    .nav a:last-child{padding-right:18px}
+    .nav a.here{text-decoration:underline 1.5px var(--gold);text-underline-offset:7px}
+    .nav.nav-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+    .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
+    .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
+
+    /* the standing calls, folded to their state */
+    .sc:not(.sc-x)>.sc-face,.sc:not(.sc-x)>.sc-fold,.sc:not(.sc-x)>.sc-open,.sc.sc-was:not(.sc-x)>.kill{display:none}
+    .sc-more{display:flex;align-items:center;gap:12px;width:calc(100% + 12px);min-height:48px;margin:14px -6px 0;padding:0 6px;
+      border:0;border-top:1px solid var(--rule-card);background:none;cursor:pointer;text-align:left;
+      font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
+    .sc-more .p{color:var(--gold);font-weight:600}
+    .sc-more .c{margin-left:auto;font-size:14px;font-weight:400;transition:transform .16s ease}
+    .sc-more[aria-expanded="true"] .c{transform:rotate(90deg)}
+    .sc-more:hover{color:var(--ink);background:var(--hover)}
+
+    /* the banks' targets, as a count and the next to grade */
+    #board-block:not(.bd-x) .board-wrap,#board-block:not(.bd-x) .board-foot{display:none}
+    .bd-sum{display:block;margin:12px 0 4px;padding:14px 16px;border:1px solid var(--rule-card);border-radius:10px;background:var(--panel)}
+    .bd-next{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--ink-4)}
+    .bd-next .k{display:block;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--pending);margin-bottom:3px}
+    .bd-next b{color:var(--ink);font-weight:600}
+    .bd-acts{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:12px}
+    .bd-acts a,.bd-open{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:3px;
+      font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+    .bd-acts a{color:var(--gold);border:1px solid var(--link-rule)}
+    .bd-open{color:var(--ink-4);background:none;border:1px solid var(--rule)}
+    .bd-open:hover{color:var(--ink);border-color:var(--ink)}
+    #board-rows .w{font-size:12px!important}   /* the level cell carries an inline 10.5px */
+    #board-rows details>summary,#board-rows .bk-lv{display:inline-flex;align-items:center;min-height:44px}
+    #board-rows .bq a{font-size:12px}
+
+    /* the ledger, from its four latest weeks */
+    .chip-recent{display:inline-flex}
+
+    /* a finger's width */
+    .chip{min-height:44px;padding:0 13px;font-size:10.5px;display:inline-flex;align-items:center}
+    .theme-sw{min-height:44px;padding:0 14px}
+    .strip a{width:26px;height:26px}
+    .strip{gap:6px}
+    .rs-btn{min-height:44px;padding:0 14px}
+    .cv button,.path-metals button{min-height:44px}
+    .tw-foot a{display:inline-flex;align-items:center;min-height:44px}
+    .doors .btn,.doors .btn-quiet{min-height:44px;display:inline-flex;align-items:center}
+    .foot-meta{row-gap:14px}
+    .ab-cta a[data-ready="1"]{display:inline-flex;align-items:center;min-height:44px}
+
+    /* reading text, 12px at least */
+    .prov,.prov a,.sc-bfoot,.sc-note,.legend,.legend b,.tally-note,.gauge .gcap,.gauge .gcap span,.sc-why,.sc-since,.sc-gnone,.sc-gate p i,
+    .notes-fold .nf-t i,.wrong .w-id i,.note .n,.path-key,.path-key span,.path-note,.spec dd,.sc-row .g .w,.sc-row .g .w b,.sc-row .m i,.foot-meta span,.foot-meta a,
+    main>details.sc-fold>summary,.s-flag,.lines,.lines .line i,.lines .line b,.cited,.cited b,.assigned,.quote a,.path-last,.path-last b,
+    .lbody p.countdown,.cadence,.rs-ok,.ob-since,.rcap{font-size:12px}
+    /* the smallest labels in capitals, up to 10.5px */
+    .lab,.lbody .lab,.prestd,.sc-chip,.sc-clock,.sc-status,.strip-key span,.sc-mlab,.sc-asof,.sc-gjoin b,.ab-cta a,.nf-btn,.nf-btn .o,
+    .board th,.lfilter .fl,#method-link,#apply-link{font-size:10.5px}
+  }
+  @media(max-width:760px) and (prefers-reduced-motion:reduce){.sc-more .c{transition:none}}
 </style>
 </head>
 <body>
@@ -1651,7 +1752,9 @@
   <!-- THE ONES THIS DESK GOT WRONG moved 22 Sep 2026 (note 32) from under the
        standing cards to here, under the count, where the claim it proves is made. -->
 
-  <div class="ledger-head">
+  <!-- id added 24 Sep 2026, note 37: the nav's "The record" has pointed here since 8 September, and
+       nothing on the page carried the id after the layout of 27 July. -->
+  <div class="ledger-head" id="ledger">
     <h2>The Ledger</h2>
     <span class="cnt" id="l-count"></span>
   </div>
@@ -1692,6 +1795,9 @@
          button state change and then silence about the rows that vanished.
          Added 22 Aug 2026. -->
     <p id="l-status" class="sr-only" aria-live="polite"></p>
+    <!-- 24 Sep 2026, note 37: a phone opens the ledger on the four latest weeks named. The chip shows
+         only on a phone; All is one tap away and every link to a row opens All first. -->
+    <button class="chip chip-recent" type="button" data-f="recent" aria-pressed="false">Latest<span class="n" data-c="recent"></span></button>
     <button class="chip" type="button" data-f="all"    aria-pressed="true">All<span class="n" data-c="all"></span></button>
     <button class="chip" type="button" data-f="pass"   aria-pressed="false">Held<span class="n" data-c="pass"></span></button>
     <button class="chip" type="button" data-f="miss"   aria-pressed="false">Wrong<span class="n" data-c="miss"></span></button>
@@ -1701,6 +1807,7 @@
 
   <div class="ledger-list" id="ledger-list"></div>
   <p class="lempty" id="l-empty" hidden>No rows under that filter. Nothing has been removed. Choose All to see the whole record.</p>
+  <p class="l-more" id="l-more" hidden><span id="l-more-t"></span><button type="button" id="l-more-b">Show every row</button></p>
 
   <!-- ====================================================================
        GRADED FROM THE CROWD  ·  added 5 Sep 2026  ·  note 18
@@ -1961,7 +2068,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST) and note 36 (the same evening); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2085,7 +2192,8 @@ const GRAMMAR_FROM = "2026-09-28";   /* note 34. Every row named from this date 
    https URL loads anything. Nothing about the tally, the rows or the grades
    depends on it in any way.
    ========================================================================= */
-const COUNTER = "";   /* e.g. "https://thesimplifier.goatcounter.com/count". Blank = off. */
+/* 24 Sep 2026, note 37: on, with the founder's address. It read "" (off) from 5 September. */
+const COUNTER = "https://thesimplifier.goatcounter.com/count";   /* Blank = off. */
 
 /* =========================================================================
    THE GUEST FORM  ·  added 5 September 2026
@@ -3205,6 +3313,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"37", kind:"standard", title:"The phone, the counter, a card for every page, and the Method's charts, 24 September 2026.",
+    body:"Four things changed, and none of them touches a row, a grade, a kill, a figure or a date. THE PHONE. On a phone this page opened on its title, two paragraphs and a table of terms, with This Week below the first screen, and it ran to about twenty-three screens. From tonight, on a screen 760 pixels wide or less, This Week sits under the title, a card per metal. The standing calls show their state, their dates and the live kill, and the rest opens under Open the call. The banks' targets show their count and the next to grade, the table opens under Show the board here, and the whole board has its own page. The ledger opens on the four latest weeks named, with a line under it that shows every row in one tap, and a link to any row, a square on the strip or a line on the chart opens the whole ledger first, so no row sits behind a fold it did not ask for. Running text on a phone is 12 pixels at least, the buttons and the nav are a thumb's height, the squares of the strip are larger, and the nav is one row that scrolls. A wider screen reads as it did. On every screen the nav's first link now lands on the ledger; it has pointed at nothing since 8 September. THE COUNTER. Note 18 wired a counter in and left it off until it had an address. It has one: GoatCounter, open source, no cookies and no personal data, on every page but the embed and the seal, which say they track nothing and still do not. It counts visits, and on this page three events by path alone: a row reached by its address, a row's link copied or shared, and a door used. It cannot see, change or influence a row. THE CARDS. The pages beside the record showed no picture when their link was posted, or another page's: the wrong ones, the Year, the producers' page, the advisers' page and the embed page had none, the board borrowed this page's week card, the tick book showed a held row from 30 August and the Method its chart of 9 September. Each now has a card of its own, drawn from record.json by make_link_cards.js, and verify_record.js refuses an upload whose cards were drawn from figures the record no longer holds. A card's address now carries a fingerprint of the card, the bank rows' cards included, so a messenger fetches a changed card again instead of showing the old one. The tally cards, the first frame of every video, were drawn in a stand-in face on 6, 12 and 21 September for want of the record's own; they carry it now, with the same four numbers. THE METHOD. Its chart of 9 September gives way to two the founder took at 18:12 on 24 September, gold on the 8 hour and on the 1 hour, with the three gold weeks this page grades wrong, named 12 July, 7 August and 6 September, in frame on both. The chart of 9 September stays in the folder and in the page's source." },
   { n:"36", kind:"correction", title:"Correction, 24 September 2026. The bank pages went up without their folder, the crosshair left a mark on the ladder, and the chart now reads over time.",
     body:"Note 35 was uploaded at 17:34 CEST on 24 September. Two things in it did not work, and both are corrected here rather than tidied. THE BANK PAGES. The upload put every file in the top folder of the site, so the fourteen pages note 35 placed under banks never reached it. Each was replaced by the source of its own link card, which carried the same name, and every link from the board to a row's page opened nothing. The pages now sit beside the record itself, named for the house, the metal, the level and the window, ubs-gold-6200-2026-09-30.html for the UBS row that grades on 25 September, which is where a plain upload puts them; the link cards sit beside them as images, and their sources are no longer written to the site at all. verify_record.js now refuses a page that is not the page it names, or that was written before its row's grade. THE CROSSHAIR. After a pointer left a column of the ladder, the tag that printed its distance from the close stayed on the column as an empty bar. It no longer does. THE CHART OVER TIME. The section that held the ladder now opens on the same rows over time: the Friday close as a line, every level named drawn from the day it was named to the close that graded it, in the colour it was graded, and a thin tick from the level to that close, so the margin of every held row and every wrong one reads at a glance. A card names the week or the row under the pointer, and a click opens the row. The ladder is one tab away, by price, as notes 32 and 35 left it, and a reader who chooses it keeps it on that device. The chart draws from CLOSES, CALLS and PROVENANCE and nothing else; the four gold rows of June, named before the closes on file begin, are counted under it and stay in the ledger. Nothing in this note touches a row, a grade, a kill, a figure or a date." },
   { n:"35", kind:"standard", title:"The page answers a pointer, 24 September 2026. The loupe, the crosshair, an address for every row, and a page for every bank row.",
@@ -4348,6 +4458,13 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
   const all = Array.from(list.querySelectorAll(".lrow"));
   const tally = { all: all.length, pass:0, miss:0, notest:0, open:0 };
   all.forEach(r => { tally[r.dataset.grade] = (tally[r.dataset.grade] || 0) + 1; });
+  /* 24 Sep 2026, note 37: the four latest weeks named, the view a phone opens on. */
+  const RECENT = new Set(Array.from(new Set(all.map(r => r.dataset.week))).sort().reverse().slice(0, 4));
+  tally.recent = all.filter(r => RECENT.has(r.dataset.week)).length;
+  const since = Array.from(RECENT).sort()[0];
+  const moreT = document.getElementById("l-more-t"), moreB = document.getElementById("l-more-b");
+  if (moreT && since) moreT.textContent = "The four latest weeks named, from " + fmtDate(since) + ": " + tally.recent + " of " + all.length + " rows.";
+  if (moreB) moreB.textContent = "Show all " + all.length;
 
   bar.querySelectorAll(".n").forEach(n => {
     const v = tally[n.dataset.c] || 0;
@@ -4365,7 +4482,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
       c.setAttribute("aria-pressed", String(c === chip)));
     let shown = 0;
     all.forEach(r => {
-      const on = want === "all" || r.dataset.grade === want;
+      const on = want === "all" || r.dataset.grade === want || (want === "recent" && RECENT.has(r.dataset.week));
       r.hidden = !on;
       if (!on) r.open = false;
       if (on) shown++;
@@ -4376,10 +4493,19 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
       w.hidden = !any;
     });
     const status = document.getElementById("l-status");
-    if (status) {
+    /* 24 Sep 2026, note 37: said aloud only when a reader pressed the chip, not when the page set it. */
+    if (status && e.isTrusted) {
       status.textContent = "Showing " + shown + " of " + all.length +
-        " calls" + (want === "all" ? "" : ", filtered by " + chip.textContent.replace(/\d+$/, "").trim().toLowerCase());
+        " calls" + (want === "all" ? "" : want === "recent" ? ", the four latest weeks named" : ", filtered by " + chip.textContent.replace(/\d+$/, "").trim().toLowerCase());
     }
+    const more = document.getElementById("l-more"); if (more) more.hidden = want !== "recent";
+  });
+  /* 24 Sep 2026, note 37: every row, one tap from the phone's first view; the first row it adds takes the focus. */
+  if (moreB) moreB.addEventListener("click", () => {
+    const was = all.filter(r => r.hidden);
+    const a = bar.querySelector('.chip[data-f="all"]'); if (a) a.click();
+    const first = was.find(r => !r.hidden), sum = first && first.querySelector("summary");
+    if (sum) try { sum.focus({ preventScroll: true }); } catch (err) { sum.focus(); }
   });
 })();
 
@@ -6026,6 +6152,136 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
     }, { passive: true });
     window.addEventListener("resize", () => hide(true));
     doc.addEventListener("keydown", e => { if (e.key === "Escape" && !lp.hidden) { hide(true); clearXH(hot); } });
+  });
+})();
+</script>
+<script>
+/* =========================================================================
+   THE PHONE AND THE COUNTER, 24 Sep 2026, note 37.
+
+   On a screen 760px wide or less: This Week moves under the title, the
+   standing calls fold to their state behind "Open the call", the banks'
+   targets fold to their count and the next to grade behind "Show the board
+   here", the ledger opens on the four latest weeks named, and the nav
+   scrolls the page you are on into view. On a wider screen nothing moves.
+
+   The counter (COUNTER, above) counts the visit. Three events are counted
+   with it, each a path and nothing else: a row reached by its address, a
+   row's link copied or shared, and a door used (the Monday Level form sent,
+   the application opened). No address, no name, no cookie.
+
+   Every piece runs inside its own guard: a fault here can cost a fold,
+   never a row.
+   ========================================================================= */
+(function(){
+  "use strict";
+  const doc = document;
+  const guard = (name, fn) => { try { fn(); } catch (e) { if (window.console) console.warn("note 37 · " + name, e); } };
+  let mq = null; try { mq = window.matchMedia("(max-width: 760px)"); } catch (e) {}
+  const phone = () => !!(mq && mq.matches);
+  const onChange = fn => { if (!mq) return; if (mq.addEventListener) mq.addEventListener("change", fn); else if (mq.addListener) mq.addListener(fn); };
+
+  /* ---------------- This Week, under the title ---------------- */
+  guard("this week", () => {
+    const tw = doc.getElementById("this-week"), h1 = doc.querySelector("main > header h1");
+    if (!tw || !h1) return;
+    const home = tw.parentNode, after = tw.nextSibling;
+    const place = () => {
+      if (phone()) { if (tw.previousElementSibling !== h1) h1.insertAdjacentElement("afterend", tw); tw.classList.add("tw-up"); }
+      else if (tw.parentNode !== home) { home.insertBefore(tw, after); tw.classList.remove("tw-up"); }
+    };
+    place(); onChange(place);
+  });
+
+  /* ---------------- the standing calls, folded to their state ---------------- */
+  guard("standing", () => {
+    const host = doc.getElementById("standing"); if (!host) return;
+    Array.from(host.children).filter(a => a.matches("article.sc")).forEach(a => {
+      if (a.querySelector(".sc-more")) return;
+      const was = !!a.querySelector(".sc-top .sc-ended");
+      a.classList.add(was ? "sc-was" : "sc-now");
+      const folds = Array.from(a.children).filter(c => c.matches(".sc-face,.sc-fold,.sc-open" + (was ? ",.kill" : "")));
+      if (!folds.length) return;
+      const b = doc.createElement("button");
+      b.type = "button"; b.className = "sc-more"; b.setAttribute("aria-expanded", "false");
+      b.innerHTML = '<span class="p" aria-hidden="true">+</span><span class="t">Open the call</span><span class="c" aria-hidden="true">&rsaquo;</span>';
+      a.appendChild(b);
+      b.addEventListener("click", () => {
+        const open = !a.classList.contains("sc-x");
+        a.classList.toggle("sc-x", open);
+        b.setAttribute("aria-expanded", String(open));
+        b.querySelector(".p").textContent = open ? "−" : "+";
+        b.querySelector(".t").textContent = open ? "Fold the call" : "Open the call";
+        if (!open && a.getBoundingClientRect().top < 0) a.scrollIntoView({ block: "start" });
+      });
+    });
+  });
+
+  /* ---------------- the banks' targets: the count and the next to grade ---------------- */
+  guard("board", () => {
+    const block = doc.getElementById("board-block"); if (!block || block.hidden) return;
+    const head = block.querySelector(".board-head"); if (!head || block.querySelector(".bd-sum")) return;
+    const T = (typeof TARGETS !== "undefined" && Array.isArray(TARGETS)) ? TARGETS : [];
+    const lastFri = w => { const d = new Date(w + "T00:00:00Z"); while (d.getUTCDay() !== 5) d.setUTCDate(d.getUTCDate() - 1); const f = d.toISOString().slice(0, 10); return f === "2026-12-25" ? null : f; };
+    const houseOf = src => { const h = String(src).split(/,\s*(?:as reported|via)\b/i)[0].trim(); return ({ "Citi Research": "Citi", "Goldman Sachs Research": "Goldman Sachs", "J.P. Morgan Global Research": "J.P. Morgan" })[h] || h; };
+    const n = T.filter(t => t && t.grade === "pending" && /^\d{4}-\d{2}-\d{2}$/.test(String(t.window)))
+      .sort((a, b) => a.window.localeCompare(b.window) || String(a.published).localeCompare(String(b.published)))[0];
+    const sum = doc.createElement("div"); sum.className = "bd-sum";
+    let next = "";
+    if (n) {
+      const f = lastFri(n.window);
+      next = `<p class="bd-next"><span class="k">Next to grade</span><a href="${esc(bankSlug(n))}.html"><b>${esc(houseOf(n.source))} ${esc(Number(n.level).toLocaleString("en-US"))}</b></a> ${esc(String(n.metal || "Gold").toLowerCase())} · ${esc(n.windowText)} · ${f ? "on the " + esc(fmtDate(f)) + " close" : "on the last weekly close of 2026"}</p>`;
+    }
+    sum.innerHTML = next + `<div class="bd-acts"><a href="targets.html">The full board &rsaquo;</a><button type="button" class="bd-open" aria-expanded="false">Show the board here</button></div>`;
+    head.insertAdjacentElement("afterend", sum);
+    const btn = sum.querySelector(".bd-open");
+    btn.addEventListener("click", () => {
+      const open = !block.classList.contains("bd-x");
+      block.classList.toggle("bd-x", open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "Fold the board" : "Show the board here";
+    });
+  });
+
+  /* ---------------- the ledger opens on its four latest weeks ---------------- */
+  guard("ledger", () => {
+    if (!phone() || /^#(r-|lrow-)/.test(location.hash)) return;
+    const chip = doc.querySelector('#lfilter .chip[data-f="recent"]');
+    if (chip && chip.getAttribute("aria-pressed") !== "true") chip.click();
+  });
+
+  /* ---------------- the nav, one row on a phone ---------------- */
+  guard("nav", () => {
+    const n = doc.querySelector("nav.nav"); if (!n) return;
+    const h = n.querySelector(".here");
+    const edge = () => { n.classList.toggle("nav-l", n.scrollLeft > 4); n.classList.toggle("nav-r", n.scrollLeft + n.clientWidth < n.scrollWidth - 4); };
+    const center = () => { if (h && n.scrollWidth > n.clientWidth + 4) n.scrollLeft = Math.max(0, h.offsetLeft - (n.clientWidth - h.offsetWidth) / 2); edge(); };
+    n.addEventListener("scroll", edge, { passive: true });
+    window.addEventListener("resize", edge);
+    center();
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(center);
+  });
+
+  /* ---------------- the counter's events ---------------- */
+  guard("counter", () => {
+    const ready = () => !!(window.goatcounter && typeof window.goatcounter.count === "function");
+    const when = fn => {
+      if (ready()) { fn(); return; }
+      const s = doc.querySelector("script[data-goatcounter]");
+      if (s) s.addEventListener("load", () => { if (ready()) fn(); }, { once: true });
+    };
+    const ev = (p, title) => when(() => { try { window.goatcounter.count({ path: p, title: title, event: true }); } catch (e) {} });
+    let h = ""; try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    if (/^r-\d{4}-\d{2}-\d{2}-[a-z]+-[0-9-]+$/.test(h) && doc.getElementById(h)) ev("row-arrive/" + h, "A row reached by its address");
+    doc.addEventListener("click", e => {
+      const t = e.target && e.target.closest ? e.target : null; if (!t) return;
+      const rs = t.closest(".rs-btn");
+      if (rs) { ev("row-share/" + (rs.getAttribute("data-a") || ""), "A row's link copied or shared"); return; }
+      const ap = t.closest("#apply-link");
+      if (ap && /^https:\/\//.test(ap.getAttribute("href") || "")) ev("door-apply", "The application opened");
+    }, true);
+    const f = doc.getElementById("signup-form");
+    if (f) f.addEventListener("submit", () => ev("door-email", "The Monday Level form sent"));
   });
 })();
 </script>

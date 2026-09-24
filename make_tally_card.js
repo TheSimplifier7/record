@@ -121,12 +121,21 @@ console.log(`tally cards written from record.json (dark${paper ? " and paper" : 
 (async () => {
   let chromium; try { ({ chromium } = require("playwright")); } catch (e) { return; }
   const path = require("path");
+  /* 24 Sep 2026, note 37: the faces, injected from CARD_FONTS or BANK_FONTS (a folder of the
+     @fontsource woff2 files) on a machine that cannot reach Google Fonts. The cards of 6, 12 and
+     21 September were drawn in a stand-in face for want of it. */
+  const FD = process.env.CARD_FONTS || process.env.BANK_FONTS || "";
+  const face = (fam, file, w) => { const f = path.join(FD, file); return FD && fs.existsSync(f) ? `@font-face{font-family:'${fam}';font-weight:${w};src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2')}` : ""; };
+  const faces = [face("IBM Plex Mono", "ibm-plex-mono-latin-400-normal.woff2", 400), face("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500),
+    face("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600), face("Newsreader", "newsreader-latin-400-normal.woff2", 400),
+    face("Newsreader", "newsreader-latin-500-normal.woff2", 500)].join("");
   const b = await chromium.launch();
   const jobs = [["tally_card_vertical_dark", 1080, 1920], ["tally_card_landscape_dark", 1920, 1080]];
   if (paper) jobs.push(["tally_card_vertical", 1080, 1920], ["tally_card_landscape", 1920, 1080]);
   for (const [name, w, h] of jobs) {
     const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
     await p.goto("file://" + path.resolve(name + ".html"), { waitUntil: "networkidle" });
+    if (faces) await p.addStyleTag({ content: faces });
     await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(400);
     await p.screenshot({ path: name + ".png" }); await p.close();
   }

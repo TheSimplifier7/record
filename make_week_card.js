@@ -70,6 +70,11 @@ const kicker = mode === "open"
 /* Local copies of the two faces, used when the sandbox cannot reach Google
    Fonts; on any other machine the Google stylesheet loads first and wins. */
 const LOCAL = "/home/claude/fonts";
+/* 24 Sep 2026, note 37: or CARD_FONTS / BANK_FONTS, a folder of the @fontsource woff2 files, injected
+   at render time as the bank and link cards take them, so week_card.html stays as written. */
+const FD = process.env.CARD_FONTS || process.env.BANK_FONTS || "";
+const envFace = (fam, file, w) => { const f = path.join(FD, file); return FD && fs.existsSync(f) ? `@font-face{font-family:'${fam}';font-weight:${w};src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2')}` : ""; };
+const envFaces = [envFace("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), envFace("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600), envFace("Newsreader", "newsreader-latin-400-normal.woff2", 400)].join("");
 const localFaces = fs.existsSync(LOCAL) ? `
 @font-face{font-family:'IBM Plex Mono';font-weight:500;src:url(file://${LOCAL}/package/fonts/complete/woff2/IBMPlexMono-Medium.woff2)}
 @font-face{font-family:'IBM Plex Mono';font-weight:600;src:url(file://${LOCAL}/package/fonts/complete/woff2/IBMPlexMono-SemiBold.woff2)}
@@ -108,9 +113,11 @@ fs.writeFileSync(path.join(__dirname, "week_card.html"), html);
 console.log(`week_card.html written: ${mode}, named ${named}, close ${cEntry.date}, ${rows.length} rows`);
 
 /* point the live og:image line at the new card; the commented history above it is not touched */
-/* the record and the bank board both carry the week card, 22 Sep 2026 */
+/* the record and the bank board both carried the week card, 22 Sep 2026; from 24 Sep 2026, note 37,
+   the board has its own card (make_link_cards.js) and this line sets the record's only.
+   It read: for (const f of ["index.html", "targets.html"]) { */
 const re = /^<meta property="og:image" content="https:\/\/thesimplifier7\.github\.io\/record\/[^"]+">$/m;
-for (const f of ["index.html", "targets.html"]) {
+for (const f of ["index.html"]) {
   const fp = path.join(__dirname, f);
   if (!fs.existsSync(fp)) continue;
   const src = fs.readFileSync(fp, "utf8");
@@ -125,6 +132,7 @@ for (const f of ["index.html", "targets.html"]) {
   const b = await chromium.launch(opts);
   const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   await p.goto("file://" + path.join(__dirname, "week_card.html"), { waitUntil: "load" });
+  if (envFaces) await p.addStyleTag({ content: envFaces });
   try { await p.evaluate(() => document.fonts.ready); } catch (e) {}
   await p.waitForTimeout(300);
   await p.screenshot({ path: path.join(__dirname, base + ".png") });

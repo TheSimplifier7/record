@@ -44,7 +44,12 @@ index.html is the record. Every row, note, standing call and provenance line liv
 
 After any edit to index.html:
 
+    node make_record_json.js && node make_bank_pages.js && node make_tally_card.js && node make_misses.js && node make_link_cards.js && node verify_record.js
+
+<!-- 24 Sep 2026, note 37. This read:
     node make_record_json.js && node make_tally_card.js && node make_misses.js && node verify_record.js
+make_bank_pages.js joined the routine with note 35, and make_link_cards.js with note 37. -->
+make_bank_pages.js writes a page and a link card for every bank row. make_link_cards.js draws the link card of every other page beside the record, from record.json, and verify_record.js refuses an upload whose cards are older than the record. Every page but the embed and the seal counts its visits with GoatCounter: no cookies, no personal data.
 
 The tick book, after 23:00 Madrid on a day with rows: export the five-minute chart of that metal for that day from TradingView and save it as ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv, then
 

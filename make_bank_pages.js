@@ -230,6 +230,9 @@ function page(r) {
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <!-- Written by make_bank_pages.js from record.json. Do not edit by hand. -->
 <style>${CSS}</style>
+<!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
+     and the page reads the same without it. -->
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body data-grade="${esc(r.grade)}">
 <div class="wrap">
@@ -295,7 +298,8 @@ function cardHtml(r) {
   } else line = CARD_LINE[r.slug] || "";
   const when = r.grade === "pending" ? (fri ? `grades on the ${fmtDate(fri).replace(/ \d{4}$/, "")} close` : "grades on the last close of 2026") : `graded ${gw.toLowerCase()} on the close`;
   const col = { pending: "#6BA3C7", pass: "#5FA57A", miss: "#D2764A", notest: "#9C9282" }[gc];
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+  /* 24 Sep 2026, note 37: the card names its faces' source, as the render note below says it does. */
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet"><style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{width:1200px;height:630px;background:radial-gradient(ellipse at 20% 0%,#201c17 0%,#141210 60%);color:#EFE8DC;font-family:'IBM Plex Mono',ui-monospace,monospace;padding:52px 60px;position:relative;overflow:hidden}
   .top{display:flex;justify-content:space-between;border-bottom:1.5px solid #EFE8DC;padding-bottom:18px;font-size:17px;font-weight:600;letter-spacing:.3em;text-transform:uppercase}
@@ -357,6 +361,11 @@ console.log(`${n} bank pages written beside the record. Backstories written for 
     try { await p.evaluate(() => document.fonts.ready); } catch (e) {}
     await p.waitForTimeout(250);
     await p.screenshot({ path: path.join(OUT, r.slug + ".png") });
+    /* 24 Sep 2026, note 37: the page names its card with the card's own fingerprint, so a card
+       redrawn after a grade is a new address and a messenger fetches it again. */
+    const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(OUT, r.slug + ".png"))).digest("hex").slice(0, 10);
+    const pf = path.join(OUT, r.slug + ".html"), was = fs.readFileSync(pf, "utf8");
+    fs.writeFileSync(pf, was.replace(`<meta property="og:image" content="${SITE}${r.slug}.png">`, `<meta property="og:image" content="${SITE}${r.slug}.png?v=${v}">`));
   }
   await b.close();
   console.log(`${ROWS.length} cards rendered at 1200 x 630 beside the record` + (faces ? ", faces injected from " + FD : "") + ".");

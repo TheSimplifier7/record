@@ -10,9 +10,12 @@
 <meta property="og:url" content="https://thesimplifier7.github.io/record/method.html">
 <meta property="og:title" content="The Simplifier · The Method">
 <meta property="og:description" content="The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation.">
-<meta property="og:image" content="https://thesimplifier7.github.io/record/method_gold_8h_2026-09-09.jpg">
-<meta property="og:image:width" content="1600">
-<meta property="og:image:height" content="951">
+<!-- WAS the chart of 9 September, 1600 x 951, until 24 Sep 2026, note 37 on the record.
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/method_gold_8h_2026-09-09.jpg">
+     <meta property="og:image:width" content="1600">
+     <meta property="og:image:height" content="951"> -->
+<meta property="og:image" content="https://thesimplifier7.github.io/record/link_method.png?v=c8d45df7ac">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- =========================================================================
@@ -91,7 +94,25 @@
   .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
   .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
   @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} .three,.price{grid-template-columns:1fr} }
+  /* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
+     scrolls, each place a thumb's height, the page you are on underlined. */
+  @media(max-width:760px){
+    .nav{position:relative;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-top:4px;font-size:11px;letter-spacing:.13em}
+    .nav::-webkit-scrollbar{display:none}
+    .nav a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;white-space:nowrap;border-bottom:0}
+    .nav a:first-child{padding-left:0}
+    .nav a:last-child{padding-right:18px}
+    .nav a.here{text-decoration-line:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:7px}
+    .nav.nav-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+    .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
+    .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
+  }
+  /* 24 Sep 2026, note 37 on the record: the caption at 12px on a phone. */
+  @media(max-width:760px){.chart figcaption{font-size:12px}}
 </style>
+<!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
+     and the page reads the same without it. -->
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -130,9 +151,22 @@
        September, 4,357.307, is the labelled line; the July break under 4,098
        that the record grades wrong is in frame on purpose. The desk asked for
        a wrong week to be visible and the founder supplied this one. -->
+  <!-- 24 Sep 2026, note 37 on the record. The figure of 9 September, kept as it stood; its file stays in the folder.
   <figure class="chart">
     <img src="method_gold_8h_2026-09-09.jpg" width="1600" height="951" alt="Gold, 8 hour chart, January to September 2026, with THE METHOD on it: the cloud, the fan and the three mean reversion lines, the swing slow line labelled 4,357.307" loading="lazy">
     <figcaption>Gold, 8 hour, TVC, 9 September 2026. The line labelled 4,357.307 is the one the open gold row on the record was read from. The break under 4,098 in July, graded wrong on the record, is in frame.</figcaption>
+  </figure>
+  -->
+  <!-- THE CHARTS, 24 Sep 2026, note 37 on the record. Two screenshots the founder took at 18:12 CEST
+       that day, gold on the 8 hour and on the 1 hour, TVC, THE METHOD on both. The three gold weeks
+       the record grades wrong, named 12 July, 7 August and 6 September, are in frame on both. -->
+  <figure class="chart">
+    <img src="method_gold_8h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 8 hour chart, TVC, December 2025 to 24 September 2026, with THE METHOD on it: blue and copper stepped bands with fine lines between their edges, a shaded band between two long curves, and dashed outer lines" loading="lazy">
+    <figcaption>Gold, 8 hour, TVC, 24 September 2026, 18:12 CEST. The three gold weeks the record grades wrong, named 12 July, 7 August and 6 September, are in frame.</figcaption>
+  </figure>
+  <figure class="chart">
+    <img src="method_gold_1h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 1 hour chart, TVC, mid March to 24 September 2026, with THE METHOD on it: the same bands, curves and dashed lines on the shorter clock, with small gold diamonds on the bands" loading="lazy">
+    <figcaption>The same tool on the 1 hour, the same moment, from mid March. The same three weeks are in frame.</figcaption>
   </figure>
 
   <p class="body">It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction.</p>
@@ -182,6 +216,15 @@ const show = (id, url) => { const a = document.getElementById(id); if (a && ok(u
 const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
 show("terms-link", METHOD_TERMS);
 if (m || y || r) document.getElementById("closed-line").hidden = true;
+</script>
+<script>
+/* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
+   scrolls; the page you are on is scrolled into it. */
+(function(){try{var n=document.querySelector("nav.nav");if(!n)return;var h=n.querySelector(".here");
+var e=function(){n.classList.toggle("nav-l",n.scrollLeft>4);n.classList.toggle("nav-r",n.scrollLeft+n.clientWidth<n.scrollWidth-4);};
+var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.offsetLeft-(n.clientWidth-h.offsetWidth)/2);e();};
+n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
 </script>
 </body>
 </html>

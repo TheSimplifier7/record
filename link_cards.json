@@ -1,0 +1,146 @@
+{
+ "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
+ "generated": "2026-09-24T17:04:47.065Z",
+ "cards": [
+  {
+   "name": "misses",
+   "page": "misses.html",
+   "file": "link_misses.png",
+   "v": "30091422fe",
+   "image": "https://thesimplifier7.github.io/record/link_misses.png?v=30091422fe",
+   "figures": {
+    "tally": {
+     "resolved": 26,
+     "held": 20,
+     "wrong": 6,
+     "never_reached": 5,
+     "open": 3
+    },
+    "latest_close": "2026-09-11",
+    "latest": [
+     {
+      "metal": "Gold",
+      "level": "4,357",
+      "close": "4,347.760",
+      "anchor": "r-2026-09-06-gold-4357"
+     },
+     {
+      "metal": "Platinum",
+      "level": "1,797.40",
+      "close": "1,791.50",
+      "anchor": "r-2026-09-06-platinum-1797-40"
+     }
+    ]
+   }
+  },
+  {
+   "name": "targets",
+   "page": "targets.html",
+   "file": "link_targets.png",
+   "v": "67f030271e",
+   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=67f030271e",
+   "figures": {
+    "open": 8,
+    "held": 4,
+    "wrong": 2,
+    "left_off": 12,
+    "next": {
+     "house": "UBS",
+     "level": 6200,
+     "metal": "Gold",
+     "window_text": "for September 2026",
+     "grades_on": "2026-09-25",
+     "page": "ubs-gold-6200-2026-09-30.html"
+    }
+   }
+  },
+  {
+   "name": "method",
+   "page": "method.html",
+   "file": "link_method.png",
+   "v": "c8d45df7ac",
+   "image": "https://thesimplifier7.github.io/record/link_method.png?v=c8d45df7ac",
+   "figures": {
+    "chart": "method_gold_8h_2026-09-24.jpg"
+   }
+  },
+  {
+   "name": "year",
+   "page": "year.html",
+   "file": "link_year.png",
+   "v": "31c47b04a7",
+   "image": "https://thesimplifier7.github.io/record/link_year.png?v=31c47b04a7",
+   "figures": {
+    "tally": {
+     "resolved": 26,
+     "held": 20,
+     "wrong": 6,
+     "never_reached": 5,
+     "open": 3
+    }
+   }
+  },
+  {
+   "name": "guest",
+   "page": "guest.html",
+   "file": "link_guest.png",
+   "v": "73158b10dc",
+   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=73158b10dc",
+   "figures": {
+    "tally": {
+     "resolved": 26,
+     "held": 20,
+     "wrong": 6,
+     "never_reached": 5,
+     "open": 3
+    }
+   }
+  },
+  {
+   "name": "advisers",
+   "page": "advisers.html",
+   "file": "link_advisers.png",
+   "v": "7e6d53fde1",
+   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=7e6d53fde1",
+   "figures": {
+    "tally": {
+     "resolved": 26,
+     "held": 20,
+     "wrong": 6,
+     "never_reached": 5,
+     "open": 3
+    }
+   }
+  },
+  {
+   "name": "tick",
+   "page": "tick.html",
+   "file": "link_tick.png",
+   "v": "5417d921b7",
+   "image": "https://thesimplifier7.github.io/record/link_tick.png?v=5417d921b7",
+   "figures": {
+    "rows": 0,
+    "held": 0,
+    "wrong": 0,
+    "never_reached": 0,
+    "open": 0
+   }
+  },
+  {
+   "name": "embed",
+   "page": "embed.html",
+   "file": "link_embed.png",
+   "v": "190bb06602",
+   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=190bb06602",
+   "figures": {
+    "tally": {
+     "resolved": 26,
+     "held": 20,
+     "wrong": 6,
+     "never_reached": 5,
+     "open": 3
+    }
+   }
+  }
+ ]
+}

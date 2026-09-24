@@ -37,7 +37,15 @@
         names the same page the record builds for every target, the page
         and its 1200 x 630 card sit beside the record (note 36: no folder,
         because a plain upload flattens one), and the page is the page, not
-        its card's source, written with the row's current grade. */
+        its card's source, written with the row's current grade.
+    16. A link card for every page, 24 September 2026, note 37: each page
+        make_link_cards.js draws for carries its own og:image, title,
+        description and large card; the card sits beside the record at
+        1200 x 630; the ?v= on its address is the card's own hash; and the
+        figures it was drawn from are the ones record.json holds today.
+    17. The counter, 24 September 2026, note 37: the record and every page
+        beside it load GoatCounter from the one address; the embed and the
+        seal, which say they track nothing and make no request, load none. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -243,6 +251,41 @@ const noPage = rt.filter(t => { const slug = String(t.page || "").replace(/\.htm
 check(rt.length > 0 && noPage.length === 0, "every bank row has its page and its 1200 x 630 card beside the record" + (noPage.length ? " (missing: " + noPage.map(t => t.page).join(", ") + ")" : ""));
 const stalePg = rt.filter(t => { try { return !rd(t.page).includes('<body data-grade="' + t.grade + '">'); } catch (e) { return true; } });
 check(stalePg.length === 0, "every bank page carries its row's grade (run node make_bank_pages.js after any bank grade)" + (stalePg.length ? " (stale: " + stalePg.map(t => t.page).join(", ") + ")" : ""));
+
+/* 16. A LINK CARD FOR EVERY PAGE, added 24 September 2026, note 37. */
+let LC = null; try { LC = JSON.parse(rd("link_cards.json")); } catch (e) {}
+let LCM = null; try { LCM = require(path.join(HERE, "make_link_cards.js")); } catch (e) {}
+check(!!(LC && Array.isArray(LC.cards) && LCM && typeof LCM.figuresFor === "function"), "link_cards.json and make_link_cards.js are beside the record");
+if (LC && LCM && typeof LCM.figuresFor === "function") {
+  const want = LCM.figuresFor(rec || {}), lprob = [];
+  for (const p of LCM.CARD_PAGES) {
+    const c = LC.cards.find(x => x.name === p.name);
+    if (!c) { lprob.push(p.name + ": no card in link_cards.json"); continue; }
+    let h = ""; try { h = rd(p.page).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) { lprob.push(p.page + ": missing"); continue; }
+    const img = (h.match(/<meta property="og:image" content="([^"]+)">/) || [])[1] || "";
+    if (img !== c.image) lprob.push(p.page + ": og:image is not its card (" + (img || "none") + ")");
+    ["og:title", "og:description"].forEach(k => { if (!new RegExp('<meta property="' + k + '" content="[^"]+">').test(h)) lprob.push(p.page + ": no " + k); });
+    if (!h.includes('<meta name="twitter:card" content="summary_large_image">')) lprob.push(p.page + ": no large card for X");
+    const f = path.join(HERE, c.file || ""), wh = pngWH(f);
+    if (wh[0] !== 1200 || wh[1] !== 630) lprob.push((c.file || p.name) + ": not beside the record at 1200 x 630");
+    else {
+      const v = require("crypto").createHash("sha256").update(fs.readFileSync(f)).digest("hex").slice(0, 10);
+      if (v !== c.v || !String(c.image).endsWith(c.file + "?v=" + v)) lprob.push(c.file + ": its address does not carry its hash");
+    }
+    if (JSON.stringify(c.figures) !== JSON.stringify(want[p.name])) lprob.push(p.name + ": drawn from figures record.json no longer holds");
+  }
+  check(lprob.length === 0, "every page has a link card of its own, current with record.json (" + LCM.CARD_PAGES.length + "; run node make_link_cards.js after any grade)" + (lprob.length ? "\n          " + lprob.join("\n          ") : ""));
+}
+
+/* 17. THE COUNTER, added 24 September 2026, note 37. */
+const GC_ADDR = "https://thesimplifier.goatcounter.com/count";
+const GC_TAG = '<script data-goatcounter="' + GC_ADDR + '" async src="https://gc.zgo.at/count.js"></script>';
+const COUNTER_V = (idx.match(/\nconst COUNTER\s*=\s*"([^"]*)"/) || [])[1];
+const counted = ["targets.html", "misses.html", "tick.html", "method.html", "guest.html", "advisers.html", "year.html"].concat(rt.map(t => t.page));
+const uncounted = counted.filter(f => { try { return !rd(f).replace(/<!--[\s\S]*?-->/g, "").includes(GC_TAG); } catch (e) { return true; } });
+check(COUNTER_V === GC_ADDR && uncounted.length === 0, "the counter is on the record and on every page beside it (" + (counted.length + 1) + ")" + (COUNTER_V === GC_ADDR ? "" : " (COUNTER is not the address)") + (uncounted.length ? " (not on: " + uncounted.join(", ") + ")" : ""));
+const leaks = ["embed.html", "seal.html", "record-embed.js"].filter(f => { try { return /goatcounter|gc\.zgo\.at/i.test(rd(f)); } catch (e) { return false; } });
+check(leaks.length === 0, "the embed and the seal load no counter" + (leaks.length ? " (found in: " + leaks.join(", ") + ")" : ""));
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

@@ -7,6 +7,15 @@
 <!-- 24 Sep 2026, record note 33, reached by note 35. This read: meta name="description" content="Ten years on the Cazenove gold desk. Publishes a level before the week opens, publishes what would prove it wrong, and grades it at Friday's close." -->
 <meta name="description" content="Ten years on the Cazenove gold desk. Publishes a level every week, publishes what would prove it wrong, and grades it at Friday's close.">
 <meta name="robots" content="noindex">
+<!-- THE LINK CARD, 24 Sep 2026, note 37 on the record: what a messenger draws under a link to
+     this page. make_link_cards.js draws the card and rewrites the image line. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/guest.html">
+<meta property="og:title" content="The Simplifier · For producers and hosts">
+<meta property="og:description" content="Ten years on the Cazenove gold desk. Publishes a level every week, publishes what would prove it wrong, and grades it at Friday's close.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/link_guest.png?v=73158b10dc">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
 <!-- =========================================================================
      THE GUEST PAGE  ·  23 August 2026
@@ -110,7 +119,23 @@
     font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--ink-6);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   @media(max-width:640px){:root{--pad:22px} .tally{gap:22px}}
+  /* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
+     scrolls, each place a thumb's height, the page you are on underlined. */
+  @media(max-width:760px){
+    .nav{position:relative;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-top:4px;font-size:11px;letter-spacing:.13em}
+    .nav::-webkit-scrollbar{display:none}
+    .nav a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;white-space:nowrap;border-bottom:0}
+    .nav a:first-child{padding-left:0}
+    .nav a:last-child{padding-right:18px}
+    .nav a.here{text-decoration-line:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:7px}
+    .nav.nav-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+    .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
+    .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
+  }
 </style>
+<!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
+     and the page reads the same without it. -->
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -199,5 +224,14 @@
   </footer>
 
 </div>
+<script>
+/* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
+   scrolls; the page you are on is scrolled into it. */
+(function(){try{var n=document.querySelector("nav.nav");if(!n)return;var h=n.querySelector(".here");
+var e=function(){n.classList.toggle("nav-l",n.scrollLeft>4);n.classList.toggle("nav-r",n.scrollLeft+n.clientWidth<n.scrollWidth-4);};
+var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.offsetLeft-(n.clientWidth-h.offsetWidth)/2);e();};
+n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
+</script>
 </body>
 </html>
