@@ -4,19 +4,34 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-09-23",
-  "generated": "2026-09-22T20:23:05.958Z",
+  "last_updated": "2026-09-24",
+  "generated": "2026-09-24T15:23:14.130Z",
   "tally": {
     "resolved": 26,
     "held": 20,
     "wrong": 6,
     "never_reached": 5,
     "open": 3,
-    "note": "Never reached counts for neither side. Standing calls are not in these figures."
+    "hit": 0,
+    "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
+  },
+  "grammar": {
+    "from": "2026-09-28",
+    "named": 0,
+    "slate": 0,
+    "copper": 0,
+    "graded": 0,
+    "held": 0,
+    "hit": 0,
+    "wrong": 0,
+    "expected": 0,
+    "note": "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34."
   },
   "rows": [
     {
       "id": "lrow-0",
+      "anchor": "r-2026-09-20-gold-4337",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-gold-4337",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Gold",
@@ -35,6 +50,8 @@
     },
     {
       "id": "lrow-1",
+      "anchor": "r-2026-09-20-silver-64-08",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-silver-64-08",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Silver",
@@ -53,6 +70,8 @@
     },
     {
       "id": "lrow-2",
+      "anchor": "r-2026-09-20-platinum-1746",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-platinum-1746",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Platinum",
@@ -71,6 +90,8 @@
     },
     {
       "id": "lrow-3",
+      "anchor": "r-2026-09-06-gold-4357",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-gold-4357",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Gold",
@@ -89,6 +110,8 @@
     },
     {
       "id": "lrow-4",
+      "anchor": "r-2026-09-06-platinum-1797-40",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-platinum-1797-40",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Platinum",
@@ -107,6 +130,8 @@
     },
     {
       "id": "lrow-5",
+      "anchor": "r-2026-08-30-gold-4350",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-gold-4350",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Gold",
@@ -125,6 +150,8 @@
     },
     {
       "id": "lrow-6",
+      "anchor": "r-2026-08-30-platinum-1797-40",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-platinum-1797-40",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Platinum",
@@ -143,6 +170,8 @@
     },
     {
       "id": "lrow-7",
+      "anchor": "r-2026-08-23-gold-4308",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-gold-4308",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Gold",
@@ -161,6 +190,8 @@
     },
     {
       "id": "lrow-8",
+      "anchor": "r-2026-08-23-silver-66-66",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-silver-66-66",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Silver",
@@ -179,6 +210,8 @@
     },
     {
       "id": "lrow-9",
+      "anchor": "r-2026-08-23-platinum-1790-84",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-platinum-1790-84",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Platinum",
@@ -197,6 +230,8 @@
     },
     {
       "id": "lrow-10",
+      "anchor": "r-2026-08-16-gold-4281",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-gold-4281",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Gold",
@@ -215,6 +250,8 @@
     },
     {
       "id": "lrow-11",
+      "anchor": "r-2026-08-16-silver-66-60",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-silver-66-60",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Silver",
@@ -233,6 +270,8 @@
     },
     {
       "id": "lrow-12",
+      "anchor": "r-2026-08-14-gold-4268",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-gold-4268",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Gold",
@@ -251,6 +290,8 @@
     },
     {
       "id": "lrow-13",
+      "anchor": "r-2026-08-14-silver-66-86",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-silver-66-86",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Silver",
@@ -269,6 +310,8 @@
     },
     {
       "id": "lrow-14",
+      "anchor": "r-2026-08-07-gold-4098-275",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-4098-275",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -287,6 +330,8 @@
     },
     {
       "id": "lrow-15",
+      "anchor": "r-2026-08-07-silver-61-02",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-silver-61-02",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Silver",
@@ -305,6 +350,8 @@
     },
     {
       "id": "lrow-16",
+      "anchor": "r-2026-08-07-gold-3942-430",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-3942-430",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -323,6 +370,8 @@
     },
     {
       "id": "lrow-17",
+      "anchor": "r-2026-07-27-gold-4098",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-4098",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -341,6 +390,8 @@
     },
     {
       "id": "lrow-18",
+      "anchor": "r-2026-07-27-gold-3942",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-3942",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -359,6 +410,8 @@
     },
     {
       "id": "lrow-19",
+      "anchor": "r-2026-07-27-silver-61-02",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-silver-61-02",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Silver",
@@ -377,6 +430,8 @@
     },
     {
       "id": "lrow-20",
+      "anchor": "r-2026-07-21-gold-4098",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-4098",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -395,6 +450,8 @@
     },
     {
       "id": "lrow-21",
+      "anchor": "r-2026-07-21-gold-3810",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-3810",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -413,6 +470,8 @@
     },
     {
       "id": "lrow-22",
+      "anchor": "r-2026-07-21-silver-61-02",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-silver-61-02",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Silver",
@@ -431,6 +490,8 @@
     },
     {
       "id": "lrow-23",
+      "anchor": "r-2026-07-12-gold-4098",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4098",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -449,6 +510,8 @@
     },
     {
       "id": "lrow-24",
+      "anchor": "r-2026-07-12-silver-61-02",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-silver-61-02",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Silver",
@@ -467,6 +530,8 @@
     },
     {
       "id": "lrow-25",
+      "anchor": "r-2026-07-12-gold-4305-32",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4305-32",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -485,6 +550,8 @@
     },
     {
       "id": "lrow-26",
+      "anchor": "r-2026-07-08-gold-4098",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-08-gold-4098",
       "named": "2026-07-08",
       "type": "Level Watch",
       "metal": "Gold",
@@ -503,6 +570,8 @@
     },
     {
       "id": "lrow-27",
+      "anchor": "r-2026-07-07-silver-61-02",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-07-silver-61-02",
       "named": "2026-07-07",
       "type": "Level Watch",
       "metal": "Silver",
@@ -521,6 +590,8 @@
     },
     {
       "id": "lrow-28",
+      "anchor": "r-2026-07-05-gold-4098-4307",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-07-05-gold-4098-4307",
       "named": "2026-07-05",
       "type": "Map",
       "metal": "Gold",
@@ -539,6 +610,8 @@
     },
     {
       "id": "lrow-29",
+      "anchor": "r-2026-06-29-gold-4500-3809",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-06-29-gold-4500-3809",
       "named": "2026-06-29",
       "type": "Map",
       "metal": "Gold",
@@ -557,6 +630,8 @@
     },
     {
       "id": "lrow-30",
+      "anchor": "r-2026-06-22-gold-4098-4633",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-06-22-gold-4098-4633",
       "named": "2026-06-22",
       "type": "Map",
       "metal": "Gold",
@@ -575,6 +650,8 @@
     },
     {
       "id": "lrow-31",
+      "anchor": "r-2026-06-15-gold-4307",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-06-15-gold-4307",
       "named": "2026-06-15",
       "type": "Map",
       "metal": "Gold",
@@ -593,6 +670,8 @@
     },
     {
       "id": "lrow-32",
+      "anchor": "r-2026-06-11-gold-4098",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-06-11-gold-4098",
       "named": "2026-06-11",
       "type": "Verdict",
       "metal": "Gold",
@@ -611,6 +690,8 @@
     },
     {
       "id": "lrow-33",
+      "anchor": "r-2026-06-07-gold-4308",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-06-07-gold-4308",
       "named": "2026-06-07",
       "type": "Read",
       "metal": "Gold",
@@ -901,6 +982,24 @@
       "kind": "standard",
       "title": "The first screen, the ladder and the standing calls, rebuilt. Written 22 September 2026, uploaded 23 September.",
       "body": "Seven surfaces on this page changed, and none of them touches a row, a grade, a kill, a figure or a date in the ledger. Each is stated here with the reason. THIS WEEK. The open rows, the last Friday close and the room between them now sit on the first screen, under the masthead. Until today a reader arriving from a post met the thesis, the tally and the strip, and the three lines the post was about sat at the top of the ledger several screens down. When nothing is open the same space shows the week last graded, with its grades and its close. THE CLOSES. The page now keeps the Friday closes it grades on in one table, CLOSES, each figure copied from the row or note that first printed it, and filled with every Friday grade from the same reads. Nothing in it is new. This Week and the ladder anchor on its last entry. THE LADDER. It read its close off the standing card, frozen at 11 September by note 29, so every distance it printed was a week old, and it joined lines within half a percent, so 4,337 on the opening box, 4,350 and 4,357 on the retired floors printed as one blue band with one held, one wrong and one open inside it. It now anchors on the last Friday close, joins only lines within a tenth of a percent, the same line named at two precisions, draws every line inside three percent of the close at its exact price with one square for each week it was named, and lists the rest at the edge of the column with their distance. On a phone the metals sit behind tabs, one at a time. The count of levels in the tally keeps its own family rule, stated beside it on 29 August, which is deliberately the generous one; the ladder groups for drawing and the tally groups for counting, and neither is changed to match the other. THE ONES THIS DESK GOT WRONG moved from under the standing cards to under the count, where the claim it proves is made. THE STANDING CALLS. The week-to-week entry was drawn on the 464 swing slow mean, the object the founder retired on 20 September, and it was last read on 11 September. It had not ended: its kill is the cross, and the cross had not printed at that read. It is therefore not ended, not restated and not graded. It carries a third status, retired, beside live and ended, with the date and the reason, and it stays on the page as it stood, every figure included. The year-to-year entry is the same call with the same kill in plainer words: its position read The bull is intact and now reads Up, on the secular clock, until the weekly cross. Its two marks, a run of 217.79 percent in gold since 28 May 2019 and 230.38 percent in silver since July 2020, had been flagged in the source since 1 August as not reproducible, because the chart measures the visible range and the same frame read 221.87 percent. A run figure is a mark of the market and not of this page, so they are withdrawn from the face, kept in the source, and replaced by the two pairs the kill itself reads, fast mean over slow mean at the 1 August read. That read is seven weeks old, and the entry says so on its face until the founder reads it again. THE SILVER ROW OF 16 AUGUST. The row reads that silver stays below the line, 66.60 at naming, and that its kill is a weekly close above it. Silver closed 68.9460. The row is graded held on the conditional posted on X on 10 August, and note 10 has recorded since 21 August why the kill as staged on the page inverted it. It is the only row on this page whose kill as written fired and whose grade is held. The grade is not restamped, because grades are never restamped. What changed is where it is said: the row's own summary line now says it at every width, and the count beside the tally says it, so no reader meets the held without the sentence. THE LINK CARD. Every link to this page and to the bank board posted on X showed one held row from 30 August, three weeks stale, with a sign-off since retired. The card is now regenerated from record.json every Sunday and Friday: the week's lines or the week's grades, and the count, wrong rows included. Every replaced line of copy is kept in the source beside the line that replaced it."
+    },
+    {
+      "n": "33",
+      "kind": "standard",
+      "title": "From 28 September the rows are named on Monday evening, on the week's own box. Written 24 September 2026.",
+      "body": "The week is judged against its own opening box: the first sixteen hours from Sunday's open, frozen on Monday afternoon. Until now the rows were named on Sunday night, before that box existed, so they sat on the box of the week before; the three rows of 20 September are edges of the box of 14 September. From 28 September the rows are named on Monday evening, on the week's own box, after it freezes and before the first 8h close after that, which is midnight in Madrid in most weeks, and they are written to this file before the post that names them. The kill does not change, a weekly close through the published number, and neither does the grade, the Friday close. The cost is stated here so nobody has to work it out: a row is now named with about 86 percent of the week still to trade, where until now it was named before the open. The rows of 20 September grade on 25 September as written. The cadence line under the masthead moves with this note, as do the lines on this page, in its description and on the method, advisers and year pages that promised the levels on a Sunday or before the open; the replaced copy is kept in the source, where this file keeps everything it replaces."
+    },
+    {
+      "n": "34",
+      "kind": "standard",
+      "title": "The call grammar, from 28 September 2026. Side, line, room and odds on every row, and a third grade word. Written 24 September 2026.",
+      "body": "From the rows of 28 September every row on this page says four things, and the file refuses a row that leaves one out. THE SIDE. Slate, the metal holds above the line, or copper, it stays below it. The side is the founder's read and nothing on this page picks it: a rule that read the side off the chart was written down before it was tested, run on the founder's own 8h exports on 23 September, and failed on the copper side, so it sets no row. THE LINE. A weekly close through it grades the row wrong, as every kill on this page always has. It is an edge of the week's own opening box, or a level of the founder's own inside the range of the week before, so no line sits so far from price that it cannot lose. THE ROOM. The next level on the called side. THE ODDS. The chance the line holds, printed on the row the moment it is named, from the tint THE METHOD draws on the box, which was fitted on weeks before June 2025 and kept its calibration on the weeks after; an own level takes the same formula and says so. THE GRADE has a third word. HIT, the week closed at or through the room. HELD, it closed on the called side of the line, short of the room. WRONG, it closed through the line. A hit is a held row, counted once, as held, and marked, so no week is counted twice. Never reached does not exist under the grammar, because the line and the room are both on the page and the close decides. THE ODDS BOARD under the tally adds up the odds each graded row was named at, which is what the rows would have held if the read added nothing, and sets the rows that held beside that figure. Held past it is the read beating the odds; held short of it is not, and the board says so in the same type. It counts the rows by side as well, so a lean either way is on the page rather than left to a reader's arithmetic. Rows named before 28 September keep the words they were graded in. The grammar is frozen to 13 November 2026."
+    },
+    {
+      "n": "35",
+      "kind": "standard",
+      "title": "The page answers a pointer, 24 September 2026. The loupe, the crosshair, an address for every row, and a page for every bank row.",
+      "body": "Five surfaces changed, and none of them touches a row, a grade, a kill, a figure or a date. THE LOUPE. A square on the strip, a line on the ladder and the close each open a small card on a pointer, on keyboard focus or on a first tap: the row's metal and level, its grade, the close it was graded on and how far that close sat from the level, the kill in the row's own words, and any flag the row carries. The close is the one the row's result prints, or where the result prints none, the Friday close in CLOSES for the date PROVENANCE says the row was graded on; the two agree on every row that carries both. Rows from the first upload carry no graded date and show no close. THE CROSSHAIR. Across the ladder a hairline follows the pointer and prints the price at that height on the column's own scale, and its distance from the last Friday close. Within a few pixels of a named line it holds to that line, the other lines dim, and the card lists the rows that named it, newest first, each with its grade and, where the row named one level, its close. THE STRIP. On a wide screen the squares are grouped by the month the row was named, the key marks the rows named before the standard of 3 July, and the arrow keys walk the squares. AN ADDRESS FOR EVERY ROW. A row was reached by its position in the array, lrow and a number, and new rows go on top every week, so every such link pointed at a different row the week after it was shared. Every row now also carries an address built from its own date, metal and level, r-2026-09-06-gold-4357 for the gold row of 6 September, which never moves. A link inside the page writes that address into the bar, the wrong-calls page links by it, record.json carries it on every row as anchor, and a button in every opened row copies it, or on a phone hands it to the share sheet. An old positional link still opens whatever row sits at that position today. A PAGE FOR EVERY BANK ROW. Each target on the bank board links to a page of its own under banks, with the quote, the kill this desk assigned, the grade, the house's other rows, what the house said that the board leaves off, and a link card of its own. The pages are written from record.json by make_bank_pages.js, and verify_record.js checks that every row has its page and its card. Three lines that promised the rows before the open, which note 33 did not reach, move with it in this upload: the brief for producers, the first line of the README and the ledger line on the year page. An opened row draws its gauge from the level to the close, and a row reached by its address is marked in gold for two seconds. Motion is kept to what the reader does, with one exception, the dot beside the countdown, which breathes while the clock runs; a reader who has asked the system for reduced motion gets none of it."
     }
   ],
   "targets": [
@@ -916,7 +1015,8 @@
       "kill": "Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one.",
       "note": "First raised to 4,800 from 4,500 on 24 August 2026 (Reuters). Also the first crowd row on the record, named 9 September.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/citi-gold-4800-2026-12-04.html"
     },
     {
       "published": "2026-09-02",
@@ -930,7 +1030,8 @@
       "kill": "Held if a weekly close at or above 4,900 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
       "note": "Set at 4,900 on 19 June 2026, cut from 5,400; restated 2 September. Quote is the report's headline; the analysts' text projects gains into the second half without restating the figure.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/goldman-sachs-gold-4900-2026-12-31.html"
     },
     {
       "published": "2026-05-27",
@@ -944,7 +1045,8 @@
       "kill": "Held if a weekly close at or above 5,500 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
       "note": "The 5,900 it was cut from was published on 29 January 2026 as the return leg of a path from 6,200 and is listed below the board with that reason; the 6,200 is on the board as three rows, one per window. A March 2026 note reading toward 5,900 to 6,200 this year is listed below the board: toward is not a level.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/ubs-gold-5500-2026-12-31.html"
     },
     {
       "published": "2025-12-29",
@@ -959,7 +1061,8 @@
       "kill": "Held if a weekly close at or above 5,000 prints on or before the last weekly close of September 2026; wrong if the window closes without one.",
       "note": "The first leg of a path. The same note saw a pull back to 4,800 by the end of 2026, and 5,400 if the midterm elections brought turmoil; both are listed below the board with the reason. Gold was 4,322.40 as reported on the day of publication.",
       "grade": "pass",
-      "result": "Held. Weekly closes above the line printed in February, seven months inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went afterwards is not the question the rule asks."
+      "result": "Held. Weekly closes above the line printed in February, seven months inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went afterwards is not the question the rule asks.",
+      "page": "banks/ubs-gold-5000-2026-09-30.html"
     },
     {
       "published": "2026-01-06",
@@ -974,7 +1077,8 @@
       "kill": "Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
       "note": "The same house restating its 29 December target with a March window. Only the first clause carries a level, a window and one direction. Stay there to September names no close to grade, and towards 4,800 is not a level; it is listed below the board.",
       "grade": "pass",
-      "result": "Held. Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported, inside the window. Where price went after the window is not the question the rule asks."
+      "result": "Held. Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported, inside the window. Where price went after the window is not the question the rule asks.",
+      "page": "banks/ubs-gold-5000-2026-03-31.html"
     },
     {
       "published": "2026-01-29",
@@ -989,7 +1093,8 @@
       "kill": "Held if a weekly close at or above 6,200 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
       "note": "One level for three windows in one sentence, graded as three rows, each on its own window. Published the day after gold's high of 2026. The 5,900 by the end of 2026 in the same note is listed below the board.",
       "grade": "miss",
-      "result": "Wrong. The window's last weekly close was Friday 27 March 2026. Gold's high of 2026, 5,589.38 on 28 January as reported, printed the day before the target was published and still stands as reported on 22 September 2026, so no weekly close at or above 6,200 printed inside the window. Graded on reported figures under the rule for closes before June 2026; the founder's chart read replaces them when supplied. The line sits more than 600 above the year's high, so the grade does not turn on the decimals."
+      "result": "Wrong. The window's last weekly close was Friday 27 March 2026. Gold's high of 2026, 5,589.38 on 28 January as reported, printed the day before the target was published and still stands as reported on 22 September 2026, so no weekly close at or above 6,200 printed inside the window. Graded on reported figures under the rule for closes before June 2026; the founder's chart read replaces them when supplied. The line sits more than 600 above the year's high, so the grade does not turn on the decimals.",
+      "page": "banks/ubs-gold-6200-2026-03-31.html"
     },
     {
       "published": "2026-01-29",
@@ -1004,7 +1109,8 @@
       "kill": "Held if a weekly close at or above 6,200 printed on or before the last weekly close of June 2026; wrong if the window closed without one.",
       "note": "The second of the three windows. By the time it shut the same house had cut its year-end target from 5,900 to 5,500, on 27 May, which is its own row.",
       "grade": "miss",
-      "result": "Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 2,111.03 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 is 5,589.38 on 28 January, as reported. The grade does not turn on the decimals."
+      "result": "Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 2,111.03 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 is 5,589.38 on 28 January, as reported. The grade does not turn on the decimals.",
+      "page": "banks/ubs-gold-6200-2026-06-30.html"
     },
     {
       "published": "2026-01-29",
@@ -1019,7 +1125,8 @@
       "kill": "Held if a weekly close at or above 6,200 prints on or before the last weekly close of September 2026, Friday 25 September; wrong if the window closes without one.",
       "note": "The third window, and the crowd row of 23 September. The last weekly close before it was named, Friday 18 September, was 4,377.290, 1,822.71 under the line. Grades on the founder's read of the 25 September close.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/ubs-gold-6200-2026-09-30.html"
     },
     {
       "published": "2026-02-25",
@@ -1033,7 +1140,8 @@
       "kill": "Held if a weekly close at or above 6,300 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
       "note": "Quote is the report's headline. On 23 June 2026 the same house moved 6,300 to end-2027 and held about 6,000 for Q4 2026; that revision is its own row. This row stays as published.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/j-p-morgan-gold-6300-2026-12-31.html"
     },
     {
       "published": "2026-06-23",
@@ -1047,7 +1155,8 @@
       "kill": "Held if a weekly close at or above 6,000 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
       "note": "Reported second-hand; the desk will replace the link with the primary note when it has one. The 2026 average of 5,243 in the same note is not on the board: an average cannot be graded on a close.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/j-p-morgan-gold-6000-2026-12-31.html"
     },
     {
       "published": "2026-05-19",
@@ -1061,7 +1170,8 @@
       "kill": "Held if a weekly close at or above 5,800 prints on or before the last weekly close of 2026; wrong if the year closes without one.",
       "note": "The 4,500 average in the same sentence is not on the board.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/mks-pamp-gold-5800-2026-12-31.html"
     },
     {
       "published": "2025-06-17",
@@ -1075,7 +1185,8 @@
       "kill": "A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.",
       "note": "Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.",
       "grade": "pending",
-      "result": ""
+      "result": "",
+      "page": "banks/citi-gold-2700-2026-12-31.html"
     },
     {
       "published": "2026-01-13",
@@ -1090,7 +1201,8 @@
       "kill": "Held if a weekly close at or above 100 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
       "note": "The same note as the gold 5,000 row, graded on its own metal. Graded 9 September 2026 on a reported close; the founder's chart read replaces the figure when supplied.",
       "grade": "pass",
-      "result": "Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks."
+      "result": "Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks.",
+      "page": "banks/citi-silver-100-2026-03-31.html"
     },
     {
       "published": "2026-01-13",
@@ -1105,7 +1217,8 @@
       "kill": "Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.",
       "note": "Graded 8 September 2026, five months after the window shut, because the board did not exist until then. The desk's own weekly closes begin in June 2026; the February closes are as reported and the figure is replaced by the founder's chart read when supplied. The grade does not depend on the decimals.",
       "grade": "pass",
-      "result": "Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks."
+      "result": "Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks.",
+      "page": "banks/citi-gold-5000-2026-03-31.html"
     }
   ],
   "targets_left_off": [

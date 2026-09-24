@@ -34,6 +34,9 @@ const CALLS = literal("CALLS");
 const NOTES = literal("NOTES");
 let PROVENANCE = {}; try { PROVENANCE = literal("PROVENANCE"); } catch (e) {}
 
+/* 24 Sep 2026, note 35: link each row by its address, which does not move
+   when new rows go on top. The same string index.html builds. */
+const rowAnchor = c => "r-" + c.date + "-" + String(c.metal).toLowerCase() + "-" + String(c.level).replace(/,/g, "").replace(/[^0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt = iso => { const [y, m, d] = iso.split("-"); return `${+d} ${M[+m - 1]} ${y}`; };
@@ -105,7 +108,7 @@ const section = (c, k) => {
       </div>
     </div>
     ${notes.length ? `<div class="notes"><div class="lab">What was written about it afterwards</div>${notes.map(n => `<details><summary>Note ${esc(n.n)} · ${esc(n.title)}</summary><p>${esc(n.body)}</p></details>`).join("")}</div>` : ""}
-    <p class="row-link"><a href="index.html#lrow-${c.idx}">This row on the record</a>${p.commit ? ` · <a href="https://github.com/TheSimplifier7/record/commit/${esc(p.commit)}">the commit that graded it</a>` : ""}</p>
+    <p class="row-link"><a href="index.html#${rowAnchor(c)}">This row on the record</a>${p.commit ? ` · <a href="https://github.com/TheSimplifier7/record/commit/${esc(p.commit)}">the commit that graded it</a>` : ""}</p>
   </section>`;
 };
 

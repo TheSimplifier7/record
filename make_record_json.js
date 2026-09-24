@@ -50,12 +50,22 @@ try {
 const LAST_UPDATED = scalar("LAST_UPDATED");
 const STANDARD_FROM = scalar("STANDARD_FROM");
 
+/* 24 Sep 2026, note 35: the row's address and the bank row's page, the same
+   strings index.html builds with rowAnchor and bankSlug. verify_record.js
+   checks the three files agree. */
+const rowAnchor = c => "r-" + c.date + "-" + String(c.metal).toLowerCase() + "-" + String(c.level).replace(/,/g, "").replace(/[^0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const bankSlug = t => { const h = String(t.source).split(/,\s*(?:as reported|via)\b/i)[0].trim(); const H = ({ "Citi Research": "Citi", "Goldman Sachs Research": "Goldman Sachs", "J.P. Morgan Global Research": "J.P. Morgan" })[h] || h; const s = x => String(x).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); return [s(H), s(t.metal || "Gold"), String(t.level), t.window].join("-"); };
+
 const grades = { pass: "held", miss: "wrong", partial: "partial, counted as wrong", notest: "never reached", pending: "open", nokill: "no kill possible" };
 const rows = CALLS.map((c, i) => {
   const parts = String(c.call).split(/\s*Kill:\s*/i);
   const p = PROVENANCE[c.date] || {};
   return {
+    /* id is the row's position in the array today and moves when rows go on
+       top; anchor is the row's address and does not. Note 35. */
     id: "lrow-" + i,
+    anchor: rowAnchor(c),
+    url: "https://thesimplifier7.github.io/record/#" + rowAnchor(c),
     named: c.date,
     type: c.type,
     metal: c.metal,
@@ -65,7 +75,11 @@ const rows = CALLS.map((c, i) => {
     kill: parts.length > 1 ? parts.slice(1).join(" ").trim() : null,
     result: c.result || null,
     grade: c.grade,
-    grade_word: grades[c.grade] || c.grade,
+    /* 24 Sep 2026, note 34: a hit is a held row, marked */
+    grade_word: c.hit ? "held, hit the room" : (grades[c.grade] || c.grade),
+    ...(c.grammar ? { grammar: 1, side: c.side, line: c.level, room: c.room, odds: c.odds, odds_from: c.oddsFrom || null,
+      line_from: c.lineFrom || null, box: c.box || null, last_range: c.lastRange || null, read_at: c.readAt || null,
+      close: c.close || null, hit: !!c.hit } : {}),
     pre_standard: STANDARD_FROM ? c.date < STANDARD_FROM : null,
     graded_on_close: p.graded || null,
     graded_at: p.graded ? p.graded + "T23:00:00+02:00" : null,
@@ -88,8 +102,17 @@ const out = {
     wrong: count("miss") + count("partial"),
     never_reached: count("notest"),
     open: count("pending"),
-    note: "Never reached counts for neither side. Standing calls are not in these figures."
+    hit: CALLS.filter(c => c.grade === "pass" && c.hit).length,
+    note: "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
+  /* 24 Sep 2026, note 34: the odds board's figures. */
+  grammar: (() => {
+    const G = CALLS.filter(c => c.grammar), GG = G.filter(c => c.grade === "pass" || c.grade === "miss");
+    return { from: scalar("GRAMMAR_FROM"), named: G.length, slate: G.filter(c => c.side === "slate").length, copper: G.filter(c => c.side === "copper").length,
+      graded: GG.length, held: GG.filter(c => c.grade === "pass").length, hit: GG.filter(c => c.hit).length, wrong: GG.filter(c => c.grade === "miss").length,
+      expected: +GG.reduce((s, c) => s + (+c.odds || 0) / 100, 0).toFixed(2),
+      note: "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34." };
+  })(),
   rows,
   standing: STANDING.map(s => ({
     clock: s.clock, position: s.position, stated: s.stated, restated: s.restated || null,
@@ -98,7 +121,7 @@ const out = {
     marks: s.marks || null
   })),
   notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body })),
-  targets: TARGETS,
+  targets: TARGETS.map(t => ({ ...t, page: "banks/" + bankSlug(t) + ".html" })),   /* note 35: each row's own page */
   targets_left_off: OUT,
   closes: CLOSES,
   crowd: {

@@ -25,7 +25,18 @@
     10. record.json agrees with the page on the tally and the stamp.
     11. misses.html carries the same count of wrong rows.
     12. No paper tally card, no card.png, no desk-01.html, no xdesk.py and
-        no __pycache__ sits beside the page (the 6 September review). */
+        no __pycache__ sits beside the page (the 6 September review).
+    13. The call grammar, 24 September 2026, note 34: every row named from
+        GRAMMAR_FROM carries side, line, room and odds, the room on the
+        called side, the line a box edge as read or an own level inside
+        last week's range, a kill that matches both, and once graded a close
+        that agrees with CLOSES and a grade word the arithmetic gives.
+    14. The address of a row, 24 September 2026, note 35: no two rows share
+        one, record.json and misses.html carry the address the page builds.
+    15. A page for every bank row, 24 September 2026, note 35: record.json
+        names the same page the record builds for every target, the page
+        and its 1200 x 630 card are in banks/, and the page was written
+        with the row's current grade. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -151,6 +162,86 @@ const STALE = ["card.png", "card.html", "card_2026-08-16_gold_4281.png", "desk-0
   "xdesk.py", "last_post.json", "__pycache__", "tally_card_vertical.png", "tally_card_vertical.html", "tally_card_landscape.png", "tally_card_landscape.html"];
 const present = STALE.filter(f => fs.existsSync(path.join(HERE, f)));
 check(present.length === 0, "no superseded file beside the page" + (present.length ? " (still here: " + present.join(", ") + ")" : ""));
+
+/* 13. THE CALL GRAMMAR, added 24 September 2026, note 34. */
+const GRAMMAR_FROM = (idx.match(/const GRAMMAR_FROM\s*=\s*"([\d-]+)"/) || [])[1] || "";
+check(!!GRAMMAR_FROM, "GRAMMAR_FROM is set (" + (GRAMMAR_FROM || "missing") + ")");
+const GR = CALLS.filter(c => c.grammar);
+const late = CALLS.filter(c => GRAMMAR_FROM && c.date >= GRAMMAR_FROM && !c.grammar);
+check(late.length === 0, "every row named from " + GRAMMAR_FROM + " is named under the grammar" + (late.length ? " (not: " + late.map(c => c.date + " " + c.metal).join(", ") + ")" : ""));
+check(GR.every(c => c.date >= GRAMMAR_FROM), "no grammar row is dated before " + GRAMMAR_FROM);
+check(CALLS.every(c => !c.hit || (c.grammar && c.grade === "pass")), "a hit is marked only on a held grammar row");
+const PN = s => Number(String(s).replace(/,/g, ""));
+const fridayOf = iso => { const d = new Date(iso + "T12:00:00Z"); let a = (5 - d.getUTCDay() + 7) % 7; if (a === 0) a = 7; d.setUTCDate(d.getUTCDate() + a); return d.toISOString().slice(0, 10); };
+const gprob = [];
+for (const c of GR) {
+  const lv = PN(c.level), rm = PN(c.room), sl = c.side === "slate", e = [];
+  if (!["slate", "copper"].includes(c.side)) e.push("side is not slate or copper");
+  if (!isFinite(lv) || !isFinite(rm)) e.push("line or room is not a number");
+  else if (sl ? !(rm > lv) : !(rm < lv)) e.push("the room is not on the called side of the line");
+  if (!(Number.isInteger(c.odds) && c.odds >= 1 && c.odds <= 99)) e.push("odds are not a whole number from 1 to 99");
+  if (!["data window", "formula"].includes(c.oddsFrom)) e.push("oddsFrom is not data window or formula");
+  if (c.lineFrom === "box high" || c.lineFrom === "box low") {
+    const b = (c.box || []).map(PN), edge = c.lineFrom === "box high" ? b[1] : b[0];
+    if (b.length !== 2 || !(b[0] < b[1])) e.push("box is not a low and a high");
+    else if (Math.abs(lv - edge) > edge * 0.0003) e.push("the line is not the " + c.lineFrom + " as read");
+  } else if (c.lineFrom === "own level") {
+    const r = (c.lastRange || []).map(PN);
+    if (r.length !== 2 || !(r[0] < r[1])) e.push("lastRange is not a low and a high");
+    else if (lv < r[0] || lv > r[1]) e.push("an own level outside last week's range");
+    if (c.oddsFrom !== "formula") e.push("an own level's odds come from the formula");
+  } else e.push("lineFrom is not box high, box low or own level");
+  const k = /Kill:\s*a weekly close (below|above) ([\d,.]+?)\.?\s*$/.exec(c.call || "");
+  if (!k) e.push("the call does not end with the kill sentence");
+  else if ((k[1] === "below") !== sl || PN(k[2]) !== lv) e.push("the kill does not match the side and the line");
+  if (!["pending", "pass", "miss"].includes(c.grade)) e.push("grade " + c.grade + " does not exist under the grammar");
+  if (c.grade === "pass" || c.grade === "miss") {
+    const cl = PN(c.close);
+    if (!c.close || !isFinite(cl)) e.push("graded without its close");
+    else {
+      const want = sl ? (cl < lv ? "wrong" : cl >= rm ? "hit" : "held") : (cl > lv ? "wrong" : cl <= rm ? "hit" : "held");
+      const got = c.grade === "miss" ? "wrong" : c.hit ? "hit" : "held";
+      if (want !== got) e.push("graded " + got + ", the close says " + want);
+      if (!new RegExp("\\b" + got.toUpperCase() + "\\b").test(c.result || "")) e.push("the result does not carry " + got.toUpperCase());
+      const fr = CLOSES.find(x => x.date === fridayOf(c.date));
+      if (!fr || PN(fr[c.metal]) !== cl) e.push("the close does not match CLOSES for " + fridayOf(c.date));
+    }
+  }
+  if (e.length) gprob.push(c.date + " " + c.metal + ": " + e.join("; "));
+}
+check(gprob.length === 0, "the call grammar holds on every grammar row (" + GR.length + ")" + (gprob.length ? "\n          " + gprob.join("\n          ") : ""));
+const GG = GR.filter(c => c.grade === "pass" || c.grade === "miss");
+const expd = +GG.reduce((s, c) => s + c.odds / 100, 0).toFixed(2);
+check(!!(rec && rec.grammar && rec.grammar.named === GR.length && rec.grammar.graded === GG.length && rec.grammar.held === GG.filter(c => c.grade === "pass").length
+  && rec.grammar.hit === GG.filter(c => c.hit).length && Math.abs(rec.grammar.expected - expd) < 0.005),
+  "record.json carries the odds board's figures (" + GR.length + " named, " + GG.length + " graded, expected " + expd + ")");
+
+/* 14. THE ADDRESS OF A ROW, added 24 September 2026, note 35. */
+const fnFrom = (name) => { const m = idx.match(new RegExp("const " + name + " = ([^\\n]+);\\n")); return m ? eval("(" + m[1] + ")") : null; };
+const rowAnchor = fnFrom("rowAnchor");
+check(typeof rowAnchor === "function", "the page builds a row address (rowAnchor)");
+if (typeof rowAnchor === "function") {
+  const A = CALLS.map(rowAnchor);
+  const dup = A.filter((a, i) => A.indexOf(a) !== i);
+  check(dup.length === 0 && A.every(a => /^r-\d{4}-\d{2}-\d{2}-[a-z]+-[0-9]+(-[0-9]+)*$/.test(a)), "every row has an address of its own (" + A.length + ")" + (dup.length ? " (shared: " + dup.join(", ") + ")" : ""));
+  const rr = (rec && rec.rows) || [];
+  check(rr.length === CALLS.length && rr.every((r, i) => r.anchor === A[i]), "record.json carries the address the page builds on every row");
+  const ml = [...missesText.matchAll(/href="index\.html#([^"]+)"/g)].map(m => m[1]).filter(h => /^(r-|lrow-)/.test(h));
+  check(ml.length > 0 && ml.every(h => A.includes(h)), "misses.html links every row by its address (" + ml.length + ")");
+}
+
+/* 15. A PAGE FOR EVERY BANK ROW, added 24 September 2026, note 35. */
+const bankSlug = fnFrom("bankSlug");
+let TG = []; try { TG = grab("TARGETS", "\\[", "\\]"); } catch (e) {}
+const rt = (rec && rec.targets) || [];
+check(typeof bankSlug === "function" && rt.length === TG.length && TG.every((t, i) => rt[i].page === "banks/" + bankSlug(t) + ".html"),
+  "record.json names the page the record builds for every bank row (" + TG.length + ")");
+const pngWH = f => { try { const b = fs.readFileSync(f); return [b.readUInt32BE(16), b.readUInt32BE(20)]; } catch (e) { return [0, 0]; } };
+const noPage = rt.filter(t => { const slug = String(t.page || "").replace(/^banks\//, "").replace(/\.html$/, ""); const wh = pngWH(path.join(HERE, "banks", "cards", slug + ".png"));
+  return !slug || !fs.existsSync(path.join(HERE, "banks", slug + ".html")) || wh[0] !== 1200 || wh[1] !== 630; });
+check(rt.length > 0 && noPage.length === 0, "every bank row has its page and its 1200 x 630 card in banks/" + (noPage.length ? " (missing: " + noPage.map(t => t.page).join(", ") + ")" : ""));
+const stalePg = rt.filter(t => { try { return !rd(t.page).includes('<body data-grade="' + t.grade + '">'); } catch (e) { return true; } });
+check(stalePg.length === 0, "every bank page carries its row's grade (run node make_bank_pages.js after any bank grade)" + (stalePg.length ? " (stale: " + stalePg.map(t => t.page).join(", ") + ")" : ""));
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

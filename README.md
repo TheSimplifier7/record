@@ -4,7 +4,8 @@ The public track record of THE SIMPLIFIER. Gold, silver and platinum.
 
 **Live record: https://thesimplifier7.github.io/record/**
 
-Every call is named before the week opens and graded after the week closes. The wins and the misses sit in the same place. Nothing is ever removed.
+<!-- 24 Sep 2026, note 33, reached by note 35. This read: "Every call is named before the week opens and graded after the week closes." -->
+Every call is named in advance and graded after the week closes. The wins and the misses sit in the same place. Nothing is ever removed.
 
 The file only grows. The commit history of this repository is the proof. If a call was wrong, it is still here.
 
@@ -24,7 +25,8 @@ Corrections are published on the page as numbered notes. Notes are never renumbe
 
 ## Cadence
 
-A call is named on Sunday night, before the market opens, and written into this file open, so the commit timestamp sits hours before the tape exists. It is graded on Friday at the weekly close, 23:00 in Spain, and nothing is graded before the candle closes.
+<!-- 24 Sep 2026, note 33. This read: "A call is named on Sunday night, before the market opens, and written into this file open, so the commit timestamp sits hours before the tape exists." -->
+A call is named on Monday evening, on the week's own opening box after it freezes and before the first 8h close after that, and written into this file open, so the commit timestamp sits before any close through the box. Until 20 September 2026 calls were named on Sunday night, before the market opened (note 33). It is graded on Friday at the weekly close, 23:00 in Spain, and nothing is graded before the candle closes.
 
 ## The standing calls
 

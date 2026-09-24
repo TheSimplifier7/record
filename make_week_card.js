@@ -53,9 +53,11 @@ const cols = rows.map(r => {
   const dec = r.metal === "Silver" ? 3 : 2;
   const f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec });
   const col = GC[r.grade] || C.notest;
-  const line2 = mode === "open" ? (side(r) === "under" ? "holds above" : "stays below") : GW[r.grade];
+  /* 24 Sep 2026, note 34: a grammar row names its side, and a hit reads Hit. */
+  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "copper · stays below" : "slate · holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]);
   const line3 = clTxt ? `close ${fmt(cEntry.date)} · ${esc(clTxt)}` : "";
-  const line4 = mode === "open" && isFinite(room) ? `${f(room)} ${room >= 0 ? "of room" : "through"}`
+  const line4 = mode === "open" && r.grammar ? `room ${r.room} · odds ${r.odds} in 100`
+    : mode === "open" && isFinite(room) ? `${f(room)} ${room >= 0 ? "of room" : "through"}`
     : r.grade === "notest" ? "never reached" : isFinite(room) ? `${room >= 0 ? "+" : "−"}${f(room)} ${room >= 0 ? "clear" : "through"}` : "";
   return `<div class="c" style="border-top-color:${col}"><div class="m">${esc(r.metal)}</div><div class="lv" style="color:${col}">${esc(r.level)}</div>
     <div class="l2" style="color:${mode === "open" ? C.ink5 : col}">${esc(line2)}</div><div class="l3">${line3}</div><div class="l4" style="color:${col}">${esc(line4)}</div></div>`;
@@ -63,7 +65,7 @@ const cols = rows.map(r => {
 
 const kicker = mode === "open"
   ? `This week · named ${fmt(named)} · graded on the ${fmt(friday)} close`
-  : `Graded on the ${fmt(friday)} close · the next lines are named Sunday`;
+  : `Graded on the ${fmt(friday)} close · the next lines are named Monday`;   /* 24 Sep 2026, note 33: "named Sunday" until today */
 
 /* Local copies of the two faces, used when the sandbox cannot reach Google
    Fonts; on any other machine the Google stylesheet loads first and wins. */
@@ -98,7 +100,7 @@ body{background:${C.bg};background-image:radial-gradient(900px 380px at 78% -12%
 <div class="mast"><b>THE SIMPLIFIER</b><span>Metals · the record</span></div>
 <div class="k">${esc(kicker)}</div>
 <div class="cols">${cols}</div>
-<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
+<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held${t.hit ? `, ${t.hit} hit` : ""}</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
 </body></html>`;
 
 const base = `card_${named}_${mode}`;

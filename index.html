@@ -11,7 +11,8 @@
      share cards. Counts live on the page, where they are computed, not here.
      Replaced line kept:
      <meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." /> -->
-<meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." />
+<!-- 24 Sep 2026, note 33. This read: meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." -->
+<meta name="description" content="Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." />
 <meta name="theme-color" content="#141210" id="meta-theme">
 <meta name="color-scheme" content="dark light">
 <script>
@@ -58,7 +59,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/">
 <meta property="og:title" content="The Simplifier · The Record">
-<meta property="og:description" content="Gold, silver and platinum levels named before the week opens, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed.">
+<!-- 24 Sep 2026, note 33. This read: meta property="og:description" content="Gold, silver and platinum levels named before the week opens, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed." -->
+<meta property="og:description" content="Gold, silver and platinum levels named in advance, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed.">
 <!-- WAS share_2026-08-30_gold_4350.png until 22 Sep 2026, note 32: a single held row, three weeks stale, with the retired sign-off in its footer.
      <meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png"> -->
 <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_open.png">
@@ -128,6 +130,7 @@
     --ink-5:#B8AE9E; --ink-6:#A69C8C;
     --gold:#CBA43C; --gold-hi:#E0C878;
     --pass:#5FA57A; --miss:#D2764A; --partial:#D9A05B; --notest:#9C9282; --pending:#6BA3C7;
+    --slate:#6BA3C7; --copper:#D2764A;   /* note 34: the side of a call, in THE METHOD's own two colours */
     --band:rgba(239,232,220,.035);
     --hover:#26221D; --glow:rgba(203,164,60,.07);
     --link-rule:rgba(203,164,60,.45); --link-rule-2:rgba(203,164,60,.5);
@@ -145,6 +148,7 @@
     --ink-5:#403A2C; --ink-6:#47412F;
     --gold:#4A360C; --gold-hi:#322408;
     --pass:#163821; --miss:#63220E; --partial:#573107; --notest:#3B3B36; --pending:#1B3646;
+    --slate:#1B3646; --copper:#63220E;   /* note 34 */
     --band:rgba(20,17,12,.038);
     --hover:#B6AEA1; --glow:rgba(255,251,242,.4);
     --link-rule:rgba(74,54,12,.4); --link-rule-2:rgba(74,54,12,.42);
@@ -1196,6 +1200,162 @@
     .lfilter{gap:6px}
     .chip{padding:6px 10px;font-size:10px}
   }
+  /* THE CALL GRAMMAR, 24 Sep 2026, note 34. The hit mark, the side tag, the
+     rule drawn in every grammar row (wrong beyond the line, held between the
+     line and the room, hit at or beyond the room), the same rule in small on
+     This Week, and the odds board under the tally. */
+  .g-hit::before{background:var(--gold);box-shadow:0 0 0 2px var(--pass)}
+  .strip a.pass.hit{box-shadow:inset 0 0 0 3px var(--gold)}
+  .strip-key i.hit{background:var(--pass);border-color:var(--pass);box-shadow:inset 0 0 0 2px var(--gold)}
+  .ladder-key i.hit{background:var(--pass);box-shadow:inset 0 0 0 2px var(--gold)}
+  .strip-key .k-hit[hidden],.ladder-key .k-hit[hidden]{display:none}
+  .c-side{display:inline-block;margin:11px 0 0 8px;padding:2px 0 2px 9px;border-left:2px solid var(--slate);
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
+  .c-side.copper{border-left-color:var(--copper)}
+  .rule{grid-column:1 / -1;padding:30px 0 10px;border-bottom:1px solid var(--rule-soft);margin-bottom:6px}
+  .rbar{position:relative;height:30px;margin:0 4px}
+  .rbar .rz,.rmini .rz{position:absolute;top:0;bottom:0}
+  .rz.z-wrong{background:color-mix(in srgb,var(--miss) 17%,transparent)}
+  .rz.z-held{background:color-mix(in srgb,var(--pass) 15%,transparent)}
+  .rz.z-hit{background:color-mix(in srgb,var(--pass) 34%,transparent)}
+  .rbar.done .rz{opacity:.42}
+  .rbar.done .rz.on{opacity:1;box-shadow:inset 0 0 0 1.5px var(--pass)}
+  .rbar.done .rz.on.z-wrong{box-shadow:inset 0 0 0 1.5px var(--miss)}
+  .rbar .rz i{position:absolute;bottom:5px;left:8px;font-style:normal;font-family:var(--mono);font-size:9.5px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5);white-space:nowrap;overflow:hidden;max-width:calc(100% - 12px)}
+  .rbar .rz.on i{color:var(--ink)}
+  .rbar .rm{position:absolute;top:-7px;width:2px;height:44px;margin-left:-1px}
+  .rm.ln{background:var(--gold)}
+  .rm.rmk{background:repeating-linear-gradient(to bottom,var(--pass) 0 4px,transparent 4px 7px)}
+  .rbar .rl{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;font-weight:600;white-space:nowrap}
+  .rbar .rl.ln{top:-27px;color:var(--gold)} .rbar .rl.rmk{top:40px;color:var(--pass)}
+  .rbar .rl.l{transform:none} .rbar .rl.r{transform:translateX(-100%)}
+  .rbar .rc,.rmini .rc{position:absolute;width:14px;height:14px;margin-left:-7px;transform:rotate(45deg);background:var(--ink);border:2px solid var(--panel)}
+  .rbar .rc{top:8px}
+  .rc.pass{background:var(--pass)} .rc.miss{background:var(--miss)} .rc.pending{background:var(--pending)}
+  .rc.hit{box-shadow:0 0 0 2px var(--gold)}
+  .rcap{display:flex;justify-content:space-between;gap:6px 18px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:11px;color:var(--ink-5)}
+  .rcap b{color:var(--ink);font-weight:600} .rcap .pass{color:var(--pass)} .rcap .miss{color:var(--miss)} .rcap .pending{color:var(--pending)}
+  .rmini{position:relative;height:10px;margin:4px 0 12px;background:var(--rule-soft)}
+  .rmini .rm{position:absolute;top:-4px;width:2px;height:18px;margin-left:-1px}
+  .rmini .rc{top:-3px;width:12px;height:12px;margin-left:-6px;border-width:1.5px;border-color:var(--hover)}
+  .tw-card.hit .lv{color:var(--pass)}
+  .ob{margin:22px 0 6px;border:1px solid var(--rule-card);border-radius:14px;background:var(--panel);padding:18px 20px 16px;
+    background-image:radial-gradient(520px 160px at 88% -30%,var(--glow),transparent 70%)}
+  .ob-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap}
+  .ob-head .eyebrow{margin:0;color:var(--gold)}
+  .ob-since{font-family:var(--mono);font-size:10.5px;color:var(--ink-6);letter-spacing:.06em}
+  .ob-since a{color:var(--ink-5)}
+  .ob-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+  .ob-fig .n{font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:-.02em;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
+  .ob-fig .n.pass{color:var(--pass)} .ob-fig .n.gold{color:var(--gold)}
+  .ob-fig .n .of{font-size:15px;font-weight:500;color:var(--ink-5);letter-spacing:0;margin:0 10px 0 5px}
+  .ob-fig .n .of:last-child{margin-right:0}
+  .ob-fig .l{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5);margin-top:6px;line-height:1.55}
+  .ob-track{position:relative;height:12px;margin:34px 2px 34px;background:var(--rule-soft);border-radius:6px}
+  .ob-track .f{position:absolute;left:0;top:0;height:12px;border-radius:6px;background:var(--pass)}
+  .ob-track .e{position:absolute;top:-9px;width:3px;height:30px;margin-left:-1.5px;background:var(--gold)}
+  .ob-track .el{position:absolute;top:-28px;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--gold);white-space:nowrap}
+  .ob-track .fl{position:absolute;top:19px;font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--pass);white-space:nowrap;transform:translateX(-100%)}
+  .ob-track .fl.l{transform:none}
+  .ob-lean{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:10px;background:var(--rule-soft)}
+  .ob-lean .s{background:var(--slate)} .ob-lean .c{background:var(--copper)}
+  .ob-plain{font-size:14.5px;line-height:1.6;color:var(--ink-4);margin-top:4px;max-width:72ch}
+  .ob-plain b{color:var(--ink);font-weight:600}
+  @media(max-width:760px){.ob{padding:14px}.ob-figs{grid-template-columns:1fr;gap:12px}.ob-fig .n{font-size:28px}.rbar .rz i{font-size:8.5px;left:6px;letter-spacing:.1em}}
+  /* THE LOUPE, THE CROSSHAIR AND THE ROW ADDRESS, 24 Sep 2026, note 35.
+     One small card for every mark on this page that stands for a row: a
+     square on the strip, a line on the ladder, the close. It reads the row's
+     own fields and prints nothing the row does not already say. The motion
+     below is only what a pointer asks for, and none of it runs for a reader
+     who has asked the system for reduced motion. */
+  .loupe{position:fixed;left:0;top:0;z-index:60;width:max-content;max-width:min(330px,calc(100vw - 16px));
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:11px 14px 10px;
+    box-shadow:0 16px 36px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35);pointer-events:none;
+    font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--ink-4);
+    opacity:0;transform:translateY(4px);transition:opacity .12s ease,transform .12s ease}
+  .loupe.on{opacity:1;transform:none}
+  .loupe[hidden]{display:none}
+  :root[data-theme="light"] .loupe{box-shadow:0 14px 30px rgba(20,17,12,.22),0 2px 6px rgba(20,17,12,.14)}
+  .lp-h{display:flex;justify-content:space-between;align-items:baseline;gap:18px;margin-bottom:5px}
+  .lp-h b{font-weight:600;color:var(--ink);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+  .lp-h .lv{font-size:16px;font-weight:600;color:var(--gold);letter-spacing:-.01em;margin-left:9px}
+  .lp-g{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+  .lp-g::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:currentColor;box-sizing:border-box}
+  .lp-g.notest::before{background:none;border:1.5px solid currentColor}
+  .lp-g.close{color:var(--ink)}
+  .loupe .pass{color:var(--pass)} .loupe .miss{color:var(--miss)} .loupe .pending{color:var(--pending)} .loupe .notest{color:var(--notest)}
+  .lp-r em{font-style:normal;font-weight:600;color:var(--ink)}
+  .lp-k{margin-top:6px;padding-top:6px;border-top:1px solid var(--rule-soft);color:var(--ink-5);font-size:11px;line-height:1.55}
+  .lp-f{margin-top:6px;color:var(--gold);font-size:10.5px;line-height:1.5}
+  .lp-hist{display:grid;grid-template-columns:auto auto 1fr;gap:0 14px;margin:5px 0 3px;padding:5px 0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);font-size:11px}
+  .lp-hist span:nth-child(3n){text-align:right;color:var(--ink-5)}
+  .lp-hint{margin-top:7px;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-6)}
+
+  /* the strip, by month */
+  .strip{gap:12px 18px;align-items:flex-end}
+  .strip .sg{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .strip .sg>b{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-6)}
+  .strip .sq{display:flex;flex-wrap:wrap;gap:5px}
+  .strip-key i.pre{opacity:.55}
+  /* on a phone the months would cost four lines; the squares stay one run and the card gives the date */
+  @media(max-width:760px){.strip{gap:5px}.strip .sg,.strip .sq{display:contents}.strip .sg>b{display:none}}
+
+  /* the ladder's crosshair */
+  .lx-plot{position:relative;touch-action:pan-y;cursor:crosshair}
+  .lx-plot a,.lx-plot.snapped{cursor:pointer}
+  .lx-xh line{stroke:var(--ink-5);stroke-width:1;stroke-dasharray:3 3}
+  .lx-xh.snap line{stroke:var(--gold);stroke-dasharray:none}
+  .lx-xh rect{fill:var(--ink)}
+  .lx-xh.snap rect.pb{fill:var(--gold)}
+  .lx-xh text{fill:var(--bg);font-family:var(--mono)}
+  .lx-plot .lxl.h{transition:opacity .15s ease}
+  .lx-plot.hot .lxl.h{opacity:.3}
+  .lx-plot.hot .lxl.h.on{opacity:1}
+  .lx-er{cursor:default;border-radius:4px}
+  .lx-er:hover{background:var(--hover)}
+
+  /* a row reached by its address */
+  .lrow>summary{position:relative}
+  .ranchor{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;scroll-margin-top:88px}
+  .lrow.arrive>summary{animation:arrive 2.2s ease-out}
+  @keyframes arrive{0%,30%{box-shadow:inset 3px 0 0 var(--gold),inset 0 0 0 1px var(--gold);background:color-mix(in srgb,var(--gold) 13%,var(--hover))}100%{box-shadow:inset 3px 0 0 transparent,inset 0 0 0 1px transparent}}
+  .rshare{grid-column:1 / -1;display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:-10px}
+  .rs-btn{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+    background:none;border:1px solid var(--link-rule);border-radius:3px;padding:8px 12px;cursor:pointer}
+  .rs-btn:hover{border-color:var(--gold-hi);color:var(--gold-hi)}
+  .rs-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .rs-ok{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--pass);word-break:break-all}
+
+  /* the gauge draws from the level to the close when its row opens */
+  .gauge .gb{transform-box:view-box;transform-origin:450px 20px}
+  .lrow[open] .gauge .gb{animation:gdraw .8s cubic-bezier(.2,.7,.2,1) both}
+  .lrow[open] .gauge .gm{animation:gmark .8s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes gdraw{from{transform:scaleX(0)}}
+  @keyframes gmark{from{transform:translateX(var(--dx,0px))}}
+
+  /* this week: the card lifts, the clock breathes */
+  .tw-card{transition:transform .16s ease,box-shadow .16s ease}
+  .tw-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+  :root[data-theme="light"] .tw-card:hover{box-shadow:0 10px 22px rgba(20,17,12,.16)}
+  .tw-cd::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:currentColor;margin-right:9px;vertical-align:1px;animation:clock 2.4s ease-in-out infinite}
+  .tw-cd.due::before{animation:none}
+  @keyframes clock{0%,100%{opacity:1}50%{opacity:.2}}
+
+  /* the bank board: every row, its own page */
+  .bk-page{display:inline-block;margin-top:9px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:0}
+  .board td.l a.bk-lv{color:inherit;border-bottom:1px solid var(--link-rule)}
+  .board td.l a.bk-lv:hover{color:var(--gold-hi);border-bottom-color:var(--gold-hi)}
+  @media(max-width:760px){.bk-page{display:none}}
+
+  @media(prefers-reduced-motion:reduce){
+    .loupe,.lx-plot .lxl.h,.tw-card{transition:none}
+    .tw-card:hover{transform:none}
+    .tw-cd::before{animation:none}
+    .lrow[open] .gauge .gb,.lrow[open] .gauge .gm{animation:none}
+    .lrow.arrive>summary{animation:none;box-shadow:inset 3px 0 0 var(--gold)}
+  }
+  @media(hover:none){.lx-plot{cursor:auto}}
 </style>
 </head>
 <body>
@@ -1219,7 +1379,8 @@
     <span class="ab-cta">
       <a class="btn-quiet" id="ab-method" href="method.html" data-ready="1">The Method</a>
       <a class="btn-quiet" id="ab-apply" href="#doors" data-ready="0">Three seats open</a>
-      <a class="btn" id="ab-email" href="#doors" data-ready="0">Get the Sunday level</a>
+      <!-- 24 Sep 2026, note 33. Read "Get the Sunday level". -->
+      <a class="btn" id="ab-email" href="#doors" data-ready="0">Get the Monday level</a>
     </span>
   </div>
 </div>
@@ -1261,7 +1422,7 @@
            he followed a call, it was wrong, and it vanished. The fold now opens
            on his moment and states the rule second. See note 14. -->
       <p class="thesis"><em>You have followed a gold call that was wrong and watched it disappear.</em> Here it does not disappear.</p>
-      <p class="thesis-2">Every gold, silver and platinum level on this page was named before the week opened, with the close that would prove it wrong written beside it. On Friday it is graded against that close. The wrong rows stay up next to the right ones, in the order they happened.</p>
+      <p class="thesis-2"><!-- 24 Sep 2026, note 33. Read "was named before the week opened, with the close". -->Every gold, silver and platinum level on this page was named in advance, with the close that would prove it wrong written beside it. On Friday it is graded against that close. The wrong rows stay up next to the right ones, in the order they happened.</p>
       <p class="law">Price is the rudder · The rest is weather</p>
     </div>
     <dl class="spec">
@@ -1285,7 +1446,9 @@
            On this page "standing" already means the two directional calls running
            on their own clocks. THE_WEEK.md uses the same word for a status update
            on an open weekly call. Two meanings, one word, one page. -->
-      <dt>Cadence</dt><dd>Map Sunday · Verdict Friday</dd>
+      <!-- MOVED 24 Sep 2026, note 33, by the founder's ruling of that day: the map moves to Monday
+           evening, on the week's own opening box. This read: <dd>Map Sunday · Verdict Friday</dd> -->
+      <dt>Cadence</dt><dd>Map Monday · Verdict Friday</dd>
       <dt>Grading</dt><dd>Weekly close, in public</dd>
       <dt>Method</dt><dd>Falsifiable levels, standard from 3 Jul 2026</dd>
       <dt>Revisions</dt><dd>Nothing deleted</dd>
@@ -1301,7 +1464,8 @@
   <section class="tw" id="this-week" hidden aria-label="This week">
     <div class="tw-head"><span class="tw-title" id="tw-title"></span><span class="tw-cd countdown" id="tw-cd" data-short></span></div>
     <div class="tw-cards" id="tw-cards"></div>
-    <div class="tw-foot"><span id="tw-rule"></span><a id="tw-door" href="#door-email" hidden>Sunday's lines, by email, before the open &rsaquo;</a></div>
+    <!-- 24 Sep 2026, note 33. The door read "Sunday's lines, by email, before the open". -->
+    <div class="tw-foot"><span id="tw-rule"></span><a id="tw-door" href="#door-email" hidden>Monday's lines, by email, the evening they are named &rsaquo;</a></div>
   </section>
 
   <!-- THE TALLY, changed 1 Aug 2026. The third stat was a strike rate percentage
@@ -1344,10 +1508,17 @@
     <div><div class="eyebrow">By week, the count this page keeps</div><p class="tally-note" id="t-note"></p></div>
     <div><div class="eyebrow">By level, the count that flatters it less</div><p class="tally-note" id="t-note-level"></p></div>
   </div>
+  <!-- THE ODDS BOARD, 24 Sep 2026, note 34. Held against expected, under the
+       call grammar: the rows that held beside the sum of the odds each was
+       named at, and the count by side. Rendered from CALLS only, and hidden
+       while no row is named under the grammar, because this page does not
+       pad a section to look busy. -->
+  <section class="ob" id="odds-board" hidden aria-label="Held against the odds"></section>
   <div class="strip-wrap" id="strip-wrap">
     <div class="strip-head">
-      <div class="eyebrow" style="margin:0">Every row on the record, oldest to newest. Click a square to open its row.</div>
-      <div class="strip-key"><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i></i>never reached</span><span><i class="open"></i>open, clock running</span></div>
+      <!-- 24 Sep 2026, note 35. Read "Every row on the record, oldest to newest. Click a square to open its row." -->
+      <div class="eyebrow" style="margin:0">Every row on the record, oldest to newest. Hover or tap a square to read it.</div>
+      <div class="strip-key"><!-- hit added 24 Sep 2026, note 34 --><span><i class="pass"></i>held</span><span class="k-hit" hidden><i class="pass hit"></i>hit</span><span><i class="miss"></i>wrong</span><span><i></i>never reached</span><span><i class="open"></i>open, clock running</span><span><i class="pass pre"></i>before the 3 Jul standard</span><!-- the last key, 24 Sep 2026, note 35 --></div>
     </div>
     <div class="strip" id="strip"></div>
   </div>
@@ -1355,7 +1526,9 @@
        language and a stranger should not have to translate them. The next
        verdict line is computed as the next Friday after the stamp, so the page
        says when it is next graded without a hand-set date that can rot. -->
-  <p class="legend"><b>Held</b> the close stayed on the right side of the named line. <b>Wrong</b> the close crossed it; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Open</b> the level is named and the clock is still running, so it is counted for neither side until the close that grades it. <b>Kill</b> the close, named with the call, that would grade it wrong.</p>
+  <!-- 24 Sep 2026, note 34, the call grammar. The legend read:
+       p class="legend": <b>Held</b> the close stayed on the right side of the named line. <b>Wrong</b> the close crossed it; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Open</b> the level is named and the clock is still running, so it is counted for neither side until the close that grades it. <b>Kill</b> the close, named with the call, that would grade it wrong. -->
+  <p class="legend"><b>Held</b> the close stayed on the right side of the named line. <b>Hit</b> it went through the room named with the call as well; a hit counts once, as held, and is marked. <b>Wrong</b> the close crossed the line; the row stays, in red, forever. <b>Never reached</b> price never came to the line, so the week proves nothing and counts for neither side. <b>Open</b> the level is named and the clock is still running, so it is counted for neither side until the close that grades it. <b>Kill</b> the close, named with the call, that would grade it wrong. <b>Side, room and odds</b> every row from 28 September says which way it reads, slate above the line or copper below it, the next level on that side, and the chance the line holds, as printed the day it was named.</p>
   <p class="next-verdict" id="next-verdict"></p>
 
   <div class="wrong-wrap" id="wrong-wrap">
@@ -1382,7 +1555,7 @@
   <p class="sc-plain" style="margin-bottom:0">The ledger reads by date. This reads by price: <em>where each metal closed on Friday, the line it holds this week, and every earlier line at its exact price</em>, with one square for each week it was named. Lines far from price are listed at the edge of the column with their distance.</p>
   <div class="ladder-tabs" id="ladder-tabs" role="tablist"></div>
   <div class="ladder" id="ladder"></div>
-  <div class="ladder-key"><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i class="notest"></i>never reached</span><span><i class="open"></i>open</span><span>one square per week the line was named, oldest first</span></div>
+  <div class="ladder-key"><!-- hit added 24 Sep 2026, note 34 --><span><i class="pass"></i>held</span><span class="k-hit" hidden><i class="hit"></i>hit</span><span><i class="miss"></i>wrong</span><span><i class="notest"></i>never reached</span><span><i class="open"></i>open</span><span>one square per week the line was named, oldest first</span><span>hover or tap a column to read any price on it<!-- 24 Sep 2026, note 35 --></span></div>
 
   <div class="ledger-head">
     <h2>Standing Calls</h2>
@@ -1545,14 +1718,18 @@
 
     <div class="door" id="door-email" data-ready="0">
       <div class="eyebrow">Free</div>
-      <h3>The Sunday Level</h3>
-      <p>The levels, by email, before the market opens. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
+      <!-- 24 Sep 2026, note 33. This read:
+           <h3>The Sunday Level</h3>
+           <p>The levels, by email, before the market opens. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
+           <p class="cadence">One email Sunday, one email Friday, nothing else.</p> -->
+      <h3>The Monday Level</h3>
+      <p>The levels, by email, the evening they are named. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
       <form class="signup" id="signup-form" method="post">
         <label for="em" hidden>Email address</label>
         <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
         <button class="btn" type="submit">Send it</button>
       </form>
-      <p class="cadence">One email Sunday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
+      <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
       <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
     </div>
 
@@ -1680,6 +1857,35 @@
    grade earned at arm's length must not read like one earned under
    pressure. See note 05.
 
+   THE CALL GRAMMAR, from 28 September 2026, note 34, ruled by the founder
+   on 24 September. Every row named from GRAMMAR_FROM carries these fields,
+   and verify_record.js refuses a row that leaves one out:
+     grammar:1            the row is named under the grammar
+     side:"slate"         holds above the line, or "copper", stays below it.
+                          The founder's read. Nothing on this page picks it.
+     level                the line, as before: a weekly close through it
+                          grades the row wrong. The call still ends
+                          "Kill: a weekly close below {level}." for slate
+                          and "above" for copper.
+     room:"4,383.34"      the next level on the called side
+     odds:58              the chance the line holds, 1 to 99, at naming
+     oddsFrom             "data window" (THE METHOD's tint on a box edge)
+                          or "formula" (the same model on an own level)
+     lineFrom             "box high", "box low" or "own level"
+     box:["lo","hi"]      the week's opening box as frozen, as read
+     lastRange:["lo","hi"] last week's high to low; required for an own
+                          level, which must sit inside it
+     readAt:"HH:MM CEST"  when the founder read it
+   Graded on the weekly close, with close:"x" written on the row, copied from
+   the Friday's CLOSES entry, and the word in capitals in the result:
+     HIT    closed at or through the room        grade "pass", hit:true
+     HELD   closed on the called side of the     grade "pass"
+            line, short of the room
+     WRONG  closed through the line              grade "miss"
+   A hit is a held row, counted once, as held, and marked. Never reached and
+   partial do not exist under the grammar: both levels are on the page and
+   the close decides.
+
    Grades are never restamped to match a later rulebook. If the standard
    changes, the boundary moves and the rows get marked. The grades stand.
 
@@ -1694,7 +1900,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-23";   /* set by hand, with the commit. WAS "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September upload, which carries notes 33, 34 and 35; "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1780,6 +1986,7 @@ const provenanceLine = date => {
   return `<span class="prov">Graded on the ${esc(fmtDate(p.graded))} close, 23:00 CEST · written to the record ${esc(fmtDate(p.written))} · <a href="${REPO}/commit/${esc(p.commit)}">commit ${esc(p.commit)}</a></span>`;
 };
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
+const GRAMMAR_FROM = "2026-09-28";   /* note 34. Every row named from this date is named under the call grammar: side, line, room and odds. It marks nothing before it. */
 
 /* =========================================================================
    THE DOORS  ·  the only two values on this page that are not a call
@@ -2937,6 +3144,12 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"35", kind:"standard", title:"The page answers a pointer, 24 September 2026. The loupe, the crosshair, an address for every row, and a page for every bank row.",
+    body:"Five surfaces changed, and none of them touches a row, a grade, a kill, a figure or a date. THE LOUPE. A square on the strip, a line on the ladder and the close each open a small card on a pointer, on keyboard focus or on a first tap: the row's metal and level, its grade, the close it was graded on and how far that close sat from the level, the kill in the row's own words, and any flag the row carries. The close is the one the row's result prints, or where the result prints none, the Friday close in CLOSES for the date PROVENANCE says the row was graded on; the two agree on every row that carries both. Rows from the first upload carry no graded date and show no close. THE CROSSHAIR. Across the ladder a hairline follows the pointer and prints the price at that height on the column's own scale, and its distance from the last Friday close. Within a few pixels of a named line it holds to that line, the other lines dim, and the card lists the rows that named it, newest first, each with its grade and, where the row named one level, its close. THE STRIP. On a wide screen the squares are grouped by the month the row was named, the key marks the rows named before the standard of 3 July, and the arrow keys walk the squares. AN ADDRESS FOR EVERY ROW. A row was reached by its position in the array, lrow and a number, and new rows go on top every week, so every such link pointed at a different row the week after it was shared. Every row now also carries an address built from its own date, metal and level, r-2026-09-06-gold-4357 for the gold row of 6 September, which never moves. A link inside the page writes that address into the bar, the wrong-calls page links by it, record.json carries it on every row as anchor, and a button in every opened row copies it, or on a phone hands it to the share sheet. An old positional link still opens whatever row sits at that position today. A PAGE FOR EVERY BANK ROW. Each target on the bank board links to a page of its own under banks, with the quote, the kill this desk assigned, the grade, the house's other rows, what the house said that the board leaves off, and a link card of its own. The pages are written from record.json by make_bank_pages.js, and verify_record.js checks that every row has its page and its card. Three lines that promised the rows before the open, which note 33 did not reach, move with it in this upload: the brief for producers, the first line of the README and the ledger line on the year page. An opened row draws its gauge from the level to the close, and a row reached by its address is marked in gold for two seconds. Motion is kept to what the reader does, with one exception, the dot beside the countdown, which breathes while the clock runs; a reader who has asked the system for reduced motion gets none of it." },
+  { n:"34", kind:"standard", title:"The call grammar, from 28 September 2026. Side, line, room and odds on every row, and a third grade word. Written 24 September 2026.",
+    body:"From the rows of 28 September every row on this page says four things, and the file refuses a row that leaves one out. THE SIDE. Slate, the metal holds above the line, or copper, it stays below it. The side is the founder's read and nothing on this page picks it: a rule that read the side off the chart was written down before it was tested, run on the founder's own 8h exports on 23 September, and failed on the copper side, so it sets no row. THE LINE. A weekly close through it grades the row wrong, as every kill on this page always has. It is an edge of the week's own opening box, or a level of the founder's own inside the range of the week before, so no line sits so far from price that it cannot lose. THE ROOM. The next level on the called side. THE ODDS. The chance the line holds, printed on the row the moment it is named, from the tint THE METHOD draws on the box, which was fitted on weeks before June 2025 and kept its calibration on the weeks after; an own level takes the same formula and says so. THE GRADE has a third word. HIT, the week closed at or through the room. HELD, it closed on the called side of the line, short of the room. WRONG, it closed through the line. A hit is a held row, counted once, as held, and marked, so no week is counted twice. Never reached does not exist under the grammar, because the line and the room are both on the page and the close decides. THE ODDS BOARD under the tally adds up the odds each graded row was named at, which is what the rows would have held if the read added nothing, and sets the rows that held beside that figure. Held past it is the read beating the odds; held short of it is not, and the board says so in the same type. It counts the rows by side as well, so a lean either way is on the page rather than left to a reader's arithmetic. Rows named before 28 September keep the words they were graded in. The grammar is frozen to 13 November 2026." },
+  { n:"33", kind:"standard", title:"From 28 September the rows are named on Monday evening, on the week's own box. Written 24 September 2026.",
+    body:"The week is judged against its own opening box: the first sixteen hours from Sunday's open, frozen on Monday afternoon. Until now the rows were named on Sunday night, before that box existed, so they sat on the box of the week before; the three rows of 20 September are edges of the box of 14 September. From 28 September the rows are named on Monday evening, on the week's own box, after it freezes and before the first 8h close after that, which is midnight in Madrid in most weeks, and they are written to this file before the post that names them. The kill does not change, a weekly close through the published number, and neither does the grade, the Friday close. The cost is stated here so nobody has to work it out: a row is now named with about 86 percent of the week still to trade, where until now it was named before the open. The rows of 20 September grade on 25 September as written. The cadence line under the masthead moves with this note, as do the lines on this page, in its description and on the method, advisers and year pages that promised the levels on a Sunday or before the open; the replaced copy is kept in the source, where this file keeps everything it replaces." },
   { n:"32", kind:"standard", title:"The first screen, the ladder and the standing calls, rebuilt. Written 22 September 2026, uploaded 23 September.",
     body:"Seven surfaces on this page changed, and none of them touches a row, a grade, a kill, a figure or a date in the ledger. Each is stated here with the reason. THIS WEEK. The open rows, the last Friday close and the room between them now sit on the first screen, under the masthead. Until today a reader arriving from a post met the thesis, the tally and the strip, and the three lines the post was about sat at the top of the ledger several screens down. When nothing is open the same space shows the week last graded, with its grades and its close. THE CLOSES. The page now keeps the Friday closes it grades on in one table, CLOSES, each figure copied from the row or note that first printed it, and filled with every Friday grade from the same reads. Nothing in it is new. This Week and the ladder anchor on its last entry. THE LADDER. It read its close off the standing card, frozen at 11 September by note 29, so every distance it printed was a week old, and it joined lines within half a percent, so 4,337 on the opening box, 4,350 and 4,357 on the retired floors printed as one blue band with one held, one wrong and one open inside it. It now anchors on the last Friday close, joins only lines within a tenth of a percent, the same line named at two precisions, draws every line inside three percent of the close at its exact price with one square for each week it was named, and lists the rest at the edge of the column with their distance. On a phone the metals sit behind tabs, one at a time. The count of levels in the tally keeps its own family rule, stated beside it on 29 August, which is deliberately the generous one; the ladder groups for drawing and the tally groups for counting, and neither is changed to match the other. THE ONES THIS DESK GOT WRONG moved from under the standing cards to under the count, where the claim it proves is made. THE STANDING CALLS. The week-to-week entry was drawn on the 464 swing slow mean, the object the founder retired on 20 September, and it was last read on 11 September. It had not ended: its kill is the cross, and the cross had not printed at that read. It is therefore not ended, not restated and not graded. It carries a third status, retired, beside live and ended, with the date and the reason, and it stays on the page as it stood, every figure included. The year-to-year entry is the same call with the same kill in plainer words: its position read The bull is intact and now reads Up, on the secular clock, until the weekly cross. Its two marks, a run of 217.79 percent in gold since 28 May 2019 and 230.38 percent in silver since July 2020, had been flagged in the source since 1 August as not reproducible, because the chart measures the visible range and the same frame read 221.87 percent. A run figure is a mark of the market and not of this page, so they are withdrawn from the face, kept in the source, and replaced by the two pairs the kill itself reads, fast mean over slow mean at the 1 August read. That read is seven weeks old, and the entry says so on its face until the founder reads it again. THE SILVER ROW OF 16 AUGUST. The row reads that silver stays below the line, 66.60 at naming, and that its kill is a weekly close above it. Silver closed 68.9460. The row is graded held on the conditional posted on X on 10 August, and note 10 has recorded since 21 August why the kill as staged on the page inverted it. It is the only row on this page whose kill as written fired and whose grade is held. The grade is not restamped, because grades are never restamped. What changed is where it is said: the row's own summary line now says it at every width, and the count beside the tally says it, so no reader meets the held without the sentence. THE LINK CARD. Every link to this page and to the bank board posted on X showed one held row from 30 August, three weeks stale, with a sign-off since retired. The card is now regenerated from record.json every Sunday and Friday: the week's lines or the week's grades, and the count, wrong rows included. Every replaced line of copy is kept in the source beside the line that replaced it." },
 
@@ -3056,6 +3269,19 @@ const fmtDate = iso => {
   const [y, m, d] = iso.split("-");
   return d.replace(/^0/, "") + " " + MONTHS[+m - 1] + " " + y;
 };
+/* THE ADDRESS OF A ROW, 24 Sep 2026, note 35. A row was reached by its
+   position in CALLS, lrow and a number, and new rows go on top every week,
+   so a link to a row pointed at a different row the week after it was
+   shared. The address is built from the row's own date, metal and level and
+   never moves. make_record_json.js and make_misses.js build the same string,
+   and verify_record.js checks that all three agree and that no two rows share
+   one. Keep this function on one line: the verifier reads it. */
+const rowAnchor = c => "r-" + c.date + "-" + String(c.metal).toLowerCase() + "-" + String(c.level).replace(/,/g, "").replace(/[^0-9]+/g, "-").replace(/^-+|-+$/g, "");
+/* A BANK ROW'S PAGE, 24 Sep 2026, note 35. The same address
+   make_record_json.js writes into record.json as page and make_bank_pages.js
+   writes the page at: the house, not the channel it was reported through,
+   the metal, the level and the window. One line, for the same reason. */
+const bankSlug = t => { const h = String(t.source).split(/,\s*(?:as reported|via)\b/i)[0].trim(); const H = ({ "Citi Research": "Citi", "Goldman Sachs Research": "Goldman Sachs", "J.P. Morgan Global Research": "J.P. Morgan" })[h] || h; const s = x => String(x).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); return [s(H), s(t.metal || "Gold"), String(t.level), t.window].join("-"); };
 
 document.documentElement.style.setProperty("--row-pad", DENSITY === "compact" ? "14px" : "22px");
 
@@ -3782,12 +4008,17 @@ const rows = CALLS.map((c, i) => {
     claim: parts[0].trim(),
     kill: parts.length > 1 ? parts.slice(1).join(" ").trim() : "",
     result: c.result || "Not yet graded.",
-    gradeLabel: g.label,
-    gradeCls: g.cls,
+    /* 24 Sep 2026, note 34: a hit reads Hit and keeps the held colour. */
+    gradeLabel: c.hit ? "Hit" : g.label,
+    gradeCls: c.hit ? g.cls + " g-hit" : g.cls,
     idx: i,
+    anchor: rowAnchor(c),   /* note 35 */
     date: c.date,
     grade: c.grade,
     pre: c.date < STANDARD_FROM,
+    /* 24 Sep 2026, note 34: the call grammar's fields, carried for every row named under it. */
+    grammar: !!c.grammar, side: c.side || "", room: c.room || "", odds: c.odds, oddsFrom: c.oddsFrom || "",
+    lineFrom: c.lineFrom || "", readAt: c.readAt || "", hit: !!c.hit, close: c.close || "",
     /* Filter bucket. "partial" files under WRONG on purpose. The rule at
        the top of this file already says a partial counts against the
        record, so it cannot be allowed to hide from the reader who clicks
@@ -3848,10 +4079,60 @@ const gaugeBlock = r => {
   return `<div class="gauge"><svg viewBox="0 0 ${W} 40" preserveAspectRatio="none" role="img" aria-label="Level ${esc(r.level)} as named, close ${fmt(cl)}, ${fmt(Math.abs(diff))} ${side} the level">
     <line x1="${L}" y1="20" x2="${R}" y2="20" stroke="var(--rule)" stroke-width="1" vector-effect="non-scaling-stroke"/>
     <line x1="${mid}" y1="4" x2="${mid}" y2="36" stroke="var(--gold)" stroke-width="2" vector-effect="non-scaling-stroke"/>
-    <line x1="${mid}" y1="20" x2="${x.toFixed(1)}" y2="20" stroke="var(--${cls})" stroke-width="3" vector-effect="non-scaling-stroke"/>
-    <rect x="${(x-5).toFixed(1)}" y="14" width="10" height="12" fill="var(--${cls})"/>
+    <line class="gb" x1="${mid}" y1="20" x2="${x.toFixed(1)}" y2="20" stroke="var(--${cls})" stroke-width="3" vector-effect="non-scaling-stroke"/>
+    <rect class="gm" style="--dx:${(mid - x).toFixed(1)}px" x="${(x-5).toFixed(1)}" y="14" width="10" height="12" fill="var(--${cls})"/>
   </svg><div class="gcap"><span class="ink">level ${esc(r.level)} as named</span><span class="${cls}">close ${fmt(cl)} · ${fmt(Math.abs(diff))} ${side} the level</span></div></div>`;
 };
+
+/* THE RULE, 24 Sep 2026, note 34. A grammar row draws its own grade on one
+   axis: the line in gold, the room dashed, and between and beyond them the
+   three zones the Friday close can land in, wrong beyond the line, held
+   between the line and the room, hit at or beyond the room. The diamond is
+   the close that graded it, or on an open row the last Friday close before
+   it was named. Every figure is the row's own; the page adds geometry only. */
+const ruleGeom = (side, lv, rm, cl) => {
+  if (!isFinite(lv) || !isFinite(rm) || lv === rm) return null;
+  const pts = [lv, rm].concat(isFinite(cl) ? [cl] : []);
+  const span = Math.abs(rm - lv);
+  const lo = Math.min(...pts) - span * .55, hi = Math.max(...pts) + span * .55;
+  const X = v => (v - lo) / (hi - lo) * 100;
+  const zones = side === "copper"
+    ? [{ k:"hit", x0:0, x1:X(rm) }, { k:"held", x0:X(rm), x1:X(lv) }, { k:"wrong", x0:X(lv), x1:100 }]
+    : [{ k:"wrong", x0:0, x1:X(lv) }, { k:"held", x0:X(lv), x1:X(rm) }, { k:"hit", x0:X(rm), x1:100 }];
+  return { zones, xl: X(lv), xr: X(rm), xc: isFinite(cl) ? X(cl) : null };
+};
+const ruleWord = r => r.grade === "miss" ? "WRONG" : r.hit ? "HIT" : r.grade === "pass" ? "HELD" : "OPEN";
+const ruleBlock = r => {
+  const lv = parseNum(r.level), rm = parseNum(r.room);
+  const graded = r.grade === "pass" || r.grade === "miss";
+  let cl = NaN, clLab = "";
+  const f2 = n => n.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (graded) { cl = parseNum(r.close); if (isFinite(cl)) clLab = "closed " + r.close + " · " + f2(Math.abs(cl - lv)) + (cl >= lv ? " above" : " below") + " the line"; }
+  else {
+    const lc = CLOSES.filter(x => x.date < r.date && x[r.metal]).pop();
+    if (lc) { cl = parseNum(lc[r.metal]); clLab = "last close " + lc[r.metal] + ", " + fmtDate(lc.date); }
+  }
+  const g = ruleGeom(r.side, lv, rm, cl);
+  if (!g) return "";
+  const cls = graded ? (r.grade === "miss" ? "miss" : "pass") : "pending";
+  const onK = graded ? (r.grade === "miss" ? "wrong" : r.hit ? "hit" : "held") : "";
+  const ZL = { wrong: "Wrong", held: "Held", hit: "Hit" };
+  const zones = g.zones.map(z => `<span class="rz z-${z.k}${z.k === onK ? " on" : ""}" style="left:${z.x0.toFixed(2)}%;width:${(z.x1 - z.x0).toFixed(2)}%"><i>${ZL[z.k]}</i></span>`).join("");
+  const edge = x => x < 14 ? " l" : x > 86 ? " r" : "";
+  const aria = `${r.metal}, ${r.side}, line ${r.level}, room ${r.room}, odds ${r.odds} in 100${clLab ? ", " + clLab : ""}${graded ? ", " + ruleWord(r) : ""}`;
+  return `<div class="rule" role="img" aria-label="${esc(aria)}">
+    <div class="rbar${graded ? " done" : ""}">${zones}<span class="rm ln" style="left:${g.xl.toFixed(2)}%"></span><span class="rl ln${edge(g.xl)}" style="left:${g.xl.toFixed(2)}%">line ${esc(r.level)}</span><span class="rm rmk" style="left:${g.xr.toFixed(2)}%"></span><span class="rl rmk${edge(g.xr)}" style="left:${g.xr.toFixed(2)}%">room ${esc(r.room)}</span>${g.xc !== null ? `<span class="rc ${cls}${r.hit ? " hit" : ""}" style="left:${g.xc.toFixed(2)}%"></span>` : ""}</div>
+    <div class="rcap"><span>${r.side === "copper" ? "Copper · stays below the line" : "Slate · holds above the line"}</span><span>Odds at naming <b>${esc(String(r.odds))} in 100</b>${r.oddsFrom === "data window" ? ", off the data window" : r.oddsFrom === "formula" ? ", by the same formula" : ""}</span>${clLab ? `<span class="${cls}">${esc(clLab)}${graded ? " · " + ruleWord(r) : ""}</span>` : ""}</div>
+  </div>`;
+};
+const ruleMini = (side, lv, rm, cl, cls, hit) => {
+  const g = ruleGeom(side, lv, rm, cl);
+  if (!g) return "";
+  return `<div class="rmini" aria-hidden="true">${g.zones.map(z => `<span class="rz z-${z.k}" style="left:${z.x0.toFixed(2)}%;width:${(z.x1 - z.x0).toFixed(2)}%"></span>`).join("")}<span class="rm ln" style="left:${g.xl.toFixed(2)}%"></span><span class="rm rmk" style="left:${g.xr.toFixed(2)}%"></span>${g.xc !== null ? `<span class="rc ${cls}${hit ? " hit" : ""}" style="left:${g.xc.toFixed(2)}%"></span>` : ""}</div>`;
+};
+const grammarTag = r => r.grammar
+  ? `<span class="c-side ${r.side === "copper" ? "copper" : "slate"}">${r.side === "copper" ? "Copper" : "Slate"}${r.lineFrom ? " · line on the " + esc(r.lineFrom === "own level" ? "founder's own level" : r.lineFrom) : ""}${r.readAt ? " · read " + esc(r.readAt) : ""}</span>`
+  : "";
 
 /* THE SUMMARY LINE'S KILL AND CLOSE, 9 Sep 2026. A ledger a reader had to
    open row by row to see what was at stake and what printed is a ledger
@@ -3867,6 +4148,12 @@ const killShort = k => {
   return `kill ${side} ${m[2] || m[3]}`;
 };
 const summaryKC = r => {
+  /* 24 Sep 2026, note 34: a grammar row's line reads its side, room and odds and, once graded, its close. */
+  if (r.grammar) {
+    const bits = [r.side === "copper" ? "copper, stays below" : "slate, holds above", "room " + r.room, "odds " + r.odds + " in 100"];
+    if (r.close && r.grade !== "pending") bits.push("closed " + r.close);
+    return bits.join(" · ");
+  }
   const parts = [];
   const k = killShort(r.kill); if (k) parts.push(k);
   if (r.grade === "pass" || r.grade === "miss" || r.grade === "partial") {
@@ -3884,7 +4171,8 @@ const weekLine = (r, group) => {
   const nr = group.filter(g => g.grade === "notest").length;
   const openN = group.filter(g => g.grade === "pending").length;
   const bits = [];
-  if (held) bits.push(`<b>${held}</b> held`);
+  const hits = group.filter(g => g.hit).length;   /* 24 Sep 2026, note 34 */
+  if (held) bits.push(`<b>${held}</b> held${hits ? `, ${hits} hit` : ""}`);
   if (wrong) bits.push(`<b>${wrong}</b> wrong`);
   if (nr) bits.push(`<b>${nr}</b> never reached`);
   if (openN) bits.push(`<b>${openN}</b> open`);
@@ -3956,7 +4244,7 @@ let lastDate = null;
 
 document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== lastDate ? (lastDate = r.date, weekLine(r, byDate[r.date])) : "") + `
   <details class="lrow" id="lrow-${r.idx}" data-grade="${esc(r.group)}" data-week="${esc(r.date)}">
-    <summary>
+    <summary><span class="ranchor" id="${esc(r.anchor)}" aria-hidden="true"></span>
       <span class="s-date">${esc(r.day)} <span>${esc(r.year)}</span></span>
       <span class="s-inst">${esc(r.metal)} <i>${esc(r.type)}</i></span>
       <span class="s-level">${esc(r.level)}</span>
@@ -3966,12 +4254,12 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
       ${FLAGGED[r.date + "|" + r.metal] ? `<span class="s-flag">${esc(FLAGGED[r.date + "|" + r.metal])}</span>` : ""}
     </summary>
     <div class="lbody">
-      ${gaugeBlock(r)}
+      ${r.grammar ? ruleBlock(r) : gaugeBlock(r)}
       <div>
         <div class="lab">The call, before the move</div>
         <p>${esc(r.claim)}</p>
         ${killBlock(r.kill)}
-        ${bookTag(r.book)}
+        ${bookTag(r.book)}${grammarTag(r)}
       </div>
       <div>
         <div class="lab">What price did</div>
@@ -3979,6 +4267,7 @@ document.getElementById("ledger-list").innerHTML = rows.map(r => (r.date !== las
         ${countdownLine(r)}
       </div>
       ${provenanceLine(r.date)}
+      <div class="rshare"><button type="button" class="rs-btn" data-a="${esc(r.anchor)}" data-t="${esc(r.metal + " " + r.level + ", named " + fmtDate(r.date) + ", " + r.gradeLabel.toLowerCase())}">Copy the link to this row</button><span class="rs-ok" role="status" hidden></span></div>
     </div>
   </details>`).join("");
 
@@ -4053,6 +4342,9 @@ document.getElementById("t-open").textContent = open;
 const rate = resolved ? Math.round((pass / resolved) * 100) : 0;
 
 let note = resolved ? `${pass} of ${resolved} resolved calls held, ${rate} percent.` : "";
+/* 24 Sep 2026, note 34: a hit is a held row, counted once, and said beside the held count. */
+const hitN = CALLS.filter(c => c.grade === "pass" && c.hit).length;
+if (hitN) note += ` ${hitN} of them also went through ${hitN === 1 ? "its room" : "their rooms"}, marked hit and counted once.`;
 if (miss)    note += ` ${miss} graded wrong, shown in full below and never hidden.`;
 if (partial) note += ` ${partial} partial, counted against the record.`;
 if (notest)  note += ` ${notest} never tested, counted for neither side.`;
@@ -4140,6 +4432,61 @@ if (pass && carried.length) {
 document.getElementById("t-note").textContent = note.trim();
 document.getElementById("t-note-level").textContent = noteLevel.trim();
 
+/* ---------------- the odds board ---------------- */
+/* 24 Sep 2026, note 34. Under the call grammar every row prints the chance
+   its line held on the day it was named. Summed over the graded rows, that
+   is what the rows would have held if the read added nothing. The board sets
+   the rows that held beside it, in the same type, and counts the rows by
+   side. Derived from CALLS only; hidden until a row is named under the
+   grammar. No percentage: counts, and the sum of the odds as a count. */
+(function renderOddsBoard(){
+  const host = document.getElementById("odds-board");
+  if (!host) return;
+  const G = CALLS.filter(c => c.grammar);
+  if (!G.length) return;
+  const graded = G.filter(c => c.grade === "pass" || c.grade === "miss");
+  const held = graded.filter(c => c.grade === "pass").length;
+  const hit = graded.filter(c => c.hit).length;
+  const exp = graded.reduce((s, c) => s + (+c.odds || 0) / 100, 0);
+  const slate = G.filter(c => c.side === "slate").length, copper = G.length - slate;
+  const openN = G.filter(c => c.grade === "pending").length;
+  const one = (n, a, b) => n === 1 ? a : b;
+  const e1 = v => v.toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  let figs, track = "", plain;
+  if (!graded.length) {
+    const first = G.map(c => c.date).sort()[0];
+    const fri = (() => { const d = new Date(first + "T12:00:00Z"); let a = (5 - d.getUTCDay() + 7) % 7; if (a === 0) a = 7; d.setUTCDate(d.getUTCDate() + a); return d.toISOString().slice(0, 10); })();
+    const oddsSum = G.reduce((s, c) => s + (+c.odds || 0) / 100, 0);
+    figs = `<div class="ob-fig"><div class="n">${G.length}</div><div class="l">${one(G.length, "row", "rows")} named under the grammar, none graded yet</div></div>
+      <div class="ob-fig"><div class="n gold">${e1(oddsSum)}</div><div class="l">${one(G.length, "hold", "holds")} expected on the odds ${one(G.length, "it was", "they were")} named at</div></div>
+      <div class="ob-fig"><div class="n">${slate}<span class="of">slate</span>${copper}<span class="of">copper</span></div><div class="ob-lean" aria-hidden="true"><span class="s" style="width:${(slate / G.length * 100).toFixed(1)}%"></span><span class="c" style="width:${(copper / G.length * 100).toFixed(1)}%"></span></div><div class="l">rows named, by side</div></div>`;
+    plain = `The first of these rows is graded on the ${fmtDate(fri)} close. From then this board sets the rows that held beside the sum of the odds they were named at. <b>Held past that sum is the read beating the odds</b>; held short of it is the odds beating the read, and it is said in the same type.`;
+  } else {
+    const W = Math.max(graded.length, 1);
+    const fx = held / W * 100, ex = exp / W * 100;
+    const beat = held - exp;
+    figs = `<div class="ob-fig"><div class="n pass">${held}<span class="of">of ${graded.length}</span></div><div class="l">held on the close${hit ? `, ${hit} of them through the room` : ""}</div></div>
+      <div class="ob-fig"><div class="n gold">${e1(exp)}</div><div class="l">expected, the sum of the odds each graded row was named at</div></div>
+      <div class="ob-fig"><div class="n">${slate}<span class="of">slate</span>${copper}<span class="of">copper</span></div><div class="ob-lean" aria-hidden="true"><span class="s" style="width:${(slate / G.length * 100).toFixed(1)}%"></span><span class="c" style="width:${(copper / G.length * 100).toFixed(1)}%"></span></div><div class="l">rows named, by side${openN ? `, ${openN} still open` : ""}</div></div>`;
+    track = `<div class="ob-track" role="img" aria-label="${held} held of ${graded.length} graded, against ${e1(exp)} expected">
+      <span class="f" style="width:${fx.toFixed(2)}%"></span>
+      <span class="e" style="left:${ex.toFixed(2)}%"></span><span class="el" style="left:${ex.toFixed(2)}%">expected ${e1(exp)}</span>
+      <span class="fl${fx < 18 ? " l" : ""}" style="left:${fx.toFixed(2)}%">held ${held}</span>
+    </div>`;
+    const base = graded.length < 50 ? ` ${graded.length} graded ${one(graded.length, "row is", "rows are")} a small base, and should be read as one.` : "";
+    plain = (beat > 0.05
+      ? `<b>Held ahead of the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, so this is the read measured against them, not against nothing.`
+      : beat < -0.05
+        ? `<b>Held behind the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, and on this base the odds are ahead of the read. It stays here in the same type either way.`
+        : `<b>Held level with the odds, ${held} against ${e1(exp)}.</b> On this base the read has added nothing the odds did not already know, and the board says so in the same type it would use for the opposite.`) + base;
+  }
+  /* the hit key shows once a hit is on the page, not before */
+  if (G.some(c => c.hit)) document.querySelectorAll(".k-hit").forEach(k => { k.hidden = false; });
+  host.innerHTML = `<div class="ob-head"><span class="eyebrow">Held against the odds</span><span class="ob-since">Under the call grammar, from 28 September 2026 · <a href="#note-34">note 34</a></span></div>
+    <div class="ob-figs">${figs}</div>${track}<p class="ob-plain">${plain}</p>`;
+  host.hidden = false;
+})();
+
 /* ---------------- the strip ---------------- */
 (function renderStrip(){
   const host = document.getElementById("strip");
@@ -4147,10 +4494,19 @@ document.getElementById("t-note-level").textContent = noteLevel.trim();
   const grp = g => ({ pass:"pass", miss:"miss", partial:"miss", notest:"notest", pending:"open" })[g] || "notest";
   const word = g => ({ pass:"held", miss:"wrong", partial:"partial, counted as wrong", notest:"never reached", pending:"open" })[g] || "never reached";
   const idx = CALLS.map((c, i) => ({ c, i })).sort((a, b) => a.c.date.localeCompare(b.c.date) || a.i - b.i);
-  host.innerHTML = idx.map(({ c, i }) => {
+  /* 24 Sep 2026, note 35. The squares are grouped by the month the row was
+     named, and each carries its row's index for the loupe; their colours,
+     their order and their links are as they were. Until today they were
+     written straight into the strip one after another, with no month. */
+  const square = ({ c, i }) => {
     const pre = c.date < STANDARD_FROM ? " pre" : "";
-    return `<a class="${grp(c.grade)}${pre}" href="#lrow-${i}" title="${esc(fmtDate(c.date))} · ${esc(c.metal)} ${esc(c.level)} · ${word(c.grade)}${pre ? " · pre-standard" : ""}" aria-label="${esc(fmtDate(c.date))} ${esc(c.metal)} ${esc(c.level)}, ${word(c.grade)}"></a>`;
-  }).join("");
+    /* 24 Sep 2026, note 34: a hit keeps the held square and takes a gold ring. */
+    const w = c.hit ? "held, hit the room" : word(c.grade);
+    return `<a class="${grp(c.grade)}${c.hit ? " hit" : ""}${pre}" href="#lrow-${i}" data-i="${i}" title="${esc(fmtDate(c.date))} · ${esc(c.metal)} ${esc(c.level)} · ${w}${pre ? " · pre-standard" : ""}" aria-label="${esc(fmtDate(c.date))} ${esc(c.metal)} ${esc(c.level)}, ${w}"></a>`;
+  };
+  const months = [];
+  idx.forEach(x => { const ym = x.c.date.slice(0, 7); if (!months.length || months[months.length - 1].ym !== ym) months.push({ ym, list: [] }); months[months.length - 1].list.push(x); });
+  host.innerHTML = months.map(mo => `<span class="sg"><b>${MONTHS[+mo.ym.slice(5, 7) - 1]}</b><span class="sq">${mo.list.map(square).join("")}</span></span>`).join("");
   host.addEventListener("click", e => {
     const a = e.target.closest("a"); if (!a) return;
     const row = document.querySelector(a.getAttribute("href"));
@@ -4183,7 +4539,17 @@ const lxFmt = (v, m, signed) => {
   return signed ? (v > 0 ? "+" : v < 0 ? "−" : "") + t : t;
 };
 const lxCls = g => g === "pass" ? "pass" : (g === "miss" || g === "partial") ? "miss" : g === "pending" ? "pending" : "notest";
-const lxSide = c => { const k = killShort(c.kill); return /kill over/.test(k) ? "over" : "under"; };
+/* 24 Sep 2026, note 34. This read:
+     const lxSide = c => { const k = killShort(c.kill); return /kill over/.test(k) ? "over" : "under"; };
+   No CALLS row carries a kill field; the kill is inside the call. So it said
+   "under" for every row, which no open row ever contradicted, because every
+   open row was a floor. A copper row under the call grammar is the first that
+   would. The kill is now read from the call, and a grammar row's side is its own. */
+const lxSide = c => {
+  if (c.grammar) return c.side === "copper" ? "over" : "under";
+  const k = killShort(c.kill || (String(c.call || "").split(/\s*Kill:\s*/i)[1] || ""));
+  return /kill over/.test(k) ? "over" : "under";
+};
 function ladderLines(metal) {
   const byLv = {};
   CALLS.map((c, i) => ({ c, i })).filter(x => x.c.metal === metal)
@@ -4191,7 +4557,7 @@ function ladderLines(metal) {
     .forEach(({ c, i }) => String(c.level).split("/").map(t => t.trim()).filter(Boolean).forEach(lv => {
       const v = lxNum(lv); if (!isFinite(v)) return;
       const e = byLv[lv] = byLv[lv] || { lv, v, hist: [], lastDate: c.date };
-      e.hist.push({ date: c.date, grade: c.grade, idx: i }); e.lastDate = c.date;
+      e.hist.push({ date: c.date, grade: c.grade, idx: i, hit: !!c.hit }); e.lastDate = c.date;
     }));
   const gs = [];
   Object.values(byLv).sort((a, b) => a.v - b.v).forEach(e => {
@@ -4212,6 +4578,7 @@ function ladderLines(metal) {
 }
 const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
   const c = lxCls(h.grade), X = (x + k * (size + gap)).toFixed(1);
+  if (h.hit) return `<rect x="${(+X + .75).toFixed(1)}" y="${(y + .75).toFixed(1)}" width="${size - 1.5}" height="${size - 1.5}" style="fill:var(--pass);stroke:var(--gold)" stroke-width="1.5"/>`;   /* note 34 */
   return c === "notest"
     ? `<rect x="${(+X + .75).toFixed(1)}" y="${(y + .75).toFixed(1)}" width="${size - 1.5}" height="${size - 1.5}" fill="none" style="stroke:var(--notest)" stroke-width="1.5"/>`
     : `<rect x="${X}" y="${y.toFixed(1)}" width="${size}" height="${size}" style="fill:var(--${c})"/>`;
@@ -4234,9 +4601,10 @@ const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
       inside: lines.filter(g => g.v >= lo && g.v <= hi),
       above: lines.filter(g => g.v > hi).reverse(), below: lines.filter(g => g.v < lo).reverse() };
   });
+  host._cols = cols;   /* note 35: the loupe reads the lines off the scale from here */
   const edge = (col, list, word) => !list.length ? "" : `<div class="lx-edge"><div class="el">${list.length} further ${word}, off the scale</div>${list.map(g => {
     const n = g.hist.length, w = n * 11 - 3;
-    return `<div class="lx-er"><a href="#lrow-${g.rowIdx}" style="color:var(--${lxCls(g.last)})"${g.title ? ` title="${esc(g.title)}"` : ""}>${esc(g.label)}</a><svg width="${w}" height="8" aria-hidden="true">${lxSquares(g.hist, 0, 0, 8, 3)}</svg>${col.close !== null ? `<span class="d">${esc(lxFmt(g.v - col.close, col.metal, true))}</span>` : ""}</div>`;
+    return `<div class="lx-er" data-m="${esc(col.metal)}" data-l="${esc(g.label)}"><a href="#lrow-${g.rowIdx}" style="color:var(--${lxCls(g.last)})"${g.title ? ` title="${esc(g.title)}"` : ""}>${esc(g.label)}</a><svg width="${w}" height="8" aria-hidden="true">${lxSquares(g.hist, 0, 0, 8, 3)}</svg>${col.close !== null ? `<span class="d">${esc(lxFmt(g.v - col.close, col.metal, true))}</span>` : ""}</div>`;
   }).join("")}</div>`;
   host.innerHTML = cols.map((col, i) => `<div class="lx" data-metal="${esc(col.metal)}" id="lx-${i}" role="tabpanel">
       <div class="lx-head"><h4>${esc(col.metal)}</h4><span>${col.close !== null ? "close " + esc(fmtDate(lc.date)) : "no close on record"}</span></div>
@@ -4274,22 +4642,26 @@ const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
       }
       const fixed = [];
       if (col.close !== null) fixed.push(y(col.close));
-      col.live.forEach(L => {
+      col.live.forEach((L, j) => {
         const yl = y(L.v); fixed.push(yl);
+        g += `<g class="lxl live" data-k="live-${j}">`;   /* note 35: one group per line, for the loupe */
         if (col.close !== null) {
           const yc = y(col.close), y1 = Math.min(yl, yc), y2 = Math.max(yl, yc);
           const room = L.side === "under" ? col.close - L.v : L.v - col.close;
           g += `<rect x="${AX}" y="${y1.toFixed(1)}" width="${W - AX}" height="${(y2 - y1).toFixed(1)}" style="fill:var(--pending)" fill-opacity=".13"/>`;
           g += `<line x1="${W - 4}" x2="${W - 4}" y1="${(y1 + 3).toFixed(1)}" y2="${(y2 - 3).toFixed(1)}" style="stroke:var(--pending)" stroke-width="1.5"/>`;
-          g += `<text x="${W - 12}" y="${(yl + 17).toFixed(1)}" text-anchor="end" font-size="11.5" font-weight="600" style="fill:var(--${room >= 0 ? "pending" : "miss"})">${esc(lxFmt(Math.abs(room), col.metal))} ${room >= 0 ? "OF ROOM" : "THROUGH"}</text>`;
+          g += `<text x="${W - 12}" y="${(yl + 17).toFixed(1)}" text-anchor="end" font-size="11.5" font-weight="600" style="fill:var(--${room >= 0 ? "pending" : "miss"})">${esc(lxFmt(Math.abs(room), col.metal))} ${room >= 0 ? (CALLS[L.rowIdx] && CALLS[L.rowIdx].grammar ? "CLEAR" : "OF ROOM") : "THROUGH"}</text>`;   /* note 34: "room" is the next level under the grammar */
         }
         g += `<line x1="${AX}" x2="${W}" y1="${yl.toFixed(1)}" y2="${yl.toFixed(1)}" style="stroke:var(--pending)" stroke-width="3"/>`;
         g += `<a href="#lrow-${L.rowIdx}"><text x="${AX + 6}" y="${(yl + 17).toFixed(1)}" font-size="11.5" font-weight="600" letter-spacing="1.2" style="fill:var(--pending)">THIS WEEK · ${esc(L.label)}</text></a>`;
+        g += `</g>`;
       });
       if (col.close !== null) {
         const yc = y(col.close);
+        g += `<g class="lxl close" data-k="close">`;   /* note 35 */
         g += `<line x1="${AX}" x2="${W}" y1="${yc.toFixed(1)}" y2="${yc.toFixed(1)}" style="stroke:var(--ink)" stroke-width="2"/>`;
         g += `<text x="${AX + 6}" y="${(yc - 7).toFixed(1)}" font-size="11.5" font-weight="600" letter-spacing="1.2" style="fill:var(--ink)">CLOSE ${esc(fmtDate(lc.date).replace(/ \d{4}$/, ""))} · ${esc(col.closeTxt)}</text>`;
+        g += `</g>`;
       }
       const hist = col.inside.filter(L => !L.live).sort((a, b) => b.v - a.v);
       const want = hist.map(L => y(L.v)), pos = want.slice();
@@ -4302,15 +4674,28 @@ const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
       }
       hist.forEach((L, k) => {
         const yw = want[k], yp = pos[k], c = lxCls(L.last);
+        g += `<g class="lxl h" data-k="h-${k}">`;   /* note 35 */
         g += `<line x1="${AX}" x2="${AX + 26}" y1="${yw.toFixed(1)}" y2="${yw.toFixed(1)}" style="stroke:var(--${c})" stroke-width="3"${c === "notest" ? ` stroke-dasharray="4 3"` : ""}/>`;
         if (Math.abs(yp - yw) > 2) g += `<polyline points="${AX + 26},${yw.toFixed(1)} ${AX + 34},${yp.toFixed(1)} ${AX + 38},${yp.toFixed(1)}" fill="none" style="stroke:var(--rule)" stroke-width="1"/>`;
         const lw = measure(L.label, FS);
         g += `<a href="#lrow-${L.rowIdx}"${L.title ? ` aria-label="${esc(L.title)}"` : ""}><text x="${AX + 40}" y="${(yp + 4.5).toFixed(1)}" font-size="${FS}" font-weight="600" style="fill:var(--${c === "notest" ? "ink-4" : c})">${L.title ? `<title>${esc(L.title)}</title>` : ""}${esc(L.label)}</text></a>`;
         g += lxSquares(L.hist, AX + 40 + lw + 9, yp - 4.5, 9, 3);
         if (col.close !== null) g += `<text x="${W - 12}" y="${(yp + 4.5).toFixed(1)}" text-anchor="end" font-size="11.5" style="fill:var(--ink-5)">${esc(lxFmt(L.v - col.close, col.metal, true))}</text>`;
+        g += `</g>`;
       });
+      /* 24 Sep 2026, note 35. The crosshair, drawn hidden, and the marks it
+         holds to: the close, the open line and every line inside the scale,
+         each at its exact price. The loupe script moves it; nothing here
+         changes what the column draws. */
+      g += `<g class="lx-xh" visibility="hidden" pointer-events="none"><line x1="${AX}" x2="${W}" y1="0" y2="0"/><rect class="pb" x="0" y="-9" width="10" height="18" rx="2"/><text class="pt" x="5" y="3.8" font-size="10.5" font-weight="600"></text><rect class="db" x="${W - 10}" y="-9" width="10" height="18" rx="2"/><text class="dt" x="${W - 5}" y="3.8" text-anchor="end" font-size="10.5" font-weight="600"></text></g>`;
+      const targets = [];
+      if (col.close !== null) targets.push({ kind: "close", k: "close", y: y(col.close), v: col.close });
+      col.live.forEach((L, j) => targets.push({ kind: "live", k: "live-" + j, y: y(L.v), v: L.v, L }));
+      hist.forEach((L, k) => targets.push({ kind: "hist", k: "h-" + k, y: want[k], ly: pos[k], v: L.v, L }));
       plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="IBM Plex Mono, ui-monospace, monospace" aria-hidden="true">${g}</svg>`;
+      plot._lx = { metal: col.metal, close: col.close, closeTxt: col.closeTxt, date: lc.date, lo: col.lo, hi: col.hi, H, W, AX, pT, pB, targets };
     });
+    host.dispatchEvent(new CustomEvent("lx:drawn"));
   }
   draw();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
@@ -4353,6 +4738,26 @@ const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
     const lv = lxNum(String(c.level).split("/")[0]), clTxt = cEntry[c.metal], cl = clTxt ? lxNum(clTxt) : NaN;
     const room = side === "under" ? cl - lv : lv - cl, pct = room / lv * 100;
     const word = side === "under" ? "holds above" : "stays below";
+    /* 24 Sep 2026, note 34: a grammar row's card carries its room, its odds and the rule in small. */
+    if (c.grammar) {
+      const lvG = lxNum(c.level), rmG = lxNum(c.room);
+      if (mode === "open") {
+        return `<a class="tw-card" href="#lrow-${i}" style="display:block;border-bottom:0">
+        <div class="h"><b>${esc(c.metal)}</b><span>${c.side === "copper" ? "copper · stays below" : "slate · holds above"}</span></div>
+        <div class="lv">${esc(c.level)}</div>
+        ${ruleMini(c.side, lvG, rmG, cl, "pending", false)}
+        <div class="r"><span>Room <b>${esc(c.room)}</b></span><span>Odds <b>${esc(String(c.odds))} in 100</b></span></div>
+        <div class="r" style="margin-top:4px"><span>Close ${esc(fmtDate(cEntry.date).replace(/ \d{4}$/, ""))} <b>${esc(clTxt || "not on record")}</b></span></div>
+      </a>`;
+      }
+      const clG = lxNum(c.close || clTxt), w3 = c.grade === "miss" ? "Wrong" : c.hit ? "Hit" : "Held", k3 = c.grade === "miss" ? "miss" : "pass";
+      return `<a class="tw-card ${k3}${c.hit ? " hit" : ""}" href="#lrow-${i}" style="display:block;border-bottom:0">
+      <div class="h"><b>${esc(c.metal)}</b><span>${w3}</span></div>
+      <div class="lv">${esc(c.level)}</div>
+      ${ruleMini(c.side, lvG, rmG, clG, k3, c.hit)}
+      <div class="r"><span>Close <b>${esc(c.close || clTxt || "not on record")}</b></span><span>Odds <b>${esc(String(c.odds))} in 100</b></span></div>
+    </a>`;
+    }
     if (mode === "open") {
       const posn = isFinite(pct) ? Math.max(0, Math.min(1, pct / 5)) * 100 : 0;
       return `<a class="tw-card" href="#lrow-${i}" style="display:block;border-bottom:0">
@@ -4376,9 +4781,11 @@ const lxSquares = (hist, x, y, size, gap) => hist.map((h, k) => {
     if (fri) { cd.setAttribute("data-close", fri.toISOString()); cd.setAttribute("data-prefix", "Friday " + fmtDate(friIso).replace(/ \d{4}$/, "") + " · "); cd.textContent = "Friday " + fmtDate(friIso).replace(/ \d{4}$/, "") + " · " + countdownText(fri, true); }
     rule.textContent = sides.size === 1 ? `Each is wrong on a weekly close ${sides.has("under") ? "under" : "over"} its line.` : "Each is wrong on a weekly close through its line.";
   } else {
-    title.textContent = "Graded " + fmtDate(friIso) + " · the next lines are named Sunday";
+    /* 24 Sep 2026, note 33. Read "the next lines are named Sunday". */
+    title.textContent = "Graded " + fmtDate(friIso) + " · the next lines are named Monday";
     cd.hidden = true;
-    rule.textContent = "Held, wrong or never reached, on the weekly close. Every row stays in the ledger below.";
+    /* 24 Sep 2026, note 34: a week named under the grammar is graded hit, held or wrong. */
+    rule.textContent = list.some(x => x.c.grammar) ? "Hit, held or wrong, on the weekly close. Every row stays in the ledger below." : "Held, wrong or never reached, on the weekly close. Every row stays in the ledger below.";
   }
   const door = document.getElementById("tw-door");
   if (door && typeof DOORS === "object" && /^https:\/\/\S+$/i.test(String(DOORS.kit || "").trim())) door.hidden = false;
@@ -4567,10 +4974,10 @@ function renderBoard(){
     return `<tr>
       <td class="d">${esc(fmtDate(t.published))}</td>
       <td class="s">${esc(t.source)}</td>
-      <td class="l">${Number(t.level).toLocaleString("en-US")}<div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="l"><a class="bk-lv" href="banks/${esc(bankSlug(t))}.html">${Number(t.level).toLocaleString("en-US")}</a><div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="w">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmtDate(t.window))}</span></td>
       <td class="q"><p class="bq">"${esc(t.quote)}" <a href="${esc(t.link)}" rel="nofollow noopener">source</a></p><details><summary>The kill, assigned</summary><div class="kl">${esc(t.kill)}</div>${t.note ? `<div class="kl">${esc(t.note)}</div>` : ""}</details></td>
-      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}</td>
+      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}<a class="bk-page" href="banks/${esc(bankSlug(t))}.html">The row, in full &rsaquo;</a></td>
     </tr>`;
   }).join("");
   const open = rows.filter(t => t.grade === "pending").length, held = rows.filter(t => t.grade === "pass").length, wrong = rows.filter(t => t.grade === "miss").length;
@@ -4907,6 +5314,406 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
     paint();
   });
   paint();
+})();
+</script>
+
+<script>
+/* =========================================================================
+   THE LOUPE, THE CROSSHAIR AND THE ROW ADDRESS  ·  24 Sep 2026, note 35
+
+   One small card for every mark on this page that stands for a row: a
+   square on the strip, a line on the ladder, the close. It reads the row's
+   own fields out of CALLS, CLOSES and PROVENANCE and prints nothing the row
+   does not already say. A pointer, the keyboard and a first tap all reach
+   it; on a touch screen the second tap follows the link.
+
+   The close it prints is the one the row's result prints. Where the result
+   prints none it is the Friday close in CLOSES for the date PROVENANCE says
+   the row was graded, and the two agree on every row that carries both.
+   Rows from the first upload carry no graded date and show no close.
+
+   The crosshair prints the price at the pointer's height on the ladder's
+   own scale, and its distance from the last Friday close. Within a few
+   pixels of a named line it holds to that line and the card lists every
+   row that named it.
+
+   Every piece runs inside its own guard: a fault here can cost a card,
+   never a row.
+   ========================================================================= */
+(function(){
+  "use strict";
+  const doc = document, root = doc.documentElement;
+  const HOME = "https://thesimplifier7.github.io/record/";
+  let reduce = false; try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+  let coarse = false; try { coarse = window.matchMedia("(pointer: coarse)").matches; } catch (e) {}
+  let lastPT = coarse ? "touch" : "mouse", lastPD = 0;
+  /* a focus that a finger caused is not a keyboard asking for the card */
+  const fingerFocus = () => lastPT === "touch" && Date.now() - lastPD < 1200;
+  const guard = (name, fn) => { try { fn(); } catch (e) { if (window.console) console.warn("note 35 · " + name, e); } };
+
+  /* ---------------- the address of a row ---------------- */
+  const arrive = (row, scroll) => {
+    if (!row) return;
+    if (row.hidden) { const chip = doc.querySelector('#lfilter .chip[data-f="all"]'); if (chip) chip.click(); }
+    row.open = true;
+    if (scroll) { const a = row.querySelector(".ranchor") || row; a.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" }); }
+    row.classList.remove("arrive"); void row.offsetWidth; row.classList.add("arrive");
+    clearTimeout(row._arr); row._arr = setTimeout(() => row.classList.remove("arrive"), 2400);
+  };
+  const goRow = i => {
+    const c = CALLS[i], row = doc.getElementById("lrow-" + i); if (!c || !row) return;
+    try { history.pushState(null, "", "#" + rowAnchor(c)); } catch (err) {}
+    arrive(row, true);
+  };
+  guard("address", () => {
+    /* A link inside the page to a row by its position writes the row's own
+       address into the bar instead, so a link copied from the bar still
+       opens the same row after new rows go on top. */
+    doc.addEventListener("click", e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest('a[href^="#lrow-"]');
+      if (!a) return;
+      const i = parseInt(a.getAttribute("href").slice(6), 10), c = CALLS[i], row = doc.getElementById("lrow-" + i);
+      if (!c || !row) return;
+      e.preventDefault();
+      try { history.pushState(null, "", "#" + rowAnchor(c)); } catch (err) {}
+      arrive(row, true);
+    });
+    const onHash = () => {
+      let h = ""; try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+      if (!/^(r-|lrow-)/.test(h)) return;
+      const el = doc.getElementById(h); if (!el) return;
+      const row = el.closest ? el.closest("details.lrow") : null;
+      if (row) arrive(row, false);
+    };
+    window.addEventListener("hashchange", onHash);
+    onHash();
+    /* The faces load after the first paint and move everything above the row,
+       so the row a link named can end up off screen. Put it back once, unless
+       the reader has already moved. */
+    let moved = false;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(t => window.addEventListener(t, () => { moved = true; }, { passive: true, once: true }));
+    const settle = () => {
+      if (moved) return;
+      let h = ""; try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+      if (!/^(r-|lrow-)/.test(h)) return;
+      const el = doc.getElementById(h); if (!el) return;
+      const a = el.classList && el.classList.contains("lrow") ? (el.querySelector(".ranchor") || el) : el;
+      try { a.scrollIntoView({ block: "start", behavior: "instant" }); } catch (e) { a.scrollIntoView(true); }
+    };
+    if (/^#(r-|lrow-)/.test(location.hash)) {
+      window.addEventListener("load", () => setTimeout(settle, 60));
+      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(() => setTimeout(settle, 60));
+      if (window.ResizeObserver) { const ro = new ResizeObserver(() => settle()); ro.observe(doc.body); setTimeout(() => ro.disconnect(), 4000); }
+    }
+  });
+
+  /* ---------------- the share button in an opened row ---------------- */
+  guard("share", () => {
+    const canShare = !!navigator.share && coarse;
+    if (canShare) doc.querySelectorAll(".rs-btn").forEach(b => { b.textContent = "Share this row"; });
+    const fallback = t => {
+      try {
+        const ta = doc.createElement("textarea");
+        ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
+        doc.body.appendChild(ta); ta.select(); const ok = doc.execCommand("copy"); ta.remove(); return ok;
+      } catch (e) { return false; }
+    };
+    const copy = t => (navigator.clipboard && window.isSecureContext)
+      ? navigator.clipboard.writeText(t).then(() => true, () => fallback(t))
+      : Promise.resolve(fallback(t));
+    doc.addEventListener("click", e => {
+      const b = e.target.closest && e.target.closest(".rs-btn"); if (!b) return;
+      const url = HOME + "#" + b.getAttribute("data-a");
+      if (canShare) { navigator.share({ title: b.getAttribute("data-t") || "The Record", url }).catch(() => {}); return; }
+      copy(url).then(ok => {
+        const s = b.nextElementSibling; if (!s) return;
+        s.textContent = ok ? "Copied · " + url.replace(/^https:\/\//, "") : url;
+        s.hidden = false; clearTimeout(s._t); s._t = setTimeout(() => { s.hidden = true; }, ok ? 2800 : 12000);
+      });
+    });
+  });
+
+  /* ---------------- the loupe ---------------- */
+  const lp = doc.createElement("div");
+  lp.className = "loupe"; lp.id = "loupe"; lp.setAttribute("role", "tooltip"); lp.hidden = true;
+  doc.body.appendChild(lp);
+  let owner = null, hideT = 0, key = "", follow = null;
+  const place = r => {
+    const vw = root.clientWidth, vh = window.innerHeight, m = 8, gap = 12;
+    const w = lp.offsetWidth, h = lp.offsetHeight;
+    let x = r.left + r.width / 2 - w / 2; x = Math.max(m, Math.min(vw - w - m, x));
+    let y = r.top - h - gap; if (y < m) y = r.bottom + gap; if (y + h > vh - m) y = Math.max(m, vh - h - m);
+    lp.style.left = Math.round(x) + "px"; lp.style.top = Math.round(y) + "px";
+  };
+  const show = (k, html, r, who, track) => {
+    clearTimeout(hideT);
+    follow = track || null;
+    if (k !== key) { lp.innerHTML = html; key = k; }
+    if (lp.hidden) { lp.hidden = false; lp.classList.remove("on"); requestAnimationFrame(() => lp.classList.add("on")); }
+    place(r);
+    if (owner !== who) {
+      if (owner && owner.removeAttribute) owner.removeAttribute("aria-describedby");
+      owner = who; if (who && who.setAttribute) who.setAttribute("aria-describedby", "loupe");
+    }
+  };
+  const hide = now => {
+    clearTimeout(hideT);
+    const go = () => { lp.classList.remove("on"); lp.hidden = true; key = ""; follow = null; if (owner && owner.removeAttribute) owner.removeAttribute("aria-describedby"); owner = null; };
+    if (now) go(); else hideT = setTimeout(go, 70);
+  };
+
+  /* the row's own fields, read the way the page already reads them */
+  const N = t => parseFloat(String(t).replace(/,/g, ""));
+  const dp = m => m === "Silver" ? 3 : 2;
+  const fx = (v, m) => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dp(m), maximumFractionDigits: dp(m) });
+  const sd = iso => fmtDate(iso).replace(/ \d{4}$/, "");
+  const friOf = iso => { const d = new Date(iso + "T12:00:00Z"); let a = (5 - d.getUTCDay() + 7) % 7; if (a === 0) a = 7; d.setUTCDate(d.getUTCDate() + a); return d.toISOString().slice(0, 10); };
+  const GW = c => c.hit ? ["Hit", "pass"]
+    : ({ pass: ["Held", "pass"], miss: ["Wrong", "miss"], partial: ["Partial, counted wrong", "miss"], notest: ["Never reached", "notest"], pending: ["Open", "pending"] })[c.grade] || ["Never reached", "notest"];
+  const clip = (t, n) => {
+    t = String(t).replace(/\s+/g, " ").trim();
+    const first = (t.match(/^.*?[.;](?=\s|$)/) || [t])[0];
+    if (first.length <= n) return first;
+    const s = first.slice(0, n); return s.slice(0, Math.max(s.lastIndexOf(" "), n - 24)) + " …";
+  };
+  const closeFor = c => {
+    const p = PROVENANCE[c.date] || {};
+    if (c.grade === "pending") {
+      const e = CLOSES.filter(x => x[c.metal]).pop();
+      return e ? { t: e[c.metal], v: N(e[c.metal]), d: e.date, last: true } : null;
+    }
+    if (c.close) return { t: c.close, v: N(c.close), d: p.graded || "" };
+    const m = /(?:close printed|closed the week at|closed at|weekly close printed)\s+([\d,]+(?:\.\d+)?)/i.exec(c.result || "");
+    if (m) return { t: m[1], v: N(m[1]), d: p.graded || "" };
+    if (p.graded) { const e = CLOSES.find(x => x.date === p.graded); if (e && e[c.metal]) return { t: e[c.metal], v: N(e[c.metal]), d: p.graded }; }
+    return null;
+  };
+  const rowHTML = (i, touch) => {
+    const c = CALLS[i]; if (!c) return "";
+    const [gw, gc] = GW(c), p = PROVENANCE[c.date] || {};
+    const multi = String(c.level).includes("/"), lv = N(c.level), cl = closeFor(c);
+    let when = "Named " + fmtDate(c.date);
+    if (c.grade === "pending") when += " · grades on the " + sd(friOf(c.date)) + " close";
+    else if (p.graded) when += " · graded on the " + sd(p.graded) + " close";
+    else if (p.first) when += " · in the first upload";
+    if (typeof STANDARD_FROM === "string" && c.date < STANDARD_FROM) when += " · before the " + sd(STANDARD_FROM) + " standard";
+    let close = "";
+    if (cl && isFinite(cl.v)) {
+      const lab = cl.last ? "Last close, " + sd(cl.d) : "Close";
+      if (!multi && isFinite(lv)) {
+        const d = cl.v - lv;
+        close = `<div class="lp-r">${esc(lab)} <em>${esc(cl.t)}</em> · <span class="${gc}">${fx(d, c.metal)} ${d >= 0 ? "above" : "below"} the level</span></div>`;
+      } else close = `<div class="lp-r">${esc(lab)} <em>${esc(cl.t)}</em></div>`;
+    }
+    let cd = "";
+    if (c.grade === "pending") { const f = gradeCloseFor(c.date); if (f) cd = `<div class="lp-r"><span class="pending">${esc(countdownText(f, true))}</span></div>`; }
+    const kill = String(c.call || "").split(/\s*Kill:\s*/i).slice(1).join(" ").trim();
+    const k = c.grammar
+      ? `${c.side === "copper" ? "Copper, stays below the line" : "Slate, holds above the line"} · room ${esc(c.room)} · odds ${esc(String(c.odds))} in 100`
+      : kill ? "Kill: " + esc(clip(kill, 132)) : "No kill published";
+    const flag = FLAGGED[c.date + "|" + c.metal];
+    return `<div class="lp-h"><span><b>${esc(c.metal)}</b><span class="lv">${esc(c.level)}</span></span><span class="lp-g ${gc}">${esc(gw)}</span></div>`
+      + `<div class="lp-r">${esc(when)}</div>${close}${cd}`
+      + `<div class="lp-k">${k}</div>${flag ? `<div class="lp-f">${esc(flag)}</div>` : ""}`
+      + `<div class="lp-hint">${touch ? "Tap again to open the row" : "Click to open the row"}</div>`;
+  };
+  const lineHTML = (L, G, touch) => {
+    const lastRow = CALLS[L.rowIdx] || {}, [gw, gc] = GW(lastRow), n = L.hist.length;
+    const hist = L.hist.slice().reverse().slice(0, 6).map(h => {
+      const c = CALLS[h.idx] || {}, g = GW(c), two = String(c.level || "").includes("/");
+      const cl = c.grade === "pending" || two ? null : closeFor(c);
+      return `<span>${esc(sd(h.date))}</span><span class="${g[1]}">${esc(g[0])}</span><span>${two ? "row of two levels" : cl ? "close " + esc(cl.t) : ""}</span>`;
+    }).join("");
+    let dist = "";
+    if (G.close !== null && isFinite(G.close) && G.close > 0) {
+      const d = L.v - G.close;
+      dist = `<div class="lp-r">${fx(d, G.metal)} ${d >= 0 ? "above" : "below"} the ${esc(sd(G.date))} close · ${(Math.abs(d) / G.close * 100).toFixed(2)}%</div>`;
+    }
+    return `<div class="lp-h"><span><b>${esc(G.metal)}</b><span class="lv">${esc(L.label)}</span></span><span class="lp-g ${gc}">${esc(gw)}</span></div>`
+      + (L.title ? `<div class="lp-r">${esc(L.title)}</div>` : "")
+      + `<div class="lp-r">Named ${n === 1 ? "once" : n + " times"}, the last on ${esc(fmtDate(L.hist[n - 1].date))}</div>`
+      + `<div class="lp-hist">${hist}</div>${n > 6 ? `<div class="lp-r">and ${n - 6} earlier</div>` : ""}${dist}`
+      + `<div class="lp-hint">${touch ? "Tap again to open the last row that named it" : "Click to open the last row that named it"}</div>`;
+  };
+  const closeHTML = G => `<div class="lp-h"><span><b>${esc(G.metal)}</b><span class="lv">${esc(G.closeTxt)}</span></span><span class="lp-g close">Close</span></div>`
+    + `<div class="lp-r">The weekly close of ${esc(fmtDate(G.date))}, the last on this page. Every distance on this ladder is measured from it.</div>`;
+
+  /* ---------------- the strip ---------------- */
+  let showSq = null;
+  guard("strip", () => {
+    const host = doc.getElementById("strip"); if (!host) return;
+    const sq = Array.from(host.querySelectorAll("a[data-i]"));
+    if (!sq.length) return;
+    sq.forEach(a => { a.removeAttribute("title"); a.tabIndex = -1; });
+    sq[sq.length - 1].tabIndex = 0;
+    showSq = (a, touch, kb) => show("sq|" + a.dataset.i + (touch ? "t" : "m"), rowHTML(+a.dataset.i, touch), a.getBoundingClientRect(), a, kb ? () => a.getBoundingClientRect() : null);
+    host.addEventListener("pointerover", e => { if (e.pointerType === "touch") return; const a = e.target.closest("a[data-i]"); if (a) showSq(a, false); });
+    host.addEventListener("pointerout", e => { if (e.pointerType === "touch") return; const a = e.target.closest("a[data-i]"); if (a && !(e.relatedTarget && a.contains(e.relatedTarget))) hide(); });
+    host.addEventListener("focusin", e => { const a = e.target.closest("a[data-i]"); if (!a || fingerFocus()) return; sq.forEach(x => { x.tabIndex = x === a ? 0 : -1; }); showSq(a, false, true); });
+    host.addEventListener("focusout", () => hide());
+    host.addEventListener("keydown", e => {
+      const a = e.target.closest("a[data-i]"); if (!a) return;
+      const k = sq.indexOf(a); let n = -1;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") n = Math.min(sq.length - 1, k + 1);
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = Math.max(0, k - 1);
+      else if (e.key === "Home") n = 0;
+      else if (e.key === "End") n = sq.length - 1;
+      if (n >= 0) { e.preventDefault(); sq[n].focus({ preventScroll: true }); }
+    });
+  });
+
+  /* ---------------- the ladder ---------------- */
+  let hot = null, hotK = "", showEr = null, pick = null, targetAt = null;
+  const clearXH = plot => {
+    if (!plot) return;
+    const g = plot.querySelector(".lx-xh"); if (g) g.setAttribute("visibility", "hidden");
+    plot.classList.remove("hot", "snapped");
+    plot.querySelectorAll(".lxl.on").forEach(x => x.classList.remove("on"));
+  };
+  guard("ladder", () => {
+    const L = doc.getElementById("ladder"); if (!L) return;
+    const prep = () => {
+      L.querySelectorAll(".lx-plot title").forEach(t => t.remove());
+      L.querySelectorAll(".lx-er a[title]").forEach(a => a.removeAttribute("title"));
+      hot = null; hotK = "";
+      if (owner && owner.closest && owner.closest("#ladder")) hide(true);
+    };
+    prep();
+    L.addEventListener("lx:drawn", prep);
+    const xh = (plot, G, yy, price, snapped) => {
+      const g = plot.querySelector(".lx-xh"); if (!g) return;
+      g.setAttribute("visibility", "visible");
+      g.setAttribute("transform", "translate(0 " + yy.toFixed(1) + ")");
+      g.classList.toggle("snap", snapped);
+      const pt = g.querySelector(".pt"), dt = g.querySelector(".dt"), pb = g.querySelector(".pb"), db = g.querySelector(".db");
+      pt.textContent = price.toLocaleString("en-GB", { minimumFractionDigits: dp(G.metal), maximumFractionDigits: dp(G.metal) });
+      if (G.close !== null && isFinite(G.close) && G.close > 0) {
+        const d = price - G.close, tiny = Math.pow(10, -dp(G.metal)) / 2;
+        dt.textContent = Math.abs(d) < tiny ? "the close" : (d > 0 ? "+" : "−") + fx(d, G.metal) + " · " + (d > 0 ? "+" : "−") + (Math.abs(d) / G.close * 100).toFixed(2) + "%";
+      } else dt.textContent = "";
+      let w1 = 60, w2 = 0;
+      try { w1 = pt.getComputedTextLength(); w2 = dt.textContent ? dt.getComputedTextLength() : 0; } catch (e) {}
+      pb.setAttribute("width", (w1 + 10).toFixed(1));
+      db.setAttribute("x", (G.W - w2 - 10).toFixed(1)); db.setAttribute("width", (w2 + 10).toFixed(1));
+      db.setAttribute("visibility", w2 ? "visible" : "hidden");
+    };
+    /* the mark a point stands on: a label names its own line; otherwise the
+       nearest line within a few pixels, a little more under a finger */
+    targetAt = (plot, e, touch) => {
+      const G = plot._lx, svg = plot.querySelector("svg"); if (!G || !svg) return { out: true };
+      const R = svg.getBoundingClientRect(), sc = (R.height / G.H) || 1, y = (e.clientY - R.top) / sc;
+      const lnk = e.target && e.target.closest ? e.target.closest("a") : null, grp = lnk ? lnk.closest(".lxl") : null;
+      if (grp && plot.contains(grp)) { const t = G.targets.find(x => x.k === grp.getAttribute("data-k")); if (t) return { t, y }; }
+      if (y < G.pT - 8 || y > G.H - G.pB + 8) return { out: true };
+      let best = null, bd = touch ? 18 : 9;
+      G.targets.forEach(t => {
+        const d = Math.min(Math.abs(t.y - y), t.ly !== undefined ? Math.abs(t.ly - y) : Infinity);
+        if (d < bd) { bd = d; best = t; }
+      });
+      return { t: best, y };
+    };
+    pick = (plot, e, touch) => {
+      const G = plot._lx, svg = plot.querySelector("svg"); if (!G || !svg) return;
+      const R = svg.getBoundingClientRect(), sc = (R.height / G.H) || 1;
+      const at = targetAt(plot, e, touch);
+      if (at.out) { clearXH(plot); if (owner === plot) hide(); hotK = ""; return; }
+      const best = at.t, y = at.y;
+      const yy = best ? best.y : Math.max(G.pT, Math.min(G.H - G.pB, y));
+      const price = best ? best.v : G.hi - (yy - G.pT) / (G.H - G.pT - G.pB) * (G.hi - G.lo);
+      xh(plot, G, yy, price, !!best);
+      plot.classList.toggle("hot", !!best && best.kind === "hist");
+      plot.classList.toggle("snapped", !!(best && best.L));
+      plot.querySelectorAll(".lxl.on").forEach(x => { if (!best || x.getAttribute("data-k") !== best.k) x.classList.remove("on"); });
+      if (best) {
+        const node = plot.querySelector('.lxl[data-k="' + best.k + '"]'); if (node) node.classList.add("on");
+        const ay = R.top + best.y * sc, ax = Math.max(R.left + 24, Math.min(R.right - 24, e.clientX));
+        const html = best.kind === "hist" ? lineHTML(best.L, G, touch) : best.kind === "live" ? rowHTML(best.L.rowIdx, touch) : closeHTML(G);
+        show(G.metal + "|" + best.k + (touch ? "t" : "m"), html, { left: ax - 1, right: ax + 1, width: 2, top: ay - 7, bottom: ay + 7, height: 14 }, plot);
+        hotK = best.k;
+      } else { if (owner === plot) hide(); hotK = ""; }
+    };
+    L.addEventListener("pointermove", e => {
+      if (e.pointerType === "touch") return;
+      const plot = e.target.closest(".lx-plot");
+      if (plot !== hot) { clearXH(hot); if (hot && owner === hot) hide(); hot = plot; }
+      if (plot) pick(plot, e, false);
+    });
+    L.addEventListener("pointerleave", e => { if (e.pointerType === "touch") return; clearXH(hot); if (hot && owner === hot) hide(); hot = null; hotK = ""; });
+    /* the lines off the scale, listed at the column's edge */
+    const findEdge = er => {
+      const cols = L._cols || [], col = cols.find(c => c.metal === er.getAttribute("data-m")); if (!col) return null;
+      const g = col.lines.find(x => x.label === er.getAttribute("data-l")); return g ? { g, col } : null;
+    };
+    showEr = (er, touch) => {
+      const f = findEdge(er); if (!f) return;
+      const lc = CLOSES[CLOSES.length - 1] || {};
+      const G = { metal: f.col.metal, close: f.col.close, closeTxt: f.col.closeTxt, date: lc.date || "" };
+      show("er|" + f.col.metal + "|" + f.g.label + (touch ? "t" : "m"), lineHTML(f.g, G, touch), er.getBoundingClientRect(), er);
+    };
+    L.addEventListener("pointerover", e => { if (e.pointerType === "touch") return; const er = e.target.closest(".lx-er"); if (er) showEr(er, false); });
+    L.addEventListener("pointerout", e => { if (e.pointerType === "touch") return; const er = e.target.closest(".lx-er"); if (er && !(e.relatedTarget && er.contains(e.relatedTarget))) hide(); });
+    L.addEventListener("focusin", e => {
+      if (fingerFocus()) return;
+      const t = e.target, grp = t.closest && t.closest(".lxl"), plot = t.closest && t.closest(".lx-plot");
+      if (grp && plot && plot._lx) {
+        const tg = plot._lx.targets.find(x => x.k === grp.getAttribute("data-k")); if (!tg) return;
+        if (plot !== hot) { clearXH(hot); hot = plot; }
+        const R = plot.querySelector("svg").getBoundingClientRect();
+        pick(plot, { clientX: R.left + R.width * .5, clientY: R.top + tg.y * (R.height / plot._lx.H), target: grp }, false);
+        return;
+      }
+      const er = t.closest && t.closest(".lx-er"); if (er) showEr(er, false);
+    });
+    L.addEventListener("focusout", () => { clearXH(hot); hot = null; hotK = ""; hide(); });
+    L.addEventListener("click", e => {
+      if (e.defaultPrevented || e.target.closest("a")) return;
+      const er = e.target.closest(".lx-er");
+      if (er) { const a = er.querySelector("a"); if (a) a.click(); return; }
+      const plot = e.target.closest(".lx-plot");
+      if (!plot || lastPT === "touch") return;
+      const at = targetAt(plot, e, false);
+      if (at.t && at.t.L) goRow(at.t.L.rowIdx);
+    });
+  });
+
+  /* ---------------- touch: the first tap reads, the second follows ---------------- */
+  guard("touch", () => {
+    doc.addEventListener("pointerdown", e => {
+      lastPT = e.pointerType || "mouse"; lastPD = Date.now();
+      if (lastPT !== "touch" || lp.hidden) return;
+      const t = e.target;
+      if (!(t.closest && (t.closest("#strip") || t.closest("#ladder")))) { hide(true); clearXH(hot); hot = null; hotK = ""; }
+    }, true);
+    doc.addEventListener("click", e => {
+      if (lastPT !== "touch") return;
+      const t = e.target; if (!t.closest) return;
+      const sq = t.closest("#strip a[data-i]");
+      if (sq && showSq) { if (owner !== sq || lp.hidden) { e.preventDefault(); e.stopPropagation(); showSq(sq, true); } return; }
+      const plot = t.closest("#ladder .lx-plot");
+      if (plot && pick && targetAt) {
+        const at = targetAt(plot, e, true);
+        if (t.closest("a")) { e.preventDefault(); e.stopPropagation(); }
+        if (at.t && at.t.L && owner === plot && !lp.hidden && hotK === at.t.k) { e.preventDefault(); goRow(at.t.L.rowIdx); return; }
+        if (plot !== hot) { clearXH(hot); hot = plot; }
+        pick(plot, e, true);
+        return;
+      }
+      const er = t.closest("#ladder .lx-er");
+      if (er && showEr) { if (owner !== er || lp.hidden) { e.preventDefault(); e.stopPropagation(); showEr(er, true); } }
+    }, true);
+  });
+
+  /* the card never floats over the page it no longer points at */
+  guard("dismiss", () => {
+    window.addEventListener("scroll", () => {
+      if (!lp.hidden && follow && owner && owner.isConnected) { place(follow()); return; }
+      if (!lp.hidden) hide(true);
+      if (hot) { clearXH(hot); hot = null; hotK = ""; }
+    }, { passive: true });
+    window.addEventListener("resize", () => hide(true));
+    doc.addEventListener("keydown", e => { if (e.key === "Escape" && !lp.hidden) { hide(true); clearXH(hot); } });
+  });
 })();
 </script>
 </body>

@@ -64,9 +64,13 @@ const close = closeM[1];
 
 /* The grade date: for an open-then-graded row, "Close and line read ... <d> <Month>"
    is the grading night; the close itself is the Friday. The row's own date is
-   the naming date. The Friday is derived from the naming Sunday: five days on. */
+   the naming date. The Friday is the first Friday after the naming date, derived
+   the way gradeCloseFor derives it on the page.
+   24 Sep 2026, note 33: this read "derived from the naming Sunday: five days on",
+     const friday = new Date(named); friday.setUTCDate(named.getUTCDate() + 5);
+   which would have printed a Saturday for a row named on a Monday. */
 const named = new Date(row.date + "T00:00:00Z");
-const friday = new Date(named); friday.setUTCDate(named.getUTCDate() + 5);
+const friday = new Date(named); { let add = (5 - named.getUTCDay() + 7) % 7; if (add === 0) add = 7; friday.setUTCDate(named.getUTCDate() + add); }
 const gradedISO = friday.toISOString().slice(0, 10);
 
 const GRADE = { pass: ["Held", "pass"], miss: ["Wrong", "miss"], partial: ["Partial", "partial"] }[row.grade];
