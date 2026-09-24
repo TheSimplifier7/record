@@ -243,11 +243,11 @@ function render(){
     return `<tr>
       <td class="d">${esc(fmt(t.published))}</td>
       <td class="src">${esc(t.source)}</td>
-      <td class="lv">${/^banks\/[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pgl" href="${esc(t.page)}">${num(t.level)}</a>` : num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="lv">${/^[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pgl" href="${esc(t.page)}">${num(t.level)}</a>` : num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="win">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmt(t.window))}</span></td>
       <td class="q">“${esc(t.quote)}”<a href="${esc(t.link)}" rel="nofollow noopener">source</a>${t.note ? `<div class="res">${esc(t.note)}</div>` : ""}
         <details class="kill"><summary>The kill, assigned</summary><p>${esc(t.kill)}</p></details></td>
-      <td class="gr"><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}${/^banks\/[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pg" href="${esc(t.page)}">The row, in full &rsaquo;</a>` : ""}<!-- the row's page, 24 Sep 2026, record note 35 --></td>
+      <td class="gr"><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}${/^[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pg" href="${esc(t.page)}">The row, in full &rsaquo;</a>` : ""}<!-- the row's page, 24 Sep 2026, record note 35 --></td>
     </tr>`;
   }).join("");
   const c = k => ok.filter(t => t.grade === k).length;

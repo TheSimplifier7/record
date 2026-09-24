@@ -35,8 +35,9 @@
         one, record.json and misses.html carry the address the page builds.
     15. A page for every bank row, 24 September 2026, note 35: record.json
         names the same page the record builds for every target, the page
-        and its 1200 x 630 card are in banks/, and the page was written
-        with the row's current grade. */
+        and its 1200 x 630 card sit beside the record (note 36: no folder,
+        because a plain upload flattens one), and the page is the page, not
+        its card's source, written with the row's current grade. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -234,12 +235,12 @@ if (typeof rowAnchor === "function") {
 const bankSlug = fnFrom("bankSlug");
 let TG = []; try { TG = grab("TARGETS", "\\[", "\\]"); } catch (e) {}
 const rt = (rec && rec.targets) || [];
-check(typeof bankSlug === "function" && rt.length === TG.length && TG.every((t, i) => rt[i].page === "banks/" + bankSlug(t) + ".html"),
+check(typeof bankSlug === "function" && rt.length === TG.length && TG.every((t, i) => rt[i].page === bankSlug(t) + ".html"),
   "record.json names the page the record builds for every bank row (" + TG.length + ")");
 const pngWH = f => { try { const b = fs.readFileSync(f); return [b.readUInt32BE(16), b.readUInt32BE(20)]; } catch (e) { return [0, 0]; } };
-const noPage = rt.filter(t => { const slug = String(t.page || "").replace(/^banks\//, "").replace(/\.html$/, ""); const wh = pngWH(path.join(HERE, "banks", "cards", slug + ".png"));
-  return !slug || !fs.existsSync(path.join(HERE, "banks", slug + ".html")) || wh[0] !== 1200 || wh[1] !== 630; });
-check(rt.length > 0 && noPage.length === 0, "every bank row has its page and its 1200 x 630 card in banks/" + (noPage.length ? " (missing: " + noPage.map(t => t.page).join(", ") + ")" : ""));
+const noPage = rt.filter(t => { const slug = String(t.page || "").replace(/\.html$/, ""); const wh = pngWH(path.join(HERE, slug + ".png"));
+  return !/^[a-z0-9.-]+$/.test(slug) || !fs.existsSync(path.join(HERE, slug + ".html")) || wh[0] !== 1200 || wh[1] !== 630; });
+check(rt.length > 0 && noPage.length === 0, "every bank row has its page and its 1200 x 630 card beside the record" + (noPage.length ? " (missing: " + noPage.map(t => t.page).join(", ") + ")" : ""));
 const stalePg = rt.filter(t => { try { return !rd(t.page).includes('<body data-grade="' + t.grade + '">'); } catch (e) { return true; } });
 check(stalePg.length === 0, "every bank page carries its row's grade (run node make_bank_pages.js after any bank grade)" + (stalePg.length ? " (stale: " + stalePg.map(t => t.page).join(", ") + ")" : ""));
 

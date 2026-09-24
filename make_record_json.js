@@ -121,7 +121,7 @@ const out = {
     marks: s.marks || null
   })),
   notes: NOTES.slice().sort((a, b) => a.n.localeCompare(b.n)).map(n => ({ n: n.n, kind: n.kind, title: n.title, body: n.body })),
-  targets: TARGETS.map(t => ({ ...t, page: "banks/" + bankSlug(t) + ".html" })),   /* note 35: each row's own page */
+  targets: TARGETS.map(t => ({ ...t, page: bankSlug(t) + ".html" })),   /* note 35: each row's own page; beside the record from note 36 */
   targets_left_off: OUT,
   closes: CLOSES,
   crowd: {

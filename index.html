@@ -1356,6 +1356,53 @@
     .lrow.arrive>summary{animation:none;box-shadow:inset 3px 0 0 var(--gold)}
   }
   @media(hover:none){.lx-plot{cursor:auto}}
+  /* THE CHART OVER TIME, 24 Sep 2026, note 36. The Friday close as a line,
+     every level named drawn from the day it was named to the close that
+     graded it, in the colour it was graded, and a thin tick from the level
+     to that close. The ladder is the same rows by price, one tab away. */
+  .cv{display:inline-flex;margin:18px 0 0;border:1px solid var(--rule-card);border-radius:8px;overflow:hidden}
+  .cv[hidden]{display:none}
+  .cv button{background:none;border:0;padding:9px 16px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-5);cursor:pointer}
+  .cv button+button{border-left:1px solid var(--rule-card)}
+  .cv button[aria-selected="true"]{background:var(--panel);color:var(--ink);box-shadow:inset 0 -2px 0 var(--gold)}
+  .cv button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  .chart-ladder[hidden]{display:none}
+  .path{margin-top:14px;border:1px solid var(--rule-card);border-radius:12px;background:var(--panel);padding:14px 16px 12px}
+  .path[hidden]{display:none}
+  .path-bar{display:flex;justify-content:space-between;align-items:center;gap:10px 16px;flex-wrap:wrap}
+  .path-metals{display:inline-flex;gap:6px;flex-wrap:wrap}
+  .path-metals button{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:7px 12px;cursor:pointer;color:var(--ink-4);background:transparent;border:1px solid var(--rule)}
+  .path-metals button:hover{border-color:var(--ink);color:var(--ink)}
+  .path-metals button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+  .path-metals button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .path-last{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-5)}
+  .path-last b{color:var(--ink);font-weight:600}
+  .path-plot{position:relative;margin-top:12px;touch-action:pan-y;cursor:crosshair;border-radius:4px}
+  .path-plot:focus{outline:none}
+  .path-plot:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+  .path-plot.snapped{cursor:pointer}
+  .path-plot svg{display:block;width:100%;overflow:visible}
+  .path-plot .pp-row{transition:opacity .15s ease}
+  .path-plot.hot .pp-row{opacity:.25}
+  .path-plot.hot .pp-row.on{opacity:1}
+  .pp-xh line{stroke:var(--ink-5);stroke-width:1;stroke-dasharray:3 3}
+  .pp-xh.snap line.h{stroke:var(--gold);stroke-dasharray:none}
+  .pp-xh rect{fill:var(--ink)}
+  .pp-xh.snap rect.pb{fill:var(--gold)}
+  .pp-xh text{fill:var(--bg);font-family:var(--mono)}
+  .path-key{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;color:var(--ink-5);margin-top:10px;
+    display:flex;gap:8px 16px;flex-wrap:wrap;align-items:center}
+  .path-key i{display:inline-block;width:16px;height:3px;margin-right:7px;vertical-align:3px;background:var(--ink)}
+  .path-key i.pass{background:var(--pass)} .path-key i.miss{background:var(--miss)} .path-key i.open{background:var(--pending)}
+  .path-key i.notest{background:repeating-linear-gradient(to right,var(--notest) 0 4px,transparent 4px 7px)}
+  .path-key .dot{width:7px;height:7px;border-radius:50%;vertical-align:0}
+  .loupe .lp-h .lv.cl{color:var(--ink)}
+  .path-note{font-family:var(--mono);font-size:10.5px;line-height:1.6;color:var(--ink-6);margin-top:6px}
+  @media(max-width:760px){.path{padding:12px 10px 10px}.cv button{padding:9px 12px}}
+  @media(prefers-reduced-motion:reduce){.path-plot .pp-row{transition:none}}
+  @media(hover:none){.path-plot{cursor:auto}}
 </style>
 </head>
 <body>
@@ -1537,8 +1584,9 @@
   </div>
 
   <div class="ledger-head">
-    <h2>The Ladder</h2>
-    <span class="cnt">Every level named, on the price axis</span>
+    <!-- 24 Sep 2026, note 36. Read <h2>The Ladder</h2> and "Every level named, on the price axis". -->
+    <h2>The Chart</h2>
+    <span class="cnt">Every level named, against the close</span>
   </div>
   <!-- Rewritten 8 Sep 2026 with the vertical ladder (note 23). This read:
        "The ledger reads by date. This reads by price: every line this page
@@ -1552,10 +1600,23 @@
        column is the last close on the standing cards, and every level states
        its distance from it." The key read: ended held, ended wrong, never
        reached, open, clock running, the last close on the standing cards. -->
-  <p class="sc-plain" style="margin-bottom:0">The ledger reads by date. This reads by price: <em>where each metal closed on Friday, the line it holds this week, and every earlier line at its exact price</em>, with one square for each week it was named. Lines far from price are listed at the edge of the column with their distance.</p>
+  <!-- 24 Sep 2026, note 36. This read:
+       "The ledger reads by date. This reads by price: <em>where each metal closed on Friday, the line it holds this week, and every earlier line at its exact price</em>, with one square for each week it was named. Lines far from price are listed at the edge of the column with their distance." -->
+  <p class="sc-plain" style="margin-bottom:0"><em>Over time</em>, the Friday close as a line and every level named drawn from the day it was named to the close that graded it, in the colour it was graded. <em>By price</em>, where each metal closed on Friday, the line it holds this week and every earlier line at its exact price, with one square for each week it was named.</p>
+  <!-- THE TWO VIEWS, 24 Sep 2026, note 36. The ladder is on screen until the
+       script has drawn the chart over time, so a page whose script fails still
+       shows it. -->
+  <div class="cv" id="cv" role="tablist" aria-label="View" hidden><button type="button" role="tab" data-v="path" aria-selected="true">Over time</button><button type="button" role="tab" data-v="ladder" aria-selected="false">By price</button></div>
+  <section class="path" id="path" aria-label="Every level named, over time" hidden>
+    <div class="path-bar"><div class="path-metals" id="path-metals" role="tablist" aria-label="Metal"></div><span class="path-last" id="path-last"></span></div>
+    <div class="path-plot" id="path-plot" tabindex="0"></div>
+    <div class="path-key" id="path-key"></div>
+  </section>
+  <div class="chart-ladder" id="chart-ladder">
   <div class="ladder-tabs" id="ladder-tabs" role="tablist"></div>
   <div class="ladder" id="ladder"></div>
   <div class="ladder-key"><!-- hit added 24 Sep 2026, note 34 --><span><i class="pass"></i>held</span><span class="k-hit" hidden><i class="hit"></i>hit</span><span><i class="miss"></i>wrong</span><span><i class="notest"></i>never reached</span><span><i class="open"></i>open</span><span>one square per week the line was named, oldest first</span><span>hover or tap a column to read any price on it<!-- 24 Sep 2026, note 35 --></span></div>
+  </div><!-- the ladder's view, note 36 -->
 
   <div class="ledger-head">
     <h2>Standing Calls</h2>
@@ -1900,7 +1961,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September upload, which carries notes 33, 34 and 35; "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST) and note 36 (the same evening); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -3144,6 +3205,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"36", kind:"correction", title:"Correction, 24 September 2026. The bank pages went up without their folder, the crosshair left a mark on the ladder, and the chart now reads over time.",
+    body:"Note 35 was uploaded at 17:34 CEST on 24 September. Two things in it did not work, and both are corrected here rather than tidied. THE BANK PAGES. The upload put every file in the top folder of the site, so the fourteen pages note 35 placed under banks never reached it. Each was replaced by the source of its own link card, which carried the same name, and every link from the board to a row's page opened nothing. The pages now sit beside the record itself, named for the house, the metal, the level and the window, ubs-gold-6200-2026-09-30.html for the UBS row that grades on 25 September, which is where a plain upload puts them; the link cards sit beside them as images, and their sources are no longer written to the site at all. verify_record.js now refuses a page that is not the page it names, or that was written before its row's grade. THE CROSSHAIR. After a pointer left a column of the ladder, the tag that printed its distance from the close stayed on the column as an empty bar. It no longer does. THE CHART OVER TIME. The section that held the ladder now opens on the same rows over time: the Friday close as a line, every level named drawn from the day it was named to the close that graded it, in the colour it was graded, and a thin tick from the level to that close, so the margin of every held row and every wrong one reads at a glance. A card names the week or the row under the pointer, and a click opens the row. The ladder is one tab away, by price, as notes 32 and 35 left it, and a reader who chooses it keeps it on that device. The chart draws from CLOSES, CALLS and PROVENANCE and nothing else; the four gold rows of June, named before the closes on file begin, are counted under it and stay in the ledger. Nothing in this note touches a row, a grade, a kill, a figure or a date." },
   { n:"35", kind:"standard", title:"The page answers a pointer, 24 September 2026. The loupe, the crosshair, an address for every row, and a page for every bank row.",
     body:"Five surfaces changed, and none of them touches a row, a grade, a kill, a figure or a date. THE LOUPE. A square on the strip, a line on the ladder and the close each open a small card on a pointer, on keyboard focus or on a first tap: the row's metal and level, its grade, the close it was graded on and how far that close sat from the level, the kill in the row's own words, and any flag the row carries. The close is the one the row's result prints, or where the result prints none, the Friday close in CLOSES for the date PROVENANCE says the row was graded on; the two agree on every row that carries both. Rows from the first upload carry no graded date and show no close. THE CROSSHAIR. Across the ladder a hairline follows the pointer and prints the price at that height on the column's own scale, and its distance from the last Friday close. Within a few pixels of a named line it holds to that line, the other lines dim, and the card lists the rows that named it, newest first, each with its grade and, where the row named one level, its close. THE STRIP. On a wide screen the squares are grouped by the month the row was named, the key marks the rows named before the standard of 3 July, and the arrow keys walk the squares. AN ADDRESS FOR EVERY ROW. A row was reached by its position in the array, lrow and a number, and new rows go on top every week, so every such link pointed at a different row the week after it was shared. Every row now also carries an address built from its own date, metal and level, r-2026-09-06-gold-4357 for the gold row of 6 September, which never moves. A link inside the page writes that address into the bar, the wrong-calls page links by it, record.json carries it on every row as anchor, and a button in every opened row copies it, or on a phone hands it to the share sheet. An old positional link still opens whatever row sits at that position today. A PAGE FOR EVERY BANK ROW. Each target on the bank board links to a page of its own under banks, with the quote, the kill this desk assigned, the grade, the house's other rows, what the house said that the board leaves off, and a link card of its own. The pages are written from record.json by make_bank_pages.js, and verify_record.js checks that every row has its page and its card. Three lines that promised the rows before the open, which note 33 did not reach, move with it in this upload: the brief for producers, the first line of the README and the ledger line on the year page. An opened row draws its gauge from the level to the close, and a row reached by its address is marked in gold for two seconds. Motion is kept to what the reader does, with one exception, the dot beside the countdown, which breathes while the clock runs; a reader who has asked the system for reduced motion gets none of it." },
   { n:"34", kind:"standard", title:"The call grammar, from 28 September 2026. Side, line, room and odds on every row, and a third grade word. Written 24 September 2026.",
@@ -3277,7 +3340,8 @@ const fmtDate = iso => {
    and verify_record.js checks that all three agree and that no two rows share
    one. Keep this function on one line: the verifier reads it. */
 const rowAnchor = c => "r-" + c.date + "-" + String(c.metal).toLowerCase() + "-" + String(c.level).replace(/,/g, "").replace(/[^0-9]+/g, "-").replace(/^-+|-+$/g, "");
-/* A BANK ROW'S PAGE, 24 Sep 2026, note 35. The same address
+/* A BANK ROW'S PAGE, 24 Sep 2026, note 35; beside the record, no folder,
+   from note 36, because a plain upload flattens folders. The same address
    make_record_json.js writes into record.json as page and make_bank_pages.js
    writes the page at: the house, not the channel it was reported through,
    the metal, the level and the window. One line, for the same reason. */
@@ -4974,10 +5038,10 @@ function renderBoard(){
     return `<tr>
       <td class="d">${esc(fmtDate(t.published))}</td>
       <td class="s">${esc(t.source)}</td>
-      <td class="l"><a class="bk-lv" href="banks/${esc(bankSlug(t))}.html">${Number(t.level).toLocaleString("en-US")}</a><div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
+      <td class="l"><a class="bk-lv" href="${esc(bankSlug(t))}.html">${Number(t.level).toLocaleString("en-US")}</a><div class="w" style="font-weight:400;font-size:10.5px;color:var(--ink-6);margin-top:3px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="w">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmtDate(t.window))}</span></td>
       <td class="q"><p class="bq">"${esc(t.quote)}" <a href="${esc(t.link)}" rel="nofollow noopener">source</a></p><details><summary>The kill, assigned</summary><div class="kl">${esc(t.kill)}</div>${t.note ? `<div class="kl">${esc(t.note)}</div>` : ""}</details></td>
-      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}<a class="bk-page" href="banks/${esc(bankSlug(t))}.html">The row, in full &rsaquo;</a></td>
+      <td><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="kl">${esc(t.result)}</div>` : ""}<a class="bk-page" href="${esc(bankSlug(t))}.html">The row, in full &rsaquo;</a></td>
     </tr>`;
   }).join("");
   const open = rows.filter(t => t.grade === "pending").length, held = rows.filter(t => t.grade === "pass").length, wrong = rows.filter(t => t.grade === "miss").length;
@@ -5549,7 +5613,7 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
     sq[sq.length - 1].tabIndex = 0;
     showSq = (a, touch, kb) => show("sq|" + a.dataset.i + (touch ? "t" : "m"), rowHTML(+a.dataset.i, touch), a.getBoundingClientRect(), a, kb ? () => a.getBoundingClientRect() : null);
     host.addEventListener("pointerover", e => { if (e.pointerType === "touch") return; const a = e.target.closest("a[data-i]"); if (a) showSq(a, false); });
-    host.addEventListener("pointerout", e => { if (e.pointerType === "touch") return; const a = e.target.closest("a[data-i]"); if (a && !(e.relatedTarget && a.contains(e.relatedTarget))) hide(); });
+    host.addEventListener("pointerout", e => { if (e.pointerType === "touch" || follow) return; const a = e.target.closest("a[data-i]"); if (a && !(e.relatedTarget && a.contains(e.relatedTarget))) hide(); });
     host.addEventListener("focusin", e => { const a = e.target.closest("a[data-i]"); if (!a || fingerFocus()) return; sq.forEach(x => { x.tabIndex = x === a ? 0 : -1; }); showSq(a, false, true); });
     host.addEventListener("focusout", () => hide());
     host.addEventListener("keydown", e => {
@@ -5596,7 +5660,10 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
       try { w1 = pt.getComputedTextLength(); w2 = dt.textContent ? dt.getComputedTextLength() : 0; } catch (e) {}
       pb.setAttribute("width", (w1 + 10).toFixed(1));
       db.setAttribute("x", (G.W - w2 - 10).toFixed(1)); db.setAttribute("width", (w2 + 10).toFixed(1));
-      db.setAttribute("visibility", w2 ? "visible" : "hidden");
+      /* 24 Sep 2026, note 36. This read w2 ? "visible" : "hidden". A child set
+         visible stays visible when its group is hidden, so after the pointer
+         left, the empty tag stayed on the column. Inherit follows the group. */
+      db.setAttribute("visibility", w2 ? "inherit" : "hidden");
     };
     /* the mark a point stands on: a label names its own line; otherwise the
        nearest line within a few pixels, a little more under a finger */
@@ -5683,7 +5750,7 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
       lastPT = e.pointerType || "mouse"; lastPD = Date.now();
       if (lastPT !== "touch" || lp.hidden) return;
       const t = e.target;
-      if (!(t.closest && (t.closest("#strip") || t.closest("#ladder")))) { hide(true); clearXH(hot); hot = null; hotK = ""; }
+      if (!(t.closest && (t.closest("#strip") || t.closest("#ladder") || t.closest("#path")))) { hide(true); clearXH(hot); hot = null; hotK = ""; }
     }, true);
     doc.addEventListener("click", e => {
       if (lastPT !== "touch") return;
@@ -5702,6 +5769,252 @@ document.querySelectorAll('a[href*="commits/main"]').forEach(a => { a.href = HIS
       const er = t.closest("#ladder .lx-er");
       if (er && showEr) { if (owner !== er || lp.hidden) { e.preventDefault(); e.stopPropagation(); showEr(er, true); } }
     }, true);
+  });
+
+  /* ---------------- the chart over time, 24 Sep 2026, note 36 ----------------
+     The Friday close as a line, from CLOSES. Every row drawn at its level
+     from the day it was named to the close PROVENANCE says graded it, or for
+     an open row to the Friday that will grade it, in the colour it was
+     graded, with a thin tick from the level to that close. A row graded
+     before the first close on file is counted under the chart, not drawn.
+     Nothing here is typed: the card reads the same rows it reads on the
+     strip and the ladder. If any of this fails, the ladder stays on screen,
+     because the page shows it until this script has drawn. */
+  guard("path", () => {
+    const sec = doc.getElementById("path"), plot = doc.getElementById("path-plot"), bar = doc.getElementById("path-metals");
+    const lastEl = doc.getElementById("path-last"), keyEl = doc.getElementById("path-key"), cv = doc.getElementById("cv"), lad = doc.getElementById("chart-ladder");
+    if (!sec || !plot || !bar || !cv || !lad || !Array.isArray(CLOSES) || !CLOSES.length) return;
+    const dn = iso => Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) / 864e5;
+    const GC = { pass: "pass", miss: "miss", partial: "miss", notest: "notest", pending: "pending" };
+    const metals = ["Gold", "Silver", "Platinum"].filter(m => CLOSES.some(x => x[m]) && CALLS.some(c => c.metal === m));
+    if (!metals.length) return;
+    const model = m => {
+      const cl = CLOSES.filter(x => x[m]).map(x => ({ d: x.date, t: x[m], v: N(x[m]) }));
+      const first = cl[0].d, rows = [], before = [];
+      CALLS.forEach((c, i) => {
+        if (c.metal !== m) return;
+        const p = PROVENANCE[c.date] || {};
+        const g = c.grade === "pending" ? friOf(c.date) : p.graded;
+        if (!g || g < first) { before.push(i); return; }
+        const lv = String(c.level).split("/").map(s => N(s)).filter(v => isFinite(v));
+        if (!lv.length) return;
+        rows.push({ i, c, x0: c.date, x1: g, lv, ce: c.grade === "pending" ? null : (cl.find(x => x.d === g) || null) });
+      });
+      const fr = [...new Set(cl.map(x => x.d).concat(rows.map(r => r.x1)))].sort();
+      return { m, cl, rows, before, first, fr };
+    };
+    let cur = metals[0], M = null, geo = null, curKey = "", kbIdx = -1;
+
+    const draw = () => {
+      M = model(cur);
+      const narrow = window.matchMedia("(max-width:760px)").matches;
+      const W = Math.max(280, plot.clientWidth || 600), H = narrow ? 340 : 420, L = 50, R = 14, T = 18, B = 30;
+      const d0 = Math.min(...M.rows.map(r => dn(r.x0)), ...M.cl.map(x => dn(x.d))) - 4;
+      const d1 = Math.max(...M.rows.map(r => dn(r.x1)), ...M.cl.map(x => dn(x.d))) + 5;
+      const vals = M.cl.map(x => x.v).concat(...M.rows.map(r => r.lv));
+      let lo = Math.min(...vals), hi = Math.max(...vals);
+      const pad = (hi - lo) * .07 || hi * .01; lo -= pad; hi += pad;
+      const X = iso => L + (dn(iso) - d0) / (d1 - d0) * (W - L - R);
+      const Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+      let g = "";
+      const raw = (hi - lo) / 6, p10 = Math.pow(10, Math.floor(Math.log10(raw))), mm = raw / p10;
+      const step = (mm < 1.5 ? 1 : mm < 3.5 ? 2 : mm < 7.5 ? 5 : 10) * p10;
+      for (let k = Math.ceil(lo / step); k * step < hi; k++) {
+        const t = k * step, yy = Y(t).toFixed(1);
+        g += `<line x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" style="stroke:var(--rule-soft)" stroke-width="1" stroke-dasharray="1 3"/>`;
+        g += `<text x="${L - 8}" y="${(+yy + 4).toFixed(1)}" text-anchor="end" font-size="10.5" style="fill:var(--ink-6)">${esc(cur === "Silver" ? (+t.toFixed(3)).toString() : Math.round(t).toLocaleString("en-GB"))}</text>`;
+      }
+      const s0 = new Date(d0 * 864e5);
+      const firstTick = X(s0.getUTCFullYear() + Math.floor((s0.getUTCMonth() + 1) / 12) + "-" + String((s0.getUTCMonth() + 1) % 12 + 1).padStart(2, "0") + "-01");
+      if (firstTick - L > 44) g += `<text x="${L + 5}" y="${H - B + 18}" font-size="10.5" letter-spacing=".5" style="fill:var(--ink-6)">${MONTHS[s0.getUTCMonth()]}</text>`;
+      for (let k = 1; k < 40; k++) {
+        const mo = (s0.getUTCMonth() + k) % 12, y = s0.getUTCFullYear() + Math.floor((s0.getUTCMonth() + k) / 12);
+        const iso = y + "-" + String(mo + 1).padStart(2, "0") + "-01";
+        if (dn(iso) > d1) break;
+        const xx = X(iso).toFixed(1);
+        g += `<line x1="${xx}" x2="${xx}" y1="${T}" y2="${H - B}" style="stroke:var(--rule-soft)" stroke-width="1" stroke-dasharray="1 4"/>`;
+        g += `<text x="${(+xx + 5).toFixed(1)}" y="${H - B + 18}" font-size="10.5" letter-spacing=".5" style="fill:var(--ink-6)">${MONTHS[mo]}</text>`;
+      }
+      const lastC = M.cl[M.cl.length - 1];
+      const open = M.rows.filter(r => r.c.grade === "pending");
+      if (open.length) {
+        const f1 = open.map(r => r.x1).sort().pop(), xa = X(lastC.d), xb = X(f1);
+        if (xb > xa) {
+          g += `<rect x="${xa.toFixed(1)}" y="${T}" width="${(xb - xa).toFixed(1)}" height="${H - T - B}" style="fill:var(--pending)" fill-opacity=".07"/>`;
+          g += `<line x1="${xb.toFixed(1)}" x2="${xb.toFixed(1)}" y1="${T}" y2="${H - B}" style="stroke:var(--pending)" stroke-width="1" stroke-dasharray="2 3"/>`;
+          g += `<text x="${(xb - 5).toFixed(1)}" y="${T + 12}" text-anchor="end" font-size="10" font-weight="600" letter-spacing="1" style="fill:var(--pending)">GRADED ${esc(sd(f1).toUpperCase())}</text>`;
+        }
+      }
+      g += M.rows.map(r => {
+        const k = GC[r.c.grade] || "notest", col = "var(--" + k + ")", two = r.lv.length > 1, xa = X(r.x0), xb = X(r.x1);
+        let s = `<g class="pp-row" data-k="${r.i}"${two ? ' opacity=".8"' : ""}>`;
+        r.lv.forEach(v => {
+          const y = Y(v);
+          if (xb - xa > 1) s += `<line x1="${xa.toFixed(1)}" x2="${xb.toFixed(1)}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" style="stroke:${col}" stroke-width="${two ? 2 : 3}" stroke-linecap="round"${k === "notest" ? ' stroke-dasharray="4 3"' : k === "pending" ? ' stroke-dasharray="7 3"' : ""}/>`;
+          if (r.ce && k !== "notest" && !two) s += `<line x1="${xb.toFixed(1)}" x2="${xb.toFixed(1)}" y1="${y.toFixed(1)}" y2="${Y(r.ce.v).toFixed(1)}" style="stroke:${col}" stroke-width="1.2" opacity=".8"/>`;
+          s += k === "notest"
+            ? `<rect x="${(xb - 3.5).toFixed(1)}" y="${(y - 3.5).toFixed(1)}" width="7" height="7" fill="none" style="stroke:${col}" stroke-width="1.5"/>`
+            : `<rect x="${(xb - 3.5).toFixed(1)}" y="${(y - 3.5).toFixed(1)}" width="7" height="7" style="fill:${col}${r.c.hit ? ";stroke:var(--gold)" : ""}"${r.c.hit ? ' stroke-width="1.5"' : ""}/>`;
+        });
+        return s + `</g>`;
+      }).join("");
+      g += `<polyline points="${M.cl.map(x => X(x.d).toFixed(1) + "," + Y(x.v).toFixed(1)).join(" ")}" fill="none" style="stroke:var(--ink)" stroke-width="1.6" stroke-linejoin="round"/>`;
+      g += M.cl.map(x => `<circle cx="${X(x.d).toFixed(1)}" cy="${Y(x.v).toFixed(1)}" r="2.7" style="fill:var(--ink)"/>`).join("");
+      open.forEach(r => r.lv.forEach(v => {
+        g += `<text x="${X(r.x1).toFixed(1)}" y="${(Y(v) + 17).toFixed(1)}" text-anchor="end" font-size="10.5" font-weight="600" letter-spacing=".8" style="fill:var(--pending)">OPEN · ${esc(r.c.level)}</text>`;
+      }));
+      g += `<g class="pp-xh" display="none" pointer-events="none"><line class="v" x1="0" x2="0" y1="${T}" y2="${H - B}"/>`
+        + `<g class="hz"><line class="h" x1="${L}" x2="${W - R}" y1="0" y2="0"/><rect class="pb" x="0" y="-9" width="10" height="18" rx="2"/><text class="pt" x="5" y="3.8" font-size="10.5" font-weight="600"></text></g>`
+        + `<rect class="db" x="0" y="${H - B + 5}" width="10" height="18" rx="2"/><text class="dt" x="0" y="${H - B + 17.8}" text-anchor="middle" font-size="10.5" font-weight="600"></text></g>`;
+      const cnt = k => M.rows.filter(r => (GC[r.c.grade] || "notest") === k).length;
+      const aria = `${M.m} weekly closes from ${fmtDate(M.cl[0].d)} to ${fmtDate(lastC.d)}, with ${M.rows.length} rows at their levels: ${cnt("pass")} held, ${cnt("miss")} wrong, ${cnt("notest")} never reached, ${cnt("pending")} open.`;
+      plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" font-family="IBM Plex Mono, ui-monospace, monospace" role="img" aria-label="${esc(aria)}">${g}</svg>`;
+      geo = { W, H, L, R, T, B, X, Y, lo, hi };
+      if (lastEl) lastEl.innerHTML = `Close ${esc(fmtDate(lastC.d))} · <b>${esc(lastC.t)}</b>`;
+      if (keyEl) keyEl.innerHTML = `<span><i class="dot"></i>the weekly close, read off this desk's chart</span><span><i class="pass"></i>held</span><span><i class="miss"></i>wrong</span><span><i class="notest"></i>never reached</span><span><i class="open"></i>open</span><span>each level runs from the day it was named to the close that graded it</span>`
+        + (M.before.length ? `<span class="path-note" style="flex-basis:100%">${M.before.length} ${M.m.toLowerCase()} ${M.before.length === 1 ? "row" : "rows"} named before the closes on file begin, on ${esc(fmtDate(M.first))}, ${M.before.length === 1 ? "is" : "are"} in the ledger below rather than drawn here.</span>` : "");
+      curKey = ""; kbIdx = -1;
+      if (owner === plot) hide(true);
+    };
+
+    const hitAt = (e, touch, week) => {
+      const svg = plot.querySelector("svg"); if (!geo || !M || !svg) return null;
+      const Rr = svg.getBoundingClientRect(), sc = (Rr.width / geo.W) || 1;
+      const px = (e.clientX - Rr.left) / sc, py = (e.clientY - Rr.top) / sc;
+      if (!week && (px < geo.L - 8 || px > geo.W - geo.R + 8 || py < geo.T - 12 || py > geo.H - geo.B + 8)) return null;
+      if (!week) {
+        let best = null, bd = (touch ? 14 : 7) + .01;
+        M.rows.forEach(r => {
+          if (px < geo.X(r.x0) - 6 || px > geo.X(r.x1) + 6) return;
+          r.lv.forEach(v => { const d = Math.abs(geo.Y(v) - py); if (d < bd) { bd = d; best = { row: r, v }; } });
+        });
+        if (best) return { kind: "row", row: best.row, v: best.v, fri: best.row.x1, py, Rr, sc };
+      }
+      let fb = week || null;
+      if (!fb) { let fd = Infinity; M.fr.forEach(f => { const d = Math.abs(geo.X(f) - px); if (d < fd) { fd = d; fb = f; } }); }
+      return fb ? { kind: "week", fri: fb, py, Rr, sc } : null;
+    };
+    const keyOf = (hit, touch) => M.m + "|" + (hit.kind === "row" ? "r" + hit.row.i : "w" + hit.fri) + (touch ? "t" : "m");
+    const weekHTML = (fri, touch) => {
+      const ce = M.cl.find(x => x.d === fri), graded = M.rows.filter(r => r.x1 === fri), lc = M.cl[M.cl.length - 1];
+      const list = graded.map(r => {
+        const gw = GW(r.c), two = r.lv.length > 1;
+        let d = "";
+        if (two) d = "row of two levels";
+        else if (r.ce) { const x = r.ce.v - r.lv[0]; d = "closed " + fx(x, M.m) + (x >= 0 ? " above" : " below"); }
+        else if (r.c.grade === "pending") { const x = lc.v - r.lv[0]; d = "last close " + fx(x, M.m) + (x >= 0 ? " above" : " below"); }
+        return `<span>${esc(r.c.level)}</span><span class="${gw[1]}">${esc(gw[0])}</span><span>${esc(d)}</span>`;
+      }).join("");
+      return `<div class="lp-h"><span><b>${esc(M.m)}</b><span class="lv cl">${ce ? esc(ce.t) : "not yet"}</span></span><span class="lp-g ${ce ? "close" : "pending"}">${ce ? "Close" : "Open"}</span></div>`
+        + `<div class="lp-r">${ce ? "The weekly close of Friday " + esc(fmtDate(fri)) + "." : "Friday " + esc(fmtDate(fri)) + ", the close that grades " + (graded.length === 1 ? "the open row." : "the open rows.")}</div>`
+        + (graded.length ? `<div class="lp-hist">${list}</div>` : `<div class="lp-r">No row was graded on this close.</div>`)
+        + (graded.length ? `<div class="lp-hint">${touch ? "Tap again to open " : "Click to open "}${graded.length === 1 ? "the row" : "the first row"}</div>` : "");
+    };
+    const xhShow = (hit, row) => {
+      const gx = plot.querySelector(".pp-xh"); if (!gx) return;
+      gx.setAttribute("display", "inline");
+      gx.classList.toggle("snap", !!row);
+      const x = geo.X(hit.fri), v = gx.querySelector("line.v");
+      v.setAttribute("x1", x.toFixed(1)); v.setAttribute("x2", x.toFixed(1));
+      const ce = M.cl.find(c => c.d === hit.fri);
+      const yy = row ? geo.Y(hit.v) : hit.kb && ce ? geo.Y(ce.v) : Math.max(geo.T, Math.min(geo.H - geo.B, hit.py));
+      const price = row ? hit.v : geo.hi - (yy - geo.T) / (geo.H - geo.T - geo.B) * (geo.hi - geo.lo);
+      gx.querySelector(".hz").setAttribute("transform", "translate(0 " + yy.toFixed(1) + ")");
+      const pt = gx.querySelector(".pt"), pb = gx.querySelector(".pb"), dt = gx.querySelector(".dt"), db = gx.querySelector(".db");
+      pt.textContent = price.toLocaleString("en-GB", { minimumFractionDigits: dp(M.m), maximumFractionDigits: dp(M.m) });
+      dt.textContent = sd(hit.fri);
+      let w1 = 60, w2 = 44; try { w1 = pt.getComputedTextLength(); w2 = dt.getComputedTextLength(); } catch (e) {}
+      pb.setAttribute("width", (w1 + 10).toFixed(1));
+      const cx = Math.max(geo.L + w2 / 2 + 5, Math.min(geo.W - geo.R - w2 / 2 - 5, x));
+      dt.setAttribute("x", cx.toFixed(1)); db.setAttribute("x", (cx - w2 / 2 - 5).toFixed(1)); db.setAttribute("width", (w2 + 10).toFixed(1));
+      return yy;
+    };
+    const clearPath = () => {
+      const gx = plot.querySelector(".pp-xh"); if (gx) gx.setAttribute("display", "none");
+      plot.classList.remove("hot", "snapped");
+      plot.querySelectorAll(".pp-row.on").forEach(n => n.classList.remove("on"));
+      if (owner === plot) hide();
+      curKey = "";
+    };
+    const pickAt = (e, touch, week, kb) => {
+      const hit = hitAt(e, touch, week);
+      if (!hit) { clearPath(); return null; }
+      hit.kb = !!kb;
+      const row = hit.kind === "row", yy = xhShow(hit, row);
+      plot.classList.toggle("hot", row);
+      plot.querySelectorAll(".pp-row.on").forEach(n => n.classList.remove("on"));
+      if (row) { const n = plot.querySelector('.pp-row[data-k="' + hit.row.i + '"]'); if (n) n.classList.add("on"); }
+      const graded = row ? [hit.row] : M.rows.filter(r => r.x1 === hit.fri);
+      plot.classList.toggle("snapped", graded.length > 0);
+      const ce = M.cl.find(c => c.d === hit.fri);
+      const at = () => {
+        const Rr = plot.querySelector("svg").getBoundingClientRect(), sc = (Rr.width / geo.W) || 1;
+        const ax = Rr.left + geo.X(hit.fri) * sc, ay = Rr.top + (row ? geo.Y(hit.v) : ce ? geo.Y(ce.v) : yy) * sc;
+        return { left: ax - 1, right: ax + 1, width: 2, top: ay - 7, bottom: ay + 7, height: 14 };
+      };
+      const k = keyOf(hit, touch);
+      show(k, row ? rowHTML(hit.row.i, touch) : weekHTML(hit.fri, touch), at(), plot, kb ? at : null);
+      curKey = k;
+      return hit;
+    };
+    const openFor = hit => {
+      const i = hit.kind === "row" ? hit.row.i : ((M.rows.filter(r => r.x1 === hit.fri)[0] || {}).i);
+      if (i !== undefined) goRow(i);
+    };
+
+    plot.addEventListener("pointermove", e => { if (e.pointerType !== "touch") pickAt(e, false); });
+    plot.addEventListener("pointerleave", e => { if (e.pointerType !== "touch" && !(follow && owner === plot)) clearPath(); });
+    plot.addEventListener("click", e => {
+      const touch = lastPT === "touch", hit = hitAt(e, touch);
+      if (!hit) return;
+      if (touch && !(owner === plot && !lp.hidden && curKey === keyOf(hit, true))) { pickAt(e, true); return; }
+      openFor(hit);
+    });
+    /* the keyboard walks the Fridays; Enter opens the row the card names */
+    const kbShow = idx => {
+      if (!M || !M.fr.length) return;
+      kbIdx = Math.max(0, Math.min(M.fr.length - 1, idx));
+      const Rr = plot.querySelector("svg").getBoundingClientRect(), sc = (Rr.width / geo.W) || 1, f = M.fr[kbIdx];
+      pickAt({ clientX: Rr.left + geo.X(f) * sc, clientY: Rr.top + geo.T * sc, target: plot }, false, f, true);
+    };
+    plot.addEventListener("focus", () => { if (!fingerFocus()) kbShow(kbIdx < 0 ? M.fr.length - 1 : kbIdx); });
+    plot.addEventListener("blur", () => clearPath());
+    plot.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") { e.preventDefault(); kbShow(kbIdx + 1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); kbShow(kbIdx - 1); }
+      else if (e.key === "Home") { e.preventDefault(); kbShow(0); }
+      else if (e.key === "End") { e.preventDefault(); kbShow(M.fr.length - 1); }
+      else if (e.key === "Enter" && kbIdx >= 0) { e.preventDefault(); openFor({ kind: "week", fri: M.fr[kbIdx] }); }
+      else if (e.key === "Escape") clearPath();
+    });
+    window.addEventListener("scroll", () => {
+      const gx = plot.querySelector(".pp-xh");
+      if (gx && gx.getAttribute("display") !== "none" && !(follow && owner === plot)) clearPath();
+    }, { passive: true });
+
+    bar.innerHTML = metals.map(m => `<button type="button" role="tab" data-m="${esc(m)}" aria-selected="${m === cur}">${esc(m)}</button>`).join("");
+    bar.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b) return;
+      cur = b.getAttribute("data-m");
+      bar.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", String(x === b)));
+      clearPath(); draw();
+    });
+    let raf = 0;
+    window.addEventListener("resize", () => { if (sec.hidden) return; cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); });
+
+    /* two views of the same rows; the reader's choice is kept on this device only */
+    const setView = v => {
+      const onPath = v !== "ladder";
+      if (onPath) { sec.hidden = false; draw(); }   /* drawn before the ladder goes, so a fault leaves the ladder up */
+      sec.hidden = !onPath; lad.hidden = onPath;
+      cv.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", String((b.getAttribute("data-v") === "path") === onPath)));
+      try { localStorage.setItem("chartView", onPath ? "path" : "ladder"); } catch (e) {}
+      if (!onPath) window.dispatchEvent(new Event("resize"));
+    };
+    cv.addEventListener("click", e => { const b = e.target.closest("button"); if (b) setView(b.getAttribute("data-v")); });
+    let pref = "path"; try { pref = localStorage.getItem("chartView") || "path"; } catch (e) {}
+    setView(pref);
+    cv.hidden = false;
   });
 
   /* the card never floats over the page it no longer points at */

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* =========================================================================
-   make_bank_pages.js  ·  24 September 2026  ·  PROTOTYPE, not uploaded
+   make_bank_pages.js  ·  24 September 2026  ·  record notes 35 and 36
 
    One page per row on the bank board, and one link card per page, so every
    bank target this desk grades has its own address: the quote, the kill
@@ -8,11 +8,13 @@
    same house has said, on the board and off it.
 
    Reads record.json only (targets, targets_left_off, closes). Never typed
-   by hand. Writes:
-     banks/<slug>.html         the page
-     banks/cards/<slug>.html   the link card source, 1200 x 630
-   The PNG for each card is rendered from its source the way the week card
-   is, and the page's og:image points at it.
+   by hand. Writes, beside the record and in no folder, because a plain
+   upload to GitHub flattens folders (note 36):
+     <slug>.html   the page, the address record.json gives as page
+     <slug>.png    its link card, 1200 x 630, rendered from memory when
+                   playwright is installed; the page's og:image points at it
+   The card's source is not written to the site. Without playwright it is
+   written to the system's temporary folder, to be rendered by hand.
 
    THE RULES, the board's rules, unchanged:
      1. The claim, never the person. The house is the source.
@@ -31,10 +33,9 @@ const fs = require("fs");
 const path = require("path");
 
 const R = JSON.parse(fs.readFileSync(path.join(__dirname, "record.json"), "utf8"));
-const OUT = path.join(__dirname, "banks");
-const CARDS = path.join(OUT, "cards");
+/* 24 Sep 2026, note 36. This wrote to banks/ and banks/cards/. */
+const OUT = __dirname;
 const SITE = "https://thesimplifier7.github.io/record/";
-fs.mkdirSync(CARDS, { recursive: true });
 
 /* ---------------------------------------------------------------- helpers */
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -207,7 +208,7 @@ function page(r) {
   const H = byHouse(r.house), hc = count(H);
   const left = LEFT.filter(l => l.house === r.house);
   const story = BACKSTORY[r.slug] || (r.note ? [r.note] : []);
-  const url = `${SITE}banks/${r.slug}.html`, card = `${SITE}banks/cards/${r.slug}.png`;
+  const url = `${SITE}${r.slug}.html`, card = `${SITE}${r.slug}.png`;
   const desc = `${r.house} said ${lvWin(fmtNum(r.level, dec), r.windowText)}, on ${fmtDate(r.published)}. Graded on the weekly close by one rule. ${r.grade === "pending" ? when + "." : gw + "."}`;
   return `<!DOCTYPE html>
 <html lang="en">
@@ -234,7 +235,7 @@ function page(r) {
 <div class="wrap">
   <header>
     <div class="brand">${BRAND}<span class="name">The Simplifier</span></div>
-    <div class="desc"><a href="../targets.html">The bank board</a> · ${esc(r.house)}</div>
+    <div class="desc"><a href="targets.html">The bank board</a> · ${esc(r.house)}</div>
   </header>
 
   <div class="kick">Published ${fmtDate(r.published)}</div>
@@ -272,7 +273,7 @@ function page(r) {
   <h2>How every row is graded</h2>
   <div class="rule-box">${RULE}</div>
 
-  <div class="links"><a href="../targets.html">The full board</a><a href="../">The record</a><a href="../misses.html">The wrong ones</a></div>
+  <div class="links"><a href="targets.html">The full board</a><a href="./">The record</a><a href="misses.html">The wrong ones</a></div>
   <footer><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">@TheSimplifier7</span></footer>
 </div>
 </body>
@@ -324,10 +325,9 @@ function cardHtml(r) {
 let n = 0;
 for (const r of ROWS) {
   fs.writeFileSync(path.join(OUT, r.slug + ".html"), page(r));
-  fs.writeFileSync(path.join(CARDS, r.slug + ".html"), cardHtml(r));
   n++;
 }
-console.log(`${n} bank pages and ${n} card sources written to banks/. Backstories written for ${Object.keys(BACKSTORY).length}; the rest carry their row's note.`);
+console.log(`${n} bank pages written beside the record. Backstories written for ${Object.keys(BACKSTORY).length}; the rest carry their row's note.`);
 
 /* ---------------------------------------------------------------- render
    24 Sep 2026, note 35. The link cards render here when playwright is
@@ -338,7 +338,12 @@ console.log(`${n} bank pages and ${n} card sources written to banks/. Backstorie
    verify_record.js checks every card is there at 1200 x 630. */
 (async () => {
   if (process.env.NO_RENDER) return;
-  let chromium; try { ({ chromium } = require("playwright")); } catch (e) { console.log("playwright not installed; render banks/cards/*.html to .png at 1200 x 630 by hand."); return; }
+  let chromium; try { ({ chromium } = require("playwright")); } catch (e) {
+    const tmp = fs.mkdtempSync(path.join(require("os").tmpdir(), "bank-cards-"));
+    for (const r of ROWS) fs.writeFileSync(path.join(tmp, r.slug + ".html"), cardHtml(r));
+    console.log(`playwright not installed; the card sources are in ${tmp}. Render each to <slug>.png at 1200 x 630 and put it beside the record.`);
+    return;
+  }
   const FD = process.env.BANK_FONTS || "";
   const face = (fam, file, w) => { const f = path.join(FD, file); return FD && fs.existsSync(f) ? `@font-face{font-family:'${fam}';src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2');font-weight:${w}}` : ""; };
   const faces = [face("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), face("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600),
@@ -347,12 +352,12 @@ console.log(`${n} bank pages and ${n} card sources written to banks/. Backstorie
   const b = await chromium.launch(opts);
   const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   for (const r of ROWS) {
-    await p.goto("file://" + path.join(CARDS, r.slug + ".html"), { waitUntil: "load" });
+    await p.setContent(cardHtml(r), { waitUntil: "load" });
     if (faces) await p.addStyleTag({ content: faces });
     try { await p.evaluate(() => document.fonts.ready); } catch (e) {}
     await p.waitForTimeout(250);
-    await p.screenshot({ path: path.join(CARDS, r.slug + ".png") });
+    await p.screenshot({ path: path.join(OUT, r.slug + ".png") });
   }
   await b.close();
-  console.log(`${ROWS.length} cards rendered at 1200 x 630 in banks/cards/` + (faces ? ", faces injected from " + FD : "") + ".");
+  console.log(`${ROWS.length} cards rendered at 1200 x 630 beside the record` + (faces ? ", faces injected from " + FD : "") + ".");
 })();

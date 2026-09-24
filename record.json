@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-09-24",
-  "generated": "2026-09-24T15:23:14.130Z",
+  "generated": "2026-09-24T15:55:21.209Z",
   "tally": {
     "resolved": 26,
     "held": 20,
@@ -1000,6 +1000,12 @@
       "kind": "standard",
       "title": "The page answers a pointer, 24 September 2026. The loupe, the crosshair, an address for every row, and a page for every bank row.",
       "body": "Five surfaces changed, and none of them touches a row, a grade, a kill, a figure or a date. THE LOUPE. A square on the strip, a line on the ladder and the close each open a small card on a pointer, on keyboard focus or on a first tap: the row's metal and level, its grade, the close it was graded on and how far that close sat from the level, the kill in the row's own words, and any flag the row carries. The close is the one the row's result prints, or where the result prints none, the Friday close in CLOSES for the date PROVENANCE says the row was graded on; the two agree on every row that carries both. Rows from the first upload carry no graded date and show no close. THE CROSSHAIR. Across the ladder a hairline follows the pointer and prints the price at that height on the column's own scale, and its distance from the last Friday close. Within a few pixels of a named line it holds to that line, the other lines dim, and the card lists the rows that named it, newest first, each with its grade and, where the row named one level, its close. THE STRIP. On a wide screen the squares are grouped by the month the row was named, the key marks the rows named before the standard of 3 July, and the arrow keys walk the squares. AN ADDRESS FOR EVERY ROW. A row was reached by its position in the array, lrow and a number, and new rows go on top every week, so every such link pointed at a different row the week after it was shared. Every row now also carries an address built from its own date, metal and level, r-2026-09-06-gold-4357 for the gold row of 6 September, which never moves. A link inside the page writes that address into the bar, the wrong-calls page links by it, record.json carries it on every row as anchor, and a button in every opened row copies it, or on a phone hands it to the share sheet. An old positional link still opens whatever row sits at that position today. A PAGE FOR EVERY BANK ROW. Each target on the bank board links to a page of its own under banks, with the quote, the kill this desk assigned, the grade, the house's other rows, what the house said that the board leaves off, and a link card of its own. The pages are written from record.json by make_bank_pages.js, and verify_record.js checks that every row has its page and its card. Three lines that promised the rows before the open, which note 33 did not reach, move with it in this upload: the brief for producers, the first line of the README and the ledger line on the year page. An opened row draws its gauge from the level to the close, and a row reached by its address is marked in gold for two seconds. Motion is kept to what the reader does, with one exception, the dot beside the countdown, which breathes while the clock runs; a reader who has asked the system for reduced motion gets none of it."
+    },
+    {
+      "n": "36",
+      "kind": "correction",
+      "title": "Correction, 24 September 2026. The bank pages went up without their folder, the crosshair left a mark on the ladder, and the chart now reads over time.",
+      "body": "Note 35 was uploaded at 17:34 CEST on 24 September. Two things in it did not work, and both are corrected here rather than tidied. THE BANK PAGES. The upload put every file in the top folder of the site, so the fourteen pages note 35 placed under banks never reached it. Each was replaced by the source of its own link card, which carried the same name, and every link from the board to a row's page opened nothing. The pages now sit beside the record itself, named for the house, the metal, the level and the window, ubs-gold-6200-2026-09-30.html for the UBS row that grades on 25 September, which is where a plain upload puts them; the link cards sit beside them as images, and their sources are no longer written to the site at all. verify_record.js now refuses a page that is not the page it names, or that was written before its row's grade. THE CROSSHAIR. After a pointer left a column of the ladder, the tag that printed its distance from the close stayed on the column as an empty bar. It no longer does. THE CHART OVER TIME. The section that held the ladder now opens on the same rows over time: the Friday close as a line, every level named drawn from the day it was named to the close that graded it, in the colour it was graded, and a thin tick from the level to that close, so the margin of every held row and every wrong one reads at a glance. A card names the week or the row under the pointer, and a click opens the row. The ladder is one tab away, by price, as notes 32 and 35 left it, and a reader who chooses it keeps it on that device. The chart draws from CLOSES, CALLS and PROVENANCE and nothing else; the four gold rows of June, named before the closes on file begin, are counted under it and stay in the ledger. Nothing in this note touches a row, a grade, a kill, a figure or a date."
     }
   ],
   "targets": [
@@ -1016,7 +1022,7 @@
       "note": "First raised to 4,800 from 4,500 on 24 August 2026 (Reuters). Also the first crowd row on the record, named 9 September.",
       "grade": "pending",
       "result": "",
-      "page": "banks/citi-gold-4800-2026-12-04.html"
+      "page": "citi-gold-4800-2026-12-04.html"
     },
     {
       "published": "2026-09-02",
@@ -1031,7 +1037,7 @@
       "note": "Set at 4,900 on 19 June 2026, cut from 5,400; restated 2 September. Quote is the report's headline; the analysts' text projects gains into the second half without restating the figure.",
       "grade": "pending",
       "result": "",
-      "page": "banks/goldman-sachs-gold-4900-2026-12-31.html"
+      "page": "goldman-sachs-gold-4900-2026-12-31.html"
     },
     {
       "published": "2026-05-27",
@@ -1046,7 +1052,7 @@
       "note": "The 5,900 it was cut from was published on 29 January 2026 as the return leg of a path from 6,200 and is listed below the board with that reason; the 6,200 is on the board as three rows, one per window. A March 2026 note reading toward 5,900 to 6,200 this year is listed below the board: toward is not a level.",
       "grade": "pending",
       "result": "",
-      "page": "banks/ubs-gold-5500-2026-12-31.html"
+      "page": "ubs-gold-5500-2026-12-31.html"
     },
     {
       "published": "2025-12-29",
@@ -1062,7 +1068,7 @@
       "note": "The first leg of a path. The same note saw a pull back to 4,800 by the end of 2026, and 5,400 if the midterm elections brought turmoil; both are listed below the board with the reason. Gold was 4,322.40 as reported on the day of publication.",
       "grade": "pass",
       "result": "Held. Weekly closes above the line printed in February, seven months inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went afterwards is not the question the rule asks.",
-      "page": "banks/ubs-gold-5000-2026-09-30.html"
+      "page": "ubs-gold-5000-2026-09-30.html"
     },
     {
       "published": "2026-01-06",
@@ -1078,7 +1084,7 @@
       "note": "The same house restating its 29 December target with a March window. Only the first clause carries a level, a window and one direction. Stay there to September names no close to grade, and towards 4,800 is not a level; it is listed below the board.",
       "grade": "pass",
       "result": "Held. Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported, inside the window. Where price went after the window is not the question the rule asks.",
-      "page": "banks/ubs-gold-5000-2026-03-31.html"
+      "page": "ubs-gold-5000-2026-03-31.html"
     },
     {
       "published": "2026-01-29",
@@ -1094,7 +1100,7 @@
       "note": "One level for three windows in one sentence, graded as three rows, each on its own window. Published the day after gold's high of 2026. The 5,900 by the end of 2026 in the same note is listed below the board.",
       "grade": "miss",
       "result": "Wrong. The window's last weekly close was Friday 27 March 2026. Gold's high of 2026, 5,589.38 on 28 January as reported, printed the day before the target was published and still stands as reported on 22 September 2026, so no weekly close at or above 6,200 printed inside the window. Graded on reported figures under the rule for closes before June 2026; the founder's chart read replaces them when supplied. The line sits more than 600 above the year's high, so the grade does not turn on the decimals.",
-      "page": "banks/ubs-gold-6200-2026-03-31.html"
+      "page": "ubs-gold-6200-2026-03-31.html"
     },
     {
       "published": "2026-01-29",
@@ -1110,7 +1116,7 @@
       "note": "The second of the three windows. By the time it shut the same house had cut its year-end target from 5,900 to 5,500, on 27 May, which is its own row.",
       "grade": "miss",
       "result": "Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 2,111.03 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 is 5,589.38 on 28 January, as reported. The grade does not turn on the decimals.",
-      "page": "banks/ubs-gold-6200-2026-06-30.html"
+      "page": "ubs-gold-6200-2026-06-30.html"
     },
     {
       "published": "2026-01-29",
@@ -1126,7 +1132,7 @@
       "note": "The third window, and the crowd row of 23 September. The last weekly close before it was named, Friday 18 September, was 4,377.290, 1,822.71 under the line. Grades on the founder's read of the 25 September close.",
       "grade": "pending",
       "result": "",
-      "page": "banks/ubs-gold-6200-2026-09-30.html"
+      "page": "ubs-gold-6200-2026-09-30.html"
     },
     {
       "published": "2026-02-25",
@@ -1141,7 +1147,7 @@
       "note": "Quote is the report's headline. On 23 June 2026 the same house moved 6,300 to end-2027 and held about 6,000 for Q4 2026; that revision is its own row. This row stays as published.",
       "grade": "pending",
       "result": "",
-      "page": "banks/j-p-morgan-gold-6300-2026-12-31.html"
+      "page": "j-p-morgan-gold-6300-2026-12-31.html"
     },
     {
       "published": "2026-06-23",
@@ -1156,7 +1162,7 @@
       "note": "Reported second-hand; the desk will replace the link with the primary note when it has one. The 2026 average of 5,243 in the same note is not on the board: an average cannot be graded on a close.",
       "grade": "pending",
       "result": "",
-      "page": "banks/j-p-morgan-gold-6000-2026-12-31.html"
+      "page": "j-p-morgan-gold-6000-2026-12-31.html"
     },
     {
       "published": "2026-05-19",
@@ -1171,7 +1177,7 @@
       "note": "The 4,500 average in the same sentence is not on the board.",
       "grade": "pending",
       "result": "",
-      "page": "banks/mks-pamp-gold-5800-2026-12-31.html"
+      "page": "mks-pamp-gold-5800-2026-12-31.html"
     },
     {
       "published": "2025-06-17",
@@ -1186,7 +1192,7 @@
       "note": "Fifteen months old and still inside its window. The 4 September 2026 weekly close was 4,430.520. It is graded when the window closes, not before, because that is the rule.",
       "grade": "pending",
       "result": "",
-      "page": "banks/citi-gold-2700-2026-12-31.html"
+      "page": "citi-gold-2700-2026-12-31.html"
     },
     {
       "published": "2026-01-13",
@@ -1202,7 +1208,7 @@
       "note": "The same note as the gold 5,000 row, graded on its own metal. Graded 9 September 2026 on a reported close; the founder's chart read replaces the figure when supplied.",
       "grade": "pass",
       "result": "Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks.",
-      "page": "banks/citi-silver-100-2026-03-31.html"
+      "page": "citi-silver-100-2026-03-31.html"
     },
     {
       "published": "2026-01-13",
@@ -1218,7 +1224,7 @@
       "note": "Graded 8 September 2026, five months after the window shut, because the board did not exist until then. The desk's own weekly closes begin in June 2026; the February closes are as reported and the figure is replaced by the founder's chart read when supplied. The grade does not depend on the decimals.",
       "grade": "pass",
       "result": "Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks.",
-      "page": "banks/citi-gold-5000-2026-03-31.html"
+      "page": "citi-gold-5000-2026-03-31.html"
     }
   ],
   "targets_left_off": [
