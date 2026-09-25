@@ -63,7 +63,9 @@
 <meta property="og:description" content="Gold, silver and platinum levels named in advance, graded every Friday against the close that proves them wrong. The wrong ones stay up. Nothing removed.">
 <!-- WAS share_2026-08-30_gold_4350.png until 22 Sep 2026, note 32: a single held row, three weeks stale, with the retired sign-off in its footer.
      <meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png"> -->
-<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_open.png">
+<!-- WAS card_2026-09-20_open.png until 25 Sep 2026, note 42: the week of 20 September while its three rows were open.
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_open.png"> -->
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_graded.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -1641,19 +1643,19 @@
        in the script. One block, two lines. -->
   <section class="stats" aria-label="Summary">
     <div class="stat">
-      <div class="num" id="t-resolved">26</div>
+      <div class="num" id="t-resolved">29</div>
       <div class="lab">Calls resolved</div>
     </div>
     <div class="stat">
-      <div class="num green" id="t-pass">20</div>
+      <div class="num green" id="t-pass">22</div>
       <div class="lab">Held</div>
     </div>
     <div class="stat">
-      <div class="num red" id="t-miss">6</div>
+      <div class="num red" id="t-miss">7</div>
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">3</div>
+      <div class="num blue" id="t-open">0</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
@@ -2090,7 +2092,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-25";   /* set by hand, with the commit. WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-25";   /* set by hand, with the commit. Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2135,7 +2137,12 @@ const PROVENANCE = {
      provenance line is the UTC date of that commit and stays true.
      The week of 13 September carried no rows (note 28), so there is no
      13 September entry here and none is owed. */
-  "2026-09-20": { written:"2026-09-20", open:true },
+  /* WAS, while the rows were open and before the close that graded them:
+       "2026-09-20": { written:"2026-09-20", open:true },
+     Graded on the 25 September close, written 25 September. Named by the
+     day rather than by a hash because the hash does not exist until the
+     push that writes this line; swap in the hash on the next push. */
+  "2026-09-20": { graded:"2026-09-25", written:"2026-09-25", dayLink:true },
   /* WAS, until the hash of the 12 September push was known:
        "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", dayLink:true }, */
   "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", commit:"10cf76a" },
@@ -2297,7 +2304,8 @@ const CLOSES = [
   { date:"2026-08-28", Gold:"4,453.670", Silver:"66.3700", Platinum:"1,821.80" },
   { date:"2026-09-04", Gold:"4,430.520", Silver:"66.1940", Platinum:"1,819.60" },
   { date:"2026-09-11", Gold:"4,347.760", Silver:"64.4810", Platinum:"1,791.50" },
-  { date:"2026-09-18", Gold:"4,377.290", Silver:"66.2210", Platinum:"1,800.40" }
+  { date:"2026-09-18", Gold:"4,377.290", Silver:"66.2210", Platinum:"1,800.40" },
+  { date:"2026-09-25", Gold:"4,284.130", Silver:"64.2560", Platinum:"1,777.80" }
 ];
 
 /* =========================================================================
@@ -2787,18 +2795,29 @@ const CALLS = [
      CORRECTED 22 September, note 30. The reads above were taken with the
      market shut. The rows were written to this file at 00:17 CEST on 21
      September, eighteen minutes after the week opened at 00:00. The rows are
-     not edited; the correction is in note 30. */
+     not edited; the correction is in note 30.
+
+     GRADED on the 25 September close, read off the founder's 4h TVC charts
+     stamped 25 September, market shut, 23:07 CEST (gold) and 23:08 (silver,
+     platinum): gold 4,284.130, silver 64.2560, platinum 1,777.80. Gold's
+     kill fired: MISS, 52.87 under the floor. Silver and platinum held: PASS,
+     0.176 and 31.80 above theirs. The last rows graded in the old words;
+     from 28 September every row is named under the call grammar (note 34).
+     See note 42. */
   { date:"2026-09-20", type:"Map", metal:"Gold", level:"4,337", book:"Turn",
     call:"Gold holds above 4,337, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 4,337. The Fed wick of 16 September went under the bottom of that box without a close; gold then left it through the top and finished the week 40 above it at 4,377.290. First row on the opening box, the object the record moves to tonight by the founder's ruling (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 4,337.",
-    grade:"pending" },
+    result:"The kill fired. The weekly close printed 4,284.130 against a floor of 4,337, 52.87 below the level as published. MISS. Gold printed under the line on Monday, closed back over it on the 8h chart on Tuesday night at 4,357.68, and went back under on Wednesday; the founder's 8h export of 23 September carries those bars. The line is the edge of the box as published and does not move, so the close is measured against the number as published and nothing else. Close read off the TVC chart, market shut, 23:07 CEST 25 September. See note 42.",
+    grade:"miss" },
 
   { date:"2026-09-20", type:"Map", metal:"Silver", level:"64.08", book:"Turn",
     call:"Silver holds above 64.08, the top of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 64.08. Silver left that box through the top and finished the week 2.14 above it at 66.2210. First row for silver since 23 August. The retired door of 66.80 sits 2.72 above this line, and that is said here rather than left for a reader to find (note 29). Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 64.08.",
-    grade:"pending" },
+    result:"Held. The weekly close printed 64.2560, 0.176 above the level as published. PASS. The pass came at arm's length: silver traded under the line during the week, 63.8480 on the founder's chart at 08:21 CEST on Friday, and the weekly close came back over it by 0.176. The kill is a weekly close below 64.08 and none printed. Close read off the TVC chart, market shut, 23:08 CEST 25 September. See note 42.",
+    grade:"pass" },
 
   { date:"2026-09-20", type:"Map", metal:"Platinum", level:"1,746", book:"Turn",
     call:"Platinum holds above 1,746, the bottom of the box it opened the week of 14 September in, read off the 8h chart on 20 September and published as 1,746. Platinum is the one metal that finished the week inside its box, 1,800.40 against a top of 1,803, so the row names the edge that would take it out the bottom and states the top so the reader has both. Fourth row for platinum on this page. Under the ruling in note 11 this is a claim about a price level and not a claim about the swing clock, so it keeps a price kill and it is graded on the close alone. Named before the week opened. Kill: a weekly close below 1,746.",
-    grade:"pending" },
+    result:"Held. The weekly close printed 1,777.80, 31.80 above the level as published. PASS. Platinum went through the line on Wednesday, a low of 1,740.486 on the founder's 8h export of 23 September, 5.51 under it, and the weekly close came back above it. The kill is a weekly close below 1,746 and none printed. Close read off the TVC chart, market shut, 23:08 CEST 25 September. See note 42.",
+    grade:"pass" },
 
   /* WEEK OF 13 SEPTEMBER. No rows. Three conditions. The first week this page
      has carried nothing open, and the absence is the ruling, not a gap.
@@ -3127,8 +3146,11 @@ const CROWD = [
     metal:"Gold",
     kill:"Held if a weekly close at or above 6,200 prints on or before the 25 September 2026 close; wrong if the window closes without one. Assigned because the claim names a level and three windows and no condition, so the level and the last window are the only honest kill available. The March and June windows are graded on the bank board, each on its own close. Graded on the TVC weekly close, as every row on this page.",
     gradeDate:"2026-09-25",
-    result:"",
-    grade:"pending" },
+    /* WAS, until the close of 25 September:
+         result:"",
+         grade:"pending" }, */
+    result:"Wrong. The window shut on the close of Friday 25 September 2026, 4,284.130 read off the founder's chart, 1,915.87 under the line. No weekly close at or above 6,200 printed inside it: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January. The same house's first number, 5,000 by September, is on the board as held. See note 42.",
+    grade:"miss" },
 ];
 
 /* =========================================================================
@@ -3224,7 +3246,9 @@ const TARGETS = [
     link:"https://www.investing.com/news/commodities-news/ubs-raises-gold-price-target-for-2026-here-are-the-new-forecasts-4474171",
     kill:"Held if a weekly close at or above 6,200 prints on or before the last weekly close of September 2026, Friday 25 September; wrong if the window closes without one.",
     note:"The third window, and the crowd row of 23 September. The last weekly close before it was named, Friday 18 September, was 4,377.290, 1,822.71 under the line. Grades on the founder's read of the 25 September close.",
-    grade:"pending", result:"" },
+    /* WAS, until the close of 25 September: grade:"pending", result:"" }, */
+    grade:"miss",
+    result:"Wrong. The window's last weekly close was Friday 25 September 2026, 4,284.130 read off the founder's chart, 1,915.87 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January. The grade does not turn on the decimals. See note 42." },
 
   { published:"2026-02-25", source:"J.P. Morgan Global Research", level:6300, side:"above", window:"2026-12-31", windowText:"year-end 2026",
     quote:"Gold price will rise 22% above current level to reach $6,300 by year-end 2026.",
@@ -3335,6 +3359,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"42", kind:"standard", title:"Resolution, 25 September 2026. Gold's floor broke by 52.87, silver's held by 0.176 and platinum's by 31.80. The last rows graded in the old words.",
+    body:"Friday 25 September close, read off the founder's 4h TVC charts stamped 25 September with the market shut, 23:07 CEST for gold and 23:08 for silver and platinum: gold 4,284.130, silver 64.2560, platinum 1,777.80. Three floors were named on 20 September, each an edge of the box its metal opened the week of 14 September in, each published with the weekly close that would kill it. GOLD. The floor was 4,337. The close printed 4,284.130, 52.87 under it. MISS. Gold printed under the line on Monday, closed back over it on the 8h chart on Tuesday night at 4,357.68, and went back under on Wednesday, bars carried by the founder's 8h export of 23 September. SILVER. The floor was 64.08. Silver traded under it during the week, 63.8480 on the founder's chart at 08:21 CEST on Friday, and the weekly close printed 64.2560, 0.176 above it. PASS, at arm's length, and the row says so. PLATINUM. The floor was 1,746. Platinum went through it on Wednesday, a low of 1,740.486 on the 8h export, 5.51 under it, and the weekly close printed 1,777.80, 31.80 above it. PASS. THE LAST ROWS IN THE OLD WORDS. These three are the last rows this page grades as held, wrong or never reached. From 28 September every row is named under the call grammar of note 34, with its side, its room and its odds, and graded HIT, HELD or WRONG on the close. THE BANK BOARD AND THE CROWD. The September window of the UBS target of 6,200, the crowd row of 23 September, shut on the same close: 4,284.130, 1,915.87 under the line. No weekly close at or above 6,200 printed inside the window. Wrong, on the board and in the crowd, in the same word this page gives itself, and the desk's own gold row graded wrong on the same close. Tonight's two rows give gold's high of 2026 from the founder's weekly chart, 5,598.75, in the week of 26 to 30 January; the March and June rows still carry it as reported, 5,589.38 on 28 January, and no grade turns on the difference. THE STANDING CARD. The charts read tonight carry no read of the standing line, so the card stands as last read and says so. THE TALLY. Twenty-nine rows resolved, twenty-two held, seven wrong, five never reached, none open. Neither the bank board nor the crowd is in it." },
   { n:"41", kind:"standard", title:"What a price is made of, 25 September 2026. An animation from the record's closes down to the trades, the people, the machines and the metal, on this page and the Method's.",
     body:"Under The Chart this page now carries an animation, drawn in the browser by descent.js, that plays only when pressed. It walks one price down through what makes it. It opens on the record itself: the weekly closes on this page and every level named against them, drawn from this page's own data, so it moves with every grade. It goes into the last week on the record, folds that week into one candle, opens the candle into its trades and the trades into the orders behind them. Then it goes behind the orders: to the people who traded these metals face to face in the New York pits until July 2015, to the programs that now take part in most of the trading in gold and silver futures, to the matching engines outside Chicago where orders meet, and to the vaults where the metal lies and, when it is traded, usually does not move. Everything below the record is an illustration, and the screen says so while it runs. The week, the trades and the orders are a seeded model between the last two closes on the record, with no price printed on them; the facts in the words below them carry their sources on screen: CME Group, the CFTC, the LBMA, the LPPM and the Bank of England. It ends back on the record, on this week's lines. Gold, silver or platinum can be followed down, and the words are under it as text. On the Method page it plays by itself when it comes into view, and never by itself on a device set to reduce motion. The counter notes two events by path alone, the animation started and the animation finished. It touches no row, grade, kill, figure or date." },
   { n:"40", kind:"standard", title:"Two rulings, 24 September 2026. A standing offer of $1,000 for proof of tampering, and no forecast without its kill.",
