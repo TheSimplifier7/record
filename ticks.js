@@ -6,6 +6,18 @@
    never in the weekly tally. Same law as the record: nothing deleted, a
    wrong row stays, a correction is logged, replaced copy kept in comments.
 
+   FROM 24 SEPTEMBER 2026, THE BOOK v2, by the founder's ruling of that day.
+   At the setup: seal.html on the phone, then Post on X. Nothing else that
+   day. After the Friday close: the block seal.html builds ("open the week")
+   comes to the desk with one five-minute export of the week per metal
+   sealed. Its rows go in here opened (revealed true), post links added
+   where the founder sends them. grade_week.js splits each export by Madrid
+   day into tick_YYYY-MM-DD_<metal>_5m.csv beside the page (no folder: a
+   web upload flattens folders, note 36) and grades each day with
+   grade_tick.js; verify_ticks.js checks every hash and every grade. The
+   paragraphs below are how a row was written and graded until then, and
+   they are kept; the ticks/ folder they name is still read.
+
    HOW A ROW IS WRITTEN. Before the trade: run seal_tick.js and post the
    SEAL on X, not the level. The post's minute is the naming and goes in
    "named". The row is added here with grade "pending" and revealed false

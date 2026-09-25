@@ -1504,6 +1504,11 @@
     .board th,.lfilter .fl,#method-link,#apply-link{font-size:10.5px}
   }
   @media(max-width:760px) and (prefers-reduced-motion:reduce){.sc-more .c{transition:none}}
+  /* 24 SEP 2026 · THE STANDING OFFER, note 40. One line under the integrity line, in its voice. */
+  .integrity.bounty{margin-top:14px;font-size:15.5px;color:var(--ink-3)}
+  .integrity.bounty em{color:var(--gold);font-style:normal;font-weight:600}
+  /* 25 SEP 2026 · WHAT A PRICE IS MADE OF, note 41. The player styles itself (descent.js); this is its room. */
+  .descent-wrap{margin:18px 0 6px}
 </style>
 </head>
 <body>
@@ -1719,6 +1724,18 @@
   <div class="ladder-key"><!-- hit added 24 Sep 2026, note 34 --><span><i class="pass"></i>held</span><span class="k-hit" hidden><i class="hit"></i>hit</span><span><i class="miss"></i>wrong</span><span><i class="notest"></i>never reached</span><span><i class="open"></i>open</span><span>one square per week the line was named, oldest first</span><span>hover or tap a column to read any price on it<!-- 24 Sep 2026, note 35 --></span></div>
   </div><!-- the ladder's view, note 36 -->
 
+  <!-- WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41. One price walked down through what makes it, by descent.js:
+       the record's own closes and levels, read from CLOSES and CALLS on this page, then an illustration of the
+       last week, its trades and its orders, the people and the machines behind the orders, the matching engine
+       and the metal in the vault (the screen says so, and names the sources of its facts). It plays when
+       pressed, never by itself here. -->
+  <div class="ledger-head" id="descent-head">
+    <h2>Beneath the chart</h2>
+    <span class="cnt">One price, from the record down to the metal in the vault</span>
+  </div>
+  <div class="descent-wrap" data-descent data-descent-autoplay="off"></div>
+  <script src="descent.js" defer></script>
+
   <div class="ledger-head">
     <h2>Standing Calls</h2>
     <span class="cnt">The direction, and what would end it</span>
@@ -1898,7 +1915,8 @@
         <button class="btn" type="submit">Send it</button>
       </form>
       <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
-      <p class="fine">No signals. No forecasts.<br>The same call that goes on this page.</p>
+      <!-- 24 Sep 2026, note 40. This read: No signals. No forecasts. The same call that goes on this page. -->
+      <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on this page.</p>
     </div>
 
     <!-- THE METHOD DOOR. Added 8 Sep 2026, note 22. Ready whenever method.html
@@ -1907,7 +1925,8 @@
     <div class="door" id="door-method" data-ready="0">
       <div class="eyebrow">By invitation</div>
       <h3>The Method</h3>
-      <p>The indicator every level on this page is read from, on your own TradingView chart. The cloud, the fan, the three lines. It draws structure. It does not tell you what to do. By the quarter or by the year, one username.</p>
+      <!-- 24 Sep 2026. This read: "... on your own TradingView chart. The cloud, the fan, the three lines. It draws structure. ..." The three lines were the tool of 9 September; the tool on method.html since note 37 is v6.2. -->
+      <p>The indicator every level on this page is read from, on your own TradingView chart: the fan, the cloud and the boxes. It draws structure. It does not tell you what to do. By the quarter or by the year, one username.</p>
       <p style="margin-top:22px"><a class="btn-quiet" id="method-link" href="method.html">What it is, and the terms</a></p>
       <p class="fine">A tool licence. Not a signal.<br>Education and training. Not investment advice.</p>
     </div>
@@ -1952,6 +1971,9 @@
       <div>
         <div class="eyebrow">Integrity</div>
         <p class="integrity"><em>Nothing on this page has ever been removed.</em> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full <a href="https://github.com/TheSimplifier7/record/commits/main">edit history</a>. If a call was wrong, it is still here.</p>
+        <!-- THE STANDING OFFER, 24 Sep 2026, note 40, by the founder's ruling of that day. Drafted 5 September (THE_WILD_LIST).
+             Before it went up the desk read every version of this file; what that found is note 38. -->
+        <p class="integrity bounty" id="bounty"><em>Standing offer.</em> Find a call in the ledger whose level, kill, side or date changed after it was first published, a call dated earlier than the day it was first published, a call removed, or a grade on this page changed after it was given, and this desk pays you $1,000 and logs the finding here as a note. The wrong calls do not qualify; they are the point. What the page has already disclosed, in its notes or on the row, does not qualify. Every change to this file is a public commit, so check. To claim, send the row's address and the commit or post that shows it to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>.</p>
         <div class="foot-meta">
           <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
           <span>Last updated <span id="updated-foot"></span></span>
@@ -2068,7 +2090,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-24";   /* set by hand, with the commit. WAS "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-25";   /* set by hand, with the commit. WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -3313,6 +3335,14 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"41", kind:"standard", title:"What a price is made of, 25 September 2026. An animation from the record's closes down to the trades, the people, the machines and the metal, on this page and the Method's.",
+    body:"Under The Chart this page now carries an animation, drawn in the browser by descent.js, that plays only when pressed. It walks one price down through what makes it. It opens on the record itself: the weekly closes on this page and every level named against them, drawn from this page's own data, so it moves with every grade. It goes into the last week on the record, folds that week into one candle, opens the candle into its trades and the trades into the orders behind them. Then it goes behind the orders: to the people who traded these metals face to face in the New York pits until July 2015, to the programs that now take part in most of the trading in gold and silver futures, to the matching engines outside Chicago where orders meet, and to the vaults where the metal lies and, when it is traded, usually does not move. Everything below the record is an illustration, and the screen says so while it runs. The week, the trades and the orders are a seeded model between the last two closes on the record, with no price printed on them; the facts in the words below them carry their sources on screen: CME Group, the CFTC, the LBMA, the LPPM and the Bank of England. It ends back on the record, on this week's lines. Gold, silver or platinum can be followed down, and the words are under it as text. On the Method page it plays by itself when it comes into view, and never by itself on a device set to reduce motion. The counter notes two events by path alone, the animation started and the animation finished. It touches no row, grade, kill, figure or date." },
+  { n:"40", kind:"standard", title:"Two rulings, 24 September 2026. A standing offer of $1,000 for proof of tampering, and no forecast without its kill.",
+    body:"THE STANDING OFFER. From today the foot of this page carries an offer, ruled by the founder on 24 September. Anyone who finds a call in the ledger whose level, kill, side or date changed after it was first published, a call dated earlier than the day it was first published, a call removed, or a grade on this page changed after it was given, the bank board's included, is paid $1,000, and the finding is logged on this page as a note. The standing calls are outside it, because their lines are read off the chart each week by design. The wrong calls do not qualify: they are the point of the page. What the page has already disclosed does not qualify, in its notes or on the row, and before the offer went up the desk read every version of this file and disclosed what it found (note 38). Every change to this file has been a public commit since the first upload, so the proof, if it exists, is already public and needs no one's permission to find. A claim is made by sending the row's address and the commit or post that shows it to @TheSimplifier7 on X. The desk checks each claim against the public history and answers here, whichever way it goes, and the first to claim a finding is the one paid. NO FORECAST WITHOUT ITS KILL. The email door on this page said: no signals, no forecasts. From today it says: no signals, no forecast without its kill. The founder ruled on 24 September that a forecast goes public from this desk only as a row on this page, with the close that would prove it wrong and the date by which it is graded, and never as a number on its own. The desk's own gold number of 4,850, shown on X on 17 September on one axis beside the banks' targets, is the first case. It goes on the bank board as a row of its own, quoted from the post that published it and graded by the board's one rule, and until it is there it is not repeated anywhere." },
+  { n:"39", kind:"correction", title:"Disclosure, 24 September 2026. The box the rows of 20 September were read from is not the box the chart draws for that week today.",
+    body:"The three rows of 20 September, gold 4,337, silver 64.08 and platinum 1,746, are each an edge of the box the metal opened the week of 14 September in, read on the night of 20 September off THE METHOD as it then stood, version 4.0. Version 4.0 started the week at Monday 00:00 UTC, which left the week's first bar, from the metals' open at 22:00 UTC on Sunday, out of the box. On 22 September version 4.4 moved the start of the week to that open, and every version since draws the week of 14 September with that bar inside it. On the founder's 8h TVC exports of 23 September that box runs gold 4,252.70 to 4,355.34, silver 62.303 to 64.471 and platinum 1,749.184 to 1,805.50. A reader who opens the chart today finds the gold top at 4,355.34, not 4,337, the silver top at 64.471, not 64.08, and the platinum low at 1,749.184, not 1,746. The rows are not changed. They are graded on the numbers as published, which is what this page promised when they were named, and each keeps the words it was named in. From 28 September the rows are named on the Monday, on the week's own box once it has frozen (note 33), so the box a reader finds on the chart is the box the row was read from. If a later version of the tool draws a named week's box differently, this page says so." },
+  { n:"38", kind:"correction", title:"Disclosure, 24 September 2026. Every version of this file, read before the standing offer went up.",
+    body:"Note 40 puts $1,000 on this page's history, so the desk read that history first: every version of this file from the first upload of 30 June to tonight, row by row, for any level, kill, side, date or grade that changed after it was published and any row that went missing, and the bank board's rows and grades the same way. Three things turned up that meet the offer's terms. One is already on the page: the silver row of 16 August was pushed graded WRONG at 23:11 CEST on 21 August and changed to PASS at 23:19, which note 10 discloses with its reasons. Two were not, and are here. THE FIRST EVENING. This file was first uploaded at 21:04 CEST on 30 June. At 22:30 the same evening the gold row of 22 June, uploaded at 21:04 naming 4,098 alone with the text: while price is capped below the 4,098 floor, every green day is a bounce in a falling market, not a turn, was changed to name 4,098 and 4,633, with the text it carries now. Its grade is given on the bounce claim, which both texts make, as its result says. THE BLANK PAGE. At 15:19 CEST on 2 August this file was overwritten by mistake with a single line of text, and for sixteen minutes the page showed no calls. At 15:35 it was put back in full. Every row, level, kill, date and grade came back as it was. Besides these the history holds wording changes that move no figure, side or date, among them the kill sentences of six early rows labelled on 27 July in a commit titled layout only. The commits: d828c30 and 77bf1b5 on 30 June, 9da7551 and e5a11b5 on 2 August, a7337ea and a0e26cb on 21 August. If this read missed something, the offer covers it." },
   { n:"37", kind:"standard", title:"The phone, the counter, a card for every page, and the Method's charts, 24 September 2026.",
     body:"Four things changed, and none of them touches a row, a grade, a kill, a figure or a date. THE PHONE. On a phone this page opened on its title, two paragraphs and a table of terms, with This Week below the first screen, and it ran to about twenty-three screens. From tonight, on a screen 760 pixels wide or less, This Week sits under the title, a card per metal. The standing calls show their state, their dates and the live kill, and the rest opens under Open the call. The banks' targets show their count and the next to grade, the table opens under Show the board here, and the whole board has its own page. The ledger opens on the four latest weeks named, with a line under it that shows every row in one tap, and a link to any row, a square on the strip or a line on the chart opens the whole ledger first, so no row sits behind a fold it did not ask for. Running text on a phone is 12 pixels at least, the buttons and the nav are a thumb's height, the squares of the strip are larger, and the nav is one row that scrolls. A wider screen reads as it did. On every screen the nav's first link now lands on the ledger; it has pointed at nothing since 8 September. THE COUNTER. Note 18 wired a counter in and left it off until it had an address. It has one: GoatCounter, open source, no cookies and no personal data, on every page but the embed and the seal, which say they track nothing and still do not. It counts visits, and on this page three events by path alone: a row reached by its address, a row's link copied or shared, and a door used. It cannot see, change or influence a row. THE CARDS. The pages beside the record showed no picture when their link was posted, or another page's: the wrong ones, the Year, the producers' page, the advisers' page and the embed page had none, the board borrowed this page's week card, the tick book showed a held row from 30 August and the Method its chart of 9 September. Each now has a card of its own, drawn from record.json by make_link_cards.js, and verify_record.js refuses an upload whose cards were drawn from figures the record no longer holds. A card's address now carries a fingerprint of the card, the bank rows' cards included, so a messenger fetches a changed card again instead of showing the old one. The tally cards, the first frame of every video, were drawn in a stand-in face on 6, 12 and 21 September for want of the record's own; they carry it now, with the same four numbers. THE METHOD. Its chart of 9 September gives way to two the founder took at 18:12 on 24 September, gold on the 8 hour and on the 1 hour, with the three gold weeks this page grades wrong, named 12 July, 7 August and 6 September, in frame on both. The chart of 9 September stays in the folder and in the page's source." },
   { n:"36", kind:"correction", title:"Correction, 24 September 2026. The bank pages went up without their folder, the crosshair left a mark on the ladder, and the chart now reads over time.",

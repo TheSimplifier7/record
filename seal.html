@@ -2,133 +2,248 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#141210">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Seal">
 <title>Seal</title>
 <!-- =========================================================================
-     THE SEAL  ·  13 September 2026
+     THE SEAL  ·  v2, 24 September 2026. The founder ruled that day that the
+     tick book runs, on a process easy enough to follow at the desk.
 
-     Makes the sealed naming for a tick call, in the browser, on any device.
-     Same commitment string as seal_tick.js, byte for byte:
-       metal|side|level|kill|grades|nonce   ->   SHA-256, hex
-     so verify_ticks.js reproduces it on Friday.
+     v1 (13 September) asked for three things at the setup: send the row to
+     the clerk, post the seal, set an alert. No row was ever written with it.
+     v2 asks for one: seal and post. Everything else waits for Friday.
 
-     THIS PAGE MAKES NO NETWORK REQUEST. No fonts, no scripts, no analytics,
-     nothing leaves the device. The nonce comes from crypto.getRandomValues,
-     never Math.random. A nonce lost is a seal that cannot be opened, and an
-     unopened seal counts as wrong, so the row is shown first and copied
-     first.
+       AT THE SETUP   metal, side, level, kill, SEAL. The seal is saved on
+                      this phone at once. POST ON X opens the post with the
+                      text filled in; press Post. That is the whole day.
+       AFTER THE      OPEN THE WEEK. Copy the block, send it to the desk with
+       FRIDAY CLOSE   one five-minute export of the week per metal sealed.
+                      The desk checks every hash, grades each day from the
+                      bars and ships the rows, opened.
 
-     Seal means POSTED. A hash on this screen commits nothing until it is on
-     X. Seal when the level is drawn, minutes before any trigger. At the
-     trigger, the only word is trade.
+     THE COMMITMENT STRING IS UNCHANGED, byte for byte with seal_tick.js and
+     v1:   metal|side|level|kill|grades|nonce   ->   SHA-256, hex
+     so verify_ticks.js reproduces every hash on Friday.
+
+     THIS PAGE MAKES NO NETWORK REQUEST. Nothing leaves the phone until you
+     press Post on X, and then only the metal, the minute and the hash. The
+     nonce comes from crypto.getRandomValues. The seals are kept in this
+     browser's storage on this phone. A seal whose nonce is lost can never
+     be opened and counts as wrong, so the page offers a backup by email
+     after every seal, and warns if the phone's storage is off.
+
+     BRAND LAW APPLIES to the post: no em dashes, hashtags, exclamation
+     marks, emoji, forecasting.
      ========================================================================= -->
 <style>
-  :root{--bg:#141210;--panel:#1D1A16;--rule:#4A4238;--ink:#EFE8DC;--ink5:#B8AE9E;--gold:#CBA43C;--miss:#D2764A;--pass:#5FA57A}
+  :root{--bg:#141210;--panel:#1D1A16;--rule:#4A4238;--ink:#EFE8DC;--ink5:#B8AE9E;--ink6:#8E8474;--gold:#CBA43C;--miss:#D2764A;--pass:#5FA57A;--slate:#6BA3C7}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font:15px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:18px 16px 40px;max-width:560px;margin:0 auto}
-  h1{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:16px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-  label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink5);margin-bottom:5px}
-  select,input{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--rule);padding:12px;font:inherit;font-size:17px;border-radius:0;-webkit-appearance:none}
-  input:focus,select:focus{outline:1px solid var(--gold);border-color:var(--gold)}
-  button{width:100%;background:var(--gold);color:#141210;border:0;padding:15px;font:inherit;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:6px;cursor:pointer}
-  button:active{opacity:.85}
-  .err{color:var(--miss);font-size:13px;margin-top:10px;min-height:1.4em}
-  .out{margin-top:22px;display:none}
-  .out.on{display:block}
-  .blk{background:var(--panel);border:1px solid var(--rule);padding:12px;margin-bottom:12px;position:relative}
-  .blk .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;padding-right:76px}
-  .blk pre{white-space:pre-wrap;word-break:break-all;font:inherit;font-size:13.5px;color:var(--ink)}
-  .blk.first{border-color:var(--gold)}
-  .cp{position:absolute;top:8px;right:8px;width:auto;margin:0;padding:6px 10px;font-size:10px;background:transparent;color:var(--ink5);border:1px solid var(--rule)}
-  .cp.done{color:var(--pass);border-color:var(--pass)}
-  .hold{color:var(--ink5);font-size:12px}
-  .law{margin-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink5);text-align:center}
+  html,body{background:var(--bg)}
+  body{color:var(--ink);font:16px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:max(18px,env(safe-area-inset-top)) 16px 48px;max-width:560px;margin:0 auto}
+  h1{font-size:13px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+  .sub{font-size:12px;color:var(--ink5);margin-bottom:18px}
+  .lab{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink5);margin:14px 0 7px}
+  .seg{display:grid;gap:8px}
+  .seg.m{grid-template-columns:repeat(3,1fr)} .seg.s{grid-template-columns:repeat(2,1fr)}
+  .seg button{background:var(--panel);color:var(--ink);border:1px solid var(--rule);padding:14px 6px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  .seg button.on{border-color:var(--gold);color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+  .seg.s button.on[data-v="short"]{border-color:var(--miss);color:var(--miss);box-shadow:inset 0 0 0 1px var(--miss)}
+  .seg.s button.on[data-v="long"]{border-color:var(--slate);color:var(--slate);box-shadow:inset 0 0 0 1px var(--slate)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  input{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--rule);padding:14px 12px;font:inherit;font-size:20px;border-radius:0;-webkit-appearance:none}
+  input:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+  .big{width:100%;border:0;padding:17px;font:inherit;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:16px;cursor:pointer;background:var(--gold);color:#141210}
+  .big.x{background:var(--ink);color:#141210}
+  .big.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule);font-size:13px;padding:13px}
+  .big:disabled{opacity:.35}
+  .err{color:var(--miss);font-size:13px;margin-top:10px;min-height:1.2em}
+  .card{background:var(--panel);border:1px solid var(--gold);padding:14px;margin-top:18px;display:none}
+  .card.on{display:block}
+  .card .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .card pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px}
+  .ok{color:var(--pass);font-size:13px;margin-top:10px}
+  .warn{color:var(--miss);font-size:13px;margin:10px 0}
+  .thread{margin-top:10px}
+  .thread input{font-size:14px;padding:11px}
+  .list{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px}
+  .list h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink5);font-weight:600;margin-bottom:10px}
+  .it{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+  .it i{font-style:normal;color:var(--ink5)}
+  .it .h{color:var(--ink6);font-size:12px}
+  .it .np{color:var(--miss)}
+  .fri{margin-top:24px;border-top:1px solid var(--rule);padding-top:16px}
+  .fri pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:12px;background:var(--panel);border:1px solid var(--rule);padding:12px;margin-top:12px;display:none}
+  .fri pre.on{display:block}
+  .law{margin-top:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink5);text-align:center}
+  .how{margin-top:18px;font-size:12.5px;color:var(--ink5);line-height:1.6}
+  .how b{color:var(--ink)}
 </style>
 </head>
 <body>
 <h1>The seal</h1>
+<div class="sub">Seal when you draw the level. At the trigger, only trade.</div>
 
-<div class="row">
-  <div><label>Metal</label><select id="metal"><option>Gold</option><option>Silver</option><option>Platinum</option></select></div>
-  <div><label>Side</label><select id="side"><option>short</option><option>long</option></select></div>
+<span class="lab">Metal</span>
+<div class="seg m" id="metal"><button data-v="Gold" class="on">Gold</button><button data-v="Silver">Silver</button><button data-v="Platinum">Platinum</button></div>
+<span class="lab">Side</span>
+<div class="seg s" id="side"><button data-v="short">Short</button><button data-v="long">Long</button></div>
+<div class="two">
+  <div><span class="lab">Level</span><input id="level" inputmode="decimal" autocomplete="off" placeholder="4399"></div>
+  <div><span class="lab">Kill</span><input id="kill" inputmode="decimal" autocomplete="off" placeholder="4406"></div>
 </div>
-<div class="row">
-  <div><label>Level</label><input id="level" inputmode="decimal" placeholder="4399"></div>
-  <div><label>Kill</label><input id="kill" inputmode="decimal" placeholder="4406"></div>
-</div>
-<button id="go">Seal</button>
+<button class="big" id="go">Seal</button>
 <div class="err" id="err"></div>
+<div class="warn" id="nostore" hidden>This browser is not keeping storage (private window?). Seals made here vanish when it closes. Use the backup button after every seal, or open this page in a normal window.</div>
 
-<div class="out" id="out">
-  <div class="blk first"><div class="k">1 · The row · send this to the clerk now, before anything else</div><button class="cp" data-for="row">copy</button><pre id="row"></pre></div>
-  <div class="blk"><div class="k">2 · The X post · reply in today's thread, then trade</div><button class="cp" data-for="post">copy</button><pre id="post"></pre></div>
-  <div class="blk"><div class="k">3 · The alert · set it on TradingView</div><button class="cp" data-for="alert">copy</button><pre id="alert"></pre></div>
-  <div class="blk"><div class="k">Hold until Friday · do not post</div><pre id="reveal" class="hold"></pre></div>
+<div class="card" id="card">
+  <div class="k">Sealed · now post it</div>
+  <pre id="post"></pre>
+  <button class="big x" id="px">Post on X</button>
+  <div class="thread"><span class="lab">Today's thread (optional)</span><input id="thread" inputmode="url" placeholder="paste today's first seal post link once, later seals reply under it"></div>
+  <button class="big ghost" id="cp">Copy the post instead</button>
+  <button class="big ghost" id="bk">Back up this seal by email</button>
+  <div class="ok" id="saved"></div>
 </div>
 
-<div class="law">Seal first · Order second · Row before 23:00</div>
+<div class="list"><h2>Seals on this phone, not yet sent to the desk</h2><div id="items"><div class="it"><i>None yet.</i></div></div></div>
+
+<div class="fri">
+  <button class="big ghost" id="open">After the Friday close: open the week</button>
+  <pre id="reveal"></pre>
+  <button class="big ghost" id="cpr" hidden>Copy the week for the desk</button>
+  <button class="big ghost" id="mark" hidden>Sent to the desk, clear these from the list</button>
+</div>
+
+<div class="law">Seal · Post · Then trade</div>
+
+<div class="how">
+  <b>At the setup</b> metal, side, level, kill, Seal, Post on X. Nothing tradeable is in the post: the metal, the minute, the hash.<br>
+  <b>After the Friday close</b> Open the week, copy it, send it to the desk with one five-minute export of the week per metal you sealed. The desk checks every hash, grades each day on its 23:00 close and ships the rows.<br>
+  <b>The rule</b> every seal posted gets a row whatever price did, and a seal that is never opened counts as wrong.
+</div>
 
 <script>
 (function(){
-  const $=id=>document.getElementById(id);
+  const $ = id => document.getElementById(id);
+  const KEY = "simplifier.seals.v2", TKEY = "simplifier.thread.v2", MKEY = "simplifier.metal.v2";
+  let store = true;
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { store = false; return []; } };
+  const save = a => { try { localStorage.setItem(KEY, JSON.stringify(a)); return true; } catch (e) { store = false; return false; } };
+  try { localStorage.setItem("simplifier.probe", "1"); localStorage.removeItem("simplifier.probe"); } catch (e) { store = false; }
+  if (!store) $("nostore").hidden = false;
 
-  // Madrid clock with offset, same rule as seal_tick.js: +02:00 until 03:00 on 25 October 2026, +01:00 after.
-  function madrid(){
-    const now=new Date(), change=new Date('2026-10-25T01:00:00Z');
-    const off=now<change?2:1;
-    const l=new Date(now.getTime()+off*3600e3);
-    const p=n=>String(n).padStart(2,'0');
-    const date=`${l.getUTCFullYear()}-${p(l.getUTCMonth()+1)}-${p(l.getUTCDate())}`;
-    const hhmm=`${p(l.getUTCHours())}:${p(l.getUTCMinutes())}`;
-    return {stamp:`${date}T${hhmm}+0${off}:00`, date, hhmm, past23:l.getUTCHours()>=23};
+  /* Madrid clock with offset, the same rule as seal_tick.js and v1: +02:00 until 03:00 on 25 October 2026, +01:00 after,
+     and the same again from the last Sunday of March. */
+  function madridOffset(d) {
+    try {
+      const tz = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", timeZoneName: "longOffset" }).formatToParts(d).find(x => x.type === "timeZoneName").value;
+      const m = tz.match(/([+-])(\d{2})/); return m ? (m[1] === "-" ? -1 : 1) * +m[2] : 2;
+    } catch (e) { return d < new Date("2026-10-25T01:00:00Z") ? 2 : 1; }
   }
-  function nextDay(d){const x=new Date(d+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+1);return x.toISOString().slice(0,10);}
-
-  // Number formatting identical to seal_tick.js fmt(): silver to two decimals, gold and platinum en-US thousands.
-  function fmt(metal,raw){
-    const n=Number(String(raw).replace(/,/g,'').trim());
-    if(!isFinite(n)||raw==='')throw new Error('Not a number: '+raw);
-    return metal==='Silver'?n.toFixed(2):n.toLocaleString('en-US');
+  function madrid() {
+    const now = new Date(), off = madridOffset(now), l = new Date(now.getTime() + off * 3600e3), p = n => String(n).padStart(2, "0");
+    const date = `${l.getUTCFullYear()}-${p(l.getUTCMonth() + 1)}-${p(l.getUTCDate())}`, hhmm = `${p(l.getUTCHours())}:${p(l.getUTCMinutes())}`;
+    return { stamp: `${date}T${hhmm}+0${off}:00`, date, hhmm, past23: l.getUTCHours() >= 23 };
   }
-  function hex(buf){return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
-  async function sha256(s){return hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)));}
-  function nonce(){const b=new Uint8Array(8);crypto.getRandomValues(b);return hex(b.buffer);}
-
-  async function seal(){
-    $('err').textContent='';$('out').classList.remove('on');
-    try{
-      const metal=$('metal').value, side=$('side').value;
-      const level=fmt(metal,$('level').value), kill=fmt(metal,$('kill').value);
-      const lv=Number(level.replace(/,/g,'')), kv=Number(kill.replace(/,/g,''));
-      if(side==='short'&&kv<=lv)throw new Error('A short kill must sit above the level. No row.');
-      if(side==='long'&&kv>=lv)throw new Error('A long kill must sit under the level. No row.');
-      const c=madrid();
-      const grades=c.past23?nextDay(c.date):c.date;
-      const n=nonce();
-      const commit=`${metal}|${side}|${level}|${kill}|${grades}|${n}`;
-      const s=await sha256(commit);
-      const when=grades===c.date?"today's 23:00 close":`the 23:00 close on ${grades}`;
-      const word=side==='short'?'over':'under';
-
-      $('row').textContent=`  { named:"${c.stamp}", post:"", metal:"${metal}", side:"${side}", level:"${level}", kill:"${kill}", grades:"${grades}", grade:"pending", result:"", nonce:"${n}", seal:"${s}", revealed:false },`;
-      $('post').textContent=`${metal}. Sealed ${c.hhmm} Madrid. Grades on ${when}.\n${s}`;
-      $('alert').textContent=`TradingView alert, ${metal} 5m, Close crossing ${side==='short'?'up':'down'} ${kill}, once per bar close.`;
-      $('reveal').textContent=`${metal}, ${side} from ${level}. Kill: a five-minute close ${word} ${kill}.\nSeal string: ${commit}`;
-      $('out').classList.add('on');
-      document.querySelectorAll('.cp').forEach(b=>{b.textContent='copy';b.classList.remove('done');});
-      $('out').scrollIntoView({behavior:'smooth',block:'start'});
-    }catch(e){$('err').textContent=e.message;}
+  const nextDay = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + 1); if (x.getUTCDay() === 6) x.setUTCDate(x.getUTCDate() + 2); if (x.getUTCDay() === 0) x.setUTCDate(x.getUTCDate() + 1); return x.toISOString().slice(0, 10); };
+  /* Number formatting identical to seal_tick.js fmt(): silver to two decimals, gold and platinum en-US thousands. */
+  function fmt(metal, raw) {
+    const n = Number(String(raw).replace(/,/g, "").trim());
+    if (!isFinite(n) || String(raw).trim() === "") throw new Error("Level and kill must be numbers.");
+    return metal === "Silver" ? n.toFixed(2) : n.toLocaleString("en-US");
   }
+  const hex = buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  const sha256 = async s => hex(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)));
+  const nonce = () => { const b = new Uint8Array(8); crypto.getRandomValues(b); return hex(b.buffer); };
+  const weekOf = iso => { const d = new Date(iso + "T12:00:00Z"); const k = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - k); return d.toISOString().slice(0, 10); };
 
-  $('go').addEventListener('click',seal);
-  ['level','kill'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')seal();}));
-  document.querySelectorAll('.cp').forEach(b=>b.addEventListener('click',async()=>{
-    try{await navigator.clipboard.writeText($(b.dataset.for).textContent);b.textContent='copied';b.classList.add('done');}
-    catch(_){b.textContent='select and copy';}
-  }));
-  if(!crypto||!crypto.subtle){$('err').textContent='This browser has no Web Crypto. Use seal_tick.js.';$('go').disabled=true;}
+  /* the two segmented choices: the metal is remembered, the side is chosen fresh for every seal */
+  function seg(id, remember) {
+    const box = $(id), on = box.querySelector("button.on"); let v = on ? on.dataset.v : "";
+    if (remember) { try { const r = localStorage.getItem(remember); if (r) v = r; } catch (e) {} }
+    const paint = () => box.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+    box.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; v = b.dataset.v; paint(); if (remember) { try { localStorage.setItem(remember, v); } catch (e) {} } });
+    paint(); return { get: () => v, clear: () => { v = ""; paint(); } };
+  }
+  const metalSeg = seg("metal", MKEY), sideSeg = seg("side", null);
+  try { $("thread").value = localStorage.getItem(TKEY) || ""; } catch (e) {}
+  $("thread").addEventListener("change", () => { try { localStorage.setItem(TKEY, $("thread").value.trim()); } catch (e) {} });
+
+  function render() {
+    const mine = load().filter(s => !s.sent);
+    $("items").innerHTML = mine.length ? mine.map(s => `<div class="it"><span>${s.named.slice(8, 10)}/${s.named.slice(5, 7)} ${s.hhmm} · ${s.metal} <i>${s.side}</i>${s.posted ? "" : ` <i class="np">not posted</i>`}</span><span class="h">${s.seal.slice(0, 12)}</span></div>`).join("") : `<div class="it"><i>None yet.</i></div>`;
+  }
+  render();
+
+  let last = null;
+  async function sealIt() {
+    $("err").textContent = ""; $("card").classList.remove("on");
+    try {
+      const metal = metalSeg.get(), side = sideSeg.get();
+      if (!side) throw new Error("Pick short or long.");
+      const level = fmt(metal, $("level").value), kill = fmt(metal, $("kill").value);
+      const lv = Number(level.replace(/,/g, "")), kv = Number(kill.replace(/,/g, ""));
+      if (side === "short" && kv <= lv) throw new Error("A short's kill sits above the level. No seal.");
+      if (side === "long" && kv >= lv) throw new Error("A long's kill sits under the level. No seal.");
+      const c = madrid(), grades = c.past23 ? nextDay(c.date) : c.date, n = nonce();
+      const commit = `${metal}|${side}|${level}|${kill}|${grades}|${n}`, s = await sha256(commit);
+      const when = grades === c.date ? "today's 23:00 close" : `the 23:00 close on ${grades}`;
+      last = { named: c.stamp, hhmm: c.hhmm, metal, side, level, kill, grades, nonce: n, seal: s, commit,
+               post: `${metal}. Sealed ${c.hhmm} Madrid. Grades on ${when}.\n${s}` };
+      const a = load(); a.push(last); const ok = save(a);
+      $("post").textContent = last.post;
+      $("saved").textContent = ok ? "Saved on this phone. It opens after the Friday close." : "Not saved: storage is off. Back it up by email now.";
+      $("card").classList.add("on"); render();
+      $("level").value = ""; $("kill").value = ""; sideSeg.clear();
+      $("card").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (e) { $("err").textContent = e.message; }
+  }
+  $("go").addEventListener("click", sealIt);
+  ["level", "kill"].forEach(id => $(id).addEventListener("keydown", e => { if (e.key === "Enter") sealIt(); }));
+
+  /* a seal counts as posted from this page once Post on X or Copy was pressed for it; the desk still checks X */
+  function markPosted() { if (!last) return; const a = load(); const s = a.find(x => x.seal === last.seal); if (s && !s.posted) { s.posted = true; save(a); render(); } }
+  $("px").addEventListener("click", () => {
+    if (!last) return; markPosted();
+    const t = $("thread").value.trim(), m = t.match(/status\/(\d+)/);
+    /* the documented web intent, docs.x.com/x-for-websites/post-button/guides/web-intent (text, in_reply_to) */
+    let u = "https://x.com/intent/tweet?text=" + encodeURIComponent(last.post);
+    if (m) u += "&in_reply_to=" + m[1];
+    window.open(u, "_blank");
+  });
+  $("cp").addEventListener("click", async () => { if (!last) return; markPosted(); try { await navigator.clipboard.writeText(last.post); $("cp").textContent = "Copied"; } catch (e) { $("cp").textContent = "Select the text above and copy"; } });
+  $("bk").addEventListener("click", () => {
+    if (!last) return;
+    const body = `Seal backup. Send this to the desk on Friday with the week.\n\n${last.commit}\nSHA-256 ${last.seal}\nnamed ${last.named}`;
+    location.href = "mailto:?subject=" + encodeURIComponent(`Seal ${last.metal} ${last.hhmm} ${last.grades}`) + "&body=" + encodeURIComponent(body);
+  });
+
+  function weekBlock() {
+    const a = load().filter(s => !s.sent);
+    if (!a.length) return "";
+    const row = s => `  { named:"${s.named}", post:"", metal:"${s.metal}", side:"${s.side}", level:"${s.level}", kill:"${s.kill}", grades:"${s.grades}", grade:"pending", result:"", nonce:"${s.nonce}", seal:"${s.seal}", revealed:true },`;
+    const posted = a.filter(s => s.posted), apart = a.filter(s => !s.posted);
+    const metals = [...new Set(a.map(s => s.metal))].join(", ");
+    const days = [...new Set(a.map(s => s.grades))].sort().join(", ");
+    let out = `THE WEEK'S SEALS, ${a.length}, opened ${madrid().stamp}\nExports needed: one five-minute export of the week for ${metals} (days ${days})\n\n${posted.map(row).join("\n")}`;
+    if (apart.length) out += `\n\nSEALED, NOT POSTED FROM THIS PAGE, ${apart.length}. Rows only if the post is on X:\n${apart.map(row).join("\n")}`;
+    return out;
+  }
+  $("open").addEventListener("click", () => {
+    const b = weekBlock();
+    $("reveal").textContent = b || "No seals kept on this phone this week.";
+    $("reveal").classList.add("on"); $("cpr").hidden = !b; $("mark").hidden = !b;
+  });
+  $("cpr").addEventListener("click", async () => { try { await navigator.clipboard.writeText($("reveal").textContent); $("cpr").textContent = "Copied. Send it with the exports"; } catch (e) { $("cpr").textContent = "Select the block above and copy"; } });
+  $("mark").addEventListener("click", () => {
+    if (!confirm("Clear the seals from this list? Only once the desk has them.")) return;
+    const a = load().map(s => Object.assign(s, { sent: true })); save(a); render();
+    $("reveal").classList.remove("on"); $("cpr").hidden = true; $("mark").hidden = true;
+  });
+  if (!window.crypto || !crypto.subtle) { $("err").textContent = "This browser has no Web Crypto. Use seal_tick.js at the desk."; $("go").disabled = true; }
 })();
 </script>
 </body>

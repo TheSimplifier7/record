@@ -38,6 +38,10 @@
        held           the level was reached, no close printed through the
                       kill, and the grading close is on the row's side
      A row not graded by the next day's open is graded late and says so.
+     (24 Sep 2026, the book v2: a row still open 48 hours after the Friday
+     close of its week is graded late; the bars sit beside the page as
+     tick_YYYY-MM-DD_<metal>_5m.csv, no folder. The two lines around this
+     note are as they read before.)
      Graded by grade_tick.js from the exported bars in ticks/, verified by
      verify_ticks.js before upload. The page never grades by hand.
 
@@ -128,6 +132,22 @@
     .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
     .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
   }
+  /* 24 Sep 2026, the book v2: on a phone each row reads as a card instead of an 860px table that scrolls
+     sideways, and its running text is 12px at least (note 37's floor). A wider screen reads as it did. */
+  @media(max-width:760px){
+    .tbl{overflow-x:visible}
+    table#book{min-width:0}
+    table#book thead{display:none}
+    table#book tr{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule)}
+    table#book td{padding:0;border:0}
+    table#book td.d{grid-column:1/3;grid-row:1}
+    table#book td:last-child{grid-column:3;grid-row:1;justify-self:end}
+    table#book td.m{grid-column:1;grid-row:2}
+    table#book td.lv{grid-column:2/4;grid-row:2}
+    table#book td.kl{grid-column:1/4;grid-row:3;white-space:normal}
+    table#book td.res{grid-column:1/4;grid-row:4;min-width:0;max-width:none}
+    td.res .prov,td.res .late{font-size:12px}
+  }
 </style>
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
@@ -173,7 +193,7 @@
        first written a row whose close came back between the level and the
        kill was neither held nor wrong. It is wrong: the close is not on the
        row's side. -->
-  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if price traded to the level, no five-minute close printed through the kill before the grading close, and the grading close sits on the row's side of the level. Wrong if price traded to the level and either a five-minute close printed through the kill at any time before the grading close, or the grading close is not on the row's side. Never reached if price never traded to the level. The grading close is the last five-minute close before 23:00 Madrid on the day the row names, taken from the exported bars kept beside this page. A row not graded by the next day's open is graded late and says so on the row.</div>
+  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if price traded to the level, no five-minute close printed through the kill before the grading close, and the grading close sits on the row's side of the level. Wrong if price traded to the level and either a five-minute close printed through the kill at any time before the grading close, or the grading close is not on the row's side. Never reached if price never traded to the level. The grading close is the last five-minute close before 23:00 Madrid on the day the row names, taken from the exported bars kept beside this page. A row still open 48 hours after the Friday close of its week is graded late and says so on the row.</div><!-- 24 Sep 2026, the book v2. This sentence read: A row not graded by the next day's open is graded late and says so on the row. -->
 
   <!-- 13 Sep 2026, before the first row: the seal. As first written the page
        published the level and the kill at the moment of naming, which named
@@ -183,8 +203,9 @@
        The evidence is unchanged because the seal cannot be moved after the
        fact. What changed is that the call is no longer free to a stranger
        while it is live. -->
-  <div class="rule-box"><b style="color:var(--ink)">The seal.</b> A row is named by posting a SHA-256 seal of the call at the minute it is made: the metal, the side, the level, the kill, the grading day and a random nonce, hashed. The seal proves the call existed at that minute and that no part of it moved afterwards, and it reveals nothing while the trade is live. Every seal opens on the Friday of its week, all of them together, with the string that produced it so anyone can recompute the hash. <b style="color:var(--ink)">Every seal published is opened, and a seal that is not opened counts as wrong.</b> That rule is what makes the count worth reading without taking this desk's word for anything.</div>
+  <div class="rule-box"><b style="color:var(--ink)">The seal.</b> A row is named by posting a SHA-256 seal of the call at the minute it is made: the metal, the side, the level, the kill, the grading day and a random nonce, hashed. The seal proves the call existed at that minute and that no part of it moved afterwards, and it reveals nothing while the trade is live. Every seal opens after the Friday close of its week, all of them together, with the string that produced it so anyone can recompute the hash. <b style="color:var(--ink)">Every seal published is opened, and a seal that is not opened counts as wrong.</b> That rule is what makes the count worth reading without taking this desk's word for anything.</div>
 
+  <!-- 24 Sep 2026, the book v2: the seal box read "Every seal opens on the Friday of its week"; the week now opens after the Friday close. -->
   <div class="tbl" id="tbl" hidden>
     <table id="book">
       <thead><tr><th>Named</th><th>Metal</th><th>Level</th><th>Kill</th><th>What price did</th><th>Grade</th></tr></thead>
@@ -203,7 +224,11 @@
        trade, the level, the side and the kill are posted on X, and the row is
        written to ticks.js and pushed, so the post and the commit both carry
        a time the desk did not choose." -->
-  <p class="body">Before the trade, the call is hashed and the seal is posted on X with the metal and the minute; the post's timestamp is the naming, and it is the one this desk cannot move. The level and the kill open on the Friday of that week, every seal of the week at once, with the string that produced each hash so anyone can recompute it. A seal that is never opened counts as wrong. The row is written to <a href="ticks.js">ticks.js</a> the same day, before the grading close, and every seal posted gets a row whatever price did afterwards, so the feed and the book can be laid side by side. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
+  <!-- 24 Sep 2026, the book v2, by the founder's ruling of that day: the tick book runs, on a process easy
+       enough to follow at the desk. The seal on X was always the naming; the row now follows when the week
+       opens, after the Friday close, and one export of the week per metal replaces one export per day.
+       This paragraph read: "Before the trade, the call is hashed and the seal is posted on X with the metal and the minute; the post's timestamp is the naming, and it is the one this desk cannot move. The level and the kill open on the Friday of that week, every seal of the week at once, with the string that produced each hash so anyone can recompute it. A seal that is never opened counts as wrong. The row is written to ticks.js the same day, before the grading close, and every seal posted gets a row whatever price did afterwards, so the feed and the book can be laid side by side. After the day's close the five-minute bars for that metal and that day are exported from the chart and saved beside this page, the row is graded from that file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays." -->
+  <p class="body">At the setup, before any trade, the call is sealed on the phone: the metal, the side, the level and the kill are hashed, and the seal is posted on X with the metal and the minute. The post's timestamp is the naming, and it is the one this desk cannot move. Nothing tradeable is in the post. After the Friday close every seal of the week opens at once, written to <a href="ticks.js">ticks.js</a> with the string that produced each hash, so anyone can recompute it. A seal that is never opened counts as wrong, and every seal posted gets a row whatever price did afterwards, so the feed and the book can be laid side by side. The five-minute bars of the week are exported from the chart for each metal sealed and saved beside this page one file a day, each row is graded from its own day's file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
 
   <footer>
     <span class="law">Named before · Graded after · Nothing deleted</span>
@@ -230,7 +255,8 @@
   const empty = document.getElementById("empty"), tbl = document.getElementById("tbl"), hb = document.getElementById("heldback");
   if (held) { hb.textContent = held + (held === 1 ? " row is" : " rows are") + " held back for a missing field and not drawn."; hb.hidden = false; }
   if (!ok.length) {
-    empty.textContent = "No rows yet. The book opened on 9 September 2026 and the first row goes in before the first trade, not after it. Until then this page is the rule and nothing else.";
+    /* 24 Sep 2026, the book v2: this read "No rows yet. The book opened on 9 September 2026 and the first row goes in before the first trade, not after it. Until then this page is the rule and nothing else." */
+    empty.textContent = "No rows yet. From 24 September 2026 every seal is posted on X the minute it is made and opens here after the Friday close of its week. Until the first week with a seal, this page is the rule and nothing else.";
     empty.hidden = false;
     return;
   }
@@ -243,7 +269,9 @@
   document.getElementById("rows").innerHTML = rows.map(t => {
     const g = GL[t.grade];
     const [dn, tm] = fmtNamed(t.named).split("|");
-    const late = t.grade === "pending" && (new Date(t.grades + "T23:00:00+02:00").getTime() + 12 * 3600000) < today.getTime();
+    /* 24 Sep 2026, the book v2: the week opens after the Friday close, so a row is late 48 hours after that close. This read: new Date(t.grades + "T23:00:00+02:00").getTime() + 12 * 3600000 */
+    const friOf = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + ((5 - x.getUTCDay() + 7) % 7)); return x.toISOString().slice(0, 10); };
+    const late = t.grade === "pending" && (new Date(friOf(t.grades) + "T23:00:00+02:00").getTime() + 48 * 3600000) < today.getTime();
     const open = isOpen(t);
     const lv = open
       ? esc(t.level)
@@ -262,7 +290,7 @@
       <td class="m">${esc(t.metal)}${open ? `<i>${esc(t.side)}</i>` : ""}</td>
       <td class="lv">${lv}</td>
       <td class="kl">${kl}</td>
-      <td class="res">${res}${late ? `<span class="late">Graded late</span>` : ""}${sealStr}<span class="prov">Sealed before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${open && t.grade !== "pending" ? ` <a href="ticks/${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
+      <td class="res">${res}${late ? `<span class="late">Graded late</span>` : ""}${sealStr}<span class="prov">Sealed before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${open && t.grade !== "pending" ? ` <a href="tick_${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
       <td><span class="g ${g[1]}"><i></i>${g[0]}</span></td>
     </tr>`;
   }).join("");

@@ -45,7 +45,16 @@
         figures it was drawn from are the ones record.json holds today.
     17. The counter, 24 September 2026, note 37: the record and every page
         beside it load GoatCounter from the one address; the embed and the
-        seal, which say they track nothing and make no request, load none. */
+        seal, which say they track nothing and make no request, load none.
+    18. The rulings of 24 September 2026, notes 38 to 40: the standing offer
+        is on the record; the email door no longer says no forecasts; the
+        sample email the door links, when there is one, is beside the record;
+        the seal page hashes the same string verify_ticks.js recomputes, so a
+        seal made on the phone can always be opened; grade_week.js is here.
+    19. What a price is made of, 25 September 2026, note 41: descent.js is
+        beside the record, the record and the Method page mount it and load
+        it, its captions carry no em dash, exclamation mark, hashtag or
+        emoji, and it asks the network for record.json and nothing else. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -286,6 +295,29 @@ const uncounted = counted.filter(f => { try { return !rd(f).replace(/<!--[\s\S]*
 check(COUNTER_V === GC_ADDR && uncounted.length === 0, "the counter is on the record and on every page beside it (" + (counted.length + 1) + ")" + (COUNTER_V === GC_ADDR ? "" : " (COUNTER is not the address)") + (uncounted.length ? " (not on: " + uncounted.join(", ") + ")" : ""));
 const leaks = ["embed.html", "seal.html", "record-embed.js"].filter(f => { try { return /goatcounter|gc\.zgo\.at/i.test(rd(f)); } catch (e) { return false; } });
 check(leaks.length === 0, "the embed and the seal load no counter" + (leaks.length ? " (found in: " + leaks.join(", ") + ")" : ""));
+
+/* 18. THE RULINGS OF 24 SEPTEMBER 2026, added with notes 38 to 40. */
+const idxLive = idx.replace(/<!--[\s\S]*?-->/g, "");
+const offer = (idxLive.match(/<p class="integrity bounty" id="bounty">[\s\S]*?<\/p>/) || [""])[0];
+check(/\$1,000/.test(offer) && /after it was first published/.test(offer) && /changed after it was given/.test(offer) && /already disclosed/.test(offer), "the standing offer is on the record, whole (note 40)");
+check(!/No forecasts\./.test(idxLive) && /No forecast without its kill\./.test(idxLive), "the email door says no forecast without its kill (note 40)");
+const sampleV = (idx.match(/\n\s*sample:\s*"([^"]*)"/) || [])[1] || "";
+check(!sampleV || /^https:\/\//.test(sampleV) || fs.existsSync(path.join(HERE, sampleV)), "the sample email the door links is beside the record" + (sampleV ? " (" + sampleV + ")" : " (none named yet)"));
+let sealSrc = ""; try { sealSrc = rd("seal.html"); } catch (e) {}
+check(sealSrc.includes("${metal}|${side}|${level}|${kill}|${grades}|${n}") && /crypto\.subtle\.digest\("SHA-256"/.test(sealSrc) && !/<script[^>]+src=|fetch\(|XMLHttpRequest/.test(sealSrc), "seal.html hashes metal|side|level|kill|grades|nonce with SHA-256, as verify_ticks.js does, and makes no request");
+check(fs.existsSync(path.join(HERE, "grade_week.js")), "grade_week.js, the tick book's weekly grader, is beside the record");
+
+/* 19. WHAT A PRICE IS MADE OF, added with note 41. */
+let dsc = ""; try { dsc = rd("descent.js"); } catch (e) {}
+const dA = dsc.indexOf("/* CAPTIONS-START */"), dB = dsc.indexOf("/* CAPTIONS-END */");
+const dCaps = dA >= 0 && dB > dA ? dsc.slice(dA, dB) : "";
+check(dsc.length > 0 && dCaps.length > 200, "descent.js is beside the record, its captions between CAPTIONS-START and CAPTIONS-END (note 41)");
+const dMounted = ["index.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"/.test(s); });
+check(dMounted.length === 2, "the record and the Method page mount the animation and load descent.js" + (dMounted.length === 2 ? "" : " (only: " + (dMounted.join(", ") || "neither") + ")"));
+const dBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u]].filter(([, re]) => re.test(dCaps)).map(b => b[0]);
+check(dCaps.length > 0 && dBad.length === 0, "the animation's captions carry no em dash, exclamation mark, hashtag or emoji" + (dBad.length ? " (found: " + dBad.join(", ") + ")" : ""));
+const dCode = dsc.replace(/\/\*[\s\S]*?\*\//g, "");
+check(dsc.length > 0 && !/https?:\/\//.test(dCode) && !/XMLHttpRequest|sendBeacon|WebSocket|import\(/.test(dCode) && (dCode.match(/fetch\(/g) || []).length === 1 && /fetch\(src \|\| "record\.json"/.test(dCode), "descent.js asks the network for record.json and nothing else");
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

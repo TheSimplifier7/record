@@ -2,6 +2,11 @@
    THE TICK BOOK  ·  grade a day's rows from the exported bars
    opened 10 September 2026
 
+   24 Sep 2026, the book v2: the bars now sit beside the page as
+   tick_YYYY-MM-DD_<metal>_5m.csv, with no folder, because a plain web upload
+   flattens folders (note 36); grade_week.js writes them. The ticks/ form
+   below is still read.
+
    Usage
      node grade_tick.js ticks/2026-09-10_gold_5m.csv            propose grades, write nothing
      node grade_tick.js ticks/2026-09-10_gold_5m.csv --write    write grade and result into ticks.js
@@ -41,8 +46,9 @@ const WRITE = args.includes("--write");
 if (!csvPath) { console.error("usage: node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv [--write]"); process.exit(2); }
 
 const fname = path.basename(csvPath);
-const fm = /^(\d{4}-\d{2}-\d{2})_(gold|silver|platinum)_5m\.csv$/i.exec(fname);
-if (!fm) { console.error("file must be named YYYY-MM-DD_<gold|silver|platinum>_5m.csv"); process.exit(2); }
+/* 24 Sep 2026: tick_ in front is the v2 name beside the page. This read /^(\d{4}-\d{2}-\d{2})_(gold|silver|platinum)_5m\.csv$/i */
+const fm = /^(?:tick_)?(\d{4}-\d{2}-\d{2})_(gold|silver|platinum)_5m\.csv$/i.exec(fname);
+if (!fm) { console.error("file must be named tick_YYYY-MM-DD_<gold|silver|platinum>_5m.csv (or YYYY-MM-DD_<metal>_5m.csv)"); process.exit(2); }
 const DAY = fm[1], METAL = fm[2][0].toUpperCase() + fm[2].slice(1).toLowerCase();
 
 /* ---- Madrid time, without a library ---- */
@@ -121,7 +127,11 @@ rows.forEach(r => {
     const d = Math.abs(gradeBar.cl - level).toFixed(2);
     result = `Held. Named ${fmtHm(named)}, the level traded at ${fmtHm(reachedAt.t)}, no five-minute close printed ${sideWord} the kill at ${r.kill}, and the ${CLOSE_LABEL} close printed ${gradeBar.close}, ${d} ${long ? "above" : "below"} the level.`;
   }
-  const late = r.grade === "pending" && (Date.now() - new Date(DAY + "T23:00:00+02:00").getTime()) > 12 * 3600000;
+  /* 24 Sep 2026, the book v2: the week opens after the Friday close, so a row is graded late only when it is
+     graded more than 48 hours after the 23:00 close of the Friday of its week. This read: late when graded
+     more than 12 hours after the 23:00 close of its own day. */
+  const friOf = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + ((5 - x.getUTCDay() + 7) % 7)); return x.toISOString().slice(0, 10); };
+  const late = r.grade === "pending" && (Date.now() - new Date(friOf(DAY) + "T23:00:00+02:00").getTime()) > 48 * 3600000;
   if (late) result += " Graded late.";
   console.log(`${METAL} ${r.side} ${r.level} kill ${r.kill} named ${r.named}`);
   console.log(`  ${grade.toUpperCase()}  ${result}`);

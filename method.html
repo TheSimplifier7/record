@@ -41,6 +41,14 @@
 
      BRAND LAW APPLIES. No em dashes, no hashtags, no exclamation marks, no
      emoji, no forecasting, no fabricated data.
+
+     24 SEPTEMBER 2026. The founder ruled that day that THE METHOD is rented
+     by the quarter or the year. Note 37 put two charts of v6.2 on this page
+     the same evening; the three cards and the paragraph under the charts
+     still described the tool of 9 September, v2.2, so they now describe
+     v6.2, in the words of THE_PUBLICATION_24SEP. The old text is kept in
+     comments beside the new. Prices, payment links and terms are unchanged:
+     they wait for Stripe and the licence.
      ========================================================================= -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,6 +117,12 @@
   }
   /* 24 Sep 2026, note 37 on the record: the caption at 12px on a phone. */
   @media(max-width:760px){.chart figcaption{font-size:12px}}
+  /* 25 Sep 2026, note 41 on the record: the animation's room. The player styles itself (descent.js). */
+  .descent-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin:34px 0 12px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+  .descent-head .k{color:var(--gold)}
+  .descent-head .d{color:var(--ink-5);font-weight:500;letter-spacing:.16em}
+  .descent-wrap{margin:0 0 30px;color:var(--ink-3)}
+  @media(max-width:760px){.descent-head{font-size:12px}}
 </style>
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
@@ -140,10 +154,14 @@
   <h1>The Method</h1>
   <p class="lede">The indicator the record is read from.</p>
 
+  <!-- 24 Sep 2026. The three cards of the 9 September tool, v2.2, kept:
+       The cloud: Where the market has actually traded, weighted by time, rather than where it is printing.
+       The fan: How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.
+       The three lines: The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart. -->
   <div class="three">
-    <div><div class="k">The cloud</div><p>Where the market has actually traded, weighted by time, rather than where it is printing.</p></div>
-    <div><div class="k">The fan</div><p>How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.</p></div>
-    <div><div class="k">The three lines</div><p>The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart.</p></div>
+    <div><div class="k">The fan</div><p>A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the regime's side, and a dotted line at the close that would flip it. Every timeframe.</p></div>
+    <div><div class="k">The cloud</div><p>A trend line that gives the current bar no weight, so its level and the close that would turn it are known when the bar opens. Its depth shows the odds of the trend as hindsight will draw it. Every timeframe.</p></div>
+    <div><div class="k">The boxes</div><p>Under the 4 hour, the Asian session, boxed and coloured once a bar closes through an edge. From the 4 hour up, the week's opening box, last week's box carried, and a cone and a tint for where the week can still close.</p></div>
   </div>
 
   <!-- THE CHART, 9 Sep 2026. Gold, 8 hour, TVC, January to September 2026,
@@ -169,8 +187,17 @@
     <figcaption>The same tool on the 1 hour, the same moment, from mid March. The same three weeks are in frame.</figcaption>
   </figure>
 
-  <p class="body">It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction.</p>
+  <!-- 24 Sep 2026. This read: "It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction." v6.2 draws marks, tags, the flip trade and its trigger, and carries alerts. -->
+  <p class="body">It draws structure. It does not tell you what to do. The close that would flip the fan and the close that would turn the cloud are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 4 hour it can also draw one fixed rule, the flip trade, with the close on the live bar that would arm it, and keep that rule's record in the data window, the losses with the rest: a record of the rule on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk.</p>
   <p class="body"><!-- 24 Sep 2026, note 33. Read "Every Sunday since June ... published before the week opened with the close that would prove it wrong". -->Every week since June a level has been read off it by a man who then decided, published with the close that would prove it wrong, and graded on Friday. The wrong ones are still on <a href="./">the record</a>. Read those first. The desk that built this tool is wrong in public some weeks, and the tool draws exactly the same lines on those weeks as on the others. The deciding is the part that is not for sale.</p>
+
+  <!-- WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
+       on the record, reading record.json: the record, the week, the trades, the orders, the people and the
+       machines behind them and the metal in the vault. It plays by itself once it is in view, never under a
+       setting for reduced motion, and stops when it leaves the screen. -->
+  <div class="descent-head"><span class="k">Beneath the chart</span><span class="d">One price, from the record down to the metal in the vault</span></div>
+  <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
+  <script src="descent.js" defer></script>
 
   <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
 

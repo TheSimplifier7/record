@@ -6,7 +6,9 @@
    bars must give the same grade under the rule. A row that fails here does
    not ship. The checks:
      1. every row has the required fields and a parseable named minute
-     2. a graded row has ticks/<grades>_<metal>_5m.csv beside the page
+     2. a graded row has its bars beside the page: tick_<grades>_<metal>_5m.csv
+        from 24 September 2026 (no folder, note 36), or the older
+        ticks/<grades>_<metal>_5m.csv
      3. re-grading from that file gives the grade the row carries
      4. the result names the grading close printed in the file
      5. a pending row whose grading day is more than a day old is flagged
@@ -68,7 +70,10 @@ TICKS.forEach((r, i) => {
     ok(age < 24 * 3600000, tag + ": open row is not more than a day past its grading close" + (age >= 24 * 3600000 ? " (grade it, and say graded late)" : ""));
     return;
   }
-  const csv = `ticks/${r.grades}_${String(r.metal).toLowerCase()}_5m.csv`;
+  /* 24 Sep 2026, the book v2: the bars sit beside the page with no folder; the ticks/ folder is still read.
+     This read: const csv = `ticks/${r.grades}_${String(r.metal).toLowerCase()}_5m.csv`; */
+  const base = `${r.grades}_${String(r.metal).toLowerCase()}_5m.csv`;
+  const csv = ["tick_" + base, "ticks/" + base].find(f => fs.existsSync(f)) || "tick_" + base;
   const have = fs.existsSync(csv);
   ok(have, tag + ": bars on file at " + csv);
   ok(res.length > 20, tag + ": result written");

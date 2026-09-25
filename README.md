@@ -51,6 +51,17 @@ After any edit to index.html:
 make_bank_pages.js joined the routine with note 35, and make_link_cards.js with note 37. -->
 make_bank_pages.js writes a page and a link card for every bank row. make_link_cards.js draws the link card of every other page beside the record, from record.json, and verify_record.js refuses an upload whose cards are older than the record. Every page but the embed and the seal counts its visits with GoatCounter: no cookies, no personal data.
 
+descent.js, from 25 September 2026 (note 41), is the animation under The Chart and on the Method page: the record's closes and levels, read from index.html on the record and from record.json on the Method page, then an illustration of the last week, its trades and its orders, the people and the machines behind them, the matching engine and the metal in the vault, the source of every fact in its words named on screen and in the file's header. It changes no row and needs no step in the routine. verify_record.js check 19 refuses an upload whose pages stop loading it, whose captions break the brand law, or whose animation asks the network for anything but record.json.
+
+<!-- 24 Sep 2026, the book v2. The paragraph and the command under this comment are how the tick book ran until 24 September and are kept. -->
+The tick book, from 24 September 2026: a seal is made on seal.html and posted on X at the setup, and nothing else happens that day. After the Friday close the week opens: the block seal.html builds goes into ticks.js, opened, and one five-minute export of the week per metal sealed is graded with
+
+    node grade_week.js <the export>.csv --write && node verify_ticks.js && node make_record_json.js
+
+grade_week.js writes each day's bars beside the page as tick_YYYY-MM-DD_<metal>_5m.csv, with no folder because a web upload flattens folders (note 36), never over a file already on file, and refuses a day the export does not finish.
+
+The emails: after the routine, node make_email.js monday writes the Monday Level from the rows named that day, and node make_email.js friday the Friday grade from the rows graded on that close, into mail/, which is not part of the site. Every figure in them comes from record.json.
+
 The tick book, after 23:00 Madrid on a day with rows: export the five-minute chart of that metal for that day from TradingView and save it as ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv, then
 
     node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv --write && node verify_ticks.js && node make_record_json.js
