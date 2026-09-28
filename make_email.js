@@ -44,7 +44,8 @@ if (!date) { console.error("record.json holds no row to write about"); process.e
 const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
 const count = (n, one, many) => `${WORDS[n] || n} ${n === 1 ? one : many}`;
 const fridayOf = iso => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + ((5 - d.getUTCDay() + 7) % 7)); return d.toISOString().slice(0, 10); };
-const sideLine = r => r.side === "copper" ? "Copper · stays below the line" : "Slate · holds above the line";
+/* 28 Sep 2026, plain words for readers who do not follow the account. WAS: "Copper · stays below the line" / "Slate · holds above the line" */
+const sideLine = r => r.side === "copper" ? "Stays below the line" : "Holds above the line";
 const WORD = r => r.grade === "pending" ? "OPEN" : (r.grade === "pass" && /hit/.test(r.grade_word || "")) ? "HIT" : ({ pass: "HELD", miss: "WRONG", notest: "NEVER REACHED", nokill: "NO KILL", partial: "PARTIAL" })[r.grade] || String(r.grade_word || r.grade).toUpperCase();
 
 /* ---------------------------------------------------------------- blocks */
@@ -55,12 +56,12 @@ if (kind === "monday") {
   if (!set.length) { console.error("no row named on " + date); process.exit(1); }
   const fri = fridayOf(date);
   subject = `The Monday Level · week of ${long(date)}`;
-  lede = `${count(set.length, "row", "rows")}, named ${long(date)} and graded on the weekly close of ${long(fri)}. The same rows that go on the record, where they stay whatever the close does.`;
+  lede = `${count(set.length, "call", "calls")}, made ${long(date)} and decided on the weekly close of ${long(fri)}. The same calls that go on the record, where they stay whatever the close does.`;  /* WAS: rows, named, graded, rows */
   for (const r of set) {
-    if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}`], link: r.url });
+    if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `Target ${r.room} · The odds it holds, at the time of the call: ${r.odds} in 100`, `Wrong on ${r.kill}`]  /* WAS: `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}` */, link: r.url });
     else blocks.push({ head: `${r.metal.toUpperCase()} · ${r.level}`, lines: [r.call, `Kill: ${r.kill}`], link: r.url });
   }
-  if (set.some(r => r.grammar)) tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line.");
+  if (set.some(r => r.grammar)) tail.push("On Friday each call takes one word. HIT, the week closed at or past the target. HELD, on the right side of the line, short of the target. WRONG, a weekly close through the line.");  /* WAS: tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line."); */
 } else {
   const set = rows.filter(r => r.graded_on_close === date).sort(byMetal);
   if (!set.length) { console.error("no row graded on the close of " + date); process.exit(1); }

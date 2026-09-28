@@ -54,18 +54,22 @@ const cols = rows.map(r => {
   const f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec });
   const col = GC[r.grade] || C.notest;
   /* 24 Sep 2026, note 34: a grammar row names its side, and a hit reads Hit. */
-  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "copper · stays below" : "slate · holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]);
+  /* 28 Sep 2026, the founder's ruling: plain words on anything a non-follower sees. WAS:
+     const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "copper · stays below" : "slate · holds above") : ...) */
+  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "stays below" : "holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]);
   const line3 = clTxt ? `close ${fmt(cEntry.date)} · ${esc(clTxt)}` : "";
-  const line4 = mode === "open" && r.grammar ? `room ${r.room} · odds ${r.odds} in 100`
+  /* WAS: `room ${r.room} · odds ${r.odds} in 100` */
+  const line4 = mode === "open" && r.grammar ? `target ${r.room} · odds it holds ${r.odds} in 100`
     : mode === "open" && isFinite(room) ? `${f(room)} ${room >= 0 ? "of room" : "through"}`
     : r.grade === "notest" ? "never reached" : isFinite(room) ? `${room >= 0 ? "+" : "−"}${f(room)} ${room >= 0 ? "clear" : "through"}` : "";
   return `<div class="c" style="border-top-color:${col}"><div class="m">${esc(r.metal)}</div><div class="lv" style="color:${col}">${esc(r.level)}</div>
     <div class="l2" style="color:${mode === "open" ? C.ink5 : col}">${esc(line2)}</div><div class="l3">${line3}</div><div class="l4" style="color:${col}">${esc(line4)}</div></div>`;
 }).join("");
 
+/* WAS: `This week · named ${fmt(named)} · graded on the ${fmt(friday)} close` and `Graded on the ${fmt(friday)} close · the next lines are named Monday` */
 const kicker = mode === "open"
-  ? `This week · named ${fmt(named)} · graded on the ${fmt(friday)} close`
-  : `Graded on the ${fmt(friday)} close · the next lines are named Monday`;   /* 24 Sep 2026, note 33: "named Sunday" until today */
+  ? `This week · called ${fmt(named)} · decided on the ${fmt(friday)} close`
+  : `Decided on the ${fmt(friday)} close · the next calls come Monday`;   /* 24 Sep 2026, note 33: "named Sunday" until today */
 
 /* Local copies of the two faces, used when the sandbox cannot reach Google
    Fonts; on any other machine the Google stylesheet loads first and wins. */

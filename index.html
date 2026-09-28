@@ -65,7 +65,9 @@
      <meta property="og:image" content="https://thesimplifier7.github.io/record/share_2026-08-30_gold_4350.png"> -->
 <!-- WAS card_2026-09-20_open.png until 25 Sep 2026, note 42: the week of 20 September while its three rows were open.
      <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_open.png"> -->
-<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_graded.png">
+<!-- WAS card_2026-09-20_graded.png until 28 Sep 2026, the Monday map upload: the week of 20 September, as graded.
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_graded.png"> -->
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-28_open.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -1655,7 +1657,7 @@
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">0</div>
+      <div class="num blue" id="t-open">3</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
@@ -2092,7 +2094,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-09-25";   /* set by hand, with the commit. Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-09-28";   /* set by hand, with the commit. "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2119,6 +2121,7 @@ const PROVENANCE = {
      written, and the reader reads GitHub's timestamp rather than this desk's.
      When the row is graded, this entry is replaced by the normal shape with
      the graded date and the hash, and the old shape is kept beside it. */
+  "2026-09-28": { written:"2026-09-28", open:true },
   /* WAS, while the rows were open and before the close that graded them:
        "2026-08-30": { written:"2026-09-04", open:true },
      Graded on the 4 September close. The commit that carried the rows is
@@ -2142,7 +2145,9 @@ const PROVENANCE = {
      Graded on the 25 September close, written 25 September. Named by the
      day rather than by a hash because the hash does not exist until the
      push that writes this line; swap in the hash on the next push. */
-  "2026-09-20": { graded:"2026-09-25", written:"2026-09-25", dayLink:true },
+  /* WAS, until the hash of the 25 September push was known:
+       "2026-09-20": { graded:"2026-09-25", written:"2026-09-25", dayLink:true }, */
+  "2026-09-20": { graded:"2026-09-25", written:"2026-09-25", commit:"22e78b5" },
   /* WAS, until the hash of the 12 September push was known:
        "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", dayLink:true }, */
   "2026-09-06": { graded:"2026-09-11", written:"2026-09-12", commit:"10cf76a" },
@@ -2767,6 +2772,18 @@ const STANDING = [
 
 const CALLS = [
 
+  /* WEEK OF 28 SEPTEMBER. Named Monday evening on the week's own opening box, frozen at
+     16:00 CEST, before the first 8h close after it (23:00 CEST Monday, note 43), under the call grammar (note 34).
+     Read off the founder's own 8h TVC charts and THE METHOD's data window at 18:03 CEST:
+       gold      box 4,135.74 to 4,280.50, last print 4,121.49; data window: week closes above the box 21.523, below 52.816
+       silver    box 60.932 to 64.212, last print 61.083; data window: week closes above the box 28.9756, below 48.9341
+       platinum  box 1,720.72 to 1,775.80, last print 1,716.00; data window: week closes above the box 28.63, below 51.78
+     The side, the line and the room are his read. The odds are the data window's, by the rule in the header
+     (an own level by the formula, stated on its row). Grade Friday at the 23:00 CEST close. */
+  { date:"2026-09-28", type:"Map", metal:"Gold", level:"4,280.50", book:"Turn", grammar:1, side:"copper", room:"4,135.74", odds:78, oddsFrom:"data window", lineFrom:"box high", box:["4,135.74","4,280.50"], readAt:"18:03 CEST", call:"Gold stays below 4,280.50, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 4,135.74, the box low. Odds at naming 78 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close above 4,280.50.", grade:"pending" },
+  { date:"2026-09-28", type:"Map", metal:"Silver", level:"64.212", book:"Turn", grammar:1, side:"copper", room:"60.932", odds:71, oddsFrom:"data window", lineFrom:"box high", box:["60.932","64.212"], readAt:"18:03 CEST", call:"Silver stays below 64.212, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 60.932, the box low. Odds at naming 71 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close above 64.212.", grade:"pending" },
+  { date:"2026-09-28", type:"Map", metal:"Platinum", level:"1,775.80", book:"Turn", grammar:1, side:"copper", room:"1,720.72", odds:71, oddsFrom:"data window", lineFrom:"box high", box:["1,720.72","1,775.80"], readAt:"18:03 CEST", call:"Platinum stays below 1,775.80, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 1,720.72, the box low. Odds at naming 71 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close above 1,775.80.", grade:"pending" },
+
   /* WEEK OF 20 SEPTEMBER. Three rows, open, written before the week they
      grade, and the object changes tonight by the founder's ruling (note 29).
      From this week the rows name the OPENING BOX: the first sixteen hours of
@@ -3359,6 +3376,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"43", kind:"correction", title:"Correction, 28 September 2026. The first 8h close after the box freezes prints at 23:00 in Madrid, not midnight.",
+    body:"Note 33 says the rows are named on Monday evening, after the week's box freezes and before the first 8h close after that, which is midnight in Madrid in most weeks. The hour is wrong. The 8h bar that opens at 16:00 CEST on Monday does not run its eight hours: it ends at 23:00 CEST, when the metals stop for the daily break from 23:00 to 00:00 that note 30 cites, and the next bar opens at midnight. The founder's 8h TVC chart of gold, stamped 18:47 CEST tonight, shows that bar with 4 hours 12 minutes left to run. The deadline for a Monday row is therefore 23:00 CEST. In the weeks when Europe and New York change their clocks on different dates, the last week of October and the second half of March, the freeze, the break and the deadline each come an hour earlier in Madrid, 22:00 for the deadline. The commit time of each Monday upload shows whether its rows beat it. No row was named under note 33 before tonight, so no row is affected, and note 33 stands as written, corrected here and not in its own words." },
   { n:"42", kind:"standard", title:"Resolution, 25 September 2026. Gold's floor broke by 52.87, silver's held by 0.176 and platinum's by 31.80. The last rows graded in the old words.",
     body:"Friday 25 September close, read off the founder's 4h TVC charts stamped 25 September with the market shut, 23:07 CEST for gold and 23:08 for silver and platinum: gold 4,284.130, silver 64.2560, platinum 1,777.80. Three floors were named on 20 September, each an edge of the box its metal opened the week of 14 September in, each published with the weekly close that would kill it. GOLD. The floor was 4,337. The close printed 4,284.130, 52.87 under it. MISS. Gold printed under the line on Monday, closed back over it on the 8h chart on Tuesday night at 4,357.68, and went back under on Wednesday, bars carried by the founder's 8h export of 23 September. SILVER. The floor was 64.08. Silver traded under it during the week, 63.8480 on the founder's chart at 08:21 CEST on Friday, and the weekly close printed 64.2560, 0.176 above it. PASS, at arm's length, and the row says so. PLATINUM. The floor was 1,746. Platinum went through it on Wednesday, a low of 1,740.486 on the 8h export, 5.51 under it, and the weekly close printed 1,777.80, 31.80 above it. PASS. THE LAST ROWS IN THE OLD WORDS. These three are the last rows this page grades as held, wrong or never reached. From 28 September every row is named under the call grammar of note 34, with its side, its room and its odds, and graded HIT, HELD or WRONG on the close. THE BANK BOARD AND THE CROWD. The September window of the UBS target of 6,200, the crowd row of 23 September, shut on the same close: 4,284.130, 1,915.87 under the line. No weekly close at or above 6,200 printed inside the window. Wrong, on the board and in the crowd, in the same word this page gives itself, and the desk's own gold row graded wrong on the same close. Tonight's two rows give gold's high of 2026 from the founder's weekly chart, 5,598.75, in the week of 26 to 30 January; the March and June rows still carry it as reported, 5,589.38 on 28 January, and no grade turns on the difference. THE STANDING CARD. The charts read tonight carry no read of the standing line, so the card stands as last read and says so. THE TALLY. Twenty-nine rows resolved, twenty-two held, seven wrong, five never reached, none open. Neither the bank board nor the crowd is in it." },
   { n:"41", kind:"standard", title:"What a price is made of, 25 September 2026. An animation from the record's closes down to the trades, the people, the machines and the metal, on this page and the Method's.",
