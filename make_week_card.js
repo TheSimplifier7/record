@@ -59,7 +59,8 @@ const cols = rows.map(r => {
   const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "stays below" : "holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]);
   const line3 = clTxt ? `close ${fmt(cEntry.date)} · ${esc(clTxt)}` : "";
   /* WAS: `room ${r.room} · odds ${r.odds} in 100` */
-  const line4 = mode === "open" && r.grammar ? `target ${r.room} · odds it holds ${r.odds} in 100`
+  /* WAS, 28 Sep 2026 until the founder found "target" unclear the same night: `target ${r.room} · odds it holds ${r.odds} in 100` */
+  const line4 = mode === "open" && r.grammar ? `odds it holds ${r.odds} in 100`
     : mode === "open" && isFinite(room) ? `${f(room)} ${room >= 0 ? "of room" : "through"}`
     : r.grade === "notest" ? "never reached" : isFinite(room) ? `${room >= 0 ? "+" : "−"}${f(room)} ${room >= 0 ? "clear" : "through"}` : "";
   return `<div class="c" style="border-top-color:${col}"><div class="m">${esc(r.metal)}</div><div class="lv" style="color:${col}">${esc(r.level)}</div>

@@ -1,6 +1,6 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-09-28T18:30:16.563Z",
+ "generated": "2026-09-28T20:43:08.997Z",
  "cards": [
   {
    "name": "misses",

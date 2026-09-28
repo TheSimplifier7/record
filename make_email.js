@@ -58,10 +58,10 @@ if (kind === "monday") {
   subject = `The Monday Level · week of ${long(date)}`;
   lede = `${count(set.length, "call", "calls")}, made ${long(date)} and decided on the weekly close of ${long(fri)}. The same calls that go on the record, where they stay whatever the close does.`;  /* WAS: rows, named, graded, rows */
   for (const r of set) {
-    if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `Target ${r.room} · The odds it holds, at the time of the call: ${r.odds} in 100`, `Wrong on ${r.kill}`]  /* WAS: `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}` */, link: r.url });
+    if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `The odds it holds, at the time of the call: ${r.odds} in 100`, `Wrong on ${r.kill}`]  /* WAS, same night: `Target ${r.room} · The odds it holds, ...` */  /* WAS: `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}` */, link: r.url });
     else blocks.push({ head: `${r.metal.toUpperCase()} · ${r.level}`, lines: [r.call, `Kill: ${r.kill}`], link: r.url });
   }
-  if (set.some(r => r.grammar)) tail.push("On Friday each call takes one word. HIT, the week closed at or past the target. HELD, on the right side of the line, short of the target. WRONG, a weekly close through the line.");  /* WAS: tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line."); */
+  if (set.some(r => r.grammar)) tail.push("On Friday each call takes one word. HELD, the week closed on the called side of the line. HIT, it closed beyond the other edge of the week's first 16 hours as well. WRONG, it closed through the line.");  /* WAS, same night: the target wording */  /* WAS: tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line."); */
 } else {
   const set = rows.filter(r => r.graded_on_close === date).sort(byMetal);
   if (!set.length) { console.error("no row graded on the close of " + date); process.exit(1); }
