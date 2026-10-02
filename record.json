@@ -4,15 +4,15 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-09-28",
-  "generated": "2026-09-28T20:42:48.840Z",
+  "last_updated": "2026-10-02",
+  "generated": "2026-10-02T21:03:45.644Z",
   "tally": {
-    "resolved": 29,
-    "held": 22,
+    "resolved": 32,
+    "held": 25,
     "wrong": 7,
     "never_reached": 5,
-    "open": 3,
-    "hit": 0,
+    "open": 0,
+    "hit": 2,
     "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
   "grammar": {
@@ -20,11 +20,11 @@
     "named": 3,
     "slate": 0,
     "copper": 3,
-    "graded": 0,
-    "held": 0,
-    "hit": 0,
+    "graded": 3,
+    "held": 3,
+    "hit": 2,
     "wrong": 0,
-    "expected": 0,
+    "expected": 2.2,
     "note": "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34."
   },
   "rows": [
@@ -39,9 +39,9 @@
       "book": "Turn",
       "call": "Gold stays below 4,280.50, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 4,135.74, the box low. Odds at naming 78 in 100, off the data window. Named on the week's own box before any 8h close through it.",
       "kill": "a weekly close above 4,280.50.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HELD. The weekly close printed 4,142.710, 137.79 under the line of 4,280.50 and 6.97 above the room, 4,135.74. Close read off the founder's 8h TVC chart, market shut, 23:00 CEST 2 October. See note 44.",
+      "grade": "pass",
+      "grade_word": "held",
       "grammar": 1,
       "side": "copper",
       "line": "4,280.50",
@@ -55,12 +55,12 @@
       ],
       "last_range": null,
       "read_at": "18:03 CEST",
-      "close": null,
+      "close": "4,142.710",
       "hit": false,
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-09-28",
+      "graded_on_close": "2026-10-02",
+      "graded_at": "2026-10-02T23:00:00+02:00",
+      "written": "2026-10-02",
       "commit": null
     },
     {
@@ -74,9 +74,9 @@
       "book": "Turn",
       "call": "Silver stays below 64.212, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 60.932, the box low. Odds at naming 71 in 100, off the data window. Named on the week's own box before any 8h close through it.",
       "kill": "a weekly close above 64.212.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HIT. The weekly close printed 60.4470, 3.765 under the line of 64.212 and 0.485 under the room, 60.932. A hit is counted once, as held. Close read off the founder's 8h TVC chart, market shut, 23:00 CEST 2 October. See note 44.",
+      "grade": "pass",
+      "grade_word": "held, hit the room",
       "grammar": 1,
       "side": "copper",
       "line": "64.212",
@@ -90,12 +90,12 @@
       ],
       "last_range": null,
       "read_at": "18:03 CEST",
-      "close": null,
-      "hit": false,
+      "close": "60.4470",
+      "hit": true,
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-09-28",
+      "graded_on_close": "2026-10-02",
+      "graded_at": "2026-10-02T23:00:00+02:00",
+      "written": "2026-10-02",
       "commit": null
     },
     {
@@ -109,9 +109,9 @@
       "book": "Turn",
       "call": "Platinum stays below 1,775.80, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 18:03 CEST. Room 1,720.72, the box low. Odds at naming 71 in 100, off the data window. Named on the week's own box before any 8h close through it.",
       "kill": "a weekly close above 1,775.80.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HIT. The weekly close printed 1,699.70, 76.10 under the line of 1,775.80 and 21.02 under the room, 1,720.72. A hit is counted once, as held. Close read off the founder's 8h TVC chart, market shut, 23:00 CEST 2 October. See note 44.",
+      "grade": "pass",
+      "grade_word": "held, hit the room",
       "grammar": 1,
       "side": "copper",
       "line": "1,775.80",
@@ -125,12 +125,12 @@
       ],
       "last_range": null,
       "read_at": "18:03 CEST",
-      "close": null,
-      "hit": false,
+      "close": "1,699.70",
+      "hit": true,
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-09-28",
+      "graded_on_close": "2026-10-02",
+      "graded_at": "2026-10-02T23:00:00+02:00",
+      "written": "2026-10-02",
       "commit": null
     },
     {
@@ -1153,6 +1153,12 @@
       "kind": "correction",
       "title": "Correction, 28 September 2026. The first 8h close after the box freezes prints at 23:00 in Madrid, not midnight.",
       "body": "Note 33 says the rows are named on Monday evening, after the week's box freezes and before the first 8h close after that, which is midnight in Madrid in most weeks. The hour is wrong. The 8h bar that opens at 16:00 CEST on Monday does not run its eight hours: it ends at 23:00 CEST, when the metals stop for the daily break from 23:00 to 00:00 that note 30 cites, and the next bar opens at midnight. The founder's 8h TVC chart of gold, stamped 18:47 CEST tonight, shows that bar with 4 hours 12 minutes left to run. The deadline for a Monday row is therefore 23:00 CEST. In the weeks when Europe and New York change their clocks on different dates, the last week of October and the second half of March, the freeze, the break and the deadline each come an hour earlier in Madrid, 22:00 for the deadline. The commit time of each Monday upload shows whether its rows beat it. No row was named under note 33 before tonight, so no row is affected, and note 33 stands as written, corrected here and not in its own words."
+    },
+    {
+      "n": "44",
+      "kind": "standard",
+      "title": "Resolution, 2 October 2026. Gold HELD, silver HIT, platinum HIT: the first rows graded under the call grammar.",
+      "body": "Friday 2 October close, read off the founder's 8h TVC charts stamped 2 October with the market shut, 23:00 CEST: gold 4,142.710, silver 60.4470, platinum 1,699.70. Three lines were named on 28 September under the call grammar of note 34, each the high of the box its metal opened the week in, each with its side, its room, its odds at naming and the weekly close that would make it wrong. Each is graded by arithmetic on the close: through the line, WRONG; at or through the room, HIT, counted once as held; otherwise HELD. GOLD. Stays below 4,280.50, room 4,135.74, odds at naming 78. The close printed 4,142.710, 137.79 under the line and 6.97 above the room, 4,135.74. HELD. SILVER. Stays below 64.212, room 60.932, odds at naming 71. The close printed 60.4470, 3.765 under the line and 0.485 under the room, 60.932. HIT. PLATINUM. Stays below 1,775.80, room 1,720.72, odds at naming 71. The close printed 1,699.70, 76.10 under the line and 21.02 under the room, 1,720.72. HIT. THE ODDS BOARD. Three rows graded under the grammar, three held, two of them hits. The odds they were named at add up to 2.20. Held against that sum is read over many weeks; this is one week, three rows. THE BANK BOARD. No window shut on this close. THE STANDING CARD. The charts read tonight carry no read of the standing line, so the card stands as last read and says so. THE TALLY. Thirty-two rows resolved, twenty-five held, seven wrong, five never reached, none open. Neither the bank board nor the crowd is in it."
     }
   ],
   "targets": [
@@ -1521,6 +1527,12 @@
       "Gold": "4,284.130",
       "Silver": "64.2560",
       "Platinum": "1,777.80"
+    },
+    {
+      "date": "2026-10-02",
+      "Gold": "4,142.710",
+      "Silver": "60.4470",
+      "Platinum": "1,699.70"
     }
   ],
   "crowd": {

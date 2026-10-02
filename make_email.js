@@ -46,6 +46,19 @@ const count = (n, one, many) => `${WORDS[n] || n} ${n === 1 ? one : many}`;
 const fridayOf = iso => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + ((5 - d.getUTCDay() + 7) % 7)); return d.toISOString().slice(0, 10); };
 /* 28 Sep 2026, plain words for readers who do not follow the account. WAS: "Copper · stays below the line" / "Slate · holds above the line" */
 const sideLine = r => r.side === "copper" ? "Stays below the line" : "Holds above the line";
+/* 2 Oct 2026, the Friday email in plain words for the call grammar rows, as the Monday email since 28 Sep.
+   The row's result keeps the record's own words on the page; the email says what the close did. */
+const PN = s => Number(String(s).replace(/,/g, ""));
+const fridayLines = r => {
+  const dp = r.metal === "Silver" ? 3 : 2, f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dp, maximumFractionDigits: dp });
+  const below = r.side === "copper", cl = PN(r.close), lv = PN(r.line || r.level), rm = PN(r.room), box = (r.box || []).map(PN);
+  const d = cl - lv, dr = cl - rm, way = v => (below ? v < 0 : v > 0) ? (below ? "under" : "above") : (below ? "above" : "under");
+  const edge = rm === box[0] ? "the bottom of the week's first 16 hours" : rm === box[1] ? "the top of the week's first 16 hours" : "the next level on the call";
+  const out = [`${sideLine(r)}. The week closed at ${r.close}, ${d === 0 ? "exactly on the line" : f(d) + " " + way(d) + " the line"}.`];
+  if (r.hit) out.push(dr === 0 ? `It closed exactly on ${edge}, ${r.room}, which counts as through it.` : `It closed ${way(dr)} ${edge} as well, ${r.room}, by ${f(dr)}.`);
+  out.push(`The odds it would hold, at the time of the call: ${r.odds} in 100.`);
+  return out;
+};
 const WORD = r => r.grade === "pending" ? "OPEN" : (r.grade === "pass" && /hit/.test(r.grade_word || "")) ? "HIT" : ({ pass: "HELD", miss: "WRONG", notest: "NEVER REACHED", nokill: "NO KILL", partial: "PARTIAL" })[r.grade] || String(r.grade_word || r.grade).toUpperCase();
 
 /* ---------------------------------------------------------------- blocks */
@@ -68,17 +81,23 @@ if (kind === "monday") {
   const cl = (R.closes || []).find(c => c.date === date) || {};
   const closes = ["Gold", "Silver", "Platinum"].filter(m => cl[m]).map(m => `${m.toLowerCase()} ${cl[m]}`);
   subject = `The Friday grade · ${long(date)}`;
-  lede = `The weekly close of ${long(date)}${closes.length ? ": " + closes.join(", ") : ""}. ${count(set.length, "row", "rows")} graded on it.`;
-  for (const r of set) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.level} · ${WORD(r)}`, lines: [r.result || ""], link: r.url });
+  /* 2 Oct 2026, plain words. WAS: ${count(set.length, "row", "rows")} graded on it. */
+  lede = `The weekly close of ${long(date)}${closes.length ? ": " + closes.join(", ") : ""}. ${count(set.length, "call", "calls")} decided on it.`;
+  /* 2 Oct 2026, plain words for the grammar rows. WAS, for every row:
+     for (const r of set) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.level} · ${WORD(r)}`, lines: [r.result || ""], link: r.url }); */
+  for (const r of set) blocks.push(r.grammar && r.close
+    ? { head: `${r.metal.toUpperCase()} · ${r.line || r.level} · ${WORD(r)}`, lines: fridayLines(r), link: r.url }
+    : { head: `${r.metal.toUpperCase()} · ${r.level} · ${WORD(r)}`, lines: [r.result || ""], link: r.url });
   const t = R.tally || {};
   const latest = rows.map(r => r.graded_on_close).filter(Boolean).sort().pop();
   tail.push(`${date === latest ? "The record after this close" : "The record today"}: ${t.resolved} resolved, ${t.held} held and ${t.wrong} wrong, every one of them kept. ${t.never_reached} never reached, counted for neither side.${t.open ? ` ${t.open} open.` : ""}`);
   const g = R.grammar || {};
-  if (g.graded) tail.push(`Under the call grammar: ${g.graded} graded, ${g.held} held. The odds they were named at add up to ${g.expected}. Held past that figure is the read beating the odds; short of it, it is not.`);
+  /* 2 Oct 2026, plain words. WAS: `Under the call grammar: ${g.graded} graded, ${g.held} held. The odds they were named at add up to ${g.expected}. Held past that figure is the read beating the odds; short of it, it is not.` */
+  if (g.graded) tail.push(`Since the calls of 28 September: ${g.graded} decided, ${g.held} held${g.hit ? `, ${g.hit} of them through the other edge of the week's first 16 hours as well` : ""}. Added up, the odds at the time of each call come to ${Number(g.expected).toFixed(2)}. More held than that figure is the read beating the odds; fewer, and it is not.`);
   const wrong = set.filter(r => r.grade === "miss");
-  if (wrong.length) tail.push(`Every wrong row, in full: ${SITE}misses.html`);
+  if (wrong.length) tail.push(`Every wrong call, in full: ${SITE}misses.html`);   /* 2 Oct 2026, plain words. WAS: Every wrong row, in full */
 }
-tail.push(`Every row since June, the wrong ones included: ${SITE}`);
+tail.push(`Every call since June, the wrong ones included: ${SITE}`);   /* 2 Oct 2026, plain words. WAS: Every row since June */
 
 /* ---------------------------------------------------------------- brand law */
 const all = [subject, lede, ...blocks.flatMap(b => [b.head, ...b.lines]), ...tail].join("\n");

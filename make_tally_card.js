@@ -89,7 +89,9 @@ const build = (w, h, v, p) => {
 <div class="card">
   <div class="mast"><span class="name">The Simplifier</span><span class="desc">Metals · The record</span></div>
   <div class="body">
-    <div class="kicker">The record · graded on the ${fmt(gradedOn)} close</div>
+    <!-- 2 Oct 2026: "decided" for "graded", the founder's ruling of 28 September (no house words on anything a stranger reads; this card is the media of the grade post).
+         WAS: The record · graded on the ${fmt(gradedOn)} close -->
+    <div class="kicker">The record · decided on the ${fmt(gradedOn)} close</div>
     <div class="grid">
       <div class="stat"><span class="num pass">${t.held}</span><span class="lab">held</span></div>
       <div class="stat"><span class="num miss">${t.wrong}</span><span class="lab">wrong, still on the page</span></div>
