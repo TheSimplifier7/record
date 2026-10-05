@@ -69,7 +69,9 @@
      <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-20_graded.png"> -->
 <!-- WAS card_2026-09-28_open.png until 2 Oct 2026, note 44: the week of 28 September while its three rows were open.
      <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-28_open.png"> -->
-<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-28_graded.png">
+<!-- WAS card_2026-09-28_graded.png until 5 Oct 2026, the Monday map upload: the week of 28 September, as graded.
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-09-28_graded.png"> -->
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-05_open.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -1659,7 +1661,7 @@
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">0</div>
+      <div class="num blue" id="t-open">3</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
@@ -2096,7 +2098,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-02";   /* set by hand, with the commit. "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-05";   /* set by hand, with the commit. "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2123,11 +2125,14 @@ const PROVENANCE = {
      written, and the reader reads GitHub's timestamp rather than this desk's.
      When the row is graded, this entry is replaced by the normal shape with
      the graded date and the hash, and the old shape is kept beside it. */
+  "2026-10-05": { written:"2026-10-05", open:true },
   /* WAS, while the rows were open and before the close that graded them:
        "2026-09-28": { written:"2026-09-28", open:true },
      Graded on the 2 October close, written 2 October. Named by the day rather than by a hash because the hash does not exist until the
      push that writes this line; swap in the hash on the next push. */
-  "2026-09-28": { graded:"2026-10-02", written:"2026-10-02", dayLink:true },
+  /* WAS, until the hash of the 2 October push was known:
+       "2026-09-28": { graded:"2026-10-02", written:"2026-10-02", dayLink:true }, */
+  "2026-09-28": { graded:"2026-10-02", written:"2026-10-02", commit:"eaee555" },
   /* WAS, while the rows were open and before the close that graded them:
        "2026-08-30": { written:"2026-09-04", open:true },
      Graded on the 4 September close. The commit that carried the rows is
@@ -2778,6 +2783,18 @@ const STANDING = [
    ========================================================================= */
 
 const CALLS = [
+
+  /* WEEK OF 5 OCTOBER. Named Monday evening on the week's own opening box, frozen at
+     16:00 CEST, before the first 8h close after it (23:00 CEST Monday, note 43), under the call grammar (note 34).
+     Read off the founder's own 8h TVC charts at 22:05 and 22:06 CEST, from THE PLAN panel of The Fan on each chart, which prints THE METHOD's weekly model (the tint, on 40 weeks) to one decimal. It replaces a first read at 21:22 and 21:23 CEST, taken before anything was uploaded:
+       gold      box 4,124.48 to 4,170.41, last print 4,138.855 at 22:06 CEST; the odds: week closes above the box 39.0, below 45.0
+       silver    box 60.326 to 62.036, last print 61.0380 at 22:05 CEST; the odds: week closes above the box 40.4, below 42.9
+       platinum  box 1,699.00 to 1,740.40, last print 1,720.49 at 22:06 CEST; the odds: week closes above the box 41.4, below 40.7
+     The side, the line and the room are his read. The odds are THE METHOD's tint on a box edge, read off that panel;
+     oddsFrom names it "data window", the header's word for the tint on a box edge. Grade Friday at the 23:00 CEST close. */
+  { date:"2026-10-05", type:"Map", metal:"Gold", level:"4,170.41", book:"Turn", grammar:1, side:"copper", room:"4,124.48", odds:61, oddsFrom:"data window", lineFrom:"box high", box:["4,124.48","4,170.41"], readAt:"22:06 CEST", call:"Gold stays below 4,170.41, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 22:06 CEST. Room 4,124.48, the box low. Odds at naming 61 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close above 4,170.41.", grade:"pending" },
+  { date:"2026-10-05", type:"Map", metal:"Silver", level:"62.036", book:"Turn", grammar:1, side:"copper", room:"60.326", odds:60, oddsFrom:"data window", lineFrom:"box high", box:["60.326","62.036"], readAt:"22:05 CEST", call:"Silver stays below 62.036, the high of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 22:05 CEST. Room 60.326, the box low. Odds at naming 60 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close above 62.036.", grade:"pending" },
+  { date:"2026-10-05", type:"Map", metal:"Platinum", level:"1,699.00", book:"Turn", grammar:1, side:"slate", room:"1,740.40", odds:59, oddsFrom:"data window", lineFrom:"box low", box:["1,699.00","1,740.40"], readAt:"22:06 CEST", call:"Platinum holds above 1,699.00, the low of the box it opened this week in, frozen Monday afternoon and read off the 8h chart at 22:06 CEST. Room 1,740.40, the box high. Odds at naming 59 in 100, off the data window. Named on the week's own box before any 8h close through it. Kill: a weekly close below 1,699.00.", grade:"pending" },
 
   /* WEEK OF 28 SEPTEMBER. Named Monday evening on the week's own opening box, frozen at
      16:00 CEST, before the first 8h close after it (23:00 CEST Monday, note 43), under the call grammar (note 34).

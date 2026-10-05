@@ -1,6 +1,6 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-02T21:04:04.060Z",
+ "generated": "2026-10-05T20:09:35.804Z",
  "cards": [
   {
    "name": "misses",
@@ -14,7 +14,7 @@
      "held": 25,
      "wrong": 7,
      "never_reached": 5,
-     "open": 0
+     "open": 3
     },
     "latest_close": "2026-09-25",
     "latest": [
@@ -62,15 +62,15 @@
    "name": "year",
    "page": "year.html",
    "file": "link_year.png",
-   "v": "cee72b4e19",
-   "image": "https://thesimplifier7.github.io/record/link_year.png?v=cee72b4e19",
+   "v": "3fc79b6b3a",
+   "image": "https://thesimplifier7.github.io/record/link_year.png?v=3fc79b6b3a",
    "figures": {
     "tally": {
      "resolved": 32,
      "held": 25,
      "wrong": 7,
      "never_reached": 5,
-     "open": 0
+     "open": 3
     }
    }
   },
@@ -78,15 +78,15 @@
    "name": "guest",
    "page": "guest.html",
    "file": "link_guest.png",
-   "v": "cdfac2d8a4",
-   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=cdfac2d8a4",
+   "v": "d2d5cf591b",
+   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=d2d5cf591b",
    "figures": {
     "tally": {
      "resolved": 32,
      "held": 25,
      "wrong": 7,
      "never_reached": 5,
-     "open": 0
+     "open": 3
     }
    }
   },
@@ -94,15 +94,15 @@
    "name": "advisers",
    "page": "advisers.html",
    "file": "link_advisers.png",
-   "v": "53688bb732",
-   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=53688bb732",
+   "v": "32de5d70e1",
+   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=32de5d70e1",
    "figures": {
     "tally": {
      "resolved": 32,
      "held": 25,
      "wrong": 7,
      "never_reached": 5,
-     "open": 0
+     "open": 3
     }
    }
   },
@@ -124,15 +124,15 @@
    "name": "embed",
    "page": "embed.html",
    "file": "link_embed.png",
-   "v": "a6a6113cf1",
-   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=a6a6113cf1",
+   "v": "6e9a879a9a",
+   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=6e9a879a9a",
    "figures": {
     "tally": {
      "resolved": 32,
      "held": 25,
      "wrong": 7,
      "never_reached": 5,
-     "open": 0
+     "open": 3
     }
    }
   }
