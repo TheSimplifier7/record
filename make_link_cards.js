@@ -42,7 +42,9 @@ const crypto = require("crypto");
 
 const HERE = __dirname;
 const SITE = "https://thesimplifier7.github.io/record/";
-const METHOD_CHART = "method_gold_8h_2026-09-24.jpg";
+/* 6 Oct 2026. The Method page carries The Fan, and its card draws The Fan's chart.
+   WAS: const METHOD_CHART = "method_gold_8h_2026-09-24.jpg"; */
+const METHOD_CHART = "fan_gold_2h_2026-10-06.png";
 
 /* ---------------------------------------------------------------- helpers */
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -168,13 +170,14 @@ const CARDS = [
     <div class="line"><b>${esc(n.house)} ${fmt(n.level, n.level % 1 ? 2 : 0)}</b> ${esc(n.metal.toLowerCase())} · ${esc(n.window_text)}</div>
     <div class="line">${n.grades_on ? `on the ${esc(long(n.grades_on).replace(/ \d{4}$/, ""))} close` : "on the last weekly close of 2026"}</div></div>` : ""}
 </div>`; } },
-  { name: "method", page: "method.html", label: "The Method", css: `.two{display:grid;grid-template-columns:400px 1fr;gap:40px;margin-top:30px;flex:1;min-height:0;align-items:center}
+  /* 6 Oct 2026. The card read "The Method" in its label and its kicker, and "Gold, 8 hour, TVC, 24 September 2026" under the line. */
+  { name: "method", page: "method.html", label: "The Fan", css: `.two{display:grid;grid-template-columns:400px 1fr;gap:40px;margin-top:30px;flex:1;min-height:0;align-items:center}
 .shot{border:1px solid ${C.soft};border-radius:8px;overflow:hidden;background:#111}
 .shot img{display:block;width:100%;height:auto}`, html: (F, img) => `<div class="two">
-  <div><div class="k" style="margin-top:0">The Method</div>
+  <div><div class="k" style="margin-top:0">The Fan</div>
     <h1 style="font-size:54px">The indicator the record is read from.</h1>
     <div class="sub" style="font-size:24px">It draws structure. It does not tell you what to do.</div>
-    <div class="line" style="margin-top:22px;font-size:15px;color:${C.ink5}">Gold, 8 hour, TVC, 24 September 2026</div></div>
+    <div class="line" style="margin-top:22px;font-size:15px;color:${C.ink5}">Gold, 2 hour, TVC, 6 October 2026</div></div>
   <div class="shot"><img src="${img}" alt=""></div>
 </div>` },
   { name: "year", page: "year.html", label: "By introduction", html: (F) => `<div class="k">The Year</div>
@@ -215,8 +218,9 @@ async function main() {
   const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
   const F = figuresFor(R);
   const chart = path.join(HERE, METHOD_CHART);
-  const img = fs.existsSync(chart) ? "data:image/jpeg;base64," + fs.readFileSync(chart).toString("base64") : "";
-  if (!img) throw new Error(METHOD_CHART + " is not beside the record; the Method card draws it");
+  /* 6 Oct 2026: the type follows the file, since The Fan's chart is a PNG. */
+  const img = fs.existsSync(chart) ? "data:image/" + (/\.png$/i.test(METHOD_CHART) ? "png" : "jpeg") + ";base64," + fs.readFileSync(chart).toString("base64") : "";
+  if (!img) throw new Error(METHOD_CHART + " is not beside the record; the card for method.html draws it");
   const src = CARDS.map(c => ({ c, html: frame(c.label, c.html(F, img), SITE + c.page, c.css) }));
 
   let chromium; try { ({ chromium } = require("playwright")); } catch (e) {
