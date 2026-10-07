@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The $5,800 Call</title>
+<meta name="description" content="ANZ said gold would hit $5,800 an ounce in the second quarter of 2026. The one Friday close that would have settled it, and what gold did.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Libre+Franklin:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&display=swap">
+<style>
+/* Layout: a carved travertine wall that stays while the story scrolls past it, then the evidence set full width
+   on the same stone, then the row as it sits on the record. */
+:root{
+  --ground:#ece6dc; --ground-2:#e2dacd; --ground-3:#d9cfc0; --card:rgba(237,231,222,.95);
+  --ink:#231f1b; --ink-2:#574f45; --ink-3:#6b6155; --rule:#cfc4b4;
+  --gold:#9a7720; --gold-1:#7a5c12; --gold-2:#c09a3f; --gold-3:#e3c573;
+  --open:#5a6f86; --wrong:#3b332c; --joint:#25221e; --wash:rgba(154,119,32,.10);
+  --f-display:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-text:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-cap:"Cinzel","Trajan Pro","Optima","Times New Roman",serif;
+  --f-data:"Libre Franklin","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --measure:35rem; --gutter:clamp(16px,4vw,44px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#171513; --ground-2:#201d1a; --ground-3:#2b2723; --card:rgba(23,21,19,.93);
+  --ink:#ece6db; --ink-2:#c1b7a9; --ink-3:#a1978a; --rule:#3a352f;
+  --gold:#d4ad52; --gold-1:#e0bd66; --gold-2:#c79c3c; --gold-3:#f1d995;
+  --open:#8ea4bc; --wrong:#e3dccf; --joint:#0f0e0d; --wash:rgba(212,173,82,.12); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --ground:#171513; --ground-2:#201d1a; --ground-3:#2b2723; --card:rgba(23,21,19,.93);
+  --ink:#ece6db; --ink-2:#c1b7a9; --ink-3:#a1978a; --rule:#3a352f;
+  --gold:#d4ad52; --gold-1:#e0bd66; --gold-2:#c79c3c; --gold-3:#f1d995;
+  --open:#8ea4bc; --wrong:#e3dccf; --joint:#0f0e0d; --wash:rgba(212,173,82,.12); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--f-text);font-size:1.125rem;line-height:1.6;font-optical-sizing:auto;
+  font-variation-settings:"opsz" 16;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--gold-2);text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:2px}
+.cap{font-family:var(--f-cap);font-weight:600;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.data{font-family:var(--f-data)}
+h1,h2,h3{font-family:var(--f-display);font-weight:540;text-wrap:balance;margin:0;color:var(--ink)}
+
+/* masthead */
+.mast{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:14px var(--gutter);border-bottom:1px solid var(--rule)}
+.mast .cap{font-size:.7rem}
+.mast .brand{color:var(--ink);font-weight:700;letter-spacing:.32em}
+
+/* the scrolly: wall left, story right */
+.scrolly{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}
+.stage{position:sticky;top:0;height:100svh;grid-column:1;grid-row:1;background:var(--joint);overflow:hidden;touch-action:pan-y}
+.stage canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity .9s ease}
+.stage.ready canvas{opacity:1}
+.stage .still{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .5s ease}
+.stage.nogl .still.on,.stage:not(.ready):not(.nogl) .still[data-panel="0"]{opacity:1}
+.stage .hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--f-data);font-size:.75rem;letter-spacing:.06em;
+  color:#efe8dc;background:rgba(20,18,16,.55);padding:7px 12px;border-radius:999px;white-space:nowrap;transition:opacity .6s ease;pointer-events:none}
+.stage.touched .hint,.stage.nogl .hint{opacity:0}
+.rail{position:absolute;left:50%;top:14px;transform:translateX(-50%);margin:0;padding:7px 16px;list-style:none;display:flex;justify-content:center;gap:18px;pointer-events:none;
+  background:rgba(20,18,16,.58);border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);white-space:nowrap}
+.rail li{display:flex;align-items:baseline;gap:6px;font-family:var(--f-cap);font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,232,220,.46);transition:color .4s ease}
+.rail li b{font-weight:700}
+.rail li.on{color:#f3ead8}
+.rail li.on b{color:#e3c573}
+.steps{grid-column:2;grid-row:1;padding-inline:var(--gutter);min-width:0}
+.step{min-height:96svh;display:flex;flex-direction:column;justify-content:center;padding-block:10svh}
+.step .card{max-width:var(--measure)}
+.step.first{justify-content:flex-start;padding-top:14svh}
+.step .eyebrow{margin:0 0 .9rem}
+.step p{margin:0 0 1rem;text-wrap:pretty}
+.step p:last-child{margin-bottom:0}
+.kicker{color:var(--gold-1)}
+h1{font-size:clamp(2.9rem,6.2vw,5.4rem);line-height:.98;letter-spacing:-.015em;font-variation-settings:"opsz" 72;margin:.4rem 0 1.1rem}
+.dek{text-wrap:pretty;font-size:clamp(1.22rem,1.8vw,1.45rem);line-height:1.42;font-style:italic;font-weight:340;color:var(--ink-2);margin:0 0 1.4rem;font-variation-settings:"opsz" 30}
+.byline{font-family:var(--f-data);font-size:.8rem;color:var(--ink-3);line-height:1.5}
+.byline b{color:var(--ink);font-weight:600;letter-spacing:.04em}
+blockquote{margin:1.1rem 0 1.2rem;padding:0;font-size:1.32rem;line-height:1.45;font-variation-settings:"opsz" 28}
+blockquote p{margin:0}
+blockquote cite{display:block;font-style:normal;margin-top:.55rem;font-family:var(--f-data);font-size:.78rem;color:var(--ink-3)}
+.q-open{font-family:var(--f-display);color:var(--gold-2);font-size:2.4rem;line-height:0;vertical-align:-.42em;margin-right:.08em}
+.big-num{font-family:var(--f-data);font-weight:600;font-size:clamp(2.2rem,4.6vw,3.3rem);letter-spacing:-.01em;line-height:1;margin:.2rem 0 .8rem;color:var(--ink)}
+.big-word{font-family:var(--f-cap);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:.14em;margin:.1rem 0 .9rem;color:var(--ink)}
+
+/* what holds: the lessons, gilded */
+.hold{margin-top:1.6rem;padding-top:1rem;border-top:1px solid var(--rule)}
+.hold .lab{display:flex;align-items:center;gap:.6rem;font-family:var(--f-cap);font-weight:700;font-size:.7rem;letter-spacing:.26em;color:var(--gold-1)}
+.hold .lab::before{content:"";width:1.7rem;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--gold-1),var(--gold-3) 55%,var(--gold-2))}
+.hold p{font-style:italic;font-size:1.32rem;line-height:1.38;margin:.45rem 0 0;color:var(--ink);font-variation-settings:"opsz" 30}
+
+/* evidence sections */
+.fig{padding:clamp(56px,9vw,112px) var(--gutter);border-top:1px solid var(--rule)}
+.fig .head{max-width:var(--measure);margin:0 auto 2rem}
+.fig .head .cap{color:var(--gold-1);margin:0 0 .7rem}
+.fig h2{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.08;margin:0 0 1rem;font-variation-settings:"opsz" 60}
+.fig .head p{margin:0 0 1rem;color:var(--ink)}
+.fig .body{max-width:62rem;margin:0 auto}
+.fig .after{max-width:var(--measure);margin:1.8rem auto 0}
+.fig .after p{margin:0 0 1rem}
+.note{font-family:var(--f-data);font-size:.82rem;line-height:1.55;color:var(--ink-3)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.chip{font-family:var(--f-data);font-size:.8rem;font-weight:500;color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.chip[aria-pressed="true"]{color:var(--ink);border-color:var(--ink-2);background:var(--ground-2)}
+.chip svg{flex:none}
+
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--f-data)}
+.axis-t{font-size:11px;fill:var(--ink-3);font-variant-numeric:tabular-nums}
+.grid{stroke:var(--rule);stroke-width:1}
+.ref{stroke:var(--ink-3);stroke-width:1}
+.ref-t{font-size:10.5px;fill:var(--ink-2);letter-spacing:.06em;font-weight:600}
+.row-hit{fill:transparent;cursor:pointer}
+.row-band{fill:var(--ground-2)}
+.row-t1{font-size:13.5px;fill:var(--ink);font-weight:600}
+.row-t2{font-size:11.5px;fill:var(--ink-3)}
+.row-g{font-size:12px;fill:var(--ink-2);font-weight:500}
+.row-line{stroke:var(--rule);stroke-width:1}
+.dim{opacity:.22}
+.divider{stroke:var(--gold-2);stroke-width:1.5}
+.divider-t{font-family:var(--f-cap)!important;font-size:10.5px;letter-spacing:.2em;fill:var(--gold-1);font-weight:700}
+.tag-t{font-size:9.5px;letter-spacing:.14em;fill:var(--gold-1);font-weight:700}
+.m-held{fill:var(--gold);stroke:var(--ground);stroke-width:2}
+.m-open{fill:var(--ground);stroke:var(--open);stroke-width:2}
+.m-wrong{stroke:var(--wrong);stroke-width:2.4;stroke-linecap:round;fill:none}
+.sel-ring{fill:none;stroke:var(--ink);stroke-width:1.2}
+
+.detail{margin-top:18px;padding:18px 0 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px 34px}
+.detail .who{font-family:var(--f-data);font-size:.82rem;color:var(--ink-3);line-height:1.5}
+.detail .who b{display:block;font-size:1.1rem;color:var(--ink);font-weight:600;margin-bottom:2px}
+.detail .grade{display:flex;width:max-content;align-items:center;gap:7px;margin-top:8px;font-family:var(--f-data);font-weight:600;font-size:.86rem;color:var(--ink)}
+.detail blockquote{font-size:1.1rem;margin:0 0 .7rem}
+.detail .res{font-family:var(--f-data);font-size:.86rem;line-height:1.55;color:var(--ink-2);margin:0 0 .6rem}
+.detail .lnk{font-family:var(--f-data);font-size:.82rem}
+.callout{max-width:var(--measure);margin:2.2rem auto 0}
+
+details.tbl{margin-top:16px}
+details.tbl summary{font-family:var(--f-data);font-size:.82rem;color:var(--ink-2);cursor:pointer;width:max-content}
+.tbl-wrap{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;font-family:var(--f-data);font-size:.8rem;min-width:100%}
+th,td{text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--rule);white-space:nowrap;font-variant-numeric:tabular-nums}
+th{font-weight:600;color:var(--ink-2)}
+td.num,th.num{text-align:right}
+
+/* try the rule */
+.tool{display:grid;grid-template-columns:minmax(0,18rem) minmax(0,1fr);gap:28px 40px;align-items:start}
+.controls{display:grid;gap:18px}
+.ctl label,.ctl .lbl{display:block;font-family:var(--f-data);font-size:.78rem;font-weight:600;color:var(--ink-2);margin-bottom:7px;letter-spacing:.02em}
+.lvl{display:flex;align-items:baseline;gap:10px}
+.lvl output{font-family:var(--f-data);font-weight:600;font-size:1.7rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:3px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{margin:0;padding:6px 14px;border-radius:999px;font-family:var(--f-data);font-size:.82rem;font-weight:500;color:var(--ink-2);cursor:pointer}
+.seg input:checked+label{background:var(--ink);color:var(--ground)}
+.seg input:focus-visible+label{outline:2px solid var(--gold-2);outline-offset:2px}
+select{font:inherit;font-family:var(--f-data);font-size:.9rem;color:var(--ink);background:var(--ground);border:1px solid var(--rule);border-radius:6px;padding:7px 10px;width:100%}
+.verdict{border-top:1px solid var(--rule);padding-top:14px}
+.verdict .w{display:flex;align-items:center;gap:12px;font-family:var(--f-cap);font-weight:700;font-size:1.9rem;letter-spacing:.14em;color:var(--ink);margin:0 0 6px}
+.verdict p{margin:0;font-family:var(--f-data);font-size:.88rem;line-height:1.55;color:var(--ink-2)}
+.tip{position:absolute;pointer-events:none;background:var(--ground);border:1px solid var(--rule);box-shadow:0 6px 18px rgba(0,0,0,.12);padding:7px 10px;border-radius:6px;
+  font-family:var(--f-data);font-size:.78rem;line-height:1.4;color:var(--ink-2);white-space:nowrap;opacity:0;transition:opacity .12s ease;z-index:3}
+.tip b{display:block;color:var(--ink);font-size:.95rem;font-weight:600;font-variant-numeric:tabular-nums}
+.tip.on{opacity:1}
+
+/* the record's own rows, as carved tiles */
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 18px;font-family:var(--f-data);font-size:.84rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:7px;max-width:44rem}
+.tiles-cap{display:flex;justify-content:space-between;max-width:44rem;margin-top:8px;font-family:var(--f-data);font-size:.74rem;color:var(--ink-3)}
+.tile{position:relative;aspect-ratio:1/1;border:0;border-radius:3px;cursor:pointer;padding:0;background:var(--ground-2);
+  box-shadow:inset 2px 2px 3px rgba(0,0,0,.26),inset -1px -1px 1px rgba(255,255,255,.45);transition:transform .12s ease}
+.tile:hover,.tile:focus-visible{transform:translateY(-1px)}
+.tile.held{background:linear-gradient(140deg,var(--gold-2),var(--gold-3) 42%,var(--gold) 72%,var(--gold-2));
+  box-shadow:inset 2px 2px 3px rgba(60,40,0,.45),inset -1px -1px 1px rgba(255,240,200,.6)}
+.tile.wrong{background:var(--ground-3)}
+.tile.wrong::after{content:"";position:absolute;inset:27%;background:
+  linear-gradient(45deg,transparent 46%,var(--wrong) 46% 54%,transparent 54%),linear-gradient(-45deg,transparent 46%,var(--wrong) 46% 54%,transparent 54%)}
+.tile.notest{background:var(--ground-2);box-shadow:inset 1px 1px 2px rgba(0,0,0,.18),inset -1px -1px 1px rgba(255,255,255,.4)}
+.tile.open{background:transparent;box-shadow:inset 0 0 0 2px var(--open)}
+.tile-line{margin-top:14px;font-family:var(--f-data);font-size:.86rem;color:var(--ink-2);min-height:1.5em}
+.tile-line b{color:var(--ink);font-weight:600}
+
+/* coda */
+.coda{padding:clamp(56px,9vw,112px) var(--gutter) 40px;border-top:1px solid var(--rule)}
+.coda .inner{max-width:62rem;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 48px;align-items:center}
+.coda figure{margin:0}
+.coda img{display:block;width:100%;height:auto;border-radius:2px;background:var(--joint)}
+.coda .links{display:grid;gap:10px;margin-top:1.2rem;font-family:var(--f-data);font-size:.92rem}
+.coda .links a{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.coda .links a span:last-child{color:var(--gold-1)}
+footer{padding:40px var(--gutter) 64px;border-top:1px solid var(--rule)}
+footer .inner{max-width:62rem;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 48px}
+footer h3{font-family:var(--f-cap);font-size:.74rem;letter-spacing:.24em;font-weight:700;color:var(--ink-2);margin:0 0 .6rem}
+footer p{font-family:var(--f-data);font-size:.82rem;line-height:1.6;color:var(--ink-3);margin:0 0 .7rem}
+
+@media (max-width:860px){
+  body{font-size:1.06rem}
+  .scrolly{display:block}
+  .stage{height:100svh;z-index:0}
+  .steps{position:relative;z-index:1;margin-top:-100svh;padding-inline:var(--gutter);pointer-events:none}
+  .step .card{pointer-events:auto}
+  .step{min-height:118svh;justify-content:flex-end;padding-block:0 9svh}
+  .step.first{justify-content:flex-end;padding-top:0}
+  .step .card{background:var(--card);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:18px 18px 20px;border-radius:6px;
+    box-shadow:0 10px 30px rgba(0,0,0,.22)}
+  .step.first .card{padding-top:16px}
+  h1{font-size:clamp(2.5rem,11vw,3.4rem)}
+  .stage .hint{bottom:auto;top:52px}
+  .rail{gap:12px}
+  .rail li:not(.on) span{display:none}
+  .detail{grid-template-columns:minmax(0,1fr)}
+  .tool{grid-template-columns:minmax(0,1fr)}
+  .tiles{grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+  .coda .inner,footer .inner{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<link rel="canonical" href="https://thesimplifier7.github.io/record/the-5800-call.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="THE SIMPLIFIER · The Record">
+<meta property="og:url" content="https://thesimplifier7.github.io/record/the-5800-call.html">
+<meta property="og:title" content="The $5,800 Call">
+<meta property="og:description" content="ANZ said gold would hit $5,800 an ounce in the second quarter of 2026. The one Friday close that would have settled it, and what gold did.">
+<meta property="og:image" content="https://thesimplifier7.github.io/record/c5800-og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="$5,800, an ounce, in the second quarter, carved in travertine under low light.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The $5,800 Call">
+<meta name="twitter:description" content="ANZ said gold would hit $5,800 an ounce in the second quarter of 2026. The one Friday close that would have settled it, and what gold did.">
+<meta name="twitter:image" content="https://thesimplifier7.github.io/record/c5800-og.jpg">
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<section class="scrolly" id="story" aria-label="The story">
+  <div class="stage" id="stage">
+    <canvas id="stone" aria-hidden="true"></canvas>
+    <img class="still on" data-panel="0" alt="" src="c5800-still_call.jpg">
+    <img class="still" data-panel="1" alt="" src="c5800-still_test.jpg">
+    <img class="still" data-panel="2" alt="" src="c5800-still_gauge.jpg">
+    <img class="still" data-panel="3" alt="" src="c5800-still_grade.jpg">
+    <ol class="rail" id="rail" aria-hidden="true"><li data-c="0"><b>I</b><span>The call</span></li><li data-c="1"><b>II</b><span>The test</span></li><li data-c="2"><b>III</b><span>The close</span></li><li data-c="3"><b>IV</b><span>The grade</span></li></ol>
+    <div class="hint" id="hint">Drag across the stone to move the light</div>
+  </div>
+
+  <div class="steps">
+    <article class="step first" data-state='{"p":0,"z":1,"fy":0.5,"el":0.34,"az":2.2,"fill":0}'>
+      <div class="card">
+        <p class="cap kicker eyebrow"><span style="color:var(--ink);letter-spacing:.3em">THE SIMPLIFIER</span> · The Collision · Edition one</p>
+        <h1>The $5,800 Call</h1>
+        <p class="dek">In February a bank said gold would hit $5,800 an ounce in the second quarter. It came with no way to be proved wrong. Here is the one Friday close that would have settled it, and what gold did.</p>
+        <p class="byline"><b>THE SIMPLIFIER</b> · 7 October 2026 · Every close read off the founder's own chart</p>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":0,"z":1.16,"fy":0.42,"el":0.3,"az":2.3,"fill":0}'>
+      <div class="card">
+        <p class="cap eyebrow">16 February 2026</p>
+        <p>Kitco ran it under a plain headline: ANZ sees gold hitting $5,800 an ounce in the second quarter.</p>
+        <blockquote><p><span class="q-open" aria-hidden="true">“</span>In their latest note on gold, commodity analysts at ANZ said they expect prices to hit $5,800 an ounce in the second quarter, up sharply from their previous target of $5,400 an ounce.”</p>
+          <cite>Kitco News, 16 February 2026</cite></blockquote>
+        <p>The same article had gold consolidating around $5,000. The new number sat about $800 above the price, and $400 above the bank's own last one.</p>
+        <div class="hold"><span class="lab">What holds</span><p>Read the date before the number. Ask what price did in the weeks before a target was set.</p></div>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":0,"z":1,"fy":0.5,"el":0.26,"az":2.45,"fill":0}'>
+      <div class="card">
+        <p class="cap eyebrow">Three weeks earlier</p>
+        <p>Gold had already printed its high of the year, in the last week of January.</p>
+        <p class="big-num">5,598.75</p>
+        <p>That is the high on the founder's weekly chart. Kitco's piece said as much: “Gold's sharp drop from last month's record highs near $5,600 has some investors worried.”</p>
+        <p>So the call needed gold to climb back through a high it had just turned down from, and then 201.25 further.</p>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":1,"z":1.04,"fy":0.5,"el":0.3,"az":2.25,"fill":0}'>
+      <div class="card">
+        <p class="cap eyebrow">The test it came without</p>
+        <p>A forecast is worth reading when something can prove it wrong. This one gave a level and a quarter, and no close that would settle it.</p>
+        <p>So it gets the test every target on the record gets. It holds if one Friday close at or above 5,800 prints on or before the last Friday close of the window. It is wrong if the window shuts without one.</p>
+        <p>It is a generous test. Every Friday from 16 February to the end of June counts, and one close is enough.</p>
+        <div class="hold"><span class="lab">What holds</span><p>If a call can't be wrong, it can't be graded. Ask for the level, the date and the close that settles it.</p></div>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":2,"z":1,"fy":0.5,"el":0.32,"az":2.2,"fill":0}'>
+      <div class="card">
+        <p class="cap eyebrow">The gauge</p>
+        <p>This slot is cut to scale from zero. The line across the top is the target, 5,800. The mark just under it is the year's high, 5,598.75.</p>
+        <p>Keep scrolling and the gold rises to where it stood when the window shut.</p>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":2,"z":1,"fy":0.5,"el":0.3,"az":2.2,"fill":1}'>
+      <div class="card">
+        <p class="cap eyebrow">26 June 2026</p>
+        <p>The last Friday of the window. Gold closed at</p>
+        <p class="big-num">4,088.97</p>
+        <p>on the founder's chart.</p>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":2,"z":1.3,"fy":0.3,"el":0.29,"az":2.32,"fill":1}'>
+      <div class="card">
+        <p class="cap eyebrow">The distance</p>
+        <p class="big-num">1,711.03 short</p>
+        <p>No Friday close in the window reached 5,800. The high of the year fell 201.25 short of it. The window's last close fell 1,711.03 short.</p>
+        <div class="hold"><span class="lab">What holds</span><p>One close is a low bar. A call that can't clear it in four months was wrong, whatever came after.</p></div>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":3,"z":1,"fy":0.45,"el":0.68,"az":2.2,"fill":1}'>
+      <div class="card">
+        <p class="cap eyebrow">The grade</p>
+        <p>Graded on the close of 26 June, by the same rule as every row on the record.</p>
+      </div>
+    </article>
+
+    <article class="step" data-state='{"p":3,"z":1,"fy":0.45,"el":0.2,"az":2.4,"fill":1}'>
+      <div class="card">
+        <p class="big-word">WRONG</p>
+        <p>Cut into the record and kept. Where gold went after June is not the question the rule asks.</p>
+        <div class="hold"><span class="lab">What holds</span><p>Grade a call on the window it chose, never on where price went later.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="fig" id="board" aria-labelledby="board-h">
+  <div class="head">
+    <p class="cap">The board</p>
+    <h2 id="board-h">Fifteen targets, one rule, and one date that splits them</h2>
+    <p>The record keeps a board of published bank targets, each graded by the rule ANZ just met. Fourteen are for gold. Line them up by the day they were published and they fall on either side of 28 January, the day gold printed its 2026 high.</p>
+  </div>
+  <div class="body">
+    <div class="chips" role="group" aria-label="Show targets">
+      <button class="chip" data-f="all" aria-pressed="true">All 14</button>
+      <button class="chip" data-f="pass" aria-pressed="false"><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="5" class="m-held"/></svg>Held</button>
+      <button class="chip" data-f="miss" aria-pressed="false"><svg width="12" height="12" aria-hidden="true"><path d="M2.5 2.5 9.5 9.5M9.5 2.5 2.5 9.5" class="m-wrong"/></svg>Wrong</button>
+      <button class="chip" data-f="pending" aria-pressed="false"><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.4" class="m-open"/></svg>Open</button>
+    </div>
+    <div class="chart" id="ladder" role="figure" aria-label="Gold targets on the board, by the day they were published, with each target's level and grade"></div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+    <details class="tbl"><summary>Show the board as a table</summary><div class="tbl-wrap" id="ladder-table"></div></details>
+  </div>
+  <div class="callout">
+    <div class="hold"><span class="lab">What holds</span><p>Before the January high, three gold targets on the board came due. All three held. After it, four came due. All four were wrong. Seven are still open.</p></div>
+  </div>
+  <div class="after">
+    <p>The three that held were all at 5,000, below the high gold went on to print. The four that failed were all above it. Seven graded rows is a small sample, and the open ones may yet hold. It is a pattern on one board, worth holding up against the next target you read.</p>
+    <p class="note">Silver: Citi's 100 by March, published 13 January, held. It is left off the gold scale. The 2026 high on this chart is the founder's weekly read, 5,598.75; Kitco reported it as 5,589.38 on 28 January.</p>
+  </div>
+</section>
+
+<section class="fig" id="rule" aria-labelledby="rule-h">
+  <div class="head">
+    <p class="cap">Try the rule</p>
+    <h2 id="rule-h">Grade a target yourself</h2>
+    <p>Pick a level, a side and a Friday. The record's own weekly closes since 26 June do the grading, the same way they graded ANZ.</p>
+  </div>
+  <div class="body tool">
+    <div class="controls">
+      <div class="ctl">
+        <label for="lvl">Target level</label>
+        <div class="lvl"><output id="lvl-out" for="lvl">4,500</output><span class="note">dollars an ounce</span></div>
+        <input type="range" id="lvl" min="3800" max="5000" step="10" value="4500">
+      </div>
+      <div class="ctl">
+        <span class="lbl" id="side-l">The close has to be</span>
+        <div class="seg" role="radiogroup" aria-labelledby="side-l">
+          <input type="radio" name="side" id="side-a" value="above" checked><label for="side-a">At or above</label>
+          <input type="radio" name="side" id="side-b" value="below"><label for="side-b">At or below</label>
+        </div>
+      </div>
+      <div class="ctl">
+        <label for="win">Window shuts on the close of</label>
+        <select id="win"></select>
+      </div>
+      <div class="verdict" id="verdict" aria-live="polite"></div>
+    </div>
+    <div>
+      <div class="chart" id="rule-chart" role="figure" aria-label="Gold's weekly closes since 26 June with the chosen level"></div>
+      <p class="note" style="margin-top:10px">The founder's TradingView weekly closes, 26 June to 2 October 2026. The window opens on 26 June. Nothing here is a forecast.</p>
+      <details class="tbl"><summary>Show the closes as a table</summary><div class="tbl-wrap" id="closes-table"></div></details>
+    </div>
+  </div>
+</section>
+
+<section class="fig" id="ours" aria-labelledby="ours-h">
+  <div class="head">
+    <p class="cap">The same rule, applied to the record itself</p>
+    <h2 id="ours-h">Forty rows, and the misses stay</h2>
+    <p>Since June, THE SIMPLIFIER has published forty rows of its own, each a metal and a level. Since 3 July every one has also carried the Friday close that would prove it wrong, published before that close. They are graded the same way, on the same closes.</p>
+  </div>
+  <div class="body">
+    <div class="legend" id="legend"></div>
+    <div class="tiles" id="tiles" role="list" aria-label="The record's forty rows, oldest first"></div>
+    <div class="tiles-cap" aria-hidden="true"><span>June 2026, oldest</span><span>October 2026, newest</span></div>
+    <p class="tile-line" id="tile-line" aria-live="polite">Hover or tap a tile to read its row.</p>
+    <details class="tbl"><summary>Show the rows as a table</summary><div class="tbl-wrap" id="rows-table"></div></details>
+  </div>
+  <div class="callout">
+    <div class="hold"><span class="lab">What holds</span><p>Keep the misses beside the hits. Seven wrong rows sit on the record with the closes that proved them wrong.</p></div>
+  </div>
+</section>
+
+<section class="coda" aria-labelledby="coda-h">
+  <div class="inner">
+    <figure><img src="c5800-still_grade.jpg" alt="The grade carved in travertine under low light: WRONG, and below it the row ANZ, gold, 5,800, second quarter 2026, wrong." width="1200" height="1500"></figure>
+    <div>
+      <p class="cap" style="color:var(--gold-1);margin:0 0 .7rem">The row</p>
+      <h2 id="coda-h" style="font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.08;margin:0 0 1rem">As it sits on the record</h2>
+      <p style="margin:0">ANZ · Gold · 5,800 · Second quarter 2026 · Wrong. Published 16 February 2026. Graded on the close of 26 June 2026, 4,088.97.</p>
+      <div class="links">
+        <a href="https://thesimplifier7.github.io/record/anz-gold-5800-2026-06-30.html?ref=collision-page" target="_blank" rel="noopener"><span>The ANZ row, with its source</span><span>Open</span></a>
+        <a href="https://thesimplifier7.github.io/record/targets.html?ref=collision-page" target="_blank" rel="noopener"><span>Every target on the board</span><span>Open</span></a>
+        <a href="https://thesimplifier7.github.io/record/?ref=collision-page" target="_blank" rel="noopener"><span>The record</span><span>Open</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div>
+      <h3>Sources</h3>
+      <p>The claim: Kitco News, Neils Christensen, “ANZ sees gold hitting $5,800 an ounce in the second quarter,” 16 February 2026. <a href="https://www.kitco.com/news/article/2026-02-16/anz-sees-gold-hitting-5800-ounce-second-quarter" target="_blank" rel="noopener">Read it</a>.</p>
+      <p>Gold's 2026 high, 5,598.75, and every weekly close: the founder's TradingView weekly chart, read for the record. Kitco reported the January high as 5,589.38 on 28 January; no grade here turns on the difference.</p>
+      <p>Bank targets: each row on the board links its own source, as reported by Kitco, Reuters, Investing.com or the bank's research page.</p>
+    </div>
+    <div>
+      <h3>Method</h3>
+      <p>The rule: a target holds if a weekly close on its side prints on or before the last weekly close inside its window. It is wrong if the window shuts without one. A range is graded on its nearer bound.</p>
+      <p>Nothing on this page is a forecast. Every figure is a past close or a published claim.</p>
+      <p>The stone, the light and the lettering are drawn in code.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/json" id="data">{"targets":[{"published":"2025-06-17","house":"Citi","source":"Citi Research","metal":"Gold","level":2700,"side":"below","window":"2026-12-31","windowText":"the second half of 2026","quote":"Gold could return to around $2,500-$2,700/oz by the second half of 2026.","link":"https://finance.yahoo.com/news/citi-sees-gold-below-3-091750805.html","rule":"A range, graded on its nearer bound: held if a weekly close at or below 2,700 prints on or before the last weekly close of 2026; wrong if the second half closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/citi-gold-2700-2026-12-31.html"},{"published":"2025-12-29","house":"UBS","source":"UBS, as reported by Kitco","metal":"Gold","level":5000,"side":"above","window":"2026-09-30","windowText":"by September 2026","quote":"Gold prices will reach $5,000 per ounce by September 2026, and any increase in political or economic turmoil surrounding the U.S. midterm elections could push the yellow metal to $5,400","link":"https://www.kitco.com/news/article/2025-12-29/ubs-sees-5000-gold-q3-2026-potential-5400-if-us-political-and-economic","rule":"Held if a weekly close at or above 5,000 prints on or before the last weekly close of September 2026; wrong if the window closes without one.","grade":"pass","result":"Held. Weekly closes above the line printed in February, seven months inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went afterwards is not the question the rule asks.","page":"https://thesimplifier7.github.io/record/ubs-gold-5000-2026-09-30.html"},{"published":"2026-01-06","house":"UBS","source":"UBS, as reported by Kitco","metal":"Gold","level":5000,"side":"above","window":"2026-03-31","windowText":"by March 2026","quote":"We now expect gold prices to rally to USD 5,000/oz by March, stay there to September, and moderate towards USD 4,800/oz by the end of 2026.","link":"https://www.kitco.com/news/article/2026-01-06/gold-will-reach-5000oz-q1-2026-amid-broader-commodities-rally-ubs","rule":"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.","grade":"pass","result":"Held. Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported, inside the window. Where price went after the window is not the question the rule asks.","page":"https://thesimplifier7.github.io/record/ubs-gold-5000-2026-03-31.html"},{"published":"2026-01-13","house":"Citi","source":"Citi Research","metal":"Silver","level":100,"side":"above","window":"2026-03-31","windowText":"0 to 3 months, by March","quote":"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.","link":"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction","rule":"Held if a weekly close at or above 100 printed on or before the last weekly close of March 2026; wrong if the window closed without one.","grade":"pass","result":"Held. Silver crossed 100 for the first time on Friday 23 January 2026 and ended that week above 103.50 as reported, ten days after the target was published and inside the window. Where price went after the window is not the question the rule asks.","page":"https://thesimplifier7.github.io/record/citi-silver-100-2026-03-31.html"},{"published":"2026-01-13","house":"Citi","source":"Citi Research","metal":"Gold","level":5000,"side":"above","window":"2026-03-31","windowText":"0 to 3 months, by March","quote":"Raised their 0-3 month target for gold to $5,000 per ounce and silver to $100 per ounce.","link":"https://www.kitco.com/news/article/2026-01-13/gold-will-hit-5000oz-silver-100oz-march-gold-will-be-vulnerable-correction","rule":"Held if a weekly close at or above 5,000 printed on or before the last weekly close of March 2026; wrong if the window closed without one.","grade":"pass","result":"Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks.","page":"https://thesimplifier7.github.io/record/citi-gold-5000-2026-03-31.html"},{"published":"2026-01-29","house":"UBS","source":"UBS, as reported by Investing.com","metal":"Gold","level":6200,"side":"above","window":"2026-03-31","windowText":"for March 2026","quote":"UBS raised its XAU/USD price target to $6200 per ounce for March, June and September 2026, up from $5000.","link":"https://www.investing.com/news/commodities-news/ubs-raises-gold-price-target-for-2026-here-are-the-new-forecasts-4474171","rule":"Held if a weekly close at or above 6,200 printed on or before the last weekly close of March 2026; wrong if the window closed without one.","grade":"miss","result":"Wrong. The window's last weekly close was Friday 27 March 2026. Gold's high of 2026, 5,589.38 on 28 January as reported, printed the day before the target was published and still stands as reported on 22 September 2026, so no weekly close at or above 6,200 printed inside the window. Graded on reported figures under the rule for closes before June 2026; the founder's chart read replaces them when supplied. The line sits more than 600 above the year's high, so the grade does not turn on the decimals.","page":"https://thesimplifier7.github.io/record/ubs-gold-6200-2026-03-31.html"},{"published":"2026-01-29","house":"UBS","source":"UBS, as reported by Investing.com","metal":"Gold","level":6200,"side":"above","window":"2026-06-30","windowText":"for June 2026","quote":"UBS raised its XAU/USD price target to $6200 per ounce for March, June and September 2026, up from $5000.","link":"https://www.investing.com/news/commodities-news/ubs-raises-gold-price-target-for-2026-here-are-the-new-forecasts-4474171","rule":"Held if a weekly close at or above 6,200 printed on or before the last weekly close of June 2026; wrong if the window closed without one.","grade":"miss","result":"Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 2,111.03 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 is 5,589.38 on 28 January, as reported. The grade does not turn on the decimals.","page":"https://thesimplifier7.github.io/record/ubs-gold-6200-2026-06-30.html"},{"published":"2026-01-29","house":"UBS","source":"UBS, as reported by Investing.com","metal":"Gold","level":6200,"side":"above","window":"2026-09-30","windowText":"for September 2026","quote":"UBS raised its XAU/USD price target to $6200 per ounce for March, June and September 2026, up from $5000.","link":"https://www.investing.com/news/commodities-news/ubs-raises-gold-price-target-for-2026-here-are-the-new-forecasts-4474171","rule":"Held if a weekly close at or above 6,200 prints on or before the last weekly close of September 2026, Friday 25 September; wrong if the window closes without one.","grade":"miss","result":"Wrong. The window's last weekly close was Friday 25 September 2026, 4,284.130 read off the founder's chart, 1,915.87 under the line. No weekly close at or above 6,200 printed inside the window: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January. The grade does not turn on the decimals. See note 42.","page":"https://thesimplifier7.github.io/record/ubs-gold-6200-2026-09-30.html"},{"published":"2026-02-16","house":"ANZ","source":"ANZ, as reported by Kitco","metal":"Gold","level":5800,"side":"above","window":"2026-06-30","windowText":"in the second quarter of 2026","quote":"In their latest note on gold, commodity analysts at ANZ said they expect prices to hit $5,800 an ounce in the second quarter, up sharply from their previous target of $5,400 an ounce.","link":"https://www.kitco.com/news/article/2026-02-16/anz-sees-gold-hitting-5800-ounce-second-quarter","rule":"Held if a weekly close at or above 5,800 printed on or before the last weekly close of June 2026; wrong if the window closed without one.","grade":"miss","result":"Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 1,711.03 under the line. No weekly close at or above 5,800 printed inside the window: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January, before the target was published. The grade does not turn on the decimals.","page":"https://thesimplifier7.github.io/record/anz-gold-5800-2026-06-30.html"},{"published":"2026-02-25","house":"J.P. Morgan","source":"J.P. Morgan Global Research","metal":"Gold","level":6300,"side":"above","window":"2026-12-31","windowText":"year-end 2026","quote":"Gold price will rise 22% above current level to reach $6,300 by year-end 2026.","link":"https://www.kitco.com/news/article/2026-02-25/gold-price-will-rise-22-above-current-level-reach-6300-year-end-2026-jp","rule":"Held if a weekly close at or above 6,300 prints on or before the last weekly close of 2026; wrong if the year closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/j-p-morgan-gold-6300-2026-12-31.html"},{"published":"2026-05-19","house":"MKS PAMP","source":"MKS PAMP","metal":"Gold","level":5800,"side":"above","window":"2026-12-31","windowText":"second half of 2026","quote":"Gold is still expected to average $4,500/oz in 2026, with a new higher all-time high of $5,800/oz a fair target for the second half of the year.","link":"https://www.kitco.com/news/article/2026-05-19/gold-will-hit-5800-ath-december-silver-has-highest-upside-platinum-has","rule":"Held if a weekly close at or above 5,800 prints on or before the last weekly close of 2026; wrong if the year closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/mks-pamp-gold-5800-2026-12-31.html"},{"published":"2026-05-27","house":"UBS","source":"UBS","metal":"Gold","level":5500,"side":"above","window":"2026-12-31","windowText":"year-end 2026","quote":"Swiss banking giant UBS has cut its year-end 2026 gold price forecast from $5,900 to $5,500 per ounce.","link":"https://www.kitco.com/news/article/2026-05-27/ubs-lowers-2026-gold-price-forecast-5500oz-markets-are-rediscovering","rule":"Held if a weekly close at or above 5,500 prints on or before the last weekly close of 2026; wrong if the year closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/ubs-gold-5500-2026-12-31.html"},{"published":"2026-06-23","house":"J.P. Morgan","source":"J.P. Morgan Global Research, as reported","metal":"Gold","level":6000,"side":"above","window":"2026-12-31","windowText":"Q4 2026","quote":"Q4 2026: ~$6,000/oz. End of 2027: ~$6,300/oz potential.","link":"https://www.canadianminingreport.com/blog/jpmorgan-s-latest-gold-forecast-what-the-world-s-largest-bank-is-telling-investors","rule":"Held if a weekly close at or above 6,000 prints on or before the last weekly close of 2026; wrong if the year closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/j-p-morgan-gold-6000-2026-12-31.html"},{"published":"2026-09-02","house":"Goldman Sachs","source":"Goldman Sachs Research","metal":"Gold","level":4900,"side":"above","window":"2026-12-31","windowText":"year-end 2026","quote":"Goldman Sachs sees gold price at $4,900/oz by year-end.","link":"http://www.kitco.com/news/article/2026-09-02/goldman-sachs-sees-gold-price-4900oz-year-end-investors-hedging-through","rule":"Held if a weekly close at or above 4,900 prints on or before the last weekly close of 2026; wrong if the year closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/goldman-sachs-gold-4900-2026-12-31.html"},{"published":"2026-09-04","house":"Citi","source":"Citi Research","metal":"Gold","level":4800,"side":"above","window":"2026-12-04","windowText":"0 to 3 months","quote":"The bank sets its 0-3 month point price target for gold at $4,800 per ounce and its 6-12 month forecast at $5,000 per ounce.","link":"https://www.investing.com/news/commodities-news/citi-says-the-dip-in-gold-prices-is-a-buying-opportunity-93CH-4889056","rule":"Held if a weekly close at or above 4,800 prints on or before the 4 December 2026 close; wrong if the window closes without one.","grade":"pending","result":"","page":"https://thesimplifier7.github.io/record/citi-gold-4800-2026-12-04.html"}],"closes":[{"date":"2026-06-26","gold":4088.97},{"date":"2026-07-03","gold":4174.76},{"date":"2026-07-10","gold":4120.38},{"date":"2026-07-17","gold":4018.44},{"date":"2026-07-24","gold":4052.6},{"date":"2026-07-31","gold":4041.18},{"date":"2026-08-07","gold":4342.0},{"date":"2026-08-14","gold":4376.16},{"date":"2026-08-21","gold":4602.66},{"date":"2026-08-28","gold":4453.67},{"date":"2026-09-04","gold":4430.52},{"date":"2026-09-11","gold":4347.76},{"date":"2026-09-18","gold":4377.29},{"date":"2026-09-25","gold":4284.13},{"date":"2026-10-02","gold":4142.71}],"rows":[{"named":"2026-10-05","metal":"Gold","level":"4,170.41","grade":"pending","word":"open","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-10-05-gold-4170-41","pre":false},{"named":"2026-10-05","metal":"Silver","level":"62.036","grade":"pending","word":"open","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-10-05-silver-62-036","pre":false},{"named":"2026-10-05","metal":"Platinum","level":"1,699.00","grade":"pending","word":"open","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-10-05-platinum-1699-00","pre":false},{"named":"2026-09-28","metal":"Gold","level":"4,280.50","grade":"pass","word":"held","graded":"2026-10-02","url":"https://thesimplifier7.github.io/record/#r-2026-09-28-gold-4280-50","pre":false},{"named":"2026-09-28","metal":"Silver","level":"64.212","grade":"pass","word":"held, hit the room","graded":"2026-10-02","url":"https://thesimplifier7.github.io/record/#r-2026-09-28-silver-64-212","pre":false},{"named":"2026-09-28","metal":"Platinum","level":"1,775.80","grade":"pass","word":"held, hit the room","graded":"2026-10-02","url":"https://thesimplifier7.github.io/record/#r-2026-09-28-platinum-1775-80","pre":false},{"named":"2026-09-20","metal":"Gold","level":"4,337","grade":"miss","word":"wrong","graded":"2026-09-25","url":"https://thesimplifier7.github.io/record/#r-2026-09-20-gold-4337","pre":false},{"named":"2026-09-20","metal":"Silver","level":"64.08","grade":"pass","word":"held","graded":"2026-09-25","url":"https://thesimplifier7.github.io/record/#r-2026-09-20-silver-64-08","pre":false},{"named":"2026-09-20","metal":"Platinum","level":"1,746","grade":"pass","word":"held","graded":"2026-09-25","url":"https://thesimplifier7.github.io/record/#r-2026-09-20-platinum-1746","pre":false},{"named":"2026-09-06","metal":"Gold","level":"4,357","grade":"miss","word":"wrong","graded":"2026-09-11","url":"https://thesimplifier7.github.io/record/#r-2026-09-06-gold-4357","pre":false},{"named":"2026-09-06","metal":"Platinum","level":"1,797.40","grade":"miss","word":"wrong","graded":"2026-09-11","url":"https://thesimplifier7.github.io/record/#r-2026-09-06-platinum-1797-40","pre":false},{"named":"2026-08-30","metal":"Gold","level":"4,350","grade":"pass","word":"held","graded":"2026-09-04","url":"https://thesimplifier7.github.io/record/#r-2026-08-30-gold-4350","pre":false},{"named":"2026-08-30","metal":"Platinum","level":"1,797.40","grade":"pass","word":"held","graded":"2026-09-04","url":"https://thesimplifier7.github.io/record/#r-2026-08-30-platinum-1797-40","pre":false},{"named":"2026-08-23","metal":"Gold","level":"4,308","grade":"pass","word":"held","graded":"2026-08-28","url":"https://thesimplifier7.github.io/record/#r-2026-08-23-gold-4308","pre":false},{"named":"2026-08-23","metal":"Silver","level":"66.66","grade":"miss","word":"wrong","graded":"2026-08-28","url":"https://thesimplifier7.github.io/record/#r-2026-08-23-silver-66-66","pre":false},{"named":"2026-08-23","metal":"Platinum","level":"1,790.84","grade":"pass","word":"held","graded":"2026-08-28","url":"https://thesimplifier7.github.io/record/#r-2026-08-23-platinum-1790-84","pre":false},{"named":"2026-08-16","metal":"Gold","level":"4,281","grade":"pass","word":"held","graded":"2026-08-21","url":"https://thesimplifier7.github.io/record/#r-2026-08-16-gold-4281","pre":false},{"named":"2026-08-16","metal":"Silver","level":"66.60","grade":"pass","word":"held","graded":"2026-08-21","url":"https://thesimplifier7.github.io/record/#r-2026-08-16-silver-66-60","pre":false},{"named":"2026-08-14","metal":"Gold","level":"4,268","grade":"pass","word":"held","graded":"2026-08-14","url":"https://thesimplifier7.github.io/record/#r-2026-08-14-gold-4268","pre":false},{"named":"2026-08-14","metal":"Silver","level":"66.86","grade":"notest","word":"never reached","graded":"2026-08-14","url":"https://thesimplifier7.github.io/record/#r-2026-08-14-silver-66-86","pre":false},{"named":"2026-08-07","metal":"Gold","level":"4,098.275","grade":"miss","word":"wrong","graded":"2026-08-07","url":"https://thesimplifier7.github.io/record/#r-2026-08-07-gold-4098-275","pre":false},{"named":"2026-08-07","metal":"Silver","level":"61.02","grade":"miss","word":"wrong","graded":"2026-08-07","url":"https://thesimplifier7.github.io/record/#r-2026-08-07-silver-61-02","pre":false},{"named":"2026-08-07","metal":"Gold","level":"3,942.430","grade":"notest","word":"never reached","graded":"2026-08-07","url":"https://thesimplifier7.github.io/record/#r-2026-08-07-gold-3942-430","pre":false},{"named":"2026-07-27","metal":"Gold","level":"4,098","grade":"pass","word":"held","graded":"2026-07-31","url":"https://thesimplifier7.github.io/record/#r-2026-07-27-gold-4098","pre":false},{"named":"2026-07-27","metal":"Gold","level":"3,942","grade":"notest","word":"never reached","graded":"2026-07-31","url":"https://thesimplifier7.github.io/record/#r-2026-07-27-gold-3942","pre":false},{"named":"2026-07-27","metal":"Silver","level":"61.02","grade":"pass","word":"held","graded":"2026-07-31","url":"https://thesimplifier7.github.io/record/#r-2026-07-27-silver-61-02","pre":false},{"named":"2026-07-21","metal":"Gold","level":"4,098","grade":"pass","word":"held","graded":"2026-07-24","url":"https://thesimplifier7.github.io/record/#r-2026-07-21-gold-4098","pre":false},{"named":"2026-07-21","metal":"Gold","level":"3,810","grade":"notest","word":"never reached","graded":"2026-07-24","url":"https://thesimplifier7.github.io/record/#r-2026-07-21-gold-3810","pre":false},{"named":"2026-07-21","metal":"Silver","level":"61.02","grade":"pass","word":"held","graded":"2026-07-24","url":"https://thesimplifier7.github.io/record/#r-2026-07-21-silver-61-02","pre":false},{"named":"2026-07-12","metal":"Gold","level":"4,098","grade":"miss","word":"wrong","graded":"2026-07-17","url":"https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4098","pre":false},{"named":"2026-07-12","metal":"Silver","level":"61.02","grade":"pass","word":"held","graded":"2026-07-17","url":"https://thesimplifier7.github.io/record/#r-2026-07-12-silver-61-02","pre":false},{"named":"2026-07-12","metal":"Gold","level":"4,305.32","grade":"notest","word":"never reached","graded":"2026-07-17","url":"https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4305-32","pre":false},{"named":"2026-07-08","metal":"Gold","level":"4,098","grade":"pass","word":"held","graded":"2026-07-10","url":"https://thesimplifier7.github.io/record/#r-2026-07-08-gold-4098","pre":false},{"named":"2026-07-07","metal":"Silver","level":"61.02","grade":"pass","word":"held","graded":"2026-07-10","url":"https://thesimplifier7.github.io/record/#r-2026-07-07-silver-61-02","pre":false},{"named":"2026-07-05","metal":"Gold","level":"4,098 / 4,307","grade":"pass","word":"held","graded":"2026-07-10","url":"https://thesimplifier7.github.io/record/#r-2026-07-05-gold-4098-4307","pre":false},{"named":"2026-06-29","metal":"Gold","level":"4,500 / 3,809","grade":"pass","word":"held","graded":"2026-07-03","url":"https://thesimplifier7.github.io/record/#r-2026-06-29-gold-4500-3809","pre":true},{"named":"2026-06-22","metal":"Gold","level":"4,098 / 4,633","grade":"pass","word":"held","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-06-22-gold-4098-4633","pre":true},{"named":"2026-06-15","metal":"Gold","level":"4,307","grade":"pass","word":"held","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-06-15-gold-4307","pre":true},{"named":"2026-06-11","metal":"Gold","level":"4,098","grade":"pass","word":"held","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-06-11-gold-4098","pre":true},{"named":"2026-06-07","metal":"Gold","level":"4,308","grade":"pass","word":"held","graded":null,"url":"https://thesimplifier7.github.io/record/#r-2026-06-07-gold-4308","pre":true}],"tally":{"resolved":32,"held":25,"wrong":7,"never_reached":5,"open":3},"generated":"2026-10-06T19:13:40.126Z","last_updated":"2026-10-07"}</script>
+<script>
+/* ---------------------------------------------------------------- the evidence: board, rule, rows */
+(function(){
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const NS = 'http://www.w3.org/2000/svg';
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const MONTH = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const fmt = (v, d = 0) => Number(v).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const dshort = iso => { const [y, m, d] = iso.split('-').map(Number); return `${d} ${MON[m - 1]} ${y}`; };
+  const dlong = iso => { const [y, m, d] = iso.split('-').map(Number); return `${d} ${MONTH[m - 1]} ${y}`; };
+  const dnoyear = iso => { const [, m, d] = iso.split('-').map(Number); return `${d} ${MON[m - 1]}`; };
+  const el = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) { const v = attrs[k]; if ((k === 'fill' || k === 'stroke') && String(v).includes('var(')) n.style[k] = v; else n.setAttribute(k, v); } if (parent) parent.appendChild(n); return n; };
+  const txt = (parent, x, y, s, cls, extra = {}) => { const t = el('text', Object.assign({ x, y, class: cls }, extra), parent); t.textContent = s; return t; };
+  const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
+  const GW = { pass: 'Held', miss: 'Wrong', pending: 'Open', notest: 'Never reached' };
+  const glyph = (g, parent, x, y, r = 5.5) => {
+    if (g === 'pass') return el('circle', { cx: x, cy: y, r, class: 'm-held' }, parent);
+    if (g === 'miss') { const k = r * 0.85; return el('path', { d: `M${x - k} ${y - k}L${x + k} ${y + k}M${x + k} ${y - k}L${x - k} ${y + k}`, class: 'm-wrong' }, parent); }
+    return el('circle', { cx: x, cy: y, r: r - 0.6, class: 'm-open' }, parent);
+  };
+  const glyphSvg = (g, size = 14) => { const s = document.createElementNS(NS, 'svg'); s.setAttribute('width', size); s.setAttribute('height', size); s.setAttribute('aria-hidden', 'true'); glyph(g, s, size / 2, size / 2, size / 2 - 1.5); return s; };
+
+  /* ---- 1. the board as a ladder: one row per gold target, in the order published */
+  const GOLD = D.targets.filter(t => t.metal === 'Gold');
+  const HIGH_DATE = '2026-01-28', HIGH = 5598.75, LAST = D.closes[D.closes.length - 1];
+  let filter = 'all', selected = GOLD.findIndex(t => t.house === 'ANZ');
+  const ladder = document.getElementById('ladder');
+  function drawLadder() {
+    ladder.textContent = '';
+    const W = Math.max(300, ladder.clientWidth), narrow = W < 620;
+    const padL = narrow ? 0 : 196, padR = narrow ? 8 : 92, top = 40, rowH = narrow ? 56 : 40, divH = 50;
+    const x = lin(2500, 6500, padL + 12, W - padR - 12);
+    const nBefore = GOLD.filter(t => t.published < HIGH_DATE).length;
+    const H = top + GOLD.length * rowH + divH + 30;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-hidden': 'false' }, ladder);
+    el('title', {}, svg).textContent = 'Gold targets on the board, with the year\'s high and the last close';
+    const yOf = i => top + i * rowH + (i >= nBefore ? divH : 0) + (narrow ? 34 : rowH / 2);
+    // scale and reference lines
+    for (const v of [3000, 4000, 5000, 6000]) {
+      el('line', { x1: x(v), x2: x(v), y1: top - 6, y2: H - 22, class: 'grid' }, svg);
+      txt(svg, x(v), H - 6, fmt(v), 'axis-t', { 'text-anchor': 'middle' });
+    }
+    for (const [v, lab, anchor] of [[HIGH, narrow ? `HIGH ${fmt(HIGH, 2)}` : `2026 HIGH ${fmt(HIGH, 2)}`, 'start'], [LAST.gold, narrow ? `LAST ${fmt(LAST.gold, 2)}` : `LAST CLOSE ${fmt(LAST.gold, 2)}, ${dnoyear(LAST.date).toUpperCase()}`, 'end']]) {
+      el('line', { x1: x(v), x2: x(v), y1: top - 10, y2: H - 22, class: 'ref' }, svg);
+      txt(svg, x(v) + (anchor === 'start' ? 5 : -5), top - 16, lab, 'ref-t', { 'text-anchor': anchor });
+    }
+    // the divider: 28 January
+    const yDiv = top + nBefore * rowH + divH / 2;
+    el('line', { x1: 0, x2: W, y1: yDiv - 6, y2: yDiv - 6, class: 'divider' }, svg);
+    txt(svg, 0, yDiv + 12, narrow ? '28 JANUARY · THE 2026 HIGH' : '28 JANUARY · GOLD PRINTS ITS 2026 HIGH', 'divider-t');
+    GOLD.forEach((t, i) => {
+      const y = yOf(i), g = el('g', { tabindex: 0, role: 'button', 'aria-label': `${t.house}, ${fmt(t.level)} ${t.windowText}, published ${dlong(t.published)}: ${GW[t.grade]}` }, svg);
+      const off = filter !== 'all' && t.grade !== filter; if (off) g.setAttribute('class', 'dim');
+      const y0 = narrow ? y - 34 : y - rowH / 2;
+      if (i === selected) el('rect', { x: 0, y: y0 + 2, width: W, height: rowH - 4, class: 'row-band', rx: 3 }, g);
+      el('line', { x1: x(2500), x2: x(6500), y1: y, y2: y, class: 'row-line' }, g);
+      if (narrow) {
+        const h1 = txt(g, 0, y - 16, t.house, 'row-t1');
+        txt(g, h1.getComputedTextLength() + 8, y - 16, `${fmt(t.level)} · ${t.windowText}`, 'row-t2');
+        txt(g, W, y - 16, GW[t.grade], 'row-g', { 'text-anchor': 'end' });
+      } else {
+        txt(g, 0, y - 3, t.house, 'row-t1');
+        txt(g, 0, y + 12, `${dshort(t.published)} · ${t.windowText}`, 'row-t2');
+        txt(g, W - padR + 18, y + 4, GW[t.grade], 'row-g');
+        glyph(t.grade, g, W - padR + 8, y, 4.6);
+      }
+      if (t.house === 'ANZ' && !narrow) txt(g, x(6500) - 4, y - 9, 'THIS EPISODE', 'tag-t', { 'text-anchor': 'end' });
+      const cx = x(t.level);
+      if (t.side === 'below') el('path', { d: `M${cx - 19} ${y}l8 -5v10z`, fill: 'var(--open)' }, g);
+      glyph(t.grade, g, cx, y, 6);
+      if (i === selected) el('circle', { cx, cy: y, r: 10, class: 'sel-ring' }, g);
+      const lab = fmt(t.level) + (t.side === 'below' ? ' or below' : ''), right = t.level > 5900;
+      txt(g, right ? cx - 12 : cx + 12, y + 4, lab, 'row-g', { 'text-anchor': right ? 'end' : 'start' });
+      el('rect', { x: 0, y: y0, width: W, height: rowH, class: 'row-hit' }, g);
+      const pick = () => { selected = i; drawLadder(); showDetail(); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      g.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && selected !== i) { selected = i; drawLadder(); showDetail(); } });
+    });
+  }
+  function showDetail() {
+    const t = GOLD[selected], d = document.getElementById('detail'); d.textContent = '';
+    const who = document.createElement('div'); who.className = 'who';
+    const b = document.createElement('b'); b.textContent = `${t.house} · ${fmt(t.level)} ${t.side === 'below' ? 'or below' : ''}`.trim(); who.appendChild(b);
+    who.appendChild(document.createTextNode(`Published ${dlong(t.published)} · ${t.windowText}`));
+    const gr = document.createElement('div'); gr.className = 'grade'; gr.appendChild(glyphSvg(t.grade)); gr.appendChild(document.createTextNode(GW[t.grade])); who.appendChild(gr);
+    const right = document.createElement('div');
+    const q = document.createElement('blockquote'); const qp = document.createElement('p'); qp.textContent = `“${t.quote}”`; q.appendChild(qp);
+    const c = document.createElement('cite'); c.textContent = t.source; q.appendChild(c); right.appendChild(q);
+    const r = document.createElement('p'); r.className = 'res'; r.textContent = t.result || `${t.rule} Not graded yet: the window has not shut.`; right.appendChild(r);
+    const a = document.createElement('a'); a.className = 'lnk'; a.href = t.page + '?ref=collision-page'; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'This row on the record'; right.appendChild(a);
+    d.appendChild(who); d.appendChild(right);
+  }
+  document.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
+    filter = btn.dataset.f; document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b === btn))); drawLadder();
+  }));
+  (function table() {
+    const tb = document.createElement('table'); tb.innerHTML = '<thead><tr><th>Published</th><th>House</th><th>Metal</th><th class="num">Target</th><th>Side</th><th>Window</th><th>Grade</th></tr></thead>';
+    const body = document.createElement('tbody');
+    for (const t of D.targets) { const tr = document.createElement('tr'); for (const [v, cls] of [[dshort(t.published)], [t.house], [t.metal], [fmt(t.level), 'num'], [t.side === 'below' ? 'at or below' : 'at or above'], [t.windowText], [GW[t.grade]]]) { const td = document.createElement('td'); td.textContent = v; if (cls) td.className = cls; tr.appendChild(td); } body.appendChild(tr); }
+    tb.appendChild(body); document.getElementById('ladder-table').appendChild(tb);
+  })();
+
+  /* ---- 2. try the rule on the record's own closes */
+  const C = D.closes, lvl = document.getElementById('lvl'), out = document.getElementById('lvl-out'), win = document.getElementById('win'), chart = document.getElementById('rule-chart');
+  C.slice(1).forEach((c, i) => { const o = document.createElement('option'); o.value = c.date; o.textContent = `Friday ${dlong(c.date)}`; if (c.date === '2026-09-25') o.selected = true; win.appendChild(o); });
+  const tip = document.createElement('div'); tip.className = 'tip'; chart.appendChild(tip);
+  function grade() {
+    const L = Number(lvl.value), side = document.querySelector('input[name=side]:checked').value, end = win.value;
+    const inWin = C.filter(c => c.date <= end), hit = inWin.find(c => side === 'above' ? c.gold >= L : c.gold <= L);
+    const near = inWin.reduce((a, c) => (side === 'above' ? c.gold > a.gold : c.gold < a.gold) ? c : a, inWin[0]);
+    return { L, side, end, inWin, hit, near };
+  }
+  function drawRule() {
+    const g = grade(); out.textContent = fmt(g.L);
+    const v = document.getElementById('verdict'); v.textContent = '';
+    const w = document.createElement('p'); w.className = 'w'; w.appendChild(glyphSvg(g.hit ? 'pass' : 'miss', 22)); w.appendChild(document.createTextNode(g.hit ? 'HELD' : 'WRONG'));
+    const p = document.createElement('p');
+    const sideW = g.side === 'above' ? 'at or above' : 'at or below';
+    p.textContent = g.hit
+      ? `Held on the close of ${dlong(g.hit.date)}, ${fmt(g.hit.gold, 2)}: the first Friday close ${sideW} ${fmt(g.L)} inside the window. One is enough.`
+      : `No Friday close ${sideW} ${fmt(g.L)} printed between 26 June and ${dlong(g.end)}. The nearest was ${fmt(g.near.gold, 2)} on ${dlong(g.near.date)}, ${fmt(Math.abs(g.L - g.near.gold), 2)} away.`;
+    v.appendChild(w); v.appendChild(p);
+    // chart
+    [...chart.querySelectorAll('svg')].forEach(s => s.remove());
+    const W = Math.max(300, chart.clientWidth), H = Math.round(Math.min(340, Math.max(230, W * 0.5))), pl = 48, pr = 14, pt = 22, pb = 30;
+    const ys = C.map(c => c.gold).concat([g.L]); const lo = Math.floor((Math.min(...ys) - 60) / 100) * 100, hi = Math.ceil((Math.max(...ys) + 60) / 100) * 100;
+    const X = i => pl + i * (W - pl - pr) / (C.length - 1), Y = lin(lo, hi, H - pb, pt);
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H }, chart); chart.insertBefore(svg, tip);
+    el('title', {}, svg).textContent = `Weekly closes with the level ${fmt(g.L)}`;
+    for (let v = lo; v <= hi; v += (hi - lo > 900 ? 200 : 100)) { el('line', { x1: pl, x2: W - pr, y1: Y(v), y2: Y(v), class: 'grid' }, svg); txt(svg, pl - 8, Y(v) + 4, fmt(v), 'axis-t', { 'text-anchor': 'end' }); }
+    const iEnd = C.findIndex(c => c.date === g.end);
+    el('rect', { x: X(0), y: pt, width: X(iEnd) - X(0), height: H - pt - pb, fill: 'var(--wash)' }, svg);
+    txt(svg, X(0) + 6, pt + 13, 'THE WINDOW', 'ref-t');
+    const every = W < 520 ? 4 : 2;
+    C.forEach((c, i) => { const last = i === C.length - 1; if ((i % every === 0 && (C.length - 1 - i) >= every * 0.75) || last) txt(svg, X(i), H - 10, dnoyear(c.date), 'axis-t', { 'text-anchor': i === 0 ? 'start' : last ? 'end' : 'middle' }); });
+    el('line', { x1: pl, x2: W - pr, y1: Y(g.L), y2: Y(g.L), stroke: 'var(--gold)', 'stroke-width': 1.5 }, svg);
+    txt(svg, W - pr, Y(g.L) - 6, `${g.side === 'above' ? 'AT OR ABOVE' : 'AT OR BELOW'} ${fmt(g.L)}`, 'ref-t', { 'text-anchor': 'end' });
+    el('path', { d: C.map((c, i) => `${i ? 'L' : 'M'}${X(i)} ${Y(c.gold)}`).join(''), fill: 'none', stroke: 'var(--ink-2)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+    C.forEach((c, i) => el('circle', { cx: X(i), cy: Y(c.gold), r: 3.6, fill: i <= iEnd ? 'var(--ink)' : 'var(--ink-3)', stroke: 'var(--ground)', 'stroke-width': 2 }, svg));
+    const mark = g.hit || null;
+    if (mark) { const i = C.indexOf(mark); el('circle', { cx: X(i), cy: Y(mark.gold), r: 8, fill: 'none', stroke: 'var(--gold)', 'stroke-width': 2 }, svg); txt(svg, X(i), Y(mark.gold) + (g.side === 'above' ? -14 : 22), `${fmt(mark.gold, 2)}, ${dnoyear(mark.date)}`, 'ref-t', { 'text-anchor': i > C.length * 0.7 ? 'end' : 'middle' }); }
+    const cross = el('line', { y1: pt, y2: H - pb, stroke: 'var(--ink-3)', 'stroke-width': 1, opacity: 0 }, svg);
+    const hit = el('rect', { x: pl, y: pt, width: W - pl - pr, height: H - pt - pb, fill: 'transparent' }, svg);
+    const move = e => { const r = svg.getBoundingClientRect(); const px = (e.clientX - r.left) * W / r.width; const i = Math.max(0, Math.min(C.length - 1, Math.round((px - pl) / ((W - pl - pr) / (C.length - 1)))));
+      cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i)); cross.setAttribute('opacity', 1);
+      tip.innerHTML = ''; const bb = document.createElement('b'); bb.textContent = fmt(C[i].gold, 2); tip.appendChild(bb); tip.appendChild(document.createTextNode(`Weekly close, ${dlong(C[i].date)}`));
+      const left = X(i) * r.width / W; tip.style.left = Math.min(r.width - 170, Math.max(0, left - 70)) + 'px'; tip.style.top = (Y(C[i].gold) * r.height / H - 62) + 'px'; tip.classList.add('on'); };
+    hit.addEventListener('pointermove', move); hit.addEventListener('pointerleave', () => { tip.classList.remove('on'); cross.setAttribute('opacity', 0); });
+  }
+  lvl.addEventListener('input', drawRule); win.addEventListener('change', drawRule); document.querySelectorAll('input[name=side]').forEach(r => r.addEventListener('change', drawRule));
+  (function table() {
+    const tb = document.createElement('table'); tb.innerHTML = '<thead><tr><th>Friday</th><th class="num">Gold, weekly close</th></tr></thead>'; const body = document.createElement('tbody');
+    for (const c of C) { const tr = document.createElement('tr'); const a = document.createElement('td'); a.textContent = dlong(c.date); const b = document.createElement('td'); b.className = 'num'; b.textContent = fmt(c.gold, 2); tr.appendChild(a); tr.appendChild(b); body.appendChild(tr); }
+    tb.appendChild(body); document.getElementById('closes-table').appendChild(tb);
+  })();
+
+  /* ---- 3. the record's own rows as carved tiles, oldest first */
+  const ROWS = D.rows.slice().reverse(), T = D.tally;
+  const legend = document.getElementById('legend');
+  for (const [cls, lab, n] of [['held', 'Held', T.held], ['wrong', 'Wrong', T.wrong], ['notest', 'Never reached', T.never_reached], ['open', 'Open', T.open]]) {
+    const s = document.createElement('span'); const sw = document.createElement('i'); sw.className = `tile ${cls}`; sw.style.cssText = 'width:16px;height:16px;display:inline-block;cursor:default;transform:none';
+    const bb = document.createElement('b'); bb.textContent = n; s.appendChild(sw); s.appendChild(bb); s.appendChild(document.createTextNode(lab)); legend.appendChild(s);
+  }
+  const tiles = document.getElementById('tiles'), line = document.getElementById('tile-line');
+  const CLS = { pass: 'held', miss: 'wrong', notest: 'notest', pending: 'open' };
+  const say = r => { line.textContent = ''; const b = document.createElement('b'); b.textContent = `${r.metal} ${r.level}`; line.appendChild(b);
+    line.appendChild(document.createTextNode(` · named ${dlong(r.named)} · ${r.grade === 'pending' ? 'open, grades on the next Friday close' : `${r.word} on the close of ${r.graded ? dlong(r.graded) : 'its week'}`}${r.pre ? ' · from before the 3 July standard' : ''}`)); };
+  ROWS.forEach(r => { const b = document.createElement('a'); b.className = `tile ${CLS[r.grade] || 'notest'}`; b.href = r.url || 'https://thesimplifier7.github.io/record/'; b.target = '_blank'; b.rel = 'noopener'; b.setAttribute('role', 'listitem');
+    b.setAttribute('aria-label', `${r.metal} ${r.level}, named ${dlong(r.named)}: ${r.word}`); b.addEventListener('pointerenter', () => say(r)); b.addEventListener('focus', () => say(r)); tiles.appendChild(b); });
+  (function table() {
+    const tb = document.createElement('table'); tb.innerHTML = '<thead><tr><th>Named</th><th>Metal</th><th class="num">Level</th><th>Grade</th><th>Graded on</th></tr></thead>'; const body = document.createElement('tbody');
+    for (const r of D.rows) { const tr = document.createElement('tr'); for (const [v, cls] of [[dshort(r.named)], [r.metal], [r.level, 'num'], [r.word], [r.graded ? dshort(r.graded) : '']]) { const td = document.createElement('td'); td.textContent = v; if (cls) td.className = cls; tr.appendChild(td); } body.appendChild(tr); }
+    tb.appendChild(body); document.getElementById('rows-table').appendChild(tb);
+  })();
+
+  const all = () => { drawLadder(); showDetail(); drawRule(); };
+  all(); let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(all, 120); });
+})();
+</script>
+
+<script type="module">
+/* ---------------------------------------------------------------- the wall: travertine, raking light, gold in the slot */
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js';
+const stage = document.getElementById('stage'), canvas = document.getElementById('stone');
+const stills = [...stage.querySelectorAll('.still')];
+const steps = [...document.querySelectorAll('.step')].map(s => ({ el: s, st: JSON.parse(s.dataset.state) }));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const GAUGE = {"fillFrom": 0.046666666666666634, "fillTo": 0.6482622528735632};
+function fallback() { stage.classList.add('nogl'); const show = p => stills.forEach(im => im.classList.toggle('on', Number(im.dataset.panel) === p));
+  const onScroll = () => { const s = current(); show(Math.round(s.p)); }; addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+const ease = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+let dirty = true, visible = true, raf = 0, introAt = 0, lastCh = -1; const t0 = performance.now();
+const railItems = [...document.querySelectorAll('#rail li')];
+function need() { dirty = true; if (!raf && visible) raf = requestAnimationFrame(frame); }
+function current() {
+  const vh = innerHeight, mid = vh * 0.55;
+  const cs = steps.map(s => { const r = s.el.getBoundingClientRect(); return r.top + r.height / 2; });
+  if (mid <= cs[0]) return steps[0].st;
+  for (let i = 0; i < cs.length - 1; i++) if (mid <= cs[i + 1]) {
+    const t = ease(Math.min(1, Math.max(0, ((mid - cs[i]) / (cs[i + 1] - cs[i]) - 0.2) / 0.6)));
+    const a = steps[i].st, b = steps[i + 1].st, o = {}; for (const k in a) o[k] = a[k] + (b[k] - a[k]) * t; return o;
+  }
+  return steps[steps.length - 1].st;
+}
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  if (!renderer.getContext()) throw new Error('no context');
+} catch (e) { fallback(); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFShadowMap;
+const scene = new THREE.Scene();
+const jointColor = () => new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--joint').trim() || '#25221e');
+scene.background = jointColor();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { scene.background = jointColor(); });
+new MutationObserver(() => { scene.background = jointColor(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+// a warm room for the gold to mirror: cream walls, a darker floor, one bright window, a wall behind the viewer
+const pmrem = new THREE.PMREMGenerator(renderer), env = new THREE.Scene();
+env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 48, 24), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false,
+  vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+  fragmentShader: 'varying vec3 vP; void main(){ float k = smoothstep(-0.6, 0.8, vP.y); vec3 top = vec3(1.0,0.95,0.88)*0.95; vec3 bot = vec3(0.36,0.32,0.28)*0.6; gl_FragColor = vec4(mix(bot, top, k), 1.0); }' })));
+const plane = (w, h, c, p) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(...c), side: THREE.DoubleSide })); m.position.set(...p); m.lookAt(0, 0, 0); env.add(m); };
+plane(6, 8, [9.0, 8.2, 6.8], [-9, 8, 10]); plane(14, 3, [1.8, 1.5, 1.1], [6, 10, 4]); plane(22, 12, [1.2, 1.07, 0.87], [-2, 1.5, 17]);
+scene.environment = pmrem.fromScene(env, 0.02).texture; scene.environmentIntensity = 0.36;
+scene.add(new THREE.HemisphereLight(0xfff6ea, 0x8c8274, 0.52));
+
+// the wall: four carved panels, one above the other, with a thin joint between
+const PW = 9.6, PH = 12, GAP = 0.09, NAMES = ['call', 'test', 'gauge', 'grade'];
+const loader = new THREE.TextureLoader(), maxAniso = renderer.capabilities.getMaxAnisotropy();
+let pending = 0, firstReady = false;
+const tex = (url, srgb, onload) => { pending++; const t = loader.load(url, () => { pending--; onload && onload(); need(); }, undefined, () => { pending--; }); t.anisotropy = maxAniso; if (srgb) t.colorSpace = THREE.SRGBColorSpace; return t; };
+const U = { uFill: { value: 0 }, uFlow: { value: 0 }, uTime: { value: 0 }, uGold: { value: new THREE.Color(1.0, 0.71, 0.25) }, uGild: { value: null } };
+const panels = NAMES.map((name, i) => {
+  const mat = new THREE.MeshStandardMaterial({ roughness: 0.9, metalness: 0 });
+  const load = () => {
+    mat.map = tex(`c5800-${name}_albedo.webp`, true, () => { if (i === 0 && !firstReady) { firstReady = true; introAt = performance.now(); stage.classList.add('ready'); } });
+    mat.normalMap = tex(`c5800-${name}_normal.webp`, false);
+    if (name === 'gauge') {
+      U.uGild.value = tex('c5800-gauge_gild.png', false);
+      mat.onBeforeCompile = sh => {
+        Object.assign(sh.uniforms, U);
+        sh.fragmentShader = sh.fragmentShader
+          .replace('#include <common>', '#include <common>\nuniform sampler2D uGild; uniform float uFill; uniform float uFlow; uniform float uTime; uniform vec3 uGold;\nfloat gildAmt = 0.0; float gildEdge = 0.0;')
+          .replace('#include <map_fragment>', `#include <map_fragment>
+{ float v = vMapUv.y; float m = texture2D(uGild, vMapUv).b;
+  float fv = (1.0 - smoothstep(uFill - 0.0009, uFill, v)) * step(0.00001, uFill);
+  float ev = smoothstep(uFill - 0.0075, uFill - 0.0007, v) * fv * (0.55 + 0.45 * sin(uTime * 9.0 + vMapUv.x * 40.0));
+  gildAmt = m * fv; gildEdge = m * ev * uFlow; diffuseColor.rgb = mix(diffuseColor.rgb, uGold, gildAmt); }`)
+          .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = mix(roughnessFactor, 0.24, gildAmt);')
+          .replace('#include <metalnessmap_fragment>', '#include <metalnessmap_fragment>\nmetalnessFactor = mix(metalnessFactor, 1.0, gildAmt);')
+          .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance += uGold * (gildEdge * 1.4 + gildAmt * 0.05);');
+      };
+    }
+    mat.needsUpdate = true;
+  };
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), mat);
+  mesh.position.y = -i * (PH + GAP); mesh.receiveShadow = true; scene.add(mesh);
+  return { mesh, mat, load };
+});
+panels[0].load(); setTimeout(() => panels.slice(1).forEach(p => p.load()), 350);
+// plain blocks above and below, so the wall never ends in a void on a tall phone screen
+setTimeout(() => {
+  const bm = new THREE.MeshStandardMaterial({ roughness: 0.9, metalness: 0, map: tex('c5800-blank_albedo.webp', true), normalMap: tex('c5800-blank_normal.webp', false) });
+  for (const [y, rot] of [[PH + GAP, Math.PI], [-NAMES.length * (PH + GAP), 0], [-(NAMES.length + 1) * (PH + GAP), Math.PI]]) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), bm); m.position.y = y; m.rotation.z = rot; m.receiveShadow = true; scene.add(m);
+  }
+}, 500);
+
+// the window: a pane pattern projected by the sun, one wide central pane, mullions toward the edges
+const gc = document.createElement('canvas'); gc.width = gc.height = 1024; const gx = gc.getContext('2d');
+gx.fillStyle = '#000'; gx.fillRect(0, 0, 1024, 1024); gx.fillStyle = '#fff';
+const xs = [70, 262, 762, 954], ys = [40, 250, 770, 984], mull = 26;
+for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) gx.fillRect(xs[i] + (i ? mull / 2 : 0), ys[j] + (j ? mull / 2 : 0), xs[i + 1] - xs[i] - (i ? mull / 2 : 0) - (i < 2 ? mull / 2 : 0), ys[j + 1] - ys[j] - (j ? mull / 2 : 0) - (j < 2 ? mull / 2 : 0));
+const gc2 = document.createElement('canvas'); gc2.width = gc2.height = 1024; const g2 = gc2.getContext('2d'); g2.filter = 'blur(16px)'; g2.drawImage(gc, 0, 0);
+const gobo = new THREE.CanvasTexture(gc2); gobo.colorSpace = THREE.SRGBColorSpace;
+const sun = new THREE.SpotLight(0xfff0dc, 1, 0, 0.5, 0.4, 2); sun.map = gobo; sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.bias = -0.0005;
+scene.add(sun, sun.target);
+const camera = new THREE.PerspectiveCamera(30, 1, 0.5, 300);
+
+// the pointer moves the sun; on a phone a sideways drag does
+const pt = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, active: false };
+stage.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || e.buttons) { const r = stage.getBoundingClientRect(); pt.tx = (e.clientX - r.left) / r.width; pt.ty = (e.clientY - r.top) / r.height; pt.active = true; stage.classList.add('touched'); need(); } });
+stage.addEventListener('pointerleave', () => { pt.tx = 0.5; pt.ty = 0.5; need(); });
+document.getElementById('hint').textContent = matchMedia('(hover: hover)').matches ? 'Move the pointer across the stone to shift the light' : 'Drag sideways across the stone to move the light';
+
+function size() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); need(); }
+new ResizeObserver(size).observe(stage); size();
+
+new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) need(); }).observe(stage);
+addEventListener('scroll', need, { passive: true });
+function frame(now) {
+  raf = 0; const t = (now - t0) / 1000; const s = window.__STILL || current();
+  pt.x += (pt.tx - pt.x) * 0.08; pt.y += (pt.ty - pt.y) * 0.08;
+  const narrow = innerWidth < 860, aspect = camera.aspect;
+  let visH = Math.max(PH + 1.0, (PW + 0.8) / aspect); if (narrow) visH = (PW + 0.6) / aspect;
+  if (window.__STILL) visH = window.__STILL.vh || Math.max(PH, PW / aspect) * 0.975;
+  visH /= s.z;
+  const d = visH / (2 * Math.tan(THREE.MathUtils.degToRad(15)));
+  const py = -s.p * (PH + GAP) + (0.5 - s.fy) * PH, yOff = narrow && !window.__STILL ? visH * 0.12 : 0;
+  if (s.p > 0.35 && !stage.classList.contains('touched')) stage.classList.add('touched');
+  const drift = reduce || window.__STILL ? 0 : 1;
+  camera.position.set(0.12 * Math.sin(t * 0.21) * drift, py - yOff + 0.3, d); camera.lookAt(0, py - yOff, 0);
+  // the opening: the sun comes in low from the side and climbs to the first frame's angle
+  const ki = introAt && !reduce && !window.__STILL ? ease(Math.min(1, (now - introAt) / 2800)) : 1;
+  const el = Math.min(0.78, Math.max(0.08, (s.el + (0.5 - pt.y) * 0.22 + 0.025 * Math.sin(t * 0.13) * drift) * (0.3 + 0.7 * ki)));
+  const az = s.az + (pt.x - 0.5) * 0.9 + 0.05 * Math.sin(t * 0.3) * drift - 0.75 * (1 - ki), R = 24;
+  sun.position.set(R * Math.cos(el) * Math.cos(az), py + R * Math.cos(el) * Math.sin(az), R * Math.sin(el));
+  sun.target.position.set(0.4, py + 0.3, 0); sun.target.updateMatrixWorld();
+  sun.intensity = 1350 / Math.max(0.36, Math.sin(el) * 0.8 + 0.2);
+  const ch = Math.min(3, Math.max(0, Math.round(s.p))); if (ch !== lastCh) { lastCh = ch; railItems.forEach((li, k) => li.classList.toggle('on', k === ch)); }
+  const f = Math.min(1, Math.max(0, s.fill)), fo = 1 - Math.pow(1 - f, 3);
+  U.uFill.value = f <= 0.001 ? 0 : GAUGE.fillFrom + (GAUGE.fillTo - GAUGE.fillFrom) * fo;
+  U.uFlow.value = f > 0.001 && f < 0.999 ? 1 : 0.18; U.uTime.value = t;
+  renderer.render(scene, camera); dirty = false;
+  if (visible && (!reduce || ki < 1 || Math.abs(pt.tx - pt.x) > 0.001 || Math.abs(pt.ty - pt.y) > 0.001 || pending)) raf = requestAnimationFrame(frame);
+}
+need();
+</script>
+</body>
+</html>

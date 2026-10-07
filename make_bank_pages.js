@@ -102,6 +102,12 @@ const BACKSTORY = {
     "Only the first clause carries a level, a window and one direction. Stay there to September names no close to grade, and towards is not a level; it is listed below.",
     "Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported, inside the window. Held."
   ],
+  /* 7 Oct 2026, note 45. */
+  "anz-gold-5800-2026-06-30": [
+    "Gold printed its high of 2026 in the week of 26 to 30 January, 5,598.75 on the founder's weekly chart. On 16 February Kitco reported that ANZ expected gold to hit 5,800 an ounce in the second quarter, up from its previous target of 5,400.",
+    "One sentence, one level, one window, so the board grades it as one row. The 5,400 it was raised from carries no window in the report and is listed below.",
+    "The second quarter shut on the 26 June close at 4,088.97, read off the founder's chart, 1,711.03 under the line. No weekly close at or above 5,800 printed inside the window. Wrong, and it stays."
+  ],
   "ubs-gold-5500-2026-12-31": [
     "On 27 May UBS cut its year-end 2026 gold target from 5,900 to 5,500, as reported by Kitco.",
     "The 5,900 it was cut from was published on 29 January as the return leg of a path from 6,200, so it is listed below the board with that reason; the 6,200 is on the board as three rows, one per window.",
@@ -113,6 +119,7 @@ const BACKSTORY = {
 const CARD_LINE = {
   "ubs-gold-6200-2026-03-31": "shut on the 27 March close without a weekly close at 6,200",
   "ubs-gold-6200-2026-06-30": "shut on the 26 June close at 4,088.97 \u00b7 2,111.03 under the line",
+  "anz-gold-5800-2026-06-30": "shut on the 26 June close at 4,088.97 \u00b7 1,711.03 under the line",
   "ubs-gold-5000-2026-09-30": "weekly closes above 5,000 printed in February, seven months inside the window",
   "ubs-gold-5000-2026-03-31": "Friday 27 February printed 5,232.50 as reported, inside the window",
   "citi-gold-5000-2026-03-31": "weekly closes above 5,000 printed in February, inside the window",

@@ -2100,7 +2100,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-05";   /* set by hand, with the commit. "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-07";   /* set by hand, with the commit. "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -3199,6 +3199,21 @@ const CROWD = [
          grade:"pending" }, */
     result:"Wrong. The window shut on the close of Friday 25 September 2026, 4,284.130 read off the founder's chart, 1,915.87 under the line. No weekly close at or above 6,200 printed inside it: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January. The same house's first number, 5,000 by September, is on the board as held. See note 42.",
     grade:"miss" },
+  /* EDITION THREE · named Wednesday 7 October 2026, graded on the close of Friday 26
+     June 2026. The first crowd row named after its window shut, so it is named
+     graded, on the rule the board has used for shut windows since 8 September.
+     An institution again. One sentence, one level, one window. Source, the
+     desk's fetch of 6 October 2026, 19:10 UTC: Kitco, Neils Christensen, 16
+     February 2026, 17:28 (the sentence quoted). See note 45. */
+  { date:"2026-02-16",
+    source:"ANZ, as reported by Kitco",
+    quote:"In their latest note on gold, commodity analysts at ANZ said they expect prices to hit $5,800 an ounce in the second quarter, up sharply from their previous target of $5,400 an ounce.",
+    link:"https://www.kitco.com/news/article/2026-02-16/anz-sees-gold-hitting-5800-ounce-second-quarter",
+    metal:"Gold",
+    kill:"Held if a weekly close at or above 5,800 printed on or before the 26 June 2026 close; wrong if the window closed without one. Assigned because the claim names a level and a window and no condition, so the level and the window are the only honest kill available. Graded on the TVC weekly close, as every row on this page.",
+    gradeDate:"2026-06-26",
+    result:"Wrong. The window shut on the close of Friday 26 June 2026, 4,088.97 read off the founder's chart, 1,711.03 under the line. No weekly close at or above 5,800 printed inside it: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January, before the target was published. See note 45.",
+    grade:"miss" },
 ];
 
 /* =========================================================================
@@ -3346,6 +3361,16 @@ const TARGETS = [
     note:"Graded 8 September 2026, five months after the window shut, because the board did not exist until then. The desk's own weekly closes begin in June 2026; the February closes are as reported and the figure is replaced by the founder's chart read when supplied. The grade does not depend on the decimals.",
     grade:"pass",
     result:"Held. Spot gold first traded above 5,000 on 26 January 2026 and weekly closes above the line printed in February, inside the window: Friday 20 February closed above 5,000 and Friday 27 February printed 5,232.50 as reported. Where price went after the window is not the question the rule asks." },
+
+  /* Added 7 October 2026 with the third crowd row, note 45. Named after its window shut,
+     so it is named graded, as the March and June UBS windows were on 23 September. */
+  { published:"2026-02-16", source:"ANZ, as reported by Kitco", metal:"Gold", level:5800, side:"above", window:"2026-06-30", windowText:"in the second quarter of 2026",
+    quote:"In their latest note on gold, commodity analysts at ANZ said they expect prices to hit $5,800 an ounce in the second quarter, up sharply from their previous target of $5,400 an ounce.",
+    link:"https://www.kitco.com/news/article/2026-02-16/anz-sees-gold-hitting-5800-ounce-second-quarter",
+    kill:"Held if a weekly close at or above 5,800 printed on or before the last weekly close of June 2026; wrong if the window closed without one.",
+    note:"Raised from a previous target of 5,400 in the same report, as reported; the 5,400 carries no window there and is listed below the board with that reason. The desk's own weekly closes begin in June 2026, and the window's last close is one of them.",
+    grade:"miss",
+    result:"Wrong. The window's last weekly close was Friday 26 June 2026, 4,088.97 read off the founder's chart, 1,711.03 under the line. No weekly close at or above 5,800 printed inside the window: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January, before the target was published. The grade does not turn on the decimals." },
 ];
 
 /* Claims examined and left off the board, by name, with the reason. Dated. */
@@ -3363,6 +3388,8 @@ const OUT = [
   ["6 Jan 2026", "UBS", "moderate towards USD 4,800/oz by the end of 2026", "towards is not a level"],
   ["29 Jan 2026", "UBS", "expects prices to ease modestly to $5,900 by the end of 2026, following the U.S. midterm elections", "the return leg of a path; the first leg, 6,200, is on the board as three rows"],
   ["29 Jan 2026", "UBS", "an upside scenario of $7200 per ounce and a downside case of $4600", "two scenarios, two directions"],
+  /* Added 7 October 2026 with the ANZ row, note 45. */
+  ["16 Feb 2026", "ANZ", "up sharply from their previous target of $5,400 an ounce", "the number the target was raised from, reported without its window"],
 ];
 
 /* =========================================================================
@@ -3407,6 +3434,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"45", kind:"standard", title:"The third crowd row, 7 October 2026. A second-quarter target, named after its window shut.",
+    body:"The crowd row named today is a gold target of 5,800 for the second quarter of 2026, in one sentence of a report published by Kitco on 16 February 2026: commodity analysts at ANZ expected prices to hit 5,800 an ounce in the second quarter, raised from a previous target of 5,400. It is the first crowd row named after its window shut, so it is named graded, on the rule the board has used for shut windows since 8 September. THE RULE. Held if a weekly close at or above 5,800 printed on or before the last weekly close inside the window, Friday 26 June 2026; wrong if the window closed without one. The quote says hit, a level reached, and the row grades those words as reported, as the board grades every reported target. THE CLOSE. The window's last weekly close was Friday 26 June, 4,088.97, read off the founder's chart, 1,711.03 under the line. Wrong. No weekly close at or above 5,800 printed inside the window: gold's high of 2026 on the founder's weekly chart is 5,598.75, in the week of 26 to 30 January, before the report and 201.25 under the line. HOW THE CLAIMS WERE SORTED. The 5,800 is on the board as one row. The 5,400 it was raised from is reported without its window and is listed below the board with that reason. THE FIGURES. The quote was fetched at its source on 6 October 2026. The weekly closes inside the window before 26 June are not the desk's reads, and the grade does not need them: no price in the window reached the line, on the founder's own weekly high. No grade here turns on the decimals. THE DESK'S OWN ROWS. The last were graded on the close of 2 October and none was wrong, so this edition has no wrong row of the desk's to name first. The three rows named on 5 October grade on the close of 9 October and stay whatever prints. None of these rows enters the tally." },
   { n:"44", kind:"standard", title:"Resolution, 2 October 2026. Gold HELD, silver HIT, platinum HIT: the first rows graded under the call grammar.",
     body:"Friday 2 October close, read off the founder's 8h TVC charts stamped 2 October with the market shut, 23:00 CEST: gold 4,142.710, silver 60.4470, platinum 1,699.70. Three lines were named on 28 September under the call grammar of note 34, each the high of the box its metal opened the week in, each with its side, its room, its odds at naming and the weekly close that would make it wrong. Each is graded by arithmetic on the close: through the line, WRONG; at or through the room, HIT, counted once as held; otherwise HELD. GOLD. Stays below 4,280.50, room 4,135.74, odds at naming 78. The close printed 4,142.710, 137.79 under the line and 6.97 above the room, 4,135.74. HELD. SILVER. Stays below 64.212, room 60.932, odds at naming 71. The close printed 60.4470, 3.765 under the line and 0.485 under the room, 60.932. HIT. PLATINUM. Stays below 1,775.80, room 1,720.72, odds at naming 71. The close printed 1,699.70, 76.10 under the line and 21.02 under the room, 1,720.72. HIT. THE ODDS BOARD. Three rows graded under the grammar, three held, two of them hits. The odds they were named at add up to 2.20. Held against that sum is read over many weeks; this is one week, three rows. THE BANK BOARD. No window shut on this close. THE STANDING CARD. The charts read tonight carry no read of the standing line, so the card stands as last read and says so. THE TALLY. Thirty-two rows resolved, twenty-five held, seven wrong, five never reached, none open. Neither the bank board nor the crowd is in it." },
   { n:"43", kind:"correction", title:"Correction, 28 September 2026. The first 8h close after the box freezes prints at 23:00 in Madrid, not midnight.",

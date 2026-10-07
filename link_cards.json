@@ -1,6 +1,6 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-05T22:32:25.691Z",
+ "generated": "2026-10-06T19:14:00.694Z",
  "cards": [
   {
    "name": "misses",
@@ -31,13 +31,13 @@
    "name": "targets",
    "page": "targets.html",
    "file": "link_targets.png",
-   "v": "8e67e6ba81",
-   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=8e67e6ba81",
+   "v": "12aa934a17",
+   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=12aa934a17",
    "figures": {
     "open": 7,
     "held": 4,
-    "wrong": 3,
-    "left_off": 12,
+    "wrong": 4,
+    "left_off": 13,
     "next": {
      "house": "Citi",
      "level": 4800,
