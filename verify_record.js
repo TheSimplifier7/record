@@ -54,7 +54,20 @@
     19. What a price is made of, 25 September 2026, note 41: descent.js is
         beside the record, the record and the Method page mount it and load
         it, its captions carry no em dash, exclamation mark, hashtag or
-        emoji, and it asks the network for record.json and nothing else. */
+        emoji, and it asks the network for record.json and nothing else.
+    20. Not in use. A page and a card for every graded row were built for
+        the upload of 10 October 2026 and taken out of it before it shipped,
+        by the founder's call that night: the cards were carved stone, and
+        the record's look is the table's.
+    21. The stories, 10 October 2026, note 47: every story page a crowd
+        row links, with its cover, is beside the record.
+    22. The running score, 10 October 2026, note 47: every line of
+        days.txt reads with the page's own parseDays, falls on a Tuesday,
+        Wednesday or Thursday inside a week of lines, reads every metal named
+        that week with its close and the odds above and below, and names a snapshot
+        beside the record or a TradingView snapshot link; and, read against
+        the edit history, no line was edited or removed, written before the
+        close it reads or after the close that graded its week. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -318,6 +331,101 @@ const dBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|
 check(dCaps.length > 0 && dBad.length === 0, "the animation's captions carry no em dash, exclamation mark, hashtag or emoji" + (dBad.length ? " (found: " + dBad.join(", ") + ")" : ""));
 const dCode = dsc.replace(/\/\*[\s\S]*?\*\//g, "");
 check(dsc.length > 0 && !/https?:\/\//.test(dCode) && !/XMLHttpRequest|sendBeacon|WebSocket|import\(/.test(dCode) && (dCode.match(/fetch\(/g) || []).length === 1 && /fetch\(src \|\| "record\.json"/.test(dCode), "descent.js asks the network for record.json and nothing else");
+
+/* 20. Not in use: the row pages and their carved cards were taken out of the
+   upload of 10 October 2026 before it shipped (see the list at the top). */
+
+/* 21. THE STORIES, added 10 October 2026, note 47. Every story a crowd row
+   links from STORIES, with its cover, is beside the record. */
+let ST = {}; try { const m = idx.match(/\nconst STORIES = (\{[\s\S]*?\n\});/); if (m) ST = eval("(" + m[1] + ")"); } catch (e) { ST = null; }
+const stMiss = ST ? Object.values(ST).flatMap(s => [s.page, s.cover]).filter(Boolean).filter(f => !/^[a-z0-9._-]+$/i.test(f) || !fs.existsSync(path.join(HERE, f))) : ["STORIES did not read"];
+check(stMiss.length === 0, "every story the crowd rows link, and its cover, is beside the record (" + (ST ? Object.keys(ST).length : 0) + ")" + (stMiss.length ? " (missing: " + stMiss.join(", ") + ")" : ""));
+
+/* 22. THE RUNNING SCORE, added 10 October 2026, note 47, by the
+   founder's ruling of 8 October 2026. days.txt is beside the record, and
+   this check reads it with parseDays, taken from the page, so the page and
+   the check read every line the same way. Every line reads, or stays as
+   typed with its day read again on a later line or a note naming it
+   ("days.txt, line N"). Its date is a
+   Tuesday, Wednesday or Thursday from DAYS_FROM, inside a week of lines
+   named under the call grammar, after the day they were named and before
+   their Friday, one line a day and in date order. It reads every metal
+   named that week and no other, each close a number and the chart's odds
+   above and below the week's range as printed, from 0 to 100 and together
+   no more than 100, and names its snapshot: a file beside the record
+   or a TradingView snapshot link. Nothing in the file breaks the brand law.
+   Read against the edit history when this folder is a clone: every earlier
+   version's lines are the start of the next version's lines, so a line is
+   never edited or removed; and no line was first written before the close
+   it reads, or after the Friday close that graded its week. */
+const DAYS_FROM = (idx.match(/\nconst DAYS_FROM\s*=\s*"([\d-]+)"/) || [])[1] || "";
+const parseDays = fnFrom("parseDays");
+let daysTxt = null; try { daysTxt = rd("days.txt"); } catch (e) {}
+check(!!DAYS_FROM && typeof parseDays === "function" && daysTxt !== null, "days.txt is beside the record and the page reads it with parseDays from DAYS_FROM (" + (DAYS_FROM || "not set") + ")");
+if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
+  const madridOff = d => { try { const tz = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", timeZoneName: "longOffset" }).formatToParts(d).find(p => p.type === "timeZoneName").value; const m = tz.match(/([+-])(\d{2}):?(\d{2})?/); return m ? (m[1] === "-" ? -1 : 1) * (+m[2] * 60 + +(m[3] || 0)) : 120; } catch (e) { return 120; } };
+  const closeAt = iso => { const g = new Date(iso + "T23:00:00Z"); return new Date(g.getTime() - madridOff(g) * 60000); };
+  const D = parseDays(daysTxt), dprob = [], weekOf = {}, readOn = {};
+  let prevD = "";
+  for (const x of D) {
+    const at = "line " + x.n + " (" + x.date + ")";
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(x.date) || isNaN(new Date(x.date + "T12:00:00Z"))) continue;
+    const wd = new Date(x.date + "T12:00:00Z").getUTCDay();
+    if (wd < 2 || wd > 4) dprob.push(at + ": not a Tuesday, Wednesday or Thursday");
+    if (x.date < DAYS_FROM) dprob.push(at + ": before " + DAYS_FROM + ", the first week the odds are read again");
+    if (prevD && x.date < prevD) dprob.push(at + ": not after the line before it, " + prevD);
+    else if (x.date === prevD && readOn[x.date]) dprob.push(at + ": reads " + x.date + " again, and line " + readOn[x.date] + " already read it as typed");
+    prevD = x.date;
+    if (!x.errors.length && !readOn[x.date]) readOn[x.date] = x.n;
+    const named = [...new Set(CALLS.filter(c => c.grammar && c.date < x.date && fridayOf(c.date) > x.date).map(c => c.date))];
+    if (named.length !== 1) { dprob.push(at + ": " + (named.length ? "falls inside more than one week of lines" : "no week of lines is open on that day")); continue; }
+    weekOf[x.n] = named[0];
+    if (x.none || x.errors.length) continue;
+    const want = CALLS.filter(c => c.grammar && c.date === named[0]).map(c => c.metal).sort(), got = Object.keys(x.metals).sort();
+    if (JSON.stringify(want) !== JSON.stringify(got)) dprob.push(at + ": reads " + (got.join(", ") || "no metal") + ", and the week named " + named[0] + " carries " + want.join(", "));
+    x.charts.forEach(c => {
+      if (/^https?:\/\//i.test(c)) { if (!/^https:\/\/(www\.)?tradingview\.com\/x\/[A-Za-z0-9]+\/?$/.test(c) && !/^https:\/\/s3\.tradingview\.com\/snapshots\/[a-z0-9]\/[A-Za-z0-9]+\.png$/.test(c)) dprob.push(at + ": " + c + " is not a TradingView snapshot link"); }
+      else if (!/^[A-Za-z0-9._-]+\.(png|jpe?g|webp)$/i.test(c) || !fs.existsSync(path.join(HERE, c))) dprob.push(at + ": the snapshot " + c + " is not beside the record");
+    });
+  }
+  /* a line that cannot be read stays in the file, as typed. It stands when a later line reads the same day as
+     typed, or when a note of the record names it: "days.txt, line N". Until then it holds every upload. */
+  const noteText = NOTES.map(nt => (nt.title || "") + " " + (nt.body || "")).join(" ");
+  for (const x of D.filter(y => y.errors.length)) {
+    const later = D.some(y => y.n > x.n && y.date === x.date && !y.errors.length);
+    const noted = new RegExp("days\\.txt,? line " + x.n + "(?!\\d)|line " + x.n + " of days\\.txt", "i").test(noteText);
+    if (!later && !noted) x.errors.forEach(e => dprob.push("line " + x.n + " (" + x.date + "): " + e + "; type the day again on a later line, or correct it by a note naming days.txt, line " + x.n));
+  }
+  const dLaw = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|\s)#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u]].filter(([, re]) => re.test(daysTxt)).map(b => b[0]);
+  if (dLaw.length) dprob.push("days.txt carries " + dLaw.join(", "));
+  let hist = "not a clone, so the edit history was not read";
+  if (fs.existsSync(path.join(HERE, ".git"))) {
+    try {
+      const cp = require("child_process"), git = a => cp.execFileSync("git", a, { cwd: HERE, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+      const vers = git(["log", "--format=%H %cI", "--", "days.txt"]).trim().split("\n").filter(Boolean).map(l => l.split(" ")).reverse();
+      let prevL = null; const first = {};
+      for (const [sha, when] of vers) {
+        let t = null; try { t = git(["show", sha + ":days.txt"]); } catch (e) { t = null; }
+        if (t === null) { dprob.push("commit " + sha.slice(0, 7) + " removed days.txt"); continue; }
+        const L = parseDays(t).map(x => x.raw.trim());
+        if (prevL && (L.length < prevL.length || prevL.some((r, i) => L[i] !== r))) dprob.push("commit " + sha.slice(0, 7) + " changed or removed a line days.txt already held");
+        L.forEach(r => { if (!first[r]) first[r] = when; });
+        prevL = L;
+      }
+      const now = D.map(x => x.raw.trim());
+      if (prevL && (now.length < prevL.length || prevL.some((r, i) => now[i] !== r))) dprob.push("this copy of days.txt changes or removes a line the last commit held");
+      for (const x of D) {
+        const when = first[x.raw.trim()], wk = weekOf[x.n];
+        if (!when || !wk || x.none) continue;
+        if (new Date(when) < closeAt(x.date)) dprob.push("line " + x.n + " (" + x.date + "): first written " + when + ", before the close it reads");
+        if (new Date(when) > closeAt(fridayOf(wk))) dprob.push("line " + x.n + " (" + x.date + "): first written " + when + ", after the close that graded its week");
+      }
+      hist = vers.length + (vers.length === 1 ? " version" : " versions") + " read from the edit history";
+    } catch (e) { hist = "the edit history could not be read"; dprob.push("the edit history of days.txt could not be read"); }
+  }
+  const nRead = D.filter(x => !x.none && !x.errors.length).length, nNone = D.filter(x => x.none).length;
+  check(dprob.length === 0, "every line of days.txt reads and stands (" + nRead + " read, " + nNone + " with no reading, " + hist + ")" + (dprob.length ? "\n          " + dprob.slice(0, 12).join("\n          ") + (dprob.length > 12 ? "\n          and " + (dprob.length - 12) + " more" : "") : ""));
+}
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

@@ -6,7 +6,21 @@
 <!-- 6 Oct 2026. These read: <title>The Simplifier · The Method</title>, and the description "The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation." -->
 <title>The Simplifier · The Fan</title>
 <meta name="description" content="The indicator the weekly lines on the record are read from. It draws structure. It does not tell you what to do. Access by invitation.">
-<meta name="theme-color" content="#141210">
+<!-- 10 October 2026, note 47 on the record: the ground follows the reader's device, as on the record, and the script below sets this to the band at the top of the page. It read:
+     <meta name="theme-color" content="#141210"> -->
+<meta name="theme-color" content="#0f1e3a" id="meta-theme">
+<meta name="color-scheme" content="light dark">
+<script>
+/* THE GROUND, 10 October 2026, note 47, as on the record: white by day, navy when the device is set
+   dark, and the reader's own choice on this device once he has pressed the switch, applied here before first
+   paint so nothing flashes. The phone's bar follows the band at the top of the page. */
+(function(){
+  var d=document.documentElement, t=null; try{ t=localStorage.getItem("theme"); }catch(e){}
+  if(t==="light"||t==="dark") d.setAttribute("data-theme",t);
+  var dark=t ? t==="dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  var m=document.getElementById("meta-theme"); if(m) m.setAttribute("content", dark ? "#14244a" : "#0f1e3a");
+})();
+</script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.github.io/record/method.html">
 <!-- 6 Oct 2026. These read "The Simplifier · The Method" and the description above. -->
@@ -60,172 +74,363 @@
      comments beside the new, and their files stay in the folder. The nav
      on every page now names this page The Fan. Prices, payment links and
      terms are unchanged.
+
+     10 OCTOBER 2026, note 47 on the record. THE FAN, IN THE RECORD'S LOOK. The page takes the
+     record's look, by the founder's rulings of 7 and 8 October 2026: the
+     ground follows the reader's device, and the band at the top and the bar
+     of five places at the foot of a phone are the record's own. It carries
+     the founder's sales copy word for word, as it stood in his doc on
+     10 October 2026 (revision 14): what the tool shows, how it is graded in
+     the open, what it is not, and the terms, under his gold 10 minute chart
+     of 8 October 2026. The access line now sends a request to the desk's
+     messages on X; the line it replaces is kept in a comment beside it.
+     The body as it stood is kept in one comment at the foot of this file.
+     The animation, the prices and the payment and request links are
+     carried across unchanged.
      ========================================================================= -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 10 October 2026, note 47 on the record: the record's faces, Barlow for the frame and Barlow Condensed for the heads, with Newsreader kept for the words as written. It read:
+     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  /* ---------------------------------------------------------------------
+     THE RECORD AS A TABLE, 10 October 2026, note 47, by the founder's
+     rulings of 7 and 8 October 2026. Navy and white bands, a table to find
+     a line and the ledger's ink to read one.
+
+     THE GROUND FOLLOWS THE READER'S DEVICE (the founder's ruling of 7
+     October 2026, which reopened note 20 by name): white by day, navy when
+     the device is set dark, and a
+     switch in the bar that holds the reader's own choice on that device
+     only. Every colour that is read is measured against the ground it sits
+     on; nothing read sits under 4.5 to 1, and the body text sits far over
+     the 5.29 to 1 floor note 20 set.
+
+       WHITE, #ffffff              NAVY, #0b111d
+         --ink    #0e1116  18.91     --ink    #eef2f8  16.81
+         --ink-2  #2e3644  12.16     --ink-2  #cdd5e1  12.77
+         --ink-3  #4e5869   7.18     --ink-3  #a3aec0   8.43
+         --held   #6b4d00   7.82     --held   #f2c45a  11.53
+         --wrong  #b42323   6.55     --wrong  #ff8a80   8.27
+         --open   #2b5ba8   6.64     --open   #8db0f5   8.69
+       on the bars, the chips and the band the lowest pair is 4.67 to 1
+       (--ink-4 on the light bar), used for small labels only. White on the
+       wrong chip is 5.46 to 1 on both grounds.
+
+     THE ROW, OPENED, in the ledger's ink: paper and black, serif for the
+     words as written and a fixed-width figure for the level.
+       PAPER, #fbf8f1: ink 17.32, ink-2 9.20, ink-3 5.66
+       PAPER AT NIGHT, #1a1712: ink 14.66, ink-2 10.25, ink-3 6.69
+
+     NO PERCENTAGE IN HEADLINE TYPE, as before (1 Aug 2026): counts only,
+     the rate beside its base in the note under the count.
+
+     Every grade is a mark beside its word, never instead of it: a gold dot
+     for held, a gold dot in a ring for a hit, a red square crossed for
+     wrong, a grey ring for never reached and a blue ring round a point for
+     open. Each mark differs in shape as well as colour.
+  --------------------------------------------------------------------- */
   :root{
-    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
-    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
-    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --pending:#6BA3C7;
-    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
-    --pad:44px;
+    --bg:#ffffff; --bar:#f2f4f7; --zebra:#f7f8fa; --raise:#ffffff;
+    --ink:#0e1116; --ink-2:#2e3644; --ink-3:#4e5869; --ink-4:#646e7f;
+    --rule:#e1e5eb; --rule-2:#c9d0da; --dash:#b9c1cd;
+    --navy:#0f1e3a; --navy-2:#1a2d52; --navy-ink:#ffffff; --navy-ink-2:#c9d3e6; --navy-rule:rgba(255,255,255,.16);
+    --btn:#e0a93b; --btn-ink:#0f1e3a; --btn-hover:#eab955;
+    --held:#6b4d00; --held-bg:#f6e7c1; --mk-held:#c8962e;
+    --wrong:#b42323; --wrong-chip:#c62f2f; --wrong-bg:#fbe9e7;
+    --open:#2b5ba8; --open-bg:#e8eef9; --nr:#5f6979; --mk-nr:#7a8494;
+    --focus:#2b5ba8;
+    --paper:#fbf8f1; --paper-2:#f3eee3; --paper-ink:#17140f; --paper-ink-2:#4a4339; --paper-ink-3:#6b6253; --paper-rule:#ddd5c6; --paper-rule-2:#cfc6b5;
+    --shade:rgba(14,17,22,.48);
+    --f-ui:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --f-cond:"Barlow Condensed","Arial Narrow","Roboto Condensed","sans-serif-condensed","Helvetica Neue",Arial,sans-serif;
+    --f-serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+    --f-fig:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+    --wide:72rem; --gutter:clamp(16px,4vw,40px); --bot:calc(64px + env(safe-area-inset-bottom,0px));
+    /* the marks, drawn: one set for each ground */
+    --mk-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23c8962e'/%3E%3C/svg%3E");
+    --mk-hit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5.25' fill='none' stroke='%23c8962e' stroke-width='1.3'/%3E%3Ccircle cx='6' cy='6' r='3' fill='%23c8962e'/%3E%3C/svg%3E");
+    --mk-miss:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='.5' y='.5' width='11' height='11' rx='2' fill='%23c62f2f'/%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-notest:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%237a8494' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-pending:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%232b5ba8' stroke-width='1.8'/%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%232b5ba8'/%3E%3C/svg%3E");
+    /* the names the standing cards, the ladder and the charts were written against, carried onto the new ground */
+    --ground:var(--bg); --ground-2:var(--bar); --ground-3:var(--rule); --slab:var(--raise); --panel:var(--raise);
+    --rule-soft:var(--rule); --rule-card:var(--rule); --ink-5:var(--ink-3); --ink-6:var(--ink-3);
+    --gold:var(--mk-held); --gold-1:var(--held); --gold-2:var(--mk-held); --gold-3:var(--held-bg); --gold-hi:var(--held);
+    --pass:var(--held); --miss:var(--wrong); --partial:var(--held); --notest:var(--nr); --pending:var(--open);
+    --wash:var(--held-bg); --wash-2:rgba(198,47,47,.07); --kill-bg:rgba(198,47,47,.06); --band:var(--zebra); --hover:var(--bar);
+    --serif:var(--f-serif); --mono:var(--f-fig); --f-data:var(--f-ui); --f-display:var(--f-serif); --f-cap:var(--f-cond);
+    color-scheme:light;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
-  .wrap{max-width:820px;margin:0 auto;padding:52px var(--pad) 64px}
-  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
-  a:hover{color:var(--ink)}
-  header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:13px}
-  .brand svg{width:34px;height:26px;display:block;overflow:visible}
-  .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
-  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
-  .nav{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0 0;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-  .nav a{color:var(--ink-5);border-bottom:1px solid transparent;padding-bottom:2px}
-  .nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
-  .nav a.here{color:var(--ink);border-bottom-color:var(--gold)}
-  h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
-  .lede{font-size:21px;color:var(--ink);margin:0 0 30px;max-width:34ch}
-  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:30px 0}
-  .three > div{background:var(--panel);border-top:2px solid var(--gold);padding:16px 16px 18px}
-  .three .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-  .three p{font-size:15.5px;color:var(--ink-3)}
-  .rule{border-top:1px solid var(--rule);margin:32px 0}
-  .chart{margin:30px 0 26px}
-  .chart img{display:block;width:100%;height:auto;border:1px solid var(--rule-soft);border-radius:8px}
-  .chart figcaption{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--ink-6);margin-top:10px;max-width:80ch}
-  p.body{font-size:18px;margin:0 0 16px;max-width:60ch}
-  .stmt{font-family:var(--mono);font-size:14px;line-height:1.7;color:var(--ink-5);padding-left:14px;border-left:3px solid var(--rule);margin:26px 0}
-  .price{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}
-  .price > div{background:var(--panel);padding:20px 18px;border:1px solid var(--rule-soft)}
-  .price .n{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--gold);letter-spacing:-.02em}
-  .price .t{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-5);margin:6px 0 12px}
-  .btn{display:inline-block;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:12px 18px;border:0}
-  .btn:hover{background:var(--ink);color:var(--bg)}
-  .btn-quiet{display:inline-block;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:11px 18px}
-  .btn-quiet:hover{color:var(--ink);border-color:var(--ink)}
-  .fine{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-6);margin-top:10px}
-  [hidden]{display:none !important}
-  footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
-  .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
-  @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} .three,.price{grid-template-columns:1fr} }
-  /* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
-     scrolls, each place a thumb's height, the page you are on underlined. */
-  @media(max-width:760px){
-    .nav{position:relative;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-top:4px;font-size:11px;letter-spacing:.13em}
-    .nav::-webkit-scrollbar{display:none}
-    .nav a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;white-space:nowrap;border-bottom:0}
-    .nav a:first-child{padding-left:0}
-    .nav a:last-child{padding-right:18px}
-    .nav a.here{text-decoration-line:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:7px}
-    .nav.nav-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
-    .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
-    .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0b111d; --bar:#131c2c; --zebra:#0f1724; --raise:#111a29;
+    --ink:#eef2f8; --ink-2:#cdd5e1; --ink-3:#a3aec0; --ink-4:#8d98ab;
+    --rule:#222e42; --rule-2:#33415a; --dash:#4a5872;
+    --navy:#14244a; --navy-2:#1d3260; --navy-ink:#ffffff; --navy-ink-2:#c9d3e6; --navy-rule:rgba(255,255,255,.14);
+    --held:#f2c45a; --held-bg:#3b2f0f; --mk-held:#d9a63a;
+    --wrong:#ff8a80; --wrong-chip:#c62f2f; --wrong-bg:#3a1714;
+    --open:#8db0f5; --open-bg:#16264a; --nr:#a3aec0; --mk-nr:#8d97a8;
+    --focus:#8db0f5;
+    --paper:#1a1712; --paper-2:#221e17; --paper-ink:#efe8da; --paper-ink-2:#cdc3b2; --paper-ink-3:#a89d8b; --paper-rule:#3a342b; --paper-rule-2:#4a4338;
+    --shade:rgba(0,0,0,.62);
+    --mk-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23d9a63a'/%3E%3C/svg%3E");
+    --mk-hit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5.25' fill='none' stroke='%23d9a63a' stroke-width='1.3'/%3E%3Ccircle cx='6' cy='6' r='3' fill='%23d9a63a'/%3E%3C/svg%3E");
+    --mk-miss:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='.5' y='.5' width='11' height='11' rx='2' fill='%23d83a3a'/%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-notest:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%238d97a8' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-pending:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%238db0f5' stroke-width='1.8'/%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%238db0f5'/%3E%3C/svg%3E");
+    --wash-2:rgba(255,138,128,.08); --kill-bg:rgba(255,138,128,.07);
+    color-scheme:dark }}
+  :root[data-theme="dark"]{
+    --bg:#0b111d; --bar:#131c2c; --zebra:#0f1724; --raise:#111a29;
+    --ink:#eef2f8; --ink-2:#cdd5e1; --ink-3:#a3aec0; --ink-4:#8d98ab;
+    --rule:#222e42; --rule-2:#33415a; --dash:#4a5872;
+    --navy:#14244a; --navy-2:#1d3260; --navy-ink:#ffffff; --navy-ink-2:#c9d3e6; --navy-rule:rgba(255,255,255,.14);
+    --held:#f2c45a; --held-bg:#3b2f0f; --mk-held:#d9a63a;
+    --wrong:#ff8a80; --wrong-chip:#c62f2f; --wrong-bg:#3a1714;
+    --open:#8db0f5; --open-bg:#16264a; --nr:#a3aec0; --mk-nr:#8d97a8;
+    --focus:#8db0f5;
+    --paper:#1a1712; --paper-2:#221e17; --paper-ink:#efe8da; --paper-ink-2:#cdc3b2; --paper-ink-3:#a89d8b; --paper-rule:#3a342b; --paper-rule-2:#4a4338;
+    --shade:rgba(0,0,0,.62);
+    --mk-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23d9a63a'/%3E%3C/svg%3E");
+    --mk-hit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5.25' fill='none' stroke='%23d9a63a' stroke-width='1.3'/%3E%3Ccircle cx='6' cy='6' r='3' fill='%23d9a63a'/%3E%3C/svg%3E");
+    --mk-miss:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='.5' y='.5' width='11' height='11' rx='2' fill='%23d83a3a'/%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-notest:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%238d97a8' stroke-width='1.6'/%3E%3C/svg%3E");
+    --mk-pending:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%238db0f5' stroke-width='1.8'/%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%238db0f5'/%3E%3C/svg%3E");
+    --wash-2:rgba(255,138,128,.08); --kill-bg:rgba(255,138,128,.07);
+    color-scheme:dark }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit;text-decoration-color:var(--rule-2);text-decoration-thickness:1px;text-underline-offset:.2em}
+  a:hover{color:var(--open);text-decoration-color:currentColor}
+  button{font:inherit;color:inherit}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px}
+  h1,h2,h3,h4{margin:0;text-wrap:balance}
+  p{margin:0}
+  [hidden]{display:none!important}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .skip{position:absolute;left:-9999px;top:0;z-index:80;background:var(--btn);color:var(--btn-ink);padding:12px 16px;font-weight:700}
+  .skip:focus{left:8px;top:8px}
+  .wrap{max-width:var(--wide);margin:0 auto;padding-inline:var(--gutter)}
+  main{outline:none}
+  [tabindex="-1"]:focus{outline:none}
+  .note{font-size:.8125rem;line-height:1.5;color:var(--ink-3)}
+  .num,.tab{font-variant-numeric:tabular-nums}
+  .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* the band */
+  .band{position:sticky;top:0;z-index:40;background:var(--navy);color:var(--navy-ink);padding-top:env(safe-area-inset-top,0px)}
+  .band-top{display:flex;align-items:center;gap:8px 20px;min-height:60px}
+  .brand{font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--navy-ink-2);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+  .brand:hover{color:var(--navy-ink)}
+  .topnav{display:flex;gap:2px;flex:1 1 auto;min-width:0}
+  .topnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:.9rem;font-weight:600;color:var(--navy-ink-2);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-3px}
+  .topnav a:hover{color:var(--navy-ink)}
+  .topnav a[aria-current="page"]{color:var(--navy-ink);border-bottom-color:var(--btn)}
+  .band-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
+  .tbtn{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 12px;border:1px solid var(--navy-rule);border-radius:4px;background:transparent;color:var(--navy-ink-2);font-size:.8125rem;font-weight:600;cursor:pointer;white-space:nowrap}
+  .tbtn:hover{color:var(--navy-ink);border-color:var(--navy-ink-2)}
+  .tbtn svg{width:15px;height:15px}
+  .getlines{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:4px;background:var(--btn);color:var(--btn-ink);font-size:.875rem;font-weight:700;text-decoration:none;white-space:nowrap}
+  .getlines:hover{background:var(--btn-hover);color:var(--btn-ink)}
+  .band-hero{background:var(--navy);color:var(--navy-ink)}
+  .band-title{display:grid;gap:4px;padding-block:2px 18px}
+  .band-title h1{font-family:var(--f-cond);font-weight:700;font-size:clamp(2.125rem,5vw,3.25rem);line-height:1;letter-spacing:.02em}
+  .band-sub{font-size:.8125rem;color:var(--navy-ink-2);font-variant-numeric:tabular-nums}
+  .band-lede{font-size:.9375rem;line-height:1.45;color:var(--navy-ink);opacity:.92;max-width:40rem;margin-top:6px}
+
+  /* chips, buttons and the finder */
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border:1px solid var(--rule-2);border-radius:22px;background:var(--bg);color:var(--ink-2);font-size:.8125rem;font-weight:600;cursor:pointer;white-space:nowrap}
+  .chip:hover{border-color:var(--ink-3);color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#ffffff}
+  :root[data-theme="dark"] .chip[aria-pressed="true"]{background:#c9d3e6;border-color:#c9d3e6;color:#0b111d}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{background:#c9d3e6;border-color:#c9d3e6;color:#0b111d}}
+  .chip b{font-weight:700;font-variant-numeric:tabular-nums}
+  .chip .mk{width:12px;height:12px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px;border:1px solid var(--navy);background:var(--navy);color:#ffffff;font-size:.875rem;font-weight:700;text-decoration:none;cursor:pointer}
+  .btn:hover{background:var(--navy-2);color:#ffffff}
+  .btn.quiet{background:transparent;color:var(--ink);border-color:var(--rule-2)}
+  .btn.quiet:hover{border-color:var(--ink-3);color:var(--ink)}
+  :root[data-theme="dark"] .btn:not(.quiet){background:#c9d3e6;border-color:#c9d3e6;color:#0b111d}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn:not(.quiet){background:#c9d3e6;border-color:#c9d3e6;color:#0b111d}}
+  .find{display:flex;align-items:center;gap:10px;max-width:24rem;min-width:0;flex:1 1 16rem}
+  .find label{font-size:.8125rem;font-weight:600;color:var(--ink-2);white-space:nowrap}
+  .find input{flex:1;width:100%;min-width:0;min-height:44px;padding:0 12px;border:1px solid var(--rule-2);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
+
+  /* the foot */
+  footer{margin-top:32px;padding-block:28px 32px;border-top:1px solid var(--rule);background:var(--zebra)}
+  .foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px}
+  .integrity{font-family:var(--f-serif);font-size:1rem;line-height:1.6;color:var(--ink-2);max-width:42rem}
+  .integrity em{color:var(--ink);font-style:italic}
+  .integrity a{color:var(--open)}
+  .integrity+.integrity{margin-top:12px}
+  .bounty{padding:14px 16px;border:1px solid var(--mk-held);background:var(--held-bg);border-radius:3px;margin-top:16px;color:var(--ink)}
+  .foot-meta{display:grid;gap:2px;font-size:.8125rem;color:var(--ink-3);align-content:start}
+  .foot-meta span{display:flex;align-items:center;flex-wrap:wrap;gap:0 6px}
+  .foot-meta a{display:inline-flex;align-items:center;min-height:44px;color:var(--open);font-weight:600}
+
+  /* the bar at the foot of a phone */
+  .botnav{display:none}
+
+  /* ---------------------------------------------------------------------
+     THE FAN, in the record's look, 10 October 2026, note 47. The band,
+     the ground, the type and the bar of five places at the foot of a phone
+     are the record's own, carried above from its stylesheet; what follows
+     is this page's: the founder's account of the tool set to be read, in
+     the serif the record keeps for words as written, and the terms.
+  --------------------------------------------------------------------- */
+  .fan-head{background:var(--navy);color:var(--navy-ink)}
+  .fan-head .wrap{display:grid;gap:10px;padding-block:10px 26px}
+  .crumb{font-size:.8125rem;font-weight:600;color:var(--navy-ink-2)}
+  .crumb a{display:inline-flex;align-items:center;min-height:44px;color:var(--navy-ink);text-decoration-color:var(--navy-rule)}
+  .crumb a:hover{color:var(--navy-ink);text-decoration-color:currentColor}
+  .fan-head h1{font-family:var(--f-cond);font-weight:700;font-size:clamp(2.5rem,7vw,4rem);line-height:.95;letter-spacing:.02em;text-transform:uppercase}
+  .fan-head .lede{font-family:var(--f-serif);font-size:1.3125rem;line-height:1.45;color:var(--navy-ink);max-width:38rem}
+  .fan-price{font-size:.9375rem;color:var(--navy-ink-2)}
+  .fan-price a{display:inline-flex;align-items:center;flex-wrap:wrap;gap:0 6px;min-height:44px;color:var(--navy-ink);text-decoration:none}
+  .fan-price b{color:var(--btn);font-weight:700;font-variant-numeric:tabular-nums}
+  .fan-price .go{font-weight:700;text-decoration:underline;text-decoration-color:var(--navy-rule);text-underline-offset:.25em}
+  .fan-price .go::after{content:" \203A"}
+  .fan-price a:hover .go{text-decoration-color:currentColor}
+  .fan-head .tagline{font-family:var(--f-cond);font-weight:700;font-size:clamp(1.625rem,4.4vw,2.5rem);line-height:1.05;letter-spacing:.01em;color:var(--navy-ink);max-width:38rem;text-wrap:balance}
+
+  .fan{min-width:0;font-variant-numeric:lining-nums;padding-block:22px 8px}
+  .fan section{padding-block:26px 6px;border-top:1px solid var(--rule)}
+  .fan section:first-child{border-top:0;padding-top:4px}
+  .fan h2{font-family:var(--f-cond);font-weight:700;font-size:clamp(1.625rem,3.4vw,2rem);line-height:1.1;color:var(--ink);margin-bottom:12px;scroll-margin-top:76px}
+  .fan section>p,.fan p.body{font-family:var(--f-serif);font-size:1.125rem;line-height:1.65;color:var(--ink-2);max-width:40rem;margin-bottom:16px}
+  .fan a{color:var(--open)}
+  .fan ul.shows{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:16px;max-width:40rem}
+  .fan ul.shows li{font-family:var(--f-serif);font-size:1.125rem;line-height:1.6;color:var(--ink-2);padding-left:16px;border-left:3px solid var(--btn)}
+  .fan ul.shows li b{display:block;font-family:var(--f-ui);font-size:1rem;font-weight:700;line-height:1.4;color:var(--ink);margin-bottom:2px}
+
+  .fan figure.chart{margin:4px 0 26px;max-width:none}
+  .fan figure.chart a{display:block;border:0}
+  .fan figure.chart img{display:block;width:100%;height:auto;max-width:100%;border:1px solid var(--rule-2);border-radius:6px;background:#141210}
+  .fan figcaption{font-size:.8125rem;line-height:1.55;color:var(--ink-3);margin-top:10px;max-width:46rem}
+
+  .descent-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin:30px 0 12px;padding-top:22px;border-top:1px solid var(--rule);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .descent-head .k{color:var(--held)}
+  .descent-head .d{color:var(--ink-3);font-weight:600;letter-spacing:.08em}
+  .descent-wrap{margin:0 0 8px;color:var(--ink-2);max-width:52rem}
+
+  .fan .stmt{font-size:1rem;line-height:1.6;color:var(--ink);max-width:40rem;padding-left:14px;border-left:3px solid var(--btn);margin:4px 0 20px}
+  .fan .price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:40rem;margin:0 0 20px}
+  .fan .price>div{display:grid;gap:4px;align-content:start;padding:18px;border:1px solid var(--rule);border-top:4px solid var(--btn);background:var(--raise)}
+  .fan .price .n{font-family:var(--f-cond);font-size:2.25rem;font-weight:700;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
+  .fan .price .t{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+  .fan .price .btn{justify-self:start}
+  .fan #request-line{max-width:40rem;margin:0 0 10px;font-family:var(--f-ui);font-size:.9375rem;line-height:1.6;color:var(--ink-2)}
+  .fan .btn-quiet{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--rule-2);border-radius:4px;font-weight:700;color:var(--ink);text-decoration:none}
+  .fan .btn-quiet:hover{border-color:var(--ink-3)}
+  .fan .fine{font-family:var(--f-ui);font-size:.875rem;line-height:1.6;color:var(--ink-3)}
+  .fan p.fine{max-width:40rem;margin-bottom:16px}
+  .fan #closed-line a,.fan p.fine a{color:var(--open)}
+  .fan .rule{border-top:1px solid var(--rule);margin:22px 0 18px;max-width:40rem}
+
+  footer .law{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+  footer .handle{margin-top:8px;font-size:.875rem;color:var(--ink-3)}
+  footer .handle a{display:inline-flex;align-items:center;min-height:44px;color:var(--open);font-weight:600}
+
+  /* wide screens: the chart takes the width, the words keep their measure */
+  @media (min-width:1040px){
+    .fan{padding-top:30px}
   }
-  /* 24 Sep 2026, note 37 on the record: the caption at 12px on a phone. */
-  @media(max-width:760px){.chart figcaption{font-size:12px}}
-  /* 25 Sep 2026, note 41 on the record: the animation's room. The player styles itself (descent.js). */
-  .descent-head{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;margin:34px 0 12px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
-  .descent-head .k{color:var(--gold)}
-  .descent-head .d{color:var(--ink-5);font-weight:500;letter-spacing:.16em}
-  .descent-wrap{margin:0 0 30px;color:var(--ink-3)}
-  @media(max-width:760px){.descent-head{font-size:12px}}
+  /* phones: the record's own rules for the band and the bar, and this page's */
+  @media (max-width:760px){
+    body{padding-bottom:var(--bot)}
+    .topnav{display:none}
+    .tbtn span{display:none}
+    .tbtn{width:44px;justify-content:center;padding:0}
+    .band-top{min-height:56px;gap:8px}
+    .botnav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:45;height:var(--bot);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--navy);border-top:1px solid var(--navy-rule)}
+    .botnav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:44px;color:var(--navy-ink-2);font-size:.71875rem;font-weight:600;text-decoration:none}
+    .botnav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
+    .botnav a[aria-current="page"]{color:var(--btn);font-weight:700;box-shadow:inset 0 3px 0 var(--btn)}
+    .foot{grid-template-columns:minmax(0,1fr)}
+    .fan-head .lede{font-size:1.125rem}
+    .fan section>p,.fan p.body,.fan ul.shows li{font-size:1.0625rem}
+    .fan .price{grid-template-columns:minmax(0,1fr)}
+  }
 </style>
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#main">Skip to the page</a>
 
-  <header>
-    <div class="brand">
-      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
-        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
-        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
-      </svg>
-      <span class="name">The Simplifier</span>
+<header class="band">
+  <div class="wrap band-top">
+    <a class="brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
+    <nav class="topnav" aria-label="The record">
+      <a href="./#week">This week</a>
+      <a href="./#results">Results</a>
+      <a href="method.html" aria-current="page">The Fan</a>
+      <a href="./#banks">Banks</a>
+      <a href="./#rules">Rules</a>
+      <a href="./#join">Join</a>
+    </nav>
+    <div class="band-tools">
+      <button class="tbtn" id="theme-sw" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="theme-word">Dark</span></button>
+      <a class="getlines" href="./#join">Get the lines</a>
     </div>
-    <!-- 6 Oct 2026. This read: The record · The Method -->
-    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The Fan</div>
-  </header>
-  <!-- THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. -->
-  <nav class="nav" aria-label="Pages">
-    <a href="./">The record</a>
-    <a href="targets.html">The banks, graded</a>
-    <a href="misses.html">The wrong ones</a>
-    <a href="tick.html">The tick book</a>
-    <a href="method.html" class="here">The Fan</a><!-- 6 Oct 2026: "The Method" until today. -->
-    <a href="./#doors">The seat</a>
-  </nav>
-
-  <!-- 6 Oct 2026. This read: <h1>The Method</h1> -->
-  <h1>The Fan</h1>
-  <p class="lede">The indicator the record is read from.</p>
-
-  <!-- 24 Sep 2026. The three cards of the 9 September tool, v2.2, kept:
-       The cloud: Where the market has actually traded, weighted by time, rather than where it is printing.
-       The fan: How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.
-       The three lines: The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart. -->
-  <!-- 6 Oct 2026. The three cards of THE METHOD v6.2, kept:
-       The fan: A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the regime's side, and a dotted line at the close that would flip it. Every timeframe.
-       The cloud: A trend line that gives the current bar no weight, so its level and the close that would turn it are known when the bar opens. Its depth shows the odds of the trend as hindsight will draw it. Every timeframe.
-       The boxes: Under the 4 hour, the Asian session, boxed and coloured once a bar closes through an edge. From the 4 hour up, the week's opening box, last week's box carried, and a cone and a tint for where the week can still close. -->
-  <div class="three">
-    <div><div class="k">The fan</div><p>A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the trend's side, each marked with the odds a random walk touches it before the midline steps again, and the close that would flip it. Every timeframe.</p></div>
-    <div><div class="k">The clocks</div><p>The fans of the 2 hour and the 8 hour, drawn behind the chart's own, each on its own bars: where the 2 hour midline sits, where it next steps, and where each slower fan would flip.</p></div>
-    <div><div class="k">The week</div><p>The range of the week's first 16 hours, and the odds that the week closes beyond each edge. The weekly lines on the record are read off it.</p></div>
   </div>
+</header>
 
-  <!-- THE CHART, 9 Sep 2026. Gold, 8 hour, TVC, January to September 2026,
-       with THE METHOD v2.2 on it and nothing drawn by hand. The read of 6
-       September, 4,357.307, is the labelled line; the July break under 4,098
-       that the record grades wrong is in frame on purpose. The desk asked for
-       a wrong week to be visible and the founder supplied this one. -->
-  <!-- 24 Sep 2026, note 37 on the record. The figure of 9 September, kept as it stood; its file stays in the folder.
-  <figure class="chart">
-    <img src="method_gold_8h_2026-09-09.jpg" width="1600" height="951" alt="Gold, 8 hour chart, January to September 2026, with THE METHOD on it: the cloud, the fan and the three mean reversion lines, the swing slow line labelled 4,357.307" loading="lazy">
-    <figcaption>Gold, 8 hour, TVC, 9 September 2026. The line labelled 4,357.307 is the one the open gold row on the record was read from. The break under 4,098 in July, graded wrong on the record, is in frame.</figcaption>
-  </figure>
-  -->
-  <!-- THE CHARTS, 24 Sep 2026, note 37 on the record. Two screenshots the founder took at 18:12 CEST
-       that day, gold on the 8 hour and on the 1 hour, TVC, THE METHOD on both. The three gold weeks
-       the record grades wrong, named 12 July, 7 August and 6 September, are in frame on both. -->
-  <!-- 6 Oct 2026. THE METHOD's two charts of 24 September, kept as they stood; their files stay in the folder.
-  <figure class="chart">
-    <img src="method_gold_8h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 8 hour chart, TVC, December 2025 to 24 September 2026, with THE METHOD on it: blue and copper stepped bands with fine lines between their edges, a shaded band between two long curves, and dashed outer lines" loading="lazy">
-    <figcaption>Gold, 8 hour, TVC, 24 September 2026, 18:12 CEST. The three gold weeks the record grades wrong, named 12 July, 7 August and 6 September, are in frame.</figcaption>
-  </figure>
-  <figure class="chart">
-    <img src="method_gold_1h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 1 hour chart, TVC, mid March to 24 September 2026, with THE METHOD on it: the same bands, curves and dashed lines on the shorter clock, with small gold diamonds on the bands" loading="lazy">
-    <figcaption>The same tool on the 1 hour, the same moment, from mid March. The same three weeks are in frame.</figcaption>
-  </figure>
-  -->
-  <!-- THE CHART, 6 Oct 2026. A screenshot the founder took at 00:20 CEST that day: gold on the 2 hour, TVC, The Fan on it, the 8 hour fan as the long view behind it and the week's plan in the panel. -->
-  <figure class="chart">
-    <img src="fan_gold_2h_2026-10-06.png" width="3400" height="2020" alt="Gold, 2 hour chart, TVC, February to 6 October 2026, with The Fan on it: a gold stepped midline with shaded bands beside it, the 8 hour fan's lines behind it, and the week's plan in a panel at the top right" loading="lazy">
-    <figcaption>Gold, 2 hour, TVC, 6 October 2026, 00:20 CEST. The 8 hour fan is drawn behind the 2 hour's own. The panel is the week's plan: the range of the week's first 16 hours, 4,124.48 to 4,170.41, and the week's call on the record, gold stays below 4,170.41.</figcaption>
-  </figure>
+<main id="main" tabindex="-1">
+<div class="fan-head">
+  <div class="wrap">
+    <p class="crumb"><a href="./">The record</a> · The Fan</p>
+    <!-- The title, the line under it and the paragraph under that are the first three blocks of the founder's sales
+         copy, word for word as it stood in his doc on 10 October 2026 (revision 14). The line under the title
+         read, from 6 October 2026: "The indicator the record is read from." -->
+    <h1 id="fan-h">The Fan</h1>
+    <p class="tagline">Trade the 10 minute. See the 8 hour.</p>
+    <p class="lede">The Fan puts the higher timeframe structure inside the chart you trade. No flicking between charts, no losing the thread. One look tells you where the bigger clocks stand before you act.</p>
+    <p class="fan-price"><a href="#terms"><b>€4,500</b> a quarter or <b>€16,000</b> a year, by request. <span class="go">The terms</span></a></p>
+  </div>
+</div>
 
-  <!-- 24 Sep 2026. This read: "It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction." v6.2 draws marks, tags, the flip trade and its trigger, and carries alerts. -->
-  <!-- 6 Oct 2026. This read: "It draws structure. It does not tell you what to do. The close that would flip the fan and the close that would turn the cloud are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 4 hour it can also draw one fixed rule, the flip trade, with the close on the live bar that would arm it, and keep that rule's record in the data window, the losses with the rest: a record of the rule on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk." -->
-  <p class="body">It draws structure. It does not tell you what to do. What it draws is what has closed: on the live bar the fan stands as it did at the last close, and the close that would step it and the close that would flip it are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 2 hour it can also keep the record of three fixed rules on the chart's own history, the losses with the rest, beside what a random walk would expect: a record of rules on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk.</p>
-  <!-- 6 Oct 2026. This read: "Every week since June a level has been read off it by a man who then decided, ..." The June lines were read off THE METHOD; The Fan's weekly panel prints the same weekly model. -->
-  <p class="body"><!-- 24 Sep 2026, note 33. Read "Every Sunday since June ... published before the week opened with the close that would prove it wrong". -->Every week since June a level has been read off this desk's charts by a man who then decided, published with the close that would prove it wrong, and graded on Friday. The weekly lines are now read off The Fan. The wrong ones are still on <a href="./">the record</a>. Read those first. The desk that built this tool is wrong in public some weeks, and the tool draws exactly the same lines on those weeks as on the others. The deciding is the part that is not for sale.</p>
-
-  <!-- WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
+<div class="wrap">
+  <article class="fan" aria-labelledby="fan-h">
+      <figure class="chart">
+        <a href="fan_gold_10m_2026-10-08.jpg"><img src="fan_gold_10m_2026-10-08.jpg" width="2000" height="979" alt="The Fan on gold&#x27;s 10 minute chart, 8 October 2026, with the 2 hour and 8 hour structure behind it and the panel reading all three" decoding="async"></a>
+        <figcaption>Gold on the 10 minute chart, 8 October 2026, 20:44 Madrid. The 2 hour and 8 hour structure sits behind the price. The panel reads all three clocks, 10 minute up, 2 hour and 8 hour down, and the week's range with its odds.</figcaption>
+      </figure>
+    <section id="shows" aria-labelledby="shows-h">
+      <h2 id="shows-h">What it shows you</h2>
+      <ul class="shows">
+        <li><b>The structure.</b> One line through the market, moved only when price earns the move. The noise stays noise.</li>
+        <li><b>The bigger clocks, on your clock.</b> The 2 hour and 8 hour structure sits behind your 10 minute chart, and one panel reads every clock's direction at a glance.</li>
+        <li><b>The week.</b> The week's range on the chart, with the odds of the week closing above it or below it, printed as they stand.</li>
+      </ul>
+    </section>
+    <section id="graded" aria-labelledby="graded-h">
+      <h2 id="graded-h">Graded in the open</h2>
+      <p>The weekly levels on <a href="./">the record</a> are read off The Fan. Each one is written down before the close that grades it, graded on Friday's close in public, and kept when it is wrong. The Fan holds itself to the same rule on your chart: its own ledger shows what its odds said and what came.</p>
+    </section>
+    <section id="not" aria-labelledby="not-h">
+      <h2 id="not-h">What it is not</h2>
+      <p>It does not tell you what to do, and it makes no forecast. It draws the structure. The decision stays yours.</p>
+    </section>
+    <!-- WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
        on the record, reading record.json: the record, the week, the trades, the orders, the people and the
        machines behind them and the metal in the vault. It plays by itself once it is in view, never under a
        setting for reduced motion, and stops when it leaves the screen. -->
   <div class="descent-head"><span class="k">Beneath the chart</span><span class="d">One price, from the record down to the metal in the vault</span></div>
   <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
   <script src="descent.js" defer></script>
-
-  <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
+    <section id="terms" aria-labelledby="terms-h">
+      <h2 id="terms-h">The terms</h2>
+      <!-- The terms, carried from the page before word for word but for the access line, with the prices and
+           the links that fill only when FAIL CLOSED below is given an address. The copy of 8 October 2026
+           reads the same. -->
+      <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
 
   <div class="price" id="price">
     <!-- 12 Sep 2026: the founder re-priced the tool. Until then this read
@@ -242,10 +447,185 @@
     </div>
   </div>
 
-  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access is by request. Until the request form is live, reply to any Monday Level email with your TradingView username and the desk answers within a working day. <a href="./#doors">The Monday Level is free.</a></span><!-- 24 Sep 2026, note 33: "Sunday Level" in both places in this line until today. -->
+  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access is by request. Send a direct message to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a> on X with your TradingView username, and the desk answers within a working day.</span><!-- 10 October 2026, note 47: requests go to the desk's messages on X, by the founder's word of
+       8 October 2026. This line read: Access is by request. Until the request form is live, reply to any Monday Level email with your TradingView username and the desk answers within a working day. <a href="./#doors">The Monday Level is free.</a> --><!-- 24 Sep 2026, note 33: "Sunday Level" in both places in this line until today. -->
   <!-- 9 Sep 2026: this read "Access opens shortly. The record is open now."
        A page carrying two prices and no way to ask was a dead end from the
        nav; the Sunday email is a door that already exists. --></p>
+  <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a></p>
+
+  <div class="rule"></div>
+  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time. The tool comes with it.</p>
+    </section>
+  </article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p class="law">Named before · Graded after · Nothing deleted</p>
+      <p class="handle"><a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></p>
+    </div>
+    <div class="foot-meta">
+      <span>The record · <a href="./">this week's lines</a></span>
+      <span>The wrong ones · <a href="misses.html">in full</a></span>
+      <span>The banks' targets · <a href="targets.html">graded on the close</a></span>
+      <span>The tick book · <a href="tick.html">the five-minute clock, graded</a></span>
+      <span>The rules · <a href="./#rules">how every row is graded</a></span>
+    </div>
+  </div>
+</footer>
+
+<nav class="botnav" aria-label="The record">
+  <a href="./#week"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
+  <a href="./#results"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Results</span></a>
+  <a href="method.html" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
+  <a href="./#banks"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/></svg><span>Banks</span></a>
+  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Join</span></a>
+</nav>
+
+<script>
+/* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
+   describes. Same rule as COUNTER and GUEST_FORM on the record. */
+const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
+const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026) */
+const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
+const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
+const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
+const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
+const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
+show("terms-link", METHOD_TERMS);
+if (m || y || r) document.getElementById("closed-line").hidden = true;
+</script>
+<script>
+/* THE GROUND, as on the record (10 October 2026, note 47): white by day, navy when the device is set dark. The
+   switch holds the reader's own choice on this device only, the same choice the record holds, and names the ground
+   it would switch to; a choice that matches the device is forgotten, so the page follows the device again. */
+(function(){
+  var root=document.documentElement, sw=document.getElementById("theme-sw"), word=document.getElementById("theme-word"), meta=document.getElementById("meta-theme");
+  if(!sw) return;
+  var mq=null; try{ mq=window.matchMedia("(prefers-color-scheme: dark)"); }catch(e){}
+  var device=function(){ return !!(mq && mq.matches); };
+  var dark=function(){ var t=root.getAttribute("data-theme"); return t ? t==="dark" : device(); };
+  var keep=function(v){ try{ if(v) localStorage.setItem("theme", v); else localStorage.removeItem("theme"); }catch(e){} };
+  var paint=function(){ var d=dark(); if(word) word.textContent=d ? "Light" : "Dark"; sw.setAttribute("aria-label", d ? "Switch to the light ground" : "Switch to the dark ground"); if(meta) meta.setAttribute("content", d ? "#14244a" : "#0f1e3a"); };
+  sw.addEventListener("click", function(){ var next=dark() ? "light" : "dark"; if((next==="dark")===device()){ root.removeAttribute("data-theme"); keep(null); } else { root.setAttribute("data-theme", next); keep(next); } paint(); });
+  if(mq){ if(mq.addEventListener) mq.addEventListener("change", paint); else if(mq.addListener) mq.addListener(paint); }
+  paint();
+})();
+</script>
+
+<!-- THE PAGE BEFORE 10 OCTOBER 2026, kept that day, note 47 on the record. The body of this page as it
+     stood until then, word for word, so every sentence the new page replaced stays in this file beside what
+     replaced it. Its own comment markers are written <!~~ and ~~> so it stays one comment. Nothing in it renders
+     or runs.
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
+        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
+        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
+      </svg>
+      <span class="name">The Simplifier</span>
+    </div>
+    <!~~ 6 Oct 2026. This read: The record · The Method ~~>
+    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The Fan</div>
+  </header>
+  <!~~ THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. ~~>
+  <nav class="nav" aria-label="Pages">
+    <a href="./">The record</a>
+    <a href="targets.html">The banks, graded</a>
+    <a href="misses.html">The wrong ones</a>
+    <a href="tick.html">The tick book</a>
+    <a href="method.html" class="here">The Fan</a><!~~ 6 Oct 2026: "The Method" until today. ~~>
+    <a href="./#doors">The seat</a>
+  </nav>
+
+  <!~~ 6 Oct 2026. This read: <h1>The Method</h1> ~~>
+  <h1>The Fan</h1>
+  <p class="lede">The indicator the record is read from.</p>
+
+  <!~~ 24 Sep 2026. The three cards of the 9 September tool, v2.2, kept:
+       The cloud: Where the market has actually traded, weighted by time, rather than where it is printing.
+       The fan: How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.
+       The three lines: The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart. ~~>
+  <!~~ 6 Oct 2026. The three cards of THE METHOD v6.2, kept:
+       The fan: A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the regime's side, and a dotted line at the close that would flip it. Every timeframe.
+       The cloud: A trend line that gives the current bar no weight, so its level and the close that would turn it are known when the bar opens. Its depth shows the odds of the trend as hindsight will draw it. Every timeframe.
+       The boxes: Under the 4 hour, the Asian session, boxed and coloured once a bar closes through an edge. From the 4 hour up, the week's opening box, last week's box carried, and a cone and a tint for where the week can still close. ~~>
+  <div class="three">
+    <div><div class="k">The fan</div><p>A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the trend's side, each marked with the odds a random walk touches it before the midline steps again, and the close that would flip it. Every timeframe.</p></div>
+    <div><div class="k">The clocks</div><p>The fans of the 2 hour and the 8 hour, drawn behind the chart's own, each on its own bars: where the 2 hour midline sits, where it next steps, and where each slower fan would flip.</p></div>
+    <div><div class="k">The week</div><p>The range of the week's first 16 hours, and the odds that the week closes beyond each edge. The weekly lines on the record are read off it.</p></div>
+  </div>
+
+  <!~~ THE CHART, 9 Sep 2026. Gold, 8 hour, TVC, January to September 2026,
+       with THE METHOD v2.2 on it and nothing drawn by hand. The read of 6
+       September, 4,357.307, is the labelled line; the July break under 4,098
+       that the record grades wrong is in frame on purpose. The desk asked for
+       a wrong week to be visible and the founder supplied this one. ~~>
+  <!~~ 24 Sep 2026, note 37 on the record. The figure of 9 September, kept as it stood; its file stays in the folder.
+  <figure class="chart">
+    <img src="method_gold_8h_2026-09-09.jpg" width="1600" height="951" alt="Gold, 8 hour chart, January to September 2026, with THE METHOD on it: the cloud, the fan and the three mean reversion lines, the swing slow line labelled 4,357.307" loading="lazy">
+    <figcaption>Gold, 8 hour, TVC, 9 September 2026. The line labelled 4,357.307 is the one the open gold row on the record was read from. The break under 4,098 in July, graded wrong on the record, is in frame.</figcaption>
+  </figure>
+  ~~>
+  <!~~ THE CHARTS, 24 Sep 2026, note 37 on the record. Two screenshots the founder took at 18:12 CEST
+       that day, gold on the 8 hour and on the 1 hour, TVC, THE METHOD on both. The three gold weeks
+       the record grades wrong, named 12 July, 7 August and 6 September, are in frame on both. ~~>
+  <!~~ 6 Oct 2026. THE METHOD's two charts of 24 September, kept as they stood; their files stay in the folder.
+  <figure class="chart">
+    <img src="method_gold_8h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 8 hour chart, TVC, December 2025 to 24 September 2026, with THE METHOD on it: blue and copper stepped bands with fine lines between their edges, a shaded band between two long curves, and dashed outer lines" loading="lazy">
+    <figcaption>Gold, 8 hour, TVC, 24 September 2026, 18:12 CEST. The three gold weeks the record grades wrong, named 12 July, 7 August and 6 September, are in frame.</figcaption>
+  </figure>
+  <figure class="chart">
+    <img src="method_gold_1h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 1 hour chart, TVC, mid March to 24 September 2026, with THE METHOD on it: the same bands, curves and dashed lines on the shorter clock, with small gold diamonds on the bands" loading="lazy">
+    <figcaption>The same tool on the 1 hour, the same moment, from mid March. The same three weeks are in frame.</figcaption>
+  </figure>
+  ~~>
+  <!~~ THE CHART, 6 Oct 2026. A screenshot the founder took at 00:20 CEST that day: gold on the 2 hour, TVC, The Fan on it, the 8 hour fan as the long view behind it and the week's plan in the panel. ~~>
+  <figure class="chart">
+    <img src="fan_gold_2h_2026-10-06.png" width="3400" height="2020" alt="Gold, 2 hour chart, TVC, February to 6 October 2026, with The Fan on it: a gold stepped midline with shaded bands beside it, the 8 hour fan's lines behind it, and the week's plan in a panel at the top right" loading="lazy">
+    <figcaption>Gold, 2 hour, TVC, 6 October 2026, 00:20 CEST. The 8 hour fan is drawn behind the 2 hour's own. The panel is the week's plan: the range of the week's first 16 hours, 4,124.48 to 4,170.41, and the week's call on the record, gold stays below 4,170.41.</figcaption>
+  </figure>
+
+  <!~~ 24 Sep 2026. This read: "It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction." v6.2 draws marks, tags, the flip trade and its trigger, and carries alerts. ~~>
+  <!~~ 6 Oct 2026. This read: "It draws structure. It does not tell you what to do. The close that would flip the fan and the close that would turn the cloud are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 4 hour it can also draw one fixed rule, the flip trade, with the close on the live bar that would arm it, and keep that rule's record in the data window, the losses with the rest: a record of the rule on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk." ~~>
+  <p class="body">It draws structure. It does not tell you what to do. What it draws is what has closed: on the live bar the fan stands as it did at the last close, and the close that would step it and the close that would flip it are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 2 hour it can also keep the record of three fixed rules on the chart's own history, the losses with the rest, beside what a random walk would expect: a record of rules on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk.</p>
+  <!~~ 6 Oct 2026. This read: "Every week since June a level has been read off it by a man who then decided, ..." The June lines were read off THE METHOD; The Fan's weekly panel prints the same weekly model. ~~>
+  <p class="body"><!~~ 24 Sep 2026, note 33. Read "Every Sunday since June ... published before the week opened with the close that would prove it wrong". ~~>Every week since June a level has been read off this desk's charts by a man who then decided, published with the close that would prove it wrong, and graded on Friday. The weekly lines are now read off The Fan. The wrong ones are still on <a href="./">the record</a>. Read those first. The desk that built this tool is wrong in public some weeks, and the tool draws exactly the same lines on those weeks as on the others. The deciding is the part that is not for sale.</p>
+
+  <!~~ WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
+       on the record, reading record.json: the record, the week, the trades, the orders, the people and the
+       machines behind them and the metal in the vault. It plays by itself once it is in view, never under a
+       setting for reduced motion, and stops when it leaves the screen. ~~>
+  <div class="descent-head"><span class="k">Beneath the chart</span><span class="d">One price, from the record down to the metal in the vault</span></div>
+  <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
+  <script src="descent.js" defer></script>
+
+  <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
+
+  <div class="price" id="price">
+    <!~~ 12 Sep 2026: the founder re-priced the tool. Until then this read
+         €3,750 a quarter and €12,000 a year (ruled 7 September, evening). ~~>
+    <div>
+      <div class="n">€4,500</div>
+      <div class="t">a quarter · paid in advance · thirteen closes</div>
+      <a class="btn" id="pay-quarter" href="#" hidden>Take it by the quarter</a>
+    </div>
+    <div>
+      <div class="n">€16,000</div>
+      <div class="t">a year · paid once</div>
+      <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
+    </div>
+  </div>
+
+  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access is by request. Until the request form is live, reply to any Monday Level email with your TradingView username and the desk answers within a working day. <a href="./#doors">The Monday Level is free.</a></span><!~~ 24 Sep 2026, note 33: "Sunday Level" in both places in this line until today. ~~>
+  <!~~ 9 Sep 2026: this read "Access opens shortly. The record is open now."
+       A page carrying two prices and no way to ask was a dead end from the
+       nav; the Sunday email is a door that already exists. ~~></p>
   <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a></p>
 
   <div class="rule"></div>
@@ -279,5 +659,6 @@ var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.o
 n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
 </script>
+-->
 </body>
 </html>

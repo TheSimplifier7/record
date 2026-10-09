@@ -1,0 +1,23 @@
+# THE DAY'S LINES  ·  days.txt  ·  beside the record
+#
+# The running score, by the founder's ruling of 8 October 2026 (note 47).
+# From the week named Monday 19 October 2026, one line after each close,
+# Tuesday to Thursday, read off the founder's 8h chart on the bar that
+# closes at 23:00 Madrid time, for every line named that week: the metal,
+# its close, then the odds the chart prints of a weekly close above and
+# below the week's range, in 100, as printed. Then the word chart and the
+# snapshot of the chart as read: a file beside the record, or the link
+# TradingView gives the snapshot. One snapshot for the line, or one for
+# each metal in the order the line reads them.
+#
+#   YYYY-MM-DD gold CLOSE above N below N silver CLOSE above N below N platinum CLOSE above N below N chart SNAPSHOT
+#
+# A day with no reading is a line of its own:
+#
+#   YYYY-MM-DD no reading
+#
+# A line is added at the foot and is never edited or removed. A line the page
+# cannot read as typed stays, and the day is typed again on the next line. A
+# figure later found wrong against its snapshot is corrected by a note on the
+# record, never here. verify_record.js reads every line before an upload.
+# Lines that start with # are not read.

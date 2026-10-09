@@ -46,6 +46,12 @@ After any edit to index.html:
 
     node make_record_json.js && node make_bank_pages.js && node make_tally_card.js && node make_misses.js && node make_link_cards.js && node verify_record.js
 
+THE DAY'S LINE, from Tuesday 20 October 2026 (note 47). After each close from Tuesday to Thursday, read the same 8h chart on the bar that closes at 23:00 Madrid time and add one line at the foot of days.txt, in the GitHub editor, then commit it. The line is the date, then each metal named that week with its close and the two odds The Fan prints on the week's row, CLOSES ABOVE and BELOW, as printed, then the word chart and the snapshot: the link TradingView gives a snapshot, or an image uploaded beside the record, one for the line or one for each metal in the order the line reads them. For example, with your own figures in place of the capitals:
+
+    YYYY-MM-DD gold CLOSE above N below N silver CLOSE above N below N platinum CLOSE above N below N chart https://www.tradingview.com/x/XXXXXXXX/
+
+A day with no reading is the date and the words no reading. A line is never edited or removed. If the page says a line could not be read as typed, type the day again on the next line and commit it; both stay. A figure found wrong against its snapshot stays as typed, and the desk writes a note. verify_record.js check 22 reads every line, and the page shows each one the moment it is committed.
+
 <!-- 24 Sep 2026, note 37. This read:
     node make_record_json.js && node make_tally_card.js && node make_misses.js && node verify_record.js
 make_bank_pages.js joined the routine with note 35, and make_link_cards.js with note 37. -->
