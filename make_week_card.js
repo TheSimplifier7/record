@@ -20,6 +20,13 @@
    (the second make_record_json picks up nothing new; it is there so the
    routine can be run in one line in any order without a stale record.json).
 
+   10 Oct 2026, note 48, the founder's ruling of 10 October: the card is drawn
+   in the record's navy and its Barlow type, held in gold and wrong in red as
+   on the page, and the live og:image line carries ?v= and the first ten
+   characters of the card's SHA-256, as the link and bank cards' lines do, so
+   a redrawn card is a new address. verify_record.js check 6 reads the file
+   name before the ?v=.
+
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting,
    or sign-off line. The footer is the address and nothing else. */
 const fs = require("fs");
@@ -41,8 +48,13 @@ const friday = (() => { const d = new Date(named + "T12:00:00Z"); let add = (5 -
 const cEntry = mode === "graded" ? (closes.find(c => c.date === friday) || closes[closes.length - 1]) : closes[closes.length - 1];
 const side = r => /\babove\b/i.test(r.kill || "") ? "over" : "under";
 
-const C = { bg:"#141210", panel:"#1D1A16", rule:"#4A4238", ink:"#EFE8DC", ink3:"#CFC6B8", ink5:"#B8AE9E", ink6:"#8E8474",
-            gold:"#CBA43C", pass:"#5FA57A", miss:"#D2764A", open:"#6BA3C7", notest:"#9C9282" };
+/* 10 Oct 2026, note 48: the navy palette. It read:
+   const C = { bg:"#141210", panel:"#1D1A16", rule:"#4A4238", ink:"#EFE8DC", ink3:"#CFC6B8", ink5:"#B8AE9E", ink6:"#8E8474",
+               gold:"#CBA43C", pass:"#5FA57A", miss:"#D2764A", open:"#6BA3C7", notest:"#9C9282" }; */
+const C = { bg:"#0F1E3A", panel:"rgba(255,255,255,.05)", rule:"rgba(243,239,230,.16)", ink:"#F3EFE6", ink3:"rgba(243,239,230,.80)", ink5:"rgba(243,239,230,.58)", ink6:"rgba(243,239,230,.46)",
+            gold:"#E0A93B", pass:"#E0A93B", miss:"#E2574C", open:"#8DB3EA", notest:"#9AA4B5" };
+const GROUND = "radial-gradient(120% 140% at 88% 8%,#1b3263 0%,#13264c 38%,#0f1e3a 70%,#0b1730 100%)";
+const MARK = `<svg viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#E0A93B" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path><circle cx="33.5" cy="29" r="2.9" fill="#E0A93B"></circle></svg>`;
 const GC = { pass: C.pass, miss: C.miss, partial: C.miss, pending: C.open, notest: C.notest };
 const GW = { pass: "Held", miss: "Wrong", partial: "Wrong", pending: "Open", notest: "Never reached" };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -79,35 +91,42 @@ const LOCAL = "/home/claude/fonts";
    at render time as the bank and link cards take them, so week_card.html stays as written. */
 const FD = process.env.CARD_FONTS || process.env.BANK_FONTS || "";
 const envFace = (fam, file, w) => { const f = path.join(FD, file); return FD && fs.existsSync(f) ? `@font-face{font-family:'${fam}';font-weight:${w};src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2')}` : ""; };
-const envFaces = [envFace("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), envFace("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600), envFace("Newsreader", "newsreader-latin-400-normal.woff2", 400)].join("");
+const envFaces = [envFace("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), envFace("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600), envFace("Newsreader", "newsreader-latin-400-normal.woff2", 400),
+  /* 10 Oct 2026, note 48: the card's faces. */
+  envFace("Barlow", "barlow-latin-500-normal.woff2", 500), envFace("Barlow", "barlow-latin-600-normal.woff2", 600),
+  envFace("Barlow Condensed", "barlow-condensed-latin-700-normal.woff2", 700), envFace("Barlow Condensed", "barlow-condensed-latin-800-normal.woff2", 800)].join("");
 const localFaces = fs.existsSync(LOCAL) ? `
 @font-face{font-family:'IBM Plex Mono';font-weight:500;src:url(file://${LOCAL}/package/fonts/complete/woff2/IBMPlexMono-Medium.woff2)}
 @font-face{font-family:'IBM Plex Mono';font-weight:600;src:url(file://${LOCAL}/package/fonts/complete/woff2/IBMPlexMono-SemiBold.woff2)}
 @font-face{font-family:'Newsreader';font-weight:400;src:url(file://${LOCAL}/nr/package/files/newsreader-latin-400-normal.woff2)}` : "";
 
+/* 10 Oct 2026, note 48: the card's ground, faces and type. The dark card of 22 September read: background #141210
+   under a gold glow, IBM Plex Mono throughout, the level at 68px in Plex 600, panels #1D1A16, a 1.5px ink rule under the mast. */
 const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>The record, this week</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
 <style>${localFaces}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{background:${C.bg};background-image:radial-gradient(900px 380px at 78% -12%,rgba(203,164,60,.10),transparent 70%);color:${C.ink3};font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;padding:44px 60px 36px;display:flex;flex-direction:column}
-.mast{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1.5px solid ${C.ink}}
-.mast b{font-size:15px;font-weight:600;letter-spacing:.3em;color:${C.ink}}
-.mast span{font-size:12.5px;font-weight:500;letter-spacing:.18em;color:${C.ink5};text-transform:uppercase}
-.k{font-size:13.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:${C.gold};margin:30px 0 18px}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1}
-.c{background:${C.panel};border-radius:12px;border-top:4px solid;padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
-.m{font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.ink}}
-.lv{font-size:68px;font-weight:600;letter-spacing:-.03em;line-height:1.05;margin:10px 0 12px}
-.l2{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.l3{font-size:16px;color:${C.ink3};margin-top:16px}
-.l4{font-size:17px;font-weight:600;margin-top:6px}
-.count{display:flex;gap:30px;align-items:baseline;margin-top:22px;padding-top:16px;border-top:1px solid ${C.rule};font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:${C.ink5}}
-.count b{font-size:26px;letter-spacing:0;margin-right:8px}
-.count .url{margin-left:auto;letter-spacing:.08em;text-transform:none;color:${C.ink6};font-size:13px}
+body{position:relative;background:${C.bg};background-image:${GROUND};color:${C.ink3};font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-variant-numeric:tabular-nums;padding:44px 60px 34px;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)}
+.mast{position:relative;display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid ${C.rule}}
+.mast b{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:600;letter-spacing:.32em;color:${C.ink}}
+.mast svg{width:34px;height:26px;display:block;overflow:visible}
+.mast span{font-size:13px;font-weight:600;letter-spacing:.24em;color:${C.ink5};text-transform:uppercase}
+.k{position:relative;font-size:15px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:${C.gold};margin:28px 0 18px}
+.cols{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1}
+.c{background:${C.panel};border-radius:12px;border-top:4px solid;padding:20px 24px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.m{font-size:14px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:${C.ink}}
+.lv{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:74px;font-weight:800;line-height:.95;margin:10px 0 12px;white-space:nowrap}
+.l2{font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.l3{font-size:17px;font-weight:500;color:${C.ink3};margin-top:14px}
+.l4{font-size:19px;font-weight:600;margin-top:6px}
+.count{position:relative;display:flex;gap:30px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid ${C.rule};font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.ink5}}
+.count b{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:34px;font-weight:800;letter-spacing:0;margin-right:8px}
+.count .url{margin-left:auto;letter-spacing:.04em;text-transform:none;color:${C.ink5};font-size:16px;font-weight:500}
 </style></head><body>
-<div class="mast"><b>THE SIMPLIFIER</b><span>Metals · the record</span></div>
+<div class="mast"><b>${MARK}THE SIMPLIFIER</b><span>Metals · the record</span></div>
 <div class="k">${esc(kicker)}</div>
 <div class="cols">${cols}</div>
 <div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held${t.hit ? `, ${t.hit} hit` : ""}</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
@@ -143,4 +162,10 @@ for (const f of ["index.html"]) {
   await p.screenshot({ path: path.join(__dirname, base + ".png") });
   await b.close();
   console.log(`${base}.png written at 1200 x 630`);
+  /* 10 Oct 2026, note 48: the live line names the card with its fingerprint. */
+  const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(__dirname, base + ".png"))).digest("hex").slice(0, 10);
+  const fp = path.join(__dirname, "index.html");
+  const was = fs.readFileSync(fp, "utf8");
+  const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.github.io/record/${base}.png?v=${v}">`);
+  if (next !== was) { fs.writeFileSync(fp, next); console.log(`index.html og:image now ${base}.png?v=${v}`); }
 })();

@@ -140,7 +140,10 @@ check(CLOSES.every((c, i) => /^\d{4}-\d{2}-\d{2}$/.test(c.date) && new Date(c.da
   "every CLOSES entry is a Friday, in date order");
 
 /* 6. og:image */
-const og = (head.match(/<meta property="og:image" content="[^"]*\/([^"\/]+)">/) || [])[1];
+/* 10 Oct 2026, note 48: the week card's address carries ?v= and its fingerprint, as the link and bank cards' do,
+   and this reads the file name before it. It read:
+   const og = (head.match(/<meta property="og:image" content="[^"]*\/([^"\/]+)">/) || [])[1]; */
+const og = (head.match(/<meta property="og:image" content="[^"]*\/([^"\/?]+)(?:\?v=[0-9a-f]{10})?">/) || [])[1];
 const ogPath = og && path.join(HERE, og);
 let ogOk = false, ogDims = "missing";
 if (og && fs.existsSync(ogPath)) {

@@ -1,13 +1,13 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-09T23:28:38.886Z",
+ "generated": "2026-10-10T16:42:29.989Z",
  "cards": [
   {
    "name": "misses",
    "page": "misses.html",
    "file": "link_misses.png",
-   "v": "f4295482c5",
-   "image": "https://thesimplifier7.github.io/record/link_misses.png?v=f4295482c5",
+   "v": "3ca1155c93",
+   "image": "https://thesimplifier7.github.io/record/link_misses.png?v=3ca1155c93",
    "figures": {
     "tally": {
      "resolved": 35,
@@ -37,8 +37,8 @@
    "name": "targets",
    "page": "targets.html",
    "file": "link_targets.png",
-   "v": "12aa934a17",
-   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=12aa934a17",
+   "v": "b4b063f76f",
+   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=b4b063f76f",
    "figures": {
     "open": 7,
     "held": 4,
@@ -58,8 +58,8 @@
    "name": "method",
    "page": "method.html",
    "file": "link_method.png",
-   "v": "02a9780179",
-   "image": "https://thesimplifier7.github.io/record/link_method.png?v=02a9780179",
+   "v": "7eceb74589",
+   "image": "https://thesimplifier7.github.io/record/link_method.png?v=7eceb74589",
    "figures": {
     "chart": "fan_gold_2h_2026-10-06.png"
    }
@@ -68,8 +68,8 @@
    "name": "year",
    "page": "year.html",
    "file": "link_year.png",
-   "v": "8693197694",
-   "image": "https://thesimplifier7.github.io/record/link_year.png?v=8693197694",
+   "v": "611e0cc00d",
+   "image": "https://thesimplifier7.github.io/record/link_year.png?v=611e0cc00d",
    "figures": {
     "tally": {
      "resolved": 35,
@@ -84,8 +84,8 @@
    "name": "guest",
    "page": "guest.html",
    "file": "link_guest.png",
-   "v": "aaecd8a23c",
-   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=aaecd8a23c",
+   "v": "28c2027e4c",
+   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=28c2027e4c",
    "figures": {
     "tally": {
      "resolved": 35,
@@ -100,8 +100,8 @@
    "name": "advisers",
    "page": "advisers.html",
    "file": "link_advisers.png",
-   "v": "f73447b7cb",
-   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=f73447b7cb",
+   "v": "96702c07a5",
+   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=96702c07a5",
    "figures": {
     "tally": {
      "resolved": 35,
@@ -116,8 +116,8 @@
    "name": "tick",
    "page": "tick.html",
    "file": "link_tick.png",
-   "v": "0f8ebcfdf9",
-   "image": "https://thesimplifier7.github.io/record/link_tick.png?v=0f8ebcfdf9",
+   "v": "57373833cc",
+   "image": "https://thesimplifier7.github.io/record/link_tick.png?v=57373833cc",
    "figures": {
     "rows": 0,
     "held": 0,
@@ -130,8 +130,8 @@
    "name": "embed",
    "page": "embed.html",
    "file": "link_embed.png",
-   "v": "66b21ddfc9",
-   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=66b21ddfc9",
+   "v": "c2879affb6",
+   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=c2879affb6",
    "figures": {
     "tally": {
      "resolved": 35,

@@ -33,6 +33,14 @@
    @fontsource woff2 files and they are injected. Without playwright the
    card sources go to the system's temporary folder and no page is changed.
 
+   10 Oct 2026, note 48, the founder's ruling of 10 October: the cards are
+   drawn in the record's navy and its Barlow type, held in gold and wrong in
+   red as on the page, and the four page cards with room for it carry gold's
+   Friday closes since 26 June as a line, from record.json's closes. The foot
+   names the close the card is drawn to and the address; it no longer closes
+   on the old sign-off. The faces: Barlow 400 to 700 and Barlow Condensed 600
+   to 800 join the folder CARD_FONTS (or BANK_FONTS) names.
+
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
    ========================================================================= */
 "use strict";
@@ -93,47 +101,73 @@ function figuresFor(R) {
 }
 
 /* ---------------------------------------------------------------- the frame */
-const MARK = `<svg viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path><circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle></svg>`;
-const C = { bg: "#141210", panel: "#1D1A16", rule: "#4A4238", soft: "#3A342C", ink: "#EFE8DC", ink3: "#CFC6B8", ink5: "#B8AE9E", ink6: "#A69C8C",
-  gold: "#CBA43C", pass: "#5FA57A", miss: "#D2764A", open: "#6BA3C7", notest: "#9C9282" };
+/* 10 Oct 2026, note 48: the mark in the page's gold, and the navy palette. It read:
+   const MARK = ... stroke="#CBA43C" ... fill="#CBA43C" ...
+   const C = { bg: "#141210", panel: "#1D1A16", rule: "#4A4238", soft: "#3A342C", ink: "#EFE8DC", ink3: "#CFC6B8", ink5: "#B8AE9E", ink6: "#A69C8C",
+     gold: "#CBA43C", pass: "#5FA57A", miss: "#D2764A", open: "#6BA3C7", notest: "#9C9282" }; */
+const MARK = `<svg viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#E0A93B" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path><circle cx="33.5" cy="29" r="2.9" fill="#E0A93B"></circle></svg>`;
+const C = { bg: "#0F1E3A", panel: "rgba(255,255,255,.045)", rule: "rgba(243,239,230,.16)", soft: "rgba(243,239,230,.12)", ink: "#F3EFE6", ink3: "rgba(243,239,230,.80)", ink5: "rgba(243,239,230,.58)", ink6: "rgba(243,239,230,.46)",
+  gold: "#E0A93B", pass: "#E0A93B", miss: "#E2574C", open: "#8DB3EA", notest: "#9AA4B5" };
+/* The ground the X header was drawn on, 10 October 2026. */
+const GROUND = "radial-gradient(120% 140% at 88% 8%,#1b3263 0%,#13264c 38%,#0f1e3a 70%,#0b1730 100%)";
+const GRAIN = "repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)";
+/* Set in main from record.json: the close the cards are drawn to, and gold's Friday closes as a line. */
+let ASOF = "", SPARK = "";
+function sparkOf(R) {
+  const G = (R.closes || []).filter(c => c.Gold).map(c => ({ d: c.date, v: num(c.Gold) }));
+  if (G.length < 4) return "";
+  const W = 340, H = 92, lo = Math.min(...G.map(g => g.v)), hi = Math.max(...G.map(g => g.v));
+  const X = i => 4 + (W - 8) * i / (G.length - 1), Y = v => 6 + (H - 12) * (1 - (v - lo) / ((hi - lo) || 1));
+  const d = G.map((g, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(g.v).toFixed(1)).join(" ");
+  return `<div class="spark"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" fill="none" aria-hidden="true"><path d="${d}" stroke="${C.gold}" stroke-opacity=".8" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path>${G.map((g, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(g.v).toFixed(1)}" r="2.8" fill="${C.gold}" fill-opacity=".65"></circle>`).join("")}</svg><div class="cap">Gold · Friday closes since ${esc(long(G[0].d).replace(/ \d{4}$/, ""))}</div></div>`;
+}
+/* 10 Oct 2026, note 48: the frame's ground, faces and foot. The dark frame of 24 September read:
+   background:#141210 under a gold glow, IBM Plex Mono for the frame and figures, Newsreader for the
+   heading and the line under it, a 1.5px ink rule under the mast, and the foot
+   <span class="law">Named before · Graded after · Nothing deleted</span>. */
 function frame(label, inner, url, extraCss) {
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{background:${C.bg};background-image:radial-gradient(900px 380px at 84% -16%,rgba(203,164,60,.11),transparent 70%);color:${C.ink3};
-  font-family:'IBM Plex Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;padding:44px 60px 38px;display:flex;flex-direction:column}
-.mast{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1.5px solid ${C.ink};flex:none}
-.mast .b{display:flex;align-items:center;gap:15px;font-size:15px;font-weight:600;letter-spacing:.3em;color:${C.ink};text-transform:uppercase}
-.mast svg{width:36px;height:27px;display:block;overflow:visible}
-.mast .l{font-size:13px;font-weight:500;letter-spacing:.18em;color:${C.ink5};text-transform:uppercase}
-.k{font-size:15px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.gold};margin-top:34px}
-h1{font-family:'Newsreader',Georgia,serif;font-weight:400;font-size:62px;line-height:1.05;letter-spacing:-.015em;color:${C.ink};margin-top:12px}
-.sub{font-family:'Newsreader',Georgia,serif;font-size:27px;line-height:1.38;color:${C.ink3};margin-top:14px;max-width:46ch}
-.sub em{font-style:italic;color:${C.ink}}
-.body{margin-top:auto}
-.figs{display:flex;gap:46px;align-items:flex-end}
-.fig b{display:block;font-size:60px;font-weight:600;letter-spacing:-.03em;line-height:1}
-.fig span{display:block;font-size:13.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:${C.ink5};margin-top:10px}
-.line{font-size:19px;line-height:1.5;color:${C.ink3};margin-top:6px}
+body{position:relative;background:${C.bg};background-image:${GROUND};color:${C.ink3};
+  font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-variant-numeric:tabular-nums;padding:46px 64px 38px;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;background-image:${GRAIN}}
+.mast{position:relative;display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid ${C.rule};flex:none}
+.mast .b{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:600;letter-spacing:.32em;color:${C.ink};text-transform:uppercase}
+.mast svg{width:34px;height:26px;display:block;overflow:visible}
+.mast .l{font-size:13.5px;font-weight:600;letter-spacing:.24em;color:${C.ink5};text-transform:uppercase}
+.k{position:relative;font-size:15px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:${C.gold};margin-top:34px}
+h1{position:relative;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:56px;line-height:1.06;letter-spacing:-.012em;color:${C.ink};margin-top:14px}
+.sub{position:relative;font-size:25px;font-weight:500;line-height:1.4;color:${C.ink3};margin-top:14px;max-width:48ch}
+.sub em{font-style:normal;color:${C.ink}}
+.body{position:relative;margin-top:auto}
+.figs{display:flex;gap:44px;align-items:flex-end}
+.fig b{display:block;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:76px;font-weight:800;letter-spacing:0;line-height:.9}
+.fig span{display:block;font-size:13.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:${C.ink5};margin-top:12px}
+.line{font-size:20px;line-height:1.5;color:${C.ink3};margin-top:6px}
 .line b{color:${C.ink};font-weight:600}
-.foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:24px;padding-top:15px;border-top:1px solid ${C.rule};font-size:15px;color:${C.ink5};flex:none}
-.foot .law{font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.ink};font-size:13px}
+.spark{text-align:right;flex:none}
+.spark svg{display:block;margin-left:auto}
+.spark .cap{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(224,169,59,.72);margin-top:8px}
+.foot{position:relative;display:flex;justify-content:space-between;align-items:baseline;margin-top:24px;padding-top:15px;border-top:1px solid ${C.rule};font-size:16px;font-weight:500;color:${C.ink5};flex:none}
+.foot .law{font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:${C.ink5};font-size:13px}
 .p{color:${C.pass}} .m{color:${C.miss}} .o{color:${C.open}} .n{color:${C.notest}} .g{color:${C.gold}} .i{color:${C.ink}}
 ${extraCss || ""}
 </style></head><body>
 <div class="mast"><span class="b">${MARK}The Simplifier</span><span class="l">${esc(label)}</span></div>
 ${inner}
-<div class="foot"><span class="law">Named before · Graded after · Nothing deleted</span><span>${esc(url.replace(/^https:\/\//, ""))}</span></div>
+<div class="foot"><span class="law">${ASOF ? `The record · as of the ${esc(long(ASOF))} close` : "The record"}</span><span>${esc(url.replace(/^https:\/\//, ""))}</span></div>
 </body></html>`;
 }
-const tallyFigs = t => `<div class="figs">
+/* 10 Oct 2026, note 48: the count sits beside gold's Friday closes where the card has room. */
+const tallyFigs = t => `<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px"><div class="figs">
   <div class="fig"><b class="i">${t.resolved}</b><span>resolved</span></div>
   <div class="fig"><b class="p">${t.held}</b><span>held</span></div>
   <div class="fig"><b class="m">${t.wrong}</b><span>wrong, kept</span></div>
   ${t.open ? `<div class="fig"><b class="o">${t.open}</b><span>open</span></div>` : ""}
-</div>`;
+</div>${SPARK}</div>`;
 
 /* ---------------------------------------------------------------- the cards
    Each card's words are the page's own: its title, its lede, its first line. */
@@ -217,6 +251,9 @@ const OG = /^<meta property="og:image" content="https:\/\/thesimplifier7\.github
 async function main() {
   const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
   const F = figuresFor(R);
+  /* 10 Oct 2026, note 48. */
+  ASOF = (R.closes || []).map(c => c.date).sort().pop() || "";
+  SPARK = sparkOf(R);
   const chart = path.join(HERE, METHOD_CHART);
   /* 6 Oct 2026: the type follows the file, since The Fan's chart is a PNG. */
   const img = fs.existsSync(chart) ? "data:image/" + (/\.png$/i.test(METHOD_CHART) ? "png" : "jpeg") + ";base64," + fs.readFileSync(chart).toString("base64") : "";
@@ -234,7 +271,11 @@ async function main() {
     ? `@font-face{font-family:'${fam}';src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2');font-weight:${w};font-style:${st || "normal"}}` : ""; };
   const faces = [face("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), face("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600),
     face("Newsreader", "newsreader-latin-300-normal.woff2", 300), face("Newsreader", "newsreader-latin-400-normal.woff2", 400),
-    face("Newsreader", "newsreader-latin-500-normal.woff2", 500), face("Newsreader", "newsreader-latin-400-italic.woff2", 400, "italic")].join("");
+    face("Newsreader", "newsreader-latin-500-normal.woff2", 500), face("Newsreader", "newsreader-latin-400-italic.woff2", 400, "italic"),
+    /* 10 Oct 2026, note 48: the frame's faces. */
+    face("Barlow", "barlow-latin-400-normal.woff2", 400), face("Barlow", "barlow-latin-500-normal.woff2", 500), face("Barlow", "barlow-latin-600-normal.woff2", 600),
+    face("Barlow", "barlow-latin-700-normal.woff2", 700), face("Barlow Condensed", "barlow-condensed-latin-600-normal.woff2", 600),
+    face("Barlow Condensed", "barlow-condensed-latin-700-normal.woff2", 700), face("Barlow Condensed", "barlow-condensed-latin-800-normal.woff2", 800)].join("");
   const opts = fs.existsSync("/opt/pw-browsers/chromium") ? { executablePath: "/opt/pw-browsers/chromium" } : {};
   const b = await chromium.launch(opts);
   const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });

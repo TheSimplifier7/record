@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-10",
-  "generated": "2026-10-09T23:28:18.559Z",
+  "generated": "2026-10-10T16:42:08.164Z",
   "tally": {
     "resolved": 35,
     "held": 26,
@@ -61,7 +61,7 @@
       "graded_on_close": "2026-10-09",
       "graded_at": "2026-10-09T23:00:00+02:00",
       "written": "2026-10-10",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
       "id": "lrow-1",
@@ -96,7 +96,7 @@
       "graded_on_close": "2026-10-09",
       "graded_at": "2026-10-09T23:00:00+02:00",
       "written": "2026-10-10",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
       "id": "lrow-2",
@@ -131,7 +131,7 @@
       "graded_on_close": "2026-10-09",
       "graded_at": "2026-10-09T23:00:00+02:00",
       "written": "2026-10-10",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
       "id": "lrow-3",
@@ -1282,6 +1282,12 @@
       "kind": "standard",
       "title": "The record as a table, 10 October 2026. This week first, a table and a page for each metal, the row opened in the ledger's ink, and the week's odds read after each close.",
       "body": "Eight rulings the founder made on 7 and 8 October 2026 are on this page from today, and none of them touches a row, a grade, a figure or a date, or what would prove a call wrong. Every count is still recomputed from the rows on every load, the typed count is still checked against it before every upload, and no percentage is printed in headline type. Every function that carried a rule on the page before is carried across word for word, and the standing calls are drawn by the same functions, gates and checks as before. THIS WEEK FIRST. The page opens on the week's lines: each metal's line and its side, the last close on file and how far it sits from the line, the odds it was named at, and the clock to the Friday close that grades it. A bar of five places sits at the foot of a phone, this week, the results, The Fan, the banks and the doors, and along the top of a wide screen with the rules beside them; on a phone the rules are one tap from this week and from the results. The Monday Level is one tap away on every screen. THE TABLE. Under this week sits a table with a row for each metal: the rows graded, held and wrong, and its form, the last five grades, newest first. Each metal has a page of its own with every line it has carried. Never reached and open rows count for neither side, as before, and the table says so under it. The banks' targets are counted the same way, a row for each bank, and are never in this desk's count. THE ROW, OPENED. A row opens in one sheet in the ledger's ink: the call, what would prove it wrong and the grade, word for word, in serif type, the line and the close drawn to scale, and the public commit that wrote it. THE RUNNING SCORE. From the week named Monday 19 October 2026, after each close from Tuesday to Thursday, the founder reads the same chart again, on the 8h bar that closes at 23:00 Madrid time, and adds one dated line to days.txt beside this page with a snapshot of the chart: each metal's close, and the odds the chart prints of a weekly close above and below the week's range, in 100, as printed. The range runs from a line's next level to the line, so one of the two is the odds of a close through the line, and the page shows the chance the line holds as 100 less that figure, beside the odds it was named at, which never change. A line in days.txt is never edited or removed: a line the page cannot read as typed stays, and the day is typed again on the next line. A day with no reading says so, and a figure later found wrong against its snapshot is corrected by a note here, never in place. Friday's close grades the line with the week's readings beside it, so the odds are graded too. The readings are on this page only. verify_record.js checks every line before an upload: its date, its figures and its snapshot, that no line was written before the close it reads or after the close that graded its week, and that the file has only grown. THE WORDS, THE GROUND AND THE RETURNING READER. The frame speaks in plain words and the rows keep their own, verbatim. The ground follows the reader's device, white by day and navy when the device is set dark, with a switch that holds the reader's own choice on that device only. A returning reader is told in one line what was graded and named since his last visit, kept in his own browser and nowhere else. Every grade is drawn as a mark beside its word, never instead of it: a gold dot for held, a gold dot in a ring for a hit, a red square crossed for wrong, a grey ring for never reached and a blue ring round a point for open. THE FAN. The page of the indicator the weekly lines are read from takes the same look and says in one page what the tool shows: the higher timeframes' structure inside the chart a trader acts on, and the week's range with its odds, under the founder's gold 10 minute chart of 8 October 2026. Its prices are unchanged. Access is asked for by a direct message to the desk on X, and the line that said to reply to the Monday Level email is kept in a comment beside it. The page as it stood is kept in a comment at the foot of that file. RETIRED WITH IT. The action bar, the ladder of every level by price and the loupe across it, which one chart for each metal replaces, and the folds a phone opened on under note 37, which the views and the one sheet replace, except the ledger's four latest weeks, which stay. The address of every row (note 35) and the counter's three events (note 37) are unchanged. The page as it stood before today is whole in the edit history at the commit before this one, and its markup is kept in a comment at the foot of this file."
+    },
+    {
+      "n": "48",
+      "kind": "standard",
+      "title": "The cards in navy, 10 October 2026. The image a link to this record shows is drawn in the record's own navy and type.",
+      "body": "By the founder's ruling of 10 October 2026, every card the record draws for a link is drawn in the navy and the Barlow type this page has worn since note 47: the week card under a link to the record, the card of each page, the card of each bank target, and the tally cards a grade post carries. Held is gold and wrong is red, as on the page. Nothing a card counts has changed. Every figure on a card is still drawn from record.json and never typed, and verify_record.js still checks each page's card against it before every upload. Four page cards and the tally cards now carry gold's Friday closes since 26 June as a line, read off the founder's chart and held in record.json beside every other close. The week card's address now carries its fingerprint, as the other cards' addresses do, so a messenger fetches a card that was drawn again instead of showing the old one. The cards no longer close on the old sign-off; the address closes them. No row, grade, figure, date or line was touched."
     }
   ],
   "targets": [

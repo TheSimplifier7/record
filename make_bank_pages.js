@@ -304,25 +304,30 @@ function cardHtml(r) {
     line = gap > 0 ? `close ${fmtDate(lc.date).replace(/ \d{4}$/, "")} · ${lc.value} · ${fmtNum(Math.abs(gap), 2)} ${r.side === "above" ? "under" : "over"} the line` : `close ${fmtDate(lc.date).replace(/ \d{4}$/, "")} · ${lc.value}`;
   } else line = CARD_LINE[r.slug] || "";
   const when = r.grade === "pending" ? (fri ? `grades on the ${fmtDate(fri).replace(/ \d{4}$/, "")} close` : "grades on the last close of 2026") : `graded ${gw.toLowerCase()} on the close`;
-  const col = { pending: "#6BA3C7", pass: "#5FA57A", miss: "#D2764A", notest: "#9C9282" }[gc];
+  /* 10 Oct 2026, note 48: the navy card, held in gold and wrong in red as on the record. It read:
+     const col = { pending: "#6BA3C7", pass: "#5FA57A", miss: "#D2764A", notest: "#9C9282" }[gc];
+     and the card stood on #141210 in IBM Plex Mono and Newsreader, the level in gold at 118px. */
+  const col = { pending: "#8DB3EA", pass: "#E0A93B", miss: "#E2574C", notest: "#9AA4B5" }[gc];
   /* 24 Sep 2026, note 37: the card names its faces' source, as the render note below says it does. */
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet"><style>
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet"><style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{width:1200px;height:630px;background:radial-gradient(ellipse at 20% 0%,#201c17 0%,#141210 60%);color:#EFE8DC;font-family:'IBM Plex Mono',ui-monospace,monospace;padding:52px 60px;position:relative;overflow:hidden}
-  .top{display:flex;justify-content:space-between;border-bottom:1.5px solid #EFE8DC;padding-bottom:18px;font-size:17px;font-weight:600;letter-spacing:.3em;text-transform:uppercase}
-  .top span:last-child{color:#B8AE9E;font-weight:500;letter-spacing:.16em;font-size:15px}
-  .kick{margin-top:30px;font-size:17px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#CBA43C}
-  .house{font-family:'Newsreader',Georgia,serif;font-size:64px;font-weight:500;margin-top:14px;letter-spacing:-.01em}
-  .lvl{display:flex;align-items:baseline;gap:22px;margin-top:4px}
-  .lvl b{font-size:118px;font-weight:600;color:#CBA43C;letter-spacing:-.03em;line-height:1}
-  .lvl span{font-size:24px;color:#CFC6B8}
-  .g{position:absolute;right:60px;top:170px;display:flex;align-items:center;gap:12px;font-size:22px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${col};border:2px solid ${col};padding:10px 18px}
+  body{width:1200px;height:630px;background:#0F1E3A;background-image:radial-gradient(120% 140% at 88% 8%,#1b3263 0%,#13264c 38%,#0f1e3a 70%,#0b1730 100%);color:#F3EFE6;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;font-variant-numeric:tabular-nums;padding:46px 64px;position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)}
+  .top{position:relative;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(243,239,230,.16);padding-bottom:16px;font-size:16px;font-weight:600;letter-spacing:.32em;text-transform:uppercase}
+  .top .b{display:flex;align-items:center;gap:14px} .top svg{width:34px;height:26px;display:block;overflow:visible}
+  .top span:last-child{color:rgba(243,239,230,.58);font-weight:600;letter-spacing:.24em;font-size:13.5px}
+  .kick{position:relative;margin-top:34px;font-size:15px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#E0A93B}
+  .house{position:relative;font-size:62px;font-weight:600;margin-top:12px;letter-spacing:-.01em;line-height:1.05}
+  .lvl{position:relative;display:flex;align-items:baseline;gap:22px;margin-top:2px}
+  .lvl b{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:156px;font-weight:800;color:#F3EFE6;line-height:1}
+  .lvl span{font-size:26px;font-weight:500;color:rgba(243,239,230,.80)}
+  .g{position:absolute;right:64px;top:172px;display:flex;align-items:center;gap:12px;font-size:22px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:${col};border:2px solid ${col};padding:10px 18px;border-radius:2px}
   .g i{width:12px;height:12px;border-radius:50%;background:${col}}
-  .line{margin-top:14px;font-size:22px;color:#CFC6B8} .line em{font-style:normal;color:${col}}
-  .foot{position:absolute;left:60px;right:60px;bottom:44px;border-top:1px solid #4A4238;padding-top:16px;display:flex;justify-content:space-between;font-size:17px;color:#B8AE9E}
-  .foot b{font-weight:600} .p{color:#5FA57A} .m{color:#D2764A} .o{color:#6BA3C7}
+  .line{position:relative;margin-top:14px;font-size:24px;font-weight:500;color:rgba(243,239,230,.80)} .line em{font-style:normal;font-weight:600;color:${col}}
+  .foot{position:absolute;left:64px;right:64px;bottom:42px;border-top:1px solid rgba(243,239,230,.16);padding-top:16px;display:flex;justify-content:space-between;font-size:17px;font-weight:500;color:rgba(243,239,230,.58)}
+  .foot b{font-weight:600} .p{color:#E0A93B} .m{color:#E2574C} .o{color:#8DB3EA}
   </style></head><body>
-  <div class="top"><span>The Simplifier</span><span>The bank board · graded on the close</span></div>
+  <div class="top"><span class="b"><svg viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#E0A93B" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path><circle cx="33.5" cy="29" r="2.9" fill="#E0A93B"></circle></svg>The Simplifier</span><span>The bank board · graded on the close</span></div>
   <div class="kick">Published ${fmtDate(r.published)}</div>
   <div class="house">${esc(r.house)}</div>
   <div class="lvl"><b>${fmtNum(r.level, dec)}</b><span>${esc(r.metal.toLowerCase())} · ${esc(r.windowText)}</span></div>
@@ -358,7 +363,10 @@ console.log(`${n} bank pages written beside the record. Backstories written for 
   const FD = process.env.BANK_FONTS || "";
   const face = (fam, file, w) => { const f = path.join(FD, file); return FD && fs.existsSync(f) ? `@font-face{font-family:'${fam}';src:url(data:font/woff2;base64,${fs.readFileSync(f).toString("base64")}) format('woff2');font-weight:${w}}` : ""; };
   const faces = [face("IBM Plex Mono", "ibm-plex-mono-latin-500-normal.woff2", 500), face("IBM Plex Mono", "ibm-plex-mono-latin-600-normal.woff2", 600),
-    face("Newsreader", "newsreader-latin-400-normal.woff2", 400), face("Newsreader", "newsreader-latin-500-normal.woff2", 500)].join("");
+    face("Newsreader", "newsreader-latin-400-normal.woff2", 400), face("Newsreader", "newsreader-latin-500-normal.woff2", 500),
+    /* 10 Oct 2026, note 48: the card's faces. */
+    face("Barlow", "barlow-latin-500-normal.woff2", 500), face("Barlow", "barlow-latin-600-normal.woff2", 600),
+    face("Barlow Condensed", "barlow-condensed-latin-700-normal.woff2", 700), face("Barlow Condensed", "barlow-condensed-latin-800-normal.woff2", 800)].join("");
   const opts = fs.existsSync("/opt/pw-browsers/chromium") ? { executablePath: "/opt/pw-browsers/chromium" } : {};
   const b = await chromium.launch(opts);
   const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });

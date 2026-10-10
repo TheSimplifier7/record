@@ -57,6 +57,9 @@ A day with no reading is the date and the words no reading. A line is never edit
 make_bank_pages.js joined the routine with note 35, and make_link_cards.js with note 37. -->
 make_bank_pages.js writes a page and a link card for every bank row. make_link_cards.js draws the link card of every other page beside the record, from record.json, and verify_record.js refuses an upload whose cards are older than the record. Every page but the embed and the seal counts its visits with GoatCounter: no cookies, no personal data.
 
+<!-- 10 Oct 2026, note 48. -->
+The cards, from 10 October 2026 (note 48), are drawn in the record's navy and in Barlow and Barlow Condensed, the faces the page has worn since note 47: the week card, the link cards, the bank cards and the tally cards. On a machine that cannot reach Google Fonts, set CARD_FONTS (or BANK_FONTS) to a folder of the @fontsource woff2 files, Barlow latin 400, 500, 600 and 700 and Barlow Condensed latin 600, 700 and 800 beside the IBM Plex Mono and Newsreader files, or a card renders in a stand-in face. The week card's og:image line carries ?v= and its fingerprint, as the other cards' lines do.
+
 descent.js, from 25 September 2026 (note 41), is the animation under The Chart and on the Method page: the record's closes and levels, read from index.html on the record and from record.json on the Method page, then an illustration of the last week, its trades and its orders, the people and the machines behind them, the matching engine and the metal in the vault, the source of every fact in its words named on screen and in the file's header. It changes no row and needs no step in the routine. verify_record.js check 19 refuses an upload whose pages stop loading it, whose captions break the brand law, or whose animation asks the network for anything but record.json.
 
 <!-- 24 Sep 2026, the book v2. The paragraph and the command under this comment are how the tick book ran until 24 September and are kept. -->
