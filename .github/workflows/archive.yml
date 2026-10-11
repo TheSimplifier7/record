@@ -6,8 +6,10 @@
 # then saves the record and record.json under the upload's own commit, the
 # commit's page on GitHub, the record, record.json and days.txt at their plain
 # addresses, and the pages the upload changed. A copy counts only when the
-# archive's own date on it falls after this upload, and the run reads that
-# date back before it says so.
+# archive's own date on it shows the page as it stands: after this commit for
+# the addresses that carry it, after the page went live for a page this upload
+# changed, after its own last change for a page this upload left alone. The
+# run reads that date back before it says so.
 #
 # It writes nothing to the record: no commit, no file, no row. Its permission
 # is read only. A run that cannot keep the record shows red on the Actions tab;
@@ -23,8 +25,10 @@
 # keys it had counted the copies the archive handed back without reading their
 # dates. Now each copy's date is read, a save the run loses touch with is asked
 # after again and then looked up in the archive's index, and the reason for
-# anything not kept prints in full. The version of 10 October is in this
-# file's history.
+# anything not kept prints in full. Run 3 then showed that the archive hands
+# back its first copy of a page that has not changed, so a page an upload
+# leaves alone counts a copy made after its own last change. The earlier
+# versions are in this file's history.
 #
 # Every copy of the record: https://web.archive.org/web/*/thesimplifier7.github.io/record*
 
@@ -179,9 +183,8 @@ jobs:
           say("")
 
           # 3. What to keep. The first two must land, or the run fails. A copy counts
-          #    only when the archive's own date on it falls after this upload: after the
-          #    commit for the addresses that carry it, after the page went live for the
-          #    plain ones.
+          #    only when the archive's own date on it shows the page as it stands; since()
+          #    gives the moment it must postdate.
           tagged = [SITE + "?commit=" + SHA, SITE + "record.json?commit=" + SHA, REPO_URL + "/commit/" + SHA]
           plain = [SITE, SITE + "record.json"] + ([SITE + "days.txt"] if os.path.isfile("days.txt") else [])
           ahead = ["misses.html", "targets.html", "method.html", "tick.html", "year.html"]
@@ -191,6 +194,23 @@ jobs:
           names = {tagged[0]: "The record, this upload", tagged[1]: "record.json, this upload",
                    tagged[2]: "The commit on GitHub", SITE: "The record", SITE + "record.json": "record.json",
                    SITE + "days.txt": "days.txt"}
+          files = {SITE: "index.html", SITE + "record.json": "record.json", SITE + "days.txt": "days.txt"}
+          files.update({SITE + urllib.parse.quote(p): p for p in pages})
+
+          def since(url):
+              # The addresses under this commit: the commit. A page this upload changed:
+              # the moment it went live. A page it left alone: the commit that last
+              # changed it, because the archive hands back its first copy of a page that
+              # has not changed (run 3, 11 October 2026).
+              if url in tagged:
+                  return COMMITTED, "this upload"
+              f = files.get(url, "")
+              if f in served:
+                  return LIVE, "this upload"
+              line = git("log", "-1", "--format=%ct %h", SHA, "--", f).split()
+              if len(line) == 2:
+                  return int(line[0]), "the page's last change in " + line[1]
+              return COMMITTED, "this upload"
           deadline = time.time() + SAVE_BUDGET
 
           class Stale(Exception):
@@ -230,7 +250,7 @@ jobs:
                   time.sleep(LOOKUP_GAP)
               return None
 
-          def save_keyed(url, not_before):
+          def save_keyed(url, not_before, label):
               auth = {"Accept": "application/json", "Authorization": "LOW " + ACCESS + ":" + SECRET}
               within = str(max(1, int(time.time() - not_before)))      # a copy made since this upload is enough
               body = urllib.parse.urlencode({"url": url, "skip_first_archive": "1", "if_not_archived_within": within}).encode()
@@ -257,7 +277,7 @@ jobs:
                       if not re.fullmatch(r"\d{14}", ts):
                           raise RuntimeError("the archive said it was done but gave no date")
                       if ts < stamp(not_before):
-                          raise Stale("the archive handed back its copy of " + when(ts) + ", made before this upload, and would not take a new one yet")
+                          raise Stale("the archive handed back its copy of " + when(ts) + ", made before " + label + ", and would not take a new one yet")
                       return "https://web.archive.org/web/" + ts + "/" + (st.get("original_url") or url)
                   if st.get("status") == "error":
                       raise RuntimeError(st.get("message") or st.get("status_ext") or "the archive refused it")
@@ -277,7 +297,7 @@ jobs:
                   return found
               return lookup(url, not_before)
 
-          def keep(url, not_before):
+          def keep(url, not_before, label):
               last = "no copy came back"
               for wait in (0, 30, 90):
                   if left() < 60 + wait:
@@ -285,7 +305,7 @@ jobs:
                       break
                   time.sleep(wait)
                   try:
-                      got = save_keyed(url, not_before) if KEYED else save_open(url, not_before)
+                      got = save_keyed(url, not_before, label) if KEYED else save_open(url, not_before)
                       if got:
                           return got, None
                   except Stale as e:
@@ -300,7 +320,7 @@ jobs:
 
           rows, failed, moved = [], [], False
           for i, url in enumerate(tagged + plain):
-              got, why = keep(url, COMMITTED if url in tagged else LIVE)
+              got, why = keep(url, *since(url))
               rows.append((names.get(url, url.replace(SITE, "")), url, got, why))
               if not got and url in tagged[:2]:
                   failed.append(url)
@@ -319,7 +339,7 @@ jobs:
           earlier = sum(1 for r in rows if r[2] and ts_of(r[2]) and ts_of(r[2]) < stamp(START))
           if earlier:
               say(("One copy" if earlier == 1 else str(earlier) + " copies") + " dated before this run began "
-                  + ("was" if earlier == 1 else "were") + " already in the archive, made after this upload, so the archive handed "
+                  + ("was" if earlier == 1 else "were") + " already in the archive and still show" + ("s" if earlier == 1 else "") + " the page as it stands, so the archive handed "
                   + ("it" if earlier == 1 else "them") + " back rather than take the same page twice.")
           say("Saved " + ("with the desk's archive.org keys." if KEYED else "anonymously."))
 
