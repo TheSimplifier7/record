@@ -5,8 +5,9 @@
 # without asking the desk. Each run waits until GitHub Pages serves the upload,
 # then saves the record and record.json under the upload's own commit, the
 # commit's page on GitHub, the record, record.json and days.txt at their plain
-# addresses, and the pages the upload changed. It reads each copy back from
-# the archive before it says so.
+# addresses, and the pages the upload changed. A copy counts only when the
+# archive's own date on it falls after this upload, and the run reads that
+# date back before it says so.
 #
 # It writes nothing to the record: no commit, no file, no row. Its permission
 # is read only. A run that cannot keep the record shows red on the Actions tab;
@@ -16,6 +17,14 @@
 # https://archive.org/account/s3.php, as the repository secrets IA_ACCESS_KEY
 # and IA_SECRET_KEY. Without them the run saves anonymously, which the
 # Internet Archive throttles more often.
+#
+# Mended 11 October 2026, after the first run with the desk's keys showed red:
+# the run could not reach the archive for two of its six saves, and with the
+# keys it had counted the copies the archive handed back without reading their
+# dates. Now each copy's date is read, a save the run loses touch with is asked
+# after again and then looked up in the archive's index, and the reason for
+# anything not kept prints in full. The version of 10 October is in this
+# file's history.
 #
 # Every copy of the record: https://web.archive.org/web/*/thesimplifier7.github.io/record*
 
@@ -36,9 +45,9 @@ concurrency:
 jobs:
   save:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -52,7 +61,7 @@ jobs:
           IA_SECRET: ${{ secrets.IA_SECRET_KEY }}
         run: |
           python3 -u - <<'PY'
-          import hashlib, json, os, subprocess, sys, time
+          import hashlib, json, os, re, subprocess, sys, time
           import urllib.error, urllib.parse, urllib.request
 
           SITE = os.environ["SITE"]
@@ -62,17 +71,31 @@ jobs:
           ACCESS = os.environ.get("IA_ACCESS", "")
           SECRET = os.environ.get("IA_SECRET", "")
           KEYED = bool(ACCESS and SECRET)
-          UA = "TheSimplifier-record-archive/1.0 (+" + REPO_URL + ")"
-          START = time.strftime("%Y%m%d%H%M%S", time.gmtime())
+          UA = "TheSimplifier-record-archive/1.1 (+" + REPO_URL + ")"
+          START = time.time()
           OUT = open(os.environ.get("GITHUB_STEP_SUMMARY") or os.devnull, "a")
           WAIT_TRIES, WAIT_GAP = 60, 20          # up to twenty minutes for GitHub Pages
           LOOKUP_TRIES, LOOKUP_GAP = 10, 30      # up to five minutes for the archive's index
+          POLL_TRIES, POLL_GAP = 30, 10          # up to five minutes for one keyed save
           SAVE_BUDGET = 22 * 60                  # the saves stop trying after this
+
+          def stamp(t):
+              return time.strftime("%Y%m%d%H%M%S", time.gmtime(t))
+
+          def when(ts):
+              try:
+                  return time.strftime("%d %B %Y, %H:%M:%S UTC", time.strptime(ts, "%Y%m%d%H%M%S"))
+              except ValueError:
+                  return ts or "no date"
 
           def say(s=""):
               print(s, flush=True)
               OUT.write(s + "\n")
               OUT.flush()
+
+          def cell(s):
+              # GitHub drops anything shaped like <a tag> from a summary, and | starts a new column
+              return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("|", "/").replace("\n", " ")
 
           def git(*args):
               return subprocess.run(["git", *args], capture_output=True, text=True).stdout
@@ -84,9 +107,20 @@ jobs:
               with urllib.request.urlopen(req, timeout=timeout) as r:
                   return r.status, {k.lower(): v for k, v in r.headers.items()}, r.read(), r.geturl()
 
+          def reason(e):
+              if isinstance(e, urllib.error.HTTPError):
+                  return "the archive answered HTTP " + str(e.code)
+              if isinstance(e, urllib.error.URLError):
+                  return "could not reach the archive (" + str(e.reason)[:120] + ")"
+              if isinstance(e, OSError):
+                  return "the archive stopped answering (" + type(e).__name__ + (": " + str(e)[:100] if str(e) else "") + ")"
+              return str(e)[:160] or type(e).__name__
+
           def head_now():
               line = git("ls-remote", "origin", "refs/heads/main").split()
               return line[0] if line else ""
+
+          COMMITTED = int(git("show", "-s", "--format=%ct", SHA).strip() or 0) or START
 
           # 1. The files this upload changed, and the ones GitHub Pages serves.
           #    Pages leaves out any name that starts with a dot or an underscore
@@ -116,8 +150,9 @@ jobs:
               except Exception:
                   return False
 
-          say("## The archive · " + SHA[:7] + " · " + time.strftime("%d %B %Y, %H:%M UTC", time.gmtime()))
+          say("## The archive · " + SHA[:7] + " · " + time.strftime("%d %B %Y, %H:%M UTC", time.gmtime(START)))
           say("")
+          LIVE = COMMITTED                       # no served page changed: the record stands as it was at the commit
           if probe:
               for _ in range(WAIT_TRIES):
                   if is_live():
@@ -132,6 +167,7 @@ jobs:
                   say("Nothing kept: GitHub Pages was still not serving " + probe + " as committed in " + SHA[:7]
                       + " after twenty minutes. Press Re-run jobs once the page is live.")
                   sys.exit(1)
+              LIVE = time.time()
               say("Live: GitHub Pages serves " + probe + " exactly as committed in " + SHA[:7] + ".")
               time.sleep(45)                      # the rest of the network catches up
           else:
@@ -142,7 +178,10 @@ jobs:
               say("This upload changed no page the site serves (" + (", ".join(changed) or "nothing") + "), so the record is kept as it stands.")
           say("")
 
-          # 3. What to keep. The first two must land, or the run fails.
+          # 3. What to keep. The first two must land, or the run fails. A copy counts
+          #    only when the archive's own date on it falls after this upload: after the
+          #    commit for the addresses that carry it, after the page went live for the
+          #    plain ones.
           tagged = [SITE + "?commit=" + SHA, SITE + "record.json?commit=" + SHA, REPO_URL + "/commit/" + SHA]
           plain = [SITE, SITE + "record.json"] + ([SITE + "days.txt"] if os.path.isfile("days.txt") else [])
           ahead = ["misses.html", "targets.html", "method.html", "tick.html", "year.html"]
@@ -154,8 +193,15 @@ jobs:
                    SITE + "days.txt": "days.txt"}
           deadline = time.time() + SAVE_BUDGET
 
+          class Stale(Exception):
+              pass
+
           def left():
               return deadline - time.time()
+
+          def ts_of(link):
+              m = re.search(r"/web/(\d{14})", link or "")
+              return m.group(1) if m else ""
 
           def from_headers(headers, final_url):
               for key in ("content-location", "location"):
@@ -164,39 +210,62 @@ jobs:
                       return v if v.startswith("http") else "https://web.archive.org" + v
               return final_url if final_url and "/web/" in final_url else None
 
-          def lookup(url):
-              q = "https://archive.org/wayback/available?" + urllib.parse.urlencode({"url": url, "timestamp": START})
-              for _ in range(LOOKUP_TRIES):
-                  try:
-                      _, _, raw, _ = fetch(q, timeout=60)
-                      snap = (json.loads(raw or b"{}").get("archived_snapshots") or {}).get("closest") or {}
-                      if snap.get("available") and str(snap.get("timestamp", "")) >= START:
-                          return snap.get("url")
-                  except Exception:
-                      pass
-                  if left() < LOOKUP_GAP:
+          def lookup(url, not_before, tries=LOOKUP_TRIES):
+              # The index can miss a copy it holds on one asking and find it on the
+              # next, so ask more than once, and in each form of the address.
+              bare = url.split("://", 1)[-1]
+              forms = list(dict.fromkeys([url, bare, url.rstrip("/"), bare.rstrip("/")]))
+              for n in range(tries):
+                  for form in forms:
+                      q = "https://archive.org/wayback/available?" + urllib.parse.urlencode({"url": form, "timestamp": stamp(time.time())})
+                      try:
+                          _, _, raw, _ = fetch(q, timeout=30)
+                          snap = (json.loads(raw or b"{}").get("archived_snapshots") or {}).get("closest") or {}
+                          if snap.get("available") and str(snap.get("timestamp", "")) >= stamp(not_before):
+                              return str(snap.get("url", "")).replace("http://", "https://", 1)
+                      except Exception:
+                          pass
+                  if n == tries - 1 or left() < LOOKUP_GAP:
                       break
                   time.sleep(LOOKUP_GAP)
               return None
 
-          def save_keyed(url):
+          def save_keyed(url, not_before):
               auth = {"Accept": "application/json", "Authorization": "LOW " + ACCESS + ":" + SECRET}
-              body = urllib.parse.urlencode({"url": url, "skip_first_archive": "1"}).encode()
-              _, _, raw, _ = fetch("https://web.archive.org/save", data=body, headers=auth, timeout=120)
+              within = str(max(1, int(time.time() - not_before)))      # a copy made since this upload is enough
+              body = urllib.parse.urlencode({"url": url, "skip_first_archive": "1", "if_not_archived_within": within}).encode()
+              _, _, raw, _ = fetch("https://web.archive.org/save", data=body, headers=auth, timeout=90)
               job = json.loads(raw or b"{}")
               if not job.get("job_id"):
                   raise RuntimeError(job.get("message") or "the archive gave no job")
-              for _ in range(50):
-                  time.sleep(6)
-                  _, _, raw, _ = fetch("https://web.archive.org/save/status/" + job["job_id"], headers=auth, timeout=60)
-                  st = json.loads(raw or b"{}")
+              lost, misses = None, 0
+              for _ in range(POLL_TRIES):
+                  if left() < POLL_GAP:
+                      break
+                  time.sleep(POLL_GAP)
+                  try:
+                      _, _, raw, _ = fetch("https://web.archive.org/save/status/" + job["job_id"], headers=auth, timeout=30)
+                      st = json.loads(raw or b"{}")
+                  except Exception as e:
+                      lost, misses = e, misses + 1    # the save runs on at the archive: ask again
+                      if misses >= 6:
+                          break                       # a minute without an answer: start the save again
+                      continue
+                  lost, misses = None, 0
                   if st.get("status") == "success":
-                      return "https://web.archive.org/web/" + st["timestamp"] + "/" + (st.get("original_url") or url)
+                      ts = str(st.get("timestamp") or "")
+                      if not re.fullmatch(r"\d{14}", ts):
+                          raise RuntimeError("the archive said it was done but gave no date")
+                      if ts < stamp(not_before):
+                          raise Stale("the archive handed back its copy of " + when(ts) + ", made before this upload, and would not take a new one yet")
+                      return "https://web.archive.org/web/" + ts + "/" + (st.get("original_url") or url)
                   if st.get("status") == "error":
                       raise RuntimeError(st.get("message") or st.get("status_ext") or "the archive refused it")
+              if lost:
+                  raise lost
               raise RuntimeError("still waiting after five minutes")
 
-          def save_open(url):
+          def save_open(url, not_before):
               try:
                   _, headers, _, final = fetch("https://web.archive.org/save/" + url, timeout=150)
                   found = from_headers(headers, final)
@@ -204,39 +273,54 @@ jobs:
                   if e.code == 429 or e.code >= 500:
                       raise
                   found = None
-              return found or lookup(url)
+              if found and ts_of(found) >= stamp(not_before):
+                  return found
+              return lookup(url, not_before)
 
-          def keep(url):
+          def keep(url, not_before):
               last = "no copy came back"
               for wait in (0, 30, 90):
                   if left() < 60 + wait:
-                      return None, "not tried again: the archive was slow and this run's time ran out"
+                      last = (last if wait else "not tried") + "; this run's time ran out"
+                      break
                   time.sleep(wait)
                   try:
-                      got = save_keyed(url) if KEYED else save_open(url)
+                      got = save_keyed(url, not_before) if KEYED else save_open(url, not_before)
                       if got:
                           return got, None
+                  except Stale as e:
+                      return None, str(e)
                   except Exception as e:
-                      last = type(e).__name__ + ": " + str(e)[:160]
+                      last = reason(e)
+                      if KEYED:
+                          got = lookup(url, not_before, 1)    # it may hold a copy this run lost touch with
+                          if got:
+                              return got, None
               return None, last
 
           rows, failed, moved = [], [], False
           for i, url in enumerate(tagged + plain):
-              got, why = keep(url)
+              got, why = keep(url, COMMITTED if url in tagged else LIVE)
               rows.append((names.get(url, url.replace(SITE, "")), url, got, why))
               if not got and url in tagged[:2]:
                   failed.append(url)
               if i == 1 and probe and not is_live():
                   moved = True                    # a later upload went live while this one was being kept
-              time.sleep(8)                       # one at a time, as the archive asks
+              if left() > 0:
+                  time.sleep(8)                   # one at a time, as the archive asks
 
           say("| What | Kept by the Internet Archive |")
           say("|---|---|")
           for name, url, got, why in rows:
-              say("| " + name + " | " + (got if got else "not kept: " + (why or "no copy came back")) + " |")
+              say("| " + name + " | " + (got if got else "not kept: " + cell(why or "no copy came back")) + " |")
           say("")
           if moved:
               say("A later upload went live while this run was saving, so copies after the first two may show that upload. Its own run keeps it.")
+          earlier = sum(1 for r in rows if r[2] and ts_of(r[2]) and ts_of(r[2]) < stamp(START))
+          if earlier:
+              say(("One copy" if earlier == 1 else str(earlier) + " copies") + " dated before this run began "
+                  + ("was" if earlier == 1 else "were") + " already in the archive, made after this upload, so the archive handed "
+                  + ("it" if earlier == 1 else "them") + " back rather than take the same page twice.")
           say("Saved " + ("with the desk's archive.org keys." if KEYED else "anonymously."))
 
           # 4. The whole edit history, to Software Heritage. Best effort: the
