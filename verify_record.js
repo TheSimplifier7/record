@@ -52,9 +52,10 @@
         the seal page hashes the same string verify_ticks.js recomputes, so a
         seal made on the phone can always be opened; grade_week.js is here.
     19. What a price is made of, 25 September 2026, note 41: descent.js is
-        beside the record, the record and the Method page mount it and load
-        it, its captions carry no em dash, exclamation mark, hashtag or
-        emoji, and it asks the network for record.json and nothing else.
+        beside the record, the record mounts it and loads it, its captions
+        carry no em dash, exclamation mark, hashtag or emoji, and it asks the
+        network for record.json and nothing else. Until 11 October 2026 the
+        Method page mounted it too; from then it carries movement.js (25).
     20. Not in use. A page and a card for every graded row were built for
         the upload of 10 October 2026 and taken out of it before it shipped,
         by the founder's call that night: the cards were carved stone, and
@@ -75,7 +76,13 @@
     24. The archive, 10 October 2026, note 49: in a clone, the workflow that
         keeps every upload with the Internet Archive is in .github/workflows,
         read only, saving the record and record.json under each commit, and
-        writing nothing back; the offer and the integrity line name it. */
+        writing nothing back; the offer and the integrity line name it.
+    25. The inner workings, 11 October 2026, note 50: movement.js is beside
+        the record, its words between CAPTIONS-START and CAPTIONS-END; the
+        Method page mounts it and loads it and no longer mounts descent.js;
+        its words carry no em dash, exclamation mark, hashtag or emoji and
+        none of the house words; it asks the network for record.json and
+        nothing else. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -336,8 +343,11 @@ let dsc = ""; try { dsc = rd("descent.js"); } catch (e) {}
 const dA = dsc.indexOf("/* CAPTIONS-START */"), dB = dsc.indexOf("/* CAPTIONS-END */");
 const dCaps = dA >= 0 && dB > dA ? dsc.slice(dA, dB) : "";
 check(dsc.length > 0 && dCaps.length > 200, "descent.js is beside the record, its captions between CAPTIONS-START and CAPTIONS-END (note 41)");
+/* Until 11 October 2026, note 50, the Method page mounted it too, and this read:
+   const dMounted = ["index.html", "method.html"].filter(...);
+   check(dMounted.length === 2, "the record and the Method page mount the animation and load descent.js" ...); */
 const dMounted = ["index.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"/.test(s); });
-check(dMounted.length === 2, "the record and the Method page mount the animation and load descent.js" + (dMounted.length === 2 ? "" : " (only: " + (dMounted.join(", ") || "neither") + ")"));
+check(dMounted.length === 1 && dMounted[0] === "index.html", "the record mounts the animation and loads descent.js" + (dMounted.length === 1 && dMounted[0] === "index.html" ? "" : " (mounted on: " + (dMounted.join(", ") || "neither") + ")"));
 const dBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u]].filter(([, re]) => re.test(dCaps)).map(b => b[0]);
 check(dCaps.length > 0 && dBad.length === 0, "the animation's captions carry no em dash, exclamation mark, hashtag or emoji" + (dBad.length ? " (found: " + dBad.join(", ") + ")" : ""));
 const dCode = dsc.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -490,6 +500,19 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
   }
   check(probs.length === 0, "every upload is kept by the Internet Archive (" + how + ")" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
+
+/* 25. THE INNER WORKINGS, added 11 October 2026, note 50. */
+let mvt = ""; try { mvt = rd("movement.js"); } catch (e) {}
+const mA = mvt.indexOf("/* CAPTIONS-START */"), mB = mvt.indexOf("/* CAPTIONS-END */");
+const mCaps = mA >= 0 && mB > mA ? mvt.slice(mA, mB) : "";
+check(mvt.length > 0 && mCaps.length > 200, "movement.js is beside the record, its words between CAPTIONS-START and CAPTIONS-END (note 50)");
+let methodLive = ""; try { methodLive = rd("method.html").replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {}
+const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) && /<script[^>]+src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
+check(mOn && !mOld, "the Method page mounts the inner workings and loads movement.js, and no longer mounts descent.js" + (mOn ? "" : " (not mounted)") + (mOld ? " (descent.js still on it)" : ""));
+const mBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(copper|slate|box|room|kill|naming)\b/i]].filter(([, re]) => re.test(mCaps)).map(b => b[0]);
+check(mCaps.length > 0 && mBad.length === 0, "the inner workings' words carry no em dash, exclamation mark, hashtag, emoji or house word" + (mBad.length ? " (found: " + mBad.join(", ") + ")" : ""));
+const mCode = mvt.replace(/\/\*[\s\S]*?\*\//g, "");
+check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeacon|WebSocket|import\(/.test(mCode) && (mCode.match(/fetch\(/g) || []).length === 1 && /fetch\(src \|\| "record\.json"/.test(mCode), "movement.js asks the network for record.json and nothing else");
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);
