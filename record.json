@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-10",
-  "generated": "2026-10-10T16:42:08.164Z",
+  "generated": "2026-10-10T19:01:20.128Z",
   "tally": {
     "resolved": 35,
     "held": 26,
@@ -25,7 +25,25 @@
     "hit": 2,
     "wrong": 2,
     "expected": 4,
-    "note": "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34."
+    "note": "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34.",
+    "read_line": {
+      "set": "2026-10-10",
+      "note": "49",
+      "rows_from": "2026-09-28",
+      "rows_to": "2027-09-20",
+      "graded_on": "2027-09-24",
+      "weeks": 52,
+      "z": 1.645,
+      "row_share": 0.5,
+      "weeks_graded": 2,
+      "graded": 6,
+      "held": 4,
+      "expected": 4,
+      "line": 6.66,
+      "mirror": 1.34,
+      "result": null,
+      "note_text": "The read is graded once, on the close of Friday 24 September 2027, on every row named with its odds from the week of 28 September 2026 to the week of 20 September 2027. Ahead of the odds: held at or past the line, the holds expected plus 1.645 times the square root of twice the sum of odds times one less odds. Behind the odds: held at or short of the mirror, the holds expected less the same distance. Level with the odds: between. Until then the line moves only as rows are graded. See note 49."
+    }
   },
   "rows": [
     {
@@ -1288,6 +1306,12 @@
       "kind": "standard",
       "title": "The cards in navy, 10 October 2026. The image a link to this record shows is drawn in the record's own navy and type.",
       "body": "By the founder's ruling of 10 October 2026, every card the record draws for a link is drawn in the navy and the Barlow type this page has worn since note 47: the week card under a link to the record, the card of each page, the card of each bank target, and the tally cards a grade post carries. Held is gold and wrong is red, as on the page. Nothing a card counts has changed. Every figure on a card is still drawn from record.json and never typed, and verify_record.js still checks each page's card against it before every upload. Four page cards and the tally cards now carry gold's Friday closes since 26 June as a line, read off the founder's chart and held in record.json beside every other close. The week card's address now carries its fingerprint, as the other cards' addresses do, so a messenger fetches a card that was drawn again instead of showing the old one. The cards no longer close on the old sign-off; the address closes them. No row, grade, figure, date or line was touched."
+    },
+    {
+      "n": "49",
+      "kind": "standard",
+      "title": "Two rulings, 10 October 2026. Every upload kept by a library outside this desk, and a line drawn on the read itself.",
+      "body": "Two things were ruled by the founder on 10 October 2026. Neither touches a row, a grade, a figure or a date. THE ARCHIVE. Until today every proof that this page never changed a call sat where this desk could reach it: the edit history of this file, which the account that owns it could rewrite, and the posts on X, which their author can delete. From today a workflow beside this file, .github/workflows/archive.yml, keeps a copy of every upload with the Internet Archive, a library this desk does not control. It waits until GitHub Pages serves the upload, checked byte for byte, then saves this page and record.json under the upload's own commit, the commit's page on GitHub, this page, record.json and days.txt at their plain addresses and the pages the upload changed, and reads each copy back before it says so. It asks Software Heritage, which keeps public code with its whole history, to take this file's history as well. The workflow writes nothing here, no commit, no file and no row, and its permission is read only. Every copy is listed at web.archive.org/web/*/thesimplifier7.github.io/record*. The terms of the standing offer of note 40 are unchanged; its paragraph now names both places to check, and the words it replaced are kept beside it. THE READ'S LINE. Note 34 put the odds board under the tally: the rows that held, beside the holds the odds expected, the sum of the odds each graded row was named at. Held past that sum is the read ahead of the odds as a count, but a count on a small base says little, and nothing on this page said where luck ends. This note says it before the figure exists, the way every row here is named before the close that grades it. The rows: every row named with its odds from the week of 28 September 2026 to the week of 20 September 2027, fifty-two weeks. The close: Friday 24 September 2027, the one close the read is graded on. The line: the holds expected, plus 1.645 times the square root of twice the sum, over every row graded, of its odds times one less its odds, each odds taken as a share of one. A read that adds nothing reaches that line about five times in a hundred. The sum is doubled, so each row counts as half a row, because gold, silver and platinum tend to move together inside a week. The grade has three words. AHEAD OF THE ODDS: held at or past the line. BEHIND THE ODDS: held at or short of the holds expected less the same distance. LEVEL WITH THE ODDS: between the two. With three rows a week, a year can tell a read that adds about 13 holds in a hundred to the odds from luck four times in five. A read that adds less will probably grade level, and level says the year could not tell the read from the odds, not that the read adds nothing. The six rows graded before this note, 4 held against 4.0 expected, are inside the line as they stand, so no row was chosen after its close. Until that close the board is a running count and grades nothing; it shows the line where the rows graded so far put it. The grade is written here on the night of that close, whichever word it is, in the same type, and the board keeps counting after it. Nothing in this note moves: not its rows, its close, its arithmetic or its words. The board said a base under fifty graded rows was small; fifty rows can only tell a read that adds about sixteen holds in a hundred from luck, so it says so far instead, and its old words are kept in the page's source."
     }
   ],
   "targets": [

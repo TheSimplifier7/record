@@ -39,6 +39,9 @@ try { GUEST = literal("GUEST"); } catch (e) {}
 /* 22 Sep 2026, note 32: the Friday closes the page grades on, the ladder's and This Week's anchor. */
 let CLOSES = [];
 try { CLOSES = literal("CLOSES"); } catch (e) {}
+/* 10 Oct 2026, note 49: the read's own line, fixed in index.html as READ_LINE. */
+let READ_LINE = null;
+try { READ_LINE = literal("READ_LINE"); } catch (e) {}
 /* THE TICK BOOK, 9 Sep 2026: rows live in ticks.js beside the page. */
 let TICKS = [];
 try {
@@ -111,7 +114,22 @@ const out = {
     return { from: scalar("GRAMMAR_FROM"), named: G.length, slate: G.filter(c => c.side === "slate").length, copper: G.filter(c => c.side === "copper").length,
       graded: GG.length, held: GG.filter(c => c.grade === "pass").length, hit: GG.filter(c => c.hit).length, wrong: GG.filter(c => c.grade === "miss").length,
       expected: +GG.reduce((s, c) => s + (+c.odds || 0) / 100, 0).toFixed(2),
-      note: "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34." };
+      note: "Expected is the sum of the odds each graded row was printed with on the day it was named: what the rows would have held if the read added nothing. See note 34.",
+      /* 10 Oct 2026, note 49: the read's own line, the same count the board draws. */
+      read_line: (() => {
+        if (!READ_LINE) return null;
+        const RL = READ_LINE, inWin = c => c.grammar && c.date >= RL.from && c.date <= RL.to;
+        const R = CALLS.filter(c => inWin(c) && (c.grade === "pass" || c.grade === "miss") && +c.odds > 0);
+        const held = R.filter(c => c.grade === "pass").length, exp = R.reduce((t, c) => t + c.odds / 100, 0);
+        const spread = Math.sqrt(R.reduce((t, c) => t + (c.odds / 100) * (1 - c.odds / 100), 0) / RL.rowShare);
+        const line = exp + RL.z * spread, mirror = exp - RL.z * spread;
+        const done = CLOSES.some(x => x.date === RL.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
+        return { set: RL.set, note: RL.note, rows_from: RL.from, rows_to: RL.to, graded_on: RL.close, weeks: RL.weeks,
+          z: RL.z, row_share: RL.rowShare, weeks_graded: new Set(R.map(c => c.date)).size, graded: R.length, held,
+          expected: +exp.toFixed(2), line: +line.toFixed(2), mirror: +mirror.toFixed(2),
+          result: !done ? null : held >= line ? "AHEAD OF THE ODDS" : held <= mirror ? "BEHIND THE ODDS" : "LEVEL WITH THE ODDS",
+          note_text: "The read is graded once, on the close of Friday 24 September 2027, on every row named with its odds from the week of 28 September 2026 to the week of 20 September 2027. Ahead of the odds: held at or past the line, the holds expected plus 1.645 times the square root of twice the sum of odds times one less odds. Behind the odds: held at or short of the mirror, the holds expected less the same distance. Level with the odds: between. Until then the line moves only as rows are graded. See note 49." };
+      })() };
   })(),
   rows,
   standing: STANDING.map(s => ({

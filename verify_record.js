@@ -67,7 +67,15 @@
         that week with its close and the odds above and below, and names a snapshot
         beside the record or a TradingView snapshot link; and, read against
         the edit history, no line was edited or removed, written before the
-        close it reads or after the close that graded its week. */
+        close it reads or after the close that graded its week.
+    23. The read's own line, 10 October 2026, note 49: READ_LINE holds the
+        rows, the close, the arithmetic and the words note 49 set, and none
+        of them has moved; note 49 is on the record; record.json carries the
+        line as this file recomputes it from the rows.
+    24. The archive, 10 October 2026, note 49: in a clone, the workflow that
+        keeps every upload with the Internet Archive is in .github/workflows,
+        read only, saving the record and record.json under each commit, and
+        writing nothing back; the offer and the integrity line name it. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -428,6 +436,59 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
   }
   const nRead = D.filter(x => !x.none && !x.errors.length).length, nNone = D.filter(x => x.none).length;
   check(dprob.length === 0, "every line of days.txt reads and stands (" + nRead + " read, " + nNone + " with no reading, " + hist + ")" + (dprob.length ? "\n          " + dprob.slice(0, 12).join("\n          ") + (dprob.length > 12 ? "\n          and " + (dprob.length - 12) + " more" : "") : ""));
+}
+
+/* 23. THE READ'S OWN LINE, added 10 October 2026, note 49. Nothing in note 49
+   moves: these values are the ruling, typed here as well as in index.html, so
+   a change to either fails this check. */
+{
+  const FIXED = { set: "2026-10-10", note: "49", from: "2026-09-28", to: "2027-09-20", close: "2027-09-24", weeks: 52, z: 1.645, rowShare: 0.5 };
+  let RL = null; try { RL = grab("READ_LINE", "\\{", "\\}"); } catch (e) {}
+  const moved = !RL ? ["READ_LINE is not in index.html"] : Object.keys(FIXED).filter(k => RL[k] !== FIXED[k]).map(k => k + " reads " + JSON.stringify(RL[k]) + ", set as " + JSON.stringify(FIXED[k]))
+    .concat(Object.keys(RL).filter(k => !(k in FIXED)).map(k => k + " was added"));
+  const n49 = NOTES.find(x => x.n === "49"), b49 = n49 ? n49.title + " " + n49.body : "";
+  const words = ["24 September 2027", "1.645", "half a row", "AHEAD OF THE ODDS", "BEHIND THE ODDS", "LEVEL WITH THE ODDS", "28 September 2026", "20 September 2027"].filter(w => !b49.includes(w));
+  const inWin = c => c.grammar && c.date >= FIXED.from && c.date <= FIXED.to;
+  const R = CALLS.filter(c => inWin(c) && (c.grade === "pass" || c.grade === "miss") && +c.odds > 0);
+  const held = R.filter(c => c.grade === "pass").length, exp = R.reduce((t, c) => t + c.odds / 100, 0);
+  const spread = Math.sqrt(R.reduce((t, c) => t + (c.odds / 100) * (1 - c.odds / 100), 0) / FIXED.rowShare);
+  const line = exp + FIXED.z * spread, mirror = exp - FIXED.z * spread;
+  const done = CLOSES.some(x => x.date === FIXED.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
+  const word = !done ? null : held >= line ? "AHEAD OF THE ODDS" : held <= mirror ? "BEHIND THE ODDS" : "LEVEL WITH THE ODDS";
+  const J = rec && rec.grammar && rec.grammar.read_line;
+  const off = !J ? ["record.json carries no read_line"] : [
+    ["graded", J.graded === R.length], ["held", J.held === held], ["expected", Math.abs(J.expected - exp) < 0.005],
+    ["line", Math.abs(J.line - line) < 0.005], ["mirror", Math.abs(J.mirror - mirror) < 0.005],
+    ["weeks_graded", J.weeks_graded === new Set(R.map(c => c.date)).size], ["result", J.result === word],
+    ["graded_on", J.graded_on === FIXED.close], ["rows_from", J.rows_from === FIXED.from], ["rows_to", J.rows_to === FIXED.to]
+  ].filter(x => !x[1]).map(x => "record.json read_line." + x[0] + " disagrees with the rows");
+  const drawn = /const readLineNow = \(\) =>/.test(idx) && /READ_LINE\.close/.test(idx) && /id="odds-board"/.test(idx);
+  const probs = moved.concat(n49 ? [] : ["note 49 is not on the record"], words.map(w => "note 49 does not say " + w), off, drawn ? [] : ["the board does not draw the line"]);
+  check(probs.length === 0, "the read's own line stands as note 49 set it: " + R.length + " rows graded, " + held + " held against " + exp.toFixed(2) + " expected, the line " + line.toFixed(2) + (word ? ", graded " + word : ", graded on " + FIXED.close)
+    + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
+/* 24. THE ARCHIVE, added 10 October 2026, note 49. The workflow lives in the
+   repository, not on the page, so it is read only in a clone. */
+{
+  const probs = [];
+  if (!/Internet Archive/.test(offer)) probs.push("the standing offer does not name the Internet Archive");
+  if (!/<p class="integrity" style="margin-top:10px">[^\n]*web\.archive\.org\/web\/\*\/thesimplifier7\.github\.io\/record\*/.test(idxLive)) probs.push("the integrity line does not link the archive's copies");
+  let how = "not a clone, so the workflow was not read";
+  if (fs.existsSync(path.join(HERE, ".git"))) {
+    const wf = path.join(HERE, ".github", "workflows", "archive.yml");
+    let y = ""; try { y = fs.readFileSync(wf, "utf8"); } catch (e) {}
+    if (!y) probs.push(".github/workflows/archive.yml is not in this clone; create it on GitHub before the next upload (note 49)");
+    else {
+      const body = y.replace(/^\s*#.*$/gm, "");
+      if (!/\non:\s*\n\s+push:\s*\n\s+branches:\s*\[\s*main\s*\]/.test(body)) probs.push("the workflow does not run on every upload to main");
+      if (!/\npermissions:\s*\n\s+contents:\s*read\s*\n/.test(body) || /contents:\s*write|pages:\s*write|id-token:\s*write/.test(body)) probs.push("the workflow is not read only");
+      if (/git\s+(push|commit)|git",\s*"(push|commit)"|"push",|createCommit|update-ref/.test(body)) probs.push("the workflow could write to the repository");
+      ["web.archive.org/save", "?commit=", "record.json?commit=", "/commit/", "archive.org/wayback/available"].forEach(w => { if (!body.includes(w)) probs.push("the workflow does not carry " + w); });
+      how = "the workflow is in the clone, read only";
+    }
+  }
+  check(probs.length === 0, "every upload is kept by the Internet Archive (" + how + ")" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");

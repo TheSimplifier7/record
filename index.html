@@ -380,6 +380,13 @@
   .ob-track .fl.l{transform:none}
   .ob-plain{font-size:.9375rem;line-height:1.55;color:var(--ink-2);max-width:46rem}
   .ob-plain b{color:var(--ink)}
+  /* 10 Oct 2026, note 49: the read's own line, under the board */
+  .ob-line{margin-top:18px;padding-top:14px;border-top:1px dashed var(--rule)}
+  .ob-lhead{margin:0 0 12px;font-size:.75rem;line-height:1.5;color:var(--ink-3)}
+  .ob-lhead b{color:var(--ink);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .ob-lhead a{color:var(--open)}
+  .ob-res{margin:14px 0 0;font-size:.9375rem;line-height:1.55;color:var(--ink-2);max-width:46rem}
+  .ob-res b{color:var(--ink)}
 
   /* the foot of this week */
   .week-foot{margin-top:24px;padding-block:20px 8px;border-top:1px solid var(--rule)}
@@ -1213,10 +1220,14 @@
   <div class="wrap foot">
     <div>
       <p class="eyebrow">Integrity</p>
-      <p class="integrity" style="margin-top:10px"><em>Nothing on this page has ever been removed.</em> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full <a href="https://github.com/TheSimplifier7/record/commits/main">edit history</a>. If a call was wrong, it is still here.</p>
+      <!-- 10 Oct 2026, note 49: the Internet Archive's copies joined the edit history. It read:
+      <p class="integrity" style="margin-top:10px"><em>Nothing on this page has ever been removed.</em> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full <a href="https://github.com/TheSimplifier7/record/commits/main">edit history</a>. If a call was wrong, it is still here.</p> -->
+      <p class="integrity" style="margin-top:10px"><em>Nothing on this page has ever been removed.</em> The record only grows, one row at a time. Every change to this file is a public, timestamped entry. Read the full <a href="https://github.com/TheSimplifier7/record/commits/main">edit history</a>, and from 10 October 2026 <a href="https://web.archive.org/web/*/thesimplifier7.github.io/record*">every upload as the Internet Archive kept it</a>, outside this desk's hands. If a call was wrong, it is still here.</p>
       <!-- THE STANDING OFFER, 24 Sep 2026, note 40, by the founder's ruling of that day. Drafted 5 September (THE_WILD_LIST).
            Before it went up the desk read every version of this file; what that found is note 38. -->
-      <p class="integrity bounty" id="bounty"><em>Standing offer.</em> Find a call in the ledger whose level, kill, side or date changed after it was first published, a call dated earlier than the day it was first published, a call removed, or a grade on this page changed after it was given, and this desk pays you $1,000 and logs the finding here as a note. The wrong calls do not qualify; they are the point. What the page has already disclosed, in its notes or on the row, does not qualify. Every change to this file is a public commit, so check. To claim, send the row's address and the commit or post that shows it to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>.</p>
+      <!-- 10 Oct 2026, note 49: the offer's terms are unchanged; its last sentence names the second place to check. It read:
+      <p class="integrity bounty" id="bounty"><em>Standing offer.</em> Find a call in the ledger whose level, kill, side or date changed after it was first published, a call dated earlier than the day it was first published, a call removed, or a grade on this page changed after it was given, and this desk pays you $1,000 and logs the finding here as a note. The wrong calls do not qualify; they are the point. What the page has already disclosed, in its notes or on the row, does not qualify. Every change to this file is a public commit, so check. To claim, send the row's address and the commit or post that shows it to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>.</p> -->
+      <p class="integrity bounty" id="bounty"><em>Standing offer.</em> Find a call in the ledger whose level, kill, side or date changed after it was first published, a call dated earlier than the day it was first published, a call removed, or a grade on this page changed after it was given, and this desk pays you $1,000 and logs the finding here as a note. The wrong calls do not qualify; they are the point. What the page has already disclosed, in its notes or on the row, does not qualify. Every change to this file is a public commit, and from 10 October 2026 every upload is also kept by <a href="https://web.archive.org/web/*/thesimplifier7.github.io/record*">the Internet Archive</a>, a library this desk does not control, so check both. To claim, send the row's address and the commit or post that shows it to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>.</p>
     </div>
     <div class="foot-meta">
       <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
@@ -1340,7 +1351,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-10";   /* set by hand, with the commit. Kept at "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-10";   /* set by hand, with the commit. Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1448,6 +1459,16 @@ const provenanceLine = date => {
 };
 const STANDARD_FROM = "2026-07-03";   /* see note 01. Marks rows only. */
 const GRAMMAR_FROM = "2026-09-28";   /* note 34. Every row named from this date is named under the call grammar: side, line, room and odds. It marks nothing before it. */
+/* 10 Oct 2026, note 49: the read's own line. Set once and never moved: the rows it counts (every row named with its
+   odds from the week of 28 September 2026 to the week of 20 September 2027), the one close it is graded on, its
+   arithmetic and its three words. The odds board draws it, record.json carries it and verify_record.js recomputes it
+   before every upload. The line is the holds expected plus z times the square root of the sum of odds times one less
+   odds, divided by rowShare: each row counts as half a row, because the three metals tend to move together in a week. */
+const READ_LINE = {
+  set: "2026-10-10", note: "49",
+  from: "2026-09-28", to: "2027-09-20", close: "2027-09-24", weeks: 52,
+  z: 1.645, rowShare: 0.5
+};
 
 /* =========================================================================
    THE DOORS  ·  the only two values on this page that are not a call
@@ -2681,6 +2702,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"49", kind:"standard", title:"Two rulings, 10 October 2026. Every upload kept by a library outside this desk, and a line drawn on the read itself.",
+    body:"Two things were ruled by the founder on 10 October 2026. Neither touches a row, a grade, a figure or a date. THE ARCHIVE. Until today every proof that this page never changed a call sat where this desk could reach it: the edit history of this file, which the account that owns it could rewrite, and the posts on X, which their author can delete. From today a workflow beside this file, .github/workflows/archive.yml, keeps a copy of every upload with the Internet Archive, a library this desk does not control. It waits until GitHub Pages serves the upload, checked byte for byte, then saves this page and record.json under the upload's own commit, the commit's page on GitHub, this page, record.json and days.txt at their plain addresses and the pages the upload changed, and reads each copy back before it says so. It asks Software Heritage, which keeps public code with its whole history, to take this file's history as well. The workflow writes nothing here, no commit, no file and no row, and its permission is read only. Every copy is listed at web.archive.org/web/*/thesimplifier7.github.io/record*. The terms of the standing offer of note 40 are unchanged; its paragraph now names both places to check, and the words it replaced are kept beside it. THE READ'S LINE. Note 34 put the odds board under the tally: the rows that held, beside the holds the odds expected, the sum of the odds each graded row was named at. Held past that sum is the read ahead of the odds as a count, but a count on a small base says little, and nothing on this page said where luck ends. This note says it before the figure exists, the way every row here is named before the close that grades it. The rows: every row named with its odds from the week of 28 September 2026 to the week of 20 September 2027, fifty-two weeks. The close: Friday 24 September 2027, the one close the read is graded on. The line: the holds expected, plus 1.645 times the square root of twice the sum, over every row graded, of its odds times one less its odds, each odds taken as a share of one. A read that adds nothing reaches that line about five times in a hundred. The sum is doubled, so each row counts as half a row, because gold, silver and platinum tend to move together inside a week. The grade has three words. AHEAD OF THE ODDS: held at or past the line. BEHIND THE ODDS: held at or short of the holds expected less the same distance. LEVEL WITH THE ODDS: between the two. With three rows a week, a year can tell a read that adds about 13 holds in a hundred to the odds from luck four times in five. A read that adds less will probably grade level, and level says the year could not tell the read from the odds, not that the read adds nothing. The six rows graded before this note, 4 held against 4.0 expected, are inside the line as they stand, so no row was chosen after its close. Until that close the board is a running count and grades nothing; it shows the line where the rows graded so far put it. The grade is written here on the night of that close, whichever word it is, in the same type, and the board keeps counting after it. Nothing in this note moves: not its rows, its close, its arithmetic or its words. The board said a base under fifty graded rows was small; fifty rows can only tell a read that adds about sixteen holds in a hundred from luck, so it says so far instead, and its old words are kept in the page's source." },
   { n:"48", kind:"standard", title:"The cards in navy, 10 October 2026. The image a link to this record shows is drawn in the record's own navy and type.",
     body:"By the founder's ruling of 10 October 2026, every card the record draws for a link is drawn in the navy and the Barlow type this page has worn since note 47: the week card under a link to the record, the card of each page, the card of each bank target, and the tally cards a grade post carries. Held is gold and wrong is red, as on the page. Nothing a card counts has changed. Every figure on a card is still drawn from record.json and never typed, and verify_record.js still checks each page's card against it before every upload. Four page cards and the tally cards now carry gold's Friday closes since 26 June as a line, read off the founder's chart and held in record.json beside every other close. The week card's address now carries its fingerprint, as the other cards' addresses do, so a messenger fetches a card that was drawn again instead of showing the old one. The cards no longer close on the old sign-off; the address closes them. No row, grade, figure, date or line was touched." },
   { n:"47", kind:"standard", title:"The record as a table, 10 October 2026. This week first, a table and a page for each metal, the row opened in the ledger's ink, and the week's odds read after each close.",
@@ -4352,7 +4375,67 @@ const METALS_ON = ["Gold", "Silver", "Platinum"].filter(m => rows.some(r => r.me
    rows that held, set beside the sum of the odds each graded row was named
    at, and the rows named by side. Counts, and the sum of the odds as a
    count; no percentage. Only its words changed: it read slate and copper,
-   and "through the room". */
+   and "through the room".
+   10 Oct 2026, note 49: the board also draws the read's own line, from
+   READ_LINE, and says "so far" until the close the read is graded on. It
+   no longer treats fifty graded rows as enough: fifty rows can only tell a
+   read that adds about sixteen holds in a hundred from luck. The function
+   as it stood before note 49, word for word:
+   | (function renderOddsBoard(){
+   |   const host = document.getElementById("odds-board");
+   |   if (!host) return;
+   |   const G = CALLS.filter(c => c.grammar);
+   |   if (!G.length) return;
+   |   const graded = G.filter(c => c.grade === "pass" || c.grade === "miss");
+   |   const held = graded.filter(c => c.grade === "pass").length;
+   |   const hit = graded.filter(c => c.hit).length;
+   |   const exp = graded.reduce((s, c) => s + (+c.odds || 0) / 100, 0);
+   |   const slate = G.filter(c => c.side === "slate").length, copper = G.length - slate;
+   |   const openN = G.filter(c => c.grade === "pending").length;
+   |   const one = (n, a, b) => n === 1 ? a : b;
+   |   const e1 = v => v.toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+   |   const sides = `<div class="ob-fig"><div class="n">${slate}<span class="of">to hold above</span>${copper}<span class="of">to stay below</span></div><div class="ob-lean" aria-hidden="true"><span class="s" style="width:${(slate / G.length * 100).toFixed(1)}%"></span><span class="c" style="width:${(copper / G.length * 100).toFixed(1)}%"></span></div><div class="l">rows named, by side${openN && graded.length ? `, ${openN} still open` : ""}</div></div>`;
+   |   let figs, track = "", plain;
+   |   if (!graded.length) {
+   |     const fri = fridayAfter(G.map(c => c.date).sort()[0]);
+   |     const oddsSum = G.reduce((s, c) => s + (+c.odds || 0) / 100, 0);
+   |     figs = `<div class="ob-fig"><div class="n">${G.length}</div><div class="l">${one(G.length, "row", "rows")} named with their odds, none graded yet</div></div>
+   |       <div class="ob-fig"><div class="n gold">${e1(oddsSum)}</div><div class="l">${one(G.length, "hold", "holds")} expected on the odds ${one(G.length, "it was", "they were")} named at</div></div>${sides}`;
+   |     plain = `The first of these rows is graded on the ${fmtDate(fri)} close. From then this board sets the rows that held beside the sum of the odds they were named at. <b>Held past that sum is the read beating the odds</b>; held short of it is the odds beating the read, and it is said in the same type.`;
+   |   } else {
+   |     const W = Math.max(graded.length, 1), fx = held / W * 100, ex = exp / W * 100, beat = held - exp;
+   |     figs = `<div class="ob-fig"><div class="n pass">${held}<span class="of">of ${graded.length}</span></div><div class="l">held on the close${hit ? `, ${hit} of them through the next level on their side` : ""}</div></div>
+   |       <div class="ob-fig"><div class="n gold">${e1(exp)}</div><div class="l">expected, the sum of the odds each graded row was named at</div></div>${sides}`;
+   |     track = `<div class="ob-track" role="img" aria-label="${held} held of ${graded.length} graded, against ${e1(exp)} expected">
+   |       <span class="f" style="width:${fx.toFixed(2)}%"></span>
+   |       <span class="e" style="left:${ex.toFixed(2)}%"></span><span class="el" style="left:${ex.toFixed(2)}%">expected ${e1(exp)}</span>
+   |       <span class="fl${fx < 18 ? " l" : ""}" style="left:${fx.toFixed(2)}%">held ${held}</span></div>`;
+   |     const base = graded.length < 50 ? ` ${graded.length} graded ${one(graded.length, "row is", "rows are")} a small base, and should be read as one.` : "";
+   |     plain = (beat > 0.05
+   |       ? `<b>Held ahead of the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, so this is the read measured against them, not against nothing.`
+   |       : beat < -0.05
+   |         ? `<b>Held behind the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, and on this base the odds are ahead of the read. It stays here in the same type either way.`
+   |         : `<b>Held level with the odds, ${held} against ${e1(exp)}.</b> On this base the read has added nothing the odds did not already know, and the board says so in the same type it would use for the opposite.`) + base;
+   |   }
+   |   host.innerHTML = `<div class="ob-head"><span class="eyebrow">Held against the odds</span><span class="ob-since">Every row named from 28 September 2026 carries its odds · <a href="#note-34">note 34</a></span></div>
+   |     <div class="ob-figs">${figs}</div>${track}<p class="ob-plain">${plain}</p>`;
+   |   host.hidden = false;
+   | })();
+   */
+/* The read's line, note 49: a pure count of CALLS and CLOSES. */
+const readLineNow = () => {
+  const RL = READ_LINE;
+  const inWin = c => c.grammar && c.date >= RL.from && c.date <= RL.to;
+  const R = CALLS.filter(c => inWin(c) && (c.grade === "pass" || c.grade === "miss") && +c.odds > 0);
+  const held = R.filter(c => c.grade === "pass").length;
+  const exp = R.reduce((t, c) => t + c.odds / 100, 0);
+  const spread = Math.sqrt(R.reduce((t, c) => t + (c.odds / 100) * (1 - c.odds / 100), 0) / RL.rowShare);
+  const line = exp + RL.z * spread, mirror = exp - RL.z * spread;
+  const weeks = new Set(R.map(c => c.date)).size;
+  const done = CLOSES.some(x => x.date === RL.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
+  const word = !done ? null : held >= line ? "AHEAD OF THE ODDS" : held <= mirror ? "BEHIND THE ODDS" : "LEVEL WITH THE ODDS";
+  return { rows: R.length, held, exp, spread, line, mirror, weeks, done, word };
+};
 (function renderOddsBoard(){
   const host = document.getElementById("odds-board");
   if (!host) return;
@@ -4367,6 +4450,7 @@ const METALS_ON = ["Gold", "Silver", "Platinum"].filter(m => rows.some(r => r.me
   const one = (n, a, b) => n === 1 ? a : b;
   const e1 = v => v.toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const sides = `<div class="ob-fig"><div class="n">${slate}<span class="of">to hold above</span>${copper}<span class="of">to stay below</span></div><div class="ob-lean" aria-hidden="true"><span class="s" style="width:${(slate / G.length * 100).toFixed(1)}%"></span><span class="c" style="width:${(copper / G.length * 100).toFixed(1)}%"></span></div><div class="l">rows named, by side${openN && graded.length ? `, ${openN} still open` : ""}</div></div>`;
+  const RL = readLineNow(), closeDay = "Friday " + fmtDate(READ_LINE.close);
   let figs, track = "", plain;
   if (!graded.length) {
     const fri = fridayAfter(G.map(c => c.date).sort()[0]);
@@ -4382,15 +4466,26 @@ const METALS_ON = ["Gold", "Silver", "Platinum"].filter(m => rows.some(r => r.me
       <span class="f" style="width:${fx.toFixed(2)}%"></span>
       <span class="e" style="left:${ex.toFixed(2)}%"></span><span class="el" style="left:${ex.toFixed(2)}%">expected ${e1(exp)}</span>
       <span class="fl${fx < 18 ? " l" : ""}" style="left:${fx.toFixed(2)}%">held ${held}</span></div>`;
-    const base = graded.length < 50 ? ` ${graded.length} graded ${one(graded.length, "row is", "rows are")} a small base, and should be read as one.` : "";
+    const sofar = RL.done ? "" : " so far";
+    const running = RL.done ? "" : ` This board is a running count and grades nothing. The read is graded once, on the close of ${closeDay}, against the line set in note 49, which moves only as rows are graded, by the arithmetic written there.${RL.line > RL.rows ? ` On the ${RL.rows} ${one(RL.rows, "row", "rows")} graded so far the line sits past the rows themselves, so no count could reach it yet.` : ""}`;
     plain = (beat > 0.05
-      ? `<b>Held ahead of the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, so this is the read measured against them, not against nothing.`
+      ? `<b>Held ahead of the odds${sofar}, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, so this is the read measured against them, not against nothing.`
       : beat < -0.05
-        ? `<b>Held behind the odds, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, and on this base the odds are ahead of the read. It stays here in the same type either way.`
-        : `<b>Held level with the odds, ${held} against ${e1(exp)}.</b> On this base the read has added nothing the odds did not already know, and the board says so in the same type it would use for the opposite.`) + base;
+        ? `<b>Held behind the odds${sofar}, ${held} against ${e1(exp)}.</b> Every row carries the odds it was given on the day it was named, and on this base the odds are ahead of the read. It stays here in the same type either way.`
+        : `<b>Held level with the odds${sofar}, ${held} against ${e1(exp)}.</b> On this base the read has added nothing the odds did not already know, and the board says so in the same type it would use for the opposite.`) + running;
   }
-  host.innerHTML = `<div class="ob-head"><span class="eyebrow">Held against the odds</span><span class="ob-since">Every row named from 28 September 2026 carries its odds · <a href="#note-34">note 34</a></span></div>
-    <div class="ob-figs">${figs}</div>${track}<p class="ob-plain">${plain}</p>`;
+  const mirrorN = RL.mirror > 0 ? e1(RL.mirror) : "0";
+  const lineBlock = `<div class="ob-line">
+    <p class="ob-lhead"><b>The read's line</b> · graded once, on the close of ${closeDay} · <a href="#note-49">note 49</a></p>
+    <div class="ob-figs">
+      <div class="ob-fig"><div class="n gold">${e1(RL.line)}</div><div class="l">held at or past it: ahead of the odds</div></div>
+      <div class="ob-fig"><div class="n">${mirrorN}</div><div class="l">held at or short of it: behind the odds${RL.mirror > 0 ? "" : ", a count no base this small can fall to"}. Between the two, level</div></div>
+      <div class="ob-fig"><div class="n">${RL.weeks}<span class="of">of ${READ_LINE.weeks}</span></div><div class="l">weeks graded, ${RL.rows} ${one(RL.rows, "row", "rows")}, ${RL.held} held against ${e1(RL.exp)} expected</div></div>
+    </div>${RL.done ? `
+    <p class="ob-res"><b>${RL.word}.</b> Graded on the close of ${closeDay}: ${RL.held} held of ${RL.rows} against ${e1(RL.exp)} expected, the line ${e1(RL.line)}.</p>` : ""}
+  </div>`;
+  host.innerHTML = `<div class="ob-head"><span class="eyebrow">Held against the odds</span><span class="ob-since">Every row named from 28 September 2026 carries its odds · <a href="#note-34">note 34</a> · its line · <a href="#note-49">note 49</a></span></div>
+    <div class="ob-figs">${figs}</div>${track}<p class="ob-plain">${plain}</p>${lineBlock}`;
   host.hidden = false;
 })();
 
