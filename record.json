@@ -4,22 +4,22 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-10-10",
-  "generated": "2026-10-10T19:01:20.128Z",
+  "last_updated": "2026-10-12",
+  "generated": "2026-10-12T18:53:03.503Z",
   "tally": {
     "resolved": 35,
     "held": 26,
     "wrong": 9,
     "never_reached": 5,
-    "open": 0,
+    "open": 3,
     "hit": 2,
     "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
   "grammar": {
     "from": "2026-09-28",
-    "named": 6,
+    "named": 9,
     "slate": 1,
-    "copper": 5,
+    "copper": 8,
     "graded": 6,
     "held": 4,
     "hit": 2,
@@ -48,6 +48,111 @@
   "rows": [
     {
       "id": "lrow-0",
+      "anchor": "r-2026-10-12-gold-4217-19",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-gold-4217-19",
+      "named": "2026-10-12",
+      "type": "Map",
+      "metal": "Gold",
+      "level": "4,217.19",
+      "book": "Turn",
+      "call": "Gold stays below 4,217.19, the high of the box it opened this week in, frozen Monday afternoon and read off the 10 minute chart at 20:10 CEST. Room 4,154.58, the box low. Odds at naming 64 in 100, off the data window. Named on the week's own box before any 8h close through it.",
+      "kill": "a weekly close above 4,217.19.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 1,
+      "side": "copper",
+      "line": "4,217.19",
+      "room": "4,154.58",
+      "odds": 64,
+      "odds_from": "data window",
+      "line_from": "box high",
+      "box": [
+        "4,154.58",
+        "4,217.19"
+      ],
+      "last_range": null,
+      "read_at": "20:10 CEST",
+      "close": null,
+      "hit": false,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-12",
+      "commit": null
+    },
+    {
+      "id": "lrow-1",
+      "anchor": "r-2026-10-12-silver-61-449",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-silver-61-449",
+      "named": "2026-10-12",
+      "type": "Map",
+      "metal": "Silver",
+      "level": "61.449",
+      "book": "Turn",
+      "call": "Silver stays below 61.449, the high of the box it opened this week in, frozen Monday afternoon and read off the 10 minute chart at 20:12 CEST. Room 60.381, the box low. Odds at naming 64 in 100, off the data window. Named on the week's own box before any 8h close through it.",
+      "kill": "a weekly close above 61.449.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 1,
+      "side": "copper",
+      "line": "61.449",
+      "room": "60.381",
+      "odds": 64,
+      "odds_from": "data window",
+      "line_from": "box high",
+      "box": [
+        "60.381",
+        "61.449"
+      ],
+      "last_range": null,
+      "read_at": "20:12 CEST",
+      "close": null,
+      "hit": false,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-12",
+      "commit": null
+    },
+    {
+      "id": "lrow-2",
+      "anchor": "r-2026-10-12-platinum-1710-80",
+      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-platinum-1710-80",
+      "named": "2026-10-12",
+      "type": "Map",
+      "metal": "Platinum",
+      "level": "1,710.80",
+      "book": "Turn",
+      "call": "Platinum stays below 1,710.80, the high of the box it opened this week in, frozen Monday afternoon and read off the 10 minute chart at 20:13 CEST. Room 1,679.01, the box low. Odds at naming 62 in 100, off the data window. Named on the week's own box before any 8h close through it.",
+      "kill": "a weekly close above 1,710.80.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 1,
+      "side": "copper",
+      "line": "1,710.80",
+      "room": "1,679.01",
+      "odds": 62,
+      "odds_from": "data window",
+      "line_from": "box high",
+      "box": [
+        "1,679.01",
+        "1,710.80"
+      ],
+      "last_range": null,
+      "read_at": "20:13 CEST",
+      "close": null,
+      "hit": false,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-12",
+      "commit": null
+    },
+    {
+      "id": "lrow-3",
       "anchor": "r-2026-10-05-gold-4170-41",
       "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-gold-4170-41",
       "named": "2026-10-05",
@@ -82,7 +187,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-1",
+      "id": "lrow-4",
       "anchor": "r-2026-10-05-silver-62-036",
       "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-silver-62-036",
       "named": "2026-10-05",
@@ -117,7 +222,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-2",
+      "id": "lrow-5",
       "anchor": "r-2026-10-05-platinum-1699-00",
       "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-platinum-1699-00",
       "named": "2026-10-05",
@@ -152,7 +257,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-3",
+      "id": "lrow-6",
       "anchor": "r-2026-09-28-gold-4280-50",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-gold-4280-50",
       "named": "2026-09-28",
@@ -187,7 +292,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-4",
+      "id": "lrow-7",
       "anchor": "r-2026-09-28-silver-64-212",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-silver-64-212",
       "named": "2026-09-28",
@@ -222,7 +327,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-5",
+      "id": "lrow-8",
       "anchor": "r-2026-09-28-platinum-1775-80",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-platinum-1775-80",
       "named": "2026-09-28",
@@ -257,7 +362,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-6",
+      "id": "lrow-9",
       "anchor": "r-2026-09-20-gold-4337",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-gold-4337",
       "named": "2026-09-20",
@@ -277,7 +382,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-7",
+      "id": "lrow-10",
       "anchor": "r-2026-09-20-silver-64-08",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-silver-64-08",
       "named": "2026-09-20",
@@ -297,7 +402,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-8",
+      "id": "lrow-11",
       "anchor": "r-2026-09-20-platinum-1746",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-platinum-1746",
       "named": "2026-09-20",
@@ -317,7 +422,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-9",
+      "id": "lrow-12",
       "anchor": "r-2026-09-06-gold-4357",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-gold-4357",
       "named": "2026-09-06",
@@ -337,7 +442,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-10",
+      "id": "lrow-13",
       "anchor": "r-2026-09-06-platinum-1797-40",
       "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-platinum-1797-40",
       "named": "2026-09-06",
@@ -357,7 +462,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-11",
+      "id": "lrow-14",
       "anchor": "r-2026-08-30-gold-4350",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-gold-4350",
       "named": "2026-08-30",
@@ -377,7 +482,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-12",
+      "id": "lrow-15",
       "anchor": "r-2026-08-30-platinum-1797-40",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-platinum-1797-40",
       "named": "2026-08-30",
@@ -397,7 +502,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-13",
+      "id": "lrow-16",
       "anchor": "r-2026-08-23-gold-4308",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-gold-4308",
       "named": "2026-08-23",
@@ -417,7 +522,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-14",
+      "id": "lrow-17",
       "anchor": "r-2026-08-23-silver-66-66",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-silver-66-66",
       "named": "2026-08-23",
@@ -437,7 +542,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-15",
+      "id": "lrow-18",
       "anchor": "r-2026-08-23-platinum-1790-84",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-platinum-1790-84",
       "named": "2026-08-23",
@@ -457,7 +562,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-16",
+      "id": "lrow-19",
       "anchor": "r-2026-08-16-gold-4281",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-gold-4281",
       "named": "2026-08-16",
@@ -477,7 +582,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-17",
+      "id": "lrow-20",
       "anchor": "r-2026-08-16-silver-66-60",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-silver-66-60",
       "named": "2026-08-16",
@@ -497,7 +602,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-18",
+      "id": "lrow-21",
       "anchor": "r-2026-08-14-gold-4268",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-gold-4268",
       "named": "2026-08-14",
@@ -517,7 +622,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-19",
+      "id": "lrow-22",
       "anchor": "r-2026-08-14-silver-66-86",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-silver-66-86",
       "named": "2026-08-14",
@@ -537,7 +642,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-20",
+      "id": "lrow-23",
       "anchor": "r-2026-08-07-gold-4098-275",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-4098-275",
       "named": "2026-08-07",
@@ -557,7 +662,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-21",
+      "id": "lrow-24",
       "anchor": "r-2026-08-07-silver-61-02",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-silver-61-02",
       "named": "2026-08-07",
@@ -577,7 +682,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-22",
+      "id": "lrow-25",
       "anchor": "r-2026-08-07-gold-3942-430",
       "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-3942-430",
       "named": "2026-08-07",
@@ -597,7 +702,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-23",
+      "id": "lrow-26",
       "anchor": "r-2026-07-27-gold-4098",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-4098",
       "named": "2026-07-27",
@@ -617,7 +722,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-24",
+      "id": "lrow-27",
       "anchor": "r-2026-07-27-gold-3942",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-3942",
       "named": "2026-07-27",
@@ -637,7 +742,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-25",
+      "id": "lrow-28",
       "anchor": "r-2026-07-27-silver-61-02",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-silver-61-02",
       "named": "2026-07-27",
@@ -657,7 +762,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-26",
+      "id": "lrow-29",
       "anchor": "r-2026-07-21-gold-4098",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-4098",
       "named": "2026-07-21",
@@ -677,7 +782,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-27",
+      "id": "lrow-30",
       "anchor": "r-2026-07-21-gold-3810",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-3810",
       "named": "2026-07-21",
@@ -697,7 +802,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-28",
+      "id": "lrow-31",
       "anchor": "r-2026-07-21-silver-61-02",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-silver-61-02",
       "named": "2026-07-21",
@@ -717,7 +822,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-29",
+      "id": "lrow-32",
       "anchor": "r-2026-07-12-gold-4098",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4098",
       "named": "2026-07-12",
@@ -737,7 +842,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-30",
+      "id": "lrow-33",
       "anchor": "r-2026-07-12-silver-61-02",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-silver-61-02",
       "named": "2026-07-12",
@@ -757,7 +862,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-31",
+      "id": "lrow-34",
       "anchor": "r-2026-07-12-gold-4305-32",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4305-32",
       "named": "2026-07-12",
@@ -777,7 +882,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-32",
+      "id": "lrow-35",
       "anchor": "r-2026-07-08-gold-4098",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-08-gold-4098",
       "named": "2026-07-08",
@@ -797,7 +902,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-33",
+      "id": "lrow-36",
       "anchor": "r-2026-07-07-silver-61-02",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-07-silver-61-02",
       "named": "2026-07-07",
@@ -817,7 +922,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-34",
+      "id": "lrow-37",
       "anchor": "r-2026-07-05-gold-4098-4307",
       "url": "https://thesimplifier7.github.io/record/#r-2026-07-05-gold-4098-4307",
       "named": "2026-07-05",
@@ -837,7 +942,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-35",
+      "id": "lrow-38",
       "anchor": "r-2026-06-29-gold-4500-3809",
       "url": "https://thesimplifier7.github.io/record/#r-2026-06-29-gold-4500-3809",
       "named": "2026-06-29",
@@ -857,7 +962,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/7e9b339"
     },
     {
-      "id": "lrow-36",
+      "id": "lrow-39",
       "anchor": "r-2026-06-22-gold-4098-4633",
       "url": "https://thesimplifier7.github.io/record/#r-2026-06-22-gold-4098-4633",
       "named": "2026-06-22",
@@ -877,7 +982,7 @@
       "commit": null
     },
     {
-      "id": "lrow-37",
+      "id": "lrow-40",
       "anchor": "r-2026-06-15-gold-4307",
       "url": "https://thesimplifier7.github.io/record/#r-2026-06-15-gold-4307",
       "named": "2026-06-15",
@@ -897,7 +1002,7 @@
       "commit": null
     },
     {
-      "id": "lrow-38",
+      "id": "lrow-41",
       "anchor": "r-2026-06-11-gold-4098",
       "url": "https://thesimplifier7.github.io/record/#r-2026-06-11-gold-4098",
       "named": "2026-06-11",
@@ -917,7 +1022,7 @@
       "commit": null
     },
     {
-      "id": "lrow-39",
+      "id": "lrow-42",
       "anchor": "r-2026-06-07-gold-4308",
       "url": "https://thesimplifier7.github.io/record/#r-2026-06-07-gold-4308",
       "named": "2026-06-07",
@@ -1312,6 +1417,12 @@
       "kind": "standard",
       "title": "Two rulings, 10 October 2026. Every upload kept by a library outside this desk, and a line drawn on the read itself.",
       "body": "Two things were ruled by the founder on 10 October 2026. Neither touches a row, a grade, a figure or a date. THE ARCHIVE. Until today every proof that this page never changed a call sat where this desk could reach it: the edit history of this file, which the account that owns it could rewrite, and the posts on X, which their author can delete. From today a workflow beside this file, .github/workflows/archive.yml, keeps a copy of every upload with the Internet Archive, a library this desk does not control. It waits until GitHub Pages serves the upload, checked byte for byte, then saves this page and record.json under the upload's own commit, the commit's page on GitHub, this page, record.json and days.txt at their plain addresses and the pages the upload changed, and reads each copy back before it says so. It asks Software Heritage, which keeps public code with its whole history, to take this file's history as well. The workflow writes nothing here, no commit, no file and no row, and its permission is read only. Every copy is listed at web.archive.org/web/*/thesimplifier7.github.io/record*. The terms of the standing offer of note 40 are unchanged; its paragraph now names both places to check, and the words it replaced are kept beside it. THE READ'S LINE. Note 34 put the odds board under the tally: the rows that held, beside the holds the odds expected, the sum of the odds each graded row was named at. Held past that sum is the read ahead of the odds as a count, but a count on a small base says little, and nothing on this page said where luck ends. This note says it before the figure exists, the way every row here is named before the close that grades it. The rows: every row named with its odds from the week of 28 September 2026 to the week of 20 September 2027, fifty-two weeks. The close: Friday 24 September 2027, the one close the read is graded on. The line: the holds expected, plus 1.645 times the square root of twice the sum, over every row graded, of its odds times one less its odds, each odds taken as a share of one. A read that adds nothing reaches that line about five times in a hundred. The sum is doubled, so each row counts as half a row, because gold, silver and platinum tend to move together inside a week. The grade has three words. AHEAD OF THE ODDS: held at or past the line. BEHIND THE ODDS: held at or short of the holds expected less the same distance. LEVEL WITH THE ODDS: between the two. With three rows a week, a year can tell a read that adds about 13 holds in a hundred to the odds from luck four times in five. A read that adds less will probably grade level, and level says the year could not tell the read from the odds, not that the read adds nothing. The six rows graded before this note, 4 held against 4.0 expected, are inside the line as they stand, so no row was chosen after its close. Until that close the board is a running count and grades nothing; it shows the line where the rows graded so far put it. The grade is written here on the night of that close, whichever word it is, in the same type, and the board keeps counting after it. Nothing in this note moves: not its rows, its close, its arithmetic or its words. The board said a base under fifty graded rows was small; fifty rows can only tell a read that adds about sixteen holds in a hundred from luck, so it says so far instead, and its old words are kept in the page's source."
+    },
+    {
+      "n": "50",
+      "kind": "standard",
+      "title": "The Fan by the month, 11 and 12 October 2026. $1,299 a month through TradingView, after $199 at this afternoon's upload; its inner workings on its page; and what the record owes from Sunday.",
+      "body": "Rulings of the founder on 11 and 12 October 2026, and three things the record owes from Sunday. None of it touches a row, a grade, a figure or a date. THE PRICE. Until 12 October The Fan was taken by request, at €4,500 a quarter or €16,000 a year, and the seat carried it. The upload of 17:32 CEST on 12 October set it at $199 a month, through TradingView. This upload sets it at $1,299 a month, through TradingView and nowhere else. From 1 November 2026 TradingView permits paid access to an invite-only script only through its own Marketplace, billed monthly, and never as part of another paid product or service, so the quarter and the year are gone and the seat no longer carries the tool. Every replaced line is kept in the source of The Fan's page beside the line that replaced it, and every upload stays in the edit history and with the Internet Archive (note 49). THE INNER WORKINGS. From the upload of 23:55 CEST on 11 October, The Fan's page plays a film of The Fan's inner workings in place of What a price is made of, which stays on this page (note 41). The upload of 17:32 CEST on 12 October brought the film to The Fan v5: twelve parts where there were ten, 2 minutes 1 where it ran 1 minute 43, the mirror drawn as v5 draws it, and two new parts, the trail and the 2 hour step seen coming, with four captions the founder ruled that afternoon. Parts 1 to 6 and 8 are frame for frame what played before. Since the upload of 20:50 CEST on 11 October the head of that page shows a drawing of The Fan on gold's 10 minute chart of 9 October, in place of the screenshot of 8 October, which is kept in its source. SUNDAY. The advisers' page was off this site from 15:23 to 15:27 CEST on 11 October: an upload meant to move the archive's workflow into its folder moved that page there instead, and the next upload moved it back, unchanged. The archive's first run kept the record at 15:28 CEST and record.json at 15:29 CEST under c84e5ed; its second, the first with the desk's archive.org keys, showed red on a network fault with nothing lost. The workflow was mended twice that evening, and since 03409c0 every run reads the archive's own date on each copy before it counts it. verify_record.js check 24 now names a clone without the workflow for what it is; it read: not a clone, so the workflow was not read."
     }
   ],
   "targets": [

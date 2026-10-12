@@ -105,8 +105,11 @@ const bad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|\
 if (bad.length) { console.error("brand law: the email carries " + bad.map(b => b[0]).join(", ") + ". Nothing written."); process.exit(1); }
 
 /* ---------------------------------------------------------------- text */
+/* 12 October 2026, note 50: the HTML foot below read "No signals · No forecast without its kill · @TheSimplifier7". */
 const txt = [subject, "", lede, "", ...blocks.flatMap(b => [b.head, ...b.lines.filter(Boolean), b.link, ""]), ...tail.flatMap(x => [x, ""]),
-  "No signals. No forecast without its kill.", "The Simplifier · @TheSimplifier7"].join("\n") + "\n";
+  /* 12 October 2026, note 50: the sign-off carried a house word, which The Path (10 October 2026) keeps out of every
+     public frame, and the email is one. It read: "No signals. No forecast without its kill.", then the name line. */
+  "No signals.", "The Simplifier · @TheSimplifier7"].join("\n") + "\n";
 
 /* ---------------------------------------------------------------- html */
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -126,7 +129,7 @@ ${b.lines.filter(Boolean).map(l => `<p style="font-size:16px;line-height:1.5;mar
 <p style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;margin:10px 0 0"><a href="${esc(b.link)}" style="color:${C.gold}">The row on the record</a></p>
 </div>`).join("\n")}
 ${tail.map(x => `<p style="font-size:15px;line-height:1.55;color:${C.ink3};margin:16px 0 0">${esc(x).replace(/(https:\/\/\S+)/g, `<a href="$1" style="color:${C.gold}">$1</a>`)}</p>`).join("\n")}
-<p style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:${C.ink5};margin:28px 0 0;border-top:1px solid ${C.rule};padding-top:14px">No signals · No forecast without its kill · @TheSimplifier7</p>
+<p style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:${C.ink5};margin:28px 0 0;border-top:1px solid ${C.rule};padding-top:14px">No signals · @TheSimplifier7</p>
 </div></body></html>
 `;
 

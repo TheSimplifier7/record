@@ -83,8 +83,10 @@
         its words carry no em dash, exclamation mark, hashtag or emoji and
         none of the house words; it asks the network for record.json and
         nothing else.
-    26. The Fan by the month, 12 October 2026: the Method page prints $199
-        a month through TradingView and no quarter's or year's price, its
+    26. The Fan by the month, 12 October 2026: the Method page prints $1,299
+        a month through TradingView (note 50; $199 from the upload of 17:32
+        CEST until then, nowhere outside a comment now) and no quarter's or
+        year's price, its
         payment button can point only at tradingview.com, and the seat line
         no longer carries the tool (TradingView's rule from 1 November
         2026: paid access only through its Marketplace, never inside
@@ -494,7 +496,9 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
   if (fs.existsSync(path.join(HERE, ".git"))) {
     const wf = path.join(HERE, ".github", "workflows", "archive.yml");
     let y = ""; try { y = fs.readFileSync(wf, "utf8"); } catch (e) {}
-    if (!y) probs.push(".github/workflows/archive.yml is not in this clone; create it on GitHub before the next upload (note 49)");
+    /* 12 October 2026, note 50: the label named a clone without the workflow "not a clone". This line read:
+    if (!y) probs.push(".github/workflows/archive.yml is not in this clone; create it on GitHub before the next upload (note 49)"); */
+    if (!y) { how = "this clone has no workflow"; probs.push(".github/workflows/archive.yml is not in this clone; create it on GitHub before the next upload (note 49)"); }
     else {
       const body = y.replace(/^\s*#.*$/gm, "");
       if (!/\non:\s*\n\s+push:\s*\n\s+branches:\s*\[\s*main\s*\]/.test(body)) probs.push("the workflow does not run on every upload to main");
@@ -527,8 +531,12 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
 {
   const mp = methodLive.replace(/\/\*[\s\S]*?\*\//g, "");
   const probs = [];
+  /* 12 October 2026, evening, note 50: the founder's ruling, $1,299 a month. These two lines read:
   if (!/<b>\$199<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $199 a month, through TradingView");
-  if (!/<div class="n">\$199<\/div>/.test(mp)) probs.push("the price block does not print $199");
+  if (!/<div class="n">\$199<\/div>/.test(mp)) probs.push("the price block does not print $199"); */
+  if (!/<b>\$1,299<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $1,299 a month, through TradingView");
+  if (!/<div class="n">\$1,299<\/div>/.test(mp)) probs.push("the price block does not print $1,299");
+  if (/\$199\b/.test(mp)) probs.push("$199 is still on the page outside a comment");
   if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
   if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
   if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");

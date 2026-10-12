@@ -99,6 +99,13 @@
      tradingview.com; until then the request line stands, and from 1
      November it takes no payment outside TradingView. verify_record.js
      check 26 holds the page to this.
+
+     12 OCTOBER 2026, EVENING, note 50 on the record. The founder ruled
+     that evening that The Fan is $1,299 a month, through TradingView, in
+     place of the $199 set at the upload of 17:32 CEST. The price line
+     under the title and the price block changed with it; what each
+     replaced is kept in a comment beside it, and check 26 now holds the
+     page to $1,299.
      ========================================================================= -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -407,7 +414,9 @@
     <p class="lede">The Fan puts the higher timeframe structure inside the chart you trade. No flicking between charts, no losing the thread. One look tells you where the bigger clocks stand before you act.</p>
     <!-- 12 October 2026, the founder's ruling: The Fan by the month, through TradingView. This line read:
     <p class="fan-price"><a href="#terms"><b>€4,500</b> a quarter or <b>€16,000</b> a year, by request. <span class="go">The terms</span></a></p> -->
-    <p class="fan-price"><a href="#terms"><b>$199</b> a month, through TradingView. <span class="go">The terms</span></a></p>
+    <!-- 12 October 2026, evening, note 50 on the record: the founder's ruling, $1,299 a month. From the upload of 17:32 CEST this line read:
+    <p class="fan-price"><a href="#terms"><b>$199</b> a month, through TradingView. <span class="go">The terms</span></a></p> -->
+    <p class="fan-price"><a href="#terms"><b>$1,299</b> a month, through TradingView. <span class="go">The terms</span></a></p>
   </div>
 </div>
 
@@ -487,8 +496,10 @@
       <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
     </div>
     -->
+    <!-- 12 October 2026, evening, note 50 on the record: the founder's ruling, $1,299 a month. From the upload of 17:32 CEST this read:
+      <div class="n">$199</div> -->
     <div>
-      <div class="n">$199</div>
+      <div class="n">$1,299</div>
       <div class="t">a month · cancel any time</div>
       <a class="btn" id="pay-month" href="#" hidden>Take it by the month</a>
     </div>
@@ -542,7 +553,7 @@ const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the 
    retired. They read:
    const METHOD_PAY_QUARTER = "";   a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026)
    const METHOD_PAY_YEAR    = "";   a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
-const METHOD_SPACE     = "";   /* The Fan's Paid Space on TradingView, $199 a month (12 Oct 2026). Only a tradingview.com address. */
+const METHOD_SPACE     = "";   /* The Fan's Paid Space on TradingView, $1,299 a month (12 Oct 2026, evening, note 50; $199 a month from the upload of 17:32 CEST). Only a tradingview.com address. */
 const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
 const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
 const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
