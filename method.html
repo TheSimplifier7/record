@@ -87,6 +87,18 @@
      The body as it stood is kept in one comment at the foot of this file.
      The animation, the prices and the payment and request links are
      carried across unchanged.
+
+     12 OCTOBER 2026. The founder ruled that day that The Fan is rented by
+     the month, $199, through TradingView. From 1 November 2026 TradingView
+     permits paid access to an invite-only script only through its own
+     Marketplace (the Creator Program's Paid Space), billed monthly, and
+     never as part of another paid product or service. The price line under
+     the title, the price block, the payment constant and the seat line
+     changed with it; what each replaced is kept in a comment beside it. The
+     page sells only when METHOD_SPACE holds the Paid Space's address on
+     tradingview.com; until then the request line stands, and from 1
+     November it takes no payment outside TradingView. verify_record.js
+     check 26 holds the page to this.
      ========================================================================= -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -320,6 +332,7 @@
 
   .fan .stmt{font-size:1rem;line-height:1.6;color:var(--ink);max-width:40rem;padding-left:14px;border-left:3px solid var(--btn);margin:4px 0 20px}
   .fan .price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:40rem;margin:0 0 20px}
+  .fan .price.one{grid-template-columns:minmax(0,1fr);max-width:20rem}  /* 12 October 2026: one price, by the month */
   .fan .price>div{display:grid;gap:4px;align-content:start;padding:18px;border:1px solid var(--rule);border-top:4px solid var(--btn);background:var(--raise)}
   .fan .price .n{font-family:var(--f-cond);font-size:2.25rem;font-weight:700;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
   .fan .price .t{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
@@ -392,7 +405,9 @@
     <h1 id="fan-h">The Fan</h1>
     <p class="tagline">Trade the 10 minute. See the 8 hour.</p>
     <p class="lede">The Fan puts the higher timeframe structure inside the chart you trade. No flicking between charts, no losing the thread. One look tells you where the bigger clocks stand before you act.</p>
-    <p class="fan-price"><a href="#terms"><b>€4,500</b> a quarter or <b>€16,000</b> a year, by request. <span class="go">The terms</span></a></p>
+    <!-- 12 October 2026, the founder's ruling: The Fan by the month, through TradingView. This line read:
+    <p class="fan-price"><a href="#terms"><b>€4,500</b> a quarter or <b>€16,000</b> a year, by request. <span class="go">The terms</span></a></p> -->
+    <p class="fan-price"><a href="#terms"><b>$199</b> a month, through TradingView. <span class="go">The terms</span></a></p>
   </div>
 </div>
 
@@ -441,6 +456,11 @@
   <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
   <script src="descent.js" defer></script>
     -->
+  <!-- 12 October 2026, his ruling on the prompt of that day: twelve parts. The Fan v5's trail and its 2 hour step,
+       seen coming, join after the clocks as parts 9 and 10, on the same illustration tape, which runs on past the
+       flip for them; the mirror shows E4′ and E5′ bright and E1′ to E3′ faint, as v5 draws it, and drops its 10 min
+       label, since under 2 hours The Fan mirrors the 2 hour fan. The four new sentences are v5's own setting notes,
+       approved by him as written. 1 minute 43 became 2 minutes 1. -->
   <div class="descent-head"><span class="k">The inner workings</span></div>
   <div class="descent-wrap" data-movement data-movement-autoplay="view"></div>
   <script src="movement.js" defer></script>
@@ -451,9 +471,11 @@
            reads the same. -->
       <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
 
-  <div class="price" id="price">
+  <div class="price one" id="price">
     <!-- 12 Sep 2026: the founder re-priced the tool. Until then this read
          €3,750 a quarter and €12,000 a year (ruled 7 September, evening). -->
+    <!-- 12 October 2026, the founder's ruling: $199 a month, through TradingView. Until then this block read
+         (and the block's class was "price"):
     <div>
       <div class="n">€4,500</div>
       <div class="t">a quarter · paid in advance · thirteen closes</div>
@@ -463,6 +485,12 @@
       <div class="n">€16,000</div>
       <div class="t">a year · paid once</div>
       <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
+    </div>
+    -->
+    <div>
+      <div class="n">$199</div>
+      <div class="t">a month · cancel any time</div>
+      <a class="btn" id="pay-month" href="#" hidden>Take it by the month</a>
     </div>
   </div>
 
@@ -474,7 +502,9 @@
   <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a></p>
 
   <div class="rule"></div>
-  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time. The tool comes with it.</p>
+  <!-- 12 October 2026: from 1 November 2026 TradingView does not permit the tool as part of another paid product or
+       service, so the seat no longer carries it. This line ended: Four people at a time. The tool comes with it. -->
+  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time.</p>
     </section>
   </article>
 </div>
@@ -508,14 +538,21 @@
 /* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
    describes. Same rule as COUNTER and GUEST_FORM on the record. */
 const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
-const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026) */
-const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
+/* 12 October 2026: The Fan by the month through TradingView, so the quarter's and the year's Stripe links are
+   retired. They read:
+   const METHOD_PAY_QUARTER = "";   a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026)
+   const METHOD_PAY_YEAR    = "";   a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
+const METHOD_SPACE     = "";   /* The Fan's Paid Space on TradingView, $199 a month (12 Oct 2026). Only a tradingview.com address. */
 const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
 const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
 const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
-const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
+/* 12 October 2026. These read:
+   const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
+   if (m || y || r) document.getElementById("closed-line").hidden = true; */
+const onTV = u => /^https:\/\/([a-z]+\.)?tradingview\.com\//.test(String(u || ""));
+const m = onTV(METHOD_SPACE) && show("pay-month", METHOD_SPACE), r = show("request-link", METHOD_FORM);
 show("terms-link", METHOD_TERMS);
-if (m || y || r) document.getElementById("closed-line").hidden = true;
+if (m || r) document.getElementById("closed-line").hidden = true;
 </script>
 <script>
 /* THE GROUND, as on the record (10 October 2026, note 47): white by day, navy when the device is set dark. The

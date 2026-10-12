@@ -82,7 +82,13 @@
         Method page mounts it and loads it and no longer mounts descent.js;
         its words carry no em dash, exclamation mark, hashtag or emoji and
         none of the house words; it asks the network for record.json and
-        nothing else. */
+        nothing else.
+    26. The Fan by the month, 12 October 2026: the Method page prints $199
+        a month through TradingView and no quarter's or year's price, its
+        payment button can point only at tradingview.com, and the seat line
+        no longer carries the tool (TradingView's rule from 1 November
+        2026: paid access only through its Marketplace, never inside
+        another paid product). */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -513,6 +519,24 @@ const mBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|
 check(mCaps.length > 0 && mBad.length === 0, "the inner workings' words carry no em dash, exclamation mark, hashtag, emoji or house word" + (mBad.length ? " (found: " + mBad.join(", ") + ")" : ""));
 const mCode = mvt.replace(/\/\*[\s\S]*?\*\//g, "");
 check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeacon|WebSocket|import\(/.test(mCode) && (mCode.match(/fetch\(/g) || []).length === 1 && /fetch\(src \|\| "record\.json"/.test(mCode), "movement.js asks the network for record.json and nothing else");
+
+/* 26. THE FAN BY THE MONTH, added 12 October 2026. From 1 November 2026 TradingView permits paid access to
+   an invite-only script only through its Marketplace, billed monthly, and never as part of another paid
+   product or service. The Method page is read with its HTML, CSS and script comments removed, because
+   every replaced line is kept in a comment beside what replaced it. */
+{
+  const mp = methodLive.replace(/\/\*[\s\S]*?\*\//g, "");
+  const probs = [];
+  if (!/<b>\$199<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $199 a month, through TradingView");
+  if (!/<div class="n">\$199<\/div>/.test(mp)) probs.push("the price block does not print $199");
+  if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
+  if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
+  if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");
+  const sp = (mp.match(/const METHOD_SPACE\s*=\s*"([^"]*)"/) || [])[1];
+  if (sp === undefined) probs.push("METHOD_SPACE is missing");
+  else if (sp && !/^https:\/\/([a-z]+\.)?tradingview\.com\//.test(sp)) probs.push("METHOD_SPACE points somewhere other than tradingview.com");
+  check(probs.length === 0, "The Fan is offered by the month through TradingView and nowhere else, the seat without it (12 October 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

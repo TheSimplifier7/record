@@ -1,7 +1,7 @@
 /* =========================================================================
-   movement.js  ·  MOVEMENT  ·  THE FAN, THE INNER WORKINGS  ·  11 October 2026
+   movement.js  ·  MOVEMENT  ·  THE FAN, THE INNER WORKINGS  ·  11 October 2026, twelve parts from 12 October 2026
 
-   A film of The Fan from the inside, in ten parts, drawn in the browser:
+   A film of The Fan from the inside, in twelve parts, drawn in the browser:
       1  One line      the midline holds through the noise and moves only when price earns the move
       2  The noise     every bar's move, counted; the mean the stride is built on, and its memory
       3  The stride    7.5 mean bar moves, laid against the chart: the distance a close must travel
@@ -9,17 +9,25 @@
       5  The flip      a stride and a half the other way turns the fan over
       6  Five rungs    the rungs, spaced so a fair walk from the midline touches each before the
                        next step 92.5, 85, 77.5, 70 and 62.5 times in 100; then what came on his chart
-      7  The mirror    the same five reflected through the midline
+      7  The mirror    the same five reflected through the midline, E4′ and E5′ bright, E1′ to E3′ faint (v5)
       8  The clocks    the same engine on the 10 minute, the 2 hour and the 8 hour
-      9  The week      the week's line on the record, a floor or a ceiling, graded on Friday's close
-     10  The decision
+      9  The trail     the tape runs on past the flip: the first touch of the 2 hour mean starts a trail on the
+                       2 hour even-odds line, and it climbs after the mean and never moves back (v5)
+     10  The 2 hour step, seen coming
+                       two 2 hour bars: dashes where the 2 hour mean would step to while its bar is open, one
+                       bar that steps onto them and one that closes back inside (v5)
+     11  The week      the week's line on the record, a floor or a ceiling, graded on Friday's close
+     12  The decision
 
    WHAT IS DATA AND WHAT IS NOT
-   Parts 1 to 8 run on an illustration: a tape of 10 minute bars drawn from a seeded model in this file,
+   Parts 1 to 10 run on an illustration: a tape of 10 minute bars drawn from a seeded model in this file,
    with no price printed anywhere, and the screen says so while it runs. TradingView licenses its data
    for display only (its terms, section 3, read 11 October 2026), so his chart's own bars are not redrawn
    here. The Fan's engine runs on that tape line for line as THE_FAN_v4_5_11OCT.pine runs it: the width,
-   the steps, the flips, the rungs and the clocks are the indicator's own, not a drawing of them.
+   the steps, the flips, the rungs and the clocks are the indicator's own, not a drawing of them. v5
+   (THE_FAN_v5_12OCT.pine) keeps that engine and those clocks; parts 9 and 10 run its trail and its 2 hour
+   step seen coming as it reads the 2 hour clock from a 10 minute chart: while a 10 minute bar trades, the
+   mean and side the last closed 2 hour bar left and the stride of the 2 hour bar now open.
    The numbers on screen that are not the engine's own constants are his:
      the rungs as his exports graded them, the 8 October 2026 scorecard (project doc THE_FAN_v4_1_TWIN.md):
        from the midline, rungs one to five came 92.7, 85.3, 79.6, 72.8, 64.9 on the 10 minute and
@@ -30,8 +38,9 @@
    EVERY WORD ON SCREEN IS HIS
    The sentences come from his Method page (thesimplifier7.github.io/record/method.html, as live on
    11 October 2026), the key he approved on 10 October 2026, and one setting's description from The Fan
-   itself. The labels are The Fan's own: its tags, its panel's rows and its settings, as it ships. Each
-   is listed with its source between CAPTIONS-START and CAPTIONS-END below.
+   itself; parts 9 and 10 carry four sentences from v5's own settings, approved by him as written on
+   12 October 2026. The labels are The Fan's own: its tags, its panel's rows and its settings, as it ships.
+   Each is listed with its source between CAPTIONS-START and CAPTIONS-END below.
 
    BRAND LAW. The words carry no em dash, hashtag, exclamation mark, emoji, superlative or forecast.
 
@@ -80,11 +89,13 @@
        M  his Method page, thesimplifier7.github.io/record/method.html
        K  the key he approved on 10 October 2026 (The Path)
        F  The Fan itself, THE_FAN_v4_5_11OCT.pine: its tags, its panel's rows, its settings and their notes
+       V  The Fan v5, THE_FAN_v5_12OCT.pine, the same for parts 7, 9 and 10; its four sentences, from the
+          settings The trail and The 2 hour step seen coming, approved by him as written on 12 October 2026
      A label built from those words names what is on screen; no sentence here is new. */
   const WORDS = {
     title: "The Fan",                                                          /* the indicator's name */
     subtitle: "The inner workings",                                            /* F: group IV · THE INNER WORKINGS */
-    rail: ["One line", "The noise", "The stride", "The step", "The flip", "Five rungs", "The mirror", "The clocks", "The week", "The decision"],
+    rail: ["One line", "The noise", "The stride", "The step", "The flip", "Five rungs", "The mirror", "The clocks", "The trail", "The 2 hour step, seen coming", "The week", "The decision"],   /* V: group VIII, THE TRAIL AND THE 2 HOUR STEP */
     /* the sentences, each at its moment in seconds */
     caps: [
       [0.9, 5.9, "One line through the market, moved only when price earns the move."],                        /* M */
@@ -92,8 +103,12 @@
       [52.4, 57.7, "The chance that a driftless walk from the midline touches the rung before the midline steps again."], /* F: the rungs' odds, its setting's note */
       [58.6, 63.3, "Its own ledger shows what its odds said and what came."],                                   /* M */
       [80.4, 86.2, "Trade the 10 minute. See the 8 hour."],                                                     /* M */
-      [88.3, 95.2, "Floor: the week must close above it. Ceiling: the week must close under it. Only Friday's close counts."], /* K */
-      [96.2, 102.6, "It does not tell you what to do, and it makes no forecast. It draws the structure. The decision stays yours."] /* M */
+      [88.6, 93.4, "Held from the first touch of the 2 hour mean after each step or flip and never moved back."], /* V: The trail, its setting's note */
+      [93.7, 95.9, "Drawn as structure, with no claim on it."],                                                 /* V: The trail, its setting's note */
+      [96.6, 99.9, "The 2 hour fan moves only when its bar closes."],                                           /* V: The 2 hour step seen coming, its note */
+      [101.4, 104.3, "A preview, not the step."],                                                               /* V: The 2 hour step seen coming, its note */
+      [106.3, 113.2, "Floor: the week must close above it. Ceiling: the week must close under it. Only Friday's close counts."], /* K */
+      [114.2, 120.6, "It does not tell you what to do, and it makes no forecast. It draws the structure. The decision stays yours."] /* M */
     ],
     /* the labels */
     earns: "Moved only when price earns the move",                             /* M */
@@ -119,12 +134,19 @@
     held: "Held", hit: "Hit", wrong: "Wrong",                                  /* the record's grades, as the Friday film stamps them */
     atCall: "in 100 at the call",                                              /* F: the panel's row */
     friday: "Friday's close",                                                  /* F: tag */
+    trail: "The trail",                                                        /* V: tag */
+    ifClose: "If the 2H closes here",                                          /* V: tag */
+    itsE5: "Its E5′",                                                          /* V: tag */
+    stepPending: "Step pending",                                               /* V: the 2 hour row */
+    barCloses: "Its bar closes",                                               /* V: the 2 hour row */
+    left: "left",                                                              /* V: the 2 hour row */
+    h2up: "2H up", h2dn: "2H down",                                            /* V: the 2 hour row */
     weekOf: "Week of",                                                         /* F: the panel's week label */
     open: "Graded in the open",                                                /* M: section heading */
     illus: "Illustration · no price printed",
     noData: "The record's own data could not be read on this page, so the week is not drawn.",
     url: "thesimplifier7.github.io/record",
-    play: "Play", pause: "Pause", resume: "Play", replay: "Play again", length: "1 min 43 s",
+    play: "Play", pause: "Pause", resume: "Play", replay: "Play again", length: "2 min 1 s",
     text: "Read it as text"
   };
   /* his chart's own rungs, the 8 October 2026 scorecard (THE_FAN_v4_1_TWIN.md) */
@@ -269,12 +291,69 @@
     }
     WD = { T, E, T2, E2, T8, E8, e, W: E.wp[e] };
     WD.walks = walks(WD);
+    WD.TR = trailsOf(WD);
     return WD;
   }
 
   /* the clocks' fans as a 10 minute bar sees them: each as it stood after its last closed bar */
   const j2of = i => Math.floor((i + 1) / 12) - 1;
   const j8of = i => Math.floor((i + 1) / 48) - 1;
+
+  /* parts 9 and 10 (v5): the 2 hour clock as The Fan reads it while 10 minute bar i trades: the mean and side the last
+     closed 2 hour bar left, the stride of the 2 hour bar now open, its step level and its even-odds line
+     (THE_FAN_v5_12OCT.pine, sections VIII and IX) */
+  function h2of(w, i) {
+    const J = Math.floor(i / 12);
+    if (J < 1 || J >= w.E2.n) return null;
+    const sd = w.E2.side[J - 1], m = w.E2.mid[J - 1], W = w.E2.wp[J];
+    if (isNaN(sd) || isNaN(m) || isNaN(W)) return null;
+    return { J, k: i - 12 * J, m, sd, W, st: m + sd * W, ev: m - sd * W };
+  }
+  const h2view = i => h2of(world(), i);
+
+  /* THE TRAIL (v5, the rule sealed as SEAL-002), bar by bar on the tape, line for line as fan_v5_twin.py runs it: each
+     change of the 2 hour mean opens an epoch; only an epoch's first touch of the mean can start a trail, one at a
+     time; it starts as a limit at the mean would fill, unless that fill is at or past the even-odds line; it moves to
+     each bar's even-odds line when that is nearer the price, never back, and ends where a bar reaches it or the 2 hour
+     fan flips. val is where it stands at each close while it runs; moved marks the closes it moved on. */
+  function trailsOf(w) {
+    const T = w.T, N = T.N, val = new Float64Array(N).fill(NaN), moved = new Uint8Array(N), list = [];
+    let ep = 0, sn = -1, d = NaN, s = NaN, cur = null, pm = NaN;
+    for (let i = 12 * 2001; i < N; i++) {
+      const v = h2of(w, i), tm = v ? v.m : NaN, sd = v ? v.sd : NaN, tev = v ? v.ev : NaN;
+      if (!isNaN(tm) && !isNaN(pm) && tm !== pm) ep++;
+      pm = tm;
+      let end = false, flp = false;
+      if (!isNaN(d)) {
+        if (!isNaN(sd) && sd !== d) { end = flp = true; }
+        else {
+          const was = s;
+          if (!isNaN(tev)) s = d > 0 ? Math.max(s, tev) : Math.min(s, tev);
+          if (s !== was) { cur.path.push([i, s]); moved[i] = 1; }
+          end = d > 0 ? T.L[i] <= s : T.H[i] >= s;
+        }
+        if (end) { cur.i1 = i; cur.y1 = s; cur.how = flp ? "flip" : "touched"; d = NaN; }
+      }
+      if (!isNaN(tm) && !isNaN(sd) && ep !== sn && T.L[i] <= tm && tm <= T.H[i]) {
+        sn = ep;
+        if (isNaN(d) && (!end || flp) && !isNaN(tev)) {
+          const o = T.O[i], f = (sd > 0 ? o <= tm : o >= tm) ? o : tm;
+          if ((f - tev) * sd > 0) {
+            d = sd; s = tev; cur = { i0: i, d, s0: s, mean: tm, path: [[i, s]], i1: null, y1: NaN, how: null }; list.push(cur);
+            if (d > 0 ? T.L[i] <= s : T.H[i] >= s) { cur.i1 = i; cur.y1 = s; cur.how = "touched"; d = NaN; }
+          }
+        }
+      }
+      val[i] = isNaN(d) ? NaN : s;
+    }
+    return { val, moved, list };
+  }
+  /* a trail's value at bar i: the last place it moved to by then */
+  function trailAt(q, i) {
+    let v = NaN;
+    for (const [k, y] of q.path) { if (k > i) break; v = y; }
+    return v;
+  }
 
   /* Part 6's walks: fair coin walks from the midline in strides, with the side positive, a bar's spread
      the tape's own (a mean bar move is a 7.5th of a stride, its spread that times the root of half pi),
@@ -330,14 +409,14 @@
     };
   }
 
-  /* ---------------------------------------------------------------- the clock: ten parts on one timeline */
+  /* ---------------------------------------------------------------- the clock: twelve parts on one timeline */
   const SC = [
     { id: "line", t0: 0, t1: 6.5 }, { id: "noise", t0: 6.5, t1: 16.5 }, { id: "stride", t0: 16.5, t1: 25.0 },
     { id: "step", t0: 25.0, t1: 41.0 }, { id: "flip", t0: 41.0, t1: 48.5 }, { id: "rungs", t0: 48.5, t1: 63.5 },
-    { id: "mirror", t0: 63.5, t1: 70.5 }, { id: "clocks", t0: 70.5, t1: 86.5 }, { id: "week", t0: 86.5, t1: 95.5 },
-    { id: "decision", t0: 95.5, t1: 103.0 }
+    { id: "mirror", t0: 63.5, t1: 70.5 }, { id: "clocks", t0: 70.5, t1: 86.5 }, { id: "trail", t0: 86.5, t1: 95.5 },
+    { id: "seen", t0: 95.5, t1: 104.5 }, { id: "week", t0: 104.5, t1: 113.5 }, { id: "decision", t0: 113.5, t1: 121.0 }
   ];
-  const TOTAL = 103.0;
+  const TOTAL = 121.0;
   const sceneAt = t => { for (let i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; };
 
   /* the playhead: which 10 minute bar has just closed, counted from the bar the fan flips on (0).
@@ -352,7 +431,20 @@
     if (t < 39.6) { const u = (t - 32.6) / 7.0; return lerp(PH.C, PH.D, u * u * (3 - 2 * u)); }
     if (t < 45.9) return lerp(PH.D, -1, (t - 39.6) / 6.3);
     if (t < T_FLIP) return -1 + sstep(45.9, T_FLIP, t) * 0.999999;
-    return 0;
+    return after(t);
+  }
+  /* parts 9 and 10 (v5): the tape runs on past the flip. To the first touch of the 2 hour mean, slowing into it; on
+     through the 2 hour mean's steps; then the two 2 hour bars of part 10, a close at a time. [from, to, bar, bar, ease] */
+  const RUN = [[87.4, 88.8, 0, 83, 1], [88.8, 89.6, 83, 86, 0], [89.6, 94.6, 86, 290, 1], [94.6, 95.6, 290, 296, 2],
+    [96.3, 100.0, 296, 308, 0], [100.7, 103.6, 308, 320, 0]];
+  function after(t) {
+    let r = 0;
+    for (const [a, b, r0, r1, kind] of RUN) {
+      if (t < a) return r;
+      if (t < b) { const u = inv(a, b, t); return lerp(r0, r1, kind === 1 ? u * u * (3 - 2 * u) : kind === 2 ? 1 - (1 - u) * (1 - u) : u); }
+      r = r1;
+    }
+    return r;
   }
   /* bars a second, for the escapement's beat */
   const speed = t => Math.abs(playhead(t + 0.02) - playhead(t - 0.02)) / 0.04;
@@ -360,6 +452,12 @@
   const SEGS = [[0.4, 6.1], [25.6, 32.6], [32.6, 39.6], [39.6, 45.9], [45.9, T_FLIP]];
   function closeTime(r) {
     if (r <= PH.A) return 0;
+    if (r > 0) {
+      /* after the flip, the first moment the tape reaches r: the runs only move forward */
+      if (r > after(TOTAL)) return Infinity;
+      let lo = T_FLIP, hi = TOTAL; for (let k = 0; k < 46; k++) { const m = (lo + hi) / 2; if (after(m) < r) lo = m; else hi = m; }
+      return hi;
+    }
     if (r >= 0) return r === 0 ? T_FLIP : Infinity;
     for (const [a, b] of SEGS) {
       const r0 = playhead(a), r1 = playhead(b - 1e-9);
@@ -414,8 +512,48 @@
       const k = t < 73.2 ? lerp(a, b, quint(inv(70.5, 73.2, t))) : t < 74.2 ? b : t < 77.0 ? lerp(b, c, quint(inv(74.2, 77.0, t))) : t < 82.4 ? c : lerp(c, d, quint(inv(82.4, 85.6, t)));
       nb = Math.exp(k); pad = t < 82.4 ? lerp(0.5, 0.26, ease(inv(70.5, 73.2, t))) : lerp(0.26, 0.3, ease(inv(82.4, 85.6, t)));
     }
-    else { nb = lerp(230, 170, ease(inv(95.5, 103, t))); pad = 0.3; }
+    else if (t < 95.5) {
+      /* part 9: out a little, to watch the trail climb after the 2 hour mean */
+      const u = quint(inv(86.5, 87.8, t));
+      nb = Math.exp(lerp(Math.log(230), Math.log(380), u)); pad = lerp(0.3, 0.2, u);
+    }
+    else if (t < 113.5) {
+      /* part 10: in on its two 2 hour bars and held still, the tape running through them */
+      const u = quint(inv(95.5, 96.6, t)), xr0 = after(95.5) + 380 * 0.2;
+      return { r, nb: Math.exp(lerp(Math.log(380), Math.log(CAM10.nb), u)), pad: 0, xr: lerp(xr0, CAM10.xr, u) };
+    }
+    else { nb = lerp(230, 170, ease(inv(113.5, 121, t))); pad = 0.3; }
     return { r, nb, pad, xr: r + nb * pad };
+  }
+  /* part 10's frame: the bars from 279 to 337 after the flip, the two 2 hour bars (297 to 308, 309 to 320) and room
+     to the right for the dashes and the tags */
+  const CAM10 = { nb: 58, xr: 337 };
+
+  /* ---------------------------------------------------------------- part 10: the 2 hour step, seen coming (v5) */
+  /* at the playhead, the 10 minute bar now forming, at the price it has reached: is it at or past the 2 hour step level
+     with the 2 hour side, and if its 2 hour bar closed there, where would the mean, its E5′ and its FLIP′ land. The
+     2 hour bar is open while any of its 10 minute bars is still forming, so a preview never outlives its bar. */
+  function seenAt(t) {
+    const w = world(), r = playhead(t), ip = w.e + Math.floor(r), j = ip + 1, v = h2view(j);
+    if (!v) return null;
+    const T = w.T, fr = r - Math.floor(r), kk = clamp(fr * 1.15, 0, 1), px = T.O[j] + (T.C[j] - T.O[j]) * kk;
+    const past = i => (T.C[i] - v.st) * v.sd >= 0, pend = (px - v.st) * v.sd >= 0;
+    let t0 = j; if (pend) while (t0 - 1 >= 12 * v.J && past(t0 - 1)) t0--;
+    const pm = px - v.sd * v.W;
+    return { j, J: v.J, k: v.k, fr, v, px, pend, t0, pm, y5: pm + v.sd * CORE.RR * v.W, yf: pm + v.sd * (1 + CORE.BAND) * v.W,
+      left: Math.max(0, Math.ceil((12 - v.k - kk) * 10 - 1e-9)), past };
+  }
+  /* when the dashes come and go in part 10, found once by stepping the clock finely: each with the state it left */
+  let SEENEV = null;
+  function seenEvents() {
+    if (SEENEV) return SEENEV;
+    const ev = []; let was = null;
+    for (let t = 95.5; t <= 104.5; t += 1 / 240) {
+      const s = seenAt(t), on = !!(s && s.pend);
+      if (was && on !== was.on) ev.push({ t, on, prev: was.s });
+      was = { on, s };
+    }
+    return (SEENEV = ev);
   }
 
 
@@ -556,6 +694,49 @@
     c.restore();
   }
 
+  /* ---------------------------------------------------------------- the ratchet, for the trail (v5) */
+  /* a wheel of saw teeth and its pawl. Each tooth rises slowly and drops sheer, so the wheel turns one way only:
+     a tooth for each move of the trail, the pawl riding up its back and dropping behind it, and never back.
+     turn counts the teeth turned; drop lifts the pawl clear of the wheel before the trail is held (1 clear, 0 down) */
+  function ratchet(c, L, cx, cy, R, o) {
+    const a = o.alpha == null ? 1 : o.alpha; if (a <= 0.004) return;
+    const gold = o.color || P.gold, lw = Math.max(1, R * 0.03), n = 24, D = TAU / n, r0 = R * 0.8;
+    const th = (o.turn || 0) * D + 0.08 * D - Math.PI / 2 + 0.32;       /* the wheel, clockwise a tooth a move */
+    const nose = -Math.PI / 2 + 0.32;                                     /* where the pawl's nose sits on it */
+    const p = (ang, rr) => [cx + Math.cos(ang) * rr, cy + Math.sin(ang) * rr];
+    c.save(); c.globalAlpha = a; c.lineJoin = "round"; c.lineCap = "round";
+    const stroke = (w, col, al) => { c.strokeStyle = col || gold; c.lineWidth = w; c.globalAlpha = a * (al == null ? 1 : al); c.stroke(); };
+    /* construction circle, as on a drawing */
+    c.setLineDash([R * 0.04, R * 0.06]); c.beginPath(); c.arc(cx, cy, R * 1.14, 0, TAU); stroke(lw * 0.6, P.ink9, 0.5); c.setLineDash([]);
+    /* the teeth: a sheer face, then the slow back to the next */
+    c.beginPath();
+    for (let k = 0; k < n; k++) {
+      const b = th + k * D, q0 = p(b, r0), q1 = p(b, R), q2 = p(b + D, r0);
+      if (k === 0) c.moveTo(q0[0], q0[1]); else c.lineTo(q0[0], q0[1]);
+      c.lineTo(q1[0], q1[1]); c.lineTo(q2[0], q2[1]);
+    }
+    c.closePath();
+    c.save(); c.shadowColor = rgba(P.gold, 0.6); c.shadowBlur = R * 0.12; stroke(lw * 1.2, gold); c.restore();
+    c.beginPath(); c.arc(cx, cy, R * 0.62, 0, TAU); stroke(lw * 0.8, gold, 0.8);
+    c.beginPath(); c.arc(cx, cy, R * 0.14, 0, TAU); stroke(lw * 0.9, gold);
+    for (let k = 0; k < 4; k++) { const b = th + k * TAU / 4 + 0.4; c.beginPath(); c.moveTo(cx + Math.cos(b) * R * 0.14, cy + Math.sin(b) * R * 0.14); c.lineTo(cx + Math.cos(b) * R * 0.62, cy + Math.sin(b) * R * 0.62); stroke(lw * 0.8, gold, 0.85); }
+    /* the pawl rests on the wheel where its nose is: up the slow back, off the sheer face */
+    let u = ((nose - th) % D + D) % D;                                    /* how far into a tooth the nose sits */
+    const rr = R - (R - r0) * (u / D), lift = o.drop || 0;
+    const pv = [cx + R * 1.02, cy - R * 1.18], tip = p(nose, lerp(rr + R * 0.02, R * 1.32, lift));
+    c.beginPath(); c.moveTo(pv[0], pv[1]); c.quadraticCurveTo(pv[0] - R * 0.12, tip[1] - R * 0.02, tip[0], tip[1]); stroke(lw * 2.2, gold);
+    c.beginPath(); c.arc(pv[0], pv[1], R * 0.07, 0, TAU); stroke(lw, gold);
+    /* its spring, a few turns from the pawl to the frame */
+    const s0 = [pv[0] + R * 0.06, pv[1] + R * 0.12], s1 = [pv[0] + R * 0.42, pv[1] + R * 0.34];
+    c.beginPath(); c.moveTo(s0[0], s0[1]);
+    for (let k = 1; k <= 7; k++) { const f = k / 8, x = lerp(s0[0], s1[0], f), y = lerp(s0[1], s1[1], f), z = (k % 2 ? 1 : -1) * R * 0.05; c.lineTo(x + z * 0.6, y - z); }
+    c.lineTo(s1[0], s1[1]); stroke(lw * 0.6, P.floor, 0.65);
+    c.restore();
+  }
+
+  /* a span of minutes as The Fan's panel writes it: 0H 50M */
+  const durS = m => Math.floor(m / 60) + "H " + String(Math.round(m % 60)).padStart(2, "0") + "M";
+
   /* ---------------------------------------------------------------- the ground: navy, a drawing's grid, its corner marks, grain */
   let GRAIN = null;
   function grain() {
@@ -595,6 +776,8 @@
   function fitRaw(t, id) {
     const w = world(), cam = camera(t), s = id || SC[sceneAt(t)].id, ip = w.e + Math.floor(cam.r), W = w.W;
     if (s === "rungs" || s === "mirror") { const m = w.E.mid[w.e]; return [m - 1.85 * W, m + 1.85 * W]; }
+    /* part 10 holds one frame, and the week fades out of it */
+    if (s === "seen" || (s === "week" && t < 106)) return seenFit();
     let lo = Infinity, hi = -Infinity;
     const a = Math.max(1, w.e + Math.floor(cam.xr - cam.nb)), b = Math.min(ip + 1, w.T.N - 1);
     for (let i = a; i <= b; i++) { if (w.T.L[i] < lo) lo = w.T.L[i]; if (w.T.H[i] > hi) hi = w.T.H[i]; }
@@ -602,6 +785,8 @@
     if (s === "stride" || s === "step" || s === "flip" || s === "decision") { inc(w.E.mid[ip]); inc(CORE.lat(w.E, ip, 11)); }
     if (s === "flip") { inc(CORE.lat(w.E, ip, 13)); }
     if (s === "clocks") { const st = Math.max(1, Math.floor((b - a) / 400)); for (let i = a; i <= b; i += st) { inc(w.E2.mid[j2of(i)]); inc(w.E8.mid[j8of(i)]); } }
+    /* part 9: the 2 hour mean and the trail, as the bars in view read them */
+    if (s === "trail") { for (let i = a; i <= b; i++) { const v = h2view(i); if (v) inc(v.m); inc(w.TR.val[i]); } const v = h2view(ip + 1); if (v) inc(v.m); }
     const pad = (hi - lo) * (s === "noise" ? 0.2 : s === "line" ? 0.16 : 0.13);
     return [lo - pad, hi + pad];
   }
@@ -613,7 +798,23 @@
     const blend = (a, b, u) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u)];
     if (t >= 48.5 && t < 50.6) return blend(fitRaw(48.45, "flip"), [lo, hi], quint(inv(48.5, 50.6, t)));
     if (t >= 70.5 && t < 72.6) return blend(fitRaw(70.45, "mirror"), [lo, hi], quint(inv(70.5, 72.6, t)));
+    if (t >= 86.5 && t < 88.0) return blend(fitRaw(86.45, "clocks"), [lo, hi], quint(inv(86.5, 88.0, t)));
+    if (t >= 95.5 && t < 96.6) return blend(fitRaw(95.45, "trail"), [lo, hi], quint(inv(95.5, 96.6, t)));
     return [lo, hi];
+  }
+  /* part 10's height, fixed: every bar, line and dash it will show, a tenth spare above and below */
+  let SFIT = null;
+  function seenFit() {
+    if (SFIT) return SFIT;
+    const w = world(); let lo = Infinity, hi = -Infinity;
+    const inc = v => { if (!isNaN(v)) { if (v < lo) lo = v; if (v > hi) hi = v; } };
+    for (let r = CAM10.xr - CAM10.nb; r <= 321; r++) {
+      const i = w.e + r, v = h2view(i);
+      inc(w.T.L[i]); inc(w.T.H[i]); inc(w.TR.val[i]);
+      if (v) { inc(v.m); inc(v.st); }
+    }
+    const pad = (hi - lo) * 0.08;
+    return (SFIT = [lo - pad, hi + pad]);
   }
   function geom(L, t) {
     const w = world(), cam = camera(t), R = L.chart, left = cam.xr - cam.nb, bw = R.w / cam.nb;
@@ -730,7 +931,7 @@
     for (let k = 1; k < list.length; k++) if (list[k].y - list[k - 1].y < gap) list[k].y = list[k - 1].y + gap;
     for (const q of list) {
       line(c, x - 0.8 * L.U, q.y0 == null ? q.y : q.y0, x - 0.1 * L.U, q.y, q.color, 1, q.a * 0.6);
-      txt(c, L, q.s, x + 0.4 * L.U, q.y + L.f.tag * 0.35, { kind: "mono", size: L.f.tag, color: q.color, alpha: q.a, ls: 0.06 });
+      txt(c, L, q.s, x + 0.4 * L.U, q.y + L.f.tag * 0.35, { kind: "mono", size: L.f.tag, color: q.color, alpha: q.a, ls: 0.06, glow: q.halo ? "rgba(6,12,24,0.96)" : null, glowR: 7 });
     }
   }
 
@@ -761,7 +962,7 @@
     for (let k = 1; k <= 5; k++) {
       const u = unf ? unf[k - 1] : 1; if (u <= 0.002) continue;
       for (const sd of [1, -1]) {
-        c.save(); c.strokeStyle = sd > 0 ? P.up : P.dn; c.globalAlpha = a * (k === 1 || k === 5 ? 0.85 : 0.6); c.lineWidth = Math.max(1, 0.13 * L.U);
+        c.save(); c.strokeStyle = sd > 0 ? P.up : P.dn; c.globalAlpha = a * (mirror ? (k >= 4 ? 0.95 : 0.26) : k === 1 || k === 5 ? 0.85 : 0.6); c.lineWidth = Math.max(1, (mirror && k >= 4 ? 0.17 : 0.13) * L.U);
         if (dotted) c.setLineDash([0.25 * L.U, 0.55 * L.U]);
         stepPath(c, G, i => (E.side[i] === sd ? E.mid[i] + (CORE.lat(E, i, mirror ? k + 5 : k) - E.mid[i]) * u : NaN), i0, ip, G.xp);
         c.stroke(); c.restore();
@@ -785,7 +986,7 @@
       c.fillStyle = rgba(col, a * LIGHT[k] * 0.16); c.fill(); yp = pts[k][1];
     }
     c.globalCompositeOperation = "lighter";
-    for (let k = 0; k < 5; k++) { c.beginPath(); c.moveTo(px, py); c.lineTo(pts[k][0], pts[k][1]); c.strokeStyle = col; c.globalAlpha = a * (k === 0 || k === 4 ? 0.95 : 0.7); c.lineWidth = Math.max(1, 0.16 * L.U); c.stroke(); }
+    for (let k = 0; k < 5; k++) { c.beginPath(); c.moveTo(px, py); c.lineTo(pts[k][0], pts[k][1]); c.strokeStyle = col; c.globalAlpha = a * (o.emph ? o.emph[k] : k === 0 || k === 4 ? 0.95 : 0.7); c.lineWidth = Math.max(1, 0.16 * L.U); c.stroke(); }
     c.globalCompositeOperation = "source-over";
     c.beginPath(); c.arc(px, py, Math.max(2.5, 0.5 * L.U), 0, TAU); c.fillStyle = P.goldHi; c.globalAlpha = a; c.fill();
     c.restore();
@@ -1078,7 +1279,8 @@
       const r = R * (isMid ? 1.06 : guard ? 1.0 : 0.97), [x, y] = tip(v, r);
       c.save();
       if (mirror) c.setLineDash([0.3 * U, 0.45 * U]);
-      c.globalAlpha = a * (isMid ? 1 : guard ? 0.85 : k === 1 || k === 5 || k === 6 || k === 10 ? 0.95 : 0.7) * (v < 0 ? mir : 1);
+      /* v5: on the mirror E4′ and E5′ are bright and E1′ to E3′ faint, as The Fan draws them */
+      c.globalAlpha = a * (isMid ? 1 : guard ? 0.85 : k === 1 || k === 5 || k === 9 || k === 10 ? 0.95 : k >= 6 && k <= 8 ? 0.3 : 0.7) * (v < 0 ? mir : 1);
       c.strokeStyle = col; c.lineWidth = Math.max(1, (isMid ? 0.34 : guard ? 0.2 : 0.16) * U);
       if (isMid) { c.shadowColor = rgba(P.gold, 0.8); c.shadowBlur = 1.4 * U; }
       c.beginPath(); c.moveTo(px, py); c.lineTo(x, y); c.stroke();
@@ -1135,7 +1337,7 @@
     let lo = Math.min(...vals), hi = Math.max(...vals); const pd = (hi - lo) * 0.45; lo -= pd; hi += pd;
     const top = Wk.y + Wk.h * 0.2, bot = Wk.y + Wk.h * 0.9, y = v => bot - ((v - lo) / (hi - lo)) * (bot - top);
     const x0 = Wk.x, x1 = Wk.x + Wk.w, xB = x0 + Wk.w * 0.15, xF = x0 + Wk.w * (L.land ? 0.7 : 0.66);
-    const u1 = sstep(87.0, 87.8, t), u2 = ease(inv(87.6, 88.7, t)), u3 = ease(inv(90.4, 91.2, t)), u4 = sstep(91.6, 91.85, t), u5 = sstep(92.4, 93.2, t);
+    const u1 = sstep(105.0, 105.8, t), u2 = ease(inv(105.6, 106.7, t)), u3 = ease(inv(108.4, 109.2, t)), u4 = sstep(109.6, 109.85, t), u5 = sstep(110.4, 111.2, t);
     const yl = y(d.lineN), col = d.ceiling ? P.dn : P.up;
     /* which side of the line the week must close on: the key, drawn */
     c.save(); c.globalAlpha = a * u2;
@@ -1155,7 +1357,7 @@
     /* Friday's close */
     if (d.closeN != null) {
       const yc = y(d.closeN), yy = lerp(yl, yc, u3);
-      line(c, xF, top - 1 * U, xF, bot, P.ink6, 1, a * sstep(90.2, 90.6, t) * 0.5, [0.2 * U, 0.5 * U]);
+      line(c, xF, top - 1 * U, xF, bot, P.ink6, 1, a * sstep(108.2, 108.6, t) * 0.5, [0.2 * U, 0.5 * U]);
       if (u3 > 0.01) {
         dimV(c, L, xF + 4.2 * U, yl, yy, P.ink3, a * u3, null);
         c.save(); c.globalAlpha = a * sstep(0, 0.3, u3); c.fillStyle = P.ink; c.beginPath(); c.arc(xF, yy, Math.max(3, 0.8 * U), 0, TAU); c.fill();
@@ -1176,6 +1378,80 @@
       }
     }
     txt(c, L, WORDS.open, x0, Wk.y + Wk.h + L.f.lab * 0.6, { size: L.f.lab, color: P.ink6, alpha: a * u5, ls: 0.2 });
+  }
+
+  /* ---------------------------------------------------------------- part 9: the trail's ratchet (v5) */
+  /* the times the trail starts and moves, from the tape: the trail held from the first touch after the flip */
+  let TRT = null;
+  function trailTimes() {
+    if (TRT) return TRT;
+    const w = world(), q = w.TR.list.find(x => x.i0 > w.e), moves = [];
+    if (!q) return (TRT = { start: Infinity, moves, q: null });
+    const end = q.i1 == null ? w.T.N - 1 : q.i1;
+    for (let i = q.i0 + 1; i <= end; i++) if (w.TR.moved[i]) moves.push(closeTime(i - w.e));
+    return (TRT = { start: closeTime(q.i0 - w.e), moves, q });
+  }
+  function drawRatchetPart(c, L, t, a) {
+    if (a <= 0.004) return;
+    const I = L.inst, U = L.U, vert = I.h > I.w * 0.9, T9 = trailTimes();
+    let turn = 0, kick = 0;
+    for (const tm of T9.moves) { if (tm > t) break; turn += snap(clamp((t - tm) / 0.22, 0, 1)); kick = Math.max(kick, Math.exp(-(t - tm) * 8)); }
+    const held = sstep(T9.start - 0.05, T9.start + 0.3, t);
+    const R = vert ? Math.min(I.w * 0.2, I.h * 0.18) : Math.min(I.h * 0.34, I.w * 0.15);
+    const cx = vert ? I.x + I.w * 0.42 : I.x + 1.5 * R, cy = vert ? I.y + I.h * 0.3 : I.y + I.h * 0.52;
+    if (kick > 0.01) {
+      c.save(); c.globalCompositeOperation = "lighter"; const rr = R * 2, g = c.createRadialGradient(cx, cy, 0, cx, cy, rr);
+      g.addColorStop(0, rgba(P.goldHi, a * 0.22 * kick)); g.addColorStop(1, rgba(P.gold, 0)); c.fillStyle = g; c.fillRect(cx - rr, cy - rr, rr * 2, rr * 2); c.restore();
+    }
+    ratchet(c, L, cx, cy, R, { alpha: a * lerp(0.45, 1, held), turn, drop: 1 - held, color: held > 0.5 ? P.goldHi : P.gold });
+    const lx = vert ? I.x : cx + R * 2.0, ly = vert ? cy + R * 1.75 : cy - L.f.lab * 0.4, al = vert ? "left" : "left";
+    txt(c, L, WORDS.trail, lx, ly, { size: L.f.lab * 1.15, color: P.goldHi, alpha: a * lerp(0.5, 1, held), weight: 700, align: al });
+    txt(c, L, WORDS.clocks[1], lx, ly + L.f.lab * 1.5, { kind: "mono", size: L.f.tag, color: P.ink3, alpha: a * 0.9, align: al });
+  }
+
+  /* ---------------------------------------------------------------- part 10: the 2 hour row, as The Fan's panel reads it (v5) */
+  /* its side, STEP PENDING while a close sits past the level, when its bar closes; under it the 2 hour bar now open,
+     a cell for each of its twelve 10 minute closes, lit gold where the close sat past the step level */
+  function drawSeenPanel(c, L, t, a) {
+    if (a <= 0.004) return;
+    const I = L.inst, U = L.U, vert = I.h > I.w * 0.9, s = seenAt(t); if (!s) return;
+    const w = world();
+    /* after the second bar has closed, hold it as it closed */
+    const hold = t >= 103.6 && s.k === 0, J = hold ? s.J - 1 : s.J, kNow = hold ? 12 : s.k;
+    const v = hold ? h2view(12 * J) : s.v;
+    const pend = !hold && s.pend;
+    const bx = I.x, by = I.y + (vert ? I.h * 0.06 : I.h * 0.02), bw = I.w, bh = vert ? I.h * 0.56 : I.h * 0.94;
+    c.save(); c.globalAlpha = a; c.fillStyle = rgba(P.night, 0.86); c.strokeStyle = rgba(P.ink9, 0.55); c.lineWidth = 1;
+    c.beginPath(); c.rect(bx, by, bw, bh); c.fill(); c.stroke(); c.restore();
+    const px = bx + 1.6 * U, fs = vert ? L.f.tag * 1.05 : L.f.lab * 0.95, y1 = by + 1.6 * U + fs;
+    txt(c, L, v && v.sd > 0 ? WORDS.h2up : WORDS.h2dn, px, y1, { kind: "mono", size: fs, color: P.ink6, alpha: a });
+    const pa = a * (pend ? 1 : 0.0);
+    const x2 = vert ? px : px + measure(c, L, WORDS.h2dn, { kind: "mono", size: fs }) + 3 * U;
+    const y2 = vert ? y1 + fs * 1.6 : y1;
+    txt(c, L, WORDS.stepPending, x2, y2, { kind: "mono", size: fs, color: P.goldHi, alpha: pa, weight: 600 });
+    txt(c, L, WORDS.barCloses + " · " + durS(s.left) + " " + WORDS.left, x2, y2 + fs * 1.5, { kind: "mono", size: fs * 0.92, color: P.ink3, alpha: pa });
+    /* the 2 hour bar, close by close */
+    const sy = vert ? y2 + fs * 3.4 : y2 + fs * 2.9, sh = Math.max(6, (vert ? 3.2 : 3.6) * U), gap = Math.max(2, 0.45 * U);
+    const sx0 = px, sx1 = bx + bw - 1.6 * U, cw = (sx1 - sx0 - 11 * gap) / 12;
+    const flash = J >= 1 && w.E2.stepped[J - 1] ? Math.exp(-Math.max(0, t - closeTime(12 * J - 1 - w.e)) * 2.2) * (t >= closeTime(12 * J - 1 - w.e) ? 1 : 0) : 0;
+    for (let k = 0; k < 12; k++) {
+      const x = sx0 + k * (cw + gap), i = 12 * J + k;
+      c.save(); c.globalAlpha = a;
+      if (k < kNow) {
+        const lit = v && (w.T.C[i] - v.st) * v.sd >= 0;
+        c.fillStyle = lit ? rgba(P.goldHi, hold ? 0.55 : 0.9) : rgba(P.ink6, hold ? 0.18 : 0.32); c.fillRect(x, sy, cw, sh);
+      } else if (k === kNow) {
+        c.strokeStyle = pend ? P.goldHi : rgba(P.ink6, 0.8); c.lineWidth = Math.max(1, 0.14 * U); c.strokeRect(x + 0.5, sy + 0.5, cw - 1, sh - 1);
+        c.fillStyle = pend ? rgba(P.goldHi, 0.75) : rgba(P.ink6, 0.3); c.fillRect(x, sy, cw * clamp(s.fr * 1.15, 0, 1), sh);
+      } else {
+        c.strokeStyle = rgba(P.ink9, 0.7); c.lineWidth = 1; c.setLineDash([0.25 * U, 0.35 * U]); c.strokeRect(x + 0.5, sy + 0.5, cw - 1, sh - 1);
+      }
+      c.restore();
+    }
+    if (flash > 0.01) {
+      c.save(); c.globalCompositeOperation = "lighter"; c.fillStyle = rgba(P.goldHi, a * 0.5 * flash); c.fillRect(sx0 - 0.6 * U, sy - 0.6 * U, sx1 - sx0 + 1.2 * U, sh + 1.2 * U); c.restore();
+    }
+    txt(c, L, WORDS.clocks[1], sx0, sy + sh + fs * 1.35, { kind: "mono", size: L.f.tag * 0.95, color: P.ink6, alpha: a * 0.9 });
   }
 
   /* ---------------------------------------------------------------- the head and the foot */
@@ -1201,9 +1477,9 @@
   /* ---------------------------------------------------------------- the frame: every part at its moment */
   /* how much of each part is on screen at t */
   function envelopes(t) {
-    const end = 1 - sstep(100.4, 101.3, t);
+    const end = 1 - sstep(118.4, 119.3, t);
     return {
-      chart: (1 - win(t, 86.5, 96.3, 0.8, 0.8)) * end,
+      chart: (1 - win(t, 104.5, 114.3, 0.8, 0.8)) * end,
       wipe: inv(-0.25, 1.3, t),
       head1: win(t, 0.35, 6.4, 0.2, 0.5),
       count1: win(t, 1.0, 6.7, 0.6, 0.5),
@@ -1212,7 +1488,7 @@
       stride: t >= 16.6 && t < 23.2 ? 1 : 0,
       dim: win(t, 21.8, 48.8, 0.9, 0.7),
       stepLv: win(t, 22.6, 48.8, 0.8, 0.7),
-      mid: 1,
+      mid: 1 - 0.72 * win(t, 86.4, 104.4, 0.8, 0.8),             /* parts 9 and 10 turn on the 2 hour mean */
       esc: win(t, 19.2, 48.9, 1.4, 0.9),
       count4: win(t, 25.0, 48.9, 0.7, 0.9),
       earns: win(t, 27.0, 40.6, 0.8, 0.8),
@@ -1227,11 +1503,16 @@
       h2: win(t, 71.8, 86.4, 1.0, 0.5),
       h8: win(t, 75.2, 86.4, 1.2, 0.5),
       wheels: win(t, 72.2, 86.3, 1.0, 0.7),
-      week: win(t, 86.9, 96.0, 0.6, 0.7),
-      present: win(t, 16.8, 70.8, 0.8, 0.8) + win(t, 96.2, 101.0, 0.6, 0.6),
-      head: (0.8 + 0.2 * sstep(0.0, 0.6, t)) * (1 - sstep(100.4, 101.2, t)),
-      foot: sstep(0.6, 1.6, t) * (1 - sstep(100.4, 101.2, t)),
-      end: sstep(100.9, 101.9, t)
+      two: win(t, 85.9, 104.4, 0.8, 0.7),                        /* parts 9 and 10 (v5): the 2 hour clock read from this chart */
+      trail: win(t, 86.6, 104.4, 0.5, 0.7),
+      seen: win(t, 95.6, 104.4, 0.5, 0.6),
+      p9: win(t, 86.7, 95.7, 0.6, 0.5),
+      p10: win(t, 95.6, 104.4, 0.6, 0.6),
+      week: win(t, 104.9, 114.0, 0.6, 0.7),
+      present: win(t, 16.8, 70.8, 0.8, 0.8) + 0.55 * win(t, 87.0, 104.2, 0.6, 0.6) + win(t, 114.2, 119.0, 0.6, 0.6),
+      head: (0.8 + 0.2 * sstep(0.0, 0.6, t)) * (1 - sstep(118.4, 119.2, t)),
+      foot: sstep(0.6, 1.6, t) * (1 - sstep(118.4, 119.2, t)),
+      end: sstep(118.9, 119.9, t)
     };
   }
   /* the bloom, a little more where light is the subject */
@@ -1241,7 +1522,8 @@
     b += 1.5 * Math.exp(-Math.max(0, t - T_FLIP) * 2.6) * (t >= T_FLIP ? 1 : 0);   /* the flip */
     b += 0.3 * win(t, 50.6, 63.0, 1.0, 2.0);                  /* the walks */
     b += 0.25 * win(t, 77.2, 82.4, 0.4, 0.6);                 /* the sweep */
-    b += 0.35 * win(t, 101.2, 103.2, 0.8, 0.4);               /* the end */
+    b += 0.45 * Math.exp(-Math.max(0, t - 100.0) * 3.2) * (t >= 100.0 ? 1 : 0) * (t < 102 ? 1 : 0);   /* part 10: the 2 hour mean steps onto the dashes */
+    b += 0.35 * win(t, 119.2, 121.2, 0.8, 0.4);               /* the end */
     return b;
   }
 
@@ -1266,13 +1548,14 @@
     c.stroke(); c.restore();
   }
   /* the present: where the playhead sits on the midline */
-  function present(c, L, G, a) {
+  function present(c, L, G, a, noDot) {
     if (a <= 0.004) return;
     const x = G.xp, y = G.yOf(G.m), R = G.R;
     const g = c.createLinearGradient(0, R.y, 0, R.y + R.h); g.addColorStop(0, rgba(P.gold, 0)); g.addColorStop(0.5, rgba(P.gold, 0.22 * a)); g.addColorStop(1, rgba(P.gold, 0));
     c.save(); c.fillStyle = g; c.fillRect(x - 0.5, R.y, 1, R.h);
     c.globalCompositeOperation = "lighter"; const h = c.createRadialGradient(x, y, 0, x, y, 2.6 * L.U); h.addColorStop(0, rgba(P.goldHi, 0.55 * a)); h.addColorStop(1, rgba(P.goldHi, 0));
     c.fillStyle = h; c.fillRect(x - 3 * L.U, y - 3 * L.U, 6 * L.U, 6 * L.U); c.restore();
+    if (noDot) return;
     c.save(); c.globalAlpha = a; c.fillStyle = P.floor; c.beginPath(); c.arc(x, y, Math.max(2, 0.42 * L.U), 0, TAU); c.fill(); c.restore();
   }
   /* the step or flip just taken, for its tag */
@@ -1294,9 +1577,11 @@
     /* the long view and the anchor, behind the bars */
     const fold = t >= 70.5 && t < 86.6;
     if (A.h2 > 0.004 || A.h8 > 0.004) drawClockLinesBy(c, L, G, t, A);
+    /* parts 9 and 10 (v5): the 2 hour mean, its even-odds line and its step level, behind the bars */
+    if (A.two > 0.004) drawTwoBehind(c, L, G, t, A);
 
-    /* the bars */
-    drawTape(c, L, G, { alpha: 1, fold, forming: t < T_FLIP, head: A.head1 > 0.01 });
+    /* the bars; after the flip the tape runs on only in parts 9 and 10 */
+    drawTape(c, L, G, { alpha: 1, fold, forming: t < T_FLIP || (t > 87.3 && t < 103.7), head: A.head1 > 0.01 });
 
     /* the fan's rungs and its mirror's */
     if (A.fan > 0.004) drawRungs(c, L, G, A.fan, unfold(t, 48.9), false, false);
@@ -1315,6 +1600,8 @@
     /* the midline */
     const thin = t >= 70.5 && t < 86.6 ? lerp(1, 0.45, sstep(2.0, 0.3, G.bw)) : 1;
     drawMid(c, L, G, A.mid, { w: thin, ga: t < 2 ? 0.3 : 0.16 });
+    /* parts 9 and 10 (v5): the trail, and the dashes of a 2 hour step seen coming, over the bars */
+    if (A.two > 0.004) drawTwoFront(c, L, G, t, A);
 
     /* the wipe's lit front */
     if (A.wipe < 1) {
@@ -1331,7 +1618,7 @@
       fanRibs(c, L, G, { alpha: rib, x2, unf: unfold(t, 48.9) });
       if (A.mirror > 0.004) {
         c.save(); c.setLineDash([0.3 * U, 0.45 * U]);
-        fanRibs(c, L, G, { alpha: A.mirror * 0.55, x2, unf: unfold(t, 64.0), ang: -1 });
+        fanRibs(c, L, G, { alpha: A.mirror * 0.55, x2, unf: unfold(t, 64.0), ang: -1, emph: [0.3, 0.3, 0.3, 1.25, 1.25] });   /* v5: E4′ and E5′ bright */
         c.restore();
       }
       /* the levels carried on past the fan to their tags */
@@ -1341,7 +1628,7 @@
       }
       if (A.mirror > 0.004) for (let k = 6; k <= 10; k++) {
         const u = unfold(t, 64.0)[k - 6], y = G.yOf(CORE.lat(E, ip, k));
-        line(c, G.xp, y, R.x + R.w - 0.6 * U, y, sd > 0 ? P.up : P.dn, 1, A.mirror * u * 0.3, [0.15 * U, 0.7 * U]);
+        line(c, G.xp, y, R.x + R.w - 0.6 * U, y, sd > 0 ? P.up : P.dn, 1, A.mirror * u * (k >= 9 ? 0.45 : 0.12), [0.15 * U, 0.7 * U]);
       }
     }
     /* part 5: the fan swings over, and the close that did it rings out */
@@ -1366,7 +1653,7 @@
     if (A.walks > 0.004) drawWalks(c, L, G, t, A.walks, fanX2(G), { lite: !!(o && o.lite), dpr: (o && o.dpr) || 1 });
     /* part 2: each bar's weight in the mean */
     if (A.memory > 0.004) drawMemory(c, L, G, t, A.memory);
-    present(c, L, G, A.present);
+    present(c, L, G, A.present, t > 86.5 && t < 104.5);
   }
 
   /* the 2 hour and 8 hour fans over the same bars, each as a 10 minute bar sees it */
@@ -1395,6 +1682,90 @@
       const g = c.createLinearGradient(x - 10 * U, 0, x, 0); g.addColorStop(0, rgba(P.gold, 0)); g.addColorStop(1, rgba(P.gold, 0.16 * fade));
       c.fillStyle = g; c.fillRect(x - 10 * U, R.y, 10 * U, R.h); c.restore();
       line(c, x, R.y, x, R.y + R.h, P.goldHi, Math.max(1, 0.16 * U), 0.85 * fade);
+    }
+  }
+
+  /* ---------------------------------------------------------------- parts 9 and 10: the 2 hour clock as this chart reads it (v5) */
+  /* the 2 hour mean at the present: the bar now forming reads the last closed 2 hour bar, so the mean steps the moment a
+     2 hour bar closes, drawn as it happens */
+  function h2meanNow(G) {
+    const v1 = h2view(G.ip + 1), v0 = h2view(G.ip);
+    if (!v1) return NaN;
+    if (!v0 || v0.m === v1.m) return v1.m;
+    const u = (G.t - closeTime(G.ip - G.w.e)) / 0.36;
+    return lerp(v0.m, v1.m, snap(clamp(u, 0, 1)));
+  }
+  /* where the tags begin, so no line runs through its own tag */
+  const tagX = (G, L) => G.xp + 1.8 * L.U;
+  function drawTwoBehind(c, L, G, t, A) {
+    const U = L.U, R = G.R, a = A.two, xe = tagX(G, L) - 0.9 * U, now = h2view(G.ip + 1);
+    const f = key => i => { const v = h2view(i); return v ? v[key] : NaN; };
+    /* part 10: the 2 hour bar now open, a column from its first 10 minute bar to its close */
+    if (A.seen > 0.004) {
+      const s = seenAt(t);
+      if (s) {
+        const J = t >= 103.6 && s.k === 0 ? s.J - 1 : s.J, xa = G.xOf(12 * J) - G.bw / 2, xb = G.xOf(12 * J + 11) + G.bw / 2;
+        c.save(); c.globalAlpha = A.seen; c.fillStyle = rgba(P.ink, 0.045); c.fillRect(xa, R.y, xb - xa, R.h);
+        c.strokeStyle = rgba(P.ink6, 0.45); c.lineWidth = 1; c.setLineDash([0.3 * U, 0.5 * U]);
+        c.beginPath(); c.moveTo(Math.round(xa) + 0.5, R.y); c.lineTo(Math.round(xa) + 0.5, R.y + R.h); c.moveTo(Math.round(xb) - 0.5, R.y); c.lineTo(Math.round(xb) - 0.5, R.y + R.h); c.stroke(); c.restore();
+        txt(c, L, WORDS.clocks[1], xa + 0.7 * U, R.y + L.f.tag * 1.4, { kind: "mono", size: L.f.tag, color: P.ink6, alpha: A.seen * 0.95 });
+      }
+    }
+    /* the even-odds line the trail is held on, faint */
+    if (now) {
+      c.save(); c.strokeStyle = now.sd > 0 ? P.dn : P.up; c.globalAlpha = a * 0.4; c.lineWidth = Math.max(1, 0.12 * U); c.setLineDash([0.6 * U, 0.5 * U]);
+      stepPath(c, G, f("ev"), G.i0, G.ip, G.xp); c.lineTo(G.xp, G.yOf(now.ev)); c.lineTo(xe, G.yOf(now.ev)); c.stroke(); c.restore();
+    }
+    /* part 10: the 2 hour step level, dotted gold: a close at or past it steps the mean if its bar closes there */
+    if (A.seen > 0.004 && now) {
+      c.save(); c.strokeStyle = P.goldHi; c.globalAlpha = A.seen * 0.85; c.lineWidth = Math.max(1, 0.15 * U); c.setLineDash([0.25 * U, 0.55 * U]);
+      stepPath(c, G, f("st"), G.i0, G.ip, G.xp); c.lineTo(G.xp, G.yOf(now.st)); c.lineTo(xe, G.yOf(now.st)); c.stroke(); c.restore();
+    }
+    /* the 2 hour mean, gold, the line both parts turn on */
+    const mN = h2meanNow(G);
+    glow(c, L, () => { stepPath(c, G, f("m"), G.i0, G.ip, G.xp); if (!isNaN(mN)) { c.lineTo(G.xp, G.yOf(mN)); c.lineTo(xe, G.yOf(mN)); } }, P.gold, Math.max(1.5, 0.3 * U), a, 3.4, 0.18);
+  }
+  /* part 10's dashes as shown at t: while a close sits past the level, live; once it goes back inside, or the 2 hour bar
+     closes, the last of them fading where they stood */
+  function seenShown(t) {
+    const s = seenAt(t);
+    if (s && s.pend) return { q: s, fa: 1 };
+    let last = null; for (const ev of seenEvents()) { if (ev.t > t) break; last = ev; }
+    if (last && !last.on && t - last.t < 0.45) return { q: last.prev, fa: 1 - (t - last.t) / 0.45 };
+    return null;
+  }
+  function drawTwoFront(c, L, G, t, A) {
+    const w = G.w, U = L.U, R = G.R, xe = tagX(G, L) - 0.9 * U;
+    /* the trails: the one held now bright, any before it faint, each to where it ended */
+    if (A.trail > 0.004) {
+      for (const q of w.TR.list) {
+        const iEnd = q.i1 == null ? Infinity : q.i1;
+        if (iEnd < G.i0 || q.i0 > G.ip) continue;
+        const held = iEnd > G.ip, col = q.d > 0 ? P.up : P.dn, ib = Math.min(G.ip, iEnd), yNow = trailAt(q, G.ip);
+        const fv = i => (i < q.i0 || i > ib ? NaN : trailAt(q, i));
+        const path = () => { stepPath(c, G, fv, Math.max(G.i0, q.i0), ib, held ? G.xp : null); if (held && !isNaN(yNow)) c.lineTo(xe, G.yOf(yNow)); };
+        if (held) glow(c, L, path, col, Math.max(1.6, 0.3 * U), A.trail, 3.6, 0.22);
+        else { c.save(); c.strokeStyle = col; c.globalAlpha = A.trail * 0.4; c.lineWidth = Math.max(1, 0.18 * U); path(); c.stroke(); c.restore(); }
+        /* the moment it starts: a ring at the touch */
+        const ts = closeTime(q.i0 - w.e), u = (t - ts) / 1.0;
+        if (u > 0 && u < 1) {
+          const x = G.xOf(q.i0), y = G.yOf(q.s0), r = easeOut(u) * 9 * U;
+          c.save(); c.globalCompositeOperation = "lighter"; c.strokeStyle = col; c.globalAlpha = A.trail * (1 - u) * (1 - u) * 0.85; c.lineWidth = Math.max(1, 0.3 * U * (1 - u) + 0.5);
+          c.beginPath(); c.arc(x, y, r, 0, TAU); c.stroke(); c.restore();
+        }
+      }
+    }
+    /* part 10: the dashes, from the first close past the level, where a close there would put the 2 hour mean, its E5′
+       and its FLIP′; when the price goes back inside, or the bar closes, they fade where they stood */
+    const sh = A.seen > 0.004 ? seenShown(t) : null;
+    if (sh && sh.q.pend && sh.fa > 0) {
+      const q = sh.q, xa = G.xOf(q.t0) - G.bw / 2, col = q.v.sd > 0 ? P.up : P.dn, a = A.seen * sh.fa;
+      const y0 = G.yOf(q.pm), y5 = G.yOf(q.y5), yf = G.yOf(q.yf);
+      if (xe > xa) {
+        line(c, xa, yf, xe, yf, col, Math.max(1, 0.13 * U), a * 0.5, [0.7 * U, 0.6 * U]);
+        line(c, xa, y5, xe, y5, col, Math.max(1, 0.18 * U), a * 0.9, [0.8 * U, 0.55 * U]);
+        line(c, xa, y0, xe, y0, P.goldHi, Math.max(1.5, 0.3 * U), a, [0.9 * U, 0.55 * U]);
+      }
     }
   }
 
@@ -1493,6 +1864,10 @@
     }
     /* part 8: three clocks */
     if (A.wheels > 0.004) drawClockWheels(c, L, t, A.wheels);
+    /* part 9 (v5): the trail's ratchet */
+    if (A.p9 > 0.004) drawRatchetPart(c, L, t, A.p9);
+    /* part 10 (v5): the 2 hour row */
+    if (A.p10 > 0.004) drawSeenPanel(c, L, t, A.p10);
   }
 
   /* ---------------------------------------------------------------- the tags at the present */
@@ -1501,7 +1876,7 @@
     const cAg = sd > 0 ? P.up : P.dn, cOpp = sd > 0 ? P.dn : P.up;
     let tx = G.xp + 1.8 * U;
     if (A.fan > 0.05 || A.mirror > 0.05) tx = lerp(tx, fanX2(G) + 1.4 * U, sstep(49.0, 50.4, t));
-    const add = (y, s, color, a) => { if (a > 0.01 && !isNaN(y)) list.push({ y: G.yOf(y), y0: G.yOf(y), s, color, a }); };
+    const add = (y, s, color, a, halo) => { if (a > 0.01 && !isNaN(y)) list.push({ y: G.yOf(y), y0: G.yOf(y), s, color, a, halo }); };
     /* the midline, or the step it just took */
     const ev = lastEvent(t), flash = ev && t < 49 ? 1 - sstep(ev.t + 0.9, ev.t + 1.5, t) : 0;
     const midS = flash > 0.5 && ev ? (ev.kind === "flip" ? (ev.side > 0 ? WORDS.flipUp : WORDS.flipDn) : ev.side > 0 ? WORDS.stepUp : WORDS.stepDn) : WORDS.mid;
@@ -1519,7 +1894,7 @@
     }
     if (A.mirror > 0.01) {
       const u = unfold(t, 64.0);
-      for (let k = 1; k <= 5; k++) add(CORE.lat(E, ip, k + 5), "E" + k + "′", cAg, A.mirror * u[k - 1]);
+      for (const k of [4, 5]) add(CORE.lat(E, ip, k + 5), "E" + k + "′", cAg, A.mirror * u[k - 1]);   /* v5: E1′ to E3′ untagged */
       add(CORE.lat(E, ip, 14), WORDS.flip + "′", sd > 0 ? P.up : P.dn, A.mirror);
     }
     /* part 8: the clocks' midlines */
@@ -1528,6 +1903,18 @@
       add(m, WORDS.clocks[0], P.goldHi, win(t, 72.4, 86.4, 0.8, 0.5));
       add(w.E2.mid[j2], WORDS.clocks[1], P.gold, A.h2);
       add(w.E8.mid[j8], WORDS.clocks[2], P.ink, A.h8);
+    }
+    /* parts 9 and 10 (v5): the 2 hour mean, the trail held now, and in part 10 the 2 hour step level */
+    if (A.two > 0.01) {
+      const now = h2view(ip + 1), q = w.TR.list.find(x => x.i0 <= ip && (x.i1 == null || x.i1 > ip));
+      add(h2meanNow(G), WORDS.clocks[1], P.gold, A.two * sstep(86.4, 86.9, t), true);
+      if (q) add(trailAt(q, ip), WORDS.trail, q.d > 0 ? P.up : P.dn, A.trail, true);
+      if (now) add(now.st, WORDS.step, P.goldHi, A.seen, true);
+      const sh = A.seen > 0.004 ? seenShown(t) : null;
+      if (sh && sh.q.pend && sh.fa > 0) {
+        add(sh.q.pm, WORDS.ifClose, P.goldHi, A.seen * sh.fa, true);
+        add(sh.q.y5, WORDS.itsE5, sh.q.v.sd > 0 ? P.up : P.dn, A.seen * sh.fa * 0.95, true);
+      }
     }
     /* the tags never run past the chart's right edge */
     const maxW = G.R.x + G.R.w - tx - 1.2 * U;
@@ -1580,10 +1967,10 @@
   function endCard(c, L, t, a) {
     if (a <= 0.004) return;
     const U = L.U, cx = L.W / 2, cy = L.land ? L.H * 0.46 : L.H * 0.44, R = (L.land ? 17 : 24) * U;
-    drawHandFan(c, L, t, a, { box: { x: cx - R, y: cy - R, w: 2 * R, h: R }, R: R * 0.95, py: cy, open: ease(inv(100.9, 101.8, t)), mirror: ease(inv(101.3, 102.2, t)), side: -1, span: 74, bare: true });
-    const ta = a * sstep(101.4, 102.1, t);
+    drawHandFan(c, L, t, a, { box: { x: cx - R, y: cy - R, w: 2 * R, h: R }, R: R * 0.95, py: cy, open: ease(inv(118.9, 119.8, t)), mirror: ease(inv(119.3, 120.2, t)), side: -1, span: 74, bare: true });
+    const ta = a * sstep(119.4, 120.1, t);
     txt(c, L, WORDS.title, cx, cy + 6 * U + L.f.big * 1.0, { size: L.f.big * 1.35, color: P.ink, alpha: ta, weight: 700, align: "center", ls: 0.24 });
-    txt(c, L, WORDS.url, cx, cy + 6 * U + L.f.big * 1.0 + L.f.lab * 2.8, { kind: "mono", size: L.f.lab * 1.05, color: P.gold, alpha: ta * sstep(101.7, 102.4, t), align: "center", upper: false });
+    txt(c, L, WORDS.url, cx, cy + 6 * U + L.f.big * 1.0 + L.f.lab * 2.8, { kind: "mono", size: L.f.lab * 1.05, color: P.gold, alpha: ta * sstep(119.7, 120.4, t), align: "center", upper: false });
   }
 
   /* ---------------------------------------------------------------- one frame: a pure function of t */
@@ -1615,9 +2002,11 @@
     instruments(c, L, G, t, A, o);
     drawWeek(c, L, t, A.week, d);
     endCard(c, L, t, A.end);
-    const st = t >= 86.6 && t < 95.6 ? null : { s: t > 70.5 && t < 86.5 && G ? (G.cam.nb > 4200 ? WORDS.clocks[2] : G.cam.nb > 700 ? WORDS.clocks[1] : WORDS.clocks[0]) : WORDS.clocks[0], color: P.ink3 };
+    /* the clock the chart is read on; none in the week, and none in part 7, whose mirror is the idea, not a 10 minute
+       chart: under 2 hours The Fan mirrors the 2 hour fan, and a chart's own only from 2 hours up */
+    const st = (t >= 104.6 && t < 113.6) || (t >= 63.6 && t < 70.4) ? null : { s: t > 70.5 && t < 86.5 && G ? (G.cam.nb > 4200 ? WORDS.clocks[2] : G.cam.nb > 700 ? WORDS.clocks[1] : WORDS.clocks[0]) : WORDS.clocks[0], color: P.ink3 };
     head(c, L, t, A.head, st, o.poster);
-    foot(c, L, t, A.foot, t >= 86.6 && t < 95.6 ? WORDS.url : WORDS.illus);
+    foot(c, L, t, A.foot, t >= 104.6 && t < 113.6 ? WORDS.url : WORDS.illus);
   }
 
 
@@ -1677,12 +2066,35 @@
     for (const tt of ticks[1]) add(tt, "tick2", 0.6);
     for (const tt of ticks[2]) add(tt, "tick8", 0.85);
     add(82.4, "push_in", 0.75, { dur: 3.2 });
-    add(86.6, "turn", 0.6, { dur: 1.0 });
-    add(87.7, "line", 0.75);
-    add(90.6, "close", 0.75);
-    add(91.62, "stamp", 1.0);
-    add(95.5, "return", 0.6, { dur: 1.0 });
-    add(101.15, "end", 1.0, { dur: 1.85 });
+    /* part 9 (v5): out a little; the tape runs on to the first touch of the 2 hour mean, the trail latches on, and climbs
+       a tooth at each move after the mean's steps */
+    add(86.5, "zoom_out", 0.5, { dur: 1.4 });
+    add(87.4, "scribe", 0.45, { dur: 1.35 });
+    const T9 = trailTimes();
+    if (isFinite(T9.start)) add(T9.start, "latch", 0.9, { x: 0.3 });
+    add(89.6, "scribe", 0.35, { dur: 5.0 });
+    for (let J = Math.floor((w.e + 1) / 12); 12 * J + 11 - w.e <= 296; J++) if (w.E2.stepped[J] && 12 * J + 11 > w.e) add(closeTime(12 * J + 11 - w.e), "tick2", 0.55);
+    for (const tm of T9.moves) if (tm < 104.5) add(tm + 0.02, "ratchet", 0.6, { x: 0.3 });
+    /* part 10 (v5): in on the two 2 hour bars; a tick on each close while the dashes stand; the dashes come; the 2 hour
+       mean steps onto them; in the second bar they come and go, and its close steps nothing */
+    add(95.5, "push_in", 0.6, { dur: 1.1 });
+    for (let r = 297; r <= 320; r++) {
+      const tc = closeTime(r), s = seenAt(tc - 0.01);
+      add(tc, s && s.pend ? "beat" : "step_soft", s && s.pend ? 0.36 : 0.22, { alt: r & 1, x: 0.4 });
+    }
+    for (const ev of seenEvents()) {
+      if (ev.on) add(ev.t, "dash", 0.8, { x: 0.35 });
+      else if (Math.abs(ev.t - closeTime(308)) > 0.05) add(ev.t, "fall", 0.8, { x: 0.35 });
+    }
+    add(closeTime(308), "tick2", 1.0); add(closeTime(308) + 0.01, "settle", 0.7);
+    add(closeTime(320) + 0.02, "close", 0.5);
+    /* the week and the decision, eighteen seconds later than before */
+    add(104.6, "turn", 0.6, { dur: 1.0 });
+    add(105.7, "line", 0.75);
+    add(108.6, "close", 0.75);
+    add(109.62, "stamp", 1.0);
+    add(113.5, "return", 0.6, { dur: 1.0 });
+    add(119.15, "end", 1.0, { dur: 1.85 });
     return out.sort((a, b) => a.t - b.t);
   }
 
@@ -1716,7 +2128,7 @@
 .mvt-text li{margin:0 0 8px}
 @media (prefers-reduced-motion:reduce){.mvt-go,.mvt-ctl{transition:none}}
 `;
-  const VERSION = "2026-10-11";
+  const VERSION = "2026-10-12";
   let cssDone = false;
   function injectCSS() { if (cssDone) return; cssDone = true; const s = document.createElement("style"); s.setAttribute("data-movement", VERSION); s.textContent = CSS; document.head.appendChild(s); }
   const mkCanvas = (w, h) => { const c = document.createElement("canvas"); c.width = w; c.height = h; return c; };
@@ -1729,10 +2141,12 @@
     () => WORDS.earns + ". " + WORDS.stepUp + ".",
     () => WORDS.flipLine + ": " + WORDS.flipDist + ". " + WORDS.flipDn + ".",
     () => WORDS.caps[2][2] + " " + CORE.ODDS.map((o, k) => "E" + (k + 1) + " · " + o.toFixed(1)).join(", ") + ". " + WORDS.caps[3][2] + " " + WORDS.came + ", " + WORDS.c10 + ": " + CAME.m10.map(v => v.toFixed(1)).join(", ") + "; " + WORDS.c2h + ": " + CAME.h2.map(v => v.toFixed(1)).join(", ") + ". " + WORDS.cameSrc + ".",
-    () => WORDS.mirror + ": E1′ to E5′, " + WORDS.step + ", " + WORDS.even + ", " + WORDS.flip + ", " + WORDS.flip + "′.",
+    () => WORDS.mirror + ": E4′, E5′, " + WORDS.step + ", " + WORDS.even + ", " + WORDS.flip + ", " + WORDS.flip + "′.",
     () => WORDS.clocks[0] + ". " + WORDS.clocks[1] + ", " + WORDS.anchor.toLowerCase() + ". " + WORDS.clocks[2] + ", " + WORDS.longView.toLowerCase() + ". " + WORDS.caps[4][2],
-    d => WORDS.caps[5][2] + (d ? " " + WORDS.weekOf + " " + d.week + ": " + WORDS.line + " " + d.line + ", " + (d.ceiling ? WORDS.ceiling : WORDS.floorW) + (d.odds != null ? ", " + d.odds + " " + WORDS.atCall : "") + (d.close ? ". " + WORDS.friday + " " + d.close + ": " + (d.hit ? WORDS.hit : d.held ? WORDS.held : WORDS.wrong) : "") + "." : ""),
-    () => WORDS.caps[6][2]
+    () => WORDS.caps[5][2] + " " + WORDS.caps[6][2] + " " + WORDS.trail + ", " + WORDS.clocks[1] + ".",
+    () => WORDS.caps[7][2] + " " + WORDS.ifClose + ". " + WORDS.itsE5 + ". " + WORDS.h2up + ": " + WORDS.stepPending + ", " + WORDS.barCloses.toLowerCase() + " · 1H 00M " + WORDS.left + ". " + WORDS.caps[8][2],
+    d => WORDS.caps[9][2] + (d ? " " + WORDS.weekOf + " " + d.week + ": " + WORDS.line + " " + d.line + ", " + (d.ceiling ? WORDS.ceiling : WORDS.floorW) + (d.odds != null ? ", " + d.odds + " " + WORDS.atCall : "") + (d.close ? ". " + WORDS.friday + " " + d.close + ": " + (d.hit ? WORDS.hit : d.held ? WORDS.held : WORDS.wrong) : "") + "." : ""),
+    () => WORDS.caps[10][2]
   ];
 
   /* ---------------------------------------------------------------- the player */
@@ -1778,7 +2192,7 @@
       SC.forEach((s, i) => {
         const li = document.createElement("li"), b = document.createElement("b");
         b.textContent = WORDS.rail[i] + ". "; li.appendChild(b);
-        li.appendChild(document.createTextNode(TEXT[i](this.data) + (i < 8 ? " " + WORDS.illus + "." : "")));
+        li.appendChild(document.createTextNode(TEXT[i](this.data) + (i < 10 ? " " + WORDS.illus + "." : "")));
         this.textList.appendChild(li);
       });
     }
