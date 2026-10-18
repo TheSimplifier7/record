@@ -21,3 +21,6 @@
 # figure later found wrong against its snapshot is corrected by a note on the
 # record, never here. verify_record.js reads every line before an upload.
 # Lines that start with # are not read.
+#
+# 14 October 2026, note 51: the lines named from 19 October carry no odds, on counsel's
+# advice, so no day is read here from then. Nothing above is changed.

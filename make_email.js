@@ -50,16 +50,25 @@ const sideLine = r => r.side === "copper" ? "Stays below the line" : "Holds abov
    The row's result keeps the record's own words on the page; the email says what the close did. */
 const PN = s => Number(String(s).replace(/,/g, ""));
 const fridayLines = r => {
-  const dp = r.metal === "Silver" ? 3 : 2, f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dp, maximumFractionDigits: dp });
+  /* 19 Oct 2026: the distance is worked to the decimals the figures carry, as the record's own result is (the metal's
+     usual places, more when the close carries more), in whole units, so 52.175 prints 52.175 and never rounds through
+     binary to 52.17. It read:
+  const dp = r.metal === "Silver" ? 3 : 2, f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dp, maximumFractionDigits: dp }); */
+  const sig = t => (String(t).split(".")[1] || "").replace(/0+$/, "").length;
+  const dp = Math.max(r.metal === "Silver" ? 3 : 2, sig(r.close), sig(r.line || r.level)), U = Math.pow(10, dp);
+  const f = v => (Math.abs(v) / U).toLocaleString("en-GB", { minimumFractionDigits: dp, maximumFractionDigits: dp });
   const below = r.side === "copper", cl = PN(r.close), lv = PN(r.line || r.level), rm = PN(r.room), box = (r.box || []).map(PN);
-  const d = cl - lv, dr = cl - rm, way = v => (below ? v < 0 : v > 0) ? (below ? "under" : "above") : (below ? "above" : "under");
+  const d = Math.round(cl * U) - Math.round(lv * U), dr = Math.round(cl * U) - Math.round(rm * U), way = v => (below ? v < 0 : v > 0) ? (below ? "under" : "above") : (below ? "above" : "under");
   const edge = rm === box[0] ? "the bottom of the week's first 16 hours" : rm === box[1] ? "the top of the week's first 16 hours" : "the next level on the call";
   const out = [`${sideLine(r)}. The week closed at ${r.close}, ${d === 0 ? "exactly on the line" : f(d) + " " + way(d) + " the line"}.`];
-  if (r.hit) out.push(dr === 0 ? `It closed exactly on ${edge}, ${r.room}, which counts as through it.` : `It closed ${way(dr)} ${edge} as well, ${r.room}, by ${f(dr)}.`);
-  out.push(`The odds it would hold, at the time of the call: ${r.odds} in 100.`);
+  /* 14 Oct 2026, note 51: no target in any email from now, so a hit is told as held. It read:
+  if (r.hit) out.push(dr === 0 ? `It closed exactly on ${edge}, ${r.room}, which counts as through it.` : `It closed ${way(dr)} ${edge} as well, ${r.room}, by ${f(dr)}.`); */
+  /* 14 Oct 2026, note 51: no odds in any email from now. It read: out.push(`The odds it would hold, at the time of the call: ${r.odds} in 100.`); */
   return out;
 };
-const WORD = r => r.grade === "pending" ? "OPEN" : (r.grade === "pass" && /hit/.test(r.grade_word || "")) ? "HIT" : ({ pass: "HELD", miss: "WRONG", notest: "NEVER REACHED", nokill: "NO KILL", partial: "PARTIAL" })[r.grade] || String(r.grade_word || r.grade).toUpperCase();
+/* 14 Oct 2026, note 51: a hit is held in every email from now; the record keeps its word. It read:
+const WORD = r => r.grade === "pending" ? "OPEN" : (r.grade === "pass" && /hit/.test(r.grade_word || "")) ? "HIT" : ( ... */
+const WORD = r => r.grade === "pending" ? "OPEN" : ({ pass: "HELD", miss: "WRONG", notest: "NEVER REACHED", nokill: "NO KILL", partial: "PARTIAL" })[r.grade] || String(r.grade_word || r.grade).toUpperCase();
 
 /* ---------------------------------------------------------------- blocks */
 const blocks = [];   // { head, lines[], link }
@@ -71,10 +80,12 @@ if (kind === "monday") {
   subject = `The Monday Level · week of ${long(date)}`;
   lede = `${count(set.length, "call", "calls")}, made ${long(date)} and decided on the weekly close of ${long(fri)}. The same calls that go on the record, where they stay whatever the close does.`;  /* WAS: rows, named, graded, rows */
   for (const r of set) {
-    if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `The odds it holds, at the time of the call: ${r.odds} in 100`, `Wrong on ${r.kill}`]  /* WAS, same night: `Target ${r.room} · The odds it holds, ...` */  /* WAS: `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}` */, link: r.url });
+    if (r.grammar === 2) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `Wrong on ${r.kill}`], link: r.url });   /* note 51 */
+    else if (r.grammar) blocks.push({ head: `${r.metal.toUpperCase()} · ${r.line || r.level}`, lines: [sideLine(r), `The odds it holds, at the time of the call: ${r.odds} in 100`, `Wrong on ${r.kill}`]  /* WAS, same night: `Target ${r.room} · The odds it holds, ...` */  /* WAS: `Room ${r.room} · Odds at naming ${r.odds} in 100`, `Kill: ${r.kill}` */, link: r.url });
     else blocks.push({ head: `${r.metal.toUpperCase()} · ${r.level}`, lines: [r.call, `Kill: ${r.kill}`], link: r.url });
   }
-  if (set.some(r => r.grammar)) tail.push("On Friday each call takes one word. HELD, the week closed on the called side of the line. HIT, it closed beyond the other edge of the week's first 16 hours as well. WRONG, it closed through the line.");  /* WAS, same night: the target wording */  /* WAS: tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line."); */
+  if (set.some(r => r.grammar === 2)) tail.push("On Friday each call takes one word. HELD, the week closed on the called side of the line. WRONG, it closed through the line.");   /* note 51 */
+  else if (set.some(r => r.grammar)) tail.push("On Friday each call takes one word. HELD, the week closed on the called side of the line. HIT, it closed beyond the other edge of the week's first 16 hours as well. WRONG, it closed through the line.");  /* WAS, same night: the target wording */  /* WAS: tail.push("On Friday each row takes one word. HIT, the week closed at or through the room. HELD, on the called side of the line, short of the room. WRONG, through the line."); */
 } else {
   const set = rows.filter(r => r.graded_on_close === date).sort(byMetal);
   if (!set.length) { console.error("no row graded on the close of " + date); process.exit(1); }
@@ -93,11 +104,14 @@ if (kind === "monday") {
   tail.push(`${date === latest ? "The record after this close" : "The record today"}: ${t.resolved} resolved, ${t.held} held and ${t.wrong} wrong, every one of them kept. ${t.never_reached} never reached, counted for neither side.${t.open ? ` ${t.open} open.` : ""}`);
   const g = R.grammar || {};
   /* 2 Oct 2026, plain words. WAS: `Under the call grammar: ${g.graded} graded, ${g.held} held. The odds they were named at add up to ${g.expected}. Held past that figure is the read beating the odds; short of it, it is not.` */
+  /* 14 Oct 2026, note 51: the odds stay off every email from now. It read:
   if (g.graded) tail.push(`Since the calls of 28 September: ${g.graded} decided, ${g.held} held${g.hit ? `, ${g.hit} of them through the other edge of the week's first 16 hours as well` : ""}. Added up, the odds at the time of each call come to ${Number(g.expected).toFixed(2)}. More held than that figure is the read beating the odds; fewer, and it is not.`);
+  */
   const wrong = set.filter(r => r.grade === "miss");
   if (wrong.length) tail.push(`Every wrong call, in full: ${SITE}misses.html`);   /* 2 Oct 2026, plain words. WAS: Every wrong row, in full */
 }
-tail.push(`Every call since June, the wrong ones included: ${SITE}`);   /* 2 Oct 2026, plain words. WAS: Every row since June */
+tail.push(`Every call since June, the wrong ones included: ${SITE}`);
+tail.push("This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.");   /* 14 Oct 2026, note 51: counsel's two lines end every email from now, Monday and Friday. */   /* 2 Oct 2026, plain words. WAS: Every row since June */
 
 /* ---------------------------------------------------------------- brand law */
 const all = [subject, lede, ...blocks.flatMap(b => [b.head, ...b.lines]), ...tail].join("\n");

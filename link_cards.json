@@ -1,20 +1,20 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-12T18:53:25.828Z",
+ "generated": "2026-10-18T22:08:39.870Z",
  "cards": [
   {
    "name": "misses",
    "page": "misses.html",
    "file": "link_misses.png",
-   "v": "3ca1155c93",
-   "image": "https://thesimplifier7.github.io/record/link_misses.png?v=3ca1155c93",
+   "v": "0edf3554cc",
+   "image": "https://thesimplifier7.github.io/record/link_misses.png?v=0edf3554cc",
    "figures": {
     "tally": {
-     "resolved": 35,
-     "held": 26,
+     "resolved": 38,
+     "held": 29,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     },
     "latest_close": "2026-10-09",
     "latest": [
@@ -68,15 +68,15 @@
    "name": "year",
    "page": "year.html",
    "file": "link_year.png",
-   "v": "2efba2d862",
-   "image": "https://thesimplifier7.github.io/record/link_year.png?v=2efba2d862",
+   "v": "1c429bd699",
+   "image": "https://thesimplifier7.github.io/record/link_year.png?v=1c429bd699",
    "figures": {
     "tally": {
-     "resolved": 35,
-     "held": 26,
+     "resolved": 38,
+     "held": 29,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -84,15 +84,15 @@
    "name": "guest",
    "page": "guest.html",
    "file": "link_guest.png",
-   "v": "bea8fd2562",
-   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=bea8fd2562",
+   "v": "dcca046915",
+   "image": "https://thesimplifier7.github.io/record/link_guest.png?v=dcca046915",
    "figures": {
     "tally": {
-     "resolved": 35,
-     "held": 26,
+     "resolved": 38,
+     "held": 29,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -100,15 +100,15 @@
    "name": "advisers",
    "page": "advisers.html",
    "file": "link_advisers.png",
-   "v": "dcefa6b528",
-   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=dcefa6b528",
+   "v": "45db541ec9",
+   "image": "https://thesimplifier7.github.io/record/link_advisers.png?v=45db541ec9",
    "figures": {
     "tally": {
-     "resolved": 35,
-     "held": 26,
+     "resolved": 38,
+     "held": 29,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -130,15 +130,15 @@
    "name": "embed",
    "page": "embed.html",
    "file": "link_embed.png",
-   "v": "e6f655b097",
-   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=e6f655b097",
+   "v": "a1d7af9621",
+   "image": "https://thesimplifier7.github.io/record/link_embed.png?v=a1d7af9621",
    "figures": {
     "tally": {
-     "resolved": 35,
-     "held": 26,
+     "resolved": 38,
+     "held": 29,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   }

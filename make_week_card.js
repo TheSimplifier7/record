@@ -61,18 +61,31 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 
 const cols = rows.map(r => {
   const lv = num(String(r.level).split("/")[0]), clTxt = cEntry[r.metal], cl = clTxt ? num(clTxt) : NaN;
+  /* 19 Oct 2026: the distance is worked in whole units to the decimals the figures carry (the metal's usual places,
+     more when the close carries more), as the row's own result is, so 52.175 prints 52.175 and never 52.17. It read:
   const room = side(r) === "under" ? cl - lv : lv - cl;
   const dec = r.metal === "Silver" ? 3 : 2;
+  const f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec }); */
+  const sig = t => (String(t).split(".")[1] || "").replace(/0+$/, "").length;
+  const dec = Math.max(r.metal === "Silver" ? 3 : 2, clTxt ? sig(clTxt) : 0, sig(String(r.level).split("/")[0])), U = Math.pow(10, dec);
+  const room = isFinite(cl) ? (side(r) === "under" ? Math.round(cl * U) - Math.round(lv * U) : Math.round(lv * U) - Math.round(cl * U)) / U : NaN;
   const f = v => Math.abs(v).toLocaleString("en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec });
   const col = GC[r.grade] || C.notest;
   /* 24 Sep 2026, note 34: a grammar row names its side, and a hit reads Hit. */
+  /* 19 Oct 2026, note 51: the count under the card says held, hits counted in it, and no longer names the hits. It read:
+     <span><b style="color:${C.pass}">${t.held}</b>held${t.hit ? `, ${t.hit} hit` : ""}</span> */
   /* 28 Sep 2026, the founder's ruling: plain words on anything a non-follower sees. WAS:
      const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "copper · stays below" : "slate · holds above") : ...) */
-  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "stays below" : "holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]);
+  /* 19 Oct 2026, note 51: no target in public from counsel's advice of 14 October, so a hit graded on a close after it
+     (the rows of 12 October, graded on 16 October) is told as held on the card, as in the emails; the page keeps HIT. It read:
+  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "stays below" : "holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit ? "Hit" : GW[r.grade]); */
+  const line2 = mode === "open" ? (r.grammar ? (r.side === "copper" ? "stays below" : "holds above") : (side(r) === "under" ? "holds above" : "stays below")) : (r.hit && r.date < "2026-10-12" ? "Hit" : GW[r.grade]);
   const line3 = clTxt ? `close ${fmt(cEntry.date)} · ${esc(clTxt)}` : "";
   /* WAS: `room ${r.room} · odds ${r.odds} in 100` */
   /* WAS, 28 Sep 2026 until the founder found "target" unclear the same night: `target ${r.room} · odds it holds ${r.odds} in 100` */
-  const line4 = mode === "open" && r.grammar ? `odds it holds ${r.odds} in 100`
+  /* 14 Oct 2026, note 51: a line alone shows what would prove it wrong, and no odds. */
+  const line4 = mode === "open" && r.grammar === 2 ? `wrong on a close ${r.side === "copper" ? "above" : "below"} it`
+    : mode === "open" && r.grammar ? `odds it holds ${r.odds} in 100`
     : mode === "open" && isFinite(room) ? `${f(room)} ${room >= 0 ? "of room" : "through"}`
     : r.grade === "notest" ? "never reached" : isFinite(room) ? `${room >= 0 ? "+" : "−"}${f(room)} ${room >= 0 ? "clear" : "through"}` : "";
   return `<div class="c" style="border-top-color:${col}"><div class="m">${esc(r.metal)}</div><div class="lv" style="color:${col}">${esc(r.level)}</div>
@@ -124,12 +137,14 @@ body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:non
 .l4{font-size:19px;font-weight:600;margin-top:6px}
 .count{position:relative;display:flex;gap:30px;align-items:baseline;margin-top:20px;padding-top:14px;border-top:1px solid ${C.rule};font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${C.ink5}}
 .count b{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:34px;font-weight:800;letter-spacing:0;margin-right:8px}
+.na{position:relative;margin-top:10px;font-size:13px;font-weight:500;line-height:1.35;color:${C.ink5}}
 .count .url{margin-left:auto;letter-spacing:.04em;text-transform:none;color:${C.ink5};font-size:16px;font-weight:500}
 </style></head><body>
 <div class="mast"><b>${MARK}THE SIMPLIFIER</b><span>Metals · the record</span></div>
 <div class="k">${esc(kicker)}</div>
 <div class="cols">${cols}</div>
-<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held${t.hit ? `, ${t.hit} hit` : ""}</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
+<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
+${rows.some(r => r.grammar) ? `<div class="na">This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</div>` : ""}
 </body></html>`;
 
 const base = `card_${named}_${mode}`;

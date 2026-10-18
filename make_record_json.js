@@ -42,6 +42,9 @@ try { CLOSES = literal("CLOSES"); } catch (e) {}
 /* 10 Oct 2026, note 49: the read's own line, fixed in index.html as READ_LINE. */
 let READ_LINE = null;
 try { READ_LINE = literal("READ_LINE"); } catch (e) {}
+/* 14 Oct 2026, note 51: the read's line closes with the last rows named with odds. */
+let READ_LINE_CLOSED = null;
+try { READ_LINE_CLOSED = literal("READ_LINE_CLOSED"); } catch (e) {}
 /* THE TICK BOOK, 9 Sep 2026: rows live in ticks.js beside the page. */
 let TICKS = [];
 try {
@@ -80,7 +83,10 @@ const rows = CALLS.map((c, i) => {
     grade: c.grade,
     /* 24 Sep 2026, note 34: a hit is a held row, marked */
     grade_word: c.hit ? "held, hit the room" : (grades[c.grade] || c.grade),
-    ...(c.grammar ? { grammar: 1, side: c.side, line: c.level, room: c.room, odds: c.odds, odds_from: c.oddsFrom || null,
+    /* 14 Oct 2026, note 51: a line alone carries no room and no odds. */
+    ...(c.grammar === 2 ? { grammar: 2, side: c.side, line: c.level, line_from: c.lineFrom || null, box: c.box || null, last_range: c.lastRange || null,
+      read_at: c.readAt || null, close: c.close || null } : {}),
+    ...(c.grammar && c.grammar !== 2 ? { grammar: 1, side: c.side, line: c.level, room: c.room, odds: c.odds, odds_from: c.oddsFrom || null,
       line_from: c.lineFrom || null, box: c.box || null, last_range: c.lastRange || null, read_at: c.readAt || null,
       close: c.close || null, hit: !!c.hit } : {}),
     pre_standard: STANDARD_FROM ? c.date < STANDARD_FROM : null,
@@ -110,7 +116,7 @@ const out = {
   },
   /* 24 Sep 2026, note 34: the odds board's figures. */
   grammar: (() => {
-    const G = CALLS.filter(c => c.grammar), GG = G.filter(c => c.grade === "pass" || c.grade === "miss");
+    const G = CALLS.filter(c => c.grammar && c.grammar !== 2), GG = G.filter(c => c.grade === "pass" || c.grade === "miss");   /* note 51: the rows named with odds */
     return { from: scalar("GRAMMAR_FROM"), named: G.length, slate: G.filter(c => c.side === "slate").length, copper: G.filter(c => c.side === "copper").length,
       graded: GG.length, held: GG.filter(c => c.grade === "pass").length, hit: GG.filter(c => c.hit).length, wrong: GG.filter(c => c.grade === "miss").length,
       expected: +GG.reduce((s, c) => s + (+c.odds || 0) / 100, 0).toFixed(2),
@@ -123,8 +129,11 @@ const out = {
         const held = R.filter(c => c.grade === "pass").length, exp = R.reduce((t, c) => t + c.odds / 100, 0);
         const spread = Math.sqrt(R.reduce((t, c) => t + (c.odds / 100) * (1 - c.odds / 100), 0) / RL.rowShare);
         const line = exp + RL.z * spread, mirror = exp - RL.z * spread;
-        const done = CLOSES.some(x => x.date === RL.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
-        return { set: RL.set, note: RL.note, rows_from: RL.from, rows_to: RL.to, graded_on: RL.close, weeks: RL.weeks,
+        /* 14 Oct 2026, note 51: closed with the last rows named with odds and graded on that close. */
+        const C = READ_LINE_CLOSED;
+        const closedDone = !!C && CLOSES.some(x => x.date === C.on) && !CALLS.some(c => inWin(c) && +c.odds > 0 && c.grade === "pending");
+        const done = C ? closedDone : CLOSES.some(x => x.date === RL.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
+        return { closed: C ? { on: C.on, note: C.note, last: C.last, done: closedDone, text: "No row is named with odds after " + C.last + " (note " + C.note + "), so the line counts the rows named with odds to then and is graded on the close of " + C.on + " by note 49's own rows, arithmetic and words." } : null, set: RL.set, note: RL.note, rows_from: RL.from, rows_to: RL.to, graded_on: RL.close, weeks: RL.weeks,
           z: RL.z, row_share: RL.rowShare, weeks_graded: new Set(R.map(c => c.date)).size, graded: R.length, held,
           expected: +exp.toFixed(2), line: +line.toFixed(2), mirror: +mirror.toFixed(2),
           result: !done ? null : held >= line ? "AHEAD OF THE ODDS" : held <= mirror ? "BEHIND THE ODDS" : "LEVEL WITH THE ODDS",

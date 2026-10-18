@@ -223,11 +223,17 @@ check(present.length === 0, "no superseded file beside the page" + (present.leng
 /* 13. THE CALL GRAMMAR, added 24 September 2026, note 34. */
 const GRAMMAR_FROM = (idx.match(/const GRAMMAR_FROM\s*=\s*"([\d-]+)"/) || [])[1] || "";
 check(!!GRAMMAR_FROM, "GRAMMAR_FROM is set (" + (GRAMMAR_FROM || "missing") + ")");
-const GR = CALLS.filter(c => c.grammar);
+/* 14 Oct 2026, note 51: from GRAMMAR2_FROM a row is a line alone (grammar:2) and is checked below on its own. */
+const GRAMMAR2_FROM = (idx.match(/const GRAMMAR2_FROM\s*=\s*"([\d-]+)"/) || [])[1] || "";
+check(GRAMMAR2_FROM === "2026-10-19", "GRAMMAR2_FROM is set as ruled (" + (GRAMMAR2_FROM || "missing") + ")");
+const GR = CALLS.filter(c => c.grammar && c.grammar !== 2);
+const G2 = CALLS.filter(c => c.grammar === 2);
 const late = CALLS.filter(c => GRAMMAR_FROM && c.date >= GRAMMAR_FROM && !c.grammar);
 check(late.length === 0, "every row named from " + GRAMMAR_FROM + " is named under the grammar" + (late.length ? " (not: " + late.map(c => c.date + " " + c.metal).join(", ") + ")" : ""));
 check(GR.every(c => c.date >= GRAMMAR_FROM), "no grammar row is dated before " + GRAMMAR_FROM);
-check(CALLS.every(c => !c.hit || (c.grammar && c.grade === "pass")), "a hit is marked only on a held grammar row");
+check(GR.every(c => c.grammar === 1 && c.date < GRAMMAR2_FROM) && G2.every(c => c.date >= GRAMMAR2_FROM) && CALLS.every(c => c.date < GRAMMAR2_FROM || c.grammar === 2),
+  "every row named from " + GRAMMAR2_FROM + " is a line alone (grammar:2), and every grammar row before it is grammar:1");
+check(CALLS.every(c => !c.hit || (c.grammar === 1 && c.grade === "pass")), "a hit is marked only on a held grammar row named before " + GRAMMAR2_FROM);
 const PN = s => Number(String(s).replace(/,/g, ""));
 const fridayOf = iso => { const d = new Date(iso + "T12:00:00Z"); let a = (5 - d.getUTCDay() + 7) % 7; if (a === 0) a = 7; d.setUTCDate(d.getUTCDate() + a); return d.toISOString().slice(0, 10); };
 const gprob = [];
@@ -267,6 +273,51 @@ for (const c of GR) {
   if (e.length) gprob.push(c.date + " " + c.metal + ": " + e.join("; "));
 }
 check(gprob.length === 0, "the call grammar holds on every grammar row (" + GR.length + ")" + (gprob.length ? "\n          " + gprob.join("\n          ") : ""));
+/* 14 Oct 2026, note 51: THE LINE ALONE. A row named from GRAMMAR2_FROM carries its side, its line, where it
+   comes from, its read time and its kill, and nothing more: no room, no odds, no hit. HELD or WRONG by the close. */
+const g2prob = [];
+for (const c of G2) {
+  const lv = PN(c.level), sl = c.side === "slate", e = [];
+  if (!["slate", "copper"].includes(c.side)) e.push("side is not slate or copper");
+  if (!isFinite(lv)) e.push("the line is not a number");
+  ["room", "odds", "oddsFrom", "hit"].forEach(k => { if (k in c) e.push("carries " + k + ", which a line alone never does"); });
+  if (/\bodds\b|\broom\b|next level|\btarget|in 100/i.test(c.call || "")) e.push("the call speaks of odds, a room, a target or a next level");
+  if (!c.readAt) e.push("no read time");
+  if (c.lineFrom === "box high" || c.lineFrom === "box low") {
+    const b = (c.box || []).map(PN), edge = c.lineFrom === "box high" ? b[1] : b[0];
+    if (b.length !== 2 || !(b[0] < b[1])) e.push("box is not a low and a high");
+    else if (Math.abs(lv - edge) > edge * 0.0003) e.push("the line is not the " + c.lineFrom + " as read");
+  } else if (c.lineFrom === "own level") {
+    const r = (c.lastRange || []).map(PN);
+    if (r.length !== 2 || !(r[0] < r[1])) e.push("lastRange is not a low and a high");
+    else if (lv < r[0] || lv > r[1]) e.push("an own level outside last week's range");
+  } else e.push("lineFrom is not box high, box low or own level");
+  const k = /Kill:\s*a weekly close (below|above) ([\d,.]+?)\.?\s*$/.exec(c.call || "");
+  if (!k) e.push("the call does not end with the kill sentence");
+  else if ((k[1] === "below") !== sl || PN(k[2]) !== lv) e.push("the kill does not match the side and the line");
+  if (!["pending", "pass", "miss"].includes(c.grade)) e.push("grade " + c.grade + " does not exist for a line alone");
+  if (c.grade === "pass" || c.grade === "miss") {
+    const cl = PN(c.close);
+    if (!c.close || !isFinite(cl)) e.push("graded without its close");
+    else {
+      const want = sl ? (cl < lv ? "wrong" : "held") : (cl > lv ? "wrong" : "held"), got = c.grade === "miss" ? "wrong" : "held";
+      if (want !== got) e.push("graded " + got + ", the close says " + want);
+      if (!new RegExp("\\b" + got.toUpperCase() + "\\b").test(c.result || "")) e.push("the result does not carry " + got.toUpperCase());
+      if (/\bHIT\b/.test(c.result || "")) e.push("the result speaks of a hit");
+      const fr = CLOSES.find(x => x.date === fridayOf(c.date));
+      if (!fr || PN(fr[c.metal]) !== cl) e.push("the close does not match CLOSES for " + fridayOf(c.date));
+    }
+  }
+  if (e.length) g2prob.push(c.date + " " + c.metal + ": " + e.join("; "));
+}
+check(g2prob.length === 0, "every line alone is its side, its line and its kill, graded HELD or WRONG (" + G2.length + ")" + (g2prob.length ? "\n          " + g2prob.join("\n          ") : ""));
+{
+  const NA = (() => { try { return eval("(" + (idx.match(/\nconst NOT_ADVICE = (\[[^\n]*\]);/) || [])[1] + ")"); } catch (e) { return null; } })();
+  check(Array.isArray(NA) && NA.length === 2 && NA[0] === "This is structural analysis. It is not a recommendation to buy or sell." && NA[1] === "I develop and sell The Fan, the indicator these levels are read from.",
+    "the page carries counsel's two lines word for word (note 51)");
+  const foot = (idx.match(/\n      <p class="integrity" id="not-advice" style="margin-top:10px">([^<\n]*)<\/p>\n    <\/div>\n    <div class="foot-meta">/) || [])[1];
+  check(foot === "This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.", "the foot of the page carries the two lines word for word, as static text (note 51)");
+}
 const GG = GR.filter(c => c.grade === "pass" || c.grade === "miss");
 const expd = +GG.reduce((s, c) => s + c.odds / 100, 0).toFixed(2);
 check(!!(rec && rec.grammar && rec.grammar.named === GR.length && rec.grammar.graded === GG.length && rec.grammar.held === GG.filter(c => c.grade === "pass").length
@@ -406,7 +457,7 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
     else if (x.date === prevD && readOn[x.date]) dprob.push(at + ": reads " + x.date + " again, and line " + readOn[x.date] + " already read it as typed");
     prevD = x.date;
     if (!x.errors.length && !readOn[x.date]) readOn[x.date] = x.n;
-    const named = [...new Set(CALLS.filter(c => c.grammar && c.date < x.date && fridayOf(c.date) > x.date).map(c => c.date))];
+    const named = [...new Set(CALLS.filter(c => c.grammar && c.grammar !== 2 && c.date < x.date && fridayOf(c.date) > x.date).map(c => c.date))];   /* note 51: a week of lines alone is never read */
     if (named.length !== 1) { dprob.push(at + ": " + (named.length ? "falls inside more than one week of lines" : "no week of lines is open on that day")); continue; }
     weekOf[x.n] = named[0];
     if (x.none || x.errors.length) continue;
@@ -471,7 +522,13 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
   const held = R.filter(c => c.grade === "pass").length, exp = R.reduce((t, c) => t + c.odds / 100, 0);
   const spread = Math.sqrt(R.reduce((t, c) => t + (c.odds / 100) * (1 - c.odds / 100), 0) / FIXED.rowShare);
   const line = exp + FIXED.z * spread, mirror = exp - FIXED.z * spread;
-  const done = CLOSES.some(x => x.date === FIXED.close) && !CALLS.some(c => inWin(c) && c.grade === "pending");
+  /* 14 Oct 2026, note 51: READ_LINE_CLOSED closes the line with the last rows named with odds; it is graded on that close by note 49's arithmetic. */
+  const FIXED_CLOSED = { on: "2026-10-16", note: "51", last: "2026-10-12" };
+  let RC = null; try { RC = grab("READ_LINE_CLOSED", "\\{", "\\}"); } catch (e) {}
+  const closedOff = !RC ? ["READ_LINE_CLOSED is not in index.html"] : Object.keys(FIXED_CLOSED).filter(k => RC[k] !== FIXED_CLOSED[k]).map(k => "READ_LINE_CLOSED." + k + " reads " + JSON.stringify(RC[k]) + ", ruled as " + JSON.stringify(FIXED_CLOSED[k]))
+    .concat(Object.keys(RC).filter(k => !(k in FIXED_CLOSED)).map(k => "READ_LINE_CLOSED." + k + " was added"));
+  const oddsLate = CALLS.filter(c => c.date > FIXED_CLOSED.last && ("odds" in c || "room" in c)).map(c => "a row named " + c.date + " (" + c.metal + ") carries odds or a room after the line closed");
+  const done = CLOSES.some(x => x.date === FIXED_CLOSED.on) && !CALLS.some(c => inWin(c) && +c.odds > 0 && c.grade === "pending");
   const word = !done ? null : held >= line ? "AHEAD OF THE ODDS" : held <= mirror ? "BEHIND THE ODDS" : "LEVEL WITH THE ODDS";
   const J = rec && rec.grammar && rec.grammar.read_line;
   const off = !J ? ["record.json carries no read_line"] : [
@@ -481,8 +538,9 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
     ["graded_on", J.graded_on === FIXED.close], ["rows_from", J.rows_from === FIXED.from], ["rows_to", J.rows_to === FIXED.to]
   ].filter(x => !x[1]).map(x => "record.json read_line." + x[0] + " disagrees with the rows");
   const drawn = /const readLineNow = \(\) =>/.test(idx) && /READ_LINE\.close/.test(idx) && /id="odds-board"/.test(idx);
-  const probs = moved.concat(n49 ? [] : ["note 49 is not on the record"], words.map(w => "note 49 does not say " + w), off, drawn ? [] : ["the board does not draw the line"]);
-  check(probs.length === 0, "the read's own line stands as note 49 set it: " + R.length + " rows graded, " + held + " held against " + exp.toFixed(2) + " expected, the line " + line.toFixed(2) + (word ? ", graded " + word : ", graded on " + FIXED.close)
+  const closedJ = J && J.closed && J.closed.on === FIXED_CLOSED.on && J.closed.note === FIXED_CLOSED.note && J.closed.last === FIXED_CLOSED.last && J.closed.done === done ? [] : ["record.json read_line.closed disagrees with READ_LINE_CLOSED"];
+  const probs = moved.concat(n49 ? [] : ["note 49 is not on the record"], words.map(w => "note 49 does not say " + w), off, drawn ? [] : ["the board does not draw the line"], closedOff, oddsLate, closedJ);
+  check(probs.length === 0, "the read's own line stands as note 49 set it: " + R.length + " rows graded, " + held + " held against " + exp.toFixed(2) + " expected, the line " + line.toFixed(2) + (word ? ", graded " + word + " on " + FIXED_CLOSED.on : ", graded on " + FIXED_CLOSED.on + ", note 51")
     + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
