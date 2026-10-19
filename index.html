@@ -96,7 +96,9 @@
      <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-05_graded.png?v=b55f18bf3b"> -->
 <!-- WAS card_2026-10-12_open.png until 19 Oct 2026, note 51: the week of 12 October while its three rows were open.
      <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-12_open.png?v=27e7e3112f"> -->
-<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-12_graded.png?v=5f30445748">
+<!-- WAS card_2026-10-12_graded.png until 19 Oct 2026, the Monday map upload: the week of 12 October, as graded.
+     <meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-12_graded.png?v=5f30445748"> -->
+<meta property="og:image" content="https://thesimplifier7.github.io/record/card_2026-10-19_open.png?v=0bf6b14a66">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -989,7 +991,7 @@
           </tfoot>
         </table>
       </div>
-      <p class="table-note"><span id="t-nr">5</span> never reached and <span id="t-open">0</span> open count for neither side. A hit is held, counted once. <span id="form-key"></span></p>
+      <p class="table-note"><span id="t-nr">5</span> never reached and <span id="t-open">3</span> open count for neither side. A hit is held, counted once. <span id="form-key"></span></p>
       <details class="how">
         <summary>How the count is kept</summary>
         <p class="tally-note"><b>By week, the count this page keeps.</b> <span id="t-note"></span></p>
@@ -1374,7 +1376,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-19";   /* set by hand, with the commit. "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-19";   /* set by hand, with the commit. "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -1405,7 +1407,10 @@ const PROVENANCE = {
        "2026-10-12": { written:"2026-10-12", open:true },
      Graded on the 16 October close, written 19 October. Named by the day rather than by a hash because the hash does not exist until the
      push that writes this line; swap in the hash on the next push. */
-  "2026-10-12": { graded:"2026-10-16", written:"2026-10-19", dayLink:true },
+  "2026-10-19": { written:"2026-10-19", open:true },
+  /* WAS, until the hash of the 19 October grade push was known:
+       "2026-10-12": { graded:"2026-10-16", written:"2026-10-19", dayLink:true }, */
+  "2026-10-12": { graded:"2026-10-16", written:"2026-10-19", commit:"afc859b" },
   /* WAS, while the rows were open and before the close that graded them:
        "2026-10-05": { written:"2026-10-05", open:true },
      Graded on the 9 October close, written 10 October. Named by the day rather than by a hash because the hash does not exist until the
@@ -2088,6 +2093,19 @@ const STANDING = [
    ========================================================================= */
 
 const CALLS = [
+
+  /* WEEK OF 19 OCTOBER. The first rows named as lines alone (note 51): side, line, where it comes from, read time and kill.
+     Named Monday evening on the week's own opening box, frozen at 16:00 CEST, before the first 8h close after it (23:00 CEST, note 43).
+     Read off the founder's own 2 hour TVC charts stamped 21:33, 21:36 and 21:37 CEST, from THE WEEK row of the panel of The Fan v5:
+       gold      box 4,142.70 to 4,190.38
+       silver    box 56.720 to 57.851
+       platinum  box 1,634.19 to 1,659.10
+     Each panel's THE LINE row read CEILING (gold 4,172.57, silver 58.114, platinum 1,665.94, set Monday 10:00 New York). Offered
+     THE LINE as his own level, which would have needed last week's range read off his chart, he chose the box high at 21:50 CEST,
+     before anything was uploaded. The side and the line are his read. Grade Friday at the 23:00 CEST close. */
+  { date:"2026-10-19", type:"Map", metal:"Gold", level:"4,190.38", book:"Turn", grammar:2, side:"copper", lineFrom:"box high", box:["4,142.70","4,190.38"], readAt:"21:33 CEST", call:"Gold stays below 4,190.38, the high of the box it opened this week in, frozen Monday afternoon and read off the 2 hour chart at 21:33 CEST. Named on the week's own box before any 8h close through it. Kill: a weekly close above 4,190.38.", grade:"pending" },
+  { date:"2026-10-19", type:"Map", metal:"Silver", level:"57.851", book:"Turn", grammar:2, side:"copper", lineFrom:"box high", box:["56.720","57.851"], readAt:"21:36 CEST", call:"Silver stays below 57.851, the high of the box it opened this week in, frozen Monday afternoon and read off the 2 hour chart at 21:36 CEST. Named on the week's own box before any 8h close through it. Kill: a weekly close above 57.851.", grade:"pending" },
+  { date:"2026-10-19", type:"Map", metal:"Platinum", level:"1,659.10", book:"Turn", grammar:2, side:"copper", lineFrom:"box high", box:["1,634.19","1,659.10"], readAt:"21:37 CEST", call:"Platinum stays below 1,659.10, the high of the box it opened this week in, frozen Monday afternoon and read off the 2 hour chart at 21:37 CEST. Named on the week's own box before any 8h close through it. Kill: a weekly close above 1,659.10.", grade:"pending" },
 
   /* WEEK OF 12 OCTOBER. Named Monday evening on the week's own opening box, frozen at
      16:00 CEST, before the first 8h close after it (23:00 CEST Monday, note 43), under the call grammar (note 34).
@@ -5524,7 +5542,7 @@ route(true);
       <div class="lab">Graded wrong, still on this page</div>
     </div>
     <div class="stat">
-      <div class="num blue" id="t-open">0</div>
+      <div class="num blue" id="t-open">3</div>
       <div class="lab">Open, clock running</div>
     </div>
   </section>
