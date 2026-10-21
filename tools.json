@@ -1,0 +1,51 @@
+{
+ "note": "The free tools, for tools.html. Written by hand: a tool goes live here the day it is live on TradingView. title is the title as published; text is the first paragraph of its TradingView description, as published, word for word; null until it is in hand. Read by make_tools_page.js.",
+ "profile": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
+ "tools": [
+  {
+   "key": "week",
+   "name": "The Week",
+   "title": "The Week: floors and ceilings, counted",
+   "url": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
+   "live": true,
+   "text": "Last week's high is this week's ceiling. Last week's low is this week's floor. The Week draws both, with last week's close, and counts how often each one has held on the chart you load it on.",
+   "text_from": "The first three sentences of its TradingView description as published, read off the profile card in his screenshot of 21 October 2026, 11:40. The card cuts the text after them; if the first paragraph runs on, the rest goes in word for word."
+  },
+  {
+   "key": "clockface",
+   "name": "The Clockface",
+   "title": "The Clockface: is the day's high in yet",
+   "url": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
+   "live": true,
+   "text": "Is today's high already in? The low? The Clockface puts odds on both three times a day, grades every one at the day's close on the chart you load it on, and prints beside each how often odds like it came true on that chart.",
+   "text_from": "THE_CLOCKFACE_DESCRIPTION_16OCT.md, TRADINGVIEW DESCRIPTION, first paragraph; checked against the profile card in his screenshot of 21 October 2026, 11:40."
+  },
+  {
+   "key": "atlas",
+   "name": "The Atlas",
+   "title": "The Atlas: odds of a touch before the close",
+   "url": "https://www.tradingview.com/script/8pf4h4pB-The-Atlas-odds-of-a-touch-before-the-close/",
+   "live": true,
+   "text": "Which of today's levels can price still reach before the close, and at what odds? The Atlas draws today's levels and puts one figure on each: the odds of a touch before 17:00 New York, as graded on the chart you load it on.",
+   "text_from": "THE_ATLAS_DESCRIPTION_19OCT.md, TRADINGVIEW DESCRIPTION, first paragraph; checked against the profile card in his screenshot of 21 October 2026, 11:40."
+  },
+  {
+   "key": "ama",
+   "name": "AMA Dashboard",
+   "title": "AMA Dashboard: Flow and Structure",
+   "url": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
+   "live": true,
+   "text": "AMA Dashboard reads the trend from two adaptive moving averages and puts the chart into plain words: which side price is on, how steep the move is, how far it has run, and one grade.",
+   "text_from": "The first sentence of its TradingView description as published, read off the profile card in his screenshot of 21 October 2026, 11:40 (6.2 is live; the description on TradingView is the one first published, not the 6.2 draft in AMA_v6_2_DESCRIPTION_19OCT.md). The card cuts the text after it; the rest of the paragraph goes in word for word when it is in hand."
+  },
+  {
+   "key": "sessions",
+   "name": "Gold's Sessions",
+   "title": "Gold's Sessions: each session against its usual range",
+   "url": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
+   "live": false,
+   "text": "Gold's Sessions draws gold's three sessions, Asia, London and New York, each as a shaded band from its high to its low across its hours, and around each of today's sessions a dotted frame one usual range tall, set on its open: its top half the usual over the open, its bottom half under it. A band inside its frame is a smaller session than usual; one that breaks through it, a bigger one. A label under each session and a panel set each of today's sessions against its usual: 1.52 times usual means the session ran half as far again as it usually does.",
+   "text_from": "GOLDS_SESSIONS_DESCRIPTION_19OCT.md, TRADINGVIEW DESCRIPTION, first paragraph (the cut of 21 October). Live set to true the day it is published."
+  }
+ ]
+}
