@@ -40,7 +40,7 @@ const rowAnchor = c => "r-" + c.date + "-" + String(c.metal).toLowerCase() + "-"
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 /* 24 Sep 2026, note 37: the page's own link card, drawn by make_link_cards.js, which runs after
    this file in the routine and sets the address again with the card's hash. */
-const CARD = (() => { try { const c = JSON.parse(fs.readFileSync("link_cards.json", "utf8")).cards.find(x => x.name === "misses"); if (c && /^https:\/\//.test(c.image)) return c.image; } catch (e) {} return "https://thesimplifier7.github.io/record/link_misses.png"; })();
+const CARD = (() => { try { const c = JSON.parse(fs.readFileSync("link_cards.json", "utf8")).cards.find(x => x.name === "misses"); if (c && /^https:\/\//.test(c.image)) return c.image; } catch (e) {} return "https://thesimplifier7.com/link_misses.png"; })();
 const M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt = iso => { const [y, m, d] = iso.split("-"); return `${+d} ${M[+m - 1]} ${y}`; };
 const noteIds = new Set(NOTES.map(n => n.n));
@@ -126,7 +126,7 @@ const out = `<!DOCTYPE html>
 <meta property="og:description" content="${misses.length} calls, named before the move, graded wrong on the close, kept. With their kills, their closes and the corrections that followed.">
 <!-- the link card, 24 Sep 2026, note 37 on the record -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thesimplifier7.github.io/record/misses.html">
+<meta property="og:url" content="https://thesimplifier7.com/misses.html">
 <meta property="og:image" content="${CARD}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">

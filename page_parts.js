@@ -24,7 +24,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
-const SITE = "https://thesimplifier7.github.io/record/";
+const SITE = "https://thesimplifier7.com/";
 const TV = "https://www.tradingview.com/u/TheSimplifier7/#published-scripts";
 const X = "https://x.com/TheSimplifier7";
 const GC_TAG = '<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';

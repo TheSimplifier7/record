@@ -35,7 +35,7 @@ const path = require("path");
 const R = JSON.parse(fs.readFileSync(path.join(__dirname, "record.json"), "utf8"));
 /* 24 Sep 2026, note 36. This wrote to banks/ and banks/cards/. */
 const OUT = __dirname;
-const SITE = "https://thesimplifier7.github.io/record/";
+const SITE = "https://thesimplifier7.com/";
 
 /* ---------------------------------------------------------------- helpers */
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -333,7 +333,7 @@ function cardHtml(r) {
   <div class="lvl"><b>${fmtNum(r.level, dec)}</b><span>${esc(r.metal.toLowerCase())} · ${esc(r.windowText)}</span></div>
   <div class="g"><i></i>${gw}</div>
   <div class="line">${esc(line)}</div><div class="line"><em>${esc(when)}</em></div>
-  <div class="foot"><span>${esc(r.house)} on the board: <b class="p">${hc.pass} held</b> · <b class="m">${hc.miss} wrong</b> · <b class="o">${hc.pending} open</b></span><span>thesimplifier7.github.io/record</span></div>
+  <div class="foot"><span>${esc(r.house)} on the board: <b class="p">${hc.pass} held</b> · <b class="m">${hc.miss} wrong</b> · <b class="o">${hc.pending} open</b></span><span>thesimplifier7.com</span></div>
   </body></html>`;
 }
 

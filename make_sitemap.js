@@ -4,7 +4,7 @@
 
    sitemap.xml, the list of pages beside the record that search engines are
    asked to read. Submitted once in Google Search Console, under the address
-   https://thesimplifier7.github.io/record/sitemap.xml.
+   https://thesimplifier7.com/sitemap.xml.
 
    Every .html page in the folder is listed, except:
      a page that asks not to be indexed (meta robots noindex): the advisers,
@@ -25,7 +25,7 @@ const fs = require("fs");
 const path = require("path");
 
 const HERE = __dirname;
-const SITE = "https://thesimplifier7.github.io/record/";
+const SITE = "https://thesimplifier7.com/";
 const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
 const TEMPLATES = ["share_card.html", "week_card.html", "tally_card_landscape_dark.html", "tally_card_vertical_dark.html"];
 

@@ -24,7 +24,7 @@ const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
 const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
-const SITE = R.url || "https://thesimplifier7.github.io/record/";
+const SITE = R.url || "https://thesimplifier7.com/";
 
 const kind = (process.argv[2] || "").toLowerCase();
 if (!/^(monday|friday)$/.test(kind)) { console.error("usage: node make_email.js monday|friday [YYYY-MM-DD]"); process.exit(2); }

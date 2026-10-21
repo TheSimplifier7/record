@@ -108,7 +108,7 @@ const build = (w, h, v, p) => {
     </div>
   </div>
   <!-- 10 Oct 2026, note 48: the address in the foot. It read: <span class="law">Named before · Graded after · Nothing deleted</span> -->
-  <div class="foot${v ? " stack" : ""}"><span class="law" style="text-transform:none;letter-spacing:.04em">thesimplifier7.github.io/record</span><span class="handle">@TheSimplifier7</span></div>
+  <div class="foot${v ? " stack" : ""}"><span class="law" style="text-transform:none;letter-spacing:.04em">thesimplifier7.com</span><span class="handle">@TheSimplifier7</span></div>
 </div>
 </body></html>`;
 };
@@ -176,7 +176,7 @@ const buildNavy = (w, h, v, p) => {
     <div class="nr"><b>${t.never_reached}</b> never reached · counted for neither side</div>
     ${sp.svg ? `<div class="low"><div class="spark">${sp.svg}<div class="cap">Gold · Friday closes since ${dayMonth(sp.first)}</div></div></div>` : ""}
   </div>
-  <div class="foot"><span class="addr">thesimplifier7.github.io/record</span><span class="handle">@TheSimplifier7</span></div>
+  <div class="foot"><span class="addr">thesimplifier7.com</span><span class="handle">@TheSimplifier7</span></div>
 </div>
 </body></html>`;
 };

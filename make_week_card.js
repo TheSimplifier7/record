@@ -143,7 +143,7 @@ body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:non
 <div class="mast"><b>${MARK}THE SIMPLIFIER</b><span>Metals · the record</span></div>
 <div class="k">${esc(kicker)}</div>
 <div class="cols">${cols}</div>
-<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.github.io/record</span></div>
+<div class="count"><span><b style="color:${C.ink}">${t.resolved}</b>resolved</span><span><b style="color:${C.pass}">${t.held}</b>held</span><span><b style="color:${C.miss}">${t.wrong}</b>wrong, kept</span>${t.open ? `<span><b style="color:${C.open}">${t.open}</b>open</span>` : ""}<span class="url">thesimplifier7.com</span></div>
 ${rows.some(r => r.grammar) ? `<div class="na">This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</div>` : ""}
 </body></html>`;
 
@@ -155,13 +155,13 @@ console.log(`week_card.html written: ${mode}, named ${named}, close ${cEntry.dat
 /* the record and the bank board both carried the week card, 22 Sep 2026; from 24 Sep 2026, note 37,
    the board has its own card (make_link_cards.js) and this line sets the record's only.
    It read: for (const f of ["index.html", "targets.html"]) { */
-const re = /^<meta property="og:image" content="https:\/\/thesimplifier7\.github\.io\/record\/[^"]+">$/m;
+const re = /^<meta property="og:image" content="https:\/\/thesimplifier7\.com\/[^"]+">$/m;
 for (const f of ["index.html"]) {
   const fp = path.join(__dirname, f);
   if (!fs.existsSync(fp)) continue;
   const src = fs.readFileSync(fp, "utf8");
   if (!re.test(src)) { console.log(`live og:image line not found in ${f}; not changed`); if (f === "index.html") process.exit(1); continue; }
-  const next = src.replace(re, `<meta property="og:image" content="https://thesimplifier7.github.io/record/${base}.png">`);
+  const next = src.replace(re, `<meta property="og:image" content="https://thesimplifier7.com/${base}.png">`);
   if (next !== src) { fs.writeFileSync(fp, next); console.log(`${f} og:image now ${base}.png`); }
 }
 
@@ -181,6 +181,6 @@ for (const f of ["index.html"]) {
   const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(__dirname, base + ".png"))).digest("hex").slice(0, 10);
   const fp = path.join(__dirname, "index.html");
   const was = fs.readFileSync(fp, "utf8");
-  const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.github.io/record/${base}.png?v=${v}">`);
+  const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.com/${base}.png?v=${v}">`);
   if (next !== was) { fs.writeFileSync(fp, next); console.log(`index.html og:image now ${base}.png?v=${v}`); }
 })();

@@ -2,7 +2,7 @@
 
 The public track record of THE SIMPLIFIER. Gold, silver and platinum.
 
-**Live record: https://thesimplifier7.github.io/record/**
+**Live record: https://thesimplifier7.com/**
 
 <!-- 24 Sep 2026, note 33, reached by note 35. This read: "Every call is named before the week opens and graded after the week closes." -->
 Every call is named in advance and graded after the week closes. The wins and the misses sit in the same place. Nothing is ever removed.
@@ -34,7 +34,7 @@ Two directional calls run on their own clocks, one for the year and one for the 
 
 ## What else is here
 
-The wrong ones, in full, at https://thesimplifier7.github.io/record/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.github.io/record/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.github.io/record/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.github.io/record/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.github.io/record/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.github.io/record/embed.html.
+The wrong ones, in full, at https://thesimplifier7.com/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.com/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.com/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.com/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.com/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.com/embed.html.
 
 The page is dark by default since 6 September 2026. A switch in the masthead turns the paper ground on for a reader who wants it, and remembers the choice on that device.
 

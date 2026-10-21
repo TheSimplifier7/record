@@ -71,7 +71,7 @@ const rows = CALLS.map((c, i) => {
        top; anchor is the row's address and does not. Note 35. */
     id: "lrow-" + i,
     anchor: rowAnchor(c),
-    url: "https://thesimplifier7.github.io/record/#" + rowAnchor(c),
+    url: "https://thesimplifier7.com/#" + rowAnchor(c),
     named: c.date,
     type: c.type,
     metal: c.metal,
@@ -99,7 +99,7 @@ const rows = CALLS.map((c, i) => {
 const count = g => CALLS.filter(c => c.grade === g).length;
 const out = {
   title: "The Simplifier · The Record",
-  url: "https://thesimplifier7.github.io/record/",
+  url: "https://thesimplifier7.com/",
   source: "https://github.com/TheSimplifier7/record/blob/main/index.html",
   history: "https://github.com/TheSimplifier7/record/commits/main",
   standard_from: STANDARD_FROM,

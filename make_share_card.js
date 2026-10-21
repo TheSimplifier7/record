@@ -164,14 +164,14 @@ const html = `<!DOCTYPE html>
       </div>
     </div>
   </div>
-  <footer><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">thesimplifier7.github.io/record</span></footer>
+  <footer><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">thesimplifier7.com</span></footer>
 </div>
 </body></html>`;
 
 const pngName = `share_${row.date}_${row.metal.toLowerCase()}_${row.level.replace(/[^\d.]/g, "")}.png`;
 fs.writeFileSync(path.join(HERE, "share_card.html"), html);
 console.log(`\nshare_card.html written from row ${row.date} ${row.metal} ${row.level} (${row.grade}).`);
-console.log(`og:image line for index.html:\n  <meta property="og:image" content="https://thesimplifier7.github.io/record/${pngName}">`);
+console.log(`og:image line for index.html:\n  <meta property="og:image" content="https://thesimplifier7.com/${pngName}">`);
 
 (async () => {
   let chromium; try { ({ chromium } = require("playwright")); } catch (e) { console.log(`playwright not installed; render share_card.html to ${pngName} by hand.`); return; }

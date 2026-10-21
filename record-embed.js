@@ -3,7 +3,7 @@
 
    One script tag. Drops the live tally and the last graded row into any page:
 
-     <script src="https://thesimplifier7.github.io/record/record-embed.js" async></script>
+     <script src="https://thesimplifier7.com/record-embed.js" async></script>
 
    Optional attributes on the tag:
      data-theme="dark" | "light"      default dark, the record's own ground since 6 September 2026
@@ -25,7 +25,7 @@
    those pages becomes a door to the record that this desk does not have to
    feed. Brand law applies to every string below. */
 (function () {
-  var RECORD = "https://thesimplifier7.github.io/record/";
+  var RECORD = "https://thesimplifier7.com/";
   var me = document.currentScript;
   if (!me) return;
   /* record.json is fetched from wherever this script itself was served, so the

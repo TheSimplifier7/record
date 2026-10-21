@@ -49,7 +49,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const HERE = __dirname;
-const SITE = "https://thesimplifier7.github.io/record/";
+const SITE = "https://thesimplifier7.com/";
 /* 6 Oct 2026. The Method page carries The Fan, and its card draws The Fan's chart.
    WAS: const METHOD_CHART = "method_gold_8h_2026-09-24.jpg"; */
 const METHOD_CHART = "fan_gold_2h_2026-10-06.png";
@@ -246,7 +246,7 @@ const CARDS = [
 /* ---------------------------------------------------------------- the pages
    The live og:image line of each page, on a line of its own; replaced copy
    sits in comments above it and is never touched. */
-const OG = /^<meta property="og:image" content="https:\/\/thesimplifier7\.github\.io\/record\/[^"]+">$/m;
+const OG = /^<meta property="og:image" content="https:\/\/thesimplifier7\.com\/[^"]+">$/m;
 
 async function main() {
   const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));

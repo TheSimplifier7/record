@@ -1,11 +1,11 @@
 {
   "title": "The Simplifier · The Record",
-  "url": "https://thesimplifier7.github.io/record/",
+  "url": "https://thesimplifier7.com/",
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-21",
-  "generated": "2026-10-21T08:45:20.832Z",
+  "generated": "2026-10-21T15:14:58.340Z",
   "tally": {
     "resolved": 38,
     "held": 29,
@@ -56,7 +56,7 @@
     {
       "id": "lrow-0",
       "anchor": "r-2026-10-19-gold-4190-38",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-19-gold-4190-38",
+      "url": "https://thesimplifier7.com/#r-2026-10-19-gold-4190-38",
       "named": "2026-10-19",
       "type": "Map",
       "metal": "Gold",
@@ -87,7 +87,7 @@
     {
       "id": "lrow-1",
       "anchor": "r-2026-10-19-silver-57-851",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-19-silver-57-851",
+      "url": "https://thesimplifier7.com/#r-2026-10-19-silver-57-851",
       "named": "2026-10-19",
       "type": "Map",
       "metal": "Silver",
@@ -118,7 +118,7 @@
     {
       "id": "lrow-2",
       "anchor": "r-2026-10-19-platinum-1659-10",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-19-platinum-1659-10",
+      "url": "https://thesimplifier7.com/#r-2026-10-19-platinum-1659-10",
       "named": "2026-10-19",
       "type": "Map",
       "metal": "Platinum",
@@ -149,7 +149,7 @@
     {
       "id": "lrow-3",
       "anchor": "r-2026-10-12-gold-4217-19",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-gold-4217-19",
+      "url": "https://thesimplifier7.com/#r-2026-10-12-gold-4217-19",
       "named": "2026-10-12",
       "type": "Map",
       "metal": "Gold",
@@ -184,7 +184,7 @@
     {
       "id": "lrow-4",
       "anchor": "r-2026-10-12-silver-61-449",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-silver-61-449",
+      "url": "https://thesimplifier7.com/#r-2026-10-12-silver-61-449",
       "named": "2026-10-12",
       "type": "Map",
       "metal": "Silver",
@@ -219,7 +219,7 @@
     {
       "id": "lrow-5",
       "anchor": "r-2026-10-12-platinum-1710-80",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-12-platinum-1710-80",
+      "url": "https://thesimplifier7.com/#r-2026-10-12-platinum-1710-80",
       "named": "2026-10-12",
       "type": "Map",
       "metal": "Platinum",
@@ -254,7 +254,7 @@
     {
       "id": "lrow-6",
       "anchor": "r-2026-10-05-gold-4170-41",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-gold-4170-41",
+      "url": "https://thesimplifier7.com/#r-2026-10-05-gold-4170-41",
       "named": "2026-10-05",
       "type": "Map",
       "metal": "Gold",
@@ -289,7 +289,7 @@
     {
       "id": "lrow-7",
       "anchor": "r-2026-10-05-silver-62-036",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-silver-62-036",
+      "url": "https://thesimplifier7.com/#r-2026-10-05-silver-62-036",
       "named": "2026-10-05",
       "type": "Map",
       "metal": "Silver",
@@ -324,7 +324,7 @@
     {
       "id": "lrow-8",
       "anchor": "r-2026-10-05-platinum-1699-00",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-10-05-platinum-1699-00",
+      "url": "https://thesimplifier7.com/#r-2026-10-05-platinum-1699-00",
       "named": "2026-10-05",
       "type": "Map",
       "metal": "Platinum",
@@ -359,7 +359,7 @@
     {
       "id": "lrow-9",
       "anchor": "r-2026-09-28-gold-4280-50",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-gold-4280-50",
+      "url": "https://thesimplifier7.com/#r-2026-09-28-gold-4280-50",
       "named": "2026-09-28",
       "type": "Map",
       "metal": "Gold",
@@ -394,7 +394,7 @@
     {
       "id": "lrow-10",
       "anchor": "r-2026-09-28-silver-64-212",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-silver-64-212",
+      "url": "https://thesimplifier7.com/#r-2026-09-28-silver-64-212",
       "named": "2026-09-28",
       "type": "Map",
       "metal": "Silver",
@@ -429,7 +429,7 @@
     {
       "id": "lrow-11",
       "anchor": "r-2026-09-28-platinum-1775-80",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-28-platinum-1775-80",
+      "url": "https://thesimplifier7.com/#r-2026-09-28-platinum-1775-80",
       "named": "2026-09-28",
       "type": "Map",
       "metal": "Platinum",
@@ -464,7 +464,7 @@
     {
       "id": "lrow-12",
       "anchor": "r-2026-09-20-gold-4337",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-gold-4337",
+      "url": "https://thesimplifier7.com/#r-2026-09-20-gold-4337",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Gold",
@@ -484,7 +484,7 @@
     {
       "id": "lrow-13",
       "anchor": "r-2026-09-20-silver-64-08",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-silver-64-08",
+      "url": "https://thesimplifier7.com/#r-2026-09-20-silver-64-08",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Silver",
@@ -504,7 +504,7 @@
     {
       "id": "lrow-14",
       "anchor": "r-2026-09-20-platinum-1746",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-20-platinum-1746",
+      "url": "https://thesimplifier7.com/#r-2026-09-20-platinum-1746",
       "named": "2026-09-20",
       "type": "Map",
       "metal": "Platinum",
@@ -524,7 +524,7 @@
     {
       "id": "lrow-15",
       "anchor": "r-2026-09-06-gold-4357",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-gold-4357",
+      "url": "https://thesimplifier7.com/#r-2026-09-06-gold-4357",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Gold",
@@ -544,7 +544,7 @@
     {
       "id": "lrow-16",
       "anchor": "r-2026-09-06-platinum-1797-40",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-09-06-platinum-1797-40",
+      "url": "https://thesimplifier7.com/#r-2026-09-06-platinum-1797-40",
       "named": "2026-09-06",
       "type": "Map",
       "metal": "Platinum",
@@ -564,7 +564,7 @@
     {
       "id": "lrow-17",
       "anchor": "r-2026-08-30-gold-4350",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-gold-4350",
+      "url": "https://thesimplifier7.com/#r-2026-08-30-gold-4350",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Gold",
@@ -584,7 +584,7 @@
     {
       "id": "lrow-18",
       "anchor": "r-2026-08-30-platinum-1797-40",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-30-platinum-1797-40",
+      "url": "https://thesimplifier7.com/#r-2026-08-30-platinum-1797-40",
       "named": "2026-08-30",
       "type": "Map",
       "metal": "Platinum",
@@ -604,7 +604,7 @@
     {
       "id": "lrow-19",
       "anchor": "r-2026-08-23-gold-4308",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-gold-4308",
+      "url": "https://thesimplifier7.com/#r-2026-08-23-gold-4308",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Gold",
@@ -624,7 +624,7 @@
     {
       "id": "lrow-20",
       "anchor": "r-2026-08-23-silver-66-66",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-silver-66-66",
+      "url": "https://thesimplifier7.com/#r-2026-08-23-silver-66-66",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Silver",
@@ -644,7 +644,7 @@
     {
       "id": "lrow-21",
       "anchor": "r-2026-08-23-platinum-1790-84",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-23-platinum-1790-84",
+      "url": "https://thesimplifier7.com/#r-2026-08-23-platinum-1790-84",
       "named": "2026-08-23",
       "type": "Map",
       "metal": "Platinum",
@@ -664,7 +664,7 @@
     {
       "id": "lrow-22",
       "anchor": "r-2026-08-16-gold-4281",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-gold-4281",
+      "url": "https://thesimplifier7.com/#r-2026-08-16-gold-4281",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Gold",
@@ -684,7 +684,7 @@
     {
       "id": "lrow-23",
       "anchor": "r-2026-08-16-silver-66-60",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-16-silver-66-60",
+      "url": "https://thesimplifier7.com/#r-2026-08-16-silver-66-60",
       "named": "2026-08-16",
       "type": "Map",
       "metal": "Silver",
@@ -704,7 +704,7 @@
     {
       "id": "lrow-24",
       "anchor": "r-2026-08-14-gold-4268",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-gold-4268",
+      "url": "https://thesimplifier7.com/#r-2026-08-14-gold-4268",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Gold",
@@ -724,7 +724,7 @@
     {
       "id": "lrow-25",
       "anchor": "r-2026-08-14-silver-66-86",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-14-silver-66-86",
+      "url": "https://thesimplifier7.com/#r-2026-08-14-silver-66-86",
       "named": "2026-08-14",
       "type": "Verdict",
       "metal": "Silver",
@@ -744,7 +744,7 @@
     {
       "id": "lrow-26",
       "anchor": "r-2026-08-07-gold-4098-275",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-4098-275",
+      "url": "https://thesimplifier7.com/#r-2026-08-07-gold-4098-275",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -764,7 +764,7 @@
     {
       "id": "lrow-27",
       "anchor": "r-2026-08-07-silver-61-02",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-silver-61-02",
+      "url": "https://thesimplifier7.com/#r-2026-08-07-silver-61-02",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Silver",
@@ -784,7 +784,7 @@
     {
       "id": "lrow-28",
       "anchor": "r-2026-08-07-gold-3942-430",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-08-07-gold-3942-430",
+      "url": "https://thesimplifier7.com/#r-2026-08-07-gold-3942-430",
       "named": "2026-08-07",
       "type": "Verdict",
       "metal": "Gold",
@@ -804,7 +804,7 @@
     {
       "id": "lrow-29",
       "anchor": "r-2026-07-27-gold-4098",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-4098",
+      "url": "https://thesimplifier7.com/#r-2026-07-27-gold-4098",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -824,7 +824,7 @@
     {
       "id": "lrow-30",
       "anchor": "r-2026-07-27-gold-3942",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-gold-3942",
+      "url": "https://thesimplifier7.com/#r-2026-07-27-gold-3942",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Gold",
@@ -844,7 +844,7 @@
     {
       "id": "lrow-31",
       "anchor": "r-2026-07-27-silver-61-02",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-27-silver-61-02",
+      "url": "https://thesimplifier7.com/#r-2026-07-27-silver-61-02",
       "named": "2026-07-27",
       "type": "Map",
       "metal": "Silver",
@@ -864,7 +864,7 @@
     {
       "id": "lrow-32",
       "anchor": "r-2026-07-21-gold-4098",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-4098",
+      "url": "https://thesimplifier7.com/#r-2026-07-21-gold-4098",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -884,7 +884,7 @@
     {
       "id": "lrow-33",
       "anchor": "r-2026-07-21-gold-3810",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-gold-3810",
+      "url": "https://thesimplifier7.com/#r-2026-07-21-gold-3810",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Gold",
@@ -904,7 +904,7 @@
     {
       "id": "lrow-34",
       "anchor": "r-2026-07-21-silver-61-02",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-21-silver-61-02",
+      "url": "https://thesimplifier7.com/#r-2026-07-21-silver-61-02",
       "named": "2026-07-21",
       "type": "Map",
       "metal": "Silver",
@@ -924,7 +924,7 @@
     {
       "id": "lrow-35",
       "anchor": "r-2026-07-12-gold-4098",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4098",
+      "url": "https://thesimplifier7.com/#r-2026-07-12-gold-4098",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -944,7 +944,7 @@
     {
       "id": "lrow-36",
       "anchor": "r-2026-07-12-silver-61-02",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-silver-61-02",
+      "url": "https://thesimplifier7.com/#r-2026-07-12-silver-61-02",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Silver",
@@ -964,7 +964,7 @@
     {
       "id": "lrow-37",
       "anchor": "r-2026-07-12-gold-4305-32",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-12-gold-4305-32",
+      "url": "https://thesimplifier7.com/#r-2026-07-12-gold-4305-32",
       "named": "2026-07-12",
       "type": "Map",
       "metal": "Gold",
@@ -984,7 +984,7 @@
     {
       "id": "lrow-38",
       "anchor": "r-2026-07-08-gold-4098",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-08-gold-4098",
+      "url": "https://thesimplifier7.com/#r-2026-07-08-gold-4098",
       "named": "2026-07-08",
       "type": "Level Watch",
       "metal": "Gold",
@@ -1004,7 +1004,7 @@
     {
       "id": "lrow-39",
       "anchor": "r-2026-07-07-silver-61-02",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-07-silver-61-02",
+      "url": "https://thesimplifier7.com/#r-2026-07-07-silver-61-02",
       "named": "2026-07-07",
       "type": "Level Watch",
       "metal": "Silver",
@@ -1024,7 +1024,7 @@
     {
       "id": "lrow-40",
       "anchor": "r-2026-07-05-gold-4098-4307",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-07-05-gold-4098-4307",
+      "url": "https://thesimplifier7.com/#r-2026-07-05-gold-4098-4307",
       "named": "2026-07-05",
       "type": "Map",
       "metal": "Gold",
@@ -1044,7 +1044,7 @@
     {
       "id": "lrow-41",
       "anchor": "r-2026-06-29-gold-4500-3809",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-06-29-gold-4500-3809",
+      "url": "https://thesimplifier7.com/#r-2026-06-29-gold-4500-3809",
       "named": "2026-06-29",
       "type": "Map",
       "metal": "Gold",
@@ -1064,7 +1064,7 @@
     {
       "id": "lrow-42",
       "anchor": "r-2026-06-22-gold-4098-4633",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-06-22-gold-4098-4633",
+      "url": "https://thesimplifier7.com/#r-2026-06-22-gold-4098-4633",
       "named": "2026-06-22",
       "type": "Map",
       "metal": "Gold",
@@ -1084,7 +1084,7 @@
     {
       "id": "lrow-43",
       "anchor": "r-2026-06-15-gold-4307",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-06-15-gold-4307",
+      "url": "https://thesimplifier7.com/#r-2026-06-15-gold-4307",
       "named": "2026-06-15",
       "type": "Map",
       "metal": "Gold",
@@ -1104,7 +1104,7 @@
     {
       "id": "lrow-44",
       "anchor": "r-2026-06-11-gold-4098",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-06-11-gold-4098",
+      "url": "https://thesimplifier7.com/#r-2026-06-11-gold-4098",
       "named": "2026-06-11",
       "type": "Verdict",
       "metal": "Gold",
@@ -1124,7 +1124,7 @@
     {
       "id": "lrow-45",
       "anchor": "r-2026-06-07-gold-4308",
-      "url": "https://thesimplifier7.github.io/record/#r-2026-06-07-gold-4308",
+      "url": "https://thesimplifier7.com/#r-2026-06-07-gold-4308",
       "named": "2026-06-07",
       "type": "Read",
       "metal": "Gold",

@@ -145,7 +145,7 @@
     open: "Graded in the open",                                                /* M: section heading */
     illus: "Illustration · no price printed",
     noData: "The record's own data could not be read on this page, so the week is not drawn.",
-    url: "thesimplifier7.github.io/record",
+    url: "thesimplifier7.com",
     play: "Play", pause: "Pause", resume: "Play", replay: "Play again", length: "2 min 1 s",
     text: "Read it as text"
   };

@@ -24,7 +24,7 @@ const page = (w, h, safeW, safeH) => {
 </style></head><body><div class="safe">
   <div class="row"><svg viewBox="0 0 40 30" fill="none"><path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"/><circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"/></svg><span class="name">The Simplifier</span></div>
   <div class="law">Named before. Graded after. <i>Nothing deleted.</i></div>
-  <div class="sub">Gold · Silver · Platinum · one level a week · <b>thesimplifier7.github.io/record</b></div>
+  <div class="sub">Gold · Silver · Platinum · one level a week · <b>thesimplifier7.com</b></div>
   <div class="rule"></div>
 </div></body></html>`;
 };
@@ -52,7 +52,7 @@ function pageX(){
   <div class="law">Named before. Graded after. <i>Nothing deleted.</i></div>
   <div class="sub">Gold · Silver · Platinum · one level a week · graded Friday on the close</div>
   <div class="rule"></div>
-  <div class="addr">thesimplifier7.github.io/record</div>
+  <div class="addr">thesimplifier7.com</div>
 </body></html>`;
 }
 fs.writeFileSync("banner_youtube.html", page(2560, 1440, 1546, 423));
