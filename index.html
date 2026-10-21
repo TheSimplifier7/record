@@ -256,6 +256,13 @@
   .tbtn svg{width:15px;height:15px}
   .getlines{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:4px;background:var(--btn);color:var(--btn-ink);font-size:.875rem;font-weight:700;text-decoration:none;white-space:nowrap}
   .getlines:hover{background:var(--btn-hover);color:var(--btn-ink)}
+  /* 21 Oct 2026: the free tools on TradingView, a door in the band on a wide screen, under This week, in Join and at the foot */
+  .tvlink{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--navy-rule);border-radius:4px;color:var(--navy-ink);font-size:.8125rem;font-weight:700;text-decoration:none;white-space:nowrap}
+  .tvlink:hover{border-color:var(--navy-ink-2);color:var(--navy-ink)}
+  .door .tools{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--rule)}
+  .door .tools a{display:flex;align-items:center;justify-content:space-between;min-height:44px;border-bottom:1px solid var(--rule);color:var(--ink);font-weight:600;text-decoration:none}
+  .door .tools a::after{content:"\203A";color:var(--open);font-weight:700}
+  .door .tools a:hover{color:var(--open)}
   .band-hero{background:var(--navy);color:var(--navy-ink)}
   .band-title{display:grid;gap:4px;padding-block:2px 18px}
   .band-title h1{font-family:var(--f-cond);font-weight:700;font-size:clamp(2.125rem,5vw,3.25rem);line-height:1;letter-spacing:.02em}
@@ -760,7 +767,8 @@
 
   /* the doors */
   #doors{padding-block:20px 8px}
-  .doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  /* 21 Oct 2026: four doors with the free tools, two by two. It read: .doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px} */
+  .doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
   .door{display:grid;gap:12px;align-content:start;padding:18px;border:1px solid var(--rule);background:var(--raise);min-width:0}
   .door:first-child{border-top:4px solid var(--btn)}
   .door .eyebrow{color:var(--ink-3)}
@@ -885,6 +893,7 @@
   @media (max-width:760px){
     body{padding-bottom:var(--bot)}
     .topnav{display:none}
+    .tvlink{display:none}
     .tbtn span{display:none}
     .tbtn{width:44px;justify-content:center;padding:0}
     .band-top{min-height:56px;gap:8px}
@@ -939,6 +948,7 @@
     </nav>
     <div class="band-tools">
       <button class="tbtn" id="theme-sw" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="theme-word">Dark</span></button>
+      <a class="tvlink" href="https://www.tradingview.com/u/TheSimplifier7/" data-tv="band">TradingView</a>
       <a class="getlines" href="#join">Get the lines</a>
     </div>
   </div>
@@ -975,6 +985,8 @@
       <p class="tw-rule"><span id="tw-rule"></span> <span id="tw-key"></span></p>
       <a class="tw-how" id="tw-how" href="#days-rule" hidden>How the odds are read</a>
       <a class="tw-fan" href="method.html"><span>These lines are read off <b>The Fan</b>, the indicator this desk built.</span><span class="go">What it does, and what it costs</span></a>
+      <!-- 21 Oct 2026: the free tools on TradingView, by name. -->
+      <a class="tw-fan tw-tv" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="week"><span><b>Free on TradingView</b> · The Week · The Clockface · The Atlas · AMA Dashboard</span><span class="go">TheSimplifier7 on TradingView</span></a>
       <a class="tw-door" id="tw-door" href="#join" hidden>Monday's lines, by email, the evening they are named &rsaquo;</a>
     </div>
   </section>
@@ -1205,6 +1217,19 @@
     <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
     <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on this page.</p>
   </div>
+  <!-- 21 Oct 2026: the free tools on TradingView, a door of their own. -->
+  <div class="door" id="door-tools">
+    <div class="eyebrow">Free</div>
+    <h3>On TradingView</h3>
+    <ul class="tools">
+      <li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="door-week">The Week</a></li>
+      <li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="door-clockface">The Clockface</a></li>
+      <li><a href="https://www.tradingview.com/script/8pf4h4pB-The-Atlas-odds-of-a-touch-before-the-close/" data-tv="door-atlas">The Atlas</a></li>
+      <li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="door-ama">AMA Dashboard</a></li>
+    </ul>
+    <p><a class="btn" href="https://www.tradingview.com/u/TheSimplifier7/" data-tv="door">TheSimplifier7 on TradingView</a></p>
+    <p class="fine">Free.<br>Not investment advice.</p>
+  </div>
   <div class="door" id="door-method" data-ready="0">
     <div class="eyebrow">By invitation</div>
     <h3>The Fan</h3>
@@ -1241,6 +1266,7 @@
     </div>
     <div class="foot-meta">
       <span>Posted first on X · <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></span>
+      <span>The free tools · <a href="https://www.tradingview.com/u/TheSimplifier7/" data-tv="foot">TheSimplifier7 on TradingView</a></span>
       <span>Last updated <span id="updated-foot"></span></span>
       <span>The record as data · <a href="record.json">record.json</a></span>
       <span>The day's lines · <a href="days.txt">days.txt</a></span>
@@ -1376,7 +1402,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-19";   /* set by hand, with the commit. "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-21";   /* set by hand, with the commit. "2026-10-21" for the upload of 21 October, the free tools on TradingView, a door in Join, under This week, in the band and at the foot; no row, grade, figure or date touched. WAS "2026-10-19": "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -5301,6 +5327,9 @@ route(true);
       const t = e.target && e.target.closest ? e.target : null; if (!t) return;
       const rs = t.closest(".rs-btn");
       if (rs) { ev("row-share/" + (rs.getAttribute("data-a") || ""), "A row's link copied or shared"); return; }
+      /* 21 Oct 2026: the TradingView door counts as a door used, the third of note 37's events, by path alone. */
+      const tv = t.closest("a[data-tv]");
+      if (tv) { ev("door-tradingview/" + (tv.getAttribute("data-tv") || ""), "A door used: TradingView"); return; }
       const ap = t.closest("#apply-link");
       if (ap && /^https:\/\//.test(ap.getAttribute("href") || "")) ev("door-apply", "The application opened");
     }, true);

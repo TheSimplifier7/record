@@ -1,6 +1,6 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-19T19:50:45.880Z",
+ "generated": "2026-10-21T08:37:25.500Z",
  "cards": [
   {
    "name": "misses",
@@ -37,8 +37,8 @@
    "name": "targets",
    "page": "targets.html",
    "file": "link_targets.png",
-   "v": "b4b063f76f",
-   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=b4b063f76f",
+   "v": "ef9e2889ec",
+   "image": "https://thesimplifier7.github.io/record/link_targets.png?v=ef9e2889ec",
    "figures": {
     "open": 7,
     "held": 4,
@@ -58,8 +58,8 @@
    "name": "method",
    "page": "method.html",
    "file": "link_method.png",
-   "v": "7eceb74589",
-   "image": "https://thesimplifier7.github.io/record/link_method.png?v=7eceb74589",
+   "v": "b0da21b3c6",
+   "image": "https://thesimplifier7.github.io/record/link_method.png?v=b0da21b3c6",
    "figures": {
     "chart": "fan_gold_2h_2026-10-06.png"
    }
@@ -116,8 +116,8 @@
    "name": "tick",
    "page": "tick.html",
    "file": "link_tick.png",
-   "v": "57373833cc",
-   "image": "https://thesimplifier7.github.io/record/link_tick.png?v=57373833cc",
+   "v": "a8c929aa5a",
+   "image": "https://thesimplifier7.github.io/record/link_tick.png?v=a8c929aa5a",
    "figures": {
     "rows": 0,
     "held": 0,
