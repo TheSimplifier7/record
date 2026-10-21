@@ -57,7 +57,7 @@ jobs:
 
       - name: Wait for the upload to go live, then keep it outside this desk
         env:
-          SITE: https://thesimplifier7.github.io/record/
+          SITE: https://thesimplifier7.com/
           REPO_URL: https://github.com/${{ github.repository }}
           SHA: ${{ github.sha }}
           BEFORE: ${{ github.event.before }}
