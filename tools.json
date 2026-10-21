@@ -43,9 +43,9 @@
    "name": "Gold's Sessions",
    "title": "Gold's Sessions: each session against its usual range",
    "url": "https://www.tradingview.com/u/TheSimplifier7/#published-scripts",
-   "live": false,
+   "live": true,
    "text": "Gold's Sessions draws gold's three sessions, Asia, London and New York, each as a shaded band from its high to its low across its hours, and around each of today's sessions a dotted frame one usual range tall, set on its open: its top half the usual over the open, its bottom half under it. A band inside its frame is a smaller session than usual; one that breaks through it, a bigger one. A label under each session and a panel set each of today's sessions against its usual: 1.52 times usual means the session ran half as far again as it usually does.",
-   "text_from": "GOLDS_SESSIONS_DESCRIPTION_19OCT.md, TRADINGVIEW DESCRIPTION, first paragraph (the cut of 21 October). Live set to true the day it is published."
+   "text_from": "GOLDS_SESSIONS_DESCRIPTION_19OCT.md, TRADINGVIEW DESCRIPTION, first paragraph (the cut of 21 October). Published 21 October 2026 at 13:00 Madrid, live set true on his word that afternoon; to be checked against its profile card."
   }
  ]
 }
