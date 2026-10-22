@@ -19,6 +19,42 @@
      <meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. 22 resolved, 18 correct, 4 wrong and still on the page. Nothing removed." /> -->
 <!-- 24 Sep 2026, note 33. This read: meta name="description" content="Gold, silver and platinum levels named before the week opens, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." -->
 <meta name="description" content="Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed." />
+<!-- 22 Oct 2026, note 52: the page's one address, for search, now that the record lives at thesimplifier7.com (21 October). -->
+<link rel="canonical" href="https://thesimplifier7.com/">
+<!-- 22 Oct 2026, note 52: the site's name in search results, and where else it is found. No figure, so it cannot go stale. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://thesimplifier7.com/#website",
+   "url": "https://thesimplifier7.com/",
+   "name": "The Simplifier",
+   "alternateName": [
+    "THE SIMPLIFIER",
+    "The Simplifier · The Record"
+   ],
+   "inLanguage": "en",
+   "description": "Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed.",
+   "publisher": {
+    "@id": "https://thesimplifier7.com/#brand"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://thesimplifier7.com/#brand",
+   "name": "The Simplifier",
+   "url": "https://thesimplifier7.com/",
+   "logo": "https://thesimplifier7.com/icon-192.png",
+   "sameAs": [
+    "https://x.com/TheSimplifier7",
+    "https://www.tradingview.com/u/TheSimplifier7/"
+   ]
+  }
+ ]
+}
+</script>
 <!-- 10 October 2026, note 47: the ground follows the reader's device (ruling of 7 October 2026), and the script below sets this to the band at the top of the page. It read:
      <meta name="theme-color" content="#141210" id="meta-theme"> -->
 <meta name="theme-color" content="#0f1e3a" id="meta-theme">
@@ -936,11 +972,226 @@
     .brand{letter-spacing:.14em}
   }
   @media print{.band,.botnav,dialog{display:none}.js .view:not(.on){display:block}}
+
+  /* ---------------------------------------------------------------------
+     THE HEAD OF THE PAGE, 22 October 2026, note 52, by the founder's ruling
+     of that day. The strip, the band, the key line, the window on the
+     record, The Fan's inner workings over the page and the doors. The rules
+     above for the band and the old head are kept; these come after them.
+
+     The head is navy on both grounds, as the band always was. The window is
+     drawn in the record's night inks on both grounds, so it reads as the
+     record itself and not as a picture of it. Every colour that is read sits
+     at 4.5 to 1 or over on what it sits on:
+       on the navy by day, #0f1e3a: white 16.6, #c9d3e6 11.0, gold #f2c45a 10.1, blue #8db0f5 7.6, red #ff8a80 7.3
+       on the navy at night, #14244a: white 15.2, #c9d3e6 10.1, gold 9.3, blue 7.0, red 6.7
+       on the window, #0c1527: #eef2f8 16.2, #cdd5e1 12.3, #a3aec0 8.1, #8d98ab 6.3, gold 11.1, red 8.0, blue 8.4
+       the gold button's ink, #0b1324, on its gold: 8.7 at its darkest
+     --------------------------------------------------------------------- */
+  :root{--hd-win:#0c1527;--hd-win-2:#101b31;--hd-wink:#eef2f8;--hd-wink-2:#cdd5e1;--hd-wink-3:#a3aec0;--hd-wink-4:#8d98ab;--hd-wrule:rgba(201,211,230,.12);--hd-wrule-2:rgba(201,211,230,.22);
+    --hd-gold:#e0a93b;--hd-gold-t:#f2c45a;--hd-red:#d83a3a;--hd-red-t:#ff8a80;--hd-blue:#8db0f5;--hd-nr:#8d97a8;--hd-over:150px}
+
+  /* the strip: the count, from the rows, and the close that grades the open lines */
+  .hd-strip{display:none;background:var(--navy);color:var(--navy-ink-2);border-bottom:1px solid var(--navy-rule)}
+  .js .hd-strip{display:block}
+  .hd-strip-in{display:flex;align-items:center;gap:22px;min-height:34px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;font:500 .71875rem/1 var(--f-fig);letter-spacing:.05em;text-transform:uppercase}
+  .hd-strip-in::-webkit-scrollbar{display:none}
+  .hd-strip b{color:var(--navy-ink);font-weight:600}
+  .hd-strip .k-h b{color:var(--hd-gold-t)}.hd-strip .k-w b{color:var(--hd-red-t)}.hd-strip .k-o b{color:var(--hd-blue)}
+  .hd-strip .hd-k{color:var(--navy-ink);font-weight:600;letter-spacing:.16em}
+  .hd-next{margin-left:auto;display:inline-flex;align-items:center;gap:8px;color:var(--hd-blue)}
+  .hd-next b{color:var(--navy-ink)}
+  .hd-dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--hd-blue);display:inline-block;animation:hd-ping 2.4s ease-out infinite}
+
+  /* the band, in the head's buttons */
+  .hd-band .band-top{min-height:64px}
+  .hd-band .brand{font-family:var(--f-cond);font-size:1.0625rem;font-weight:700;letter-spacing:.18em;color:var(--navy-ink)}
+  .hd-band .topnav a{font-weight:500;padding:0 11px}
+  .hd-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 16px;border-radius:10px;border:0;font-family:var(--f-ui);font-size:.875rem;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease}
+  .hd-btn svg{flex:none}
+  .hd-gold{background:linear-gradient(180deg,#f2c062,#e0a93b);color:#0b1324;font-weight:700;box-shadow:0 12px 28px -14px rgba(224,169,59,.75),inset 0 0 0 1px rgba(255,255,255,.2)}
+  .hd-gold:hover{color:#0b1324;transform:translateY(-1px);box-shadow:0 16px 34px -14px rgba(224,169,59,.85),inset 0 0 0 1px rgba(255,255,255,.3)}
+  .hd-ghost{background:rgba(255,255,255,.05);color:var(--navy-ink);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+  .hd-ghost:hover{color:var(--navy-ink);background:rgba(255,255,255,.1)}
+  .hd-lg{min-height:54px;padding:0 24px;font-size:1rem;border-radius:12px}
+  .hd-band .tbtn{border-radius:10px}
+
+  /* the hero: the key line, the key and the window */
+  .hd-hero{position:relative;overflow:hidden;isolation:isolate;background:var(--navy);color:var(--navy-ink)}
+  .hd-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(1100px 520px at 50% -14%,rgba(224,169,59,.14),transparent 62%),radial-gradient(900px 640px at 50% 80%,rgba(141,176,245,.09),transparent 66%)}
+  .hd-hero::after{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(rgba(201,211,230,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(201,211,230,.045) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 58% 40% at 50% 18%,#000 10%,transparent 72%);mask-image:radial-gradient(ellipse 58% 40% at 50% 18%,#000 10%,transparent 72%);pointer-events:none}
+  .hd-floor{position:absolute;left:0;right:0;bottom:0;height:var(--hd-over);background:var(--bg);z-index:-1}
+  .hd-copy{text-align:center;padding-top:clamp(40px,6.5vw,76px)}
+  .hd-eyebrow{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:2px 10px;max-width:100%;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);font:500 .71875rem/1.4 var(--f-fig);letter-spacing:.06em;text-transform:uppercase;color:var(--navy-ink-2)}
+  .hd-eyebrow b{color:var(--navy-ink);font-weight:600}
+  .hd-h1{margin:22px auto 0;font-family:var(--f-cond);font-weight:700;font-size:clamp(2.875rem,7vw,5.75rem);line-height:.9;letter-spacing:-.01em;color:#fff;text-wrap:balance}
+  .hd-h1 em{font-style:normal;color:var(--hd-gold-t);white-space:nowrap}
+  .hd-keys{margin:26px auto 0;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+  .hd-key{display:inline-flex;align-items:center;gap:11px;padding:9px 15px 9px 11px;border-radius:12px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);font-size:1rem;line-height:1.3;color:var(--navy-ink-2);text-align:left}
+  .hd-key b{color:#fff;font-weight:600}
+  .hd-key svg{flex:none}
+  .hd-lede{margin:20px auto 0;max-width:40rem;font-size:1.0625rem;line-height:1.6;color:var(--navy-ink-2)}
+  .hd-ctas{margin-top:28px;display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+  .hd-len{font:500 .75rem/1 var(--f-fig);color:var(--navy-ink-2);padding:4px 7px;border-radius:6px;background:rgba(255,255,255,.08)}
+  .hd-under{margin-top:14px;font-size:.8125rem;color:var(--navy-ink-2)}
+  .js body:not([data-view="week"]) .hd-hero :is(.hd-eyebrow,.hd-keys,.hd-lede,.hd-ctas,.hd-under,.hd-stage,.hd-floor){display:none}
+
+  /* the window on the record */
+  .hd-stage{display:none;position:relative;max-width:1180px;margin:56px auto 40px;perspective:2200px}
+  .js .hd-stage.ready{display:block}
+  .hd-win{position:relative;border-radius:20px;overflow:hidden;background:var(--hd-win);color:var(--hd-wink);box-shadow:0 0 0 1px var(--hd-wrule),0 50px 100px -40px rgba(3,8,20,.75),0 1px 0 rgba(255,255,255,.06) inset;text-align:left;transform-origin:50% 0;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .9s ease}
+  .hd-stage:not(.in) .hd-win{transform:rotateX(10deg) translateY(18px);opacity:.001}
+  .hd-glow{position:absolute;left:10%;right:10%;bottom:-50px;height:110px;background:radial-gradient(closest-side,rgba(224,169,59,.14),transparent);filter:blur(18px);pointer-events:none;z-index:-1}
+  .hd-bar{display:flex;align-items:center;gap:14px;min-height:56px;padding:8px 16px;border-bottom:1px solid var(--hd-wrule);background:rgba(255,255,255,.02)}
+  .hd-app{display:inline-flex;align-items:center;gap:10px;font:700 .875rem/1 var(--f-cond);letter-spacing:.16em;color:var(--hd-wink-2)}
+  .hd-app i{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#f2c062,#c8962e);display:inline-block}
+  .hd-tabs{display:inline-flex;gap:2px;padding:3px;border-radius:10px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--hd-wrule)}
+  .hd-tab{min-height:38px;padding:0 15px;border-radius:8px;border:0;background:transparent;color:var(--hd-wink-3);font-family:var(--f-ui);font-size:.8125rem;font-weight:600;cursor:pointer}
+  .hd-tab:hover{color:var(--hd-wink)}
+  .hd-tab[aria-pressed="true"]{background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+  .hd-status{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font:500 .71875rem/1.3 var(--f-fig);letter-spacing:.05em;text-transform:uppercase;color:var(--hd-wink-3)}
+  .hd-body{display:grid;grid-template-columns:minmax(0,1fr) 340px}
+  .hd-main{padding:20px 22px 18px;min-width:0;border-right:1px solid var(--hd-wrule);display:flex;flex-direction:column}
+  .hd-mh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px 16px;flex-wrap:wrap}
+  .hd-mh .hd-ey{font:600 .6875rem/1.3 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--hd-wink-3)}
+  .hd-mh p{margin-top:6px;font-size:.8125rem;color:var(--hd-wink-2)}
+  .hd-legend{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:.71875rem;color:var(--hd-wink-3)}
+  .hd-legend span{display:inline-flex;align-items:center;gap:6px}
+  .hd-chart{position:relative;margin:16px 46px 24px 0;flex:1 1 auto;min-height:300px}
+  .hd-chart svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .hd-ax{position:absolute;font:500 .65625rem/1 var(--f-fig);color:var(--hd-wink-4);white-space:nowrap;pointer-events:none}
+  .hd-ax.y{left:calc(100% + 8px);transform:translateY(-50%)}
+  .hd-ax.x{bottom:-18px;transform:translateX(-50%);letter-spacing:.08em}
+  .hd-pin{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border:0;padding:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%;z-index:2}
+  .hd-pin i{display:block;transition:transform .2s ease}
+  .hd-pin:hover i,.hd-pin[aria-pressed="true"] i{transform:scale(1.25)}
+  .hd-pin[aria-pressed="true"]::after{content:"";position:absolute;width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 1.5px rgba(255,255,255,.85)}
+  .hd-halo{position:absolute;width:16px;height:16px;border-radius:50%;border:2px solid var(--hd-blue);animation:hd-halo 2.4s ease-out infinite}
+  /* the record's marks, in its night inks: a gold dot held, a gold dot in a ring a hit, a red square crossed wrong, a grey ring never reached, a blue ring round a point open */
+  .hm{display:inline-block;flex:none;width:13px;height:13px;border-radius:50%}
+  .hm-held{background:var(--hd-gold);box-shadow:0 0 0 3px rgba(224,169,59,.18),0 0 12px rgba(224,169,59,.4)}
+  .hm-hit{background:var(--hd-gold);box-shadow:0 0 0 2px var(--hd-win),0 0 0 3.5px var(--hd-gold),0 0 12px rgba(224,169,59,.4)}
+  .hm-wrong{border-radius:3px;background:var(--hd-red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3.6 3.6l4.8 4.8M8.4 3.6l-4.8 4.8' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E") center/100% 100% no-repeat;box-shadow:0 0 0 3px rgba(216,58,58,.2),0 0 12px rgba(216,58,58,.35)}
+  .hm-nr{background:transparent;box-shadow:inset 0 0 0 2px var(--hd-nr)}
+  .hm-open{background:radial-gradient(circle,var(--hd-blue) 0 2.5px,var(--hd-win) 3px);box-shadow:inset 0 0 0 2.5px var(--hd-blue),0 0 14px rgba(141,176,245,.55)}
+  .hm.sm{width:10px;height:10px}
+  .hm-line{width:16px;height:3px;border-radius:2px;background:var(--hd-gold)}
+  .hd-weeks{display:flex;gap:6px;margin-top:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+  .hd-weeks::-webkit-scrollbar{display:none}
+  .hd-wk{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 12px;border-radius:9px;border:0;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--hd-wrule);color:var(--hd-wink-3);font-family:var(--f-ui);font-size:.78125rem;font-weight:500;cursor:pointer}
+  .hd-wk:hover{color:#fff}
+  .hd-wk[aria-pressed="true"]{background:rgba(255,255,255,.09);color:#fff;box-shadow:inset 0 0 0 1px var(--hd-wrule-2)}
+  .hd-side{padding:20px;display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.015);min-width:0}
+  .hd-side .hd-ey{font:600 .65625rem/1.3 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--hd-wink-3)}
+  .hd-lv{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+  .hd-lv b{font:600 2.125rem/1 var(--f-fig);color:#fff;letter-spacing:-.01em}
+  .hd-pill{flex:none;padding:5px 10px;border-radius:999px;font-size:.6875rem;font-weight:700;letter-spacing:.12em}
+  .p-held,.p-hit{color:var(--hd-gold-t);background:rgba(224,169,59,.15)}.p-wrong{color:var(--hd-red-t);background:rgba(229,98,90,.16)}.p-open{color:var(--hd-blue);background:rgba(141,176,245,.15)}.p-nr{color:var(--hd-wink-3);background:rgba(255,255,255,.07)}
+  .hd-rule{margin-top:8px;font-size:.875rem;color:var(--hd-wink-2)}
+  .hd-rule b{color:#fff}
+  .hd-gauge{position:relative;height:58px;border-radius:12px;background:rgba(255,255,255,.025);box-shadow:inset 0 0 0 1px var(--hd-wrule);overflow:hidden}
+  .hd-g-zone{position:absolute;top:0;bottom:0;width:50%}
+  .hd-g-line{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--hd-gold);box-shadow:0 0 10px rgba(224,169,59,.55)}
+  .hd-g-close{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;box-shadow:0 0 0 2px var(--hd-win),0 0 0 3.5px #fff}
+  .hd-g-lab{position:absolute;bottom:7px;font:500 .625rem/1 var(--f-fig);color:var(--hd-wink-4);letter-spacing:.08em}
+  .hd-dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px 12px;margin:0;font-size:.8125rem}
+  .hd-dl dt{color:var(--hd-wink-3)}.hd-dl dd{margin:0;text-align:right;color:var(--hd-wink)}
+  .hd-dl .hd-mono{font-family:var(--f-fig);font-weight:500}
+  .hd-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+  .hd-links .hd-btn{flex:1 1 auto}
+  .hd-tlink{font-size:.8125rem;font-weight:600;color:var(--hd-gold-t);text-decoration:none}
+  .hd-tlink:hover{color:#ffd77a;text-decoration:underline}
+  .hd-hr{height:1px;background:var(--hd-wrule)}
+  .hd-marks{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .hd-count{margin-top:10px;font-size:.8125rem;color:var(--hd-wink-2)}
+  .hd-count b{font-family:var(--f-fig);font-weight:500;color:#fff}
+  .hd-counsel{font-size:.6875rem;line-height:1.5;color:var(--hd-wink-3)}
+  .hd-win :focus-visible{outline:2px solid var(--hd-blue);outline-offset:2px}
+  .hd-hero :focus-visible{outline-color:var(--hd-blue)}
+  .hd-path{stroke-dasharray:3000;stroke-dashoffset:0}
+  .hd-stage.draw .hd-path{animation:hd-draw 2.2s cubic-bezier(.2,.7,.2,1) .25s both}
+
+  /* The Fan's inner workings, over the page (note 50's film, loaded on the first press) */
+  dialog.hd-film{padding:0;border:0;background:transparent;color:#eef2f8;width:min(1120px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 24px);overflow:visible}
+  dialog.hd-film::backdrop{background:rgba(3,6,14,.84);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .hd-film-in{display:grid;gap:14px}
+  .hd-film-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .hd-film-top h2{font-family:var(--f-cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;color:#fff}
+  .hd-film-top h2 span{color:#a3aec0;font-weight:600}
+  .hd-x{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:0;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
+  .hd-x:hover{background:rgba(255,255,255,.14)}
+  .hd-film-stage{min-height:120px;border-radius:14px;background:#060c18}
+  .hd-film-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+  .hd-film-foot .hd-ghost{color:#fff}
+  .hd-film-foot .hd-counsel{flex:1 1 280px;color:#a3aec0;font-size:.75rem}
+
+  /* the doors, with the free tools first */
+  .door{border-radius:16px;padding:22px}
+  .door:first-child{border-top:1px solid var(--rule)}
+  #door-tools{border-color:var(--mk-held);box-shadow:0 0 0 1px var(--mk-held),0 30px 60px -40px rgba(200,150,46,.5);background:linear-gradient(180deg,var(--held-bg),var(--raise) 62%)}
+  .door .eyebrow{justify-self:start;padding:5px 10px;border-radius:999px;background:var(--bar);letter-spacing:.12em;font-size:.6875rem}
+  #door-tools .eyebrow{background:var(--raise);color:var(--held)}
+  .door .btn{border-radius:10px}
+  #door-tools .btn{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+  #door-tools .btn:hover{background:var(--btn-hover);border-color:var(--btn-hover);color:var(--btn-ink)}
+  .hd-seats{display:flex;gap:8px}
+  .hd-seat{width:30px;height:30px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--rule-2);background:var(--bar)}
+  .hd-seat.taken{background:linear-gradient(180deg,#f2c062,#c8962e);box-shadow:none}
+
+  @keyframes hd-ping{0%{box-shadow:0 0 0 0 rgba(141,176,245,.6)}100%{box-shadow:0 0 0 9px rgba(141,176,245,0)}}
+  @keyframes hd-halo{0%{transform:scale(.7);opacity:.8}100%{transform:scale(2.3);opacity:0}}
+  @keyframes hd-draw{from{stroke-dashoffset:3000}to{stroke-dashoffset:0}}
+
+  .hd-band .topnav a{white-space:nowrap}
+  @media (max-width:1180px){.hd-band .tbtn span{display:none}.hd-band .tbtn{width:44px;justify-content:center;padding:0}.hd-band .getlines-ghost{display:none}}
+  @media (max-width:1000px){.hd-band .topnav a{padding:0 7px;font-size:.8125rem}.hd-band .brand{font-size:.9375rem;letter-spacing:.14em}}
+  @media (max-width:900px){.hd-band .hd-opt{display:none}.hd-band .hd-long{display:none}}
+  @media (max-width:1060px){
+    .hd-band .topnav a{padding:0 8px;font-size:.84375rem}
+    .hd-body{grid-template-columns:minmax(0,1fr)}
+    .hd-main{border-right:0;border-bottom:1px solid var(--hd-wrule)}
+    .hd-chart{flex:none;min-height:0;aspect-ratio:1000/430}
+    .hd-side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px;align-items:start}
+    .hd-side>*{min-width:0}
+    .hd-side .hd-wide{grid-column:1/-1}
+  }
+  @media (max-width:760px){
+    :root{--hd-over:110px}
+    .hd-strip-in{gap:16px}
+    .hd-band .hd-long{display:none}
+    .hd-band .band-tools .hd-gold{padding:0 14px}
+    .hd-copy{padding-top:34px}
+    .hd-eyebrow{border-radius:12px}
+    .hd-h1{margin-top:18px}
+    .hd-keys{flex-direction:column;align-items:stretch;max-width:26rem}
+    .hd-lede{font-size:1rem}
+    .hd-ctas{flex-direction:column;align-items:stretch;max-width:26rem;margin-inline:auto}
+    .hd-stage{margin:40px auto 28px;perspective:none}
+    .hd-win{border-radius:16px}
+    .hd-stage:not(.in) .hd-win{transform:translateY(14px)}
+    .hd-bar{flex-wrap:wrap;padding:10px 12px;gap:10px}
+    .hd-status{margin-left:0;width:100%}
+    .hd-main{padding:14px 14px 12px}
+    .hd-chart{aspect-ratio:1000/620;margin-right:40px}
+    .hd-legend{display:none}
+    .hd-side{display:flex;align-items:stretch;padding:16px 14px}
+    .hd-pin{width:34px;height:34px;margin:-17px 0 0 -17px}
+    .hd-film-top h2{font-size:1.25rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hd-dot,.hd-halo{animation:none}
+    .hd-win,.hd-btn,.hd-pin i{transition:none}
+    .hd-stage:not(.in) .hd-win{transform:none;opacity:1}
+    .hd-stage.draw .hd-path{animation:none}
+  }
+  @media print{.hd-strip,.hd-stage,dialog.hd-film{display:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
 
+<!-- THE BAND AND THE HEAD BEFORE 22 OCTOBER 2026, kept word for word (note 52). Its own comment markers are written
+     <!~~ and ~~> so it stays one comment. Nothing in it renders or runs.
 <header class="band">
   <div class="wrap band-top">
     <a class="brand" href="#week" aria-label="The Simplifier, the record, this week">THE SIMPLIFIER</a>
@@ -965,8 +1216,91 @@
   <div class="wrap band-title">
     <h1 id="h1">THE RECORD</h1>
     <p class="band-sub">Season from <span id="record-begins"></span> · entry <span id="issue-no">000</span> · updated <span id="updated-spec"></span></p>
-    <!-- The line under the title is the page's own description, word for word (note 33). -->
+    <!~~ The line under the title is the page's own description, word for word (note 33). ~~>
     <p class="band-lede">Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed.</p>
+  </div>
+</div>
+-->
+<!-- 22 Oct 2026, note 52: the strip. The count, read from the rows each time the page opens, and the close that grades
+     the open lines. Drawn by the script; with scripts off it is not shown and the table carries the count. -->
+<div class="hd-strip" role="region" aria-label="The record, counted">
+  <div class="wrap hd-strip-in">
+    <span class="hd-k">The record</span>
+    <span>Graded <b id="hs-graded"></b></span>
+    <span class="k-h">Held <b id="hs-held"></b></span>
+    <span class="k-w">Wrong, kept <b id="hs-wrong"></b></span>
+    <span>Never reached <b id="hs-nr"></b></span>
+    <span class="k-o">Open <b id="hs-open"></b></span>
+    <span>Removed <b>0</b></span>
+    <span class="hd-next" id="hs-next" hidden><i class="hd-dot" aria-hidden="true"></i><span>Next grade <b id="hs-when"></b> <span id="hs-cd"></span></span></span>
+  </div>
+</div>
+
+<header class="band hd-band">
+  <div class="wrap band-top">
+    <a class="brand" href="#week" aria-label="The Simplifier, the record, this week">THE SIMPLIFIER</a>
+    <nav class="topnav" aria-label="The record">
+      <a href="#week" data-v="week">This week</a>
+      <a href="#results" data-v="results">Results</a>
+      <a href="method.html" data-film="band">The Fan</a>
+      <a class="hd-opt" href="tools.html">Free tools</a>
+      <a href="#banks" data-v="banks">Banks</a>
+      <a href="#rules" data-v="rules">Rules</a>
+      <a href="#join" data-v="join">Join</a>
+    </nav>
+    <div class="band-tools">
+      <button class="tbtn" id="theme-sw" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="theme-word">Dark</span></button>
+      <a class="hd-btn hd-ghost getlines-ghost" href="#join">Get the lines</a>
+      <a class="hd-btn hd-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="band"><span><span class="hd-long">Join me on </span>TradingView</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<!-- 22 Oct 2026, note 52: the head of the page. The title is the key every line is graded by; THE RECORD, the title
+     before it, heads the strip above the band. The line under the key is the page's own description, word for word
+     (note 33). The window draws each metal's Friday closes and every line since the week of 31 August from the rows
+     and CLOSES on this page, never typed; with scripts off it is not shown. -->
+<div class="band-hero hd-hero" id="band-hero">
+  <div class="hd-floor" aria-hidden="true"></div>
+  <div class="wrap hd-copy">
+    <p class="hd-eyebrow"><span>Season from <b id="record-begins"></b></span><span>Entry <b id="issue-no">000</b></span><span>Updated <b id="updated-spec"></b></span></p>
+    <h1 class="hd-h1" id="h1">Only <em>Friday's close</em> counts.</h1>
+    <div class="hd-keys">
+      <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 6 L8 10 L13 6 L19 10 L28 7" fill="none" stroke="#c9d3e6" stroke-width="1.6"/><line x1="1" y1="16" x2="29" y2="16" stroke="#e0a93b" stroke-width="2.6"/></svg><span><b>Floor:</b> the week must close above it.</span></span>
+      <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><line x1="1" y1="4" x2="29" y2="4" stroke="#e0a93b" stroke-width="2.6"/><path d="M2 14 L8 10 L13 14 L19 10 L28 13" fill="none" stroke="#c9d3e6" stroke-width="1.6"/></svg><span><b>Ceiling:</b> the week must close under it.</span></span>
+    </div>
+    <!-- The line under the key is the page's own description, word for word (note 33). -->
+    <p class="hd-lede">Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed.</p>
+    <div class="hd-ctas">
+      <a class="hd-btn hd-gold hd-lg" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="hero">Join me on TradingView <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="hd-btn hd-ghost hd-lg" href="#join">Get the lines</a>
+      <a class="hd-btn hd-ghost hd-lg" href="method.html" data-film="hero"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z" fill="#f2c45a"/></svg>Inside The Fan <span class="hd-len">2 min</span></a>
+    </div>
+    <p class="hd-under">Free. Not investment advice.</p>
+  </div>
+  <div class="wrap">
+    <div class="hd-stage" id="hd-stage">
+      <div class="hd-glow" aria-hidden="true"></div>
+      <div class="hd-win" id="hd-win" role="region" aria-label="Every line since 31 August, drawn on its Friday close">
+        <div class="hd-bar">
+          <span class="hd-app"><i aria-hidden="true"></i>THE RECORD</span>
+          <div class="hd-tabs" id="hd-tabs" role="group" aria-label="Metal"></div>
+          <span class="hd-status" id="hd-status"></span>
+        </div>
+        <div class="hd-body">
+          <div class="hd-main">
+            <div class="hd-mh">
+              <div><div class="hd-ey" id="hd-title"></div><p>Each line sits across its week at its level and is marked on Friday's close.</p></div>
+              <div class="hd-legend" id="hd-legend"></div>
+            </div>
+            <div class="hd-chart" id="hd-chart"></div>
+            <div class="hd-weeks" id="hd-weeks" role="group" aria-label="Weeks"></div>
+          </div>
+          <aside class="hd-side" id="hd-side" aria-live="polite" aria-label="The line picked"></aside>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="wrap"><div class="noscript" id="render-fallback" hidden>
@@ -1209,20 +1543,10 @@
 
 <!-- ======================= JOIN ======================= -->
 <section class="view" id="v-join" data-view="join" aria-labelledby="join-h">
-  <div class="vhead"><div class="wrap"><h2 id="join-h">JOIN</h2><p>The levels by email, the tool they are read from, and the seat.</p></div></div>
+  <!-- 22 Oct 2026, note 52. This read: <p>The levels by email, the tool they are read from, and the seat.</p> -->
+  <div class="vhead"><div class="wrap"><h2 id="join-h">JOIN</h2><p>The free tools, the levels by email, the tool they are read from, and the seat.</p></div></div>
 <section id="doors" aria-label="The doors"><div class="wrap"><div class="doors">
-  <div class="door" id="door-email" data-ready="0">
-    <div class="eyebrow">Free</div>
-    <h3>The Monday Level</h3>
-    <p>The levels, by email, the evening they are named. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
-    <form class="signup" id="signup-form" method="post">
-      <label for="em" class="sr-only">Email address</label>
-      <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
-      <button class="btn" type="submit">Send it</button>
-    </form>
-    <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
-    <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on this page.</p>
-  </div>
+  <!-- 22 Oct 2026, note 52: the free tools on TradingView come first. They came second, after The Monday Level. -->
   <!-- 21 Oct 2026: the free tools on TradingView, a door of their own. -->
   <div class="door" id="door-tools">
     <div class="eyebrow">Free</div>
@@ -1238,6 +1562,18 @@
     <p><a class="btn" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="door">Join me on TradingView</a></p>
     <p class="fine">Free.<br>Not investment advice.</p>
   </div>
+  <div class="door" id="door-email" data-ready="0">
+    <div class="eyebrow">Free</div>
+    <h3>The Monday Level</h3>
+    <p>The levels, by email, the evening they are named. The grades, on Friday's close. The wrong ones arrive in your inbox too.</p>
+    <form class="signup" id="signup-form" method="post">
+      <label for="em" class="sr-only">Email address</label>
+      <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
+      <button class="btn" type="submit">Send it</button>
+    </form>
+    <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
+    <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on this page.</p>
+  </div>
   <div class="door" id="door-method" data-ready="0">
     <div class="eyebrow">By invitation</div>
     <h3>The Fan</h3>
@@ -1249,7 +1585,9 @@
   <div class="door" id="door-apply" data-ready="0">
     <div class="eyebrow">One to one</div>
     <h3>Three seats open</h3>
-    <p>For one person at a time who has followed calls long enough to know he wants to stop. Twelve weeks, one to one, gold, silver and platinum. You leave naming the level, the kill and the grade yourself, on your own chart, in a ledger you keep. Four people at a time. One seat is taken. The terms are on the next page. The price is said on the call, to the person it is for.</p>
+    <!-- 22 Oct 2026, note 52. This read: <p>For one person at a time who has followed calls long enough to know he wants to stop. Twelve weeks, one to one, gold, silver and platinum. You leave naming the level, the kill and the grade yourself, on your own chart, in a ledger you keep. Four people at a time. One seat is taken. The terms are on the next page. The price is said on the call, to the person it is for.</p> -->
+    <p>For one person at a time who is done following calls and wants to name their own. Twelve weeks, one to one, gold, silver and platinum. You leave able to name the line, the close that proves it wrong and the grade yourself, on your own chart, in a ledger you keep. Four people at a time. One seat is taken. The terms are on the next page. The price is said on the call, to the person it is for.</p>
+    <div class="hd-seats" role="img" aria-label="Four seats, one taken"><i class="hd-seat taken"></i><i class="hd-seat"></i><i class="hd-seat"></i><i class="hd-seat"></i></div>
     <p><a class="btn" id="apply-link" href="#">Read the terms and apply</a></p>
     <p class="fine">Education and training.<br>Not investment advice. No funds are handled.</p>
   </div>
@@ -1294,12 +1632,31 @@
 <nav class="botnav" aria-label="The record">
   <a href="#week" data-v="week"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
   <a href="#results" data-v="results"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Results</span></a>
-  <a href="method.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
+  <!-- 22 Oct 2026, note 52: data-film added; a press opens The Fan's inner workings over the page. -->
+  <a href="method.html" data-film="bar"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
   <a href="#banks" data-v="banks"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/></svg><span>Banks</span></a>
   <a href="#join" data-v="join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Join</span></a>
 </nav>
 
 <dialog class="sheet" id="row" aria-labelledby="row-lv"><div class="sheet-in" id="row-in"></div></dialog>
+
+<!-- 22 Oct 2026, note 52: The Fan's inner workings over the page. The Fan in the band, in the bar at the foot of a phone
+     and in the head opens it; movement.js loads on the first press only. With scripts off, a press that asks for a new
+     tab, or a film that cannot load, they go to The Fan's page as before. -->
+<dialog class="hd-film" id="hd-film" aria-labelledby="hd-film-h">
+  <div class="hd-film-in">
+    <div class="hd-film-top">
+      <h2 id="hd-film-h">The Fan <span>· the inner workings</span></h2>
+      <button class="hd-x" id="hd-film-x" type="button" aria-label="Close the film"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="hd-film-stage" id="hd-film-stage"></div>
+    <div class="hd-film-foot">
+      <a class="hd-btn hd-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="film">Join me on TradingView</a>
+      <a class="hd-btn hd-ghost" href="method.html">What it is, and the terms</a>
+      <p class="hd-counsel">This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p>
+    </div>
+  </div>
+</dialog>
 
 <script>
 /* =========================================================================
@@ -1413,7 +1770,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-21";   /* set by hand, with the commit. Kept at "2026-10-21" for the sixth upload of 21 October: the site icon cut from his original avatar to the shape of his head; no row, grade, figure or date touched. Kept at "2026-10-21" for the fifth upload of 21 October: the site icon, his own avatar, in the browser tab and beside the record in search results; no row, grade, figure or date touched. Kept at "2026-10-21" for the fourth upload of 21 October: the record moves to its own domain, thesimplifier7.com, every address on the record, its pages and its cards with it; the Internet Archive's links to the copies kept at the old address stay as they are; no row, grade, figure or date touched. Kept at "2026-10-21" for the third upload of 21 October: Gold's Sessions joins the free tools, in This week, the Join door and tools.html; no row, grade, figure or date touched. Kept at "2026-10-21" for the second upload of 21 October: the free tools on one page (tools.html), every week on its own page (weeks.html and week-*.html), the sitemap, and the guest ledger open, its invitation a post to @TheSimplifier7 on X; no row, grade, figure or date touched. "2026-10-21" for the upload of 21 October, the free tools on TradingView, a door in Join, under This week, in the band and at the foot; no row, grade, figure or date touched. WAS "2026-10-19": "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-22";   /* set by hand, with the commit. "2026-10-22" for the upload of 22 October: the head of the page (note 52), the key line on top, the count in a strip, every line since 31 August drawn in a window from the rows, The Fan's inner workings over the page, the doors with the free tools first, and the page's one address for search; no row, grade, figure or date touched. WAS "2026-10-21": Kept at "2026-10-21" for the sixth upload of 21 October: the site icon cut from his original avatar to the shape of his head; no row, grade, figure or date touched. Kept at "2026-10-21" for the fifth upload of 21 October: the site icon, his own avatar, in the browser tab and beside the record in search results; no row, grade, figure or date touched. Kept at "2026-10-21" for the fourth upload of 21 October: the record moves to its own domain, thesimplifier7.com, every address on the record, its pages and its cards with it; the Internet Archive's links to the copies kept at the old address stay as they are; no row, grade, figure or date touched. Kept at "2026-10-21" for the third upload of 21 October: Gold's Sessions joins the free tools, in This week, the Join door and tools.html; no row, grade, figure or date touched. Kept at "2026-10-21" for the second upload of 21 October: the free tools on one page (tools.html), every week on its own page (weeks.html and week-*.html), the sitemap, and the guest ledger open, its invitation a post to @TheSimplifier7 on X; no row, grade, figure or date touched. "2026-10-21" for the upload of 21 October, the free tools on TradingView, a door in Join, under This week, in the band and at the foot; no row, grade, figure or date touched. WAS "2026-10-19": "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -2817,6 +3174,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"52", kind:"standard", title:"The head of the page, 22 October 2026. The key on top, the count in a strip, every line since 31 August drawn on its Friday close, and The Fan's inner workings one press away.",
+    body:"By the founder's ruling of 22 October 2026. None of it touches a row, a grade, a figure, a date or a line. THE KEY. The page opens on the rule every line is graded by: only Friday's close counts, a floor must close above its line and a ceiling under it. THE RECORD, the title before it, heads the strip above the band, and the page's description stays under the key word for word (note 33). THE STRIP. The count, read from the rows each time the page opens: graded, held, wrong and kept, never reached, open, and removed, which is none. Beside it, the Friday close that grades the open lines. THE WINDOW. Each metal's Friday closes, with every line from the week of 31 August drawn at its level across its week and marked by its grade. It reads the rows and the closes on this page, by the rule each week's own page reads them by, and types nothing; a row it cannot read by that rule is left out of the window, not drawn wrong, and stays on the record. Each line opens its row and its week's page. THE FAN. The Fan in the band, in the bar at the foot of a phone and under the key opens its inner workings (note 50) over this page, with its terms one press away. With scripts off, or a press that asks for a new tab, it goes to The Fan's page as before. THE DOORS. The free tools on TradingView come first. The seat is now for one person at a time who is done following calls and wants to name their own. THE ADDRESS. The page and The Fan's page now name their one address for search, thesimplifier7.com. Every line the head replaced is kept in the source beside what replaced it." },
   { n:"51", kind:"standard", title:"The line alone, from 19 October 2026. Each weekly line is named with its side, its level and the Friday close that would prove it wrong, and nothing more: no odds and no next level, on counsel's written advice of 14 October.",
     body:"Ruled by the founder on 14 October 2026, on his counsel's written advice of the same day. THE ROW. From the rows of 19 October every row carries its side, its line, where the line comes from, the time it was read and the weekly close that would prove it wrong, and nothing more. It is graded HELD or WRONG on Friday's close. There is no hit. THE ROWS BEFORE. The rows named from 28 September to 12 October keep everything they were named with, their odds and their next level included, and their grades stand as given. Nothing on them moves (note 40). THE READ'S LINE. The test of note 49 counts the rows named with their odds, from the week of 28 September 2026. No row is named with odds after 12 October, so it counts nine rows, and it is graded on the close of Friday 16 October 2026, when the last of them are graded, not on 24 September 2027. Its rows, its arithmetic and its three words do not move. On nine rows the line sits past the rows themselves, so AHEAD OF THE ODDS is out of reach, and with four of the first six held BEHIND THE ODDS is out of reach as well: its word on that close is LEVEL WITH THE ODDS, the word it would have printed in 2027. THE DAYS. The odds were to be read again after each close from the week of 19 October (note 47). With no odds on the rows nothing is read, and days.txt stays as it is. THE TWO LINES. Every row named since 28 September, this week's panel, the foot of this page, the Monday post and every email carry two lines in counsel's words: This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from." },
   { n:"50", kind:"standard", title:"The Fan by the month, 11 and 12 October 2026. $1,299 a month through TradingView, after $199 at this afternoon's upload; its inner workings on its page; and what the record owes from Sunday.",
@@ -5440,6 +5799,240 @@ route(true);
   });
 })();
 /* END KEPT: standing-check */
+</script>
+
+<!-- 22 Oct 2026, note 52: the head of the page, drawn. It reads the rows, CALLS, CLOSES and the page's own helpers
+     above and types nothing. -->
+<script>
+/* =========================================================================
+   THE HEAD OF THE PAGE  ·  22 October 2026  ·  note 52
+
+   THE STRIP. The count, from CALLS, by the table's rule: graded is held and
+   wrong together, a hit is counted once as held, a partial counts against
+   the record, never reached and open count for neither side. Removed is 0
+   because nothing on this page has been removed; the edit history and the
+   Internet Archive are where that is checked (notes 40 and 49). The close
+   that grades the open lines is Friday 23:00 in Madrid, from the row's own
+   date (gradeCloseFor); the reader's clock only says how far away it is.
+
+   THE WINDOW. Each metal's Friday closes from CLOSES, and every line named
+   from the week of 31 August 2026, read by the rule each week's own page
+   reads it by (make_week_pages.js): a floor from a row that holds above, a
+   ceiling from a row that stays below, or, on a row named before the call
+   grammar, from the one weekly close its row says would prove it wrong; the
+   line is the row's level; Friday's close is the row's graded close
+   (closeFor); the word is the row's own grade. A row that does not read
+   cleanly by that rule is left out of the window rather than drawn wrong.
+   It stays on the record, where it always was. The last twelve weeks show.
+
+   THE FAN. A press on a link marked data-film opens The Fan's inner workings
+   (note 50) over the page. movement.js loads on the first press only. A
+   press with a modifier key, a browser without dialogs, or a film that
+   cannot load goes to the link's own address, method.html.
+   ========================================================================= */
+(function theHead() {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const say = (where, e) => { try { if (window.console) console.warn("the head: " + where, e); } catch (x) {} };
+  let reduce = false; try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MONL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const DAY3 = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dt = iso => new Date(iso + "T12:00:00Z");
+  const addD = (iso, n) => { const d = dt(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  const dm = iso => dt(iso).getUTCDate() + " " + MON[dt(iso).getUTCMonth()];
+  const dml = iso => dt(iso).getUTCDate() + " " + MONL[dt(iso).getUTCMonth()];
+  const ddm = iso => DAY3[dt(iso).getUTCDay()] + " " + dm(iso);
+  const h = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const tz = d => d && madridOffsetMin(d) === 60 ? "CET" : "CEST";
+
+  /* ---------------------------------------------------------------- the strip */
+  try {
+    const n = g => CALLS.filter(c => c.grade === g).length;
+    const held = n("pass"), wrong = n("miss") + n("partial"), nr = n("notest"), open = n("pending");
+    $("hs-graded").textContent = held + wrong; $("hs-held").textContent = held; $("hs-wrong").textContent = wrong;
+    $("hs-nr").textContent = nr; $("hs-open").textContent = open;
+    const closes = CALLS.filter(c => c.grade === "pending").map(c => gradeCloseFor(c.date)).filter(Boolean).sort((a, b) => a - b);
+    if (closes.length) {
+      const c = closes[0], fri = new Date(c.getTime() + madridOffsetMin(c) * 60000).toISOString().slice(0, 10);
+      $("hs-when").textContent = ddm(fri) + " · 23:00 " + tz(c);
+      const tick = () => {
+        const ms = c.getTime() - Date.now();
+        if (ms <= 0) { $("hs-cd").textContent = "· close printed, grade pending"; return; }
+        const m = Math.floor(ms / 60000), d = Math.floor(m / 1440), hh = Math.floor((m % 1440) / 60), mm = m % 60;
+        $("hs-cd").textContent = "· in " + (d ? d + "d " : "") + hh + "h " + String(mm).padStart(2, "0") + "m";
+      };
+      tick(); setInterval(tick, 30000);
+      $("hs-next").hidden = false;
+    }
+  } catch (e) { say("strip", e); }
+
+  /* ---------------------------------------------------------------- the window */
+  try {
+    const FROM = "2026-08-31", MAX_WEEKS = 12;
+    const tradingMonday = iso => { const w = dt(iso).getUTCDay(); return w === 0 ? addD(iso, 1) : addD(iso, -(w - 1)); };
+    const cmpF = (a, b) => { const p = Math.max(places(a), places(b)), x = scaled(a, p), y = scaled(b, p); return x < y ? -1 : x > y ? 1 : 0; };
+    const WORD = { pass: "held", miss: "wrong", partial: "wrong", notest: "never reached", pending: "open" };
+    const lineRead = r => {
+      if (r.type !== "Map") return null;
+      let kind = r.side === "slate" ? "floor" : r.side === "copper" ? "ceiling" : null;
+      const km = /^a weekly close (back )?(below|beneath|under|above) ([\d,]+(?:\.\d+)?)\.?$/.exec(String(r.kill || "").trim());
+      if (!km) return null;
+      const kk = km[2] === "above" ? "ceiling" : "floor";
+      if (kind && kind !== kk) return null;
+      kind = kind || kk;
+      if (km[3] !== r.level) return null;
+      const word = WORD[r.grade]; if (!word) return null;
+      const close = word === "open" ? "" : closeFor(r);
+      if (word !== "open" && !close) return null;
+      if (close && (word === "held" || word === "wrong")) {
+        const through = kind === "floor" ? cmpF(close, r.level) < 0 : cmpF(close, r.level) > 0;
+        if (through !== (word === "wrong")) return null;
+      }
+      const side = close ? (cmpF(close, r.level) < 0 ? "under" : cmpF(close, r.level) > 0 ? "above" : "on") : "";
+      const mon = tradingMonday(r.date);
+      return { r, kind, word, mark: word === "held" && r.hit ? "hit" : word === "held" ? "held" : word === "wrong" ? "wrong" : word === "open" ? "open" : "nr",
+        level: r.level, close, side, gap: close ? (side === "on" ? "0" : distOf(close, r.level)) : "", mon, fri: addD(mon, 4), metal: r.metal };
+    };
+    const ALL = rows.map(lineRead).filter(L => L && L.mon >= FROM);
+    const WEEKS = [...new Set(ALL.map(L => L.mon))].sort().slice(-MAX_WEEKS);
+    const LINES = ALL.filter(L => WEEKS.includes(L.mon));
+    const METALS = ["Gold", "Silver", "Platinum"].filter(m => LINES.some(L => L.metal === m));
+    if (!METALS.length) throw new Error("no line to draw");
+
+    const stage = $("hd-stage"), chart = $("hd-chart"), side = $("hd-side");
+    const WORDUP = { held: "HELD", hit: "HIT", wrong: "WRONG", nr: "NEVER REACHED", open: "OPEN" };
+    const MARKNAME = { held: "held", hit: "hit", wrong: "wrong", nr: "never reached", open: "open" };
+    const st = { metal: METALS[0], pick: null };
+    const first = WEEKS[0];
+    const anyOpen = LINES.some(L => L.word === "open");
+    $("hd-status").innerHTML = anyOpen
+      ? `<i class="hd-dot" aria-hidden="true"></i><span>Week of ${h(dm(WEEKS[WEEKS.length - 1]))} · the lines are open</span>`
+      : `<span>Every line graded on Friday's close</span>`;
+
+    const t0 = Date.parse(addD(first, -3) + "T00:00:00Z"), t1 = Date.parse(addD(WEEKS[WEEKS.length - 1], 6) + "T00:00:00Z");
+    const X = iso => 14 + (Date.parse(iso + "T00:00:00Z") - t0) / (t1 - t0) * 972;
+    const f1 = v => v.toFixed(1);
+    const nice = span => { const raw = span / 4, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; };
+
+    function draw() {
+      const metal = st.metal;
+      const Ls = LINES.filter(L => L.metal === metal).sort((a, b) => a.mon.localeCompare(b.mon));
+      if (!Ls.length) return;
+      if (!Ls.some(L => L.mon === st.pick)) { const o = Ls.filter(L => L.word === "open"); st.pick = (o.length ? o[o.length - 1] : Ls[Ls.length - 1]).mon; }
+      const S = Ls.find(L => L.mon === st.pick);
+      const cl = CLOSES.filter(c => c[metal] && c.date >= addD(first, -3) && c.date <= addD(WEEKS[WEEKS.length - 1], 6)).map(c => [c.date, parseNum(c[metal])]);
+      const vals = cl.map(c => c[1]).concat(Ls.map(L => parseNum(L.level)));
+      let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.14 || hi * 0.01; lo -= pad; hi += pad;
+      const Y = v => 18 + (hi - v) / (hi - lo) * 392;
+      const step = nice(hi - lo), dp = step < 1 ? (String(step).split(".")[1] || "").length : 0;
+      const fmt = v => v.toLocaleString("en-US", { minimumFractionDigits: dp, maximumFractionDigits: dp });
+      const ticks = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) ticks.push(+v.toFixed(6));
+      const pts = cl.map(([d, v]) => [X(d), Y(v)]);
+      const path = pts.length ? "M" + pts.map(p => f1(p[0]) + "," + f1(p[1])).join(" L") : "";
+      const area = pts.length ? path + " L" + f1(pts[pts.length - 1][0]) + ",410 L" + f1(pts[0][0]) + ",410 Z" : "";
+      const seg = L => "M" + f1(X(L.mon)) + "," + f1(Y(parseNum(L.level))) + " L" + f1(X(L.fri)) + "," + f1(Y(parseNum(L.level)));
+      const gradedSegs = Ls.filter(L => L.word !== "open").map(seg).join(" "), openSegs = Ls.filter(L => L.word === "open").map(seg).join(" ");
+      const months = []; { const d = new Date(t0); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() + 1); while (d.getTime() < t1) { months.push(d.toISOString().slice(0, 10)); d.setUTCMonth(d.getUTCMonth() + 1); } }
+      const sc = S.word === "wrong" ? "#ff8a80" : S.word === "open" ? "#8db0f5" : S.word === "never reached" ? "#a3aec0" : "#f2c45a";
+      const conn = S.close ? `<path d="M${f1(X(S.fri))},${f1(Y(parseNum(S.level)))} L${f1(X(S.fri))},${f1(Y(parseNum(S.close)))}" stroke="${sc}" stroke-width="1.6" stroke-dasharray="3 4" vector-effect="non-scaling-stroke" fill="none"/>` : "";
+      chart.innerHTML =
+        `<svg viewBox="0 0 1000 430" preserveAspectRatio="none" role="img" aria-label="${h(metal)}, Friday closes from ${h(dml(addD(first, -3)))}, with every line since the week of ${h(dml(first))} drawn at its level across its week">` +
+        `<defs><linearGradient id="hd-fa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f8" stop-opacity=".10"/><stop offset="1" stop-color="#eef2f8" stop-opacity="0"/></linearGradient>` +
+        `<linearGradient id="hd-wk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8db0f5" stop-opacity=".13"/><stop offset="1" stop-color="#8db0f5" stop-opacity=".02"/></linearGradient>` +
+        `<filter id="hd-gl" x="-10%" y="-80%" width="120%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>` +
+        `<rect x="${f1(X(S.mon) - 6)}" y="0" width="${f1(X(S.fri) - X(S.mon) + 12)}" height="410" fill="url(#hd-wk)"/>` +
+        ticks.map(t => `<path d="M0,${f1(Y(t))} L1000,${f1(Y(t))}" stroke="#cdd5e1" stroke-opacity=".07" vector-effect="non-scaling-stroke"/>`).join("") +
+        (area ? `<path d="${area}" fill="url(#hd-fa)"/>` : "") +
+        (path ? `<path class="hd-path" d="${path}" fill="none" stroke="#e6ebf3" stroke-width="1.8" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>` : "") +
+        conn +
+        `<g filter="url(#hd-gl)">` + (gradedSegs ? `<path d="${gradedSegs}" fill="none" stroke="#e0a93b" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>` : "") +
+        (openSegs ? `<path d="${openSegs}" fill="none" stroke="#e0a93b" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" vector-effect="non-scaling-stroke"/>` : "") + `</g>` +
+        pts.map(p => `<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="2.4" fill="#e6ebf3" vector-effect="non-scaling-stroke"/>`).join("") +
+        `</svg>` +
+        ticks.map(t => `<span class="hd-ax y" style="top:${(Y(t) / 430 * 100).toFixed(2)}%">${h(fmt(t))}</span>`).join("") +
+        months.map(d => `<span class="hd-ax x" style="left:${(X(d) / 10).toFixed(2)}%">${h(MON[dt(d).getUTCMonth()].toUpperCase())}</span>`).join("") +
+        Ls.map(L => `<button class="hd-pin" type="button" data-w="${h(L.mon)}" aria-pressed="${L.mon === S.mon}" style="left:${(X(L.fri) / 10).toFixed(2)}%;top:${(Y(parseNum(L.level)) / 430 * 100).toFixed(2)}%" aria-label="${h(metal + ", week of " + dml(L.mon) + ", " + L.kind + " " + L.level + ", " + L.word)}">${L.word === "open" && !reduce ? '<span class="hd-halo" aria-hidden="true"></span>' : ""}<i class="hm hm-${L.mark}" aria-hidden="true"></i></button>`).join("");
+      $("hd-title").textContent = metal + " · Friday closes · " + dm(cl.length ? cl[0][0] : first) + " to " + dm(cl.length ? cl[cl.length - 1][0] : first);
+      const present = [...new Set(Ls.map(L => L.mark))];
+      $("hd-legend").innerHTML = `<span><i class="hm hm-line" aria-hidden="true"></i>the line</span>` + ["held", "hit", "wrong", "nr", "open"].filter(k => present.includes(k)).map(k => `<span><i class="hm sm hm-${k}" aria-hidden="true"></i>${MARKNAME[k]}</span>`).join("");
+      const wks = $("hd-weeks");
+      wks.innerHTML = Ls.map(L => `<button class="hd-wk" type="button" data-w="${h(L.mon)}" aria-pressed="${L.mon === S.mon}" aria-label="${h("Week of " + dml(L.mon) + ", " + L.word)}"><i class="hm sm hm-${L.mark}" aria-hidden="true"></i>${h(dm(L.mon))}</button>`).join("");
+      requestAnimationFrame(() => { const on = wks.querySelector('[aria-pressed="true"]'); if (on && wks.scrollWidth > wks.clientWidth) wks.scrollLeft = Math.max(0, on.offsetLeft - wks.offsetLeft - wks.clientWidth + on.offsetWidth + 8); });
+
+      /* the inspector */
+      const floor = S.kind === "floor";
+      let gauge;
+      const zone = (floor ? "left:50%" : "left:0") + ";background:linear-gradient(" + (floor ? "90deg" : "270deg") + ",rgba(224,169,59,.16),transparent)";
+      if (!S.close) gauge = `<div class="hd-g-zone" style="${zone.replace("224,169,59,.16", "141,176,245,.18")}"></div><div class="hd-g-line"></div><div class="hd-g-lab" style="${floor ? "right:10px" : "left:10px"}">CLOSE ${floor ? "ABOVE" : "UNDER"} TO HOLD</div>`;
+      else {
+        const cv = parseNum(S.close), lv = parseNum(S.level), span = Math.max(Math.abs(cv - lv) * 1.6, lv * 0.004), off = Math.max(-1, Math.min(1, (cv - lv) / span));
+        gauge = `<div class="hd-g-zone" style="${zone}"></div><div class="hd-g-line"></div><div class="hd-g-close" style="left:${(50 + off * 42).toFixed(1)}%;background:${S.word === "wrong" ? "#d83a3a" : S.word === "never reached" ? "#8d97a8" : "#e0a93b"}"></div><div class="hd-g-lab" style="${floor ? "right:10px" : "left:10px"}">${floor ? "ABOVE" : "UNDER"} HOLDS</div>`;
+      }
+      const r = S.r, gc = gradeCloseFor(r.date);
+      const named = ddm(r.date) + (r.readAt ? " · " + r.readAt : "");
+      const all = Ls, cnt = k => all.filter(L => L.word === k).length;
+      const parts = [["held", "held"], ["wrong", "wrong"], ["never reached", "never reached"], ["open", "open"]].filter(([k]) => cnt(k)).map(([k, w]) => `<b>${cnt(k)}</b> ${w}`);
+      side.innerHTML =
+        `<div class="hd-wide"><div class="hd-ey">${h(metal)} · week of ${h(dml(S.mon))}</div>` +
+        `<div class="hd-lv"><b>${h(S.level)}</b><span class="hd-pill p-${S.mark}">${h(WORDUP[S.mark])}</span></div>` +
+        `<p class="hd-rule"><b>${floor ? "Floor" : "Ceiling"}:</b> the week must close ${floor ? "above" : "under"} it.</p></div>` +
+        `<div class="hd-gauge" aria-hidden="true">${gauge}</div>` +
+        `<dl class="hd-dl"><dt>Named</dt><dd>${h(named)}</dd>` +
+        (r.lineFrom && LINE_FROM[r.lineFrom] ? `<dt>Where it comes from</dt><dd>${h(LINE_FROM[r.lineFrom])}</dd>` : "") +
+        `<dt>Friday's close</dt>${S.close ? `<dd class="hd-mono">${h(S.close)}</dd>` : `<dd>${h("Fri " + dm(S.fri) + " · 23:00 " + tz(gc))}</dd>`}` +
+        `<dt>From the line</dt>${S.close ? `<dd class="hd-mono">${h(S.gap + " " + (S.side === "on" ? "on it" : S.side))}</dd>` : "<dd>Not yet graded</dd>"}</dl>` +
+        `<div class="hd-links"><a class="hd-btn hd-ghost" href="#${h(r.anchor)}">This line on the record</a><a class="hd-tlink" href="week-${h(S.mon)}.html">The week's page</a></div>` +
+        `<div class="hd-hr hd-wide"></div>` +
+        `<div><div class="hd-ey">${h(metal)} since ${h(dml(Ls[0].mon))}</div><div class="hd-marks" aria-hidden="true">${Ls.map(L => `<i class="hm sm hm-${L.mark}"${L.mon === S.mon ? ' style="outline:1.5px solid #fff;outline-offset:2px"' : ""}></i>`).join("")}</div>` +
+        `<p class="hd-count">${Ls.length} ${Ls.length === 1 ? "line" : "lines"} · ${parts.join(" · ")}</p></div>` +
+        `<p class="hd-counsel hd-wide">${h(NOT_ADVICE.join(" "))}</p>`;
+    }
+    $("hd-tabs").innerHTML = METALS.map(m => `<button class="hd-tab" type="button" data-m="${h(m)}" aria-pressed="${m === st.metal}">${h(m)}</button>`).join("");
+    $("hd-tabs").addEventListener("click", e => { const b = e.target.closest(".hd-tab"); if (!b || b.dataset.m === st.metal) return; st.metal = b.dataset.m; st.pick = null; $("hd-tabs").querySelectorAll(".hd-tab").forEach(x => x.setAttribute("aria-pressed", String(x === b))); draw(); });
+    const pick = e => { const b = e.target.closest("[data-w]"); if (!b) return; st.pick = b.dataset.w; const keep = b.classList.contains("hd-wk") ? "wk" : "pin"; draw(); const again = document.querySelector((keep === "wk" ? "#hd-weeks .hd-wk" : "#hd-chart .hd-pin") + '[data-w="' + st.pick + '"]'); if (again) again.focus({ preventScroll: true }); };
+    chart.addEventListener("click", pick); $("hd-weeks").addEventListener("click", pick);
+    draw();
+    stage.classList.add("ready");
+    const go = () => { stage.classList.add("in"); if (!reduce) stage.classList.add("draw"); };
+    if (reduce || !("IntersectionObserver" in window)) go();
+    else { const io = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { go(); io.disconnect(); } }, { threshold: 0.12 }); io.observe(stage); setTimeout(go, 1500); }
+  } catch (e) { say("window", e); }
+
+  /* ---------------------------------------------------------------- The Fan */
+  try {
+    const dlg = $("hd-film"), host = $("hd-film-stage");
+    if (!dlg || typeof dlg.showModal !== "function") return;
+    let player = null, loading = null;
+    const load = () => loading || (loading = new Promise((ok, no) => {
+      if (window.Movement) { ok(window.Movement); return; }
+      window.MOVEMENT_MANUAL = true;
+      const s = document.createElement("script"); s.src = "movement.js";
+      s.onload = () => window.Movement ? ok(window.Movement) : no(new Error("no Movement"));
+      s.onerror = () => no(new Error("movement.js did not load"));
+      document.head.appendChild(s);
+    }));
+    const count = where => { try { if (window.goatcounter && typeof window.goatcounter.count === "function") window.goatcounter.count({ path: "fan-film", title: "The Fan's inner workings opened (" + where + ")", event: true }); } catch (x) {} };
+    const open = (a, where) => {
+      try { dlg.showModal(); } catch (x) { return false; }
+      count(where);
+      load().then(M => {
+        if (!player) player = M.mount(host, { autoplay: "off", src: "record.json" });
+        if (!reduce && dlg.open) player.play();
+        try { if (player.el) player.el.focus({ preventScroll: true }); } catch (x) {}
+      }).catch(err => { say("film", err); try { dlg.close(); } catch (x) {} location.href = a.getAttribute("href") || "method.html"; });
+      return true;
+    };
+    document.addEventListener("click", e => {
+      const a = e.target && e.target.closest ? e.target.closest("a[data-film]") : null;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (open(a, a.getAttribute("data-film") || "")) e.preventDefault();
+    });
+    $("hd-film-x").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("close", () => { try { if (player && player.state === "playing") player.pause(); } catch (x) {} });
+  } catch (e) { say("film", e); }
+})();
 </script>
 
 <!-- THE PAGE BEFORE THE TABLE, kept 10 October 2026, note 47. The body of the record as it stood until
