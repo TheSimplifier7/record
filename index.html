@@ -1188,8 +1188,11 @@
   }
   @media print{.hd-strip,.hd-stage,dialog.hd-film{display:none}}
 </style>
+<!-- 22 Oct 2026, note 55: Round 3, the head of the page as a lit stage. scene.css styles it and scene.js draws it. -->
+<link rel="stylesheet" href="scene.css?v=dcf49a73f5">
 </head>
-<body>
+<!-- 22 Oct 2026, note 55: the page opens on this week, so the head shows from the first paint; it read <body> and waited for the script. -->
+<body data-view="week">
 <a class="skip" href="#main">Skip to the page</a>
 
 <!-- THE BAND AND THE HEAD BEFORE 22 OCTOBER 2026, kept word for word (note 52). Its own comment markers are written
@@ -1223,8 +1226,10 @@
   </div>
 </div>
 -->
-<!-- 22 Oct 2026, note 52: the strip. The count, read from the rows each time the page opens, and the close that grades
-     the open lines. Drawn by the script; with scripts off it is not shown and the table carries the count. -->
+<!-- THE STRIP BEFORE ROUND 3, kept word for word (note 55). The count now runs across the top of the scene. Its own comment
+     markers are written <!~~ and ~~> so it stays one comment. Nothing in it renders or runs.
+<!~~ 22 Oct 2026, note 52: the strip. The count, read from the rows each time the page opens, and the close that grades
+     the open lines. Drawn by the script; with scripts off it is not shown and the table carries the count. ~~>
 <div class="hd-strip" role="region" aria-label="The record, counted">
   <div class="wrap hd-strip-in">
     <span class="hd-k">The record</span>
@@ -1233,12 +1238,13 @@
     <span class="k-w">Wrong, kept <b id="hs-wrong"></b></span>
     <span>Never reached <b id="hs-nr"></b></span>
     <span class="k-o">Open <b id="hs-open"></b></span>
-    <!-- 22 Oct 2026, note 54, plain words. This read: <span>Removed <b>0</b></span> -->
+    <!~~ 22 Oct 2026, note 54, plain words. This read: <span>Removed <b>0</b></span> ~~>
 <span>Deleted <b>0</b></span>
     <span class="hd-next" id="hs-next" hidden><i class="hd-dot" aria-hidden="true"></i><span>Next grade <b id="hs-when"></b> <span id="hs-cd"></span></span></span>
   </div>
 </div>
-
+-->
+<!-- 22 Oct 2026, note 55: the gold button in the band reads Follow on TradingView. It read: <span class="hd-long">Join me on </span>TradingView -->
 <header class="band hd-band">
   <div class="wrap band-top">
     <a class="brand" href="#week" aria-label="The Simplifier, the record, this week">THE SIMPLIFIER</a>
@@ -1254,16 +1260,18 @@
     <div class="band-tools">
       <button class="tbtn" id="theme-sw" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="theme-word">Dark</span></button>
       <a class="hd-btn hd-ghost getlines-ghost" href="#join">Get the lines</a>
-      <a class="hd-btn hd-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="band"><span><span class="hd-long">Join me on </span>TradingView</span></a>
+      <a class="hd-btn hd-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="band"><span><span class="hd-long">Follow on </span>TradingView</span></a>
     </div>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
-<!-- 22 Oct 2026, note 52: the head of the page. The title is the key every line is graded by; THE RECORD, the title
+<!-- THE HEAD OF THE PAGE BEFORE ROUND 3, kept word for word (note 55). Its own comment markers are written <!~~ and ~~>
+     so it stays one comment. Nothing in it renders or runs.
+<!~~ 22 Oct 2026, note 52: the head of the page. The title is the key every line is graded by; THE RECORD, the title
      before it, heads the strip above the band. The line under the key is the page's own description, word for word
      (note 33). The window draws each metal's Friday closes and every line since the week of 31 August from the rows
-     and CLOSES on this page, never typed; with scripts off it is not shown. -->
+     and CLOSES on this page, never typed; with scripts off it is not shown. ~~>
 <div class="band-hero hd-hero" id="band-hero">
   <div class="hd-floor" aria-hidden="true"></div>
   <div class="wrap hd-copy">
@@ -1273,8 +1281,8 @@
       <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 6 L8 10 L13 6 L19 10 L28 7" fill="none" stroke="#c9d3e6" stroke-width="1.6"/><line x1="1" y1="16" x2="29" y2="16" stroke="#e0a93b" stroke-width="2.6"/></svg><span><b>Floor:</b> the week must close above it.</span></span>
       <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><line x1="1" y1="4" x2="29" y2="4" stroke="#e0a93b" stroke-width="2.6"/><path d="M2 14 L8 10 L13 14 L19 10 L28 13" fill="none" stroke="#c9d3e6" stroke-width="1.6"/></svg><span><b>Ceiling:</b> the week must close under it.</span></span>
     </div>
-    <!-- The line under the key is the page's own description, word for word (note 33). -->
-    <!-- 22 Oct 2026, note 54, plain words. This read: <p class="hd-lede">Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed.</p> -->
+    <!~~ The line under the key is the page's own description, word for word (note 33). ~~>
+    <!~~ 22 Oct 2026, note 54, plain words. This read: <p class="hd-lede">Gold, silver and platinum levels named in advance, with the close that proves them wrong, graded every Friday. The wrong ones stay on the page. Nothing removed.</p> ~~>
 <p class="hd-lede">Every Monday I post one price level each for gold, silver and platinum. Friday's closing price decides if I was right or wrong. Every result stays on this page, the wrong ones too. Nothing is ever deleted.</p>
     <div class="hd-ctas">
       <a class="hd-btn hd-gold hd-lg" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="hero">Join me on TradingView <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -1295,7 +1303,7 @@
         <div class="hd-body">
           <div class="hd-main">
             <div class="hd-mh">
-              <div><div class="hd-ey" id="hd-title"></div><!-- 22 Oct 2026, note 54, plain words. This read: <p>Each line sits across its week at its level and is marked on Friday's close.</p> -->
+              <div><div class="hd-ey" id="hd-title"></div><!~~ 22 Oct 2026, note 54, plain words. This read: <p>Each line sits across its week at its level and is marked on Friday's close.</p> ~~>
 <p>Each gold bar is one week's level. The mark at its end shows how Friday's close graded it.</p></div>
               <div class="hd-legend" id="hd-legend"></div>
             </div>
@@ -1308,6 +1316,84 @@
     </div>
   </div>
 </div>
+-->
+<!-- 22 Oct 2026, note 55: Round 3, the head of the page as a lit stage, by the founder's ruling of 22 October 2026. The
+     title is the key every line is graded by. The count runs across the top; the scene draws each metal's Friday closes
+     and every line since the week of 31 August from the rows and CLOSES on this page, never typed; the inspector reads
+     the line picked. Navy in both grounds, as the band is. With scripts off, a still of the same drawing shows, written
+     from record.json by make_scene.js between the R3 markers. -->
+<div class="band-hero r3" id="band-hero">
+  <div class="r3-lights" aria-hidden="true"><div class="r3-cone"></div><div class="r3-grain"></div></div>
+  <div class="r3-tele" id="r3-tele" role="region" aria-label="The record, counted">
+    <div class="r3-tm">
+      <div class="r3-ey r3-tmh"><span class="r3-w">The record</span><span>every grade, oldest first</span></div>
+      <div class="r3-marks" id="r3-marks" aria-hidden="true"><!-- R3 MARKS START (make_scene.js, note 55) --><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-w"></i><i class="r3m r3m-w"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-H"></i><i class="r3m r3m-H"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-H"></i><i class="r3m r3m-H"></i><i class="r3m r3m-h"></i><i class="r3m r3m-o"></i><i class="r3m r3m-o"></i><i class="r3m r3m-o"></i><!-- R3 MARKS END --></div>
+    </div>
+    <div class="r3-kpis" id="r3-kpis"><!-- R3 KPIS START (make_scene.js, note 55) --><div class="r3-kpi"><span class="r3-ey">Graded</span><b class="">38</b></div><div class="r3-kpi"><span class="r3-ey">Held</span><b class="r3-cg">29</b></div><div class="r3-kpi"><span class="r3-ey">Wrong, kept</span><b class="r3-cr">9</b></div><div class="r3-kpi r3-kpi-nr"><span class="r3-ey">Never reached</span><b class="r3-cn">5</b></div><div class="r3-kpi"><span class="r3-ey">Open</span><b class="r3-cb">3</b></div><div class="r3-kpi r3-kpi-del"><span class="r3-ey">Deleted</span><b class="">0</b></div><!-- R3 KPIS END --></div>
+    <div class="r3-next">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="19" fill="none" stroke="rgba(201,211,230,.14)" stroke-width="4"/><circle id="r3-ring" cx="23" cy="23" r="19" fill="none" stroke="#8db0f5" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 119.38" transform="rotate(-90 23 23)"/></svg>
+      <div><div class="r3-ey"><i class="r3-dot" aria-hidden="true"></i>Next grade</div><div class="r3-cd r3-mono" id="r3-cd"></div><div class="r3-ey r3-when" id="r3-when"><!-- R3 WHEN START (make_scene.js, note 55) -->Fri 23 Oct · 23:00 CEST<!-- R3 WHEN END --></div></div>
+    </div>
+  </div>
+  <div class="r3-copy">
+    <p class="hd-eyebrow"><span>Season from <b id="record-begins"></b></span><span>Entry <b id="issue-no">000</b></span><span>Updated <b id="updated-spec"></b></span></p>
+    <h1 class="r3-h1" id="h1">Only <em>Friday's close</em> counts.</h1>
+    <div class="hd-keys">
+      <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 6 L8 10 L13 6 L19 10 L28 7" fill="none" stroke="#c9d3e6" stroke-width="1.6"/><line x1="1" y1="16" x2="29" y2="16" stroke="#e0a93b" stroke-width="2.6"/></svg><span><b>Floor:</b> the week must close above it.</span></span>
+      <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><line x1="1" y1="4" x2="29" y2="4" stroke="#e0a93b" stroke-width="2.6"/><path d="M2 14 L8 10 L13 14 L19 10 L28 13" fill="none" stroke="#c9d3e6" stroke-width="1.6"/></svg><span><b>Ceiling:</b> the week must close under it.</span></span>
+    </div>
+    <p class="r3-lede">Every Monday I post one price level each for gold, silver and platinum. Friday's closing price decides if I was right or wrong. Every result stays on this page, the wrong ones too. Nothing is ever deleted.</p>
+    <div class="r3-ctas">
+      <a class="hd-btn hd-gold hd-lg" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="hero">Follow on TradingView <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="hd-btn hd-ghost hd-lg" href="#r3f">See the free tools</a>
+      <a class="hd-btn hd-ghost hd-lg" href="method.html" data-film="hero"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.6 8z" fill="#f2c45a"/></svg>Inside The Fan <span class="hd-len">2 min</span></a>
+    </div>
+    <p class="r3-under">Free. Not investment advice.</p>
+  </div>
+  <div class="r3-stage"><div class="r3-cam"><div class="r3-drift" data-still><!-- R3 STAGE START (make_scene.js, note 55) --><svg class="r3-svg" viewBox="0 0 1440 940" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs><linearGradient id="r3-curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0a93b" stop-opacity=".42"/><stop offset=".55" stop-color="#e0a93b" stop-opacity=".1"/><stop offset="1" stop-color="#e0a93b" stop-opacity="0"/></linearGradient><linearGradient id="r3-topg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffe6ad" stop-opacity=".55"/><stop offset="1" stop-color="#f2c45a" stop-opacity=".95"/></linearGradient><radialGradient id="r3-poolg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f2c45a" stop-opacity=".3"/><stop offset="1" stop-color="#f2c45a" stop-opacity="0"/></radialGradient><radialGradient id="r3-openg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8db0f5" stop-opacity=".28"/><stop offset="1" stop-color="#8db0f5" stop-opacity="0"/></radialGradient><linearGradient id="r3-ff" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".15" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="r3-sg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".08" stop-color="#fff" stop-opacity="1"/><stop offset=".92" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient><mask id="r3-side" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="940"><rect x="0" y="0" width="1440" height="940" fill="url(#r3-sg)"/></mask><mask id="r3-refl" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="940"><rect x="0" y="846.0" width="1440" height="94.0" fill="url(#r3-ff)"/></mask><filter id="r3-glow" x="-10%" y="-60%" width="120%" height="220%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="r3-soft" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="16"/></filter></defs><g mask="url(#r3-side)"><path d="M113.9,804.0 L336.8,742.8 M170.1,810.9 L382.5,746.5 M229.9,818.4 L430.2,750.3 M293.7,826.3 L480.2,754.4 M361.7,834.7 L532.5,758.6 M434.6,843.7 L587.5,763.0 M512.7,853.4 L645.1,767.7 M596.8,863.8 L705.8,772.6 M687.5,875.1 L769.7,777.7 M785.6,887.3 L837.0,783.1 M892.0,900.5 L908.1,788.9 M113.9,804.0 L892.0,900.5 M161.8,790.8 L895.8,874.3 M204.5,779.1 L899.0,852.1 M242.8,768.6 L901.7,833.0 M277.2,759.2 L904.1,816.4 M308.4,750.6 L906.2,801.8 M336.8,742.8 L908.1,788.9 " stroke="#cdd5e1" stroke-opacity=".07" stroke-width="1" fill="none"/><ellipse class="r3-pool" cx="784.4" cy="838.8" rx="300.0" ry="63.0" fill="url(#r3-poolg)" filter="url(#r3-soft)"/><g mask="url(#r3-refl)" opacity=".22"><path d="M241.0,785.8 L250.6,940.7 L304.7,941.2 L361.3,915.9 L423.4,939.2 L488.6,907.3 L559.9,848.8 L635.3,884.0 L717.1,879.4 L719.4,836.8 Z" fill="url(#r3-curtain)"/><path d="M250.6,940.7 L304.7,941.2 L361.3,915.9 L423.4,939.2 L488.6,907.3 L559.9,848.8 L635.3,884.0 L717.1,879.4" fill="none" stroke="#f2c45a" stroke-width="1.6"/></g><g class="r3-face"><path d="M241.0,785.8 L230.6,618.4 L289.6,630.9 L353.0,673.4 L418.1,661.5 L488.1,712.5 L560.7,790.5 L639.1,770.5 L721.7,793.3 L719.4,836.8 Z" fill="url(#r3-curtain)"/><path d="M230.6,618.4 L289.6,630.9 L308.3,629.3 L250.4,617.3 Z M289.6,630.9 L353.0,673.4 L370.2,670.6 L308.3,629.3 Z M353.0,673.4 L418.1,661.5 L433.9,658.9 L370.2,670.6 Z M418.1,661.5 L488.1,712.5 L502.0,708.3 L433.9,658.9 Z M488.1,712.5 L560.7,790.5 L572.6,783.8 L502.0,708.3 Z M560.7,790.5 L639.1,770.5 L648.8,764.2 L572.6,783.8 Z M639.1,770.5 L721.7,793.3 L729.0,786.1 L648.8,764.2 Z " fill="#e0a93b" fill-opacity=".09" stroke="#f2c45a" stroke-opacity=".16" stroke-width=".6"/><path d="M250.4,617.3 L308.3,629.3 L370.2,670.6 L433.9,658.9 L502.0,708.3 L572.6,783.8 L648.8,764.2 L729.0,786.1" fill="none" stroke="#f2c45a" stroke-opacity=".35" stroke-width="1.2"/></g><path class="r3-top" pathLength="1" d="M230.6,618.4 L289.6,630.9 L353.0,673.4 L418.1,661.5 L488.1,712.5 L560.7,790.5 L639.1,770.5 L721.7,793.3" fill="none" stroke="url(#r3-topg)" stroke-width="2.6" stroke-linejoin="round" filter="url(#r3-glow)"/><g class="r3-bars"><path d="M256.4,666.7 L290.0,668.2 L290.1,671.1 L256.6,669.6 Z M256.4,666.7 L290.0,668.2 L311.2,665.2 L278.4,663.8 Z M315.8,666.0 L351.5,667.5 L351.6,670.6 L315.9,669.0 Z M315.8,666.0 L351.5,667.5 L371.2,664.5 L336.4,663.1 Z M446.5,681.9 L486.9,683.9 L486.9,687.1 L446.6,685.1 Z M446.5,681.9 L486.9,683.9 L503.0,680.1 L463.8,678.3 Z M518.1,715.0 L560.9,717.6 L560.8,720.9 L518.0,718.2 Z M518.1,715.0 L560.9,717.6 L574.7,712.5 L533.2,710.1 Z M592.8,778.0 L637.9,782.0 L637.8,785.3 L592.7,781.3 Z M592.8,778.0 L637.9,782.0 L649.2,774.3 L605.5,770.7 Z M674.0,759.6 L722.7,763.3 L722.5,766.7 L673.9,763.0 Z M674.0,759.6 L722.7,763.3 L731.1,756.1 L684.1,752.7 Z " fill="#e0a93b" fill-opacity=".55" stroke="#f2c45a" stroke-opacity=".7" stroke-width=".6"/><path d="M256.5,668.1 L290.1,669.7 M315.9,667.5 L351.5,669.1 M446.5,683.5 L486.9,685.5 M518.1,716.6 L560.9,719.3 M592.8,779.7 L637.9,783.6 M674.0,761.3 L722.6,765.0 " stroke="#f2c45a" stroke-width="2.4" stroke-linecap="round" fill="none" filter="url(#r3-glow)"/><path d="M759.6,781.3 L811.8,785.6 L811.5,789.1 L759.4,784.8 Z M759.6,781.3 L811.8,785.6 L816.9,777.3 L766.7,773.3 Z " fill="#8db0f5" fill-opacity=".35" stroke="#8db0f5" stroke-opacity=".7" stroke-width=".6"/><path d="M759.5,783.0 L811.6,787.4 " stroke="#8db0f5" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="7 6" fill="none" filter="url(#r3-glow)"/><path d="M759.7,780.7 L811.8,785.0" stroke="#fff" stroke-opacity=".9" stroke-width="1.4" stroke-linecap="round" fill="none"/></g></g></svg><div class="r3-pins"><button class="r3-pin" type="button" data-w="2026-08-31" aria-pressed="false" aria-label="Gold, week of 31 August, floor 4,350, held" style="left:290.0px;top:667.7px;--stem:30px;--i:0;--dx:0.0px"><span class="cap"><i class="r3m r3m-h" aria-hidden="true"></i><span>31 AUG</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin" type="button" data-w="2026-09-07" aria-pressed="false" aria-label="Gold, week of 7 September, floor 4,357, wrong" style="left:351.4px;top:667.0px;--stem:74px;--i:1;--dx:0.0px"><span class="cap"><i class="r3m r3m-w" aria-hidden="true"></i><span>7 SEP</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin" type="button" data-w="2026-09-21" aria-pressed="false" aria-label="Gold, week of 21 September, floor 4,337, wrong" style="left:486.9px;top:683.3px;--stem:30px;--i:2;--dx:0.0px"><span class="cap"><i class="r3m r3m-w" aria-hidden="true"></i><span>21 SEP</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin" type="button" data-w="2026-09-28" aria-pressed="false" aria-label="Gold, week of 28 September, ceiling 4,280.50, held" style="left:560.9px;top:717.1px;--stem:30px;--i:3;--dx:0.0px"><span class="cap"><i class="r3m r3m-h" aria-hidden="true"></i><span>28 SEP</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin" type="button" data-w="2026-10-05" aria-pressed="false" aria-label="Gold, week of 5 October, ceiling 4,170.41, wrong" style="left:638.0px;top:781.4px;--stem:30px;--i:4;--dx:0.0px"><span class="cap"><i class="r3m r3m-w" aria-hidden="true"></i><span>5 OCT</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin" type="button" data-w="2026-10-12" aria-pressed="false" aria-label="Gold, week of 12 October, ceiling 4,217.19, held" style="left:722.8px;top:762.7px;--stem:30px;--i:5;--dx:0.0px"><span class="cap"><i class="r3m r3m-h" aria-hidden="true"></i><span>12 OCT</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button><button class="r3-pin on open" type="button" data-w="2026-10-19" aria-pressed="true" aria-label="Gold, week of 19 October, ceiling 4,190.38, open" style="left:811.8px;top:785.0px;--stem:96px;--i:6;--dx:0.0px"><span class="cap"><i class="r3m r3m-o" aria-hidden="true"></i><span>19 OCT</span><span class="lv">4,190.38</span></span><span class="stem" aria-hidden="true"></span><span class="foot" aria-hidden="true"></span></button></div><!-- R3 STAGE END --></div></div></div>
+  <div class="r3-dock" id="r3-dock"><!-- R3 DOCK START (make_scene.js, note 55) --><div class="r3k-head"><span class="r3-ey r3k-a"><i class="r3-dot" aria-hidden="true"></i>This week</span><span class="r3-ey r3k-b">Three ceilings, open</span></div><div class="r3k-tabs" role="group" aria-label="Metal"><button class="r3-tab" type="button" data-m="Gold" aria-pressed="true"><span class="r3t-a">Gold <b>4,190.38</b></span><span class="r3t-b">Last close 25.365 under</span></button><button class="r3-tab" type="button" data-m="Silver" aria-pressed="false"><span class="r3t-a">Silver <b>57.851</b></span><span class="r3t-b">Last close 0.876 under</span></button><button class="r3-tab" type="button" data-m="Platinum" aria-pressed="false"><span class="r3t-a">Platinum <b>1,659.10</b></span><span class="r3t-b">Last close 13.60 under</span></button></div><!-- R3 DOCK END --></div>
+  <aside class="r3-drawer" id="r3-drawer" aria-label="Inspector, the line picked" aria-live="polite"><!-- R3 DRAWER START (make_scene.js, note 55) --><div class="r3d-top"><span class="r3-ey">Inspector · Gold</span></div><div class="r3d-sum"><div class="r3d-wk">Week of 19 October</div><div class="r3d-lv"><b>4,190.38</b><span class="r3-pill p-open">OPEN</span></div><p class="r3d-rule"><b>Ceiling:</b> the week must close under it.</p></div><button class="r3d-more-b" type="button" aria-expanded="false">Show the details</button><div class="r3d-more"><div class="r3d-gauge" aria-hidden="true"><div class="r3g-zone" style="left:0;background:linear-gradient(270deg,rgba(141,176,245,.2),transparent)"></div><div class="r3g-line"></div><div class="r3g-lab" style="left:10px">NEEDS A CLOSE UNDER</div></div><svg class="r3d-mini" viewBox="0 0 330 92" role="img" aria-label="Gold, the Friday closes since 28 August, with the line of the week of 19 October"><path d="M14,28 L316,28 M14,52 L316,52 M14,76 L316,76" stroke="#cdd5e1" stroke-opacity=".08" fill="none"/><path d="M14.0,18.3 L57.1,22.4 L100.3,37.2 L143.4,31.9 L186.6,48.5 L229.7,73.7 L272.9,64.5 L316.0,69.7 L316.0,86 L14.0,86 Z" fill="#e0a93b" fill-opacity=".1"/><path d="M14.0,18.3 L57.1,22.4 L100.3,37.2 L143.4,31.9 L186.6,48.5 L229.7,73.7 L272.9,64.5 L316.0,69.7" stroke="#e6ebf3" stroke-width="1.6" fill="none"/><path d="M286.0,65.2 L342.0,65.2" stroke="#e0a93b" stroke-width="2.4" fill="none" stroke-dasharray="5 4"/><circle cx="316.0" cy="69.7" r="3.5" fill="#8db0f5"/></svg><dl class="r3d-dl"><dt>Posted</dt><dd>Mon 19 Oct · 21:33 CEST</dd><dt>Where it comes from</dt><dd>the top of the range the week opened in</dd><dt>Proved wrong by</dt><dd>a weekly close above 4,190.38</dd><dt>Friday's close</dt><dd>Fri 23 Oct · 23:00 CEST</dd><dt>Distance from the level</dt><dd><span class="r3-mono">25.365 under</span><small>at the last close, 16 Oct</small></dd></dl><div class="r3d-since"><div class="r3-ey">Gold since 31 August</div><div class="r3d-marks" aria-hidden="true"><i class="r3m r3m-h" aria-hidden="true"></i><i class="r3m r3m-w" aria-hidden="true"></i><i class="r3m r3m-w" aria-hidden="true"></i><i class="r3m r3m-h" aria-hidden="true"></i><i class="r3m r3m-w" aria-hidden="true"></i><i class="r3m r3m-h" aria-hidden="true"></i><i class="r3m r3m-o" style="outline:1.5px solid #fff;outline-offset:2px" aria-hidden="true"></i></div><p class="r3d-count">7 lines · 3 held · 3 wrong · 1 open</p></div></div><div class="r3d-foot"><div class="r3-ey r3-gold">Draw this on your own chart</div><a class="hd-btn hd-gold r3d-tv" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-drawer"><span>The Week · free on TradingView</span><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="r3d-links"><a class="hd-btn hd-ghost" href="#r-2026-10-19-gold-4190-38">This line on the record</a><a class="r3d-tl" href="week-2026-10-19.html">The week's page</a></div><p class="r3d-counsel">This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p></div><!-- R3 DRAWER END --></aside>
+  <button class="r3-open" id="r3-open" type="button" hidden>Open the inspector</button>
+</div>
+<!-- 22 Oct 2026, note 55: the way from the record to your own chart. Shown under the head of the page on this week. The
+     Space shows no price until TradingView says yes (the founder's ruling of 19 October 2026); The Fan's page keeps its
+     own. Each press counts in GoatCounter, by path alone. -->
+<section class="r3f" id="r3f" aria-labelledby="r3f-h">
+  <div class="r3f-in">
+    <div class="r3-ey r3-gold">From the record to your chart</div>
+    <h2 class="r3f-h" id="r3f-h">See it graded. Draw it yourself. Go deeper.</h2>
+    <div class="r3f-steps">
+      <span class="r3f-arrow" aria-hidden="true" style="left:calc((100% - 36px) / 3.35 + 9px)"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="#f2c45a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="r3f-arrow" aria-hidden="true" style="left:calc((100% - 36px) * 2.35 / 3.35 + 27px)"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="#f2c45a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <article class="r3f-step">
+        <div class="r3f-top"><span class="r3f-num">01</span><span class="r3f-tag free">FREE</span></div>
+        <h3>See it graded</h3>
+        <p>Every level posted on Monday, graded by Friday's close and kept for good, the wrong ones too. <b id="r3f-count"><!-- R3 FCOUNT START (make_scene.js, note 55) -->46<!-- R3 FCOUNT END --></b> levels on the record so far.</p>
+        <div class="r3f-marks" id="r3f-marks" aria-hidden="true"><!-- R3 FMARKS START (make_scene.js, note 55) --><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-n"></i><i class="r3m r3m-w"></i><i class="r3m r3m-w"></i><i class="r3m r3m-n"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-H"></i><i class="r3m r3m-H"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-h"></i><i class="r3m r3m-w"></i><i class="r3m r3m-H"></i><i class="r3m r3m-H"></i><i class="r3m r3m-h"></i><i class="r3m r3m-o"></i><i class="r3m r3m-o"></i><i class="r3m r3m-o"></i><!-- R3 FMARKS END --></div>
+        <a class="hd-btn hd-ghost" href="weeks.html" data-r3ev="home-funnel-01-weeks">Week by week</a>
+      </article>
+      <article class="r3f-step hot">
+        <div class="r3f-top"><span class="r3f-num">02</span><span class="r3f-tag tv">FREE · ON TRADINGVIEW</span></div>
+        <h3>Draw it yourself</h3>
+        <p><!-- R3 TOOLSN START (make_scene.js, note 55) -->Five<!-- R3 TOOLSN END --> open-source tools that draw the same kind of lines on your own chart. Follow me on TradingView and each new one lands in your feed.</p>
+        <figure class="r3f-fig"><div class="r3f-pic"><!-- R3 PIC START (make_scene.js, note 55) --><svg class="r3f-svg" viewBox="0 0 600 250" role="img" aria-label="Gold, the Friday closes as a plain chart, with the ceiling of the week of 19 October at 4,190.38 and the other edge of the range the week opened in, 4,142.70"><path d="M28,22.0 L572,22.0 M28,86.0 L572,86.0 M28,150.0 L572,150.0 M28,214.0 L572,214.0" stroke="#cdd5e1" stroke-opacity="0.080" fill="none"/><rect x="516.7" y="171.7" width="36.9" height="23.7" fill="#8db0f5" fill-opacity="0.120"/><path d="M516.7,195.4 L553.6,195.4" stroke="#8db0f5" stroke-width="1.6" stroke-opacity="0.900" fill="none"/><path d="M37.2,40.6 L101.8,52.1 L166.3,93.3 L230.8,78.6 L295.4,125.0 L359.9,195.4 L424.5,169.8 L489.0,184.3" stroke="#e6ebf3" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M516.7,171.7 L553.6,171.7" stroke="#f2c45a" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="7 5"/><g opacity="1.000" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="12" font-weight="600"><text x="561.6" y="175.7" fill="#f2c45a" text-anchor="end">Ceiling 4,190.38</text><text x="561.6" y="199.4" fill="#8db0f5" text-anchor="end">4,142.70</text><text x="28" y="242" fill="#a3aec0" font-size="11">28 AUG</text><text x="572" y="242" fill="#a3aec0" font-size="11" text-anchor="end">16 OCT</text></g></svg><!-- R3 PIC END --></div><figcaption class="r3f-cap"><!-- R3 CAP START (make_scene.js, note 55) -->Gold, week of 19 October, as a plain chart: the ceiling at 4,190.38 and the range the week opened in.<!-- R3 CAP END --></figcaption></figure>
+        <ul class="r3f-tools"><!-- R3 TOOLS START (make_scene.js, note 55) --><li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-02-week">The Week</a><span class="r3-ey">floors and ceilings, counted</span></li><li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-02-clockface">The Clockface</a><span class="r3-ey">is the day&#39;s high in yet</span></li><li><a href="https://www.tradingview.com/script/8pf4h4pB-The-Atlas-odds-of-a-touch-before-the-close/" data-tv="home-funnel-02-atlas">The Atlas</a><span class="r3-ey">odds of a touch before the close</span></li><li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-02-ama">AMA Dashboard</a><span class="r3-ey">Flow and Structure</span></li><li><a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-02-sessions">Gold&#39;s Sessions</a><span class="r3-ey">each session against its usual range</span></li><!-- R3 TOOLS END --></ul>
+        <a class="hd-btn hd-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-02">Follow on TradingView <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+      <article class="r3f-step">
+        <div class="r3f-top"><span class="r3f-num">03</span><span class="r3f-tag wait">NOT OPEN YET</span></div>
+        <h3>Go deeper: the Space</h3>
+        <p>Every paid tool in one place on TradingView, The Fan included: the indicator these levels are read from.</p>
+        <a class="hd-btn hd-ghost" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="home-funnel-03">Follow to hear when it opens</a>
+      </article>
+    </div>
+    <div class="r3f-ml">
+      <span class="r3-ey">The Monday Level</span>
+      <p>Monday's levels by email, the evening I post them, and Friday's results after the close.</p>
+      <a class="hd-btn hd-ghost" href="#join">Get the lines</a>
+    </div>
+  </div>
+</section>
 <div class="wrap"><div class="noscript" id="render-fallback" hidden>
   The ledger failed to render in this browser, which is a fault on this end and
   not on yours. Nothing has been lost. The full record is readable as plain text
@@ -1783,7 +1869,7 @@
    posted call before it goes live. This page is the whole brand in one place.
    ========================================================================= */
 
-const LAST_UPDATED  = "2026-10-22";   /* set by hand, with the commit. Kept at "2026-10-22" for the second upload of 22 October: the house, the head of this page on every page beside it, the old dark look carried onto this ground, and one address for search on the wrong ones, the bank board and the tick book (note 53); no row, grade, figure or date touched. "2026-10-22" for the upload of 22 October: the head of the page (note 52), the key line on top, the count in a strip, every line since 31 August drawn in a window from the rows, The Fan's inner workings over the page, the doors with the free tools first, and the page's one address for search; no row, grade, figure or date touched. WAS "2026-10-21": Kept at "2026-10-21" for the sixth upload of 21 October: the site icon cut from his original avatar to the shape of his head; no row, grade, figure or date touched. Kept at "2026-10-21" for the fifth upload of 21 October: the site icon, his own avatar, in the browser tab and beside the record in search results; no row, grade, figure or date touched. Kept at "2026-10-21" for the fourth upload of 21 October: the record moves to its own domain, thesimplifier7.com, every address on the record, its pages and its cards with it; the Internet Archive's links to the copies kept at the old address stay as they are; no row, grade, figure or date touched. Kept at "2026-10-21" for the third upload of 21 October: Gold's Sessions joins the free tools, in This week, the Join door and tools.html; no row, grade, figure or date touched. Kept at "2026-10-21" for the second upload of 21 October: the free tools on one page (tools.html), every week on its own page (weeks.html and week-*.html), the sitemap, and the guest ledger open, its invitation a post to @TheSimplifier7 on X; no row, grade, figure or date touched. "2026-10-21" for the upload of 21 October, the free tools on TradingView, a door in Join, under This week, in the band and at the foot; no row, grade, figure or date touched. WAS "2026-10-19": "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
+const LAST_UPDATED  = "2026-10-22";   /* set by hand, with the commit. Kept at "2026-10-22" for the upload of 22 October that carries note 55: Round 3, the head of this page as a lit stage with the inspector beside it, the way from the record to your own chart, Follow on TradingView in every band, and a still of the head for a reader with scripts off; no row, grade, figure or date touched. Kept at "2026-10-22" for the second upload of 22 October: the house, the head of this page on every page beside it, the old dark look carried onto this ground, and one address for search on the wrong ones, the bank board and the tick book (note 53); no row, grade, figure or date touched. "2026-10-22" for the upload of 22 October: the head of the page (note 52), the key line on top, the count in a strip, every line since 31 August drawn in a window from the rows, The Fan's inner workings over the page, the doors with the free tools first, and the page's one address for search; no row, grade, figure or date touched. WAS "2026-10-21": Kept at "2026-10-21" for the sixth upload of 21 October: the site icon cut from his original avatar to the shape of his head; no row, grade, figure or date touched. Kept at "2026-10-21" for the fifth upload of 21 October: the site icon, his own avatar, in the browser tab and beside the record in search results; no row, grade, figure or date touched. Kept at "2026-10-21" for the fourth upload of 21 October: the record moves to its own domain, thesimplifier7.com, every address on the record, its pages and its cards with it; the Internet Archive's links to the copies kept at the old address stay as they are; no row, grade, figure or date touched. Kept at "2026-10-21" for the third upload of 21 October: Gold's Sessions joins the free tools, in This week, the Join door and tools.html; no row, grade, figure or date touched. Kept at "2026-10-21" for the second upload of 21 October: the free tools on one page (tools.html), every week on its own page (weeks.html and week-*.html), the sitemap, and the guest ledger open, its invitation a post to @TheSimplifier7 on X; no row, grade, figure or date touched. "2026-10-21" for the upload of 21 October, the free tools on TradingView, a door in Join, under This week, in the band and at the foot; no row, grade, figure or date touched. WAS "2026-10-19": "2026-10-19" for the Monday map upload of 19 October, the first lines alone (note 51). Kept at "2026-10-19" for the grade upload of 19 October, the 16 October close graded, which carries note 51, the line alone. WAS "2026-10-12": "2026-10-12" for the Monday map upload of 12 October, rows named under the call grammar (note 34), which carries note 50, The Fan's price. WAS "2026-10-10": Kept at "2026-10-10" for the third upload of 10 October, which carries note 49, the archive and the read's own line. WAS "2026-10-10" for the second upload of 10 October, which carries note 48, the cards in navy, and the hash of the first. WAS "2026-10-10" for the upload of 10 October, which carries note 46, the 9 October close graded, and note 47, the record as a table. WAS "2026-10-07": "2026-10-07" for the crowd upload of 7 October, which carries note 45, the third crowd row. WAS "2026-10-05": "2026-10-05" for the Monday map upload of 5 October, rows named under the call grammar (note 34). WAS "2026-10-02": "2026-10-02" for the grade upload of 2 October, which carries note 44, the first rows graded under the call grammar. WAS "2026-09-28": "2026-09-28" for the Monday map upload of 28 September, the first rows named under the call grammar (note 34). WAS "2026-09-25": Kept at "2026-09-25" for the grade upload of the same night, which carries note 42 (the 25 September close). WAS "2026-09-24" until the upload of 25 September, which carries notes 38 to 40 (written 24 September) and note 41 (written early on 25 September); "2026-09-23" until the 24 September uploads, which carry notes 33 to 35 (17:34 CEST), note 36 (the same evening) and note 37 (the same night); "2026-09-20" until the 23 September upload, which carries note 30 (written 22 September, not uploaded that day) and note 31; "2026-09-13" until the 20 September upload */
 
 /* =========================================================================
    PROVENANCE  ·  which commit wrote each grade, added 4 Sep 2026
@@ -3187,6 +3273,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"55", kind:"standard", title:"Round 3, 22 October 2026. The head of this page as a lit stage: the count across the top, every line since 31 August drawn on its Friday close, the inspector beside it, and the way from the record to your own chart.",
+    body:"By the founder's ruling of 22 October 2026. None of it touches a row, a grade, a figure, a date or a line. THE SCENE. Each metal's Friday closes are drawn as a ribbon of light, each week's line as a bar at its level across its week, and one pin a week over it. A press on a pin, or on a metal in the dock under the scene, opens that line in the inspector beside it: its level and grade, when it was posted, where it comes from, the close that would prove it wrong, Friday's close and the distance from the level. For a line still open, the distance is from the last Friday close. THE COUNT. Graded, held, wrong and kept, never reached, open and deleted, every grade's mark oldest first, and the time to the next grade run across the top of the scene in place of the strip. THE WAY IN. Under the scene, on this week: see it graded, the record and its marks; draw it yourself, the free tools on TradingView, with the week picked drawn as a plain chart; go deeper, the paid Space on TradingView, which is not open yet and shows no price until TradingView says yes. The gold button reads Follow on TradingView on this page and in the band of every page; it read Join me on TradingView. THE FIRST PAINT. The head shows from the first paint; it waited for the page's script. THE STILL. With scripts off the page shows a still of the same drawing, written from record.json by make_scene.js each time the record is built, and the checks confirm it matches. A reader who asks for no motion sees none. The head this replaces is kept in a comment beside it, word for word, and its script in the edit history." },
   { n:"54", kind:"standard", title:"Plain words, 22 October 2026. The words that explain this page and the pages beside it, rewritten so anyone can follow them.",
     body:"By the founder's ruling of 22 October 2026, so that someone new to gold can read every page. None of it touches a row, a grade, a figure, a date or a line, and no row, result or note is reworded. WHAT CHANGED. The line under the key, which is also this page's description for search (note 33), now reads: Every Monday I post one price level each for gold, silver and platinum. Friday's closing price decides if I was right or wrong. Every result stays on this page, the wrong ones too. Nothing is ever deleted. This week names each line a floor or a ceiling and what Friday's close must do, as The Path asks of every line. The labels, the heads of Results, Banks and Join, the doors, the window, the strip, the bank pages, the wrong ones, the bank board and the tick book use everyday words: posted for named, deadline for window, results for verdict, deleted for removed, and what would prove it wrong for the old word for it. The bank board, each bank's page and the tick book add one sentence in plain words before their rule; the rules themselves are unchanged. WHAT DID NOT. The rows, the results, the notes, the banks' quotes, counsel's two lines, the standing offer and its terms, the email door's line under note 40, and the words on The Fan's page, which are the founder's own. Every sentence replaced on the pages written by hand is kept in a comment beside what replaced it; the scripts' earlier words are in the edit history." },
   { n:"53", kind:"standard", title:"The house, 22 October 2026. The head of this page, on every page beside it.",
@@ -5830,6 +5918,8 @@ route(true);
 /* END KEPT: standing-check */
 </script>
 
+<!-- 22 Oct 2026, note 55: the scene, drawn by scene.js from the model the head builds below. -->
+<script src="scene.js?v=09e3345980"></script>
 <!-- 22 Oct 2026, note 52: the head of the page, drawn. It reads the rows, CALLS, CLOSES and the page's own helpers
      above and types nothing. -->
 <script>
@@ -5875,165 +5965,24 @@ route(true);
   const h = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const tz = d => d && madridOffsetMin(d) === 60 ? "CET" : "CEST";
 
-  /* ---------------------------------------------------------------- the strip */
+  /* ---------------------------------------------------------------- the scene, 22 Oct 2026, note 55 */
+  /* Round 3. THE STRIP and THE WINDOW described above are drawn now by scene.js as the count across the top of the
+     scene, the scene, its pins, the inspector and the dock, from the model built here out of the rows, CALLS, CLOSES
+     and the page's own helpers, by the same rule; their script is in the edit history. If scene.js fails, the still
+     written from record.json shows instead. */
   try {
-    const n = g => CALLS.filter(c => c.grade === g).length;
-    const held = n("pass"), wrong = n("miss") + n("partial"), nr = n("notest"), open = n("pending");
-    $("hs-graded").textContent = held + wrong; $("hs-held").textContent = held; $("hs-wrong").textContent = wrong;
-    $("hs-nr").textContent = nr; $("hs-open").textContent = open;
-    const closes = CALLS.filter(c => c.grade === "pending").map(c => gradeCloseFor(c.date)).filter(Boolean).sort((a, b) => a - b);
-    if (closes.length) {
-      const c = closes[0], fri = new Date(c.getTime() + madridOffsetMin(c) * 60000).toISOString().slice(0, 10);
-      $("hs-when").textContent = ddm(fri) + " · 23:00 " + tz(c);
-      const tick = () => {
-        const ms = c.getTime() - Date.now();
-        if (ms <= 0) { $("hs-cd").textContent = "· close printed, grade pending"; return; }
-        const m = Math.floor(ms / 60000), d = Math.floor(m / 1440), hh = Math.floor((m % 1440) / 60), mm = m % 60;
-        $("hs-cd").textContent = "· in " + (d ? d + "d " : "") + hh + "h " + String(mm).padStart(2, "0") + "m";
-      };
-      tick(); setInterval(tick, 30000);
-      $("hs-next").hidden = false;
-    }
-  } catch (e) { say("strip", e); }
-
-  /* ---------------------------------------------------------------- the window */
-  try {
-    const FROM = "2026-08-31", MAX_WEEKS = 12;
-    const tradingMonday = iso => { const w = dt(iso).getUTCDay(); return w === 0 ? addD(iso, 1) : addD(iso, -(w - 1)); };
-    const cmpF = (a, b) => { const p = Math.max(places(a), places(b)), x = scaled(a, p), y = scaled(b, p); return x < y ? -1 : x > y ? 1 : 0; };
-    const WORD = { pass: "held", miss: "wrong", partial: "wrong", notest: "never reached", pending: "open" };
-    const lineRead = r => {
-      if (r.type !== "Map") return null;
-      let kind = r.side === "slate" ? "floor" : r.side === "copper" ? "ceiling" : null;
-      const km = /^a weekly close (back )?(below|beneath|under|above) ([\d,]+(?:\.\d+)?)\.?$/.exec(String(r.kill || "").trim());
-      if (!km) return null;
-      const kk = km[2] === "above" ? "ceiling" : "floor";
-      if (kind && kind !== kk) return null;
-      kind = kind || kk;
-      if (km[3] !== r.level) return null;
-      const word = WORD[r.grade]; if (!word) return null;
-      const close = word === "open" ? "" : closeFor(r);
-      if (word !== "open" && !close) return null;
-      if (close && (word === "held" || word === "wrong")) {
-        const through = kind === "floor" ? cmpF(close, r.level) < 0 : cmpF(close, r.level) > 0;
-        if (through !== (word === "wrong")) return null;
-      }
-      const side = close ? (cmpF(close, r.level) < 0 ? "under" : cmpF(close, r.level) > 0 ? "above" : "on") : "";
-      const mon = tradingMonday(r.date);
-      return { r, kind, word, mark: word === "held" && r.hit ? "hit" : word === "held" ? "held" : word === "wrong" ? "wrong" : word === "open" ? "open" : "nr",
-        level: r.level, close, side, gap: close ? (side === "on" ? "0" : distOf(close, r.level)) : "", mon, fri: addD(mon, 4), metal: r.metal };
-    };
-    const ALL = rows.map(lineRead).filter(L => L && L.mon >= FROM);
-    const WEEKS = [...new Set(ALL.map(L => L.mon))].sort().slice(-MAX_WEEKS);
-    const LINES = ALL.filter(L => WEEKS.includes(L.mon));
-    const METALS = ["Gold", "Silver", "Platinum"].filter(m => LINES.some(L => L.metal === m));
-    if (!METALS.length) throw new Error("no line to draw");
-
-    const stage = $("hd-stage"), chart = $("hd-chart"), side = $("hd-side");
-    /* 22 Oct 2026, note 54, plain words. This read: const WORDUP = { held: "HELD", hit: "HIT", wrong: "WRONG", nr: "NEVER REACHED", open: "OPEN" }; */
-    const WORDUP = { held: "HELD", hit: "HELD", wrong: "WRONG", nr: "NEVER REACHED", open: "OPEN" };
-    /* 22 Oct 2026, note 54, plain words. This read: const MARKNAME = { held: "held", hit: "hit", wrong: "wrong", nr: "never reached", open: "open" }; */
-    const MARKNAME = { held: "held", hit: "held, went further", wrong: "wrong", nr: "never reached", open: "open" };
-    const st = { metal: METALS[0], pick: null };
-    const first = WEEKS[0];
-    const anyOpen = LINES.some(L => L.word === "open");
-    /* 22 Oct 2026, note 54, plain words. This read: · the lines are open</span>` */
-    $("hd-status").innerHTML = anyOpen
-      ? `<i class="hd-dot" aria-hidden="true"></i><span>Week of ${h(dm(WEEKS[WEEKS.length - 1]))} · waiting for Friday's close</span>`
-      : `<span>Every line graded on Friday's close</span>`;
-
-    const t0 = Date.parse(addD(first, -3) + "T00:00:00Z"), t1 = Date.parse(addD(WEEKS[WEEKS.length - 1], 6) + "T00:00:00Z");
-    const X = iso => 14 + (Date.parse(iso + "T00:00:00Z") - t0) / (t1 - t0) * 972;
-    const f1 = v => v.toFixed(1);
-    const nice = span => { const raw = span / 4, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; };
-
-    function draw() {
-      const metal = st.metal;
-      const Ls = LINES.filter(L => L.metal === metal).sort((a, b) => a.mon.localeCompare(b.mon));
-      if (!Ls.length) return;
-      if (!Ls.some(L => L.mon === st.pick)) { const o = Ls.filter(L => L.word === "open"); st.pick = (o.length ? o[o.length - 1] : Ls[Ls.length - 1]).mon; }
-      const S = Ls.find(L => L.mon === st.pick);
-      const cl = CLOSES.filter(c => c[metal] && c.date >= addD(first, -3) && c.date <= addD(WEEKS[WEEKS.length - 1], 6)).map(c => [c.date, parseNum(c[metal])]);
-      const vals = cl.map(c => c[1]).concat(Ls.map(L => parseNum(L.level)));
-      let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.14 || hi * 0.01; lo -= pad; hi += pad;
-      const Y = v => 18 + (hi - v) / (hi - lo) * 392;
-      const step = nice(hi - lo), dp = step < 1 ? (String(step).split(".")[1] || "").length : 0;
-      const fmt = v => v.toLocaleString("en-US", { minimumFractionDigits: dp, maximumFractionDigits: dp });
-      const ticks = []; for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) ticks.push(+v.toFixed(6));
-      const pts = cl.map(([d, v]) => [X(d), Y(v)]);
-      const path = pts.length ? "M" + pts.map(p => f1(p[0]) + "," + f1(p[1])).join(" L") : "";
-      const area = pts.length ? path + " L" + f1(pts[pts.length - 1][0]) + ",410 L" + f1(pts[0][0]) + ",410 Z" : "";
-      const seg = L => "M" + f1(X(L.mon)) + "," + f1(Y(parseNum(L.level))) + " L" + f1(X(L.fri)) + "," + f1(Y(parseNum(L.level)));
-      const gradedSegs = Ls.filter(L => L.word !== "open").map(seg).join(" "), openSegs = Ls.filter(L => L.word === "open").map(seg).join(" ");
-      const months = []; { const d = new Date(t0); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() + 1); while (d.getTime() < t1) { months.push(d.toISOString().slice(0, 10)); d.setUTCMonth(d.getUTCMonth() + 1); } }
-      const sc = S.word === "wrong" ? "#ff8a80" : S.word === "open" ? "#8db0f5" : S.word === "never reached" ? "#a3aec0" : "#f2c45a";
-      const conn = S.close ? `<path d="M${f1(X(S.fri))},${f1(Y(parseNum(S.level)))} L${f1(X(S.fri))},${f1(Y(parseNum(S.close)))}" stroke="${sc}" stroke-width="1.6" stroke-dasharray="3 4" vector-effect="non-scaling-stroke" fill="none"/>` : "";
-      chart.innerHTML =
-        `<svg viewBox="0 0 1000 430" preserveAspectRatio="none" role="img" aria-label="${h(metal)}, Friday closes from ${h(dml(addD(first, -3)))}, with every line since the week of ${h(dml(first))} drawn at its level across its week">` +
-        `<defs><linearGradient id="hd-fa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f8" stop-opacity=".10"/><stop offset="1" stop-color="#eef2f8" stop-opacity="0"/></linearGradient>` +
-        `<linearGradient id="hd-wk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8db0f5" stop-opacity=".13"/><stop offset="1" stop-color="#8db0f5" stop-opacity=".02"/></linearGradient>` +
-        `<filter id="hd-gl" x="-10%" y="-80%" width="120%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>` +
-        `<rect x="${f1(X(S.mon) - 6)}" y="0" width="${f1(X(S.fri) - X(S.mon) + 12)}" height="410" fill="url(#hd-wk)"/>` +
-        ticks.map(t => `<path d="M0,${f1(Y(t))} L1000,${f1(Y(t))}" stroke="#cdd5e1" stroke-opacity=".07" vector-effect="non-scaling-stroke"/>`).join("") +
-        (area ? `<path d="${area}" fill="url(#hd-fa)"/>` : "") +
-        (path ? `<path class="hd-path" d="${path}" fill="none" stroke="#e6ebf3" stroke-width="1.8" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>` : "") +
-        conn +
-        `<g filter="url(#hd-gl)">` + (gradedSegs ? `<path d="${gradedSegs}" fill="none" stroke="#e0a93b" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>` : "") +
-        (openSegs ? `<path d="${openSegs}" fill="none" stroke="#e0a93b" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 6" vector-effect="non-scaling-stroke"/>` : "") + `</g>` +
-        pts.map(p => `<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="2.4" fill="#e6ebf3" vector-effect="non-scaling-stroke"/>`).join("") +
-        `</svg>` +
-        ticks.map(t => `<span class="hd-ax y" style="top:${(Y(t) / 430 * 100).toFixed(2)}%">${h(fmt(t))}</span>`).join("") +
-        months.map(d => `<span class="hd-ax x" style="left:${(X(d) / 10).toFixed(2)}%">${h(MON[dt(d).getUTCMonth()].toUpperCase())}</span>`).join("") +
-        Ls.map(L => `<button class="hd-pin" type="button" data-w="${h(L.mon)}" aria-pressed="${L.mon === S.mon}" style="left:${(X(L.fri) / 10).toFixed(2)}%;top:${(Y(parseNum(L.level)) / 430 * 100).toFixed(2)}%" aria-label="${h(metal + ", week of " + dml(L.mon) + ", " + L.kind + " " + L.level + ", " + L.word)}">${L.word === "open" && !reduce ? '<span class="hd-halo" aria-hidden="true"></span>' : ""}<i class="hm hm-${L.mark}" aria-hidden="true"></i></button>`).join("");
-      $("hd-title").textContent = metal + " · Friday closes · " + dm(cl.length ? cl[0][0] : first) + " to " + dm(cl.length ? cl[cl.length - 1][0] : first);
-      const present = [...new Set(Ls.map(L => L.mark))];
-      $("hd-legend").innerHTML = `<span><i class="hm hm-line" aria-hidden="true"></i>the line</span>` + ["held", "hit", "wrong", "nr", "open"].filter(k => present.includes(k)).map(k => `<span><i class="hm sm hm-${k}" aria-hidden="true"></i>${MARKNAME[k]}</span>`).join("");
-      const wks = $("hd-weeks");
-      wks.innerHTML = Ls.map(L => `<button class="hd-wk" type="button" data-w="${h(L.mon)}" aria-pressed="${L.mon === S.mon}" aria-label="${h("Week of " + dml(L.mon) + ", " + L.word)}"><i class="hm sm hm-${L.mark}" aria-hidden="true"></i>${h(dm(L.mon))}</button>`).join("");
-      requestAnimationFrame(() => { const on = wks.querySelector('[aria-pressed="true"]'); if (on && wks.scrollWidth > wks.clientWidth) wks.scrollLeft = Math.max(0, on.offsetLeft - wks.offsetLeft - wks.clientWidth + on.offsetWidth + 8); });
-
-      /* the inspector */
-      const floor = S.kind === "floor";
-      let gauge;
-      const zone = (floor ? "left:50%" : "left:0") + ";background:linear-gradient(" + (floor ? "90deg" : "270deg") + ",rgba(224,169,59,.16),transparent)";
-      /* 22 Oct 2026, note 54, plain words. This read: ">CLOSE ${floor ? "ABOVE" : "UNDER"} TO HOLD</div>` */
-      if (!S.close) gauge = `<div class="hd-g-zone" style="${zone.replace("224,169,59,.16", "141,176,245,.18")}"></div><div class="hd-g-line"></div><div class="hd-g-lab" style="${floor ? "right:10px" : "left:10px"}">NEEDS A CLOSE ${floor ? "ABOVE" : "UNDER"}</div>`;
-      else {
-        const cv = parseNum(S.close), lv = parseNum(S.level), span = Math.max(Math.abs(cv - lv) * 1.6, lv * 0.004), off = Math.max(-1, Math.min(1, (cv - lv) / span));
-        /* 22 Oct 2026, note 54, plain words. This read: ${floor ? "ABOVE" : "UNDER"} HOLDS</div>` */
-        gauge = `<div class="hd-g-zone" style="${zone}"></div><div class="hd-g-line"></div><div class="hd-g-close" style="left:${(50 + off * 42).toFixed(1)}%;background:${S.word === "wrong" ? "#d83a3a" : S.word === "never reached" ? "#8d97a8" : "#e0a93b"}"></div><div class="hd-g-lab" style="${floor ? "right:10px" : "left:10px"}">${floor ? "ABOVE" : "UNDER"} = HELD</div>`;
-      }
-      const r = S.r, gc = gradeCloseFor(r.date);
-      const named = ddm(r.date) + (r.readAt ? " · " + r.readAt : "");
-      const all = Ls, cnt = k => all.filter(L => L.word === k).length;
-      const parts = [["held", "held"], ["wrong", "wrong"], ["never reached", "never reached"], ["open", "open"]].filter(([k]) => cnt(k)).map(([k, w]) => `<b>${cnt(k)}</b> ${w}`);
-      /* 22 Oct 2026, note 54, plain words. This read: `<dl class="hd-dl"><dt>Named</dt> */
-      /* 22 Oct 2026, note 54, plain words. This read: `<dt>From the line</dt>${S.close ? */
-      side.innerHTML =
-        `<div class="hd-wide"><div class="hd-ey">${h(metal)} · week of ${h(dml(S.mon))}</div>` +
-        `<div class="hd-lv"><b>${h(S.level)}</b><span class="hd-pill p-${S.mark}">${h(WORDUP[S.mark])}</span></div>` +
-        `<p class="hd-rule"><b>${floor ? "Floor" : "Ceiling"}:</b> the week must close ${floor ? "above" : "under"} it.</p></div>` +
-        `<div class="hd-gauge" aria-hidden="true">${gauge}</div>` +
-        `<dl class="hd-dl"><dt>Posted</dt><dd>${h(named)}</dd>` +
-        (r.lineFrom && LINE_FROM[r.lineFrom] ? `<dt>Where it comes from</dt><dd>${h(LINE_FROM[r.lineFrom])}</dd>` : "") +
-        `<dt>Friday's close</dt>${S.close ? `<dd class="hd-mono">${h(S.close)}</dd>` : `<dd>${h("Fri " + dm(S.fri) + " · 23:00 " + tz(gc))}</dd>`}` +
-        `<dt>Distance from the level</dt>${S.close ? `<dd class="hd-mono">${h(S.gap + " " + (S.side === "on" ? "on it" : S.side))}</dd>` : "<dd>Not yet graded</dd>"}</dl>` +
-        `<div class="hd-links"><a class="hd-btn hd-ghost" href="#${h(r.anchor)}">This line on the record</a><a class="hd-tlink" href="week-${h(S.mon)}.html">The week's page</a></div>` +
-        `<div class="hd-hr hd-wide"></div>` +
-        `<div><div class="hd-ey">${h(metal)} since ${h(dml(Ls[0].mon))}</div><div class="hd-marks" aria-hidden="true">${Ls.map(L => `<i class="hm sm hm-${L.mark}"${L.mon === S.mon ? ' style="outline:1.5px solid #fff;outline-offset:2px"' : ""}></i>`).join("")}</div>` +
-        `<p class="hd-count">${Ls.length} ${Ls.length === 1 ? "line" : "lines"} · ${parts.join(" · ")}</p></div>` +
-        `<p class="hd-counsel hd-wide">${h(NOT_ADVICE.join(" "))}</p>`;
-    }
-    $("hd-tabs").innerHTML = METALS.map(m => `<button class="hd-tab" type="button" data-m="${h(m)}" aria-pressed="${m === st.metal}">${h(m)}</button>`).join("");
-    $("hd-tabs").addEventListener("click", e => { const b = e.target.closest(".hd-tab"); if (!b || b.dataset.m === st.metal) return; st.metal = b.dataset.m; st.pick = null; $("hd-tabs").querySelectorAll(".hd-tab").forEach(x => x.setAttribute("aria-pressed", String(x === b))); draw(); });
-    const pick = e => { const b = e.target.closest("[data-w]"); if (!b) return; st.pick = b.dataset.w; const keep = b.classList.contains("hd-wk") ? "wk" : "pin"; draw(); const again = document.querySelector((keep === "wk" ? "#hd-weeks .hd-wk" : "#hd-chart .hd-pin") + '[data-w="' + st.pick + '"]'); if (again) again.focus({ preventScroll: true }); };
-    chart.addEventListener("click", pick); $("hd-weeks").addEventListener("click", pick);
-    draw();
-    stage.classList.add("ready");
-    const go = () => { stage.classList.add("in"); if (!reduce) stage.classList.add("draw"); };
-    if (reduce || !("IntersectionObserver" in window)) go();
-    else { const io = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { go(); io.disconnect(); } }, { threshold: 0.12 }); io.observe(stage); setTimeout(go, 1500); }
-  } catch (e) { say("window", e); }
+    if (!window.SceneR3) throw new Error("scene.js did not load");
+    const M = SceneR3.model({
+      calls: rows.map(r => ({ date: r.date, type: r.type, metal: r.metal, level: r.level, side: r.side, kill: r.kill, grade: r.grade,
+        hit: r.hit, close: closeFor(r), lineFrom: r.lineFrom, readAt: r.readAt, anchor: r.anchor, box: (CALLS[r.idx] || {}).box || null })),
+      closes: CLOSES, lineFrom: LINE_FROM, counsel: NOT_ADVICE, tools: []
+    });
+    window.__r3 = SceneR3.mount(M);
+    window.__r3model = M;
+  } catch (e) {
+    say("scene", e);
+    const d = document.querySelector(".r3-drift[data-still]"); if (d) d.removeAttribute("data-still");
+  }
 
   /* ---------------------------------------------------------------- The Fan */
   try {

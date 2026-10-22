@@ -90,7 +90,13 @@
         payment button can point only at tradingview.com, and the seat line
         no longer carries the tool (TradingView's rule from 1 November
         2026: paid access only through its Marketplace, never inside
-        another paid product). */
+        another paid product).
+    27. The scene, 22 October 2026, note 55: scene.js, scene.css and
+        make_scene.js are beside the record and index.html loads them; the
+        still of the head in index.html is the one record.json gives; the
+        Space in the funnel shows no price while METHOD_SPACE is blank; and
+        the scene's words carry no em dash, exclamation mark, hashtag, emoji
+        or house word. */
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
@@ -602,6 +608,28 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   if (sp === undefined) probs.push("METHOD_SPACE is missing");
   else if (sp && !/^https:\/\/([a-z]+\.)?tradingview\.com\//.test(sp)) probs.push("METHOD_SPACE points somewhere other than tradingview.com");
   check(probs.length === 0, "The Fan is offered by the month through TradingView and nowhere else, the seat without it (12 October 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
+/* 27. THE SCENE, added 22 October 2026, note 55. */
+{
+  const probs = [];
+  const has = f => { try { return rd(f).length > 0; } catch (e) { return false; } };
+  ["scene.js", "scene.css", "make_scene.js"].forEach(f => { if (!has(f)) probs.push(f + " is not beside the record"); });
+  const live = idx.replace(/<!--(?! R3 )[\s\S]*?-->/g, "");
+  if (!/<script src="scene\.js\?v=[0-9a-f]{10}"><\/script>/.test(live)) probs.push("index.html does not load scene.js");
+  if (!/<link rel="stylesheet" href="scene\.css\?v=[0-9a-f]{10}">/.test(live)) probs.push("index.html does not load scene.css");
+  if (!probs.length) {
+    try { const ex = require(path.join(HERE, "make_scene.js")).expected(idx).s; if (ex !== idx) probs.push("the still in index.html is not the one record.json gives: run node make_scene.js"); }
+    catch (e) { probs.push("make_scene.js could not build the still: " + e.message); }
+  }
+  const f3 = (idx.match(/<article class="r3f-step">\s*<div class="r3f-top"><span class="r3f-num">03<\/span>[\s\S]*?<\/article>/) || [""])[0];
+  const sp = (methodLive.replace(/\/\*[\s\S]*?\*\//g, "").match(/const METHOD_SPACE\s*=\s*"([^"]*)"/) || [])[1];
+  if (!f3) probs.push("the funnel's third step is not on the page");
+  else if (!sp && /\$\s?\d/.test(f3)) probs.push("the Space shows a price while METHOD_SPACE is blank");
+  const words = [rd("scene.js").match(/"[^"\n]*"|`[^`]*`/g) || [], [f3]].flat().join(" ").replace(/<[^>]+>/g, " ");
+  const bad = [["em dash", /\u2014/], ["exclamation mark", /![^=]/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(box|room|kill|naming)\b/i]].filter(([, re]) => re.test(words)).map(b => b[0]);
+  if (bad.length) probs.push("the scene's words carry: " + bad.join(", "));
+  check(probs.length === 0, "the scene is beside the record, its still is the one record.json gives, and the Space shows no price before TradingView says yes (note 55)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");

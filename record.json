@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-22",
-  "generated": "2026-10-22T17:12:49.339Z",
+  "generated": "2026-10-22T18:47:49.536Z",
   "tally": {
     "resolved": 38,
     "held": 29,
@@ -1547,6 +1547,12 @@
       "kind": "standard",
       "title": "Plain words, 22 October 2026. The words that explain this page and the pages beside it, rewritten so anyone can follow them.",
       "body": "By the founder's ruling of 22 October 2026, so that someone new to gold can read every page. None of it touches a row, a grade, a figure, a date or a line, and no row, result or note is reworded. WHAT CHANGED. The line under the key, which is also this page's description for search (note 33), now reads: Every Monday I post one price level each for gold, silver and platinum. Friday's closing price decides if I was right or wrong. Every result stays on this page, the wrong ones too. Nothing is ever deleted. This week names each line a floor or a ceiling and what Friday's close must do, as The Path asks of every line. The labels, the heads of Results, Banks and Join, the doors, the window, the strip, the bank pages, the wrong ones, the bank board and the tick book use everyday words: posted for named, deadline for window, results for verdict, deleted for removed, and what would prove it wrong for the old word for it. The bank board, each bank's page and the tick book add one sentence in plain words before their rule; the rules themselves are unchanged. WHAT DID NOT. The rows, the results, the notes, the banks' quotes, counsel's two lines, the standing offer and its terms, the email door's line under note 40, and the words on The Fan's page, which are the founder's own. Every sentence replaced on the pages written by hand is kept in a comment beside what replaced it; the scripts' earlier words are in the edit history."
+    },
+    {
+      "n": "55",
+      "kind": "standard",
+      "title": "Round 3, 22 October 2026. The head of this page as a lit stage: the count across the top, every line since 31 August drawn on its Friday close, the inspector beside it, and the way from the record to your own chart.",
+      "body": "By the founder's ruling of 22 October 2026. None of it touches a row, a grade, a figure, a date or a line. THE SCENE. Each metal's Friday closes are drawn as a ribbon of light, each week's line as a bar at its level across its week, and one pin a week over it. A press on a pin, or on a metal in the dock under the scene, opens that line in the inspector beside it: its level and grade, when it was posted, where it comes from, the close that would prove it wrong, Friday's close and the distance from the level. For a line still open, the distance is from the last Friday close. THE COUNT. Graded, held, wrong and kept, never reached, open and deleted, every grade's mark oldest first, and the time to the next grade run across the top of the scene in place of the strip. THE WAY IN. Under the scene, on this week: see it graded, the record and its marks; draw it yourself, the free tools on TradingView, with the week picked drawn as a plain chart; go deeper, the paid Space on TradingView, which is not open yet and shows no price until TradingView says yes. The gold button reads Follow on TradingView on this page and in the band of every page; it read Join me on TradingView. THE FIRST PAINT. The head shows from the first paint; it waited for the page's script. THE STILL. With scripts off the page shows a still of the same drawing, written from record.json by make_scene.js each time the record is built, and the checks confirm it matches. A reader who asks for no motion sees none. The head this replaces is kept in a comment beside it, word for word, and its script in the edit history."
     }
   ],
   "targets": [
