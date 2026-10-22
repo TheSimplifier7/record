@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- HOUSE EARLY (make_house.js, note 53): the record's ground and the reader's choice, before first paint. -->
+<meta name="color-scheme" content="light dark">
+<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)})();</script>
 <!-- 6 Oct 2026. These read: <title>The Simplifier · The Method</title>, and the description "The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation." -->
 <title>The Simplifier · The Fan</title>
 <meta name="description" content="The indicator the weekly lines on the record are read from. It draws structure. It does not tell you what to do. Access by invitation.">
 <!-- 10 October 2026, note 47 on the record: the ground follows the reader's device, as on the record, and the script below sets this to the band at the top of the page. It read:
-     <meta name="theme-color" content="#141210"> -->
+     <meta name="theme-color" content="#0f1e3a"> -->
 <meta name="theme-color" content="#0f1e3a" id="meta-theme">
 <meta name="color-scheme" content="light dark">
 <script>
@@ -382,10 +385,58 @@
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!-- HOUSE HEAD START (make_house.js, note 53) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="house.css?v=f3424b20cb">
+<style id="hs-method">
+.fan-head{position:relative;overflow:hidden;isolation:isolate}
+.fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
+.fan-head .wrap{padding-block:clamp(26px,4.5vw,52px) clamp(30px,4.5vw,48px)}
+.fan-head h1{font-size:clamp(3rem,8vw,5.75rem);line-height:.9;letter-spacing:-.005em;text-transform:none}
+.fan-head .tagline{font-family:var(--f-cond);font-weight:700;font-size:clamp(1.375rem,2.6vw,1.875rem);line-height:1.1;color:#f2c45a}
+.fan-head .lede{color:#c9d3e6}
+</style>
+<!-- HOUSE HEAD END -->
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
 
+<!-- HOUSE TOP START (make_house.js, note 53) -->
+<div class="hs-strip" id="hs-strip" role="region" aria-label="The record, counted">
+  <div class="hs-wrap hs-strip-in">
+    <a class="hs-k" href="./">The record</a>
+    <span>Graded <b id="hs-graded"></b></span>
+    <span class="k-h">Held <b id="hs-held"></b></span>
+    <span class="k-w">Wrong, kept <b id="hs-wrong"></b></span>
+    <span>Never reached <b id="hs-nr"></b></span>
+    <span class="k-o">Open <b id="hs-open"></b></span>
+    <span>Removed <b>0</b></span>
+    <span class="hs-next" id="hs-next" hidden><i class="hs-dot" aria-hidden="true"></i><span>Next grade <b id="hs-when"></b> <span id="hs-cd"></span></span></span>
+  </div>
+</div>
+<header class="hs-band">
+  <div class="hs-wrap hs-band-in">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
+    <nav class="hs-nav" aria-label="The site">
+      <a href="./">This week</a>
+      <a href="./#results">Results</a>
+      <a href="method.html" aria-current="page">The Fan</a>
+      <a class="hs-opt" href="tools.html">Free tools</a>
+      <a href="./#banks">Banks</a>
+      <a href="./#rules">Rules</a>
+      <a href="./#join">Join</a>
+    </nav>
+    <div class="hs-tools">
+      <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
+      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
+      <a class="hs-btn hs-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="method-band"><span><span class="hs-long">Join me on </span>TradingView</span></a>
+    </div>
+  </div>
+</header>
+<!-- HOUSE TOP END -->
+<!-- THE BAND BEFORE 22 OCTOBER 2026, kept word for word (note 53 on the record). Its own comment markers are written <!~~ and ~~>.
 <header class="band">
   <div class="wrap band-top">
     <a class="brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
@@ -403,6 +454,7 @@
     </div>
   </div>
 </header>
+-->
 
 <main id="main" tabindex="-1">
 <div class="fan-head">
@@ -729,5 +781,8 @@ n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
 </script>
 -->
+<!-- HOUSE TAIL START (make_house.js, note 53) -->
+<script src="house.js?v=d64c7fb2b7" defer></script>
+<!-- HOUSE TAIL END -->
 </body>
 </html>

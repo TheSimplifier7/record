@@ -115,7 +115,7 @@ const localFaces = fs.existsSync(LOCAL) ? `
 
 /* 10 Oct 2026, note 48: the card's ground, faces and type. The dark card of 22 September read: background #141210
    under a gold glow, IBM Plex Mono throughout, the level at 68px in Plex 600, panels #1D1A16, a 1.5px ink rule under the mast. */
-const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>The record, this week</title>
+const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>The record, this week</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
 <style>${localFaces}

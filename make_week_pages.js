@@ -125,7 +125,7 @@ function imageFor(m, ls) {
 const CSS = `
 .status{font:500 1.02rem/1.5 var(--f-ui);color:var(--ink-2);margin:6px 0 0}
 .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16.5rem),1fr));gap:14px}
-.line{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.line{border:1px solid var(--rule);border-radius:14px;background:var(--raise);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .line .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .metal{font:700 1.2rem/1 var(--f-cond);letter-spacing:.08em;text-transform:uppercase}
 .kind{font:700 .74rem/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;padding:5px 8px 4px;border-radius:3px;box-shadow:inset 0 0 0 1.5px var(--rule-2);color:var(--ink-2)}
@@ -164,10 +164,10 @@ function lineCard(l) {
     <p class="rule">${l.kind === "floor" ? "The week must close above it." : "The week must close under it."}</p>
     <dl class="dl">
       <dt>Friday's close</dt><dd>${l.close ? esc(l.close) : "Not yet"}</dd>
-      ${l.close ? `<dt>From the line</dt><dd>${l.side === "on" ? "on it" : esc(l.gap) + " " + l.side}</dd>` : ""}
+      ${l.close ? `<dt>Distance from the level</dt><dd>${l.side === "on" ? "on it" : esc(l.gap) + " " + l.side}</dd>` : ""}
     </dl>
     <span class="grade ${MARK[l.word]}"><i aria-hidden="true"></i>${esc(l.word)}</span>
-    <div class="ft"><span>Written ${esc(wd)} ${esc(longDate(r.named))}</span><a href="${esc(r.url)}">This line on the record</a></div>
+    <div class="ft"><span>Posted ${esc(wd)} ${esc(longDate(r.named))}</span><a href="${esc(r.url)}">This line on the record</a></div>
   </article>`;
 }
 
@@ -182,11 +182,8 @@ function weekPage(m, i) {
   const status = graded ? `Graded on Friday's close, ${longDate(friDate)}. ${countText(ls)}.` : `Open until Friday's close, ${longDate(fri)}. ${countText(ls)}.`;
   return P.head({ title, description, canonical: SITE + fileOf(m), image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("week-page")}
+${P.hero({ eyebrow: `<a href="weeks.html">Week by week</a><span>${esc(ls.map(l => l.r.metal).join(" · "))}</span>`, title: `The week of ${esc(longDate(m))}`, lede: esc(status), key: true })}
 <main><div class="wrap">
-  <p class="eyebrow">${esc(ls.map(l => l.r.metal).join(" · "))}</p>
-  <h1>The week of ${esc(longDate(m))}</h1>
-  <p class="status">${esc(status)}</p>
-  ${P.keyLine()}
   <section class="lines" aria-label="The lines">
   ${ls.map(lineCard).join("\n  ")}
   </section>
@@ -215,14 +212,12 @@ function weeksPage() {
   }).join("\n    ");
   return P.head({ title, description, canonical: SITE + "weeks.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS + `.weeks .wk .metal{font:700 1.15rem/1.2 var(--f-cond);letter-spacing:.02em;text-transform:none}` }) + `
 ${P.band("weeks-page")}
+${P.hero({ eyebrow: "<span>Gold · Silver · Platinum</span>", title: "Week by week", lede: "Every week of the record on its own page, newest first.", key: true })}
 <main><div class="wrap">
-  <p class="eyebrow">Gold · Silver · Platinum</p>
-  <h1>Week by week</h1>
-  ${P.keyLine()}
   <ol class="weeks" reversed>
     ${items}
   </ol>
-  <p class="fine" style="margin-top:18px">Lines written before 31 August 2026 are on <a href="./#results">the record</a>, in the words they were graded in.</p>
+  <p class="fine" style="margin-top:18px">Levels posted before 31 August 2026 are in <a href="./#results">the full record</a>, in their original words.</p>
   ${P.doors("weeks-page")}
 </div></main>
 ${P.foot()}`;

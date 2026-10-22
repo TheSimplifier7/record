@@ -33,8 +33,8 @@ for (const t of live) {
 const CSS = `
 .cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 0}
 .cta .fine{margin:0}
-.tools{display:grid;gap:14px;margin:34px 0 0}
-.tool{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 24px;align-items:start}
+.tools{display:grid;gap:14px;margin:6px 0 0}
+.tool{border:1px solid var(--rule);border-radius:14px;background:var(--raise);padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 24px;align-items:start}
 .tool h2{margin:0;grid-column:1/2}
 .tool p{margin:0;grid-column:1/2;font:400 1.04rem/1.55 var(--f-serif);color:var(--ink-2);max-width:42rem}
 .tool .go{grid-column:2/3;grid-row:1/span 2;align-self:center}
@@ -55,17 +55,15 @@ const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
   </article>`).join("\n  ");
 
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
-${P.band("tools-page")}
+${P.band("tools-page", "tools")}
+${P.hero({ eyebrow: "<span>Free and open source</span>", title: "The free tools", under: `<a class="hs-btn hs-gold" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
-  <p class="eyebrow">Free and open source</p>
-  <h1>The free tools</h1>
-  <div class="cta"><a class="btn" href="${TV}" data-tv="tools-page">Join me on TradingView</a><p class="fine">Free.<br>Not investment advice.</p></div>
   <section class="tools" aria-label="The tools">
   ${cards}
   </section>
   ${P.doors("tools-foot", { tools: false })}
 </div></main>
-${P.foot({ counsel: false })}`;
+${P.foot({ counsel: false, current: "tools" })}`;
 
 fs.writeFileSync(path.join(HERE, "tools.html"), html);
 console.log(`tools.html: ${live.length} tools live (${names.join(", ")})` + (live.some(t => !t.text) ? `; no paragraph yet for ${live.filter(t => !t.text).map(t => t.name).join(", ")}` : "") + `; waiting: ${T.tools.filter(t => t.live !== true).map(t => t.name).join(", ") || "none"}.`);

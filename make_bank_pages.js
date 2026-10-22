@@ -31,6 +31,8 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
+/* 22 Oct 2026, note 53 on the record: THE HOUSE. The record's band, its navy head and its ground, from house_parts.js. */
+const HS = require("./house_parts.js");
 
 const R = JSON.parse(fs.readFileSync(path.join(__dirname, "record.json"), "utf8"));
 /* 24 Sep 2026, note 36. This wrote to banks/ and banks/cards/. */
@@ -224,7 +226,8 @@ function page(r) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title(r))} · The Bank Board</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="theme-color" content="#141210">
+<meta name="theme-color" content="#0f1e3a">
+${HS.earlyTags()}
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${esc(title(r))}">
@@ -233,43 +236,38 @@ function page(r) {
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="${url}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+${HS.FONTS}
 <!-- Written by make_bank_pages.js from record.json. Do not edit by hand. -->
 <style>${CSS}</style>
+${HS.stoneStyle()}
+${HS.headTags({ fonts: false })}
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body data-grade="${esc(r.grade)}">
+${HS.top("banks", "bank-page")}
+${HS.hero({ eyebrow: `<a href="targets.html">The bank board</a><span>${esc(r.house)}</span><span>Published ${fmtDate(r.published)}</span>`, title: esc(title(r)), under: `<div class="status"><span class="g ${gc}"><i></i>${gw}</span><span class="when">${esc(when)}</span></div>`, col: "760px", pad: "var(--pad)" })}
 <div class="wrap">
-  <header>
-    <div class="brand">${BRAND}<span class="name">The Simplifier</span></div>
-    <div class="desc"><a href="targets.html">The bank board</a> · ${esc(r.house)}</div>
-  </header>
-
-  <div class="kick">Published ${fmtDate(r.published)}</div>
-  <h1>${esc(title(r))}</h1>
-  <div class="status"><span class="g ${gc}"><i></i>${gw}</span><span class="when">${esc(when)}</span></div>
 
   <div class="facts">
-    <div><div class="t">Target</div><div class="v gold">${fmtNum(r.level, dec)}</div><div class="s">${esc(r.metal.toLowerCase())} · from ${r.side === "above" ? "below" : "above"}</div></div>
-    <div><div class="t">Window</div><div class="v">${esc(r.windowText)}</div><div class="s">${fri ? "last weekly close " + fmtDate(fri) : "last weekly close of 2026"}</div></div>
+    <div><div class="t">Target</div><div class="v gold">${fmtNum(r.level, dec)}</div><div class="s">${esc(r.metal.toLowerCase())} · price needs to ${r.side === "above" ? "rise" : "fall"} to it</div></div>
+    <div><div class="t">Deadline</div><div class="v">${esc(r.windowText)}</div><div class="s">${fri ? "last weekly close " + fmtDate(fri) : "last weekly close of 2026"}</div></div>
     <div><div class="t">Said by</div><div class="v">${esc(r.house)}</div><div class="s">${esc(r.source === r.house ? "primary" : r.source.replace(r.house, "").replace(/^[,\s]+/, ""))}</div></div>
     ${dist || `<div><div class="t">Result</div><div class="v">${gw}</div><div class="s">on the close</div></div>`}
   </div>
 
   <blockquote><p>“${esc(r.quote)}”</p><cite>${esc(r.source)} · ${fmtDate(r.published)} · <a href="${esc(r.link)}" rel="nofollow noopener">the source</a></cite></blockquote>
 
-  <h2>The kill this desk assigned</h2>
+  <h2>What would prove it wrong</h2>
   <div class="kill">${esc(r.kill)}</div>
-  <p class="fine">The target was published without one. The same rule grades every row on the board, and this desk's own levels on the record.</p>
+  <p class="fine">The bank published its target without one, so it is graded by the same rule as every level on my own record.</p>
   ${r.result ? `<p class="result">${esc(r.result)}</p>` : ""}
 
   <h2>The backstory</h2>
   ${story.map(p => `<p class="body">${esc(p)}</p>`).join("\n  ")}
 
-  <h2>${esc(r.house)} on the board</h2>
+  <h2>Every ${esc(r.house)} target on the board</h2>
   <div class="tally"><span class="pass"><b>${hc.pass}</b>held</span><span class="miss"><b>${hc.miss}</b>wrong</span><span class="pending"><b>${hc.pending}</b>open</span></div>
   <ol class="house">
     ${H.map(x => { const [w, c] = GRADE[x.grade] || [x.grade, "notest"]; return `<li${x.slug === r.slug ? ' class="here"' : ""}><span class="l"><a href="${x.slug}.html">${esc(title(x).replace(x.house + " · ", ""))}</a></span><span class="d">published ${fmtDate(x.published)}</span><span class="g ${c}"><i></i>${w}</span></li>`; }).join("\n    ")}
@@ -280,12 +278,14 @@ function page(r) {
     ${left.map(l => `<li><div class="q">“${esc(l.quote)}”</div><div class="m">${esc(l.date)} · ${esc(l.reason)}</div></li>`).join("\n    ")}
   </ul>` : ""}
 
-  <h2>How every row is graded</h2>
+  <h2>How every target is graded</h2>
+  <p class="body">In plain words: a target is held if price closes a week at the target or beyond it before its deadline. If the deadline passes without that close, it is wrong.</p>
   <div class="rule-box">${RULE}</div>
 
   <div class="links"><a href="targets.html">The full board</a><a href="./">The record</a><a href="misses.html">The wrong ones</a></div>
   <footer><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">@TheSimplifier7</span></footer>
 </div>
+${HS.tail("banks")}
 </body>
 </html>
 `;

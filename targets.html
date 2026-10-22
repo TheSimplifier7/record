@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- HOUSE EARLY (make_house.js, note 53): the record's ground and the reader's choice, before first paint. -->
+<meta name="color-scheme" content="light dark">
+<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)})();</script>
 <title>The Simplifier · The Bank Board</title>
 <meta name="description" content="Every dated gold, silver and platinum target the banks publish, with the close that would grade it, graded when its window closes. The wrong ones stay. Nothing removed.">
-<meta name="theme-color" content="#141210">
+<meta name="theme-color" content="#0f1e3a">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.com/targets.html">
 <meta property="og:title" content="The Simplifier · The Bank Board">
@@ -155,11 +158,87 @@
 <!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
      and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!-- HOUSE HEAD START (make_house.js, note 53) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style id="hs-stone">
+:root{--bg:#ffffff;--panel:#f5f7fa;--rule:#c9d0da;--rule-soft:#e1e5eb;--ink:#0e1116;--ink-2:#2e3644;--ink-3:#2e3644;--ink-5:#4e5869;--ink-6:#5b6576;
+  --gold:#7a5600;--miss:#b42323;--pass:#7a5600;--notest:#5f6979;--pending:#2b5ba8;--hs-link:#2b5ba8;--hs-link-rule:rgba(43,91,168,.35);--hs-here:rgba(200,150,46,.10);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b111d;--panel:#111a29;--rule:#33415a;--rule-soft:#222e42;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#cdd5e1;--ink-5:#a3aec0;--ink-6:#8d98ab;
+  --gold:#f2c45a;--miss:#ff8a80;--pass:#f2c45a;--notest:#a3aec0;--pending:#8db0f5;--hs-link:#8db0f5;--hs-link-rule:rgba(141,176,245,.35);--hs-here:rgba(242,196,90,.08);color-scheme:dark}}
+:root[data-theme="light"]{--bg:#ffffff;--panel:#f5f7fa;--rule:#c9d0da;--rule-soft:#e1e5eb;--ink:#0e1116;--ink-2:#2e3644;--ink-3:#2e3644;--ink-5:#4e5869;--ink-6:#5b6576;
+  --gold:#7a5600;--miss:#b42323;--pass:#7a5600;--notest:#5f6979;--pending:#2b5ba8;--hs-link:#2b5ba8;--hs-link-rule:rgba(43,91,168,.35);--hs-here:rgba(200,150,46,.10);color-scheme:light}
+:root[data-theme="dark"]{--bg:#0b111d;--panel:#111a29;--rule:#33415a;--rule-soft:#222e42;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#cdd5e1;--ink-5:#a3aec0;--ink-6:#8d98ab;
+  --gold:#f2c45a;--miss:#ff8a80;--pass:#f2c45a;--notest:#a3aec0;--pending:#8db0f5;--hs-link:#8db0f5;--hs-link-rule:rgba(141,176,245,.35);--hs-here:rgba(242,196,90,.08);color-scheme:dark}
+body{background:var(--bg)}
+a{color:var(--hs-link);border-bottom-color:var(--hs-link-rule)}
+a:hover{color:var(--ink)}
+.facts{border-top:0;gap:12px}
+.facts>div{background:var(--panel);border:1px solid var(--rule-soft);border-radius:12px;padding:14px 16px}
+.facts>div>div{padding:0;border:0}
+.kill,.wrap .tally{border-radius:12px}
+.wrap .g,.wrap .grade{border-radius:999px}
+blockquote{border-left-color:var(--gold)}
+ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
+.hs-hero .status{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0 0}
+.hs-hero .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--hs-fig);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:6px 11px;border:1.5px solid currentColor;border-radius:999px}
+.hs-hero .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+.hs-hero .g.pending{color:#8db0f5}.hs-hero .g.pass{color:#f2c45a}.hs-hero .g.miss{color:#ff8a80}.hs-hero .g.notest{color:#c9d3e6}
+.hs-hero .status .when{font-family:var(--hs-fig);font-size:13px;color:#c9d3e6}
+</style>
+<link rel="stylesheet" href="house.css?v=f3424b20cb">
+<link rel="canonical" href="https://thesimplifier7.com/targets.html">
+<!-- HOUSE HEAD END -->
 </head>
 <body>
+<!-- HOUSE TOP START (make_house.js, note 53) -->
+<div class="hs-strip" id="hs-strip" role="region" aria-label="The record, counted">
+  <div class="hs-wrap hs-strip-in">
+    <a class="hs-k" href="./">The record</a>
+    <span>Graded <b id="hs-graded"></b></span>
+    <span class="k-h">Held <b id="hs-held"></b></span>
+    <span class="k-w">Wrong, kept <b id="hs-wrong"></b></span>
+    <span>Never reached <b id="hs-nr"></b></span>
+    <span class="k-o">Open <b id="hs-open"></b></span>
+    <span>Removed <b>0</b></span>
+    <span class="hs-next" id="hs-next" hidden><i class="hs-dot" aria-hidden="true"></i><span>Next grade <b id="hs-when"></b> <span id="hs-cd"></span></span></span>
+  </div>
+</div>
+<header class="hs-band">
+  <div class="hs-wrap hs-band-in">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
+    <nav class="hs-nav" aria-label="The site">
+      <a href="./">This week</a>
+      <a href="./#results">Results</a>
+      <a href="method.html">The Fan</a>
+      <a class="hs-opt" href="tools.html">Free tools</a>
+      <a href="./#banks" aria-current="page">Banks</a>
+      <a href="./#rules">Rules</a>
+      <a href="./#join">Join</a>
+    </nav>
+    <div class="hs-tools">
+      <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
+      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
+      <a class="hs-btn hs-gold" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="targets-band"><span><span class="hs-long">Join me on </span>TradingView</span></a>
+    </div>
+  </div>
+</header>
+<!-- HOUSE TOP END -->
+<!-- HOUSE HERO (make_house.js, note 53) -->
+<div class="hs-hero"><div class="hs-hero-in" style="--hs-col:1080px;--hs-pad:var(--pad)">
+  <p class="hs-eyebrow"><a href="./">The record</a><span>The bank board</span></p>
+  <h1 class="hs-h1">The bank board</h1>
+  <!-- 9 Sep 2026: "gold target" became "gold, silver and platinum target" with the first silver row. -->
+  <!-- 22 Oct 2026, note 54, plain words. This read: <p class="hs-lede">Every dated gold, silver and platinum target the banks publish, with the close that would grade it. Graded when the window closes. The wrong ones stay.</p> -->
+<p class="hs-lede">Every dated gold, silver and platinum price target the big banks publish, graded on the weekly close when its deadline arrives. The wrong ones stay.</p>
+  
+  
+</div></div>
 <div class="wrap">
-
-  <header>
+<!-- THE HEAD BEFORE 22 OCTOBER 2026, kept word for word (note 53 on the record): the mark, the row of links, the title
+     and the first line, which now stand in the navy head above. Its own comment markers are written <!~~ and ~~>.
+<header>
     <div class="brand">
       <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
         <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
@@ -169,35 +248,40 @@
     </div>
     <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The bank board</div>
   </header>
-  <!-- THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. -->
+  <!~~ THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. ~~>
   <nav class="nav" aria-label="Pages">
     <a href="./">The record</a>
     <a href="targets.html" class="here">The banks, graded</a>
     <a href="misses.html">The wrong ones</a>
     <a href="tick.html">The tick book</a>
-    <a href="method.html">The Fan</a><!-- 6 Oct 2026: "The Method" until today. method.html carries The Fan. -->
+    <a href="method.html">The Fan</a><!~~ 6 Oct 2026: "The Method" until today. method.html carries The Fan. ~~>
     <a href="./#doors">The seat</a>
   </nav>
 
   <h1>The bank board</h1>
-  <!-- 9 Sep 2026: "gold target" became "gold, silver and platinum target" with the first silver row. -->
+  <!~~ 9 Sep 2026: "gold target" became "gold, silver and platinum target" with the first silver row. ~~>
   <p class="lede">Every dated gold, silver and platinum target the banks publish, with the close that would grade it. Graded when the window closes. The wrong ones stay.</p>
+-->
 
-  <p class="body">A bank publishes a target with a level and a window and nothing that could prove it wrong. When the window passes the target is revised, and the first number is gone. This board keeps the first number. Each row is an exact quote with its date and its source, the kill this desk assigned by the one rule below, and the weekly close that decided it. A revision is a new row; the old row stays and is graded on its own window. None of this is in <a href="./">the record's</a> tally. These are not this desk's calls. This desk's own wrong rows are <a href="misses.html">here</a>, and they were on the page first.</p>
+  <!-- 22 Oct 2026, note 54, plain words. This read: <p class="body">A bank publishes a target with a level and a window and nothing that could prove it wrong. When the window passes the target is revised, and the first number is gone. This board keeps the first number. Each row is an exact quote with its date and its source, the kill this desk assigned by the one rule below, and the weekly close that decided it. A revision is a new row; the old row stays and is graded on its own window. None of this is in <a href="./">the record's</a> tally. These are not this desk's calls. This desk's own wrong rows are <a href="misses.html">here</a>, and they were on the page first.</p> -->
+<p class="body">A bank publishes a price target with a deadline and nothing that could prove it wrong. When the deadline passes, the target is revised and the first number is gone. This board keeps the first number. Each row is the exact quote with its date and source, what would prove it wrong under the one rule below, and the weekly close that decided it. A revised target is a new row; the old one stays and is graded on its own deadline. None of this counts in <a href="./">my own record</a>. These are not my calls. My own wrong calls are <a href="misses.html">here</a>, and they were on the page first.</p>
 
   <div class="count" id="count" hidden>
-    <div class="open"><div class="n" id="c-open">·</div><div class="t">open, clock running</div></div>
+    <div class="open"><div class="n" id="c-open">·</div><!-- 22 Oct 2026, note 54, plain words. This read: <div class="t">open, clock running</div> -->
+<div class="t">open, deadline not yet</div></div>
     <div class="pass"><div class="n" id="c-pass">·</div><div class="t">held</div></div>
     <div class="miss"><div class="n" id="c-miss">·</div><div class="t">wrong, kept</div></div>
     <div><div class="n" id="c-all">·</div><div class="t">targets on the board</div></div>
   </div>
 
+  <p class="body">In plain words: a target is held if price closes a week at the target or beyond it before its deadline. If the deadline passes without that close, it is wrong.</p>
   <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if a weekly close on the target's side of it, at or above for a target above price, at or below for a target below, prints on or before the last weekly close inside the window. Wrong if the window closes without one. A range is graded on its nearer bound. Graded on the TVC weekly close, read off this desk's own chart, the same close every row on the record is graded on; where a close predates this desk's own reads the row says as reported and the figure is replaced when it is read, and a grade never turns on the decimals. A bank's target is usually read as a print on any day; this page grades closes and nothing else, and says so here so nobody is surprised.</div>
   <!-- 8 Sep 2026: the sentence on this desk's own chart gained its "as reported" clause when the Citi March row was graded on reported February closes. -->
 
   <div class="tbl">
     <table id="board">
-      <thead><tr><th>Published</th><th>Source</th><th>Target</th><th>Window</th><th>As published</th><th>Grade</th></tr></thead>
+      <thead><tr><th>Published</th><th>Source</th><th>Target</th><!-- 22 Oct 2026, note 54, plain words. This read: <th>Window</th> -->
+<th>Deadline</th><th>As published</th><th>Grade</th></tr></thead>
       <tbody id="rows"></tbody>
     </table>
   </div>
@@ -208,7 +292,9 @@
   <p class="fine">A claim with no window cannot be graded and is not a target; it is a view. Averages for a year cannot be graded on a close. "Toward", "approach" and "could" are not levels. The board leaves them out by name so the leaving out is itself on the record.</p>
 
   <div class="k">How a row gets here</div>
-  <p class="body">The desk reads the wires and the banks' own research notes as they are reported, on a fixed day each week, and takes a row only when it has an institution, one direction, a level, and a window that closes on a date. The quote is copied, never paraphrased. When the window's last weekly close prints, the row is graded on that close and the result is written beside it, and it does not move again. Seen a dated target that is not here? The desk takes them by message, with the link. One rule, whoever published it.</p>
+  <p class="body">The desk reads the wires and the banks' own research notes as they are reported, on a fixed day each week, <!-- 22 Oct 2026, note 54, plain words. This read: and takes a row only when it has an institution, one direction, a level, and a window that closes on a date. -->
+and takes a row only when it has an institution, one direction, a level, and a deadline that falls on a date. The quote is copied, never paraphrased. <!-- 22 Oct 2026, note 54, plain words. This read: When the window's last weekly close prints, the row is graded on that close -->
+When the last weekly close before the deadline prints, the row is graded on that close and the result is written beside it, and it does not move again. Seen a dated target that is not here? The desk takes them by message, with the link. One rule, whoever published it.</p>
 
   <footer>
     <span class="law">Named before · Graded after · Nothing deleted</span>
@@ -275,7 +361,7 @@ function render(){
       <td class="lv">${/^[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pgl" href="${esc(t.page)}">${num(t.level)}</a>` : num(t.level)}<div class="win" style="font-weight:400;font-size:11px;color:var(--ink-6);margin-top:4px">${esc((t.metal || "Gold").toLowerCase())} · ${t.side === "above" ? "from below" : "from above"}</div></td>
       <td class="win">${esc(t.windowText)}<br><span style="color:var(--ink-6)">to ${esc(fmt(t.window))}</span></td>
       <td class="q">“${esc(t.quote)}”<a href="${esc(t.link)}" rel="nofollow noopener">source</a>${t.note ? `<div class="res">${esc(t.note)}</div>` : ""}
-        <details class="kill"><summary>The kill, assigned</summary><p>${esc(t.kill)}</p></details></td>
+        <details class="kill"><summary>What would prove it wrong</summary><p>${esc(t.kill)}</p></details></td>
       <td class="gr"><span class="g ${g[1]}"><i></i>${g[0]}</span>${t.result ? `<div class="res">${esc(t.result)}</div>` : ""}${/^[a-z0-9.-]+\.html$/.test(t.page || "") ? `<a class="pg" href="${esc(t.page)}">The row, in full &rsaquo;</a>` : ""}<!-- the row's page, 24 Sep 2026, record note 35 --></td>
     </tr>`;
   }).join("");
@@ -300,5 +386,15 @@ var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.o
 n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
 </script>
+<!-- HOUSE TAIL START (make_house.js, note 53) -->
+<nav class="hs-bot" aria-label="The record">
+  <a href="./"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
+  <a href="./#results"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Results</span></a>
+  <a href="method.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
+  <a href="./#banks" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/></svg><span>Banks</span></a>
+  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Join</span></a>
+</nav>
+<script src="house.js?v=d64c7fb2b7" defer></script>
+<!-- HOUSE TAIL END -->
 </body>
 </html>

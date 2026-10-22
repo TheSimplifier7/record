@@ -17,9 +17,17 @@
    The counter (note 37): the page view, and one event when a TradingView
    door is used, by path alone: door-tradingview/<where>. Nothing else.
 
+   22 October 2026, note 53 on the record: THE HOUSE. The band, the head of
+   the page and the bar at the foot of a phone are the record's own now, from
+   house_parts.js; house.js carries the switch, the strip and the counter's
+   door event, which EVENTS_JS below carried until today. The rest of the
+   look is unchanged but for the buttons and the cards, which take the
+   head's rounder corners.
+
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
    ========================================================================= */
 "use strict";
+const H = require("./house_parts.js");
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
@@ -68,13 +76,13 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--focus);outline-offset
 .band nav a{color:var(--navy-ink-2);text-decoration:none}
 .band nav a:hover{color:var(--navy-ink)}
 .band nav a.btn,.band nav a.btn:hover{color:var(--btn-ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:6px;background:var(--btn);color:var(--btn-ink);
-font:700 .95rem/1 var(--f-ui);letter-spacing:.02em;text-decoration:none;border:0}
-.btn:hover{background:var(--btn-hover)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:10px;background:linear-gradient(180deg,#f2c062,#e0a93b);color:#0b1324;
+font:700 .95rem/1 var(--f-ui);letter-spacing:.02em;text-decoration:none;border:0;box-shadow:0 12px 28px -16px rgba(224,169,59,.7),inset 0 0 0 1px rgba(255,255,255,.2)}
+.btn:hover{background:linear-gradient(180deg,#f5c96f,#e6b048)}
 .btn.quiet{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--rule-2)}
 .btn.quiet:hover{box-shadow:inset 0 0 0 1.5px var(--ink-3);background:transparent}
 .band .btn{min-height:36px;padding:0 14px;font-size:.85rem}
-main{padding-block:clamp(28px,5vw,56px) 40px}
+main{padding-block:clamp(26px,4vw,44px) 40px}
 .eyebrow{font:600 .8rem/1.2 var(--f-cond);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px}
 h1{font:700 clamp(2rem,5.4vw,3.1rem)/1.04 var(--f-cond);letter-spacing:.01em;margin:0 0 12px;text-wrap:balance}
 h2{font:700 1.35rem/1.15 var(--f-cond);letter-spacing:.02em;margin:0 0 14px;text-wrap:balance}
@@ -83,7 +91,7 @@ h2{font:700 1.35rem/1.15 var(--f-cond);letter-spacing:.02em;margin:0 0 14px;text
 .key b{color:var(--ink);font-weight:700}
 .fine{font-size:.84rem;color:var(--ink-3);margin:8px 0 0;line-height:1.45}
 .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:14px;margin:36px 0 0}
-.door{border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--raise);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.door{border:1px solid var(--rule);border-radius:14px;padding:20px;background:var(--raise);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .door p{margin:0}
 .door .t{font:700 1.05rem/1.2 var(--f-cond);letter-spacing:.04em;text-transform:uppercase}
 footer{border-top:1px solid var(--rule);margin-top:44px;padding-block:24px 40px;color:var(--ink-3);font-size:.88rem}
@@ -130,12 +138,17 @@ ${THEME_JS}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>${CSS}${extraCss || ""}</style>
+${H.headTags({ fonts: false })}
 ${GC_TAG}
 </head>
-<body>`;
+<body class="hs-has-bot">`;
 }
 
-function band(where) {
+/* 22 Oct 2026, note 53: the band is the record's own, from house_parts.js, with the strip above it. It read: */
+function band(where, current) {
+  return H.top(current || null, where);
+}
+function bandBefore22Oct(where) {
   return `<header class="band"><div class="wrap">
   <a class="mark" href="./">THE SIMPLIFIER</a>
   <nav aria-label="The site"><a href="./">The record</a><a class="hide-phone" href="weeks.html">Week by week</a><a class="hide-phone" href="tools.html">The free tools</a><a class="btn" href="${TV}" data-tv="${esc(where)}-band">Join me on TradingView</a></nav>
@@ -151,7 +164,7 @@ function doors(where, { tools = true } = {}) {
 </div>`;
 }
 
-function foot({ counsel = true } = {}) {
+function foot({ counsel = true, current = null } = {}) {
   return `<footer><div class="wrap">
   ${counsel ? `<p class="counsel">${esc(COUNSEL[0])} ${esc(COUNSEL[1])}</p>` : ""}
   <div class="meta">
@@ -161,10 +174,10 @@ function foot({ counsel = true } = {}) {
     <span>The Fan · <a href="method.html">what it is, and the terms</a></span>
   </div>
 </div></footer>
-${EVENTS_JS}
+${H.tail(current)}
 </body>
 </html>
 `;
 }
 
-module.exports = { SITE, TV, X, GC_TAG, KEY, COUNSEL, esc, MONTHS, longDate, weekday, addDays, vOf, imageOf, head, band, keyLine, doors, foot };
+module.exports = { SITE, TV, X, GC_TAG, KEY, COUNSEL, esc, MONTHS, longDate, weekday, addDays, vOf, imageOf, head, band, hero: H.hero, keyLine, doors, foot };
