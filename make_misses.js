@@ -126,7 +126,8 @@ const out = `<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The ones I got wrong</title>
-<meta name="description" content="Every call on the record graded wrong, in full: the level, what would prove it wrong, the close that did, and what was written about it afterwards. Nothing deleted.">
+<!-- 23 Oct 2026, note 56: under 160 characters, as Bing asks; it ended "afterwards. Nothing deleted." -->
+<meta name="description" content="Every call on the record graded wrong, in full: the level, what would prove it wrong, the close that did, and what was written about it afterwards.">
 <meta property="og:title" content="The ones I got wrong">
 <meta property="og:description" content="${misses.length} calls, posted before the move, graded wrong on the close and kept, with what would prove each wrong, the close that did and the corrections that followed.">
 <!-- the link card, 24 Sep 2026, note 37 on the record -->

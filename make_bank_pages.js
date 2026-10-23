@@ -142,6 +142,17 @@ const count = rows => ({ pass: rows.filter(r => r.grade === "pass").length, miss
 /* 24 Sep 2026, note 35: a window that opens on a figure takes a separator, so "4,800 0 to 3 months" reads "4,800 · 0 to 3 months". */
 const lvWin = (lv, w) => lv + (/^\d/.test(String(w)) ? " · " : " ") + w;
 const title = r => `${r.house} · ${r.metal === "Gold" ? "" : r.metal.toLowerCase() + " "}${lvWin(fmtNum(r.level, r.level % 1 ? 2 : 0), r.windowText)}`;
+/* 23 Oct 2026, note 56: the title in search and on a shared link says what the page is, in the words people search with:
+   the house, the metal, "price target", the level, the window in the house's own words, and the grade. A window with no
+   year in it takes the month and year the house said it. The page's own heading is unchanged. */
+const MON3 = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const seoTitle = r => {
+  const w = String(r.windowText), lv = fmtNum(r.level, r.level % 1 ? 2 : 0);
+  const d = new Date(r.published + "T00:00:00Z");
+  const win = (/^(by|for|in) /i.test(w) ? " " : ", ") + w + (/\b20\d\d\b/.test(w) ? "" : ` (set ${MON3[d.getUTCMonth()]} ${d.getUTCFullYear()})`);
+  const g = { pending: "open", pass: "held", miss: "wrong", notest: "never reached" }[r.grade] || r.grade;
+  return `${r.house} ${r.metal.toLowerCase()} price target ${lv}${win}: ${g}`;
+};
 
 /* ---------------------------------------------------------------- the page */
 const CSS = `
@@ -218,19 +229,23 @@ function page(r) {
   const left = LEFT.filter(l => l.house === r.house);
   const story = BACKSTORY[r.slug] || (r.note ? [r.note] : []);
   const url = `${SITE}${r.slug}.html`, card = `${SITE}${r.slug}.png`;
-  const desc = `${r.house} said ${lvWin(fmtNum(r.level, dec), r.windowText)}, on ${fmtDate(r.published)}. Graded on the weekly close by one rule. ${r.grade === "pending" ? when + "." : gw + "."}`;
+  /* 23 Oct 2026, note 56. This read: `${r.house} said ${lvWin(fmtNum(r.level, dec), r.windowText)}, on ${fmtDate(r.published)}. Graded on the weekly close by one rule. ${r.grade === "pending" ? when + "." : gw + "."}` */
+  /* Under 160 characters, as Bing asks: the long form when it fits, else the short. */
+  const descLong = `${r.house} said ${r.metal.toLowerCase()} ${lvWin(fmtNum(r.level, dec), r.windowText)}, on ${fmtDate(r.published)}. The quote, the closes since, and its grade by one rule: ${r.grade === "pending" ? "open" : gw.toLowerCase()}.`;
+  const desc = descLong.length <= 155 ? descLong : `${r.house} said ${r.metal.toLowerCase()} ${lvWin(fmtNum(r.level, dec), r.windowText)}. The quote, the closes since, and its grade: ${r.grade === "pending" ? "open" : gw.toLowerCase()}.`;
+  if (desc.length > 159) throw new Error(r.slug + ": its description runs to " + desc.length + " characters; Bing asks for under 160. No page written.");
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title(r))} · The Bank Board</title>
+<title>${esc(seoTitle(r))} · The Simplifier</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#0f1e3a">
 ${HS.earlyTags()}
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${esc(title(r))}">
+<meta property="og:title" content="${esc(seoTitle(r))}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${card}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">

@@ -128,7 +128,11 @@ check(CALLS.every(c => GRADES.includes(c.grade)), "every row carries a grade the
 const n = g => CALLS.filter(c => c.grade === g).length;
 const tally = { pass: n("pass"), miss: n("miss"), partial: n("partial"), notest: n("notest"), open: n("pending") };
 tally.resolved = tally.pass + tally.miss + tally.partial;
-const ph = id => +((idx.match(new RegExp('id="' + id + '">\\s*(\\d+)\\s*<')) || [])[1]);
+/* 23 Oct 2026: read the live markup only. The placeholders a note keeps word for word inside a comment (note 54's
+   table note among them) are the page's history, not its count. It read:
+const ph = id => +((idx.match(new RegExp('id="' + id + '">\\s*(\\d+)\\s*<')) || [])[1]); */
+const idxNoComment = idx.replace(/<!--[\s\S]*?-->/g, "");
+const ph = id => +((idxNoComment.match(new RegExp('id="' + id + '">\\s*(\\d+)\\s*<')) || [])[1]);
 check(ph("t-resolved") === tally.resolved && ph("t-pass") === tally.pass && ph("t-miss") === tally.miss && ph("t-open") === tally.open,
   `static tally placeholders read ${ph("t-resolved")}/${ph("t-pass")}/${ph("t-miss")}/${ph("t-open")}, computed ${tally.resolved}/${tally.pass}/${tally.miss}/${tally.open}`);
 

@@ -176,7 +176,8 @@ function weekPage(m, i) {
   const closeDay = (ls.find(l => l.r.graded_on_close) || {}).r;
   const friDate = closeDay ? closeDay.graded_on_close : fri;
   const title = `${cap(metalsText(ls))}: the week of ${longDate(m)} · The Simplifier`;
-  const description = `The week of ${longDate(m)} on The Simplifier's record. ${P.KEY.join(" ")}`;
+  /* 23 Oct 2026, note 56: under 160 characters, as Bing asks. This read: `The week of ${longDate(m)} on The Simplifier's record. ${P.KEY.join(" ")}` */
+  const description = `The week of ${longDate(m)} on the record. ${P.KEY.join(" ")}`;
   const img = imageFor(m, ls);
   const prev = mondays[mondays.indexOf(m) - 1], next = mondays[mondays.indexOf(m) + 1];
   const status = graded ? `Graded on Friday's close, ${longDate(friDate)}. ${countText(ls)}.` : `Open until Friday's close, ${longDate(fri)}. ${countText(ls)}.`;
