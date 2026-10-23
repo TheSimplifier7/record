@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-23",
-  "generated": "2026-10-23T21:11:32.509Z",
+  "generated": "2026-10-23T23:53:37.996Z",
   "tally": {
     "resolved": 41,
     "held": 32,
@@ -1559,6 +1559,12 @@
       "kind": "standard",
       "title": "The Stop Odds joins the free tools, and the titles say what the pages are, 23 October 2026.",
       "body": "None of it touches a row, a grade, a figure, a date or a line. THE STOP ODDS. Version 3.1 was published on TradingView on 23 October 2026, and it joins the free tools here: on the tools page, with its title and the first paragraph of its description as published, in the way in under the scene, and on the TradingView door. Its door goes to the profile until its own address is in hand. THE TITLES. This page's title in search and on a shared link read The Simplifier · The Record. It now reads Gold & silver this week: levels named Monday, graded Friday. Each bank target's page now names the house, the metal, the price target, its window in the house's own words and its grade, and the bank board's reads Bank gold price targets for 2026, graded on the weekly close. Each replaced title is kept in the source beside its new one. The headings on the pages are unchanged. THE DESCRIPTIONS. The line under each page's title in search now runs under 160 characters, as Bing asks: this page's is the shorter opening that phones have read since Round 3, and the longer ones lost their last sentence or took a shorter form. Each replaced line is kept in the source of the page or of the script that writes it."
+    },
+    {
+      "n": "57",
+      "kind": "standard",
+      "title": "The link card, 24 October 2026. The picture under every link to this page is drawn as the Friday card.",
+      "body": "By the founder's word of 24 October 2026. None of it touches a row, a grade, a figure, a date or a line. THE CARD. The image X and other apps show under a link to this page was three panels with the count in a row (note 48). It is now drawn as the Friday card of 23 October: the founder's face as the mark, the count large, each metal drawn as its Friday closes since July with every week's line on it, the week's grade, close and distance beside each, and every line since June along the foot, oldest first. It is still drawn by make_week_card.js from record.json alone, every Monday and every Friday, so it can never show a row, a close or a count this page does not hold, and its address still carries the card's own fingerprint, so a redrawn card is a new address (note 48). X lays this page's title over the bottom left of a card, so nothing that has to be read sits there. THE CARDS BEFORE. The cards of earlier weeks stay as they were drawn, beside the record."
     }
   ],
   "targets": [
