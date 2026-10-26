@@ -4,8 +4,8 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-10-23",
-  "generated": "2026-10-23T23:53:37.996Z",
+  "last_updated": "2026-10-26",
+  "generated": "2026-10-26T21:58:12.464Z",
   "tally": {
     "resolved": 41,
     "held": 32,
@@ -1565,6 +1565,12 @@
       "kind": "standard",
       "title": "The link card, 24 October 2026. The picture under every link to this page is drawn as the Friday card.",
       "body": "By the founder's word of 24 October 2026. None of it touches a row, a grade, a figure, a date or a line. THE CARD. The image X and other apps show under a link to this page was three panels with the count in a row (note 48). It is now drawn as the Friday card of 23 October: the founder's face as the mark, the count large, each metal drawn as its Friday closes since July with every week's line on it, the week's grade, close and distance beside each, and every line since June along the foot, oldest first. It is still drawn by make_week_card.js from record.json alone, every Monday and every Friday, so it can never show a row, a close or a count this page does not hold, and its address still carries the card's own fingerprint, so a redrawn card is a new address (note 48). X lays this page's title over the bottom left of a card, so nothing that has to be read sits there. THE CARDS BEFORE. The cards of earlier weeks stay as they were drawn, beside the record."
+    },
+    {
+      "n": "58",
+      "kind": "standard",
+      "title": "No lines this week, 26 October 2026. The week the clocks change, the deadline comes an hour earlier, and it was missed.",
+      "body": "The clocks changed in Europe on 25 October and change in New York on 1 November. In that week the box freezes at 15:00 in Madrid and the first 8h close after it prints at 22:00, an hour earlier than usual, as note 43 sets out. This week's lines were read off the founder's charts at 15:02 and 15:03, but none was on this page by 22:00. A line put up after that close could have been named with the close in sight, and the rule exists so that never happens, so no line is named for the week of 26 October, for any metal. There is no line of this week to grade on 30 October, and the tally does not move. Lines are named again on Monday 2 November, with the box frozen at 16:00 and the deadline at 23:00 in Madrid."
     }
   ],
   "targets": [
