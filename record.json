@@ -4,14 +4,14 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-10-26",
-  "generated": "2026-10-26T21:58:12.464Z",
+  "last_updated": "2026-10-27",
+  "generated": "2026-10-26T23:25:07.827Z",
   "tally": {
     "resolved": 41,
     "held": 32,
     "wrong": 9,
     "never_reached": 5,
-    "open": 0,
+    "open": 3,
     "hit": 4,
     "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
@@ -55,6 +55,99 @@
   "rows": [
     {
       "id": "lrow-0",
+      "anchor": "r-2026-10-26-gold-4077-04",
+      "url": "https://thesimplifier7.com/#r-2026-10-26-gold-4077-04",
+      "named": "2026-10-26",
+      "type": "Map",
+      "metal": "Gold",
+      "level": "4,077.04",
+      "book": "Turn",
+      "call": "Gold stays below 4,077.04, his own level inside last week's range of 3,975.49 to 4,190.38: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
+      "kill": "a weekly close above 4,077.04.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 2,
+      "side": "copper",
+      "line": "4,077.04",
+      "line_from": "own level",
+      "box": null,
+      "last_range": [
+        "3,975.49",
+        "4,190.38"
+      ],
+      "read_at": "15:02 to 15:03 CET",
+      "close": null,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-27",
+      "commit": null
+    },
+    {
+      "id": "lrow-1",
+      "anchor": "r-2026-10-26-silver-55-624",
+      "url": "https://thesimplifier7.com/#r-2026-10-26-silver-55-624",
+      "named": "2026-10-26",
+      "type": "Map",
+      "metal": "Silver",
+      "level": "55.624",
+      "book": "Turn",
+      "call": "Silver stays below 55.624, his own level inside last week's range of 53.0091 to 58.601: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
+      "kill": "a weekly close above 55.624.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 2,
+      "side": "copper",
+      "line": "55.624",
+      "line_from": "own level",
+      "box": null,
+      "last_range": [
+        "53.0091",
+        "58.601"
+      ],
+      "read_at": "15:02 to 15:03 CET",
+      "close": null,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-27",
+      "commit": null
+    },
+    {
+      "id": "lrow-2",
+      "anchor": "r-2026-10-26-platinum-1578-16",
+      "url": "https://thesimplifier7.com/#r-2026-10-26-platinum-1578-16",
+      "named": "2026-10-26",
+      "type": "Map",
+      "metal": "Platinum",
+      "level": "1,578.16",
+      "book": "Turn",
+      "call": "Platinum stays below 1,578.16, his own level inside last week's range of 1,540.062 to 1,663.40: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
+      "kill": "a weekly close above 1,578.16.",
+      "result": null,
+      "grade": "pending",
+      "grade_word": "open",
+      "grammar": 2,
+      "side": "copper",
+      "line": "1,578.16",
+      "line_from": "own level",
+      "box": null,
+      "last_range": [
+        "1,540.062",
+        "1,663.40"
+      ],
+      "read_at": "15:02 to 15:03 CET",
+      "close": null,
+      "pre_standard": false,
+      "graded_on_close": null,
+      "graded_at": null,
+      "written": "2026-10-27",
+      "commit": null
+    },
+    {
+      "id": "lrow-3",
       "anchor": "r-2026-10-19-gold-4190-38",
       "url": "https://thesimplifier7.com/#r-2026-10-19-gold-4190-38",
       "named": "2026-10-19",
@@ -82,10 +175,10 @@
       "graded_on_close": "2026-10-23",
       "graded_at": "2026-10-23T23:00:00+02:00",
       "written": "2026-10-23",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/02b6b14"
     },
     {
-      "id": "lrow-1",
+      "id": "lrow-4",
       "anchor": "r-2026-10-19-silver-57-851",
       "url": "https://thesimplifier7.com/#r-2026-10-19-silver-57-851",
       "named": "2026-10-19",
@@ -113,10 +206,10 @@
       "graded_on_close": "2026-10-23",
       "graded_at": "2026-10-23T23:00:00+02:00",
       "written": "2026-10-23",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/02b6b14"
     },
     {
-      "id": "lrow-2",
+      "id": "lrow-5",
       "anchor": "r-2026-10-19-platinum-1659-10",
       "url": "https://thesimplifier7.com/#r-2026-10-19-platinum-1659-10",
       "named": "2026-10-19",
@@ -144,10 +237,10 @@
       "graded_on_close": "2026-10-23",
       "graded_at": "2026-10-23T23:00:00+02:00",
       "written": "2026-10-23",
-      "commit": null
+      "commit": "https://github.com/TheSimplifier7/record/commit/02b6b14"
     },
     {
-      "id": "lrow-3",
+      "id": "lrow-6",
       "anchor": "r-2026-10-12-gold-4217-19",
       "url": "https://thesimplifier7.com/#r-2026-10-12-gold-4217-19",
       "named": "2026-10-12",
@@ -182,7 +275,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/afc859b"
     },
     {
-      "id": "lrow-4",
+      "id": "lrow-7",
       "anchor": "r-2026-10-12-silver-61-449",
       "url": "https://thesimplifier7.com/#r-2026-10-12-silver-61-449",
       "named": "2026-10-12",
@@ -217,7 +310,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/afc859b"
     },
     {
-      "id": "lrow-5",
+      "id": "lrow-8",
       "anchor": "r-2026-10-12-platinum-1710-80",
       "url": "https://thesimplifier7.com/#r-2026-10-12-platinum-1710-80",
       "named": "2026-10-12",
@@ -252,7 +345,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/afc859b"
     },
     {
-      "id": "lrow-6",
+      "id": "lrow-9",
       "anchor": "r-2026-10-05-gold-4170-41",
       "url": "https://thesimplifier7.com/#r-2026-10-05-gold-4170-41",
       "named": "2026-10-05",
@@ -287,7 +380,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-7",
+      "id": "lrow-10",
       "anchor": "r-2026-10-05-silver-62-036",
       "url": "https://thesimplifier7.com/#r-2026-10-05-silver-62-036",
       "named": "2026-10-05",
@@ -322,7 +415,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-8",
+      "id": "lrow-11",
       "anchor": "r-2026-10-05-platinum-1699-00",
       "url": "https://thesimplifier7.com/#r-2026-10-05-platinum-1699-00",
       "named": "2026-10-05",
@@ -357,7 +450,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/62dd841"
     },
     {
-      "id": "lrow-9",
+      "id": "lrow-12",
       "anchor": "r-2026-09-28-gold-4280-50",
       "url": "https://thesimplifier7.com/#r-2026-09-28-gold-4280-50",
       "named": "2026-09-28",
@@ -392,7 +485,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-10",
+      "id": "lrow-13",
       "anchor": "r-2026-09-28-silver-64-212",
       "url": "https://thesimplifier7.com/#r-2026-09-28-silver-64-212",
       "named": "2026-09-28",
@@ -427,7 +520,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-11",
+      "id": "lrow-14",
       "anchor": "r-2026-09-28-platinum-1775-80",
       "url": "https://thesimplifier7.com/#r-2026-09-28-platinum-1775-80",
       "named": "2026-09-28",
@@ -462,7 +555,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/eaee555"
     },
     {
-      "id": "lrow-12",
+      "id": "lrow-15",
       "anchor": "r-2026-09-20-gold-4337",
       "url": "https://thesimplifier7.com/#r-2026-09-20-gold-4337",
       "named": "2026-09-20",
@@ -482,7 +575,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-13",
+      "id": "lrow-16",
       "anchor": "r-2026-09-20-silver-64-08",
       "url": "https://thesimplifier7.com/#r-2026-09-20-silver-64-08",
       "named": "2026-09-20",
@@ -502,7 +595,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-14",
+      "id": "lrow-17",
       "anchor": "r-2026-09-20-platinum-1746",
       "url": "https://thesimplifier7.com/#r-2026-09-20-platinum-1746",
       "named": "2026-09-20",
@@ -522,7 +615,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/22e78b5"
     },
     {
-      "id": "lrow-15",
+      "id": "lrow-18",
       "anchor": "r-2026-09-06-gold-4357",
       "url": "https://thesimplifier7.com/#r-2026-09-06-gold-4357",
       "named": "2026-09-06",
@@ -542,7 +635,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-16",
+      "id": "lrow-19",
       "anchor": "r-2026-09-06-platinum-1797-40",
       "url": "https://thesimplifier7.com/#r-2026-09-06-platinum-1797-40",
       "named": "2026-09-06",
@@ -562,7 +655,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/10cf76a"
     },
     {
-      "id": "lrow-17",
+      "id": "lrow-20",
       "anchor": "r-2026-08-30-gold-4350",
       "url": "https://thesimplifier7.com/#r-2026-08-30-gold-4350",
       "named": "2026-08-30",
@@ -582,7 +675,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-18",
+      "id": "lrow-21",
       "anchor": "r-2026-08-30-platinum-1797-40",
       "url": "https://thesimplifier7.com/#r-2026-08-30-platinum-1797-40",
       "named": "2026-08-30",
@@ -602,7 +695,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3b563f4"
     },
     {
-      "id": "lrow-19",
+      "id": "lrow-22",
       "anchor": "r-2026-08-23-gold-4308",
       "url": "https://thesimplifier7.com/#r-2026-08-23-gold-4308",
       "named": "2026-08-23",
@@ -622,7 +715,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-20",
+      "id": "lrow-23",
       "anchor": "r-2026-08-23-silver-66-66",
       "url": "https://thesimplifier7.com/#r-2026-08-23-silver-66-66",
       "named": "2026-08-23",
@@ -642,7 +735,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-21",
+      "id": "lrow-24",
       "anchor": "r-2026-08-23-platinum-1790-84",
       "url": "https://thesimplifier7.com/#r-2026-08-23-platinum-1790-84",
       "named": "2026-08-23",
@@ -662,7 +755,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/2e4ddff"
     },
     {
-      "id": "lrow-22",
+      "id": "lrow-25",
       "anchor": "r-2026-08-16-gold-4281",
       "url": "https://thesimplifier7.com/#r-2026-08-16-gold-4281",
       "named": "2026-08-16",
@@ -682,7 +775,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-23",
+      "id": "lrow-26",
       "anchor": "r-2026-08-16-silver-66-60",
       "url": "https://thesimplifier7.com/#r-2026-08-16-silver-66-60",
       "named": "2026-08-16",
@@ -702,7 +795,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a0e26cb"
     },
     {
-      "id": "lrow-24",
+      "id": "lrow-27",
       "anchor": "r-2026-08-14-gold-4268",
       "url": "https://thesimplifier7.com/#r-2026-08-14-gold-4268",
       "named": "2026-08-14",
@@ -722,7 +815,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-25",
+      "id": "lrow-28",
       "anchor": "r-2026-08-14-silver-66-86",
       "url": "https://thesimplifier7.com/#r-2026-08-14-silver-66-86",
       "named": "2026-08-14",
@@ -742,7 +835,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/38fdc34"
     },
     {
-      "id": "lrow-26",
+      "id": "lrow-29",
       "anchor": "r-2026-08-07-gold-4098-275",
       "url": "https://thesimplifier7.com/#r-2026-08-07-gold-4098-275",
       "named": "2026-08-07",
@@ -762,7 +855,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-27",
+      "id": "lrow-30",
       "anchor": "r-2026-08-07-silver-61-02",
       "url": "https://thesimplifier7.com/#r-2026-08-07-silver-61-02",
       "named": "2026-08-07",
@@ -782,7 +875,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-28",
+      "id": "lrow-31",
       "anchor": "r-2026-08-07-gold-3942-430",
       "url": "https://thesimplifier7.com/#r-2026-08-07-gold-3942-430",
       "named": "2026-08-07",
@@ -802,7 +895,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/5d671f6"
     },
     {
-      "id": "lrow-29",
+      "id": "lrow-32",
       "anchor": "r-2026-07-27-gold-4098",
       "url": "https://thesimplifier7.com/#r-2026-07-27-gold-4098",
       "named": "2026-07-27",
@@ -822,7 +915,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-30",
+      "id": "lrow-33",
       "anchor": "r-2026-07-27-gold-3942",
       "url": "https://thesimplifier7.com/#r-2026-07-27-gold-3942",
       "named": "2026-07-27",
@@ -842,7 +935,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-31",
+      "id": "lrow-34",
       "anchor": "r-2026-07-27-silver-61-02",
       "url": "https://thesimplifier7.com/#r-2026-07-27-silver-61-02",
       "named": "2026-07-27",
@@ -862,7 +955,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/c03276a"
     },
     {
-      "id": "lrow-32",
+      "id": "lrow-35",
       "anchor": "r-2026-07-21-gold-4098",
       "url": "https://thesimplifier7.com/#r-2026-07-21-gold-4098",
       "named": "2026-07-21",
@@ -882,7 +975,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-33",
+      "id": "lrow-36",
       "anchor": "r-2026-07-21-gold-3810",
       "url": "https://thesimplifier7.com/#r-2026-07-21-gold-3810",
       "named": "2026-07-21",
@@ -902,7 +995,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-34",
+      "id": "lrow-37",
       "anchor": "r-2026-07-21-silver-61-02",
       "url": "https://thesimplifier7.com/#r-2026-07-21-silver-61-02",
       "named": "2026-07-21",
@@ -922,7 +1015,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/3d124fa"
     },
     {
-      "id": "lrow-35",
+      "id": "lrow-38",
       "anchor": "r-2026-07-12-gold-4098",
       "url": "https://thesimplifier7.com/#r-2026-07-12-gold-4098",
       "named": "2026-07-12",
@@ -942,7 +1035,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-36",
+      "id": "lrow-39",
       "anchor": "r-2026-07-12-silver-61-02",
       "url": "https://thesimplifier7.com/#r-2026-07-12-silver-61-02",
       "named": "2026-07-12",
@@ -962,7 +1055,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-37",
+      "id": "lrow-40",
       "anchor": "r-2026-07-12-gold-4305-32",
       "url": "https://thesimplifier7.com/#r-2026-07-12-gold-4305-32",
       "named": "2026-07-12",
@@ -982,7 +1075,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/a500967"
     },
     {
-      "id": "lrow-38",
+      "id": "lrow-41",
       "anchor": "r-2026-07-08-gold-4098",
       "url": "https://thesimplifier7.com/#r-2026-07-08-gold-4098",
       "named": "2026-07-08",
@@ -1002,7 +1095,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-39",
+      "id": "lrow-42",
       "anchor": "r-2026-07-07-silver-61-02",
       "url": "https://thesimplifier7.com/#r-2026-07-07-silver-61-02",
       "named": "2026-07-07",
@@ -1022,7 +1115,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-40",
+      "id": "lrow-43",
       "anchor": "r-2026-07-05-gold-4098-4307",
       "url": "https://thesimplifier7.com/#r-2026-07-05-gold-4098-4307",
       "named": "2026-07-05",
@@ -1042,7 +1135,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/093f6ae"
     },
     {
-      "id": "lrow-41",
+      "id": "lrow-44",
       "anchor": "r-2026-06-29-gold-4500-3809",
       "url": "https://thesimplifier7.com/#r-2026-06-29-gold-4500-3809",
       "named": "2026-06-29",
@@ -1062,7 +1155,7 @@
       "commit": "https://github.com/TheSimplifier7/record/commit/7e9b339"
     },
     {
-      "id": "lrow-42",
+      "id": "lrow-45",
       "anchor": "r-2026-06-22-gold-4098-4633",
       "url": "https://thesimplifier7.com/#r-2026-06-22-gold-4098-4633",
       "named": "2026-06-22",
@@ -1082,7 +1175,7 @@
       "commit": null
     },
     {
-      "id": "lrow-43",
+      "id": "lrow-46",
       "anchor": "r-2026-06-15-gold-4307",
       "url": "https://thesimplifier7.com/#r-2026-06-15-gold-4307",
       "named": "2026-06-15",
@@ -1102,7 +1195,7 @@
       "commit": null
     },
     {
-      "id": "lrow-44",
+      "id": "lrow-47",
       "anchor": "r-2026-06-11-gold-4098",
       "url": "https://thesimplifier7.com/#r-2026-06-11-gold-4098",
       "named": "2026-06-11",
@@ -1122,7 +1215,7 @@
       "commit": null
     },
     {
-      "id": "lrow-45",
+      "id": "lrow-48",
       "anchor": "r-2026-06-07-gold-4308",
       "url": "https://thesimplifier7.com/#r-2026-06-07-gold-4308",
       "named": "2026-06-07",
@@ -1571,6 +1664,12 @@
       "kind": "standard",
       "title": "No lines this week, 26 October 2026. The week the clocks change, the deadline comes an hour earlier, and it was missed.",
       "body": "The clocks changed in Europe on 25 October and change in New York on 1 November. In that week the box freezes at 15:00 in Madrid and the first 8h close after it prints at 22:00, an hour earlier than usual, as note 43 sets out. This week's lines were read off the founder's charts at 15:02 and 15:03, but none was on this page by 22:00. A line put up after that close could have been named with the close in sight, and the rule exists so that never happens, so no line is named for the week of 26 October, for any metal. There is no line of this week to grade on 30 October, and the tally does not move. Lines are named again on Monday 2 November, with the box frozen at 16:00 and the deadline at 23:00 in Madrid."
+    },
+    {
+      "n": "59",
+      "kind": "correction",
+      "title": "The lines of 26 October, named late by the founder's ruling, 27 October 2026. Note 58 stands as written that night.",
+      "body": "Note 58 said no line would be named for the week of 26 October, because none was on this page by 22:00 in Madrid, the deadline in the week the clocks change (note 43). After it went up, the founder ruled the week's three lines onto the record as open rows. They are his lines as read off his charts at 15:02 and 15:03 on Monday: for each metal, The Fan's line set at 10:00 New York, a ceiling, inside last week's range as his own 2 hour exports show it. He posted them on X and TradingView the same night. They were written to this page on 27 October, after the first 8h close that followed the freeze, so this week does not meet note 43, and the commit time shows it. Nothing about them changes from here. They are graded on the close of Friday 30 October, 22:00 in Madrid, by the same arithmetic as every line alone: a weekly close above the line is WRONG, anything else HELD. Note 58 is kept as written."
     }
   ],
   "targets": [
