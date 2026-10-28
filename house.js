@@ -27,7 +27,7 @@
   try {
     var sw = $("hs-theme"), word = $("hs-theme-word"), meta = document.querySelector('meta[name="theme-color"]');
     var mq = null; try { mq = window.matchMedia("(prefers-color-scheme: dark)"); } catch (e) {}
-    var device = function () { return !!(mq && mq.matches); };
+    var device = function () { return true; }; /* 29 Oct 2026, note 63: the ground is dark for everyone unless the reader chose light (the founder's ruling of 29 October 2026). It read: !!(mq && mq.matches) */
     var dark = function () { var t = root.getAttribute("data-theme"); return t ? t === "dark" : device(); };
     var keep = function (v) { try { if (v) localStorage.setItem("theme", v); else localStorage.removeItem("theme"); } catch (e) {} };
     var paint = function () {
@@ -38,7 +38,7 @@
     };
     if (sw) sw.addEventListener("click", function () {
       var next = dark() ? "light" : "dark";
-      if ((next === "dark") === device()) { root.removeAttribute("data-theme"); keep(null); } else { root.setAttribute("data-theme", next); keep(next); }
+      if ((next === "dark") === device()) { root.setAttribute("data-theme", "dark"); keep(null); } else { root.setAttribute("data-theme", next); keep(next); }
       paint();
     });
     if (mq) { if (mq.addEventListener) mq.addEventListener("change", paint); else if (mq.addListener) mq.addListener(paint); }

@@ -8,6 +8,7 @@ const fs = require("fs"), path = require("path");
 const HERE = __dirname;
 const ARGS = process.argv.slice(2), POS = ARGS.filter((a, i) => !a.startsWith("--") && !(i > 0 && /^--(monday|friday)$/.test(ARGS[i - 1])));
 const flag = n => { const i = ARGS.indexOf("--" + n); return i < 0 ? null : (ARGS[i + 1] && !ARGS[i + 1].startsWith("--") ? ARGS[i + 1] : true); };
+const GLASS = !flag("flat");   /* v2.2: glass over the engraved atmosphere is the default; --flat draws v2.1 */
 const REC = JSON.parse(fs.readFileSync(POS[0] || path.join(HERE, "data/record.json"), "utf8"));
 const OUT = POS[1] || path.join(HERE, "out");
 const FONTS = process.env.CARD_FONTS || process.env.BANK_FONTS || "";
@@ -39,7 +40,9 @@ html,body{width:${w}px;height:${h}px;background:#0B1A2E}
 .card{width:${w}px;height:${h}px;padding:64px var(--gutter);display:flex;flex-direction:column}
 .legend{display:flex;gap:28px;flex-wrap:wrap;font-size:var(--s-small);color:var(--ink-2);font-weight:500}
 .legend span{display:inline-flex;align-items:center;gap:10px}
-${extra}</style></head><body><div class="card grain ${theme || ""}">${body}</div></body></html>`;
+${extra}</style></head><body class="${GLASS ? "glass" : ""}"><div class="card grain ${theme || ""}">${GLASS ? ATMOS(w, h) : ""}${body}</div></body></html>`;
+const ATMOS = (w, h) => { const X = w > h, D = Math.round(X ? h * 1.15 : w * 1.05), cx = X ? w * .7 : w * .5, cy = X ? h * .55 : h * .6;
+  return `<div class="atmos" style="-webkit-mask-image:linear-gradient(180deg,transparent ${X ? 8 : 26}%,#000 ${X ? 18 : 34}%,#000 ${X ? 84 : 70}%,transparent ${X ? 96 : 77}%);mask-image:linear-gradient(180deg,transparent ${X ? 8 : 26}%,#000 ${X ? 18 : 34}%,#000 ${X ? 84 : 70}%,transparent ${X ? 96 : 77}%)"><div class="bloom" style="width:${D * .7}px;height:${D * .7}px;left:${cx - D * .35}px;top:${cy - D * .35}px"></div><div class="ros" style="width:${D}px;height:${D}px;left:${Math.round(cx - D / 2)}px;top:${Math.round(cy - D / 2)}px">${A.rosette(rows, D)}</div></div>`; };
 const mast = (right) => `<div class="mast"><div class="mark"><img src="${AVATAR}" alt=""><span class="word lift">The Simplifier</span></div>${/class="url"/.test(right) ? right : `<div class="eyebrow">${right}</div>`}</div>`;
 const foot = (sealRows, legendBits, stack, d) => { const sl = A.seal(sealRows, { d: d || 150, legend: ["The Simplifier"].concat(legendBits) });
   return `<div class="foot${stack ? " stack" : ""}"><div class="foot-l">${sl.svg}<div class="foot-t"><div class="counsel">${COUNSEL.join("<br>")}</div>${stack ? "" : `<div class="url"><u>thesimplifier7.com</u></div>`}</div></div></div>`; };

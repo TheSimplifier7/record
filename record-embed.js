@@ -45,8 +45,8 @@
   var root = host.attachShadow ? host.attachShadow({ mode: "open" }) : host;
 
   var T = theme === "dark"
-    ? { bg: "#141210", panel: "#1D1A16", ink: "#EFE8DC", ink2: "#CFC6B8", mute: "#8E8474", rule: "#4A4238", pass: "#5FA57A", miss: "#D2764A", nr: "#8E8474", open: "#6BA3C7", gold: "#CBA43C" }
-    : { bg: "#C2BAAE", panel: "#CBC4B9", ink: "#191510", ink2: "#3E372C", mute: "#736A5C", rule: "#8B8071", pass: "#163821", miss: "#7A2A11", nr: "#5A5145", open: "#1B3646", gold: "#8A6A1F" };
+    ? { bg: "#0B1A2E", panel: "#11233C", ink: "#F3EDE2", ink2: "#A8B3C4", mute: "#7D8CA3", rule: "#2A4468", pass: "#E8B84F", miss: "#F0604A", nr: "#7D8CA3", open: "#E9E4D8", gold: "#E8B84F" } /* 29 Oct 2026, note 63, ASSAY. It read: { bg: "#141210", panel: "#1D1A16", ink: "#EFE8DC", ink2: "#CFC6B8", mute: "#8E8474", rule: "#4A4238", pass: "#5FA57A", miss: "#D2764A", nr: "#8E8474", open: "#6BA3C7", gold: "#CBA43C" } */
+    : { bg: "#EEF1F5", panel: "#E4E9F0", ink: "#0B1A2E", ink2: "#45536A", mute: "#5F6D84", rule: "#AEB9C8", pass: "#8A6410", miss: "#B8341C", nr: "#5F6D84", open: "#0B1A2E", gold: "#8A6410" }; /* It read: { bg: "#C2BAAE", panel: "#CBC4B9", ink: "#191510", ink2: "#3E372C", mute: "#736A5C", rule: "#8B8071", pass: "#163821", miss: "#7A2A11", nr: "#5A5145", open: "#1B3646", gold: "#8A6A1F" } */
 
   var css = "" +
     ":host{all:initial;display:block}" +

@@ -29,11 +29,12 @@ const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
   '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">';
 /* The reader's choice on the record, applied before first paint, so nothing flashes. */
-const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)})();</script>';
+const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>';
 
 /* The tags a page's head carries for the house: after its own styles, so the house's few rules come last. */
 function headTags({ fonts = true } = {}) {
-  return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`;
+  /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`; */
+  return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">`;
 }
 const earlyTags = () => '<meta name="color-scheme" content="light dark">\n' + THEME_JS;
 
@@ -107,7 +108,8 @@ function bot(current) {
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><svg viewBox="0 0 20 20" aria-hidden="true">${I[k]}</svg><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
 }
-const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
+/* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
+const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => strip() + "\n" + band(current, where, o);
 

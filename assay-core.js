@@ -224,6 +224,15 @@ function seal(rows, o) {
   return { svg: s, hash, key };
 }
 
+/* ---------- the atmosphere: the record's rosette, drawn huge and faint behind a card, for glass to blur */
+function rosette(rows, D) {
+  const R = D / 2, c = R, hash = sha256(rowKey(rows)), by = i => parseInt(hash.slice(i * 2, i * 2 + 2), 16);
+  const k1 = 5 + by(0) % 8, k2 = k1 + 3 + by(1) % 6, N = 30 + by(2) % 16, a1 = .11 + by(3) / 255 * .05, a2 = .05 + by(4) / 255 * .04;
+  let ros = "";
+  for (let i = 0; i < N; i++) { const ph = 2 * Math.PI * i / N; let d = ""; for (let j = 0; j <= 420; j++) { const th = 2 * Math.PI * j / 420, r = R * (.47 + a1 * Math.sin(k1 * th + ph) + a2 * Math.sin(k2 * th - 2 * ph)); d += (j ? " L" : "M") + (c + r * Math.cos(th)).toFixed(1) + "," + (c + r * Math.sin(th)).toFixed(1); } ros += `<path d="${d}"/>`; }
+  return `<svg width="${D}" height="${D}" viewBox="0 0 ${D} ${D}" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--gold)" stroke-width="1.3">${ros}</g><circle cx="${c}" cy="${c}" r="${(R * .72).toFixed(1)}" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="${c}" cy="${c}" r="${(R * .985).toFixed(1)}" fill="none" stroke="var(--gold)" stroke-width="2.5"/></svg>`;
+}
+
 const legend = () => `<div class="legend as-legend">${[["held", "Held"], ["wrong", "Wrong, kept"], ["nr", "Never reached"], ["open", "Open"]].map(([k, l], i) => `<span><svg width="44" height="34" viewBox="-6 -6 44 34" style="overflow:visible"><defs>${LIGHT("lg" + i)}${INGOT_DEFS}</defs><g filter="url(#lg${i}v)">${bar(0, 0, 30, 17, k)}</g></svg>${l}</span>`).join("")}</div>`;
 
 
@@ -237,6 +246,6 @@ const hallmark = items => `<div class="as-hallmark">${items.map(h => `<span>${es
 const tally = t => `<div class="as-tally"><div class="as-big"><span class="n">${t.held}</span><span class="l">held</span></div><div class="as-big w"><span class="n">${t.wrong}</span><span class="l">wrong,<br>kept</span></div><div class="as-rest">${t.never_reached} never reached · ${t.open} open · <b>0 deleted</b></div></div>`;
 const counselFooter = (hall, url) => `<div class="as-foot"><div class="as-foot-l">${hall ? hallmark(hall) : ""}<div class="as-counsel">${COUNSEL.join("<br>")}</div></div>${url === false ? "" : `<div class="as-url"><u>thesimplifier7.com</u></div>`}</div>`;
 
-const api = { sha256, rowKey, seal, COUNSEL, VW, masthead, verdict, hallmark, tally, counselFooter, places, num, cmp, distOf, esc, dlong, addD, SYM, ORDER, kindOf, word, gauge, vault, bar, legend, MON };
+const api = { rosette, sha256, rowKey, seal, COUNSEL, VW, masthead, verdict, hallmark, tally, counselFooter, places, num, cmp, distOf, esc, dlong, addD, SYM, ORDER, kindOf, word, gauge, vault, bar, legend, MON };
 if (typeof module !== "undefined" && module.exports) module.exports = api; else root.Assay = api;
 })(typeof window !== "undefined" ? window : globalThis);

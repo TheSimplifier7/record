@@ -1,0 +1,222 @@
+/* =========================================================================
+   lamp.css  ·  THE LAMP  ·  29 October 2026  ·  note 63 on the record
+   Two parts. THE FRAME applies always: the band, the buttons, the keys, the
+   foot and the bar at the foot of a phone, drawn in ASSAY, the record's design
+   system: one key light, glass over the ground, ivory for the one thing to
+   press, gold only for a line. THE LAMP applies once lamp.js has drawn the
+   plate and set .lamp-on; with scripts off, or without WebGL, the scene of
+   Round 3 shows as before.
+   BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
+   ========================================================================= */
+/* the plate lies inside the scene, behind its chart */
+.lamp-slot { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.lamp-plate { position: absolute; display: block; z-index: 1; filter: blur(.6px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 var(--fade, 90px));
+  mask-image: linear-gradient(180deg, transparent 0, #000 var(--fade, 90px)); }
+
+/* the light catches the panels: a bright rim on the edge facing the lamp, the shadow falling away from it */
+.lamp-on .r3-tele, .lamp-on .r3-dock, .lamp-on .r3-drawer {
+  box-shadow: 0 0 0 1px var(--r3-rule) inset,
+    inset calc(var(--lux, .5) * 1.6px) calc(var(--luy, .8) * 1.6px) 0 -.4px rgba(255, 244, 220, .16),
+    calc(var(--lux, .5) * 30px) calc(var(--luy, .8) * 30px + 16px) 70px -30px rgba(0, 0, 0, .85),
+    0 1px 0 rgba(255, 255, 255, .06) inset; }
+/* the stage light of Round 3 turns to follow the lamp */
+.lamp-on .r3-cone { transform-origin: 40% 0; transform: rotate(var(--cone, 0deg)); }
+
+.lamp-tilt { position: relative; z-index: 3; order: 4; align-self: center; margin-top: -58px; white-space: nowrap;
+  padding: 10px 16px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13.5px/1 var(--f-ui, "Barlow", Arial, sans-serif); color: #f3ede2;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .04)); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 0 0 1px rgba(255, 255, 255, .08), 0 10px 24px -10px rgba(0, 0, 0, .8); }
+.lamp-tilt:focus-visible { outline: 2px solid var(--r3-blue, #8db0f5); outline-offset: 3px; }
+
+/* the tablet and the phone: this week's three lines come up into the first screen, the scene under them */
+@media (max-width: 1099.98px) {
+  .r3-dock { order: 3; }
+  .r3-stage { order: 4; }
+}
+@media (min-width: 1100px) { .lamp-tilt { display: none; } }
+@media print { .lamp-slot, .lamp-tilt { display: none; } }
+
+/* ============================== THE FRAME ============================== */
+/* the band: glass over the head of the page, the mark in its gold ring, a small ingot under the view you are on */
+.hd-band { background: linear-gradient(180deg, rgba(7, 14, 30, .9), rgba(9, 18, 38, .78)); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .07), 0 14px 30px -22px rgba(0, 0, 0, .9); }
+.hd-band .brand { gap: 12px; font: 700 17px/1 var(--f-cond); letter-spacing: .26em; color: #f3ede2; }
+.hd-band .brand::before { content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #0b1a2e url("avatar_square.jpg") center / cover no-repeat;
+  box-shadow: 0 0 0 1.5px #e8b84f, 0 0 0 4px #0b1a2e, 0 0 0 5px #2a4468, 3px 8px 14px rgba(0, 0, 0, .55); }
+.hd-band .topnav a { position: relative; font: 500 15px/1 var(--f-ui); letter-spacing: .01em; color: #a8b3c4; border-bottom: 0; transition: color .2s ease; }
+.hd-band .topnav a:hover, .hd-band .topnav a[aria-current="page"] { color: #f3ede2; }
+.hd-band .topnav a[aria-current="page"]::after, .botnav a[aria-current="page"]::before { content: ""; position: absolute; left: 50%; width: 20px; height: 6px; transform: translateX(-50%);
+  clip-path: polygon(16% 0, 84% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, #f7d88e, #e8b84f 55%, #b98a2c); }
+.hd-band .topnav a[aria-current="page"]::after { bottom: 5px; }
+.hd-band .tbtn { width: 42px; height: 42px; min-height: 42px; padding: 0; justify-content: center; border: 0; border-radius: 50%; color: #c9d3e6;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .03)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+.hd-band .tbtn span { display: none; }
+
+/* the buttons: ivory for the one thing to press, glass for the rest. Gold is kept for the lines. */
+.hd-btn { border-radius: 999px; font-weight: 600; letter-spacing: .01em; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.hd-btn.hd-gold { color: #0b1a2e; background: linear-gradient(170deg, #fffbf2 0%, #f1e9db 48%, #d6cab6 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(60, 40, 10, .22), 3px 10px 24px -8px rgba(0, 0, 0, .75); }
+.hd-btn.hd-gold:hover { color: #0b1a2e; transform: translateY(-1px); box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(60, 40, 10, .22), 4px 14px 30px -8px rgba(0, 0, 0, .8); }
+.hd-btn.hd-gold svg path { stroke: #0b1a2e; }
+.hd-btn.hd-ghost { color: #f3ede2; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .035)); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 0 0 1px rgba(255, 255, 255, .07), 3px 10px 22px -12px rgba(0, 0, 0, .75); }
+.hd-btn.hd-ghost:hover { color: #fff; background: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
+.hd-len { border-radius: 999px; background: rgba(255, 255, 255, .07); color: #a8b3c4; }
+
+/* the head: the season reads as an eyebrow, not a box; the two keys are glass */
+.r3-copy .hd-eyebrow { padding: 0; background: none; box-shadow: none; gap: 2px 18px; font: 600 12px/1.4 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: #7d8ca3; }
+.r3-copy .hd-eyebrow b { font: 600 12.5px/1.4 var(--f-fig); letter-spacing: .02em; color: #e8b84f; }
+.r3-copy .hd-key { border-radius: 999px; padding: 8px 16px 8px 12px; background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 0 0 1px rgba(255, 255, 255, .06); color: #a8b3c4; }
+.r3-copy .hd-key b { color: #f3ede2; }
+
+/* the standing offer under the week: a pane, not a brown box */
+.offer, .bounty { border: 0; border-radius: 16px; background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 4%, transparent), transparent);
+  box-shadow: inset 0 0 0 1px var(--rule), inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent); }
+.offer { padding: 18px 20px; }
+.offer .amt { font: 600 1.6rem/1 var(--f-fig); letter-spacing: -.02em; color: var(--ink); }
+.offer a { color: var(--ink); text-decoration: none; background: linear-gradient(var(--mk-held), var(--mk-held)) 0 calc(50% + .7em) / 100% 1px no-repeat; }
+
+/* the foot: one face for the words, links in the ink with a gold hairline, the index ruled like a ledger */
+footer { background: var(--bg); border-top: 1px solid var(--rule); padding-block: 56px 72px; }
+footer .eyebrow { font: 600 12px/1.3 var(--f-ui); letter-spacing: .18em; color: var(--ink-3); }
+.integrity { font-family: var(--f-ui); font-size: 1rem; line-height: 1.65; color: var(--ink-2); }
+.integrity em { font-style: normal; font-weight: 600; color: var(--ink); }
+.bounty { padding: 20px 22px; margin-top: 20px; color: var(--ink-2); }
+.integrity a, .foot-meta a { color: var(--ink); font-weight: 600; text-decoration: none;
+  background: linear-gradient(var(--mk-held), var(--mk-held)) 0 100% / 100% 1px no-repeat; transition: background-size .2s ease; }
+.integrity a:hover, .foot-meta a:hover { background-size: 100% 2px; }
+.foot-meta { gap: 0; font-size: .875rem; color: var(--ink-3); }
+.foot-meta > span { padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.foot-meta > span:first-child { border-top: 1px solid var(--rule); }
+.foot-meta a { min-height: 0; padding-bottom: 1px; }
+.foot-meta a[href$=".json"], .foot-meta a[href$=".txt"] { font: 500 .8125rem/1.2 var(--f-fig); }
+
+/* the bar at the foot of a phone: glass, the view you are on marked with an ingot */
+@media (max-width: 760px), (max-width: 1099.98px) {
+  .botnav { background: linear-gradient(180deg, rgba(9, 18, 38, .8), rgba(7, 14, 30, .92)); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 -14px 30px -22px rgba(0, 0, 0, .9); border-top: 0; }
+  .botnav a { position: relative; color: #8d98ab; font-weight: 500; letter-spacing: .01em; }
+  .botnav svg { stroke-width: 1.5; }
+  .botnav a[aria-current="page"] { color: #f3ede2; font-weight: 600; box-shadow: none; }
+  .botnav a[aria-current="page"]::before { top: 0; transform: translateX(-50%) rotate(180deg); }
+}
+.offer a { justify-self: start; min-height: 0; margin-top: 6px; padding-bottom: 2px; background-position: 0 100%; }
+.week-foot .next-verdict, .week-foot .next-verdict * { color: var(--ink-2); }
+.r3-copy .hd-eyebrow { justify-content: flex-start; }
+
+/* ============================== THE RHYTHM ============================== */
+/* One spacing scale for the whole page: 8, 12, 16, 24, 32, 48, 72. A section opens with 72 above its rule and 24
+   between its title and what it heads; rows sit 24 apart inside; a pane holds 32 inside. The words get air before
+   the figures do: line height 1.6 for anything read, 1 for anything counted. */
+
+/* open is the ivory ink in ASSAY, not blue; links in that ink carry a gold hairline */
+:root[data-theme="dark"] { --open: #e9e4d8; --open-bg: rgba(233, 228, 216, .06); --focus: #e8b84f; }
+.r3 { --r3-blue: #e9e4d8; }
+.tw-door, .tw-how, details.how > summary, details.tbl summary, .tw-stamp a, .ob-since a, .ob-lhead a {
+  color: var(--ink); text-decoration: underline; text-decoration-color: var(--mk-held); text-decoration-thickness: 1px; text-underline-offset: 5px; }
+
+/* the head: the words in order, with room between them */
+@media (min-width: 1100px) {
+  .r3 { height: clamp(960px, calc(100vh - 64px), 1080px); min-height: 960px; }
+  .r3-copy { top: 148px; }
+}
+.r3-copy .r3-h1 { margin-top: 20px; }
+.r3-copy .hd-keys, .r3-copy .hd-keys { margin-top: 24px; gap: 12px; }
+.r3-copy .r3-lede { margin-top: 24px; line-height: 1.65; }
+.r3-copy .r3-ctas { margin-top: 32px; gap: 14px; }
+.r3-copy .r3-under { margin-top: 16px; }
+.r3-tele { padding-block: 4px; }
+
+/* a section: a hairline, then the title in small capitals, then air */
+.bar { background: transparent; border-bottom: 0; border-top: 1px solid var(--rule); margin-top: 72px; }
+.bar-in { min-height: 0; padding-block: 28px 0; }
+.bar p, .bar h2, .bar h3 { font: 600 12px/1.4 var(--f-ui); letter-spacing: .18em; color: var(--ink-3); }
+.bar p.clock, .clock { padding: 6px 12px; border-radius: 999px; font: 500 12px/1 var(--f-fig); letter-spacing: .02em; color: var(--ink);
+  background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px var(--rule); }
+:root[data-theme="dark"] .bar p.clock { color: var(--ink); }
+
+/* this week: each metal a row with room above and below, the level in the figure face */
+#this-week { margin-top: 24px; }
+.tw-stamp { padding-top: 0; margin-bottom: 8px; line-height: 1.6; }
+.fx { min-height: 0; padding: 28px 0; gap: 8px 24px; }
+.fx .side { letter-spacing: .14em; }
+.fx .lv { margin-top: 6px; font: 600 1.75rem/1 var(--f-fig); letter-spacing: -.015em; }
+.fx .cl { margin-top: 8px; }
+.gt { border-radius: 999px; padding: 4px 10px; }
+.gt.pending { border-style: dashed; }
+.tw-rule { padding: 24px 0 8px; font-size: .8125rem; line-height: 1.65; }
+.tw-fan { margin: 16px 0 0; padding: 18px 22px; border: 0; border-radius: 14px; background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01));
+  box-shadow: inset 0 0 0 1px var(--rule), inset 0 1px 0 rgba(255, 255, 255, .05); }
+.tw-fan + .tw-fan { margin-top: 12px; }
+
+/* the table: taller rows, no zebra, the total under a single hairline */
+.table-sec { margin-top: 0; }
+.season thead th { padding: 24px 8px 12px; letter-spacing: .12em; }
+.season tbody tr:nth-child(odd) { background: transparent; }
+.season tbody th a { min-height: 64px; }
+.season tfoot tr { border-top: 1px solid var(--ink-3); }
+.season tfoot th, .season tfoot td { padding-block: 20px; }
+.table-note { padding-top: 20px; line-height: 1.65; }
+details.how { margin-top: 16px; }
+
+/* the odds: a pane with room inside, the track given space to read */
+.ob { margin-top: 48px; padding: 32px; border: 0; border-radius: 18px; background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01));
+  box-shadow: inset 0 0 0 1px var(--rule), inset 0 1px 0 rgba(255, 255, 255, .05); }
+.ob-head { margin-bottom: 28px; }
+.ob-figs { gap: 28px 40px; }
+.ob-fig .l { margin-top: 10px; line-height: 1.5; }
+.ob-track { margin: 52px 0 40px; height: 8px; }
+.ob-plain, .ob-res { line-height: 1.65; }
+.ob-line { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--rule); }
+.ob-res { margin-top: 24px; }
+.wrong-link { margin-top: 24px; padding: 20px 24px; gap: 6px; border: 0; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--rule), inset 3px 0 0 var(--wrong-chip); }
+
+/* the foot of the week and the page */
+.week-foot { margin-top: 72px; padding-block: 48px 16px; }
+.week-foot .wrap { gap: 32px; }
+.spec dt { letter-spacing: .16em; margin-bottom: 6px; }
+.spec dd { margin-bottom: 20px; line-height: 1.5; }
+
+/* the phone: the same scale, one step down */
+@media (max-width: 1099.98px) {
+  .r3 { gap: 24px; }
+  .bar { margin-top: 56px; }
+  .fx { padding: 22px 0; }
+  .ob { padding: 22px; }
+}
+
+/* ============================== THE QUIET ============================== */
+/* What the unslopped dashboards do: one weight lighter, no badges where a number will do, colour only where it means
+   held, wrong or the line. Labels are small and grey; figures are large and calm; nothing glows but the lamp. */
+
+/* the joins between sections: no dead bands, no navy slabs */
+.r3f { background: linear-gradient(180deg, #050913, var(--bg)); }
+#this-week > .bar:first-child { margin-top: 0; }
+.bar.navy { background: transparent; }
+.bar.navy p, .bar.navy h2, .bar.navy h3, .bar.navy p + p, .bar.navy h2 + p, .bar.navy h3 + p { color: var(--ink-3); font-weight: 600; letter-spacing: .18em; }
+.tw-stamp { margin-top: 12px; }
+
+/* the inspector holds its own height instead of stretching down the head */
+@media (min-width: 1100px) { .r3-drawer { bottom: auto; max-height: calc(100% - 148px); } .r3d-foot { margin-top: 20px; } }
+.r3-drawer { gap: 16px; padding: 22px 24px; }
+
+/* figures calm, labels quiet */
+.fx .metal { font-weight: 600; letter-spacing: .1em; color: var(--ink-2); }
+.fx .side { font-weight: 500; color: var(--ink-3); }
+.fx .lv { font-weight: 500; font-size: 1.875rem; }
+.season thead th { font-family: var(--f-ui); font-weight: 600; font-size: .6875rem; letter-spacing: .16em; color: var(--ink-3); }
+.season tbody th, .season tbody td { font-weight: 500; }
+.season tbody th a { font-weight: 600; }
+
+/* the three steps: tags as words, not badges; the middle card lit, not glowing */
+.r3f-tag, .r3f-tag.free, .r3f-tag.tv, .r3f-tag.wait { padding: 0; background: none; font: 600 11px/1 var(--f-ui, "Barlow", sans-serif); letter-spacing: .16em; color: var(--r3-ink3); }
+.r3f-tag.tv { color: var(--r3-gold2); }
+.r3f-step { padding: 32px; gap: 18px; border-radius: 20px; }
+.r3f-step.hot { background: linear-gradient(180deg, rgba(232, 184, 79, .07), rgba(255, 255, 255, .02) 55%); box-shadow: inset 0 0 0 1px rgba(232, 184, 79, .32), inset 0 1px 0 rgba(255, 255, 255, .06); }
+.r3f-tools { gap: 12px; }
+.r3f-tools .r3-ey { text-transform: none; letter-spacing: 0; font: 400 13px/1.45 var(--f-ui, "Barlow", sans-serif); color: var(--r3-ink3); }
+/* open, everywhere on the dark ground: an ivory ring, dashed, as in ASSAY */
+.r3f { --r3-blue: #e9e4d8; }
+:root[data-theme="dark"] { --mk-pending: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%23e9e4d8' stroke-width='1.6' stroke-dasharray='2.2 1.6'/%3E%3C/svg%3E"); }

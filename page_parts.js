@@ -102,7 +102,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 `;
 
 /* The reader's switch on the record, honoured before first paint. */
-const THEME_JS = `<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)})();</script>`;
+const THEME_JS = `<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>`;
 
 /* Note 37's third event, a door used, by path alone. */
 const EVENTS_JS = `<script>(function(){try{

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- HOUSE EARLY (make_house.js, note 53): the record's ground and the reader's choice, before first paint. -->
 <meta name="color-scheme" content="light dark">
-<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)})();</script>
+<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>
 <!-- 6 Oct 2026. These read: <title>The Simplifier · The Method</title>, and the description "The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation." -->
 <title>The Simplifier · The Fan</title>
 <meta name="description" content="The indicator the weekly lines on the record are read from. It draws structure. It does not tell you what to do. Access by invitation.">
@@ -19,8 +19,10 @@
    paint so nothing flashes. The phone's bar follows the band at the top of the page. */
 (function(){
   var d=document.documentElement, t=null; try{ t=localStorage.getItem("theme"); }catch(e){}
-  if(t==="light"||t==="dark") d.setAttribute("data-theme",t);
-  var dark=t ? t==="dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  /* 29 Oct 2026, note 63: the ground is dark for everyone unless the reader chose light (the founder's ruling of 29 October 2026). It read: if(t==="light"||t==="dark") d.setAttribute("data-theme",t); */
+  d.setAttribute("data-theme", t==="light" ? "light" : "dark");
+  /* It read: var dark=t ? t==="dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches); */
+  var dark=t!=="light";
   var m=document.getElementById("meta-theme"); if(m) m.setAttribute("content", dark ? "#14244a" : "#0f1e3a");
 })();
 </script>
@@ -35,7 +37,7 @@
      <meta property="og:image" content="https://thesimplifier7.com/method_gold_8h_2026-09-09.jpg">
      <meta property="og:image:width" content="1600">
      <meta property="og:image:height" content="951"> -->
-<meta property="og:image" content="https://thesimplifier7.com/link_method.png?v=3a43a4e6ac">
+<meta property="og:image" content="https://thesimplifier7.com/link_method.png?v=85bc2faa3c">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -390,6 +392,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="house.css?v=f3424b20cb">
+<link rel="stylesheet" href="assay-site.css?v=6d6d511254">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -627,11 +630,11 @@ if (m || r) document.getElementById("closed-line").hidden = true;
   var root=document.documentElement, sw=document.getElementById("theme-sw"), word=document.getElementById("theme-word"), meta=document.getElementById("meta-theme");
   if(!sw) return;
   var mq=null; try{ mq=window.matchMedia("(prefers-color-scheme: dark)"); }catch(e){}
-  var device=function(){ return !!(mq && mq.matches); };
+  var device=function(){ return true; }; /* 29 Oct 2026, note 63: the ground is dark for everyone unless the reader chose light (the founder's ruling of 29 October 2026). It read: !!(mq && mq.matches) */
   var dark=function(){ var t=root.getAttribute("data-theme"); return t ? t==="dark" : device(); };
   var keep=function(v){ try{ if(v) localStorage.setItem("theme", v); else localStorage.removeItem("theme"); }catch(e){} };
   var paint=function(){ var d=dark(); if(word) word.textContent=d ? "Light" : "Dark"; sw.setAttribute("aria-label", d ? "Switch to the light ground" : "Switch to the dark ground"); if(meta) meta.setAttribute("content", d ? "#14244a" : "#0f1e3a"); };
-  sw.addEventListener("click", function(){ var next=dark() ? "light" : "dark"; if((next==="dark")===device()){ root.removeAttribute("data-theme"); keep(null); } else { root.setAttribute("data-theme", next); keep(next); } paint(); });
+  sw.addEventListener("click", function(){ var next=dark() ? "light" : "dark"; if((next==="dark")===device()){ root.setAttribute("data-theme", "dark"); keep(null); } else { root.setAttribute("data-theme", next); keep(next); } paint(); });
   if(mq){ if(mq.addEventListener) mq.addEventListener("change", paint); else if(mq.addListener) mq.addListener(paint); }
   paint();
 })();
@@ -782,7 +785,8 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}
 </script>
 -->
 <!-- HOUSE TAIL START (make_house.js, note 53) -->
-<script src="house.js?v=d64c7fb2b7" defer></script>
+<script src="house.js?v=edf435f2d0" defer></script>
+<script src="lamp.js?v=d1e8d5c7ff" defer></script>
 <!-- HOUSE TAIL END -->
 </body>
 </html>
