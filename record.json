@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-10-28",
-  "generated": "2026-10-28T03:11:32.934Z",
+  "generated": "2026-10-28T05:29:36.585Z",
   "tally": {
     "resolved": 41,
     "held": 32,
@@ -1676,6 +1676,12 @@
       "kind": "correction",
       "title": "The close that grades the week follows New York, 28 October 2026.",
       "body": "The metals' week closes at 17:00 in New York. In most weeks that is 23:00 in Madrid. In the weeks the clocks change in Europe and in New York on different Sundays, the last week of October and two or three weeks in March, it is 22:00. The countdowns, the open rows' sheets, the scene at the head of this page and the next grade on the pages beside it all worked the close out as 23:00 in Madrid in every week, so from 26 October they pointed to 23:00 CET on Friday 30 October, an hour after the close that grades the lines of 26 October. From today they read the close off New York's clock: 22:00 CET on Friday 30 October, and 23:00 CET again from Friday 6 November. No row, line, close, grade or date is touched, and the rows keep the hours they were written with. The code that was replaced is kept in the source beside what replaced it."
+    },
+    {
+      "n": "61",
+      "kind": "standard",
+      "title": "The record's link card is drawn in ASSAY, 28 October 2026.",
+      "body": "From today the picture under every link to this page is drawn in ASSAY, the design system of this record. It shows the week's lines and nothing else: each line in gold, the side that would prove it wrong hatched, and one close as a single point with its distance from the line, last Friday's close while the lines are open and the close that graded them once they are graded. A line a close went through is drawn broken. The card no longer draws each metal's Friday closes as a path. Every card now carries a seal. Its rosette is drawn from the SHA-256 of the rows the card shows, one line per row, oldest first: the row's number counted from the first row of 7 June 2026, its date, metal, level, side, grade and close, separated by a vertical bar. A card that differs from this page by one figure carries a different seal. No row, line, close, grade or date is touched."
     }
   ],
   "targets": [

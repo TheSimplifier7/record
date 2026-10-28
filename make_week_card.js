@@ -31,248 +31,32 @@
 
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting,
    superlatives or sign-off line. No house words. Every word is one already on
-   the record's cards or page, or a label. */
+   the record's cards or page, or a label.
+
+   28 Oct 2026, note 61: drawn in ASSAY. assay_build.js, with assay-core.js and assay.css beside it, draws the card from
+   record.json: the open week's lines, or the week last graded, as line gauges, the count and the seal. This script
+   runs it and keeps what it did before: week_card.html, card_<named>_<open|graded>.png at 1200 x 630, and the live
+   og:image line pointed at the new file with ?v= and the first ten characters of its SHA-256. The drawing of
+   24 October (note 57) is in the commit history. */
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
+const { execFileSync } = require("child_process");
 const HERE = __dirname;
-const rec = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
-if (!(rec.closes || []).length) { console.log("record.json has no closes; run make_record_json.js on a page with CLOSES"); process.exit(1); }
-
-const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-const num = t => parseFloat(String(t).replace(/,/g, "").match(/-?\d+(\.\d+)?/)[0]);
-const day = iso => new Date(iso + "T12:00:00Z");
-const isoOf = d => d.toISOString().slice(0, 10);
-const fridayOf = iso => { const d = day(iso); const wd = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() + (wd === 4 ? 7 : (4 - wd + 7) % 7)); return isoOf(d); };
-const dlabel = iso => { const d = day(iso); return `${d.getUTCDate()} ${MON[d.getUTCMonth()]}`; };
-const METALS = ["Gold", "Silver", "Platinum"];
-const fmtd = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-const kind = r => r.grade === "pass" ? "held" : (r.grade === "miss" || r.grade === "partial") ? "wrong" : r.grade === "notest" ? "never" : "open";
-const E = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const ceilingOf = r => r.grammar === 2 ? r.side === "copper" : /close above/i.test(r.kill || "");
-
-// ── the data ───────────────────────────────────────────────────────────────────────────────
-const rows = rec.rows.slice().sort((a, b) => a.named < b.named ? -1 : a.named > b.named ? 1 : METALS.indexOf(a.metal) - METALS.indexOf(b.metal));
-const pending = rows.filter(r => r.grade === "pending");
-const mode = pending.length ? "open" : "graded";
-const named = mode === "open" ? pending[0].named : rows.reduce((m, r) => r.named > m ? r.named : m, "");
-const week = rows.filter(r => r.named === named);
-const weekFri = fridayOf(named);
-const closes = {};
-for (const m of METALS) closes[m] = rec.closes.filter(c => c[m]).map(c => ({ date: c.date, v: num(c[m]), s: c[m] }));
-const tonight = {};
-for (const r of week) {
-  const c = rec.closes.find(c => c.date === weekFri && c[r.metal]);
-  tonight[r.metal] = { level: num(r.level), levelS: String(r.level), closeS: c ? String(c[r.metal]) : null, close: c ? num(c[r.metal]) : null, k: kind(r), ceiling: ceilingOf(r) };
-}
-const T = rec.tally;
-const ledger = rows.map(r => ({ k: kind(r), now: r.named === named }));
-const firstNamed = rows[0].named;
-
-// ── the palette, the Friday card's ───────────────────────────────────────────────────────
-const C = { bg: "#081022", bg2: "#0D1A36", gold: "#E0A93B", gold2: "#F2CB7A", red: "#E2574C", redl: "#EE7B70", ink: "#F3EFE6", ink2: "#C9D1E0", mute: "#8A94A6", dim: "#5D6880", never: "#4A5570", line: "#1E2B4A", open: "#8DB0F5" };
-const LANE = { Gold: { c: "#E8B65A", c2: "#F7D58E" }, Silver: { c: "#D5DCE8", c2: "#FFFFFF" }, Platinum: { c: "#8DB0F5", c2: "#C9D9FF" } };
-const KC = { held: C.gold, wrong: C.red, never: C.never, open: C.open };
-
-// ── drawing ──────────────────────────────────────────────────────────────────────────────
-const f1 = v => Math.round(v * 10) / 10;
-function smooth(pts) {
-  if (pts.length < 2) return "";
-  let d = `M${f1(pts[0][0])} ${f1(pts[0][1])}`;
-  for (let i = 0; i < pts.length - 1; i++) {
-    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
-    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
-    d += ` C${f1(c1[0])} ${f1(c1[1])} ${f1(c2[0])} ${f1(c2[1])} ${f1(p2[0])} ${f1(p2[1])}`;
-  }
-  return d;
-}
-// the time axis runs to this week's Friday, open or graded
-const allFridays = (() => { const s = new Set([weekFri]); for (const m of METALS) closes[m].forEach(c => s.add(c.date)); return [...s].sort(); })();
-const X0date = allFridays[0], X1date = allFridays[allFridays.length - 1];
-
-function lane(m, x, y, w, h) {
-  const t = tonight[m], L = LANE[m];
-  const px = x + 12, pw = w - 34, py = y + 34, ph = h - 44;
-  const xs = d => px + (pw * (day(d) - day(X0date))) / (day(X1date) - day(X0date));
-  const cs = closes[m];
-  const bars = rows.filter(r => r.metal === m).map(r => ({ fri: fridayOf(r.named), lv: num(r.level), k: kind(r), now: r.named === named }))
-    .filter(b => b.fri >= X0date && b.fri <= X1date && cs.find(c => c.date <= b.fri));
-  const vals = cs.map(c => c.v).concat(bars.map(b => b.lv));
-  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.12; lo -= pad; hi += pad;
-  const ys = v => py + ph - (ph * (v - lo)) / (hi - lo);
-  const id = m.toLowerCase();
-  let g = `<defs><linearGradient id="a${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${L.c}" stop-opacity=".30"/><stop offset="1" stop-color="${L.c}" stop-opacity="0"/></linearGradient><clipPath id="k${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/></clipPath></defs>`;
-  g += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" fill="#0B1630" fill-opacity=".55" stroke="${C.line}"/>`;
-  for (const d of allFridays) g += `<line x1="${f1(xs(d))}" x2="${f1(xs(d))}" y1="${y + 30}" y2="${y + h - 6}" stroke="${C.line}" stroke-width="1" opacity=".55"/>`;
-  g += `<g clip-path="url(#k${id})">`;
-  for (const b of bars) {
-    const i = allFridays.indexOf(b.fri), x1 = xs(b.fri), x0 = i > 0 ? xs(allFridays[i - 1]) : x1 - (pw / (allFridays.length - 1));
-    const col = KC[b.k], yy = f1(ys(b.lv));
-    if (b.now) {
-      g += `<line x1="${f1(x0)}" x2="${f1(x1)}" y1="${yy}" y2="${yy}" stroke="${col}" stroke-width="9" opacity=".35" filter="url(#glow)"/>`;
-      g += `<line x1="${f1(x0 + 3)}" x2="${f1(x1)}" y1="${yy}" y2="${yy}" stroke="#081022" stroke-width="7" stroke-linecap="round" opacity=".85"/>`;
-      g += `<line x1="${f1(x0 + 3)}" x2="${f1(x1)}" y1="${yy}" y2="${yy}" stroke="${col}" stroke-width="3.4" stroke-linecap="round"/>`;
-    } else {
-      g += `<line x1="${f1(x0 + 4)}" x2="${f1(x1 - 4)}" y1="${yy}" y2="${yy}" stroke="#081022" stroke-width="6" stroke-linecap="round" opacity=".85"/>`;
-      g += `<line x1="${f1(x0 + 4)}" x2="${f1(x1 - 4)}" y1="${yy}" y2="${yy}" stroke="${col}" stroke-width="2.8" stroke-linecap="round" opacity="${b.k === "never" ? .8 : 1}"/>`;
-    }
-  }
-  const pts = cs.filter(c => c.date >= X0date).map(c => [xs(c.date), ys(c.v)]);
-  const d = smooth(pts);
-  g += `<path d="${d} L${f1(pts[pts.length - 1][0])} ${y + h} L${f1(pts[0][0])} ${y + h} Z" fill="url(#a${id})"/>`;
-  g += `<path d="${d}" fill="none" stroke="${L.c}" stroke-width="6" opacity=".28" filter="url(#glow)"/>`;
-  g += `<path d="${d}" fill="none" stroke="${L.c}" stroke-width="2" stroke-linecap="round"/>`;
-  for (const p of pts.slice(0, -1)) g += `<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="2" fill="${L.c2}"/>`;
-  g += `</g>`;
-  if (pts[0][0] - px > 110) g += `<text x="${f1(pts[0][0] - 10)}" y="${y + h - 10}" text-anchor="end" class="sm" font-size="9" fill="${C.dim}">FROM ${dlabel(cs[0].date)}</text>`;
-  if (t && t.close != null) {
-    const p = pts[pts.length - 1];
-    g += `<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="13" fill="${KC[t.k]}" opacity=".22" filter="url(#glow)"/><circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="5" fill="${L.c2}" stroke="${KC[t.k]}" stroke-width="2"/>`;
-  }
-  g += `<text x="${x + 13}" y="${y + 21}" class="lab"><tspan fill="${L.c}">${m.toUpperCase()}</tspan>${t ? `<tspan dx="12" fill="${C.mute}">THIS WEEK'S ${t.ceiling ? "CEILING" : "FLOOR"} ${E(t.levelS)}</tspan>` : ""}</text>`;
-  return g;
-}
-function months(x, y, w) {
-  const px = x + 12, pw = w - 34, xs = d => px + (pw * (d - day(X0date))) / (day(X1date) - day(X0date));
-  let g = "", d = day(X0date); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() + 1);
-  while (d <= day(X1date)) { g += `<text x="${f1(xs(d))}" y="${y}" text-anchor="middle" class="sm" font-size="9" fill="${C.dim}">${MON[d.getUTCMonth()]}</text>`; d.setUTCMonth(d.getUTCMonth() + 1); }
-  return g;
-}
-function verdict(m, x, y) {
-  const t = tonight[m]; if (!t) return "";
-  const word = t.k === "held" ? "HELD" : t.k === "wrong" ? "WRONG, KEPT" : t.k === "never" ? "NEVER REACHED" : "OPEN";
-  let g = `<text x="${x}" y="${y}" class="vw" fill="${KC[t.k]}">${word}</text>`;
-  if (t.close != null) {
-    /* the record's own distance (make_email.js, the row's result): the metal's usual places, more only when a figure carries more */
-    const sig = s => (String(s).split(".")[1] || "").replace(/0+$/, "").length;
-    const cd = Math.max(m === "Silver" ? 3 : 2, sig(t.levelS), sig(t.closeS)), U = Math.pow(10, cd);
-    const clear = (t.ceiling ? Math.round(t.level * U) - Math.round(t.close * U) : Math.round(t.close * U) - Math.round(t.level * U)) / U;
-    g += `<text x="${x}" y="${y + 23}" class="vc" fill="${C.ink}">close ${dlabel(weekFri).replace(/ (\w)(\w+)$/, (s, a, b) => ` ${a}${b.toLowerCase()}`)} · ${E(t.closeS)}</text>`;
-    g += `<text x="${x}" y="${y + 42}" class="vc" fill="${clear >= 0 ? C.gold2 : C.redl}">${clear >= 0 ? "+" : "−"}${fmtd(Math.abs(clear), cd)} ${clear >= 0 ? "clear" : "through"}</text>`;
-  } else {
-    g += `<text x="${x}" y="${y + 23}" class="vc" fill="${C.ink}">line ${E(t.levelS)}</text>`;
-    g += `<text x="${x}" y="${y + 42}" class="vc" fill="${C.mute}">wrong on a close ${t.ceiling ? "above" : "below"} it</text>`;
-  }
-  return g;
-}
-function strip(x, y, w, h) {
-  const n = ledger.length, gap = 3, pw = (w - gap * (n - 1)) / n;
-  let g = "";
-  ledger.forEach((r, i) => {
-    const xx = x + i * (pw + gap), col = KC[r.k];
-    if (r.now) g += `<rect x="${f1(xx - 2)}" y="${y - 2}" width="${f1(pw + 4)}" height="${h + 4}" rx="${f1((pw + 4) / 2)}" fill="${col}" opacity=".35" filter="url(#glow)"/>`;
-    g += `<rect x="${f1(xx)}" y="${y}" width="${f1(pw)}" height="${h}" rx="${f1(Math.min(pw / 2, 4))}" fill="${col}" opacity="${r.k === "never" ? .7 : 1}"/>`;
-  });
-  return g;
-}
-function legend(x, y) {
-  let g = "", xx = x;
-  const keys = [["held", "HELD"], ["wrong", "WRONG, KEPT"], ["never", "NEVER REACHED"]].concat(ledger.some(r => r.k === "open") ? [["open", "OPEN"]] : []);
-  for (const [k, t] of keys) { g += `<rect x="${xx}" y="${y - 8}" width="9" height="9" rx="2" fill="${KC[k]}"/><text x="${xx + 14}" y="${y}" class="sm" fill="${C.mute}">${t}</text>`; xx += 14 + t.length * 6.6 + 18; }
-  return g;
-}
-
-// ── faces and the mark ────────────────────────────────────────────────────────────────────
-/* CARD_FONTS or BANK_FONTS, a folder of the @fontsource woff2 files (note 37), injected as data so the card renders the same
-   on any machine; without it the Google stylesheet in week_card.html loads the same faces. */
-const FD = process.env.CARD_FONTS || process.env.BANK_FONTS || "";
-const b64 = f => fs.readFileSync(f).toString("base64");
-const face = (n, fam, w, st = "normal") => { const f = path.join(FD, n); return FD && fs.existsSync(f) ? `@font-face{font-family:"${fam}";font-weight:${w};font-style:${st};src:url(data:font/woff2;base64,${b64(f)}) format("woff2")}` : ""; };
-const FACES = [face("barlow-condensed-latin-700-normal.woff2", "Barlow Condensed", 700), face("barlow-condensed-latin-800-normal.woff2", "Barlow Condensed", 800),
-  face("barlow-latin-500-normal.woff2", "Barlow", 500), face("barlow-latin-600-normal.woff2", "Barlow", 600), face("barlow-latin-700-normal.woff2", "Barlow", 700),
-  face("ibm-plex-mono-latin-500-normal.woff2", "IBM Plex Mono", 500), face("newsreader-latin-400-italic.woff2", "Newsreader", 400, "italic")].join("");
-const AVF = path.join(HERE, "avatar_square.jpg");
-if (!fs.existsSync(AVF)) { console.log("avatar_square.jpg is not beside the record; the card's mark is his face"); process.exit(1); }
-const AV = "data:image/jpeg;base64," + b64(AVF);
-const kicker = mode === "open"
-  ? `THIS WEEK · CALLED ${dlabel(named)} · DECIDED ON THE ${dlabel(weekFri)} CLOSE`
-  : `DECIDED ON THE ${dlabel(weekFri)} CLOSE · THE NEXT CALLS COME MONDAY`;
-const sides = new Set(Object.values(tonight).map(t => t.ceiling ? "c" : "f"));
-const KEY = (sides.has("f") ? "FLOOR: THE WEEK MUST CLOSE ABOVE IT. " : "") + (sides.has("c") ? "CEILING: THE WEEK MUST CLOSE UNDER IT. " : "") + "ONLY FRIDAY'S CLOSE COUNTS.";
-const DISC = "This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.";
-
-// ── the card, 1200 x 630 ─────────────────────────────────────────────────────────────────
-const W = 1200, H = 630;
-let g = `<defs>
-  <radialGradient id="bgl" cx=".72" cy=".38" r=".75"><stop offset="0" stop-color="#1A2A52"/><stop offset=".55" stop-color="${C.bg2}"/><stop offset="1" stop-color="${C.bg}"/></radialGradient>
-  <radialGradient id="pool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E0A93B" stop-opacity=".16"/><stop offset="1" stop-color="#E0A93B" stop-opacity="0"/></radialGradient>
-  <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE7AE"/><stop offset=".45" stop-color="#E9B95E"/><stop offset="1" stop-color="#A8741F"/></linearGradient>
-  <linearGradient id="ember" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9C8E"/><stop offset=".5" stop-color="#E2574C"/><stop offset="1" stop-color="#A83328"/></linearGradient>
-  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
-  <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 .05 0"/></filter>
-  <radialGradient id="vig" cx=".5" cy=".5" r=".85"><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
-  <clipPath id="avc"><circle cx="70" cy="58" r="24"/></clipPath>
-</defs>
-<rect width="${W}" height="${H}" fill="url(#bgl)"/>
-<ellipse cx="800" cy="290" rx="470" ry="270" fill="url(#pool)"/>`;
-// the mast: his face, the name
-g += `<circle cx="70" cy="58" r="26.5" fill="none" stroke="${C.gold}" stroke-width="1.8"/><image href="${AV}" x="46" y="34" width="48" height="48" clip-path="url(#avc)" preserveAspectRatio="xMidYMid slice"/>`;
-g += `<text x="112" y="65" class="brand" font-size="19">THE SIMPLIFIER</text>`;
-g += `<text x="${W - 48}" y="65" text-anchor="end" class="mute">METALS · THE RECORD</text>`;
-g += `<line x1="48" x2="${W - 48}" y1="100" y2="100" stroke="${C.gold}" stroke-opacity=".22"/>`;
-g += `<text x="48" y="128" class="kick">${E(kicker)}</text>`;
-// the count
-const hs = String(T.held), ws = String(T.wrong);
-g += `<text x="44" y="312" class="big" font-size="176" fill="url(#leaf)">${hs}</text>`;
-g += `<text x="${54 + hs.length * 83}" y="312" class="word" font-size="54" fill="${C.gold2}">HELD</text>`;
-g += `<text x="48" y="418" class="big" font-size="104" fill="url(#ember)">${ws}</text>`;
-g += `<text x="${60 + ws.length * 50}" y="418" class="word" font-size="40" fill="${C.redl}">WRONG, KEPT</text>`;
-g += `<text x="50" y="448" class="mute" font-size="11">${T.never_reached} NEVER REACHED · COUNTED FOR NEITHER SIDE${T.open ? ` · ${T.open} OPEN` : ""}</text>`;
-g += `<text x="48" y="490" class="quote" font-size="20">Every line named in advance,</text><text x="48" y="516" class="quote" font-size="20">graded on Friday's close. The wrong ones stay.</text>`;
-// the three metals
-const lx = 470, lw = 480, lh = 104, ly = 150, lg = 9;
-METALS.forEach((m, i) => { const y = ly + i * (lh + lg); g += lane(m, lx, y, lw, lh); g += verdict(m, lx + lw + 22, y + 44); });
-g += months(lx, 489, lw);
-g += `<text x="${lx}" y="505" class="mute" font-size="10">${KEY}</text>`;
-// the ledger, clear of the corner X writes the page's title into
-g += `<text x="${lx}" y="522" class="sm" fill="${C.mute}">EVERY LINE SINCE ${dlabel(firstNamed)}, OLDEST FIRST</text>`;
-g += legend(lx + 262, 522);
-g += strip(lx, 530, W - 48 - lx, 18);
-g += `<line x1="48" x2="${W - 48}" y1="566" y2="566" stroke="${C.gold}" stroke-opacity=".16"/>`;
-g += `<text x="${W - 48}" y="606" text-anchor="end" class="url" font-size="30">thesimplifier7.com</text>`;
-g += `<line x1="${W - 48 - 266}" x2="${W - 48}" y1="615" y2="615" stroke="${C.gold}" stroke-width="1.6"/>`;
-const [d1, d2] = [DISC.slice(0, DISC.indexOf(" I develop")), DISC.slice(DISC.indexOf(" I develop") + 1)];
-g += `<text x="48" y="593" class="disc">${d1}</text><text x="48" y="607" class="disc">${d2}</text>`;
-g += `<rect width="${W}" height="${H}" filter="url(#grain)"/><rect width="${W}" height="${H}" fill="url(#vig)"/>`;
-
-const CSS = `${FACES}
-*{margin:0;padding:0} html,body{width:${W}px;height:${H}px;overflow:hidden;background:${C.bg}} svg{display:block}
-text{font-family:"Barlow",sans-serif}
-.brand{font-family:"Barlow";font-weight:600;letter-spacing:.32em;fill:${C.ink}}
-.kick{font-family:"Barlow";font-weight:600;font-size:12.5px;letter-spacing:.22em;fill:${C.gold}}
-.mute{font-family:"Barlow";font-weight:600;font-size:11px;letter-spacing:.22em;fill:${C.mute}}
-.big{font-family:"Barlow Condensed";font-weight:800}
-.word{font-family:"Barlow Condensed";font-weight:700;letter-spacing:.02em}
-.lab{font-family:"Barlow";font-weight:600;font-size:10.5px;letter-spacing:.2em}
-.vw{font-family:"Barlow Condensed";font-weight:700;font-size:30px;letter-spacing:.04em}
-.vc{font-family:"IBM Plex Mono";font-weight:500;font-size:12.5px}
-.sm{font-family:"Barlow";font-weight:600;font-size:9.5px;letter-spacing:.18em}
-.quote{font-family:"Newsreader";font-style:italic;font-weight:400;fill:${C.ink2}}
-.url{font-family:"Barlow";font-weight:700;fill:${C.ink}}
-.disc{font-family:"Barlow";font-weight:500;font-size:9.5px;fill:${C.dim}}`;
-const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>The record, this week</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@500&family=Newsreader:ital@1&display=swap" rel="stylesheet">
-<style>${CSS}</style></head><body><svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${g}</svg></body></html>`;
-
-const base = `card_${named}_${mode}`;
-fs.writeFileSync(path.join(HERE, "week_card.html"), html);
-console.log(`week_card.html written: ${mode}, named ${named}, Friday ${weekFri}, ${week.length} rows, ${ledger.length} lines on the ledger`);
-
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "assay-"));
+let out = "";
+try { out = execFileSync(process.execPath, [path.join(HERE, "assay_build.js"), path.join(HERE, "record.json"), tmp, "--og"], { encoding: "utf8", env: process.env }); }
+catch (e) { console.log("assay_build.js failed; the live card is kept\n" + (e.stdout || "") + (e.stderr || "")); process.exit(1); }
+const png = fs.readdirSync(tmp).find(f => /^card_\d{4}-\d{2}-\d{2}_(open|graded)\.png$/.test(f));
+if (!png) { console.log("assay_build.js wrote no card; the live card is kept\n" + out); process.exit(1); }
+const base = png.slice(0, -4);
+fs.copyFileSync(path.join(tmp, png), path.join(HERE, png));
+fs.copyFileSync(path.join(tmp, base + ".html"), path.join(HERE, "week_card.html"));
+console.log(`week_card.html and ${png} written in ASSAY at 1200 x 630`);
 const re = /^<meta property="og:image" content="https:\/\/thesimplifier7\.com\/[^"]+">$/m;
-(async () => {
-  let chromium; try { ({ chromium } = require("playwright")); } catch (e) { console.log(`playwright not installed; render week_card.html to ${base}.png by hand at 1200 x 630.`); return; }
-  const opts = fs.existsSync("/opt/pw-browsers/chromium") ? { executablePath: "/opt/pw-browsers/chromium" } : {};
-  const b = await chromium.launch(opts);
-  const p = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
-  await p.goto("file://" + path.join(HERE, "week_card.html"), { waitUntil: "load" });
-  try { await p.evaluate(() => document.fonts.ready); } catch (e) {}
-  await p.waitForTimeout(400);
-  await p.screenshot({ path: path.join(HERE, base + ".png") });
-  await b.close();
-  console.log(`${base}.png written at 1200 x 630`);
-  const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(HERE, base + ".png"))).digest("hex").slice(0, 10);
-  const fp = path.join(HERE, "index.html");
-  const was = fs.readFileSync(fp, "utf8");
-  if (!re.test(was)) { console.log("live og:image line not found in index.html; not changed"); process.exit(1); }
-  const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.com/${base}.png?v=${v}">`);
-  if (next !== was) { fs.writeFileSync(fp, next); console.log(`index.html og:image now ${base}.png?v=${v}`); }
-})();
+const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(HERE, png))).digest("hex").slice(0, 10);
+const fp = path.join(HERE, "index.html");
+const was = fs.readFileSync(fp, "utf8");
+if (!re.test(was)) { console.log("live og:image line not found in index.html; not changed"); process.exit(1); }
+const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.com/${base}.png?v=${v}">`);
+if (next !== was) { fs.writeFileSync(fp, next); console.log(`index.html og:image now ${base}.png?v=${v}`); }

@@ -1,0 +1,96 @@
+/* ASSAY v1 · THE SIMPLIFIER's design system · Design Lab, 28 October 2026
+   One idea: a line is drawn before the move, a close lands after it, and the line either holds or breaks.
+   Gold is the line. Red is only ever a line that broke. Nothing else gets a colour. */
+
+:root {
+  /* night: the default for every public graphic */
+  --ground-deep: #07111F;   /* vignette edge */
+  --ground: #0B1A2E;   /* ground */
+  --raised: #11233C;   /* raised panel */
+  --hairline: #1A3050;   /* hairline */
+  --rule: #2A4468;   /* strong rule, scale ticks */
+  --ink:   #F3EDE2;   /* text 1, 15.0:1 on ground */
+  --ink-2:    #A8B3C4;   /* text 2, 8.3:1 */
+  --ink-3:     #7D8CA3;   /* text 3, 5.1:1 */
+  --gold-hi: #F7D88E;   /* glow core, highlight */
+  --gold:    #E8B84F;   /* THE LINE, and a line that held, 9.5:1 */
+  --gold-lo: #B98A2C;   /* gold on gold, engraving */
+  --wrong:   #F0604A;   /* a line that broke, 5.4:1 */
+  --wash-kill: rgba(240,96,74,.10);
+  --glow: 0 0 18px rgba(247,216,142,.55);
+
+  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-text: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --f-figure: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* scale for a 1080 px wide card; the X frame (1600 x 900) uses the same steps */
+  --s-hero: 168px; --s-h1: 112px; --s-h2: 72px; --s-h3: 44px;
+  --s-fig-l: 52px; --s-fig: 30px; --s-body: 30px; --s-small: 22px; --s-eyebrow: 20px; --s-fine: 17px;
+  --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 40px; --sp-5: 64px; --sp-6: 96px;
+  --gutter: 72px; --radius: 4px;
+}
+/* day: silver paper, for the site's light mode and print */
+.day {
+  --ground-deep: #DDE3EB; --ground: #EEF1F5; --raised: #E4E9F0; --hairline: #CDD5E0; --rule: #AEB9C8;
+  --ink: #0B1A2E; --ink-2: #45536A; --ink-3: #5F6D84;
+  --gold-hi: #C9952E; --gold: #8A6410; --gold-lo: #6E4F0B; --wrong: #B8341C;
+  --glow: none;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.card {
+  position: relative; overflow: hidden; color: var(--ink); font-family: var(--f-text);
+  /* one key light from the upper left: a warm pool there, the far corner falling into shadow */
+  background:
+    radial-gradient(80% 60% at 16% 6%, rgba(255,236,200,.075), transparent 62%),
+    radial-gradient(70% 55% at 22% 14%, rgba(110,150,215,.10), transparent 70%),
+    radial-gradient(120% 100% at 88% 108%, rgba(0,0,0,.5), transparent 58%),
+    var(--ground);
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.card.day { background: radial-gradient(140% 120% at 50% 110%, var(--ground-deep), transparent 60%), var(--ground); }
+.grain::after { /* the stock: fine fractal grain, not a pattern */
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .9; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+/* lift: everything that matters floats a little above the stock, lit from the upper left */
+.lift { filter: drop-shadow(1px 2px 1.5px rgba(0,0,0,.45)) drop-shadow(5px 14px 18px rgba(0,0,0,.42)); }
+.metal-gold { background: linear-gradient(176deg, #fff1c8 0%, var(--gold-hi) 18%, var(--gold) 52%, #c9932f 78%, var(--gold-lo) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metal-red { background: linear-gradient(176deg, #ffb3a3 0%, #ff8a73 20%, var(--wrong) 55%, #c8381f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metal-ivory { background: linear-gradient(178deg, #fffdf8 0%, var(--ink) 50%, #d8cfbf 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tile { border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.014) 40%, rgba(0,0,0,.06) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), inset 1px 0 0 rgba(255,255,255,.03), inset 0 -1px 0 rgba(0,0,0,.35), 0 2px 3px rgba(0,0,0,.35), 4px 26px 46px -14px rgba(0,0,0,.72); }
+
+/* masthead */
+.mast { display: flex; align-items: center; justify-content: space-between; }
+.mark { display: flex; align-items: center; gap: 20px; }
+.mark img { width: 76px; height: 76px; border-radius: 50%; box-shadow: 0 0 0 2px var(--gold), 0 0 0 7px var(--ground), 0 0 0 8px var(--rule), 4px 14px 22px rgba(0,0,0,.55); }
+.word { font-family: var(--f-display); font-weight: 700; font-size: 34px; letter-spacing: .26em; text-transform: uppercase; }
+.eyebrow { font-family: var(--f-text); font-weight: 600; font-size: var(--s-eyebrow); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+.eyebrow b { color: var(--gold); font-weight: 600; }
+.rule { height: 1px; background: var(--hairline); }
+
+/* headline */
+.h1 { font-family: var(--f-display); font-weight: 800; font-size: var(--s-h1); line-height: .9; letter-spacing: -.005em; text-transform: uppercase; text-wrap: balance; }
+.h1 em { font-style: normal; color: var(--gold); }
+.h1 .w { color: var(--wrong); }
+.dek { font-size: var(--s-body); line-height: 1.32; color: var(--ink-2); font-weight: 500; max-width: 26em; text-wrap: pretty; }
+
+/* figures: every number on a card is set in the figure face, as it was read */
+.fig { font-family: var(--f-figure); font-weight: 600; letter-spacing: -.01em; }
+
+/* verdict word: fixed vocabulary, fixed glyph (held is a closed bar, wrong is a broken one) */
+.verdict { display: inline-flex; align-items: center; gap: 12px; font-family: var(--f-display); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1; }
+.verdict.held { color: var(--gold); }
+.verdict.wrong { color: var(--wrong); }
+.verdict.open { color: var(--ink); }
+.verdict.nr { color: var(--ink-3); }
+
+/* the hallmark: every card is stamped with the rows it carries and where they live */
+.hallmark { display: inline-grid; grid-auto-flow: column; align-items: stretch; border: 1.5px solid var(--gold-lo); outline: 1px solid var(--gold-lo); outline-offset: 3px; border-radius: 2px; font-family: var(--f-figure); font-size: var(--s-fine); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.hallmark span { padding: 8px 14px; display: flex; align-items: center; white-space: nowrap; }
+.hallmark span + span { border-left: 1px solid var(--gold-lo); }
+.counsel { font-size: var(--s-fine); line-height: 1.45; color: var(--ink-3); }
+.url { font-family: var(--f-display); font-weight: 700; font-size: 40px; letter-spacing: .02em; color: var(--ink); }
+.url u { text-decoration: none; box-shadow: inset 0 -3px 0 var(--gold); }
+.url { filter: drop-shadow(1px 2px 1.5px rgba(0,0,0,.45)) drop-shadow(4px 12px 16px rgba(0,0,0,.4)); }
