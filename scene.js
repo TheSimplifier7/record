@@ -63,13 +63,28 @@ const madridOffsetMin = d => {
     return (m[1] === "-" ? -1 : 1) * (parseInt(m[2], 10) * 60 + parseInt(m[3] || "0", 10));
   } catch (e) { return 120; }
 };
+/* 28 Oct 2026, note note 60: the close that grades a week is 17:00 in New York, read off New York's own clock,
+   so it is 23:00 in Madrid in most weeks and 22:00 in the weeks the clocks change on different Sundays. */
+const nyOffsetMin = d => {
+  try {
+    const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "America/New_York", timeZoneName: "longOffset" }).formatToParts(d);
+    const tz = (parts.find(x => x.type === "timeZoneName") || {}).value || "";
+    const m = tz.match(/([+-])(\d{2}):?(\d{2})?/);
+    if (!m) return -240;
+    return (m[1] === "-" ? -1 : 1) * (parseInt(m[2], 10) * 60 + parseInt(m[3] || "0", 10));
+  } catch (e) { return -240; }
+};
+const nyCloseOn = iso => { const g = new Date(iso + "T21:00:00Z"); if (isNaN(g)) return null; return new Date(Date.parse(iso + "T17:00:00Z") - nyOffsetMin(g) * 60000); };
+const madridHM = d => { const t = new Date(d.getTime() + madridOffsetMin(d) * 60000); return String(t.getUTCHours()).padStart(2, "0") + ":" + String(t.getUTCMinutes()).padStart(2, "0"); };
 const gradeCloseFor = iso => {
   const d = new Date(iso + "T12:00:00Z");
   if (isNaN(d)) return null;
   const day = d.getUTCDay(); let add = (5 - day + 7) % 7; if (add === 0) add = 7;
   d.setUTCDate(d.getUTCDate() + add);
+  return nyCloseOn(d.toISOString().slice(0, 10));
+  /* WAS, until note 60:
   const guess = new Date(d.toISOString().slice(0, 10) + "T23:00:00Z");
-  return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
+  return new Date(guess.getTime() - madridOffsetMin(guess) * 60000); */
 };
 const tzOf = d => d && madridOffsetMin(d) === 60 ? "CET" : "CEST";
 const tradingMonday = iso => { const w = dt(iso).getUTCDay(); return w === 0 ? addD(iso, 1) : addD(iso, -(w - 1)); };
@@ -94,7 +109,7 @@ function model(src) {
   let next = null;
   if (pend.length) {
     const c = pend[0], fri = new Date(c.getTime() + madridOffsetMin(c) * 60000).toISOString().slice(0, 10);
-    next = { fri, at: c.getTime(), label: ddm(fri) + " · 23:00 " + tzOf(c) };
+    next = { fri, at: c.getTime(), label: ddm(fri) + " · " + madridHM(c) + " " + tzOf(c) };   /* note 60. This read: ddm(fri) + " · 23:00 " + tzOf(c) */
   }
   const lineRead = c => {
     if (c.type !== "Map") return null;
@@ -330,7 +345,7 @@ function drawerHTML(M, metal, pick, opt) {
     `<dl class="r3d-dl"><dt>Posted</dt><dd>${h(S.posted)}</dd>` +
     (S.from ? `<dt>Where it comes from</dt><dd>${h(S.from)}</dd>` : "") +
     `<dt>Proved wrong by</dt><dd>${h(S.proof)}</dd>` +
-    `<dt>Friday's close</dt>${S.close ? `<dd class="r3-mono">${h(S.close)}</dd>` : `<dd>${h("Fri " + dm(S.fri) + " · 23:00 " + tzOf(gradeCloseFor(S.mon)))}</dd>`}` +
+    `<dt>Friday's close</dt>${S.close ? `<dd class="r3-mono">${h(S.close)}</dd>` : `<dd>${h("Fri " + dm(S.fri) + " · " + madridHM(gradeCloseFor(S.mon)) + " " + tzOf(gradeCloseFor(S.mon)))}</dd>`}` +
     `<dt>Distance from the level</dt>${dist}</dl>` +
     `<div class="r3d-since"><div class="r3-ey">${h(m.name)} since ${h(dml(m.lines[0].mon))}</div><div class="r3d-marks" aria-hidden="true">${m.lines.map(L => markI(L.mark, L.mon === S.mon ? ' style="outline:1.5px solid #fff;outline-offset:2px"' : "")).join("")}</div>` +
     `<p class="r3d-count">${m.lines.length} ${m.lines.length === 1 ? "line" : "lines"} · ${h(parts.join(" · "))}</p></div>` +

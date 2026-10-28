@@ -74,8 +74,16 @@
     var d = new Date(iso + "T12:00:00Z"); if (isNaN(d)) return null;
     var add = (5 - d.getUTCDay() + 7) % 7; if (add === 0) add = 7;
     d.setUTCDate(d.getUTCDate() + add);
+    /* note 60: 17:00 in New York, by New York's own clock. WAS:
     var guess = new Date(d.toISOString().slice(0, 10) + "T23:00:00Z");
-    return new Date(guess.getTime() - madridOffsetMin(guess) * 60000);
+    return new Date(guess.getTime() - madridOffsetMin(guess) * 60000); */
+    var iso = d.toISOString().slice(0, 10), g = new Date(iso + "T21:00:00Z"), ny = -240;
+    try {
+      var p = new Intl.DateTimeFormat("en-GB", { timeZone: "America/New_York", timeZoneName: "longOffset" }).formatToParts(g), z = "";
+      for (var k = 0; k < p.length; k++) if (p[k].type === "timeZoneName") z = p[k].value;
+      var mm = z.match(/([+-])(\d{2}):?(\d{2})?/); if (mm) ny = (mm[1] === "-" ? -1 : 1) * (parseInt(mm[2], 10) * 60 + parseInt(mm[3] || "0", 10));
+    } catch (e) {}
+    return new Date(Date.parse(iso + "T17:00:00Z") - ny * 60000);
   };
   var DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   fetch("record.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
@@ -87,7 +95,7 @@
     var cl = (j.rows || []).filter(function (r) { return r.grade === "pending" && r.named; }).map(function (r) { return closeAfter(r.named); }).filter(Boolean).sort(function (a, b) { return a - b; });
     if (cl.length) {
       var c = cl[0], local = new Date(c.getTime() + madridOffsetMin(c) * 60000);
-      $("hs-when").textContent = DAY[local.getUTCDay()] + " " + local.getUTCDate() + " " + MON[local.getUTCMonth()] + " · 23:00 " + (madridOffsetMin(c) === 60 ? "CET" : "CEST");
+      $("hs-when").textContent = DAY[local.getUTCDay()] + " " + local.getUTCDate() + " " + MON[local.getUTCMonth()] + " · " + String(local.getUTCHours()).padStart(2, "0") + ":" + String(local.getUTCMinutes()).padStart(2, "0") + " " + (madridOffsetMin(c) === 60 ? "CET" : "CEST");   /* note 60. This read: " · 23:00 " + ... */
       var tick = function () {
         var ms = c.getTime() - Date.now();
         if (ms <= 0) { $("hs-cd").textContent = "· close printed, grade pending"; return; }
