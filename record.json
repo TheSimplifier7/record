@@ -4,14 +4,14 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-10-29",
-  "generated": "2026-10-28T23:44:30.542Z",
+  "last_updated": "2026-10-30",
+  "generated": "2026-10-30T21:44:27.430Z",
   "tally": {
-    "resolved": 41,
-    "held": 32,
+    "resolved": 44,
+    "held": 35,
     "wrong": 9,
     "never_reached": 5,
-    "open": 3,
+    "open": 0,
     "hit": 4,
     "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
@@ -64,9 +64,9 @@
       "book": "Turn",
       "call": "Gold stays below 4,077.04, his own level inside last week's range of 3,975.49 to 4,190.38: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
       "kill": "a weekly close above 4,077.04.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HELD. The weekly close printed 3,875.05, 201.99 under the line of 4,077.04. Close read off the founder's own TVC chart, market shut, by 22:43 CET 30 October.",
+      "grade": "pass",
+      "grade_word": "held",
       "grammar": 2,
       "side": "copper",
       "line": "4,077.04",
@@ -77,11 +77,11 @@
         "4,190.38"
       ],
       "read_at": "15:02 to 15:03 CET",
-      "close": null,
+      "close": "3,875.05",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-10-27",
+      "graded_on_close": "2026-10-30",
+      "graded_at": "2026-10-30T23:00:00+02:00",
+      "written": "2026-10-30",
       "commit": null
     },
     {
@@ -95,9 +95,9 @@
       "book": "Turn",
       "call": "Silver stays below 55.624, his own level inside last week's range of 53.0091 to 58.601: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
       "kill": "a weekly close above 55.624.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HELD. The weekly close printed 49.10, 6.524 under the line of 55.624. Close read off the founder's own TVC chart, market shut, by 22:43 CET 30 October.",
+      "grade": "pass",
+      "grade_word": "held",
       "grammar": 2,
       "side": "copper",
       "line": "55.624",
@@ -108,11 +108,11 @@
         "58.601"
       ],
       "read_at": "15:02 to 15:03 CET",
-      "close": null,
+      "close": "49.10",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-10-27",
+      "graded_on_close": "2026-10-30",
+      "graded_at": "2026-10-30T23:00:00+02:00",
+      "written": "2026-10-30",
       "commit": null
     },
     {
@@ -126,9 +126,9 @@
       "book": "Turn",
       "call": "Platinum stays below 1,578.16, his own level inside last week's range of 1,540.062 to 1,663.40: The Fan's line, set Monday at 10:00 New York and read off his chart between 15:02 and 15:03 CET. Written to this page on 27 October, after the first 8h close that followed the freeze, by his ruling (note 59).",
       "kill": "a weekly close above 1,578.16.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HELD. The weekly close printed 1,433.40, 144.76 under the line of 1,578.16. Close read off the founder's own TVC chart, market shut, by 22:43 CET 30 October.",
+      "grade": "pass",
+      "grade_word": "held",
       "grammar": 2,
       "side": "copper",
       "line": "1,578.16",
@@ -139,11 +139,11 @@
         "1,663.40"
       ],
       "read_at": "15:02 to 15:03 CET",
-      "close": null,
+      "close": "1,433.40",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-10-27",
+      "graded_on_close": "2026-10-30",
+      "graded_at": "2026-10-30T23:00:00+02:00",
+      "written": "2026-10-30",
       "commit": null
     },
     {
@@ -2108,6 +2108,12 @@
       "Gold": "3,995.380",
       "Silver": "53.8280",
       "Platinum": "1,550.50"
+    },
+    {
+      "date": "2026-10-30",
+      "Gold": "3,875.05",
+      "Silver": "49.10",
+      "Platinum": "1,433.40"
     }
   ],
   "crowd": {

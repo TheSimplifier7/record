@@ -1,20 +1,20 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-10-28T23:44:49.233Z",
+ "generated": "2026-10-30T21:44:45.182Z",
  "cards": [
   {
    "name": "misses",
    "page": "misses.html",
    "file": "link_misses.png",
-   "v": "b8dea21a4a",
-   "image": "https://thesimplifier7.com/link_misses.png?v=b8dea21a4a",
+   "v": "6df687669e",
+   "image": "https://thesimplifier7.com/link_misses.png?v=6df687669e",
    "figures": {
     "tally": {
-     "resolved": 41,
-     "held": 32,
+     "resolved": 44,
+     "held": 35,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     },
     "latest_close": "2026-10-09",
     "latest": [
@@ -37,8 +37,8 @@
    "name": "targets",
    "page": "targets.html",
    "file": "link_targets.png",
-   "v": "5f75339e21",
-   "image": "https://thesimplifier7.com/link_targets.png?v=5f75339e21",
+   "v": "fca6a72428",
+   "image": "https://thesimplifier7.com/link_targets.png?v=fca6a72428",
    "figures": {
     "open": 7,
     "held": 4,
@@ -58,8 +58,8 @@
    "name": "method",
    "page": "method.html",
    "file": "link_method.png",
-   "v": "85bc2faa3c",
-   "image": "https://thesimplifier7.com/link_method.png?v=85bc2faa3c",
+   "v": "598b0eaafe",
+   "image": "https://thesimplifier7.com/link_method.png?v=598b0eaafe",
    "figures": {
     "chart": "fan_gold_2h_2026-10-06.png"
    }
@@ -68,15 +68,15 @@
    "name": "year",
    "page": "year.html",
    "file": "link_year.png",
-   "v": "b863867952",
-   "image": "https://thesimplifier7.com/link_year.png?v=b863867952",
+   "v": "cc82ab931b",
+   "image": "https://thesimplifier7.com/link_year.png?v=cc82ab931b",
    "figures": {
     "tally": {
-     "resolved": 41,
-     "held": 32,
+     "resolved": 44,
+     "held": 35,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -84,15 +84,15 @@
    "name": "guest",
    "page": "guest.html",
    "file": "link_guest.png",
-   "v": "0a96f79281",
-   "image": "https://thesimplifier7.com/link_guest.png?v=0a96f79281",
+   "v": "dcadcc773f",
+   "image": "https://thesimplifier7.com/link_guest.png?v=dcadcc773f",
    "figures": {
     "tally": {
-     "resolved": 41,
-     "held": 32,
+     "resolved": 44,
+     "held": 35,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -100,15 +100,15 @@
    "name": "advisers",
    "page": "advisers.html",
    "file": "link_advisers.png",
-   "v": "8b98eb49d6",
-   "image": "https://thesimplifier7.com/link_advisers.png?v=8b98eb49d6",
+   "v": "23d57993fd",
+   "image": "https://thesimplifier7.com/link_advisers.png?v=23d57993fd",
    "figures": {
     "tally": {
-     "resolved": 41,
-     "held": 32,
+     "resolved": 44,
+     "held": 35,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   },
@@ -116,8 +116,8 @@
    "name": "tick",
    "page": "tick.html",
    "file": "link_tick.png",
-   "v": "32dc72b72c",
-   "image": "https://thesimplifier7.com/link_tick.png?v=32dc72b72c",
+   "v": "3c3a10c6e2",
+   "image": "https://thesimplifier7.com/link_tick.png?v=3c3a10c6e2",
    "figures": {
     "rows": 0,
     "held": 0,
@@ -130,15 +130,15 @@
    "name": "embed",
    "page": "embed.html",
    "file": "link_embed.png",
-   "v": "a45247ab36",
-   "image": "https://thesimplifier7.com/link_embed.png?v=a45247ab36",
+   "v": "2387aacd58",
+   "image": "https://thesimplifier7.com/link_embed.png?v=2387aacd58",
    "figures": {
     "tally": {
-     "resolved": 41,
-     "held": 32,
+     "resolved": 44,
+     "held": 35,
      "wrong": 9,
      "never_reached": 5,
-     "open": 3
+     "open": 0
     }
    }
   }
