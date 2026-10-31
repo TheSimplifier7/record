@@ -602,16 +602,22 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   /* 12 October 2026, evening, note 50: the founder's ruling, $1,299 a month. These two lines read:
   if (!/<b>\$199<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $199 a month, through TradingView");
   if (!/<div class="n">\$199<\/div>/.test(mp)) probs.push("the price block does not print $199"); */
+  /* 31 Oct 2026, note 64, the founder's word: The Fan by a Stripe trial, 7 days free, then 149.99 euros a month. These three lines read:
   if (!/<b>\$1,299<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $1,299 a month, through TradingView");
   if (!/<div class="n">\$1,299<\/div>/.test(mp)) probs.push("the price block does not print $1,299");
-  if (/\$199\b/.test(mp)) probs.push("$199 is still on the page outside a comment");
+  if (/\$199\b/.test(mp)) probs.push("$199 is still on the page outside a comment"); */
+  if (!/<b>7 days free<\/b>, then €149\.99 a month\./.test(mp)) probs.push("the price line does not read 7 days free, then €149.99 a month");
+  if (!/<div class="n">€149\.99<\/div>/.test(mp)) probs.push("the price block does not print €149.99");
+  if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");
+  const tr = (mp.match(/const METHOD_TRIAL\s*=\s*"([^"]*)"/) || [])[1];
+  if (!tr || !/^https:\/\/buy\.stripe\.com\//.test(tr)) probs.push("METHOD_TRIAL is not a Stripe payment link");
   if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
   if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
   if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");
   const sp = (mp.match(/const METHOD_SPACE\s*=\s*"([^"]*)"/) || [])[1];
   if (sp === undefined) probs.push("METHOD_SPACE is missing");
   else if (sp && !/^https:\/\/([a-z]+\.)?tradingview\.com\//.test(sp)) probs.push("METHOD_SPACE points somewhere other than tradingview.com");
-  check(probs.length === 0, "The Fan is offered by the month through TradingView and nowhere else, the seat without it (12 October 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+  check(probs.length === 0, "The Fan is offered by a 7 day trial, then by the month, the seat without it (12 October 2026; the trial, 31 Oct 2026, note 64)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
 /* 27. THE SCENE, added 22 October 2026, note 55. */

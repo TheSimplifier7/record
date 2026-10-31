@@ -52,7 +52,8 @@ const HERE = __dirname;
 const SITE = "https://thesimplifier7.com/";
 /* 6 Oct 2026. The Method page carries The Fan, and its card draws The Fan's chart.
    WAS: const METHOD_CHART = "method_gold_8h_2026-09-24.jpg"; */
-const METHOD_CHART = "fan_gold_2h_2026-10-06.png";
+/* 31 Oct 2026, note 64: the card draws The Fan 7.1, the founder's snapshot of 31 October, attribution and all. WAS: const METHOD_CHART = "fan_gold_2h_2026-10-06.png"; */
+const METHOD_CHART = "fan_gold_1h_2026-10-31.png";
 
 /* ---------------------------------------------------------------- helpers */
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -211,7 +212,7 @@ const CARDS = [
   <div><div class="k" style="margin-top:0">The Fan</div>
     <h1 style="font-size:54px">The indicator the record is read from.</h1>
     <div class="sub" style="font-size:24px">It draws structure. It does not tell you what to do.</div>
-    <div class="line" style="margin-top:22px;font-size:15px;color:${C.ink5}">Gold, 2 hour, TVC, 6 October 2026</div></div>
+    <div class="line" style="margin-top:22px;font-size:15px;color:${C.ink5}">Gold, 1 hour, TVC, 30 October 2026</div></div>
   <div class="shot"><img src="${img}" alt=""></div>
 </div>` },
   { name: "year", page: "year.html", label: "By introduction", html: (F) => `<div class="k">The Year</div>

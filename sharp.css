@@ -1,0 +1,142 @@
+/* sharp.css · THE SIMPLIFIER · Design Lab, 31 October 2026, note 64 on the record.
+   Loaded last on every page. His word: "remove the rosette behind the price because it is slowing the site down...
+   make it sota, and sharp". What it does, in the order of unslop's passes (unslop by @heydamir, CC BY 4.0):
+   1. Speed: no frosted glass (backdrop blur recomputed under a moving chart), no slow drift of the chart, no light
+      cones, no looping pings. The engraving itself (lamp.js) is simply no longer loaded.
+   2. Surfaces: the panes are solid navy steps with a hairline, the band a solid bar.
+   3. Type: small labels in plain case at normal tracking; no single word lit in the headline.
+   4. The trial button and its fine print. Nothing here moves a figure or types one. */
+
+/* 1. speed */
+*, *::before, *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; text-shadow: none !important; }
+.r3-drift { animation: none !important; transform: none !important; }
+.r3-lights { display: none !important; }
+.r3-dot, .r3-pin.open .foot, .hs-dot { animation: none !important; }
+.r3-pin.open .foot { box-shadow: 0 0 0 3px rgba(141, 176, 245, .28) !important; }
+
+/* 2. surfaces: solid steps of the navy, one hairline each */
+.r3-glass, .r3-tele, .r3-dock, .r3-drawer, .r3-open { background: #0f2036 !important; border: 1px solid rgba(243, 237, 226, .08) !important; box-shadow: none !important; }
+.hd-band, .hs-band { background: rgba(9, 18, 34, .985) !important; box-shadow: 0 1px 0 rgba(243, 237, 226, .06) !important; }
+.botnav, .hs-bot { background: #0b1a2e !important; }
+.r3-pin .cap { background: #0c1a2d !important; }
+.hd-btn.hd-ghost, .hs-btn.hs-ghost, .btn.quiet, .hs-tools .tbtn { background: transparent !important; border: 1px solid rgba(243, 237, 226, .18) !important; box-shadow: none !important; }
+.hd-btn.hd-ghost:hover, .hs-btn.hs-ghost:hover, .btn.quiet:hover { background: rgba(243, 237, 226, .06) !important; }
+.hd-btn.hd-gold, .hs-btn.hs-gold { box-shadow: none !important; }
+
+/* 3. type: plain case, normal tracking; the headline in one colour */
+.bar h2,
+.bar h3,
+.bar p,
+.board th,
+.course>h3,
+.days th,
+.descent-head,
+.ep .test b,
+.eyebrow,
+.eyebrow-inline,
+.fan .price .t,
+.fan-head .crumb,
+.fan-head h1,
+.fx .side,
+.gt,
+.hd-eyebrow,
+.hd-mh .hd-ey,
+.hd-side .hd-ey,
+.hd-status,
+.hd-strip-in,
+.hs-eyebrow,
+.hs-strip-in,
+.lr .lv .sw,
+.mstats span,
+.nt .k,
+.ob-lhead b,
+.r3-copy .hd-eyebrow,
+.r3-ey,
+.sc .kill b,
+.sc-asof,
+.sc-bband,
+.sc-bname,
+.sc-bstate,
+.sc-bsub,
+.sc-bwhen,
+.sc-chip,
+.sc-clock,
+.sc-clocks b,
+.sc-ends b,
+.sc-fsum,
+.sc-gjoin b,
+.sc-gnum,
+.sc-gpair b,
+.sc-mlab,
+.sc-row .m,
+.sc-status,
+.sc-when,
+.sc-withheld b,
+.season thead th,
+.sheet .as h3,
+.sheet .blk h3,
+.sheet-top .cap,
+.spec dt,
+.strip .sg b,
+.vhead .law,
+footer .law,
+html:has(#hs-stone) .k,
+html:has(#hs-stone) .kick,
+html:has(#hs-stone) .kicker,
+html:has(#hs-stone) .lab,
+html:has(#hs-stone) .wrap .eyebrow,
+html:has(#hs-stone) .wrap h2,
+html:has(#hs-stone) .wrap th,
+html:has(#hs-stone) .wrap:has(.price) td:first-child,
+html:has(#hs-stone) table#book thead th { text-transform: none !important; letter-spacing: .01em !important; }
+.r3-ey, .hd-eyebrow, .hs-eyebrow, .eyebrow, .descent-head { font-family: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif !important; font-weight: 500 !important; }
+.r3-h1 em { color: inherit !important; font-style: normal !important; background: none !important; -webkit-text-fill-color: currentColor !important; }
+.hd-eyebrow b { color: inherit !important; }
+.topnav a[data-v="join"], .hs-nav a[href="./#join"] { display: none !important; }
+
+/* 4. the trial */
+.r3-under a, .fan .fan-price + .fan-cta a + a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.r3f-more { display: inline-block; margin-top: 12px; font-size: 14px; color: #a8b3c4; text-decoration: underline; text-underline-offset: 3px; }
+.r3f-step .hd-btn.hd-gold { margin-top: 4px; }
+.fan-cta { margin-top: 20px; }
+.fan-cta .hs-btn { display: inline-flex; }
+
+/* 5. the band fits. Before this, the last nav link ran under the theme button from 1440px down, and on a phone the
+   gold button ran 20 to 40px past the edge of the screen. The wordmark is set a little tighter, the links a little
+   closer, and on a phone the mark and the button give way before anything spills. */
+.hd-band .brand, .hs-brand { letter-spacing: .2em !important; }
+.hd-band .topnav a, .hs-nav a { padding: 0 9px !important; }
+.hd-band .topnav, .hs-nav { flex: 0 1 auto !important; }
+@media (max-width: 1320px) { .hd-band .getlines-ghost, .hs-band .hs-getlines { display: none !important; } }
+@media (max-width: 1100px) { .hd-band .topnav a, .hs-nav a { padding: 0 6px !important; font-size: 14px !important; } .hd-band .brand, .hs-brand { letter-spacing: .14em !important; font-size: 15px !important; } }
+@media (max-width: 960px) { .hd-band .brand, .hs-brand { font-size: 0 !important; letter-spacing: 0 !important; gap: 0 !important; } }
+@media (max-width: 760px) { .hd-band .brand, .hs-brand { font-size: 15px !important; letter-spacing: .14em !important; gap: 10px !important; } }
+@media (max-width: 440px) {
+  .hd-band .brand, .hs-brand { font-size: 13px !important; letter-spacing: .1em !important; gap: 8px !important; }
+  .hd-band .brand::before, .hs-brand::before { width: 30px !important; height: 30px !important; }
+  .hd-band .tbtn, .hs-band .hs-theme { width: 38px !important; height: 38px !important; min-height: 38px !important; }
+  .hd-band .band-tools .hd-btn, .hs-tools .hs-btn { padding: 0 12px !important; font-size: 13px !important; }
+}
+@media (max-width: 350px) { .hd-band .brand, .hs-brand { font-size: 0 !important; letter-spacing: 0 !important; gap: 0 !important; } }
+
+/* 6. flat heads: no wash, no grain, no hard edge where the head of a page meets its body */
+.fan-head, .hs-hero, .band-hero:not(.r3) { background: transparent !important; box-shadow: inset 0 -1px 0 rgba(243, 237, 226, .06) !important; }
+.hs-hero::after, .band-hero:not(.r3)::after { display: none !important; }
+
+/* 7. plain case on every other page that loads this sheet (the share cards keep their own type) */
+.band nav, .door .t, .tool .n, .kick, .kicker, .k, .lab, .law, .links, .tally, .tally .t, .tally span, .facts .t, .handle,
+header .desc, .kind, .metal, .nav, .record .k, .count .t, .gr .pg, .cap, .rail li, .price .t, .card .k, .list h2, .demo .lab,
+details.kill summary, .r3f-tag { text-transform: none !important; letter-spacing: .01em !important; }
+th, td:first-child, h1, h2, footer { text-transform: none !important; }
+.r3f-tag { font-weight: 600 !important; font-size: 12px !important; }
+
+/* 8. The Fan's price line reads as one sentence; its button is the same ivory as every other */
+.fan-price a { text-decoration: none !important; border-bottom: 0 !important; }
+.fan-price b { font-family: inherit !important; color: #f3ede2 !important; font-weight: 600 !important; }
+#pay-month { color: #0b1a2e !important; background: linear-gradient(170deg, #fffbf2 0%, #f1e9db 48%, #d6cab6 100%) !important; border: 0 !important; border-radius: 999px !important; padding: 0 20px !important; box-shadow: none !important; }
+@media (max-width: 350px) { table.season th, table.season td { padding-left: 4px !important; padding-right: 4px !important; font-size: 12px !important; } }
+
+/* 9. the Join view: one ivory button per door, no gold ring or glow on the first */
+#door-tools { border-color: rgba(243, 237, 226, .08) !important; box-shadow: none !important; background: var(--raise) !important; }
+#door-tools .eyebrow { color: inherit !important; }
+.door .btn:not(.quiet), #door-tools .btn { color: #0b1a2e !important; background: linear-gradient(170deg, #fffbf2 0%, #f1e9db 48%, #d6cab6 100%) !important; border: 0 !important; border-radius: 999px !important; box-shadow: none !important; }

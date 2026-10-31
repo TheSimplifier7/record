@@ -128,8 +128,8 @@ ${keep(s.slice(w + '<div class="wrap">'.length, h1b + 5 + lm[0].length).trim())}
 
   /* the end of the body: the bar at the foot of a phone, unless the page has its own, and house.js */
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = p.kind === "method" ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>` : H.tail(p.current); */
-  const tail = p.kind === "method" ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>
-<script src="lamp.js?v=${H.vOf("lamp.js")}" defer></script>` : H.tail(p.current);
+  /* 31 Oct 2026, note 64: no lamp.js on The Fan's page either. */
+  const tail = p.kind === "method" ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>` : H.tail(p.current);
   const eb = between(s, "TAIL", tail);
   if (eb.has) s = eb.put;
   else { const i = s.lastIndexOf("</body>"); if (i < 0) fail(p.file, "no </body>"); s = s.slice(0, i) + eb.block + "\n" + s.slice(i); }

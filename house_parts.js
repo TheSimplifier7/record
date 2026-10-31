@@ -34,7 +34,7 @@ const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("the
 /* The tags a page's head carries for the house: after its own styles, so the house's few rules come last. */
 function headTags({ fonts = true } = {}) {
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`; */
-  return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">`;
+  return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">`; /* 31 Oct 2026, note 64: sharp.css loaded last */
 }
 const earlyTags = () => '<meta name="color-scheme" content="light dark">\n' + THEME_JS;
 
@@ -76,7 +76,7 @@ function band(current, where, { fixed = true } = {}) {
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
       <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
-      <a class="hs-btn hs-gold" href="${TV}" data-tv="${esc(where)}-band"><span><span class="hs-long">Follow on </span>TradingView</span></a>
+      <a class="hs-btn hs-gold" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="trial-${esc(where)}-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
     </div>
   </div>
 </header>`;
@@ -109,7 +109,8 @@ function bot(current) {
 </nav>`;
 }
 /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
-const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`;
+/* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
+const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => strip() + "\n" + band(current, where, o);
 

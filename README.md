@@ -63,6 +63,8 @@ The cards, from 10 October 2026 (note 48), are drawn in the record's navy and in
 <!-- 28 Oct 2026, note 61. -->
 The cards, from 28 October 2026 (note 61), are drawn in ASSAY, the record's design system: assay_build.js draws them from record.json with assay-core.js and assay.css beside it, and make_week_card.js runs it for the link card. Every card carries a seal whose rosette is drawn from the SHA-256 of the rows it shows, one line per row, oldest first, `number|date|metal|level|side|grade|close`, so anyone can recompute it from record.json. The tally cards, the bank cards and the other pages' link cards keep their drawing until they are redrawn, each with a note.
 
+From 31 October 2026 (note 64) the engraving that lay behind the chart is no longer loaded (lamp.js stays in the repository), and sharp.css, loaded last on every page, takes off the frosted glass, the drift of the chart and the light cones, and sets the small labels in plain case. The gold button offers The Fan's trial through Stripe.
+
 The head of the page, from 29 October 2026 (note 63), has one light that the reader holds: lamp.js and lamp.css, loaded after the scene. Under the scene's chart lies the record's seal, engraved, drawn from the SHA-256 of every row in record.json by the same key as the cards; it shows only where the light falls. With scripts off, or without WebGL, the scene shows as before, without the engraving. lamp.css also draws the page in ASSAY: the band, the buttons, the sections and their spacing, the foot and the bar at the foot of a phone, with open drawn in ivory instead of blue. The ground is dark for everyone (dark_ground.py, the same note). It moves no figure and types none.
 
 <!-- 10 Oct 2026, note 49. -->
