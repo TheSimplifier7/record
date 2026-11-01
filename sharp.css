@@ -168,7 +168,7 @@ th, td:first-child, h1, h2, footer { text-transform: none !important; }
 .plan h2 { margin: 0 !important; font-size: 22px !important; line-height: 1.2 !important; }
 .plan-tag { font-size: 13px; opacity: .85; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
 .plan-price { margin: 0; font-size: 15px; }
-.plan-price b { font-family: Barlow, system-ui, sans-serif; font-weight: 700; font-size: 32px; line-height: 1; font-variant-numeric: tabular-nums lining-nums; margin-right: 6px; }
+.plan-price b { font-family: Barlow, "Barlow Fallback", system-ui, sans-serif; font-weight: 700; font-size: 32px; line-height: 1; font-variant-numeric: tabular-nums lining-nums; margin-right: 6px; }
 .plan ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 7px; font-size: 15px; line-height: 1.5; }
 .plan-btn { align-self: flex-start; margin-top: 2px; }
 .plan .fine { margin: 0; font-size: 12.5px; line-height: 1.5; opacity: .75; }
@@ -184,3 +184,33 @@ th, td:first-child, h1, h2, footer { text-transform: none !important; }
 .plans-list .d { grid-column: 1 / -1; opacity: .85; }
 @media (max-width: 600px) { .fan-head .lede.what { font-size: 16.5px; line-height: 1.6; } }
 .terms-plans a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 11. 1 November 2026: the type holds still while the web fonts arrive. Each face has a fallback cut to its width
+   (fonts.css), and every stack names it second, so a swap moves no line. */
+:root {
+  --f-ui: "Barlow", "Barlow Fallback", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  --f-text: "Barlow", "Barlow Fallback", "Helvetica Neue", Arial, sans-serif !important;
+  --f-data: "Barlow", "Barlow Fallback", "Helvetica Neue", Arial, sans-serif !important;
+  --hs-ui: "Barlow", "Barlow Fallback", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  --f-cond: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif !important;
+  --f-display: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif !important;
+  --hs-cond: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif !important;
+  --f-fig: "IBM Plex Mono", "IBM Plex Mono Fallback", ui-monospace, Menlo, monospace !important;
+  --f-figure: "IBM Plex Mono", "IBM Plex Mono Fallback", ui-monospace, Menlo, monospace !important;
+  --hs-fig: "IBM Plex Mono", "IBM Plex Mono Fallback", ui-monospace, Menlo, monospace !important;
+}
+.r3-ey, .hd-eyebrow, .hs-eyebrow, .eyebrow, .descent-head { font-family: "Barlow", "Barlow Fallback", system-ui, sans-serif !important; }
+@media (max-width: 600px) {
+  .r3-copy .hd-eyebrow { display: flex !important; align-content: flex-start; min-height: 38px; }
+  .r3-copy .hd-eyebrow > span:last-child { flex-basis: 100%; }
+}
+/* the record's strip at the top of every house page holds its place while record.json loads */
+.hs-strip { display: block !important; visibility: hidden; }
+.hs-strip.on { visibility: visible; }
+@media print { .hs-strip { display: none !important; } }
+/* the head of the record: the line beside the counts takes two lines on a phone once the page has read the record */
+@media (max-width: 470px) { .r3-tele { min-height: 64px; } }
+
+/* 12. 1 November 2026: the foot line on a page that has no house band (embed.html) */
+body:not(:has(.hs-band)) .hs-fanfoot .hs-wrap { max-width: 1072px; margin: 0 auto; padding: 0 20px; }
+body:not(:has(.hs-band)) .hs-fanfoot { margin-top: 48px; }

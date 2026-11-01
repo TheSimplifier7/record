@@ -611,7 +611,7 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   if (!/id="plans"/.test(mp)) probs.push("the two plans are not on the page");
   for (const [k, u] of Object.entries(BUY)) if ((mp.match(new RegExp('href="' + u.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length !== 1) probs.push("the checkout of " + k + " is not on the page once");
   if (!/<b>€149\.99<\/b> a month/.test(mp) || !/<b>€59<\/b> a month/.test(mp)) probs.push("a plan does not print its price");
-  if ((mp.match(/7 days free\. Cancel before day 7 and pay nothing\. Then €(149\.99|59) a month, first charge on day 8\./g) || []).length < 2) probs.push("a buy button has no trial line under it");
+  if ((mp.match(/7 days free\. Cancel before day 8 and pay nothing\. Then €(149\.99|59) a month, first charge on day 8\./g) || []).length < 2) probs.push("a buy button has no trial line under it");
   if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
   if (/METHOD_SPACE|METHOD_FORM|METHOD_TERMS|Request access|Access by invitation|Access is by request/.test(mp)) probs.push("the page still carries the Space, the request form or access by request");
   if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");

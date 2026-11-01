@@ -33,9 +33,10 @@ const FONTS = '<link rel="preload" href="barlow-latin-400-normal.woff2" as="font
 const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>';
 
 /* The tags a page's head carries for the house: after its own styles, so the house's few rules come last. */
+const ICONS = "<link rel=\"icon\" href=\"/favicon.ico?v=2\" sizes=\"16x16 32x32 48x48\">\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/icon-192.png?v=2\">\n<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png?v=2\">";  /* 1 Nov 2026: the icons index.html carries, on every page that takes the house head */
 function headTags({ fonts = true } = {}) {
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`; */
-  return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">`; /* 31 Oct 2026, note 64: sharp.css loaded last */
+  return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">`; /* 31 Oct 2026, note 64: sharp.css loaded last */
 }
 const earlyTags = () => '<meta name="color-scheme" content="light dark">\n' + THEME_JS;
 
@@ -112,7 +113,7 @@ function bot(current) {
 /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
 /* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
 /* 1 Nov 2026: The Fan's trial and its way out, at the foot of every page that takes this tail. */
-const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="./">The record</a> · <a href="method.html#plans" data-tv="plans-foot">The Fan and The Method: 7 days free on either plan. Cancel before day 7, pay nothing</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
+const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="./">The record</a> · <a href="method.html#plans" data-tv="plans-foot">The Fan and The Method: 7 days free on either plan. Cancel before day 8, pay nothing</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
 const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => strip() + "\n" + band(current, where, o);

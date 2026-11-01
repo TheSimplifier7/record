@@ -286,9 +286,9 @@
         "In a nanosecond a signal in glass fibre travels about 20 centimetres. That is why firms pay to put their machines in the same building."]
     },
     vault: {
-      Gold: ["What changes hands is metal. In London it lies in bars of about 400 troy ounces, each stamped with its refiner, its number and its fineness.",
+      Gold: ["What changes hands is metal. In the vault it lies in bars of about 400 troy ounces, each stamped with its refiner, its number and its fineness.",
         "The Bank of England alone holds about 400,000 of them. When gold is traded they usually do not move: only the owner's name changes."],
-      Silver: ["What changes hands is metal. In London it lies in bars of about 1,000 troy ounces, each stamped with its refiner, its number and its fineness.",
+      Silver: ["What changes hands is metal. In the vault it lies in bars of about 1,000 troy ounces, each stamped with its refiner, its number and its fineness.",
         "Most trades never move a bar. The owner changes in the vault's records and the metal stays where it lies."],
       Platinum: ["What changes hands is metal. Platinum is traded in plates and ingots of 1 to 6 kilograms, each stamped with its maker, its number and its purity.",
         "Most trades never move a bar. The owner changes in the vault's records and the metal stays where it lies."]
