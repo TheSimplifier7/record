@@ -26,8 +26,9 @@ const TV = "https://www.tradingview.com/u/TheSimplifier7/#published-scripts";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
 
-const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
-  '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">';
+const FONTS = '<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +
+  '<link rel="preload" href="barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +
+  '<style id="fonts">' + fs.readFileSync(path.join(__dirname, "fonts.css"), "utf8").trim() + '</style>';
 /* The reader's choice on the record, applied before first paint, so nothing flashes. */
 const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>';
 
@@ -76,7 +77,7 @@ function band(current, where, { fixed = true } = {}) {
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
       <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
-      <a class="hs-btn hs-gold" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="trial-${esc(where)}-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
+      <a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-${esc(where)}-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
     </div>
   </div>
 </header>`;
@@ -110,7 +111,9 @@ function bot(current) {
 }
 /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
 /* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
-const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
+/* 1 Nov 2026: The Fan's trial and its way out, at the foot of every page that takes this tail. */
+const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="./">The record</a> · <a href="method.html#plans" data-tv="plans-foot">The Fan and The Method: 7 days free on either plan. Cancel before day 7, pay nothing</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
+const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => strip() + "\n" + band(current, where, o);
 
@@ -146,4 +149,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

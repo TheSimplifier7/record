@@ -2311,8 +2311,13 @@
   /* ---------------------------------------------------------------- mount */
   const players = [];
   function mount(host, opts) { if (!host || host._movement) return host && host._movement; const p = new Player(host, opts); host._movement = p; players.push(p); return p; }
+  /* 1 Nov 2026: each film is built when the reader nears it, not while the page loads. */
   function auto() {
-    document.querySelectorAll("[data-movement]").forEach(h => mount(h, { autoplay: h.getAttribute("data-movement-autoplay") || "off", src: h.getAttribute("data-movement-src") || "record.json" }));
+    const go = h => mount(h, { autoplay: h.getAttribute("data-movement-autoplay") || "off", src: h.getAttribute("data-movement-src") || "record.json" });
+    const hosts = Array.from(document.querySelectorAll("[data-movement]"));
+    if (!("IntersectionObserver" in window)) { hosts.forEach(go); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); go(e.target); } }), { rootMargin: "600px 0px" });
+    hosts.forEach(h => io.observe(h));
   }
   window.Movement = { version: VERSION, duration: TOTAL, parts: SC.map(s => ({ id: s.id, start: s.t0, end: s.t1 })), mount, players, words: WORDS, cues, ready: () => world() && true };
   if (!window.MOVEMENT_MANUAL) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", auto); else auto(); }

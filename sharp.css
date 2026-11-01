@@ -140,3 +140,47 @@ th, td:first-child, h1, h2, footer { text-transform: none !important; }
 #door-tools { border-color: rgba(243, 237, 226, .08) !important; box-shadow: none !important; background: var(--raise) !important; }
 #door-tools .eyebrow { color: inherit !important; }
 .door .btn:not(.quiet), #door-tools .btn { color: #0b1a2e !important; background: linear-gradient(170deg, #fffbf2 0%, #f1e9db 48%, #d6cab6 100%) !important; border: 0 !important; border-radius: 999px !important; box-shadow: none !important; }
+
+/* 10. 1 November 2026: the trial's terms beside every button, the record's numbers beside the price, the questions */
+.hd-band .brand::before, .hs-brand::before { background-image: url("avatar_96.webp") !important; }
+.r3f-fine, .fan-fine, .door .fine + .trust { font-size: 13px !important; line-height: 1.55 !important; }
+.r3f-fine { margin: 10px 0 0 !important; opacity: .78; }
+.fan-fine { margin: 10px 0 0; opacity: .78; max-width: 40rem; }
+.trust { margin: 12px 0 0; font-size: 14px; line-height: 1.6; opacity: .82; max-width: 42rem; }
+.trust a, .ask a, .faq a, .hs-fanfoot a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.ask { margin: 18px 0 0; font-size: 15px; line-height: 1.6; max-width: 42rem; }
+.faq { margin: 40px 0 8px; max-width: 46rem; }
+.faq h2 { margin: 0 0 12px; }
+.faq details { border-top: 1px solid color-mix(in srgb, currentColor 14%, transparent); }
+.faq details:last-of-type { border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 48px; padding: 12px 0; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font: 500 18px/1 "IBM Plex Mono", ui-monospace, monospace; opacity: .7; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { margin: 0 0 16px; line-height: 1.65; opacity: .86; }
+.fan-head .lede.what { max-width: none; }
+.hs-fanfoot { border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent); padding: 14px 0 18px; font-size: 13.5px; line-height: 1.6; opacity: .86; }
+/* the two plans on method.html: The Fan first on a phone, The Method first beside it on a wide screen */
+.plans { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 22px 0 4px; }
+.plan { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: 16px; border: 1px solid color-mix(in srgb, currentColor 13%, transparent); background: color-mix(in srgb, currentColor 3%, transparent); }
+.plan-fan { border-color: color-mix(in srgb, currentColor 30%, transparent); }
+.plan-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.plan h2 { margin: 0 !important; font-size: 22px !important; line-height: 1.2 !important; }
+.plan-tag { font-size: 13px; opacity: .85; border: 1px solid color-mix(in srgb, currentColor 24%, transparent); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.plan-price { margin: 0; font-size: 15px; }
+.plan-price b { font-family: Barlow, system-ui, sans-serif; font-weight: 700; font-size: 32px; line-height: 1; font-variant-numeric: tabular-nums lining-nums; margin-right: 6px; }
+.plan ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 7px; font-size: 15px; line-height: 1.5; }
+.plan-btn { align-self: flex-start; margin-top: 2px; }
+.plan .fine { margin: 0; font-size: 12.5px; line-height: 1.5; opacity: .75; }
+.plans-note, .plans .trust { grid-column: 1 / -1; margin: 2px 0 0; font-size: 14px; line-height: 1.6; }
+.plans-note { opacity: .9; }
+.plan-fig { margin: auto 0 0; padding-top: 6px; }
+.plan-fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
+.plan-fig figcaption { margin-top: 6px; font-size: 13px; opacity: .7; }
+@media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 18px; } .plan-method { order: -1; } .plan { padding: 26px; } }
+.plans-list { list-style: none; padding: 0; margin: 2px 0 0; display: grid; gap: 12px; line-height: 1.5; }
+.plans-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-top: 10px; border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
+.plans-list .pr { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.plans-list .d { grid-column: 1 / -1; opacity: .85; }
+@media (max-width: 600px) { .fan-head .lede.what { font-size: 16.5px; line-height: 1.6; } }
+.terms-plans a { text-decoration: underline; text-underline-offset: 3px; }

@@ -3,162 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- HOUSE EARLY (make_house.js, note 53): the record's ground and the reader's choice, before first paint. -->
 <meta name="color-scheme" content="light dark">
 <script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>
-<!-- 6 Oct 2026. These read: <title>The Simplifier · The Method</title>, and the description "The indicator every level on the record is read from. It draws structure. It does not tell you what to do. Access by invitation." -->
-<title>The Simplifier · The Fan</title>
-<meta name="description" content="The indicator the weekly lines on the record are read from. It draws structure. It does not tell you what to do. Access by invitation.">
-<!-- 10 October 2026, note 47 on the record: the ground follows the reader's device, as on the record, and the script below sets this to the band at the top of the page. It read:
-     <meta name="theme-color" content="#0f1e3a"> -->
+<title>The Fan and The Method: Gold, Silver and Platinum Indicators for TradingView</title>
+<meta name="description" content="One mean that moves only when price earns it, with the 2 hour structure on your 10 minute chart and odds on every line. The Method €59 or The Fan €149.99 a month, 7 days free.">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Which one should I start with?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "If you want the line, the odds and the target, start with The Method. If you trade the structure intraday, get The Fan."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why do you take my card up front?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "So the licence carries on after day 7 without you having to come back. Nothing is charged during the trial."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I make sure I'm not charged?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Cancel before day 7. Use \"Manage or cancel your subscription\" at the foot of any page, or send me one message on X. Access ends with the trial and you pay nothing."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "When is the first charge?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Day 8. The checkout shows the exact date before you start."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my card safe?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Stripe handles the payment. I never see your card number."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "When do I get access?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Within one working day, on the TradingView username you give at checkout. It then shows in the Invite-only tab of TradingView's Indicators menu."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I switch?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, from your billing page. If you move up, you pay the difference. If you're still in your trial, the trial keeps running."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I cancel?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "From the link in your receipt, or Manage or cancel your subscription at the bottom of any page. Cancel before day 7 and you pay nothing. After that, access runs to the end of the month you paid for."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it tell me when to buy or sell?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. It draws the structure and the odds. The decision is yours."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I see it being wrong?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Every weekly level read off it is on the record, and the misses stay up. See every miss."
+   }
+  }
+ ]
+}
+</script>
 <meta name="theme-color" content="#0f1e3a" id="meta-theme">
 <meta name="color-scheme" content="light dark">
 <script>
-/* THE GROUND, 10 October 2026, note 47, as on the record: white by day, navy when the device is set
-   dark, and the reader's own choice on this device once he has pressed the switch, applied here before first
-   paint so nothing flashes. The phone's bar follows the band at the top of the page. */
 (function(){
   var d=document.documentElement, t=null; try{ t=localStorage.getItem("theme"); }catch(e){}
-  /* 29 Oct 2026, note 63: the ground is dark for everyone unless the reader chose light (the founder's ruling of 29 October 2026). It read: if(t==="light"||t==="dark") d.setAttribute("data-theme",t); */
   d.setAttribute("data-theme", t==="light" ? "light" : "dark");
-  /* It read: var dark=t ? t==="dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches); */
   var dark=t!=="light";
   var m=document.getElementById("meta-theme"); if(m) m.setAttribute("content", dark ? "#14244a" : "#0f1e3a");
 })();
 </script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.com/method.html">
-<!-- 22 Oct 2026, note 52 on the record: this page's one address, for search. -->
 <link rel="canonical" href="https://thesimplifier7.com/method.html">
-<!-- 6 Oct 2026. These read "The Simplifier · The Method" and the description above. -->
-<meta property="og:title" content="The Simplifier · The Fan">
-<meta property="og:description" content="The indicator the weekly lines on the record are read from. It draws structure. It does not tell you what to do. Access by invitation.">
-<!-- WAS the chart of 9 September, 1600 x 951, until 24 Sep 2026, note 37 on the record.
-     <meta property="og:image" content="https://thesimplifier7.com/method_gold_8h_2026-09-09.jpg">
-     <meta property="og:image:width" content="1600">
-     <meta property="og:image:height" content="951"> -->
+<meta property="og:title" content="The Fan and The Method: Gold, Silver and Platinum Indicators for TradingView">
+<meta property="og:description" content="One mean that moves only when price earns it, with the 2 hour structure on your 10 minute chart and odds on every line. The Method €59 or The Fan €149.99 a month, 7 days free.">
 <meta property="og:image" content="https://thesimplifier7.com/link_method.png?v=c2ae1f08d3">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- =========================================================================
-     THE METHOD  ·  access page  ·  7 September 2026
 
-     One page, one job: a reader who has seen the record and wants the
-     indicator it is read from can request access and pay. Ruled by the
-     founder on 7 September: THE METHOD is sold on its own, to anyone, as a
-     TradingView public invite-only script, by the quarter or by the year.
-     Full reasoning, the ladder, the listing text, the licence draft and the
-     flow are in THE_METHOD_ACCESS.md in the studio.
-
-     FAIL CLOSED, the same way the doors on the record work. The request
-     button renders only when METHOD_FORM is a valid https URL, the payment
-     buttons only when METHOD_PAY_QUARTER and METHOD_PAY_YEAR are, and the
-     licence link only when METHOD_TERMS is. With all four blank the page says
-     what the tool is and points at the record, and sells nothing.
-
-     WHAT THIS PAGE NEVER SAYS. Accurate, profitable, edge, win, works, signal,
-     buy, sell. It says what the tool draws and where the receipts are, and it
-     says the desk that built it is wrong in public some weeks, because that
-     sentence has to be on the page before the first buyer is.
-
-     BRAND LAW APPLIES. No em dashes, no hashtags, no exclamation marks, no
-     emoji, no forecasting, no fabricated data.
-
-     24 SEPTEMBER 2026. The founder ruled that day that THE METHOD is rented
-     by the quarter or the year. Note 37 put two charts of v6.2 on this page
-     the same evening; the three cards and the paragraph under the charts
-     still described the tool of 9 September, v2.2, so they now describe
-     v6.2, in the words of THE_PUBLICATION_24SEP. The old text is kept in
-     comments beside the new. Prices, payment links and terms are unchanged:
-     they wait for Stripe and the licence.
-
-     6 OCTOBER 2026. The founder ruled on 5 October that this page carries
-     THE FAN, the indicator the weekly lines are now read from, in place of
-     THE METHOD. The address stays method.html, so every link to it still lands.
-     The title, the three cards, the chart and the two paragraphs under it
-     describe The Fan; THE METHOD's words and its two charts are kept in
-     comments beside the new, and their files stay in the folder. The nav
-     on every page now names this page The Fan. Prices, payment links and
-     terms are unchanged.
-
-     10 OCTOBER 2026, note 47 on the record. THE FAN, IN THE RECORD'S LOOK. The page takes the
-     record's look, by the founder's rulings of 7 and 8 October 2026: the
-     ground follows the reader's device, and the band at the top and the bar
-     of five places at the foot of a phone are the record's own. It carries
-     the founder's sales copy word for word, as it stood in his doc on
-     10 October 2026 (revision 14): what the tool shows, how it is graded in
-     the open, what it is not, and the terms, under his gold 10 minute chart
-     of 8 October 2026. The access line now sends a request to the desk's
-     messages on X; the line it replaces is kept in a comment beside it.
-     The body as it stood is kept in one comment at the foot of this file.
-     The animation, the prices and the payment and request links are
-     carried across unchanged.
-
-     12 OCTOBER 2026. The founder ruled that day that The Fan is rented by
-     the month, $199, through TradingView. From 1 November 2026 TradingView
-     permits paid access to an invite-only script only through its own
-     Marketplace (the Creator Program's Paid Space), billed monthly, and
-     never as part of another paid product or service. The price line under
-     the title, the price block, the payment constant and the seat line
-     changed with it; what each replaced is kept in a comment beside it. The
-     page sells only when METHOD_SPACE holds the Paid Space's address on
-     tradingview.com; until then the request line stands, and from 1
-     November it takes no payment outside TradingView. verify_record.js
-     check 26 holds the page to this.
-
-     12 OCTOBER 2026, EVENING, note 50 on the record. The founder ruled
-     that evening that The Fan is $1,299 a month, through TradingView, in
-     place of the $199 set at the upload of 17:32 CEST. The price line
-     under the title and the price block changed with it; what each
-     replaced is kept in a comment beside it, and check 26 now holds the
-     page to $1,299.
-     ========================================================================= -->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- 10 October 2026, note 47 on the record: the record's faces, Barlow for the frame and Barlow Condensed for the heads, with Newsreader kept for the words as written. It read:
-     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"> -->
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  /* ---------------------------------------------------------------------
-     THE RECORD AS A TABLE, 10 October 2026, note 47, by the founder's
-     rulings of 7 and 8 October 2026. Navy and white bands, a table to find
-     a line and the ledger's ink to read one.
-
-     THE GROUND FOLLOWS THE READER'S DEVICE (the founder's ruling of 7
-     October 2026, which reopened note 20 by name): white by day, navy when
-     the device is set dark, and a
-     switch in the bar that holds the reader's own choice on that device
-     only. Every colour that is read is measured against the ground it sits
-     on; nothing read sits under 4.5 to 1, and the body text sits far over
-     the 5.29 to 1 floor note 20 set.
-
-       WHITE, #ffffff              NAVY, #0b111d
-         --ink    #0e1116  18.91     --ink    #eef2f8  16.81
-         --ink-2  #2e3644  12.16     --ink-2  #cdd5e1  12.77
-         --ink-3  #4e5869   7.18     --ink-3  #a3aec0   8.43
-         --held   #6b4d00   7.82     --held   #f2c45a  11.53
-         --wrong  #b42323   6.55     --wrong  #ff8a80   8.27
-         --open   #2b5ba8   6.64     --open   #8db0f5   8.69
-       on the bars, the chips and the band the lowest pair is 4.67 to 1
-       (--ink-4 on the light bar), used for small labels only. White on the
-       wrong chip is 5.46 to 1 on both grounds.
-
-     THE ROW, OPENED, in the ledger's ink: paper and black, serif for the
-     words as written and a fixed-width figure for the level.
-       PAPER, #fbf8f1: ink 17.32, ink-2 9.20, ink-3 5.66
-       PAPER AT NIGHT, #1a1712: ink 14.66, ink-2 10.25, ink-3 6.69
-
-     NO PERCENTAGE IN HEADLINE TYPE, as before (1 Aug 2026): counts only,
-     the rate beside its base in the note under the count.
-
-     Every grade is a mark beside its word, never instead of it: a gold dot
-     for held, a gold dot in a ring for a hit, a red square crossed for
-     wrong, a grey ring for never reached and a blue ring round a point for
-     open. Each mark differs in shape as well as colour.
-  --------------------------------------------------------------------- */
-  :root{
+    :root{
     --bg:#ffffff; --bar:#f2f4f7; --zebra:#f7f8fa; --raise:#ffffff;
     --ink:#0e1116; --ink-2:#2e3644; --ink-3:#4e5869; --ink-4:#646e7f;
     --rule:#e1e5eb; --rule-2:#c9d0da; --dash:#b9c1cd;
@@ -175,14 +133,12 @@
     --f-serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
     --f-fig:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
     --wide:72rem; --gutter:clamp(16px,4vw,40px); --bot:calc(64px + env(safe-area-inset-bottom,0px));
-    /* the marks, drawn: one set for each ground */
-    --mk-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23c8962e'/%3E%3C/svg%3E");
+        --mk-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5' fill='%23c8962e'/%3E%3C/svg%3E");
     --mk-hit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='5.25' fill='none' stroke='%23c8962e' stroke-width='1.3'/%3E%3Ccircle cx='6' cy='6' r='3' fill='%23c8962e'/%3E%3C/svg%3E");
     --mk-miss:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='.5' y='.5' width='11' height='11' rx='2' fill='%23c62f2f'/%3E%3Cpath d='M3.5 3.5l5 5M8.5 3.5l-5 5' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E");
     --mk-notest:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%237a8494' stroke-width='1.6'/%3E%3C/svg%3E");
     --mk-pending:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='4.4' fill='none' stroke='%232b5ba8' stroke-width='1.8'/%3E%3Ccircle cx='6' cy='6' r='1.5' fill='%232b5ba8'/%3E%3C/svg%3E");
-    /* the names the standing cards, the ladder and the charts were written against, carried onto the new ground */
-    --ground:var(--bg); --ground-2:var(--bar); --ground-3:var(--rule); --slab:var(--raise); --panel:var(--raise);
+        --ground:var(--bg); --ground-2:var(--bar); --ground-3:var(--rule); --slab:var(--raise); --panel:var(--raise);
     --rule-soft:var(--rule); --rule-card:var(--rule); --ink-5:var(--ink-3); --ink-6:var(--ink-3);
     --gold:var(--mk-held); --gold-1:var(--held); --gold-2:var(--mk-held); --gold-3:var(--held-bg); --gold-hi:var(--held);
     --pass:var(--held); --miss:var(--wrong); --partial:var(--held); --notest:var(--nr); --pending:var(--open);
@@ -247,8 +203,7 @@
   .num,.tab{font-variant-numeric:tabular-nums}
   .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
 
-  /* the band */
-  .band{position:sticky;top:0;z-index:40;background:var(--navy);color:var(--navy-ink);padding-top:env(safe-area-inset-top,0px)}
+    .band{position:sticky;top:0;z-index:40;background:var(--navy);color:var(--navy-ink);padding-top:env(safe-area-inset-top,0px)}
   .band-top{display:flex;align-items:center;gap:8px 20px;min-height:60px}
   .brand{font-size:.75rem;font-weight:600;letter-spacing:.2em;color:var(--navy-ink-2);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
   .brand:hover{color:var(--navy-ink)}
@@ -268,8 +223,7 @@
   .band-sub{font-size:.8125rem;color:var(--navy-ink-2);font-variant-numeric:tabular-nums}
   .band-lede{font-size:.9375rem;line-height:1.45;color:var(--navy-ink);opacity:.92;max-width:40rem;margin-top:6px}
 
-  /* chips, buttons and the finder */
-  .chips{display:flex;flex-wrap:wrap;gap:6px}
+    .chips{display:flex;flex-wrap:wrap;gap:6px}
   .chip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border:1px solid var(--rule-2);border-radius:22px;background:var(--bg);color:var(--ink-2);font-size:.8125rem;font-weight:600;cursor:pointer;white-space:nowrap}
   .chip:hover{border-color:var(--ink-3);color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#ffffff}
@@ -287,8 +241,7 @@
   .find label{font-size:.8125rem;font-weight:600;color:var(--ink-2);white-space:nowrap}
   .find input{flex:1;width:100%;min-width:0;min-height:44px;padding:0 12px;border:1px solid var(--rule-2);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
 
-  /* the foot */
-  footer{margin-top:32px;padding-block:28px 32px;border-top:1px solid var(--rule);background:var(--zebra)}
+    footer{margin-top:32px;padding-block:28px 32px;border-top:1px solid var(--rule);background:var(--zebra)}
   .foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px}
   .integrity{font-family:var(--f-serif);font-size:1rem;line-height:1.6;color:var(--ink-2);max-width:42rem}
   .integrity em{color:var(--ink);font-style:italic}
@@ -299,17 +252,9 @@
   .foot-meta span{display:flex;align-items:center;flex-wrap:wrap;gap:0 6px}
   .foot-meta a{display:inline-flex;align-items:center;min-height:44px;color:var(--open);font-weight:600}
 
-  /* the bar at the foot of a phone */
-  .botnav{display:none}
+    .botnav{display:none}
 
-  /* ---------------------------------------------------------------------
-     THE FAN, in the record's look, 10 October 2026, note 47. The band,
-     the ground, the type and the bar of five places at the foot of a phone
-     are the record's own, carried above from its stylesheet; what follows
-     is this page's: the founder's account of the tool set to be read, in
-     the serif the record keeps for words as written, and the terms.
-  --------------------------------------------------------------------- */
-  .fan-head{background:var(--navy);color:var(--navy-ink)}
+    .fan-head{background:var(--navy);color:var(--navy-ink)}
   .fan-head .wrap{display:grid;gap:10px;padding-block:10px 26px}
   .crumb{font-size:.8125rem;font-weight:600;color:var(--navy-ink-2)}
   .crumb a{display:inline-flex;align-items:center;min-height:44px;color:var(--navy-ink);text-decoration-color:var(--navy-rule)}
@@ -346,8 +291,7 @@
 
   .fan .stmt{font-size:1rem;line-height:1.6;color:var(--ink);max-width:40rem;padding-left:14px;border-left:3px solid var(--btn);margin:4px 0 20px}
   .fan .price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:40rem;margin:0 0 20px}
-  .fan .price.one{grid-template-columns:minmax(0,1fr);max-width:20rem}  /* 12 October 2026: one price, by the month */
-  .fan .price>div{display:grid;gap:4px;align-content:start;padding:18px;border:1px solid var(--rule);border-top:4px solid var(--btn);background:var(--raise)}
+  .fan .price.one{grid-template-columns:minmax(0,1fr);max-width:20rem}    .fan .price>div{display:grid;gap:4px;align-content:start;padding:18px;border:1px solid var(--rule);border-top:4px solid var(--btn);background:var(--raise)}
   .fan .price .n{font-family:var(--f-cond);font-size:2.25rem;font-weight:700;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
   .fan .price .t{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
   .fan .price .btn{justify-self:start}
@@ -363,12 +307,10 @@
   footer .handle{margin-top:8px;font-size:.875rem;color:var(--ink-3)}
   footer .handle a{display:inline-flex;align-items:center;min-height:44px;color:var(--open);font-weight:600}
 
-  /* wide screens: the chart takes the width, the words keep their measure */
-  @media (min-width:1040px){
+    @media (min-width:1040px){
     .fan{padding-top:30px}
   }
-  /* phones: the record's own rules for the band and the bar, and this page's */
-  @media (max-width:760px){
+    @media (max-width:760px){
     body{padding-bottom:var(--bot)}
     .topnav{display:none}
     .tbtn span{display:none}
@@ -384,16 +326,37 @@
     .fan .price{grid-template-columns:minmax(0,1fr)}
   }
 </style>
-<!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
-     and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<!-- HOUSE HEAD START (make_house.js, note 53) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<meta name="house-head" content="start">
+<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="fonts">@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 <link rel="stylesheet" href="house.css?v=f3424b20cb">
 <link rel="stylesheet" href="assay-site.css?v=6d6d511254">
-<link rel="stylesheet" href="sharp.css?v=49da7c209c">
+<link rel="stylesheet" href="sharp.css?v=9cfc0efc32">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -402,12 +365,11 @@
 .fan-head .tagline{font-family:var(--f-cond);font-weight:700;font-size:clamp(1.375rem,2.6vw,1.875rem);line-height:1.1;color:#f2c45a}
 .fan-head .lede{color:#c9d3e6}
 </style>
-<!-- HOUSE HEAD END -->
+<meta name="house-head" content="end">
 </head>
 <body>
 <a class="skip" href="#main">Skip to the page</a>
 
-<!-- HOUSE TOP START (make_house.js, note 53) -->
 <div class="hs-strip" id="hs-strip" role="region" aria-label="The record, counted">
   <div class="hs-wrap hs-strip-in">
     <a class="hs-k" href="./">The record</a>
@@ -435,78 +397,57 @@
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
       <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
-      <a class="hs-btn hs-gold" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="trial-method-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
+      <a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-method-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
     </div>
   </div>
 </header>
-<!-- HOUSE TOP END -->
-<!-- THE BAND BEFORE 22 OCTOBER 2026, kept word for word (note 53 on the record). Its own comment markers are written <!~~ and ~~>.
-<header class="band">
-  <div class="wrap band-top">
-    <a class="brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
-    <nav class="topnav" aria-label="The record">
-      <a href="./#week">This week</a>
-      <a href="./#results">Results</a>
-      <a href="method.html" aria-current="page">The Fan</a>
-      <a href="./#banks">Banks</a>
-      <a href="./#rules">Rules</a>
-      <a href="./#join">Join</a>
-    </nav>
-    <div class="band-tools">
-      <button class="tbtn" id="theme-sw" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="theme-word">Dark</span></button>
-      <a class="getlines" href="./#join">Get the lines</a>
-    </div>
-  </div>
-</header>
--->
 
 <main id="main" tabindex="-1">
 <div class="fan-head">
   <div class="wrap">
     <p class="crumb"><a href="./">The record</a> · The Fan</p>
-    <!-- The title, the line under it and the paragraph under that are the first three blocks of the founder's sales
-         copy, word for word as it stood in his doc on 10 October 2026 (revision 14). The line under the title
-         read, from 6 October 2026: "The indicator the record is read from." -->
     <h1 id="fan-h">The Fan</h1>
-    <!-- 31 Oct 2026, note 64, the founder's word: "not see the 8hr, it is to see the 2h chart". The tagline read: Trade the 10 minute. See the 8 hour. -->
     <p class="tagline">Trade the 10 minute. See the 2 hour.</p>
-    <p class="lede">The Fan puts the higher timeframe structure inside the chart you trade. No flicking between charts, no losing the thread. One look tells you where the 2 hour stands before you act.</p>
-    <!-- 31 Oct 2026, note 64. That sentence ended: where the bigger clocks stand before you act. -->
-    <!-- 12 October 2026, the founder's ruling: The Fan by the month, through TradingView. This line read:
-    <p class="fan-price"><a href="#terms"><b>€4,500</b> a quarter or <b>€16,000</b> a year, by request. <span class="go">The terms</span></a></p> -->
-    <!-- 12 October 2026, evening, note 50 on the record: the founder's ruling, $1,299 a month. From the upload of 17:32 CEST this line read:
-    <p class="fan-price"><a href="#terms"><b>$199</b> a month, through TradingView. <span class="go">The terms</span></a></p> -->
-    <!-- 31 Oct 2026, note 64, the founder's word: The Fan by a Stripe trial. This line read: <p class="fan-price"><a href="#terms"><b>$1,299</b> a month, through TradingView. <span class="go">The terms</span></a></p> -->
-    <p class="fan-price"><a href="#terms"><span><b>7 days free</b>, then €149.99 a month. Cancel anytime.</span> <span class="go">The terms</span></a></p>
-    <p class="fan-cta"><a class="hs-btn hs-gold" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="trial-fan-head">Start your 7-day trial</a></p>
+    <p class="lede what">Most levels are horizontal lines someone drew once. The Fan draws one mean that moves only when a close earns it, so it breathes with market structure. The 2 hour structure sits inside your 10 minute chart, and every line carries its odds.</p>
+    <section id="plans" class="plans" aria-label="Two plans, 7 days free">
+      <div class="plan plan-fan">
+        <div class="plan-top"><h2>The Fan</h2><span class="plan-tag">The full read</span></div>
+        <p class="plan-price"><b>€149.99</b> a month</p>
+        <ul>
+          <li>Everything in The Method.</li>
+          <li>The 2 hour structure on the 10 minute chart.</li>
+          <li>The mean that takes in 999 bars and turns only when price proves it has changed direction, with its rungs and flip points.</li>
+          <li>Odds on every line.</li>
+        </ul>
+        <a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="buy-fan">Start 7 days free</a>
+        <p class="fine">7 days free. Cancel before day 7 and pay nothing. Then €149.99 a month, first charge on day 8. Card taken at checkout, nothing charged today. Secure checkout by Stripe.</p>
+        <figure class="plan-fig"><a href="fan_gold_30m_2026-11-01.png"><img src="fan_gold_30m_2026-11-01-1200.webp" srcset="fan_gold_30m_2026-11-01-640.webp 640w, fan_gold_30m_2026-11-01-1200.webp 1200w" sizes="(min-width: 820px) 520px, calc(100vw - 76px)" width="1200" height="713" loading="lazy" decoding="async" alt="The Fan on the founder's gold 30 minute chart: the 2 hour mean stepping down, its rungs, mirrors, step and flip named at the right, and the odds that the day's low is in, 95 in 100. His TradingView snapshot of 1 November 2026, 00:58 Madrid, with TradingView's attribution above and below."></a><figcaption>Gold, 30 minute, TVC, to the close of 30 October 2026. Charts by TradingView.</figcaption></figure>
+      </div>
+      <div class="plan plan-method">
+        <div class="plan-top"><h2>The Method</h2></div>
+        <p class="plan-price"><b>€59</b> a month</p>
+        <ul>
+          <li>The line in the sand: which side of it price is on, and since when.</li>
+          <li>The trip (E5) and the target (A), on any chart.</li>
+          <li>The odds on every line, for example &ldquo;11 in 100&rdquo;.</li>
+          <li>Its own record printed on the chart, for example &ldquo;said 34.8 · came 35.1 · 132,656 calls&rdquo;.</li>
+        </ul>
+        <a class="hs-btn hs-ghost plan-btn" href="https://buy.stripe.com/9B628tfs5299cSb24e5kk01" data-tv="buy-method">Start 7 days free</a>
+        <p class="fine">7 days free. Cancel before day 7 and pay nothing. Then €59 a month, first charge on day 8. Card taken at checkout, nothing charged today. Secure checkout by Stripe.</p>
+        <figure class="plan-fig"><a href="method_gold_30m_2026-11-01.png"><img src="method_gold_30m_2026-11-01-1200.webp" srcset="method_gold_30m_2026-11-01-640.webp 640w, method_gold_30m_2026-11-01-1200.webp 1200w" sizes="(min-width: 820px) 520px, calc(100vw - 76px)" width="1200" height="713" loading="lazy" decoding="async" alt="The Method on the founder's gold 30 minute chart: the line in the sand at 3,919.64, E5 the trip at 3,946.39 and A at 4,061.57, with its panel and its record, said 34.8, came 35.1, 132,656 calls. His TradingView snapshot of 1 November 2026, 00:58 Madrid, with TradingView's attribution above and below."></a><figcaption>Gold, 30 minute, TVC, to the close of 30 October 2026. Charts by TradingView.</figcaption></figure>
+      </div>
+      <p class="plans-note">Start on The Method and move up to The Fan any time from your billing page. You only pay the difference. Prices include VAT.</p>
+      <p class="trust" data-trust>Ex-institutional desk, trading since 2003. <span class="trust-n" hidden><span data-t="resolved"></span> levels graded: <span data-t="held"></span> held, <span data-t="wrong"></span> wrong. <span data-t="never_reached"></span> never reached, 0 deleted.</span> The wrong ones stay up. <a href="misses.html">See every miss</a></p>
+    </section>
   </div>
 </div>
 
 <div class="wrap">
   <article class="fan" aria-labelledby="fan-h">
-      <!-- 11 October 2026, the founder's ruling, disclosed in note 50 on the record: the head of the page shows the 10 minute
-           drawing of 9 October from the canvas The Fan, Mirrored (its title strip cropped off, nothing redrawn). It read,
-           from 8 October 2026:
-      <figure class="chart">
-        <a href="fan_gold_10m_2026-10-08.jpg"><img src="fan_gold_10m_2026-10-08.jpg" width="2000" height="979" alt="The Fan on gold&#x27;s 10 minute chart, 8 October 2026, with the 2 hour and 8 hour structure behind it and the panel reading all three" decoding="async"></a>
-        <figcaption>Gold on the 10 minute chart, 8 October 2026, 20:44 Madrid. The 2 hour and 8 hour structure sits behind the price. The panel reads all three clocks, 10 minute up, 2 hour and 8 hour down, and the week's range with its odds.</figcaption>
-      </figure>
-      -->
-      <!-- 31 Oct 2026, note 64, the founder's word: The Fan's page shows The Fan 7.1, his snapshot of 31 October. The head of the page read, from 11 October 2026:
-      <figure class="chart">
-        <a href="fan_gold_10m_2026-10-09_drawn.png"><img src="fan_gold_10m_2026-10-09_drawn.png" width="3200" height="1888" alt="Gold on the 10 minute chart, 28 September to 9 October 2026, drawn from the chart&#x27;s export: The Fan&#x27;s 10 minute midline and fan, the 2 hour fan and its mirror behind them with a faint light, each line labelled at the right edge, and a panel at the top right" decoding="async"></a>
-        <figcaption>Gold, 10 minute, TVC, 28 September to 9 October 2026, to Friday 14:00 New York: a drawing from the founder's own export of the chart, not a screenshot. The 2 hour fan and its mirror sit behind the 10 minute's own, every line labelled at the right edge. The panel reads the 2 hour clock, the nearest 2 hour lines either side of the price, the 10 minute step and flip, the week and THE LINE.</figcaption>
-      </figure>
-      -->
-      <figure class="chart">
-        <a href="fan_gold_1h_2026-10-31.png"><img src="fan_gold_1h_2026-10-31.png" width="3400" height="2020" alt="Gold on the 1 hour chart, TVC, the second half of October 2026 to Friday 30 October, with The Fan 7.1 on it: the gold 2 hour mean stepping down, the rungs, the mean and the mirrors named at the right, THE HELM at the top right and THE BOARD at the bottom right, and TradingView's own attribution above and below" decoding="async" fetchpriority="high"></a>
-        <figcaption>Gold, 1 hour, TVC, to Friday 30 October 2026, the founder's own TradingView snapshot of 02:29 Madrid on 31 October. The 2 hour mean stands at 3,971.16, 96.1 above the close of 3,875.05, and steps only when price earns it. THE HELM reads the side, the last test of the mean (rejected, Wednesday 16:00) and every rung and mirror with its distance in ATR. THE BOARD reads the same 2 hour clock on six markets.</figcaption>
-      </figure>
     <section id="shows" aria-labelledby="shows-h">
       <h2 id="shows-h">What it shows you</h2>
       <ul class="shows">
         <li><b>The structure.</b> One line through the market, moved only when price earns the move. The noise stays noise.</li>
-        <!-- 31 Oct 2026, note 64. This read: The bigger clocks, on your clock. The 2 hour and 8 hour structure sits behind your 10 minute chart, and one panel reads every clock's direction at a glance. -->
         <li><b>The 2 hour, on your clock.</b> The 2 hour mean and every line around it sit on your 10 minute chart, and one panel reads where price stands against them at a glance.</li>
         <li><b>The week.</b> The week's range on the chart, with the odds of the week closing above it or below it, printed as they stand.</li>
       </ul>
@@ -519,74 +460,32 @@
       <h2 id="not-h">What it is not</h2>
       <p>It does not tell you what to do, and it makes no forecast. It draws the structure. The decision stays yours.</p>
     </section>
-    <!-- THE INNER WORKINGS, 11 October 2026, the founder's ruling (MOVEMENT, R1 to R12), disclosed in note 50 on the
-       record. The Fan from the inside in ten parts, drawn in the browser by movement.js: one line, the noise, the
-       stride, the step, the flip, five rungs, the mirror, the clocks, the week and the decision. Parts 1 to 8 run
-       The Fan's own engine on a seeded illustration tape with no price printed, and the screen says so while they
-       run; the week is the record's newest gold row, read from record.json. It plays by itself once it is in view,
-       never under a setting for reduced motion, and stops when it leaves the screen. It replaced, on this page only
-       (What a price is made of stays on the record, under The Chart):
-    <!~~ WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
-       on the record, reading record.json: the record, the week, the trades, the orders, the people and the
-       machines behind them and the metal in the vault. It plays by itself once it is in view, never under a
-       setting for reduced motion, and stops when it leaves the screen. ~~>
-  <div class="descent-head"><span class="k">Beneath the chart</span><span class="d">One price, from the record down to the metal in the vault</span></div>
-  <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
-  <script src="descent.js" defer></script>
-    -->
-  <!-- 12 October 2026, his ruling on the prompt of that day: twelve parts. The Fan v5's trail and its 2 hour step,
-       seen coming, join after the clocks as parts 9 and 10, on the same illustration tape, which runs on past the
-       flip for them; the mirror shows E4′ and E5′ bright and E1′ to E3′ faint, as v5 draws it, and drops its 10 min
-       label, since under 2 hours The Fan mirrors the 2 hour fan. The four new sentences are v5's own setting notes,
-       approved by him as written. 1 minute 43 became 2 minutes 1. -->
   <div class="descent-head"><span class="k">The inner workings</span></div>
   <div class="descent-wrap" data-movement data-movement-autoplay="view"></div>
-  <script src="movement.js" defer></script>
+  <script>(function(){var h=document.querySelector("[data-movement]");if(!h)return;var go=function(){var s=document.createElement("script");s.src="movement.js";document.body.appendChild(s)};if(!("IntersectionObserver" in window))return go();var io=new IntersectionObserver(function(e){if(e.some(function(x){return x.isIntersecting})){io.disconnect();go()}},{rootMargin:"800px 0px"});io.observe(h)})();</script>
     <section id="terms" aria-labelledby="terms-h">
       <h2 id="terms-h">The terms</h2>
-      <!-- The terms, carried from the page before word for word but for the access line, with the prices and
-           the links that fill only when FAIL CLOSED below is given an address. The copy of 8 October 2026
-           reads the same. -->
-      <!-- 31 Oct 2026, note 64. This read: Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends. -->
-      <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. 7 days free, then €149.99 a month, charged by Stripe from day 8. Access is added to your TradingView username within one working day. Cancel anytime; access ends when payment ends.</div>
+      <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. 7 days free on either plan. Your card is taken at checkout and nothing is charged during the trial. Cancel before day 7 and you pay nothing. Keep it and Stripe charges €59 for The Method or €149.99 for The Fan on day 8, then every month. Prices include VAT. Access is added to your TradingView username within one working day. Cancel any time after that; access runs to the end of the month you paid for. Move up from The Method to The Fan any time from your billing page; you only pay the difference.</div>
 
-  <div class="price one" id="price">
-    <!-- 12 Sep 2026: the founder re-priced the tool. Until then this read
-         €3,750 a quarter and €12,000 a year (ruled 7 September, evening). -->
-    <!-- 12 October 2026, the founder's ruling: $199 a month, through TradingView. Until then this block read
-         (and the block's class was "price"):
-    <div>
-      <div class="n">€4,500</div>
-      <div class="t">a quarter · paid in advance · thirteen closes</div>
-      <a class="btn" id="pay-quarter" href="#" hidden>Take it by the quarter</a>
-    </div>
-    <div>
-      <div class="n">€16,000</div>
-      <div class="t">a year · paid once</div>
-      <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
-    </div>
-    -->
-    <!-- 12 October 2026, evening, note 50 on the record: the founder's ruling, $1,299 a month. From the upload of 17:32 CEST this read:
-      <div class="n">$199</div> -->
-    <!-- 31 Oct 2026, note 64. This read: <div class="n">$1,299</div> <div class="t">a month · cancel any time</div> <a class="btn" id="pay-month" href="#" hidden>Take it by the month</a> -->
-    <div>
-      <div class="n">€149.99</div>
-      <div class="t">a month after 7 days free, cancel anytime</div>
-      <a class="btn" id="pay-month" href="#" hidden>Start your 7-day trial</a>
-    </div>
-  </div>
+  <p class="terms-plans"><a href="#plans">See both plans</a></p>
+  <p class="ask">Questions before you start? Send a direct message to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a> on X. To start, press Start 7 days free on the plan you want. The checkout asks for your TradingView username.</p>
+  <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="manage-link" href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription.</a></p>
 
-  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access is by request. Send a direct message to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a> on X with your TradingView username, and the desk answers within a working day.</span><!-- 10 October 2026, note 47: requests go to the desk's messages on X, by the founder's word of
-       8 October 2026. This line read: Access is by request. Until the request form is live, reply to any Monday Level email with your TradingView username and the desk answers within a working day. <a href="./#doors">The Monday Level is free.</a> --><!-- 24 Sep 2026, note 33: "Sunday Level" in both places in this line until today. -->
-  <!-- 9 Sep 2026: this read "Access opens shortly. The record is open now."
-       A page carrying two prices and no way to ask was a dead end from the
-       nav; the Sunday email is a door that already exists. --></p>
-  <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a> <a id="manage-link" href="#" hidden>Manage or cancel.</a></p>
-
+  <section id="questions" class="faq" aria-labelledby="questions-h">
+    <h2 id="questions-h">Questions</h2>
+    <details><summary>Which one should I start with?</summary><p>If you want the line, the odds and the target, start with The Method. If you trade the structure intraday, get The Fan.</p></details>
+    <details><summary>Why do you take my card up front?</summary><p>So the licence carries on after day 7 without you having to come back. Nothing is charged during the trial.</p></details>
+    <details><summary>How do I make sure I'm not charged?</summary><p>Cancel before day 7. Use <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> at the foot of any page, or send me <a href="https://x.com/TheSimplifier7">one message on X</a>. Access ends with the trial and you pay nothing.</p></details>
+    <details><summary>When is the first charge?</summary><p>Day 8. The checkout shows the exact date before you start.</p></details>
+    <details><summary>Is my card safe?</summary><p>Stripe handles the payment. I never see your card number.</p></details>
+    <details><summary>When do I get access?</summary><p>Within one working day, on the TradingView username you give at checkout. It then shows in the Invite-only tab of TradingView's Indicators menu.</p></details>
+    <details><summary>Can I switch?</summary><p>Yes, from your <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">billing page</a>. If you move up, you pay the difference. If you're still in your trial, the trial keeps running.</p></details>
+    <details><summary>How do I cancel?</summary><p>From the link in your receipt, or <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> at the bottom of any page. Cancel before day 7 and you pay nothing. After that, access runs to the end of the month you paid for.</p></details>
+    <details><summary>Does it tell me when to buy or sell?</summary><p>No. It draws the structure and the odds. The decision is yours.</p></details>
+    <details><summary>Can I see it being wrong?</summary><p>Yes. Every weekly level read off it is on the record, and the misses stay up. <a href="misses.html">See every miss</a>.</p></details>
+  </section>
   <div class="rule"></div>
-  <!-- 12 October 2026: from 1 November 2026 TradingView does not permit the tool as part of another paid product or
-       service, so the seat no longer carries it. This line ended: Four people at a time. The tool comes with it. -->
-  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time.</p>
+  <p class="body">Want to set your own levels, not just read mine? See <a href="./#doors">1-to-1 mentorship</a> on the record page.</p>
     </section>
   </article>
 </div>
@@ -600,6 +499,7 @@
     </div>
     <div class="foot-meta">
       <span>The record · <a href="./">this week's lines</a></span>
+      <span>Your subscription · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></span>
       <span>The wrong ones · <a href="misses.html">in full</a></span>
       <span>The banks' targets · <a href="targets.html">graded on the close</a></span>
       <span>The tick book · <a href="tick.html">the five-minute clock, graded</a></span>
@@ -617,39 +517,11 @@
 </nav>
 
 <script>
-/* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
-   describes. Same rule as COUNTER and GUEST_FORM on the record. */
-const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
-/* 12 October 2026: The Fan by the month through TradingView, so the quarter's and the year's Stripe links are
-   retired. They read:
-   const METHOD_PAY_QUARTER = "";   a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026)
-   const METHOD_PAY_YEAR    = "";   a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
-const METHOD_SPACE     = "";   /* The Fan's Paid Space on TradingView, $1,299 a month (12 Oct 2026, evening, note 50; $199 a month from the upload of 17:32 CEST). Only a tradingview.com address. */
-const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
-const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
-const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
-/* 12 October 2026. These read:
-   const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
-   if (m || y || r) document.getElementById("closed-line").hidden = true; */
-const onTV = u => /^https:\/\/([a-z]+\.)?tradingview\.com\//.test(String(u || ""));
-/* 31 Oct 2026, note 64: The Fan by a Stripe trial, by the founder's word. METHOD_MANAGE is the Stripe customer portal login,
-   by his word of 31 October. The line below read: const m = onTV(METHOD_SPACE) && show("pay-month", METHOD_SPACE), r = show("request-link", METHOD_FORM); */
-const METHOD_TRIAL  = "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00";   /* 7 days free, then €149.99 a month */
-const METHOD_MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";   /* the Stripe customer portal: manage or cancel */
-const m = (onTV(METHOD_SPACE) && show("pay-month", METHOD_SPACE)) || show("pay-month", METHOD_TRIAL), r = show("request-link", METHOD_FORM);
-show("manage-link", METHOD_MANAGE);
-show("terms-link", METHOD_TERMS);
-if (m || r) document.getElementById("closed-line").hidden = true;
-</script>
-<script>
-/* THE GROUND, as on the record (10 October 2026, note 47): white by day, navy when the device is set dark. The
-   switch holds the reader's own choice on this device only, the same choice the record holds, and names the ground
-   it would switch to; a choice that matches the device is forgotten, so the page follows the device again. */
 (function(){
   var root=document.documentElement, sw=document.getElementById("theme-sw"), word=document.getElementById("theme-word"), meta=document.getElementById("meta-theme");
   if(!sw) return;
   var mq=null; try{ mq=window.matchMedia("(prefers-color-scheme: dark)"); }catch(e){}
-  var device=function(){ return true; }; /* 29 Oct 2026, note 63: the ground is dark for everyone unless the reader chose light (the founder's ruling of 29 October 2026). It read: !!(mq && mq.matches) */
+  var device=function(){ return true; };
   var dark=function(){ var t=root.getAttribute("data-theme"); return t ? t==="dark" : device(); };
   var keep=function(v){ try{ if(v) localStorage.setItem("theme", v); else localStorage.removeItem("theme"); }catch(e){} };
   var paint=function(){ var d=dark(); if(word) word.textContent=d ? "Light" : "Dark"; sw.setAttribute("aria-label", d ? "Switch to the light ground" : "Switch to the dark ground"); if(meta) meta.setAttribute("content", d ? "#14244a" : "#0f1e3a"); };
@@ -659,152 +531,7 @@ if (m || r) document.getElementById("closed-line").hidden = true;
 })();
 </script>
 
-<!-- THE PAGE BEFORE 10 OCTOBER 2026, kept that day, note 47 on the record. The body of this page as it
-     stood until then, word for word, so every sentence the new page replaced stays in this file beside what
-     replaced it. Its own comment markers are written <!~~ and ~~> so it stays one comment. Nothing in it renders
-     or runs.
-<div class="wrap">
-
-  <header>
-    <div class="brand">
-      <svg viewBox="0 0 40 30" fill="none" aria-hidden="true">
-        <path d="M2 3V9.5H11V16H20V22.5H29V29H38" stroke="#CBA43C" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"></path>
-        <circle cx="33.5" cy="29" r="2.9" fill="#CBA43C"></circle>
-      </svg>
-      <span class="name">The Simplifier</span>
-    </div>
-    <!~~ 6 Oct 2026. This read: The record · The Method ~~>
-    <div class="desc"><a href="./" style="border:0;color:inherit">The record</a> · The Fan</div>
-  </header>
-  <!~~ THE NAV ROW, 9 Sep 2026: the same six places on every page, so a reader who lands anywhere can reach everywhere. ~~>
-  <nav class="nav" aria-label="Pages">
-    <a href="./">The record</a>
-    <a href="targets.html">The banks, graded</a>
-    <a href="misses.html">The wrong ones</a>
-    <a href="tick.html">The tick book</a>
-    <a href="method.html" class="here">The Fan</a><!~~ 6 Oct 2026: "The Method" until today. ~~>
-    <a href="./#doors">The seat</a>
-  </nav>
-
-  <!~~ 6 Oct 2026. This read: <h1>The Method</h1> ~~>
-  <h1>The Fan</h1>
-  <p class="lede">The indicator the record is read from.</p>
-
-  <!~~ 24 Sep 2026. The three cards of the 9 September tool, v2.2, kept:
-       The cloud: Where the market has actually traded, weighted by time, rather than where it is printing.
-       The fan: How far price sits from its mean, on a single line in the sand, as bands you can read at a glance.
-       The three lines: The tide, the swing and the tick. Three mean reversion lines on three clocks, on one chart. ~~>
-  <!~~ 6 Oct 2026. The three cards of THE METHOD v6.2, kept:
-       The fan: A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the regime's side, and a dotted line at the close that would flip it. Every timeframe.
-       The cloud: A trend line that gives the current bar no weight, so its level and the close that would turn it are known when the bar opens. Its depth shows the odds of the trend as hindsight will draw it. Every timeframe.
-       The boxes: Under the 4 hour, the Asian session, boxed and coloured once a bar closes through an edge. From the 4 hour up, the week's opening box, last week's box carried, and a cone and a tint for where the week can still close. ~~>
-  <div class="three">
-    <div><div class="k">The fan</div><p>A midline that holds while the close stays within one width of it and steps when a close gets further, five rungs on the trend's side, each marked with the odds a random walk touches it before the midline steps again, and the close that would flip it. Every timeframe.</p></div>
-    <div><div class="k">The clocks</div><p>The fans of the 2 hour and the 8 hour, drawn behind the chart's own, each on its own bars: where the 2 hour midline sits, where it next steps, and where each slower fan would flip.</p></div>
-    <div><div class="k">The week</div><p>The range of the week's first 16 hours, and the odds that the week closes beyond each edge. The weekly lines on the record are read off it.</p></div>
-  </div>
-
-  <!~~ THE CHART, 9 Sep 2026. Gold, 8 hour, TVC, January to September 2026,
-       with THE METHOD v2.2 on it and nothing drawn by hand. The read of 6
-       September, 4,357.307, is the labelled line; the July break under 4,098
-       that the record grades wrong is in frame on purpose. The desk asked for
-       a wrong week to be visible and the founder supplied this one. ~~>
-  <!~~ 24 Sep 2026, note 37 on the record. The figure of 9 September, kept as it stood; its file stays in the folder.
-  <figure class="chart">
-    <img src="method_gold_8h_2026-09-09.jpg" width="1600" height="951" alt="Gold, 8 hour chart, January to September 2026, with THE METHOD on it: the cloud, the fan and the three mean reversion lines, the swing slow line labelled 4,357.307" loading="lazy">
-    <figcaption>Gold, 8 hour, TVC, 9 September 2026. The line labelled 4,357.307 is the one the open gold row on the record was read from. The break under 4,098 in July, graded wrong on the record, is in frame.</figcaption>
-  </figure>
-  ~~>
-  <!~~ THE CHARTS, 24 Sep 2026, note 37 on the record. Two screenshots the founder took at 18:12 CEST
-       that day, gold on the 8 hour and on the 1 hour, TVC, THE METHOD on both. The three gold weeks
-       the record grades wrong, named 12 July, 7 August and 6 September, are in frame on both. ~~>
-  <!~~ 6 Oct 2026. THE METHOD's two charts of 24 September, kept as they stood; their files stay in the folder.
-  <figure class="chart">
-    <img src="method_gold_8h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 8 hour chart, TVC, December 2025 to 24 September 2026, with THE METHOD on it: blue and copper stepped bands with fine lines between their edges, a shaded band between two long curves, and dashed outer lines" loading="lazy">
-    <figcaption>Gold, 8 hour, TVC, 24 September 2026, 18:12 CEST. The three gold weeks the record grades wrong, named 12 July, 7 August and 6 September, are in frame.</figcaption>
-  </figure>
-  <figure class="chart">
-    <img src="method_gold_1h_2026-09-24.jpg" width="1600" height="951" alt="Gold, 1 hour chart, TVC, mid March to 24 September 2026, with THE METHOD on it: the same bands, curves and dashed lines on the shorter clock, with small gold diamonds on the bands" loading="lazy">
-    <figcaption>The same tool on the 1 hour, the same moment, from mid March. The same three weeks are in frame.</figcaption>
-  </figure>
-  ~~>
-  <!~~ THE CHART, 6 Oct 2026. A screenshot the founder took at 00:20 CEST that day: gold on the 2 hour, TVC, The Fan on it, the 8 hour fan as the long view behind it and the week's plan in the panel. ~~>
-  <figure class="chart">
-    <img src="fan_gold_2h_2026-10-06.png" width="3400" height="2020" alt="Gold, 2 hour chart, TVC, February to 6 October 2026, with The Fan on it: a gold stepped midline with shaded bands beside it, the 8 hour fan's lines behind it, and the week's plan in a panel at the top right" loading="lazy">
-    <figcaption>Gold, 2 hour, TVC, 6 October 2026, 00:20 CEST. The 8 hour fan is drawn behind the 2 hour's own. The panel is the week's plan: the range of the week's first 16 hours, 4,124.48 to 4,170.41, and the week's call on the record, gold stays below 4,170.41.</figcaption>
-  </figure>
-
-  <!~~ 24 Sep 2026. This read: "It draws structure. It does not tell you what to do. No arrows, no labels, no alert except the structural cross between the fast and slow means, which is an event on the chart and not an instruction." v6.2 draws marks, tags, the flip trade and its trigger, and carries alerts. ~~>
-  <!~~ 6 Oct 2026. This read: "It draws structure. It does not tell you what to do. The close that would flip the fan and the close that would turn the cloud are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 4 hour it can also draw one fixed rule, the flip trade, with the close on the live bar that would arm it, and keep that rule's record in the data window, the losses with the rest: a record of the rule on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk." ~~>
-  <p class="body">It draws structure. It does not tell you what to do. What it draws is what has closed: on the live bar the fan stands as it did at the last close, and the close that would step it and the close that would flip it are each fixed when the bar opens, so each can be read before price gets there, and neither repaints. Under the 2 hour it can also keep the record of three fixed rules on the chart's own history, the losses with the rest, beside what a random walk would expect: a record of rules on past bars, before commission and slippage. It describes; it does not predict. In the author's own test on seven trading days of 30 second gold, silver and platinum in September 2026, a flip of the fan was followed through about as often as it would be on a random walk.</p>
-  <!~~ 6 Oct 2026. This read: "Every week since June a level has been read off it by a man who then decided, ..." The June lines were read off THE METHOD; The Fan's weekly panel prints the same weekly model. ~~>
-  <p class="body"><!~~ 24 Sep 2026, note 33. Read "Every Sunday since June ... published before the week opened with the close that would prove it wrong". ~~>Every week since June a level has been read off this desk's charts by a man who then decided, published with the close that would prove it wrong, and graded on Friday. The weekly lines are now read off The Fan. The wrong ones are still on <a href="./">the record</a>. Read those first. The desk that built this tool is wrong in public some weeks, and the tool draws exactly the same lines on those weeks as on the others. The deciding is the part that is not for sale.</p>
-
-  <!~~ WHAT A PRICE IS MADE OF, 25 Sep 2026, note 41 on the record. The same animation as under The Chart
-       on the record, reading record.json: the record, the week, the trades, the orders, the people and the
-       machines behind them and the metal in the vault. It plays by itself once it is in view, never under a
-       setting for reduced motion, and stops when it leaves the screen. ~~>
-  <div class="descent-head"><span class="k">Beneath the chart</span><span class="d">One price, from the record down to the metal in the vault</span></div>
-  <div class="descent-wrap" data-descent data-descent-autoplay="view"></div>
-  <script src="descent.js" defer></script>
-
-  <div class="stmt">Gold, silver and platinum, any timeframe. One TradingView username per licence. Access within one working day of payment. Access ends when payment ends.</div>
-
-  <div class="price" id="price">
-    <!~~ 12 Sep 2026: the founder re-priced the tool. Until then this read
-         €3,750 a quarter and €12,000 a year (ruled 7 September, evening). ~~>
-    <div>
-      <div class="n">€4,500</div>
-      <div class="t">a quarter · paid in advance · thirteen closes</div>
-      <a class="btn" id="pay-quarter" href="#" hidden>Take it by the quarter</a>
-    </div>
-    <div>
-      <div class="n">€16,000</div>
-      <div class="t">a year · paid once</div>
-      <a class="btn" id="pay-year" href="#" hidden>Take it by the year</a>
-    </div>
-  </div>
-
-  <p id="request-line"><a class="btn-quiet" id="request-link" href="#" hidden>Request access</a> <span id="closed-line" class="fine">Access is by request. Until the request form is live, reply to any Monday Level email with your TradingView username and the desk answers within a working day. <a href="./#doors">The Monday Level is free.</a></span><!~~ 24 Sep 2026, note 33: "Sunday Level" in both places in this line until today. ~~>
-  <!~~ 9 Sep 2026: this read "Access opens shortly. The record is open now."
-       A page carrying two prices and no way to ask was a dead end from the
-       nav; the Sunday email is a door that already exists. ~~></p>
-  <p class="fine">Education and training. Not investment advice. No funds are handled. No result is promised. <a id="terms-link" href="#" hidden>The licence.</a></p>
-
-  <div class="rule"></div>
-  <p class="body">If you want the method and not only the chart, the seat is on <a href="./#doors">the record page</a>. Four people at a time. The tool comes with it.</p>
-
-  <footer>
-    <span class="law">Named before · Graded after · Nothing deleted</span>
-    <span class="handle">@TheSimplifier7</span>
-  </footer>
-</div>
-
-<script>
-/* FAIL CLOSED. Fill these four and the page sells. Leave them blank and it
-   describes. Same rule as COUNTER and GUEST_FORM on the record. */
-const METHOD_FORM      = "";   /* a Tally URL: TradingView username, email, the tick */
-const METHOD_PAY_QUARTER = "";   /* a Stripe payment link, €4,500 a quarter (was €3,750 until 12 Sep 2026) */
-const METHOD_PAY_YEAR    = "";   /* a Stripe payment link, €16,000 a year (was €12,000 until 12 Sep 2026) */
-const METHOD_TERMS     = "";   /* the licence, one page, read by the abogado */
-const ok = u => /^https:\/\/[^\s"']+$/.test(String(u || ""));
-const show = (id, url) => { const a = document.getElementById(id); if (a && ok(url)) { a.href = url; a.hidden = false; return true; } return false; };
-const m = show("pay-quarter", METHOD_PAY_QUARTER), y = show("pay-year", METHOD_PAY_YEAR), r = show("request-link", METHOD_FORM);
-show("terms-link", METHOD_TERMS);
-if (m || y || r) document.getElementById("closed-line").hidden = true;
-</script>
-<script>
-/* 24 Sep 2026, note 37 on the record: on a phone the nav is one row that
-   scrolls; the page you are on is scrolled into it. */
-(function(){try{var n=document.querySelector("nav.nav");if(!n)return;var h=n.querySelector(".here");
-var e=function(){n.classList.toggle("nav-l",n.scrollLeft>4);n.classList.toggle("nav-r",n.scrollLeft+n.clientWidth<n.scrollWidth-4);};
-var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.offsetLeft-(n.clientWidth-h.offsetWidth)/2);e();};
-n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
-</script>
--->
-<!-- HOUSE TAIL START (make_house.js, note 53) -->
 <script src="house.js?v=edf435f2d0" defer></script>
-<!-- HOUSE TAIL END -->
+<script src="trust.js?v=69e5b456d7" defer></script>
 </body>
 </html>

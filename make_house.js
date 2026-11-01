@@ -45,12 +45,24 @@ const PAGES = [
 ];
 
 const fail = (f, why) => { throw new Error(`${f}: ${why}. Nothing written.`); };
-/* A block kept inside one comment: its own comment markers written <!~~ and ~~>, and any double hyphen opened up, as the record keeps its old page. */
-const keep = s => s.replace(/<!--/g, "<!~~").replace(/-->/g, "~~>").replace(/--/g, "- -");
+/* 1 Nov 2026: the pages carry no comments, so each block is found by what it is. The head block sits between two
+   meta tags of its own; the top is the strip and the band; the tail is the foot line, the bar and house.js. */
+const HEAD_A = '<meta name="house-head" content="start">', HEAD_B = '<meta name="house-head" content="end">';
+function region(s, name) {
+  if (name === "HEAD") { const i = s.indexOf(HEAD_A), j = s.indexOf(HEAD_B); return i >= 0 && j > i ? [i, j + HEAD_B.length] : null; }
+  if (name === "TOP") { const i = s.indexOf('<div class="hs-strip" id="hs-strip"'); if (i < 0) return null; const b = s.indexOf('<header class="hs-band', i); if (b < 0) return null; const j = s.indexOf("</header>", b); return j < 0 ? null : [i, j + 9]; }
+  if (name === "TAIL") {
+    const m = s.match(/<script src="house\.js\?v=[0-9a-f]{10}" defer><\/script>/); if (!m) return null;
+    let i = m.index; const e = i + m[0].length;
+    const nb = s.lastIndexOf('<nav class="hs-bot"', i); if (nb >= 0 && s.slice(s.indexOf("</nav>", nb) + 6, i).trim() === "") i = nb;
+    const ff = s.lastIndexOf('<div class="hs-fanfoot">', i); if (ff >= 0 && s.slice(s.indexOf("</div></div>", ff) + 12, i).trim() === "") i = ff;
+    return [i, e];
+  }
+  return null;
+}
 const between = (s, name, inner) => {
-  const a = `<!-- HOUSE ${name} START (make_house.js, note 53) -->`, b = `<!-- HOUSE ${name} END -->`;
-  const i = s.indexOf(a), j = s.indexOf(b);
-  return { has: i >= 0 && j > i, put: i >= 0 && j > i ? s.slice(0, i) + a + "\n" + inner + "\n" + b + s.slice(j + b.length) : null, block: a + "\n" + inner + "\n" + b };
+  const r = region(s, name), block = name === "HEAD" ? HEAD_A + "\n" + inner + "\n" + HEAD_B : inner;
+  return { has: !!r, put: r ? s.slice(0, r[0]) + block + s.slice(r[1]) : null, block };
 };
 const once = (s, f, re, what) => { const m = s.match(re); if (!m) fail(f, "no " + what); return m; };
 
@@ -58,7 +70,7 @@ function headBlock(p, s) {
   let inner = (p.kind === "stone" ? H.FONTS + "\n" + H.stoneStyle() + "\n" : H.FONTS + "\n") + H.headTags({ fonts: false });
   if (p.kind === "method") inner += "\n" + METHOD_STYLE;
   /* the page's own canonical, if it has one, outside this script's block; else the block carries it */
-  const own = s.replace(/<!-- HOUSE HEAD START[\s\S]*?<!-- HOUSE HEAD END -->/, "").replace(/<!--[\s\S]*?-->/g, "");
+  const hr = region(s, "HEAD"), own = hr ? s.slice(0, hr[0]) + s.slice(hr[1]) : s;
   if (p.canonical && !/<link rel="canonical"/.test(own)) inner += `\n<link rel="canonical" href="${SITE}${p.file}">`;
   return inner;
 }
@@ -77,7 +89,7 @@ let n = 0;
 for (const p of PAGES) {
   const fp = path.join(HERE, p.file);
   let s = fs.readFileSync(fp, "utf8");
-  const first = !s.includes("<!-- HOUSE TOP START");
+  const first = !region(s, "TOP");
 
   /* the head of the file */
   const hb = between(s, "HEAD", headBlock(p, s));
@@ -88,7 +100,7 @@ for (const p of PAGES) {
   }
   if (first) {
     once(s, p.file, /<meta name="viewport"[^>]*>/, "viewport");
-    s = s.replace(/(<meta name="viewport"[^>]*>)/, `$1\n<!-- HOUSE EARLY (make_house.js, note 53): the record's ground and the reader's choice, before first paint. -->\n${H.earlyTags()}`);
+    s = s.replace(/(<meta name="viewport"[^>]*>)/, `$1\n${H.earlyTags()}`);
     if (/<meta name="theme-color" content="[^"]*"/.test(s)) s = s.replace(/<meta name="theme-color" content="[^"]*"/, '<meta name="theme-color" content="#0f1e3a"');
     else s = s.replace(/(<meta name="viewport"[^>]*>)/, '$1\n<meta name="theme-color" content="#0f1e3a">');
   }
@@ -106,21 +118,16 @@ for (const p of PAGES) {
     if (!/<header>[\s\S]*<\/header>/.test(old)) fail(p.file, "the old header is not where it was");
     const title = s.slice(s.indexOf(">", h1a) + 1, h1b);
     const after = s.slice(h1b + 5);
-    const lm = after.match(/^((?:\s*<!--[\s\S]*?-->)*)\s*<p class="lede">([\s\S]*?)<\/p>/);
+    const lm = after.match(/^()\s*<p class="lede">([\s\S]*?)<\/p>/);
     if (!lm) fail(p.file, "no first line under the title");
     const notes = lm[1].trim();
     const hero = H.hero({ eyebrow: p.eyebrow, title, lede: lm[2], col: (s.match(/\.wrap\{max-width:(\d+px)/) || [])[1], pad: "var(--pad)" });
-    const kept = `<!-- THE HEAD BEFORE 22 OCTOBER 2026, kept word for word (note 53 on the record): the mark, the row of links, the title
-     and the first line, which now stand in the navy head above. Its own comment markers are written <!~~ and ~~>.
-${keep(s.slice(w + '<div class="wrap">'.length, h1b + 5 + lm[0].length).trim())}
--->`;
-    s = s.slice(0, w) + tb.block + "\n" + `<!-- HOUSE HERO (make_house.js, note 53) -->\n` + hero.replace("<p class=\"hs-lede\">", (notes ? notes + "\n  " : "") + "<p class=\"hs-lede\">") + "\n" +
-      '<div class="wrap">\n' + kept + s.slice(h1b + 5 + lm[0].length);
+    s = s.slice(0, w) + tb.block + "\n" + hero.replace("<p class=\"hs-lede\">", (notes ? notes + "\n  " : "") + "<p class=\"hs-lede\">") + "\n" +
+      '<div class="wrap">\n' + s.slice(h1b + 5 + lm[0].length);
   } else if (p.kind === "method") {
     const a = s.indexOf('<header class="band">'), z = s.indexOf("</header>", a);
     if (a < 0 || z < 0) fail(p.file, "no band");
-    const old = s.slice(a, z + 9);
-    s = s.slice(0, a) + tb.block + `\n<!-- THE BAND BEFORE 22 OCTOBER 2026, kept word for word (note 53 on the record). Its own comment markers are written <!~~ and ~~>.\n${keep(old)}\n-->` + s.slice(z + 9);
+    s = s.slice(0, a) + tb.block + s.slice(z + 9);
   } else {
     const b = s.indexOf("<body>"); if (b < 0) fail(p.file, "no <body>");
     s = s.slice(0, b + 6) + "\n" + tb.block + s.slice(b + 6);

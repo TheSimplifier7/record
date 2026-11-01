@@ -54,11 +54,17 @@ function modelFrom(idx) {
   return SceneR3.model({ calls, closes: R.closes || [], lineFrom: grabConst(idx, "LINE_FROM"), counsel: grabConst(idx, "NOT_ADVICE"), tools });
 }
 
+/* 1 Nov 2026: the page carries no comments, so each part of the still is the inside of its own element. */
+const AT = { MARKS: 'id="r3-marks"', KPIS: 'id="r3-kpis"', WHEN: 'id="r3-when"', STAGE: 'class="r3-drift" data-still', DOCK: 'id="r3-dock"',
+  DRAWER: 'id="r3-drawer"', FMARKS: 'id="r3f-marks"', FCOUNT: 'id="r3f-count"', PIC: 'class="r3f-pic"', CAP: 'class="r3f-cap"',
+  TOOLSN: 'id="r3f-toolsn"', TOOLS: 'class="r3f-tools"', TWTOOLS: 'id="tw-tools"', JOINTOOLS: 'id="door-tools-list"' };
 function put(s, name, inner) {
-  const a = `<!-- R3 ${name} START (make_scene.js, note 55) -->`, b = `<!-- R3 ${name} END -->`;
-  const i = s.indexOf(a), j = s.indexOf(b);
-  if (i < 0 || j < i) throw new Error(`index.html has no ${name} block for the still. Nothing written.`);
-  return s.slice(0, i + a.length) + inner + s.slice(j);
+  const key = AT[name], k = s.indexOf(key);
+  if (!key || k < 0 || s.indexOf(key, k + 1) >= 0) throw new Error(`index.html has no single ${name} element for the still. Nothing written.`);
+  const o = s.lastIndexOf("<", k), tag = (s.slice(o + 1).match(/^[a-z][a-z0-9]*/) || [""])[0], gt = s.indexOf(">", k) + 1;
+  const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g"); re.lastIndex = gt; let d = 1, m;
+  while ((m = re.exec(s))) { if (m[1]) { if (--d === 0) return s.slice(0, gt) + inner + s.slice(m.index); } else if (!/\/>$/.test(m[0])) d++; }
+  throw new Error(`index.html: the ${name} element is not closed. Nothing written.`);
 }
 
 /* the addresses of scene.js and scene.css carry their fingerprint, so a change to either reaches every reader at once */
@@ -80,6 +86,9 @@ function expected(idx) {
   s = put(s, "CAP", S.cap);
   s = put(s, "TOOLSN", NUMW[M.tools.length] || String(M.tools.length));
   s = put(s, "TOOLS", S.tools);
+  /* 1 Nov 2026: the strip under this week and the Join list, from the same list in tools.json. */
+  s = put(s, "TWTOOLS", M.tools.map(t => t.name).join(" · "));
+  s = put(s, "JOINTOOLS", "\n" + M.tools.map(t => `      <li><a href="${t.url}" data-tv="door-${t.key}">${t.name}</a></li>`).join("\n") + "\n    ");
   return { s, M };
 }
 

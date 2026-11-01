@@ -8,36 +8,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Seal">
 <title>Seal</title>
-<!-- =========================================================================
-     THE SEAL  ·  v2, 24 September 2026. The founder ruled that day that the
-     tick book runs, on a process easy enough to follow at the desk.
-
-     v1 (13 September) asked for three things at the setup: send the row to
-     the clerk, post the seal, set an alert. No row was ever written with it.
-     v2 asks for one: seal and post. Everything else waits for Friday.
-
-       AT THE SETUP   metal, side, level, kill, SEAL. The seal is saved on
-                      this phone at once. POST ON X opens the post with the
-                      text filled in; press Post. That is the whole day.
-       AFTER THE      OPEN THE WEEK. Copy the block, send it to the desk with
-       FRIDAY CLOSE   one five-minute export of the week per metal sealed.
-                      The desk checks every hash, grades each day from the
-                      bars and ships the rows, opened.
-
-     THE COMMITMENT STRING IS UNCHANGED, byte for byte with seal_tick.js and
-     v1:   metal|side|level|kill|grades|nonce   ->   SHA-256, hex
-     so verify_ticks.js reproduces every hash on Friday.
-
-     THIS PAGE MAKES NO NETWORK REQUEST. Nothing leaves the phone until you
-     press Post on X, and then only the metal, the minute and the hash. The
-     nonce comes from crypto.getRandomValues. The seals are kept in this
-     browser's storage on this phone. A seal whose nonce is lost can never
-     be opened and counts as wrong, so the page offers a backup by email
-     after every seal, and warns if the phone's storage is off.
-
-     BRAND LAW APPLIES to the post: no em dashes, hashtags, exclamation
-     marks, emoji, forecasting.
-     ========================================================================= -->
 <style>
   :root{--bg:#141210;--panel:#1D1A16;--rule:#4A4238;--ink:#EFE8DC;--ink5:#B8AE9E;--ink6:#8E8474;--gold:#CBA43C;--miss:#D2764A;--pass:#5FA57A;--slate:#6BA3C7}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -81,10 +51,34 @@
   .how{margin-top:18px;font-size:12.5px;color:var(--ink5);line-height:1.6}
   .how b{color:var(--ink)}
 </style>
-<!-- 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. -->
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="fonts">@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 <link rel="stylesheet" href="assay-site.css?v=6d6d511254">
-<link rel="stylesheet" href="sharp.css?v=49da7c209c">
+<link rel="stylesheet" href="sharp.css?v=9cfc0efc32">
 </head>
 <body class="as-seal">
 <h1>The seal</h1>
@@ -139,8 +133,6 @@
   try { localStorage.setItem("simplifier.probe", "1"); localStorage.removeItem("simplifier.probe"); } catch (e) { store = false; }
   if (!store) $("nostore").hidden = false;
 
-  /* Madrid clock with offset, the same rule as seal_tick.js and v1: +02:00 until 03:00 on 25 October 2026, +01:00 after,
-     and the same again from the last Sunday of March. */
   function madridOffset(d) {
     try {
       const tz = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", timeZoneName: "longOffset" }).formatToParts(d).find(x => x.type === "timeZoneName").value;
@@ -153,7 +145,6 @@
     return { stamp: `${date}T${hhmm}+0${off}:00`, date, hhmm, past23: l.getUTCHours() >= 23 };
   }
   const nextDay = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + 1); if (x.getUTCDay() === 6) x.setUTCDate(x.getUTCDate() + 2); if (x.getUTCDay() === 0) x.setUTCDate(x.getUTCDate() + 1); return x.toISOString().slice(0, 10); };
-  /* Number formatting identical to seal_tick.js fmt(): silver to two decimals, gold and platinum en-US thousands. */
   function fmt(metal, raw) {
     const n = Number(String(raw).replace(/,/g, "").trim());
     if (!isFinite(n) || String(raw).trim() === "") throw new Error("Level and kill must be numbers.");
@@ -164,7 +155,6 @@
   const nonce = () => { const b = new Uint8Array(8); crypto.getRandomValues(b); return hex(b.buffer); };
   const weekOf = iso => { const d = new Date(iso + "T12:00:00Z"); const k = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - k); return d.toISOString().slice(0, 10); };
 
-  /* the two segmented choices: the metal is remembered, the side is chosen fresh for every seal */
   function seg(id, remember) {
     const box = $(id), on = box.querySelector("button.on"); let v = on ? on.dataset.v : "";
     if (remember) { try { const r = localStorage.getItem(remember); if (r) v = r; } catch (e) {} }
@@ -208,12 +198,10 @@
   $("go").addEventListener("click", sealIt);
   ["level", "kill"].forEach(id => $(id).addEventListener("keydown", e => { if (e.key === "Enter") sealIt(); }));
 
-  /* a seal counts as posted from this page once Post on X or Copy was pressed for it; the desk still checks X */
   function markPosted() { if (!last) return; const a = load(); const s = a.find(x => x.seal === last.seal); if (s && !s.posted) { s.posted = true; save(a); render(); } }
   $("px").addEventListener("click", () => {
     if (!last) return; markPosted();
     const t = $("thread").value.trim(), m = t.match(/status\/(\d+)/);
-    /* the documented web intent, docs.x.com/x-for-websites/post-button/guides/web-intent (text, in_reply_to) */
     let u = "https://x.com/intent/tweet?text=" + encodeURIComponent(last.post);
     if (m) u += "&in_reply_to=" + m[1];
     window.open(u, "_blank");

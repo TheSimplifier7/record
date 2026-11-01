@@ -134,9 +134,7 @@ function head({ title, description, canonical, image, imageW, imageH, extraCss }
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
 ${THEME_JS}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+${H.FONTS}
 <style>${CSS}${extraCss || ""}</style>
 ${H.headTags({ fonts: false })}
 ${GC_TAG}

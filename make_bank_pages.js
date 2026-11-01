@@ -252,12 +252,9 @@ ${HS.earlyTags()}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="${url}">
 ${HS.FONTS}
-<!-- Written by make_bank_pages.js from record.json. Do not edit by hand. -->
 <style>${CSS}</style>
 ${HS.stoneStyle()}
 ${HS.headTags({ fonts: false })}
-<!-- THE COUNTER, 24 Sep 2026, note 37 on the record. GoatCounter: no cookies, no personal data,
-     and the page reads the same without it. -->
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body data-grade="${esc(r.grade)}">

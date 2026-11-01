@@ -415,7 +415,7 @@ check(dsc.length > 0 && dCaps.length > 200, "descent.js is beside the record, it
 /* Until 11 October 2026, note 50, the Method page mounted it too, and this read:
    const dMounted = ["index.html", "method.html"].filter(...);
    check(dMounted.length === 2, "the record and the Method page mount the animation and load descent.js" ...); */
-const dMounted = ["index.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"/.test(s); });
+const dMounted = ["index.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"|\.src="descent\.js"/.test(s); });
 check(dMounted.length === 1 && dMounted[0] === "index.html", "the record mounts the animation and loads descent.js" + (dMounted.length === 1 && dMounted[0] === "index.html" ? "" : " (mounted on: " + (dMounted.join(", ") || "neither") + ")"));
 const dBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u]].filter(([, re]) => re.test(dCaps)).map(b => b[0]);
 check(dCaps.length > 0 && dBad.length === 0, "the animation's captions carry no em dash, exclamation mark, hashtag or emoji" + (dBad.length ? " (found: " + dBad.join(", ") + ")" : ""));
@@ -585,7 +585,7 @@ const mA = mvt.indexOf("/* CAPTIONS-START */"), mB = mvt.indexOf("/* CAPTIONS-EN
 const mCaps = mA >= 0 && mB > mA ? mvt.slice(mA, mB) : "";
 check(mvt.length > 0 && mCaps.length > 200, "movement.js is beside the record, its words between CAPTIONS-START and CAPTIONS-END (note 50)");
 let methodLive = ""; try { methodLive = rd("method.html").replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {}
-const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) && /<script[^>]+src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
+const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) && /<script[^>]+src="movement\.js"|\.src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
 check(mOn && !mOld, "the Method page mounts the inner workings and loads movement.js, and no longer mounts descent.js" + (mOn ? "" : " (not mounted)") + (mOld ? " (descent.js still on it)" : ""));
 const mBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(copper|slate|box|room|kill|naming)\b/i]].filter(([, re]) => re.test(mCaps)).map(b => b[0]);
 check(mCaps.length > 0 && mBad.length === 0, "the inner workings' words carry no em dash, exclamation mark, hashtag, emoji or house word" + (mBad.length ? " (found: " + mBad.join(", ") + ")" : ""));
@@ -606,18 +606,28 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   if (!/<b>\$1,299<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $1,299 a month, through TradingView");
   if (!/<div class="n">\$1,299<\/div>/.test(mp)) probs.push("the price block does not print $1,299");
   if (/\$199\b/.test(mp)) probs.push("$199 is still on the page outside a comment"); */
-  if (!/<b>7 days free<\/b>, then €149\.99 a month\./.test(mp)) probs.push("the price line does not read 7 days free, then €149.99 a month");
-  if (!/<div class="n">€149\.99<\/div>/.test(mp)) probs.push("the price block does not print €149.99");
+  /* 1 Nov 2026, the founder's two briefs: The Fan and The Method side by side, each by its own Stripe trial, one way out. */
+  const BUY = { fan: "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00", method: "https://buy.stripe.com/9B628tfs5299cSb24e5kk01" }, MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
+  if (!/id="plans"/.test(mp)) probs.push("the two plans are not on the page");
+  for (const [k, u] of Object.entries(BUY)) if ((mp.match(new RegExp('href="' + u.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length !== 1) probs.push("the checkout of " + k + " is not on the page once");
+  if (!/<b>€149\.99<\/b> a month/.test(mp) || !/<b>€59<\/b> a month/.test(mp)) probs.push("a plan does not print its price");
+  if ((mp.match(/7 days free\. Cancel before day 7 and pay nothing\. Then €(149\.99|59) a month, first charge on day 8\./g) || []).length < 2) probs.push("a buy button has no trial line under it");
+  if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
+  if (/METHOD_SPACE|METHOD_FORM|METHOD_TERMS|Request access|Access by invitation|Access is by request/.test(mp)) probs.push("the page still carries the Space, the request form or access by request");
   if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");
-  const tr = (mp.match(/const METHOD_TRIAL\s*=\s*"([^"]*)"/) || [])[1];
-  if (!tr || !/^https:\/\/buy\.stripe\.com\//.test(tr)) probs.push("METHOD_TRIAL is not a Stripe payment link");
   if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
   if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
   if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");
-  const sp = (mp.match(/const METHOD_SPACE\s*=\s*"([^"]*)"/) || [])[1];
-  if (sp === undefined) probs.push("METHOD_SPACE is missing");
-  else if (sp && !/^https:\/\/([a-z]+\.)?tradingview\.com\//.test(sp)) probs.push("METHOD_SPACE points somewhere other than tradingview.com");
-  check(probs.length === 0, "The Fan is offered by a 7 day trial, then by the month, the seat without it (12 October 2026; the trial, 31 Oct 2026, note 64)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+  check(probs.length === 0, "The Fan and The Method are offered side by side, each by a 7 day trial through Stripe, the seat without them (12 October 2026; the trial, 31 Oct 2026, note 64; two plans, 1 Nov 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
+/* 26b. NO COMMENT ON ANY PAGE, added 1 November 2026. Every page is read by anyone with view-source; the history
+   of every line stays in the repository's commits. */
+{
+  const withC = fs.readdirSync(HERE).filter(f => f.endsWith(".html")).filter(f => rd(f).includes("<!--"));
+  check(withC.length === 0, "no page carries an HTML comment (1 November 2026)" + (withC.length ? " (" + withC.join(", ") + ")" : ""));
+  const buyOff = fs.readdirSync(HERE).filter(f => f.endsWith(".html") && f !== "method.html").filter(f => /buy\.stripe\.com/.test(rd(f)));
+  check(buyOff.length === 0, "the checkouts are on method.html alone; every other page sends the reader to the plans (1 November 2026)" + (buyOff.length ? " (" + buyOff.join(", ") + ")" : ""));
 }
 
 /* 27. THE SCENE, added 22 October 2026, note 55. */
@@ -625,7 +635,7 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   const probs = [];
   const has = f => { try { return rd(f).length > 0; } catch (e) { return false; } };
   ["scene.js", "scene.css", "make_scene.js"].forEach(f => { if (!has(f)) probs.push(f + " is not beside the record"); });
-  const live = idx.replace(/<!--(?! R3 )[\s\S]*?-->/g, "");
+  const live = idx;
   if (!/<script src="scene\.js\?v=[0-9a-f]{10}"><\/script>/.test(live)) probs.push("index.html does not load scene.js");
   if (!/<link rel="stylesheet" href="scene\.css\?v=[0-9a-f]{10}">/.test(live)) probs.push("index.html does not load scene.css");
   if (!probs.length) {

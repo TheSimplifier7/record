@@ -1733,8 +1733,13 @@
   /* ---------------------------------------------------------------- mount */
   const players = [];
   function mount(host, opts) { if (!host || host._descent) return host && host._descent; const p = new Player(host, opts); host._descent = p; players.push(p); return p; }
+  /* 1 Nov 2026: each film is built when the reader nears it, not while the page loads. */
   function auto() {
-    document.querySelectorAll("[data-descent]").forEach(h => mount(h, { autoplay: h.getAttribute("data-descent-autoplay") || "off", metal: h.getAttribute("data-descent-metal") || "Gold", src: h.getAttribute("data-descent-src") || "record.json" }));
+    const go = h => mount(h, { autoplay: h.getAttribute("data-descent-autoplay") || "off", metal: h.getAttribute("data-descent-metal") || "Gold", src: h.getAttribute("data-descent-src") || "record.json" });
+    const hosts = Array.from(document.querySelectorAll("[data-descent]"));
+    if (!("IntersectionObserver" in window)) { hosts.forEach(go); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); go(e.target); } }), { rootMargin: "600px 0px" });
+    hosts.forEach(h => io.observe(h));
   }
   window.Descent = { version: VERSION, duration: TOTAL, stages: STAGES.map((s, i) => ({ id: s.id, start: STARTS[i], dur: s.dur })), mount, players, words: WORDS };
   if (!window.DESCENT_MANUAL) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", auto); else auto(); }
