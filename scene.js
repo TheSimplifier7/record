@@ -290,7 +290,7 @@ function dockHTML(M, metal) {
   let head;
   if (opens.length) {
     const k = { floor: opens.filter(L => L.kind === "floor").length, ceiling: opens.filter(L => L.kind === "ceiling").length };
-    const part = (n, w) => (n === 1 ? "a " + w : (NUMW[n] || n) + " " + w + "s");
+    const part = (n, w) => (n === 1 ? "a " + w : String(NUMW[n] || n).toLowerCase() + " " + w + "s");
     const words = k.floor && k.ceiling ? part(k.floor, "floor") + " and " + part(k.ceiling, "ceiling") : k.floor ? part(k.floor, "floor") : part(k.ceiling, "ceiling");
     head = `<span class="r3-ey r3k-a"><i class="r3-dot" aria-hidden="true"></i>This week</span><span class="r3-ey r3k-b">${h(words.charAt(0).toUpperCase() + words.slice(1))}, open</span>`;
   } else head = `<span class="r3-ey r3k-a">Last week</span><span class="r3-ey r3k-b">Graded on Friday's close</span>`;
