@@ -5,8 +5,8 @@
 .mv-ey{margin:0;font:500 11px/1.3 var(--f-ui,"Barlow",sans-serif);letter-spacing:.01em;color:var(--mv-gold2)}
 .mv-grid{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:72px;align-items:start}
 .mv-q{margin:0;position:relative}
-.mv-mark{display:block;height:.34em;margin:-.02em 0 .05em -.06em;font:500 clamp(8rem,13vw,11.5rem)/.82 "Newsreader",Georgia,serif;color:var(--mv-gold);user-select:none}
-.mv-lead{display:block;margin:0;font:700 clamp(3rem,6.4vw,5.5rem)/.92 var(--f-cond,"Barlow Condensed",sans-serif);letter-spacing:-.005em;color:#fff;text-wrap:balance}
+.mv-mark{display:block;height:.34em;margin:-.02em 0 .05em -.06em;font:500 clamp(6.5rem,9vw,8.5rem)/.82 "Newsreader",Georgia,serif;color:var(--mv-gold);user-select:none}
+.mv-lead{display:block;margin:0;font:700 clamp(2.4rem,4.4vw,3.75rem)/.95 var(--f-cond,"Barlow Condensed",sans-serif);letter-spacing:-.005em;color:#fff;text-wrap:balance}
 .mv-rest{margin:22px 0 0;max-width:34ch;font:400 clamp(1.2rem,1.75vw,1.5rem)/1.45 var(--f-ui,"Barlow",sans-serif);color:var(--mv-ink2);text-wrap:pretty}
 .mv-close{color:var(--mv-gold);font:500 1.3em/0 "Newsreader",Georgia,serif;margin-left:.06em;vertical-align:-.1em}
 .mv-side{display:flex;flex-direction:column;gap:22px;min-width:0}
@@ -34,8 +34,8 @@
 }
 @media (max-width:480px){
   .mv{padding-top:64px}
-  .mv-mark{font-size:7rem}
-  .mv-lead{font-size:2.85rem}
+  .mv-mark{font-size:5.75rem}
+  .mv-lead{font-size:2.4rem}
   .mv-rest{font-size:1.15rem;margin-top:16px}
   .mv-ba{grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:10px;padding:18px 16px}
   .mv-to{width:24px;height:24px}

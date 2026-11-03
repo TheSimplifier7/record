@@ -1,0 +1,63 @@
+.r3.wb-on .r3-stage,.r3.wb-on .r3-dock,.r3.wb-on .r3-drawer,.r3.wb-on .r3-open{display:none!important}
+.wb{position:relative;z-index:3;border-radius:22px;padding:20px 22px 16px;background:rgba(12,20,37,.62);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);box-shadow:0 0 0 1px var(--r3-rule) inset,0 30px 70px -30px rgba(0,0,0,.85),0 1px 0 rgba(255,255,255,.05) inset}
+.wb-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.wb-t{margin:0;font:600 15px/1.2 var(--f-ui,"Barlow",sans-serif);color:#fff}
+.wb-g{font:500 12.5px/1.2 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3);white-space:nowrap}
+.wb-list{list-style:none;margin:8px 0 0;padding:0}
+.wb-row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;grid-template-areas:"g n v" ". s s";column-gap:14px;row-gap:6px;padding:16px 0;border-top:1px solid var(--r3-rule)}
+.wb-row:first-child{border-top:0}
+.wb-glyph{grid-area:g;align-self:center}
+.wb-name{grid-area:n;align-self:center;font:700 22px/1 var(--f-cond,"Barlow Condensed",sans-serif);color:#fff;min-width:0}
+.wb-kind{display:block;margin-top:5px;font:400 12.5px/1.25 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
+.wb-lv{grid-area:v;align-self:center;font:600 30px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:-.02em;color:#fff;text-align:right;white-space:nowrap}
+.wb-say{grid-area:s;font:400 14.5px/1.45 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink2);text-wrap:pretty}
+.wb-say b{font-weight:600;color:#fff}
+.wb-row.ok .wb-say b{color:var(--r3-gold2)}
+.wb-v{font:600 12px/1 var(--f-ui,"Barlow",sans-serif);letter-spacing:.12em;margin-left:4px}
+.wb-v.held{color:var(--r3-gold2)}.wb-v.wrong{color:var(--r3-red2)}
+.wb-f{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid var(--r3-rule);font:400 13px/1.3 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
+.wb-f a{color:var(--r3-gold2);text-decoration:none;font-weight:600;white-space:nowrap}
+.wb-f a::after{content:" \203A"}
+.wb-k2{display:none}
+.wb-terms{display:none;margin:0;font:400 13px/1.45 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
+@media (min-width:1100px){
+  .r3.wb-on{height:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,520px);grid-auto-rows:auto;column-gap:72px;row-gap:0;padding:20px 56px 72px;align-items:start}
+  .r3.wb-on .r3-tele{position:relative;left:auto;right:auto;top:auto;grid-column:1 / -1;grid-row:1;margin:0 -32px 48px}
+  .r3.wb-on .r3-copy{display:contents}
+  .r3.wb-on .r3-copy > *{grid-column:1}
+  .r3.wb-on .r3-copy > .wb{grid-column:2;grid-row:2 / span 6;align-self:start}
+  .r3.wb-on .r3-h1{white-space:normal}
+  .r3.wb-on .hd-keys{justify-self:start;margin-left:0}
+  .wb-k2{display:none}
+}
+@media (max-width:1099.98px){
+  .r3.wb-on .r3-copy{display:contents}
+  .r3.wb-on .r3-tele{order:1}
+  .r3.wb-on .r3-h1{order:2;margin:4px 0 0}
+  .r3.wb-on .wb{order:3}
+  .r3.wb-on .r3-ctas{order:4;margin-top:4px}
+  .r3.wb-on .wb-terms{display:block;order:5;margin-top:-6px}
+  .r3.wb-on .r3-under{display:none}
+  .r3.wb-on .hd-keys{order:6;margin:18px 0 0;align-self:flex-start;justify-content:flex-start}
+  .r3.wb-on .r3-lede{order:7}
+  .r3.wb-on .hd-eyebrow{order:8}
+}
+@media (min-width:761px) and (max-width:1099.98px){
+  .r3 .r3-tm,.r3 .r3-next svg{display:none!important}
+}
+@media (max-width:760px){
+  .wb{padding:14px 16px 12px;border-radius:18px}
+  .wb-t{font-size:14px}.wb-g{font-size:12px}
+  .wb-list{margin-top:4px}
+  .wb-row{grid-template-columns:22px minmax(0,1fr) auto;column-gap:10px;row-gap:4px;padding:11px 0}
+  .wb-glyph{width:22px;height:22px}
+  .wb-name{font-size:19px}
+  .wb-kind{display:none}
+  .wb-k2{display:inline;font-weight:600;color:#fff}
+  .wb-lv{font-size:23px}
+  .wb-say{font-size:13.5px;line-height:1.4}
+  .wb-f{font-size:12.5px;padding-top:10px}
+  .r3.wb-on .r3-ctas{grid-template-columns:minmax(0,1fr) auto}
+  .r3.wb-on .r3-ctas .hd-btn:first-child{grid-column:auto}
+  .r3.wb-on .r3-ctas .hd-ghost .hd-len{display:none}
+}
