@@ -1,0 +1,43 @@
+/* plans.css, Design Lab, 3 November 2026: the plans page sells. The Fan leads; each plan says who it is for and answers
+   the three questions people ask before a card; the jargon waits in a drawer; one large chart with numbered callouts;
+   the member's words at the point of decision. On a phone the price and the button come before the detail. */
+@media (min-width:820px){.plan-method{order:0}}
+.plans > *{min-width:0}
+.plans{align-items:start}
+.plan-for{margin:0;font:400 15px/1.5 var(--f-ui,"Barlow",sans-serif);color:#cdd5e1;max-width:34rem}
+.plan-for b{color:#f3ede2;font-weight:600}
+.plan .plan-checks{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:7px;font-size:14px;line-height:1.45;color:#cdd5e1}
+.plan .plan-checks li{position:relative;padding-left:18px}
+.plan .plan-checks li::before{content:"";position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:#f2c45a}
+.plan-more{font-size:14px;line-height:1.5;color:#a8b3c4}
+.plan-more summary{cursor:pointer;font-weight:600;min-height:40px;display:flex;align-items:center;color:#cdd5e1}
+.plan-more p{margin:2px 0 6px}
+.plans-voice{grid-column:1 / -1;margin:6px 0 0;padding:20px 22px;border-radius:16px;border:1px solid color-mix(in srgb,currentColor 13%,transparent);display:grid;gap:12px}
+.plans-voice blockquote{margin:0}
+.plans-voice p{margin:0;font:400 17px/1.55 var(--f-ui,"Barlow",sans-serif);color:#e9edf3;max-width:52rem;text-wrap:pretty}
+.plans-voice p b{font:700 1.3em/1.2 var(--f-cond,"Barlow Condensed",sans-serif);color:#fff}
+.pv-q{font:500 1.6em/0 "Newsreader",Georgia,serif;color:#e8b84f;margin-right:2px;vertical-align:-.28em}
+.pv-qe{font:500 1.3em/0 "Newsreader",Georgia,serif;color:#e8b84f;margin-left:2px;vertical-align:-.18em}
+.plans-voice figcaption{display:flex;align-items:center;gap:12px;font:400 14px/1.4 var(--f-ui,"Barlow",sans-serif);color:#a8b3c4}
+.plans-voice figcaption b{color:#f3ede2;font-weight:600}
+.pv-mono{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 18px/1 var(--f-cond,"Barlow Condensed",sans-serif);color:#e8b84f;box-shadow:inset 0 0 0 1px rgba(232,184,79,.6)}
+.fan-wide{grid-column:1 / -1;margin:10px 0 0}
+.fan-wide .fw-pic{position:relative}
+.fan-wide img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+.fw-n{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:#f2c45a;color:#0b1a2e;font:700 15px/28px var(--f-ui,"Barlow",sans-serif);text-align:center;box-shadow:0 0 0 3px rgba(8,16,34,.9),0 6px 16px rgba(0,0,0,.5);pointer-events:none}
+.fan-wide figcaption{margin-top:14px}
+.fw-key{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:fw}
+.fw-key li{counter-increment:fw;display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:baseline;font:400 15px/1.5 var(--f-ui,"Barlow",sans-serif);color:#cdd5e1}
+.fw-key li::before{content:counter(fw);width:24px;height:24px;border-radius:50%;background:#f2c45a;color:#0b1a2e;font:700 13px/24px var(--f-ui,"Barlow",sans-serif);text-align:center}
+.fw-key b{color:#f3ede2;font-weight:600}
+.fw-src{margin:10px 0 0;font-size:13px;color:#8d98ab}
+@media (min-width:820px){.fw-key{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+.descent-head.film{margin-top:8px}
+@media (max-width:819.98px){
+  .fan-head .wrap{display:flex;flex-direction:column}
+  .fan-head .crumb{order:1}.fan-head h1{order:2}.fan-head .tagline{order:3}.fan-head #plans{order:4}.fan-head .lede{order:5}
+  .plan .plan-top{order:1}.plan .plan-price{order:2}.plan .plan-for{order:3}.plan .plan-checks{order:4}.plan .plan-btn{order:5}.plan .fine{order:6}
+  .plan > ul:not(.plan-checks){order:7}.plan .plan-more{order:8}.plan .plan-fig{order:9}
+  .plan-btn{align-self:stretch;justify-content:center;text-align:center}
+  .fw-n{width:24px;height:24px;font-size:13px;line-height:24px}
+}

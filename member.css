@@ -1,7 +1,7 @@
 /* From a member: one voice, under the record and before the plans. Same ground, type and button as the steps below it. */
 .mv{--mv-gold:#e8b84f;--mv-gold2:#f2c45a;--mv-ink:#eef2f8;--mv-ink2:#cdd5e1;--mv-ink3:#a3aec0;--mv-rule:rgba(201,211,230,.12);position:relative;background:#050913;padding:88px max(16px,env(safe-area-inset-left,0px)) 8px max(16px,env(safe-area-inset-right,0px));scroll-margin-top:64px}
 .mv *{box-sizing:border-box}
-.mv-in{max-width:1280px;margin:0 auto}
+.mv-in{max-width:1072px;margin:0 auto}
 .mv-ey{margin:0;font:500 11px/1.3 var(--f-ui,"Barlow",sans-serif);letter-spacing:.01em;color:var(--mv-gold2)}
 .mv-grid{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:72px;align-items:start}
 .mv-q{margin:0;position:relative}

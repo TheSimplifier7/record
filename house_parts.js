@@ -114,7 +114,7 @@ function bot(current) {
 /* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
 /* 1 Nov 2026: The Fan's trial and its way out, at the foot of every page that takes this tail. */
 const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="./">The record</a> · <a href="method.html#plans" data-tv="plans-foot">The Fan and The Method: 7 days free on either plan. Cancel before day 8, pay nothing</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
-const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`;
+const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="svgfloor.js?v=${vOf("svgfloor.js")}" defer></script>\n<script src="refcarry.js?v=${vOf("refcarry.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => strip() + "\n" + band(current, where, o);
 

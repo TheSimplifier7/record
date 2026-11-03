@@ -376,3 +376,6 @@ tr > .win{font-size:13px!important}
 @media (max-width:760px){.notes > details > summary{font-size:13px!important}}
 @media (min-width:761px){table#board #rows td.d{font-size:12.5px!important}}
 @media (min-width:761px){#count .t{font-size:12px!important}}
+/* the film's controls and its text, and the plans door */
+@media (min-width:761px){.mvt-ctl button,.mvt-text summary{font-size:12px!important}}
+@media (max-width:760px){.mvt-ctl button,.mvt-text summary,.mvt-text{font-size:13px!important}}
