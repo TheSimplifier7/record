@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-11-02",
-  "generated": "2026-11-02T20:57:33.546Z",
+  "generated": "2026-11-03T03:01:09.639Z",
   "tally": {
     "resolved": 44,
     "held": 35,
@@ -1802,6 +1802,18 @@
       "kind": "standard",
       "title": "Faster and plainer, and The Fan's trial, 31 October 2026.",
       "body": "By the founder's word of 31 October 2026. The engraving that lay behind the chart on this page and beside the title of every other page (lamp.js, note 63) is taken off: it drew on every frame and slowed the page. lamp.js stays in the repository, no longer loaded. The frosted glass, the slow drift of the chart and the light cones above it go with it, and the small labels are set in plain case (sharp.css). The gold button that asked readers to follow on TradingView now offers The Fan's trial: 7 days free, then €149.99 a month, cancel anytime, paid through Stripe, with access added to the reader's TradingView username within one working day. The Fan's page and its link card show The Fan 7.1, the founder's own TradingView snapshot of gold on the 1 hour, 31 October 2026, 02:29 Madrid; the drawing of 9 October stays in the folder and in a comment. The Fan's page says what The Fan 7.1 shows, by his word: trade the 10 minute, see the 2 hour; the 8 hour is no longer promised there or on the Join door. Manage or cancel goes to the Stripe customer portal, on The Fan's page and in the foot. Following on TradingView stays one press away. The rule of 12 October, The Fan by the month through TradingView and nowhere else, gives way to his word of 31 October, and the verifier now checks the trial and its price. No row, line, close, grade or date is touched."
+    },
+    {
+      "n": "65",
+      "kind": "standard",
+      "title": "Access within an hour, 3 November 2026.",
+      "body": "By the founder's word of 3 November 2026. Access to The Fan or The Method is added to the TradingView username given at checkout within an hour, in place of within one working day (note 64), and either works on any TradingView plan, the free one included. The checkouts and the plans page say so from today. Note 64 stands as it was written."
+    },
+    {
+      "n": "66",
+      "kind": "standard",
+      "title": "Access by 9:00 Madrid time if you join overnight, 3 November 2026.",
+      "body": "By the founder's word of 3 November 2026. Access is added within an hour, or by 9:00 Madrid time if you join overnight. Both checkouts, the plans page and the welcome page say so from today. The plans page's free-plan answer now says what to do at TradingView's indicator limit, and the large chart's third callout says the odds are live on every line in place of quoting the snapshot's reading; the snapshot is unchanged. Note 65 stands as it was written."
     }
   ],
   "targets": [
