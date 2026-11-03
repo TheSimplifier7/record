@@ -36,7 +36,7 @@ const THEME_JS = '<script>(function(){var t=null;try{t=localStorage.getItem("the
 const ICONS = "<link rel=\"icon\" href=\"/favicon.ico?v=2\" sizes=\"16x16 32x32 48x48\">\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/icon-192.png?v=2\">\n<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png?v=2\">";  /* 1 Nov 2026: the icons index.html carries, on every page that takes the house head */
 function headTags({ fonts = true } = {}) {
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`; */
-  return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">`; /* 31 Oct 2026, note 64: sharp.css loaded last */
+  return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="floor.css?v=${vOf("floor.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">`; /* 31 Oct 2026, note 64: sharp.css loaded last */
 }
 const earlyTags = () => '<meta name="color-scheme" content="light dark">\n' + THEME_JS;
 
@@ -77,7 +77,7 @@ function band(current, where, { fixed = true } = {}) {
     </nav>
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
-      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Get the lines</a>
+      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
       <a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-${esc(where)}-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
     </div>
   </div>
@@ -105,7 +105,7 @@ function bot(current) {
     banks: '<path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/>',
     join: '<rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/>'
   };
-  const B = [["week", "./", "This week"], ["results", "./#results", "Results"], ["fan", "method.html", "The Fan"], ["banks", "./#banks", "Banks"], ["join", "./#join", "Join"]];
+  const B = [["week", "./", "This week"], ["results", "./#results", "Results"], ["fan", "method.html", "The Fan"], ["join", "./#join", "Join"]];
   return `<nav class="hs-bot" aria-label="The record">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><svg viewBox="0 0 20 20" aria-hidden="true">${I[k]}</svg><span>${label}</span></a>`).join("\n  ")}
 </nav>`;

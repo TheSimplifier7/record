@@ -10,7 +10,7 @@
    same tokens, the same four faces. The words a page carries that are not
    in record.json or tools.json are the founder's, copied as they stand on
    the record: the key line, counsel's two lines, "Join me on TradingView",
-   "Get the lines", "Free. Not investment advice.", "Posted first on X",
+   "Monday email" (it read "Get the lines" until 3 November 2026), "Free. Not investment advice.", "Posted first on X",
    "One email Monday, one email Friday, nothing else.", "Nothing removed.",
    "The Fan · what it is, and the terms".
 
@@ -149,7 +149,7 @@ function band(where, current) {
 function bandBefore22Oct(where) {
   return `<header class="band"><div class="wrap">
   <a class="mark" href="./">THE SIMPLIFIER</a>
-  <nav aria-label="The site"><a href="./">The record</a><a class="hide-phone" href="weeks.html">Week by week</a><a class="hide-phone" href="tools.html">The free tools</a><a class="btn" href="${TV}" data-tv="${esc(where)}-band">Join me on TradingView</a></nav>
+  <nav aria-label="The site"><a href="./">The record</a><a class="hide-phone" href="weeks.html">Week by week</a><a class="hide-phone" href="tools.html">The free tools</a><a class="btn quiet" href="${TV}" data-tv="${esc(where)}-band">Join me on TradingView</a></nav>
 </div></header>`;
 }
 
@@ -157,8 +157,8 @@ const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close ab
 
 function doors(where, { tools = true } = {}) {
   return `<div class="doors">
-  ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="./">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
-  <div class="door"><p class="t">The Monday Level</p><p><a class="btn quiet" href="./#join">Get the lines</a></p><p class="fine">One email Monday, one email Friday, nothing else.</p></div>
+  ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="./">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
+  <div class="door"><p class="t">The Monday Level</p><p><a class="btn quiet" href="./#join">Monday email</a></p><p class="fine">One email Monday, one email Friday, nothing else.</p></div>
 </div>`;
 }
 

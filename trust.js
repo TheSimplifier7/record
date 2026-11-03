@@ -2,7 +2,7 @@
   "use strict";
   var els = document.querySelectorAll("[data-trust]");
   if (!els.length) return;
-  var KEYS = ["resolved", "held", "wrong", "never_reached"], done = false;
+  var KEYS = ["resolved", "held", "wrong", "never_reached", "open"], done = false;
   function fill() {
     if (done) return;
     done = true;
@@ -12,6 +12,7 @@
       if (t.held + t.wrong !== t.resolved) return;
       Array.prototype.forEach.call(els, function (el) {
         KEYS.forEach(function (k) { var s = el.querySelector('[data-t="' + k + '"]'); if (s) s.textContent = String(t[k]); });
+        var tt = el.querySelector('[data-t="total"]'); if (tt) tt.textContent = String(t.resolved + t.never_reached + t.open);
         var n = el.querySelector(".trust-n"); if (n) n.hidden = false;
       });
     }).catch(function () {});
