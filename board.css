@@ -17,6 +17,17 @@
 .wb-v.held{color:var(--r3-gold2)}.wb-v.wrong{color:var(--r3-red2)}
 .wb-f{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid var(--r3-rule);font:400 13px/1.3 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
 .wb-f a{color:var(--r3-gold2);text-decoration:none;font-weight:600;white-space:nowrap}
+.wb-mail{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--r3-rule)}
+.wb-mail[hidden]{display:none}
+.wb-mail-t{margin:0 0 10px;font:400 14px/1.45 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink2);text-wrap:pretty}
+.wb-mail-t b{font-weight:600;color:#fff}
+.wb .wb-mail .signup input{min-height:44px;border-radius:10px;border-color:rgba(201,211,230,.28);background:rgba(6,12,26,.55);color:#fff}
+.wb .wb-mail .signup .btn{min-height:44px;padding:0 20px;border-radius:10px;color:#f3ede2;font-weight:600}
+.wb .wb-mail .signup .btn:hover{color:#fff}
+.wb-mail-f{margin:8px 0 0;font:400 13px/1.4 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
+.wb .confirmed{margin:14px 0 0}
+.wb-why{margin-top:6px}
+.wb-why b{font-weight:600}
 .wb-f a::after{content:" \203A"}
 .wb-k2{display:none}
 .wb-terms{margin:14px 0 0;font:400 13px/1.45 var(--f-ui,"Barlow",sans-serif);color:var(--r3-ink3)}
@@ -40,6 +51,7 @@ html:has(#wb) #this-week{display:none!important}
   .r3.wb-on .wb{order:3}
   .r3.wb-on .r3-ctas{order:4;margin-top:4px}
   .r3.wb-on .wb-terms{order:5;margin-top:-6px}
+  .r3.wb-on .wb-why{margin-top:0}
   .r3.wb-on .wb-counsel{order:5;margin-top:-10px}
   .r3.wb-on .hd-keys{order:6;margin:18px 0 0;align-self:flex-start;justify-content:flex-start}
   .r3.wb-on .r3-lede{order:7}
