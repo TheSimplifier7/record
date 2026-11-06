@@ -166,7 +166,6 @@ footer a{display:inline-flex;min-height:44px;align-items:center;margin-right:10p
       <img src="fan_gold_30m_2026-11-01-blurred-1200.webp" width="1200" height="713" alt="Gold on a TradingView chart dated 1 November 2026, with labels blurred. A historical example, not a live trade.">
       <figcaption>A dated chart example, including the unclear part. Gold, 30 minute, 1 November 2026. Chart by TradingView. Labels blurred. Not a live trade or a promise of a result.</figcaption>
     </figure>
-    <p id="home-video" class="note">A 60 to 90 second demonstration of this chart will be added here once it is recorded.</p>
     <p><a href="method.html">See The Fan and compare the plans</a></p>
   </section>
 

@@ -1,22 +1,24 @@
 /* refcarry.js. A visit that lands with ?ref= or ?utm_source= keeps that tag on the
-   links it follows inside the site, and hands it to Stripe as client_reference_id.
-   A visit with no valid tag still sends client_reference_id=site, so an untagged
-   checkout is not mistaken for a tagged one. test-grok stays test-grok.
-   Nothing is stored on the reader's device. No email or other private text is
-   accepted as a tag. The default tag is not written onto ordinary page links. */
+   links it follows inside the site, and hands it to Stripe as client_reference_id,
+   only when the tag is on the campaign allowlist below. Anything else, including
+   a name, a phone number or an email address, is ignored and the checkout is
+   marked client_reference_id=site. test-grok stays test-grok. Nothing is stored
+   on the reader's device. The site default is not written onto ordinary page links. */
 (function (root) {
   "use strict";
   var DEFAULT_TAG = "site";
-  function ok(r) { return !!r && /^[A-Za-z0-9_-]{1,40}$/.test(r); }
+  /* Approved campaign tags only. x-bio and x-pin are the X bio and pin links.
+     test-grok marks an authorised test. site is the untagged default. */
+  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "site": 1 };
+  function campaign(r) { return CAMPAIGNS[r] ? r : ""; }
   function tagFrom(search) {
     var q;
     try { q = new URLSearchParams(search.charAt(0) === "?" ? search.slice(1) : search); }
     catch (e) { return DEFAULT_TAG; }
-    var incoming = q.get("ref") || q.get("utm_source");
-    return ok(incoming) ? incoming : DEFAULT_TAG;
+    return campaign(q.get("ref") || q.get("utm_source")) || DEFAULT_TAG;
   }
   function rewrite(href, pageHref, tag) {
-    if (!ok(tag) || !href) return null;
+    if (!campaign(tag) || !href) return null;
     try {
       if (/^https:\/\/buy\.stripe\.com\//.test(href)) {
         var u = new URL(href);
@@ -34,7 +36,7 @@
       return v.pathname + v.search + v.hash;
     } catch (e) { return null; }
   }
-  var api = { ok: ok, tagFrom: tagFrom, rewrite: rewrite, DEFAULT_TAG: DEFAULT_TAG };
+  var api = { campaign: campaign, tagFrom: tagFrom, rewrite: rewrite, CAMPAIGNS: CAMPAIGNS, DEFAULT_TAG: DEFAULT_TAG };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (typeof document === "undefined") return;
   var tag = tagFrom(window.location.search);

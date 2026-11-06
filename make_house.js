@@ -62,9 +62,14 @@ function region(s, name) {
   }
   if (name === "TAIL") {
     const m = s.match(/<script src="house\.js\?v=[0-9a-f]{10}" defer><\/script>/); if (!m) return null;
-    let i = m.index; const e = i + m[0].length;
+    let i = m.index; let e = i + m[0].length;
     const nb = s.lastIndexOf('<nav class="hs-bot"', i); if (nb >= 0 && s.slice(s.indexOf("</nav>", nb) + 6, i).trim() === "") i = nb;
     const ff = s.lastIndexOf('<div class="hs-fanfoot">', i); if (ff >= 0 && s.slice(s.indexOf("</div></div>", ff) + 12, i).trim() === "") i = ff;
+    /* Scripts that follow house.js used to be left in place, so a later run added
+       another copy of svgfloor.js and refcarry.js. Fold those copies into this region
+       so the replacement writes each file once. */
+    const extra = s.slice(e).match(/^(?:\s*<script src="(?:house|svgfloor|refcarry)\.js\?v=[0-9a-f]{10}" defer><\/script>)+/);
+    if (extra) e += extra[0].length;
     return [i, e];
   }
   return null;
@@ -74,6 +79,16 @@ const between = (s, name, inner) => {
   return { has: !!r, put: r ? s.slice(0, r[0]) + block + s.slice(r[1]) : null, block };
 };
 const once = (s, f, re, what) => { const m = s.match(re); if (!m) fail(f, "no " + what); return m; };
+/* A page keeps one house.js, one svgfloor.js and one refcarry.js. A second copy used to
+   survive after trust.js, because the tail region stopped at the first other script. */
+function onceEach(s) {
+  for (const name of ["house.js", "svgfloor.js", "refcarry.js"]) {
+    const re = new RegExp(`<script src="${name}\\?v=[0-9a-f]{10}" defer><\\/script>\\n?`, "g");
+    let n = 0;
+    s = s.replace(re, (m) => (++n === 1 ? m : ""));
+  }
+  return s;
+}
 
 function headBlock(p, s) {
   let inner = (p.kind === "stone" ? H.FONTS + "\n" + H.stoneStyle() + "\n" : H.FONTS + "\n") + H.headTags({ fonts: false });
@@ -145,10 +160,13 @@ for (const p of PAGES) {
   /* the end of the body: the bar at the foot of a phone, unless the page has its own, and house.js */
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = p.kind === "method" ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>` : H.tail(p.current); */
   /* 31 Oct 2026, note 64: no lamp.js on The Fan's page either. */
-  const tail = p.kind === "method" ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>` : H.tail(p.current);
+  const tail = p.kind === "method"
+    ? `<script src="house.js?v=${H.vOf("house.js")}" defer></script>\n<script src="svgfloor.js?v=${H.vOf("svgfloor.js")}" defer></script>\n<script src="refcarry.js?v=${H.vOf("refcarry.js")}" defer></script>`
+    : H.tail(p.current);
   const eb = between(s, "TAIL", tail);
   if (eb.has) s = eb.put;
   else { const i = s.lastIndexOf("</body>"); if (i < 0) fail(p.file, "no </body>"); s = s.slice(0, i) + eb.block + "\n" + s.slice(i); }
+  s = onceEach(s);
 
   fs.writeFileSync(fp, s); n++;
 }
