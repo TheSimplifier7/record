@@ -703,6 +703,12 @@
   .signup input{min-width:0;flex:1 1 200px;min-height:44px;padding:0 12px;border:1px solid var(--rule-2);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
   .signup .btn{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
   .signup .btn:hover{background:var(--btn-hover);border-color:var(--btn-hover);color:var(--btn-ink)}
+  form.signup label.consent{flex:1 1 100%;display:flex;gap:8px;align-items:flex-start;font-size:.8125rem;line-height:1.45;color:var(--ink-3);cursor:pointer}
+  .wb-mail form.signup label.consent{color:var(--r3-ink3,#a3aec0)}
+  form.signup label.consent a{color:inherit}
+  form.signup label.consent input[type="checkbox"]{flex:none;width:18px;height:18px;min-width:0;min-height:0;margin:1px 0 0;padding:0;border-radius:3px;accent-color:var(--btn)}
+  form.signup .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  #door-email .signup .btn{color:var(--ink)}
   .confirmed{font-size:.9375rem;font-weight:700;color:var(--held)}
   .card-why b{font-weight:600}
 
@@ -1085,7 +1091,7 @@
   </div>
   <div class="r3-copy">
     <p class="hd-eyebrow"><span>Season from <b id="record-begins">7 Jun 2026</b></span><span>Lines <b id="issue-no">52</b></span><span>Updated <b id="updated-spec">2 Nov 2026</b></span></p>
-    <h1 class="r3-h1" id="h1">Only <em>Friday's close</em> counts.</h1><aside class="wb" id="wb" aria-labelledby="wb-t"><div class="wb-h"><h2 class="wb-t" id="wb-t">This week's lines</h2><span class="wb-g">Graded Fri 6 Nov, 23:00 CET</span></div><ol class="wb-list"><li class="wb-row off" aria-label="Gold, floor 3,962.52: the week must close above it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="3.6" fill="none" stroke="#e9e4d8" stroke-width="1.6"/></svg><span class="wb-name">Gold<span class="wb-kind">Floor: the week must close above it</span></span><span class="wb-lv">3,962.52</span><span class="wb-say"><span class="wb-k2">Floor.</span> Last close 3,875.05, <b>87.47 below</b>: it needs Friday to close back above.</span></li><li class="wb-row ok" aria-label="Silver, ceiling 51.406: the week must close under it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="4.2" fill="#e9e4d8"/></svg><span class="wb-name">Silver<span class="wb-kind">Ceiling: the week must close under it</span></span><span class="wb-lv">51.406</span><span class="wb-say"><span class="wb-k2">Ceiling.</span> Last close 49.10, <b>2.306 under</b>: the side it needs.</span></li><li class="wb-row ok" aria-label="Platinum, ceiling 1,486.31: the week must close under it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="4.2" fill="#e9e4d8"/></svg><span class="wb-name">Platinum<span class="wb-kind">Ceiling: the week must close under it</span></span><span class="wb-lv">1,486.31</span><span class="wb-say"><span class="wb-k2">Ceiling.</span> Last close 1,433.40, <b>52.91 under</b>: the side it needs.</span></li></ol><div class="wb-f"><span>Closes off my own chart, Fri 30 Oct</span><a href="week-2026-11-02.html">The week in full</a></div><div class="wb-mail" id="wb-mail" hidden><p class="wb-mail-t"><b>The Monday Level.</b> Monday's levels by email, the evening I post them, and Friday's results after the close. The wrong ones arrive in your inbox too.</p><form class="signup" id="signup-form-top" method="post"><label for="em-top" class="sr-only">Email address</label><input id="em-top" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email"><input type="hidden" name="fields[ref]" value="site"><button class="btn quiet" type="submit">Send it</button></form><p class="wb-mail-f">One email Monday, one email Friday, nothing else. No forecast without its kill.</p></div></aside>
+    <h1 class="r3-h1" id="h1">Only <em>Friday's close</em> counts.</h1><aside class="wb" id="wb" aria-labelledby="wb-t"><div class="wb-h"><h2 class="wb-t" id="wb-t">This week's lines</h2><span class="wb-g">Graded Fri 6 Nov, 23:00 CET</span></div><ol class="wb-list"><li class="wb-row off" aria-label="Gold, floor 3,962.52: the week must close above it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="3.6" fill="none" stroke="#e9e4d8" stroke-width="1.6"/></svg><span class="wb-name">Gold<span class="wb-kind">Floor: the week must close above it</span></span><span class="wb-lv">3,962.52</span><span class="wb-say"><span class="wb-k2">Floor.</span> Last close 3,875.05, <b>87.47 below</b>: it needs Friday to close back above.</span></li><li class="wb-row ok" aria-label="Silver, ceiling 51.406: the week must close under it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="4.2" fill="#e9e4d8"/></svg><span class="wb-name">Silver<span class="wb-kind">Ceiling: the week must close under it</span></span><span class="wb-lv">51.406</span><span class="wb-say"><span class="wb-k2">Ceiling.</span> Last close 49.10, <b>2.306 under</b>: the side it needs.</span></li><li class="wb-row ok" aria-label="Platinum, ceiling 1,486.31: the week must close under it."><svg class="wb-glyph" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><line x1="1" y1="14" x2="27" y2="14" stroke="#e0a93b" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="22" r="4.2" fill="#e9e4d8"/></svg><span class="wb-name">Platinum<span class="wb-kind">Ceiling: the week must close under it</span></span><span class="wb-lv">1,486.31</span><span class="wb-say"><span class="wb-k2">Ceiling.</span> Last close 1,433.40, <b>52.91 under</b>: the side it needs.</span></li></ol><div class="wb-f"><span>Closes off my own chart, Fri 30 Oct</span><a href="week-2026-11-02.html">The week in full</a></div><div class="wb-mail" id="wb-mail" hidden><p class="wb-mail-t"><b>The Monday Level.</b> Monday's levels by email, the evening I post them, with last week's grades from Friday's close. The wrong ones arrive in your inbox too.</p><form class="signup" id="signup-form-top" method="post" accept-charset="UTF-8"><input type="hidden" name="action" value="signup"><input type="hidden" name="source_ref" value="site"><label for="em-top" class="sr-only">Email address</label><input id="em-top" type="email" name="email" maxlength="254" placeholder="you@email.com" required autocomplete="email"><span class="trap" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></span><button class="btn quiet" type="submit">Send it</button><label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Send me The Monday Level, one email a week. I can unsubscribe from any email. <a href="privacy.html#why">Privacy</a></span></label></form><p class="wb-mail-f">One email a week, nothing else. No forecast without its kill.</p></div></aside>
     <div class="hd-keys">
       <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><path d="M2 6 L8 10 L13 6 L19 10 L28 7" fill="none" stroke="#c9d3e6" stroke-width="1.6"/><line x1="1" y1="16" x2="29" y2="16" stroke="#e0a93b" stroke-width="2.6"/></svg><span><b>Floor:</b> the week must close above it.</span></span>
       <span class="hd-key"><svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true"><line x1="1" y1="4" x2="29" y2="4" stroke="#e0a93b" stroke-width="2.6"/><path d="M2 14 L8 10 L13 14 L19 10 L28 13" fill="none" stroke="#c9d3e6" stroke-width="1.6"/></svg><span><b>Ceiling:</b> the week must close under it.</span></span>
@@ -1161,7 +1167,7 @@
     </div>
     <div class="r3f-ml">
       <span class="r3-ey">The Monday Level</span>
-      <p>Monday's levels by email, the evening I post them, and Friday's results after the close.</p>
+      <p>Monday's levels by email, the evening I post them, with last week's grades from Friday's close.</p>
       <a class="hd-btn hd-ghost" href="#join">Monday email</a>
     </div>
   </div>
@@ -1417,14 +1423,9 @@
   <div class="door" id="door-email" data-ready="0">
     <div class="eyebrow">Free</div>
     <h3>The Monday Level</h3>
-    <p>Monday's levels by email, the evening I post them, and Friday's results after the close. The wrong ones arrive in your inbox too.</p>
-    <form class="signup" id="signup-form" method="post">
-      <label for="em" class="sr-only">Email address</label>
-      <input id="em" type="email" name="email_address" placeholder="you@email.com" required autocomplete="email">
-      <input type="hidden" name="fields[ref]" value="site">
-      <button class="btn quiet" type="submit">Send it</button>
-    </form>
-    <p class="cadence">One email Monday, one email Friday, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
+    <p>Monday's levels by email, the evening I post them, with last week's grades from Friday's close. The wrong ones arrive in your inbox too.</p>
+    <form class="signup" id="signup-form" method="post" accept-charset="UTF-8"><input type="hidden" name="action" value="signup"><input type="hidden" name="source_ref" value="site"><label for="em" class="sr-only">Email address</label><input id="em" type="email" name="email" maxlength="254" placeholder="you@email.com" required autocomplete="email"><span class="trap" aria-hidden="true"><input name="company" type="text" tabindex="-1" autocomplete="off"></span><button class="btn quiet" type="submit">Send it</button><label class="consent"><input type="checkbox" name="consent" value="yes" required><span>Send me The Monday Level, one email a week. I can unsubscribe from any email. <a href="privacy.html#why">Privacy</a></span></label></form>
+    <p class="cadence">One email a week, nothing else. <a id="door-sample" href="#" hidden>Read a past one.</a></p>
     <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on this page.</p>
   </div>
   <div class="door" id="door-method" data-ready="0">
@@ -1571,7 +1572,8 @@ const COUNTER = "https://thesimplifier.goatcounter.com/count";
 const GUEST_FORM = "https://x.com/intent/post?text=%40TheSimplifier7%20";
 
 const DOORS = {
-  kit:   "https://app.kit.com/forms/9787640/subscriptions",
+  // LAUNCH: the Apps Script web app URL ending /exec. Empty keeps the email doors shut.
+  list:  "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec",
   tally: "https://tally.so/r/EkVxJA",
   sample: ""
 };
@@ -3280,7 +3282,7 @@ function drawWeek() {
     stamp.hidden = !bits.length;
   }
   const door = document.getElementById("tw-door");
-  if (door && typeof DOORS === "object" && /^https:\/\/\S+$/i.test(String(DOORS.kit || "").trim())) door.hidden = false;
+  if (door && typeof DOORS === "object" && /^https:\/\/\S+$/i.test(String(DOORS.list || "").trim())) door.hidden = false;
   sec.hidden = false;
 }
 drawWeek();
@@ -3617,12 +3619,12 @@ const guestDistance = g => {
 
 (function openDoors(){
   const live = v => typeof v === "string" && /^https:\/\/\S+$/i.test(v.trim());
-  const emailReady = live(DOORS.kit), applyReady = live(DOORS.tally);
+  const emailReady = live(DOORS.list), applyReady = live(DOORS.tally);
   if (live(DOORS.sample)) { const el = document.getElementById("door-sample"); if (el) { el.setAttribute("href", DOORS.sample.trim()); el.hidden = false; } }
-  // 4 Nov 2026: the ref the visit came with, or site, on every email form (the Kit field ref)
+  // 4 Nov 2026: the ref the visit came with, or site, on every email form (source_ref in the list Sheet)
   const ref = (() => { try { const q = new URLSearchParams(location.search), r = q.get("ref") || q.get("utm_source") || ""; return /^[A-Za-z0-9_-]{1,40}$/.test(r) ? r : "site"; } catch (e) { return "site"; } })();
-  document.querySelectorAll('form.signup input[name="fields[ref]"]').forEach(i => { i.value = ref; });
-  if (emailReady) { document.querySelectorAll("form.signup").forEach(f => f.setAttribute("action", DOORS.kit.trim())); const wm = document.getElementById("wb-mail"); if (wm) wm.hidden = false; document.getElementById("door-email").setAttribute("data-ready", "1"); }
+  document.querySelectorAll('form.signup input[name="source_ref"]').forEach(i => { i.value = ref; });
+  if (emailReady) { document.querySelectorAll("form.signup").forEach(f => f.setAttribute("action", DOORS.list.trim())); const wm = document.getElementById("wb-mail"); if (wm) wm.hidden = false; document.getElementById("door-email").setAttribute("data-ready", "1"); }
   if (applyReady && document.getElementById("apply-link")) { document.getElementById("apply-link").setAttribute("href", DOORS.tally.trim()); document.getElementById("door-apply").setAttribute("data-ready", "1"); }
   document.getElementById("door-method").setAttribute("data-ready", "1");
   const say = msg => { document.querySelectorAll("form.signup").forEach(form => { const done = document.createElement("p"); done.className = "confirmed"; done.textContent = msg; form.replaceWith(done); }); };

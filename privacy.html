@@ -345,11 +345,11 @@
       <h2 id="collect-h">What I collect</h2>
       <ul>
         <li><b>When you start a trial or subscribe</b> (through Stripe): your email address, name, billing country and postcode or address as Stripe asks for it, your card details (held by Stripe; I never see your full card number), and your TradingView username.</li>
-        <li><b>When you sign up for the Monday levels email</b> (through Kit): your email address, and the record of your consent and confirmation.</li>
+        <li><b>When you sign up for The Monday Level email</b>: your email address, where the sign-up came from (for example the home page or a tagged link), and when you signed up, confirmed and unsubscribed. I do not record your IP address or browser for the list.</li>
         <li><b>When you apply for 1-to-1 mentorship</b> (through Tally): what you choose to write in the application form.</li>
         <li><b>When you write to me</b> by email or on X: your message and the details that come with it, such as your email address or X handle.</li>
         <li><b>When you visit this site</b>: anonymous visit counts (see Analytics, cookies and local storage below), and the technical data any web host receives, such as your IP address.</li>
-        <li><b>If you arrived through a tagged link</b> (for example one with <code>?ref=</code> or <code>utm_source=</code> in the address): that tag is passed to the Stripe checkout so I can tell which link a subscription came from. It is not stored on your device.</li>
+        <li><b>If you arrived through a tagged link</b> (for example one with <code>?ref=</code> or <code>utm_source=</code> in the address): that tag is passed to the Stripe checkout so I can tell which link a subscription came from, and saved with your email sign-up if you join The Monday Level. It is not stored on your device.</li>
       </ul>
     </section>
 
@@ -357,7 +357,7 @@
       <h2 id="why-h">Why I use it, and on what legal basis</h2>
       <ul>
         <li><b>To provide what you bought</b>: take payment, give and manage your TradingView access, send receipts and service emails. Legal basis: performance of the contract with you (Article 6(1)(b) GDPR).</li>
-        <li><b>To send the Monday levels email</b> (one email Monday, one email Friday). Legal basis: your consent (Article 6(1)(a)). Sign-up is double opt-in: nothing is sent until you confirm from the email Kit sends you. Visitors in the EU, UK and Switzerland are shown a GDPR consent notice when signing up. You can unsubscribe at any time from the link in every email.</li>
+        <li><b>To send The Monday Level email</b> (one email a week, on Monday evening). Legal basis: your consent (Article 6(1)(a)), given with the tick box on the sign-up form. Sign-up is double opt-in: apart from the one email that asks you to confirm, nothing is sent until you confirm. You can unsubscribe at any time from the link in every email. The emails carry no tracking pixels and no tracked links. I keep the record of your sign-up, confirmation and unsubscribe to show that you agreed and so that you are not emailed again after you leave: my legitimate interest (Article 6(1)(f)).</li>
         <li><b>To keep tax and accounting records</b>. Legal basis: legal obligation (Article 6(1)(c)).</li>
         <li><b>To answer your messages, review mentorship applications, count visits and keep the service secure and free of fraud</b>. Legal basis: my legitimate interest in running the business (Article 6(1)(f)).</li>
       </ul>
@@ -369,7 +369,8 @@
       <p>I use these service providers. Each one handles your data only as needed to provide its service:</p>
       <ul>
         <li><b>Stripe</b> (Stripe Payments Europe, Ltd., Ireland): checkout, payments, subscriptions, receipts and the customer billing portal. Stripe also acts as an independent controller for fraud prevention and its legal obligations, under its own privacy policy.</li>
-        <li><b>Kit</b> (Kit, formerly ConvertKit, United States): the Monday levels email list and sign-up form.</li>
+        <li><b>Google</b> (Google Sheets and Apps Script): holds The Monday Level list, and runs the confirmation and unsubscribe pages that the sign-up form and the links in each email open.</li>
+        <li><b>Resend</b> (Plus Five Five, Inc., United States): sends The Monday Level emails, including the confirmation email, from hello@thesimplifier7.com.</li>
         <li><b>TradingView</b> (TradingView, Inc.): your username is added to the invite-only indicator on TradingView. TradingView runs your account under its own privacy policy.</li>
         <li><b>GitHub</b> (GitHub, Inc., United States): hosts this website through GitHub Pages, and receives technical data such as your IP address when you load a page.</li>
         <li><b>GoatCounter</b>: anonymous, cookie-free visit counts for this site.</li>
@@ -386,7 +387,7 @@
       <ul>
         <li><b>Customer data</b> (email, name, TradingView username, subscription history): while your subscription is active, then for as long as needed to deal with any claim or question about it.</li>
         <li><b>Invoices, payments and tax records</b>: for 4 years, the period Spanish tax law requires.</li>
-        <li><b>Monday levels email</b>: until you unsubscribe. After that I keep only the record that you unsubscribed, so you are not emailed again.</li>
+        <li><b>The Monday Level email</b>: while you are subscribed. A sign-up that is never confirmed is deleted after 30 days. When you unsubscribe, your subscriber record is deleted within 30 days, and I keep only a short record that you unsubscribed, so you are not emailed again. The log of sign-ups, confirmations and unsubscribes is kept for 12 months.</li>
         <li><b>Mentorship applications and messages</b>: for as long as needed to answer them, and no longer than 12 months unless we go on working together.</li>
         <li><b>Visit counts</b>: anonymous totals, kept indefinitely because they identify no one.</li>
       </ul>
@@ -405,7 +406,7 @@
         <li><b>Visit counts.</b> Pages are counted with GoatCounter, a privacy-friendly analytics service that, as used here, sets no cookies and builds no profile of you. It records the page viewed, the referring site, and the browser, screen size and country in general terms.</li>
         <li><b>Light or dark theme.</b> If you switch the theme, your choice is saved in your browser's local storage on your own device under the key <code>theme</code>. It never leaves your device, and you can clear it at any time from your browser settings.</li>
         <li><b>Checkout.</b> The Stripe checkout and billing pages are on Stripe's own site and use Stripe's cookies, for example for fraud prevention, under Stripe's privacy and cookie policies.</li>
-        <li><b>Email sign-up.</b> The sign-up form sends your email address straight to Kit, which handles it under its own privacy policy.</li>
+        <li><b>Email sign-up.</b> The sign-up form sets no cookies and sends nothing until you press Send it. Pressing it, or a link in one of the emails, opens a page served by Google, under Google's own privacy and cookie policies.</li>
       </ul>
     </section>
 
@@ -420,6 +421,7 @@
     </section>
 
     <div class="rule"></div>
+    <!-- LAUNCH: set this to the day the email list goes live. -->
     <p class="fine">Last updated 6 November 2026. Privacy questions: <a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a>.</p>
     <p class="fine">Also: <a href="terms.html">Terms of sale</a> · <a href="./">The record</a>.</p>
   </article>
