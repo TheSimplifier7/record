@@ -585,8 +585,10 @@ const mA = mvt.indexOf("/* CAPTIONS-START */"), mB = mvt.indexOf("/* CAPTIONS-EN
 const mCaps = mA >= 0 && mB > mA ? mvt.slice(mA, mB) : "";
 check(mvt.length > 0 && mCaps.length > 200, "movement.js is beside the record, its words between CAPTIONS-START and CAPTIONS-END (note 50)");
 let methodLive = ""; try { methodLive = rd("method.html").replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {}
-const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) && /<script[^>]+src="movement\.js"|\.src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
-check(mOn && !mOld, "the Method page mounts the inner workings and loads movement.js, and no longer mounts descent.js" + (mOn ? "" : " (not mounted)") + (mOld ? " (descent.js still on it)" : ""));
+/* 6 Nov 2026: the sales page no longer mounts the inner-workings film. movement.js stays beside the record.
+   The record page may still load it. The sales page must not mount descent.js either. */
+const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) || /src="movement\.js"|\.src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
+check(!mOn && !mOld, "the sales page does not mount the inner workings or descent.js (6 Nov 2026)" + (mOn ? " (movement still mounted)" : "") + (mOld ? " (descent.js still on it)" : ""));
 const mBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(copper|slate|box|room|kill|naming)\b/i]].filter(([, re]) => re.test(mCaps)).map(b => b[0]);
 check(mCaps.length > 0 && mBad.length === 0, "the inner workings' words carry no em dash, exclamation mark, hashtag, emoji or house word" + (mBad.length ? " (found: " + mBad.join(", ") + ")" : ""));
 const mCode = mvt.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -609,9 +611,17 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   /* 1 Nov 2026, the founder's two briefs: The Fan and The Method side by side, each by its own Stripe trial, one way out. */
   const BUY = { fan: "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00", method: "https://buy.stripe.com/9B628tfs5299cSb24e5kk01" }, MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
   if (!/id="plans"/.test(mp)) probs.push("the two plans are not on the page");
-  for (const [k, u] of Object.entries(BUY)) if ((mp.match(new RegExp('href="' + u.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length !== 1) probs.push("the checkout of " + k + " is not on the page once");
+  const fanN = (mp.match(new RegExp('href="' + BUY.fan.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
+  const methodN = (mp.match(new RegExp('href="' + BUY.method.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
+  if (fanN < 1) probs.push("the Fan checkout is not on the page");
+  if (methodN < 1) probs.push("the Method checkout is not on the page");
+  const otherBuy = (mp.match(/https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+/g) || []).filter(u => u !== BUY.fan && u !== BUY.method);
+  if (otherBuy.length) probs.push("a checkout link is not the Fan or Method link");
   if (!/<b>€149\.99<\/b> a month/.test(mp) || !/<b>€59<\/b> a month/.test(mp)) probs.push("a plan does not print its price");
-  if ((mp.match(/7 days free\. Cancel before day 8 and pay nothing\. Then €(149\.99|59) a month, first charge on day 8\./g) || []).length < 2) probs.push("a buy button has no trial line under it");
+  const fanTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.";
+  const methodTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €59 including VAT on day 8, then every month until you cancel.";
+  if ((mp.split(fanTerms).length - 1) < 2) probs.push("the Fan trial terms are not beside each Fan button");
+  if (!mp.includes(methodTerms)) probs.push("the Method trial terms are not beside its button");
   if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
   if (/METHOD_SPACE|METHOD_FORM|METHOD_TERMS|Request access|Access by invitation|Access is by request/.test(mp)) probs.push("the page still carries the Space, the request form or access by request");
   if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");

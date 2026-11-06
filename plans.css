@@ -1,7 +1,8 @@
 /* plans.css, Design Lab, 3 November 2026: the plans page sells. The Fan leads; each plan says who it is for and answers
    the three questions people ask before a card; the jargon waits in a drawer; one large chart with numbered callouts;
    the member's words at the point of decision. On a phone the price and the button come before the detail. */
-@media (min-width:820px){.plan-method{order:0}}
+.plan-fan{order:-1}
+.plan-method{order:0}
 .plans > *{min-width:0}
 .plans{align-items:start}
 .plan-for{margin:0;font:400 15px/1.5 var(--f-ui,"Barlow",sans-serif);color:#cdd5e1;max-width:34rem}
@@ -33,11 +34,30 @@
 .fw-src{margin:10px 0 0;font-size:13px;color:#8d98ab}
 @media (min-width:820px){.fw-key{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
 .descent-head.film{margin-top:8px}
+.plan-band{background:#0b111d;color:#e9edf3;padding:36px 0 40px}
+.plan-band h2{font-family:var(--f-cond,"Barlow Condensed",sans-serif);font-weight:700;font-size:clamp(1.625rem,3.4vw,2rem);line-height:1.1;margin:0 0 12px;color:#fff}
+.plan-intro,.plan-band .fine,.plan-band .card-why,.plan-band .plan-links{max-width:46rem;font-size:1rem;line-height:1.6}
+.plan-band .card-why{margin:18px 0 8px}
+.plan-band .plan-links a{color:#f2c45a}
+.plan .fine{font-size:15px;line-height:1.55;opacity:1;color:#c9d3e6}
+.chart-pair{display:grid;grid-template-columns:1fr;gap:18px;margin:8px 0 16px}
+@media (min-width:860px){.chart-pair{grid-template-columns:1fr 1fr}}
+.compare-wrap{overflow-x:auto;margin:0 0 16px}
+.compare{width:100%;border-collapse:collapse;font-size:1rem;line-height:1.5}
+.compare caption{text-align:left;font-weight:700;margin-bottom:8px}
+.compare th,.compare td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
+.compare thead th{font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.compare td:nth-child(2),.compare th:nth-child(2){background:color-mix(in srgb,var(--btn) 12%,transparent)}
+.faq h3{font-family:var(--f-ui);font-size:1.05rem;font-weight:700;margin:18px 0 6px}
 @media (max-width:819.98px){
-  .fan-head .wrap{display:flex;flex-direction:column}
-  .fan-head .crumb{order:1}.fan-head h1{order:2}.fan-head .tagline{order:3}.fan-head #plans{order:4}.fan-head .lede{order:5}
-  .plan .plan-top{order:1}.plan .plan-price{order:2}.plan .plan-for{order:3}.plan .plan-checks{order:4}.plan .plan-btn{order:5}.plan .fine{order:6}
-  .plan > ul:not(.plan-checks){order:7}.plan .plan-more{order:8}.plan .plan-fig{order:9}
-  .plan-btn{align-self:stretch;justify-content:center;text-align:center}
+  .plan .plan-top{order:1}.plan .plan-price{order:2}.plan .plan-for{order:3}.plan .plan-btn{order:4}.plan .fine{order:5}
+  .plan-btn{align-self:stretch;justify-content:center;text-align:center;min-height:48px}
+  .compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .compare,.compare tbody,.compare tr,.compare th,.compare td{display:block;width:auto}
+  .compare tr{padding:12px 0;border-bottom:1px solid var(--rule)}
+  .compare td{border:0;padding:6px 0}
+  .compare td::before{content:attr(data-label);display:block;font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+}
+@media (max-width:819.98px){
   .fw-n{width:24px;height:24px;font-size:13px;line-height:24px}
 }

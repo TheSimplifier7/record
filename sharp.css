@@ -177,7 +177,7 @@ th, td:first-child, h1, h2, footer { text-transform: none !important; }
 .plan-fig { margin: auto 0 0; padding-top: 6px; }
 .plan-fig img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
 .plan-fig figcaption { margin-top: 6px; font-size: 13px; opacity: .7; }
-@media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 18px; } .plan-method { order: -1; } .plan { padding: 26px; } }
+@media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; gap: 18px; } .plan { padding: 26px; } }
 .plans-list { list-style: none; padding: 0; margin: 2px 0 0; display: grid; gap: 12px; line-height: 1.5; }
 .plans-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-top: 10px; border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
 .plans-list .pr { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
