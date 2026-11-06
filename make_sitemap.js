@@ -46,7 +46,7 @@ const pages = fs.readdirSync(HERE).filter(f => /\.html$/.test(f) && TEMPLATES.in
 const entry = f => {
   const loc = f === "index.html" ? SITE : SITE + f;
   let mod = null;
-  if (f === "index.html" || f === "weeks.html") mod = R.last_updated;
+  if (f === "index.html" || f === "record.html" || f === "weeks.html") mod = R.last_updated;
   const wm = f.match(/^week-(\d{4}-\d{2}-\d{2})\.html$/);
   if (wm && weekMod[wm[1]]) mod = weekMod[wm[1]] > PAGES_FROM ? weekMod[wm[1]] : PAGES_FROM;
   return `  <url><loc>${loc}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ""}</url>`;

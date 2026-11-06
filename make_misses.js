@@ -26,7 +26,7 @@ const fs = require("fs");
    are in the edit history and in note 54's review sheet. */
 const HS = require("./house_parts.js");
 const vm = require("vm");
-const html = fs.readFileSync("index.html", "utf8");
+const html = fs.readFileSync("record.html", "utf8");
 
 function literal(name) {
   const start = html.indexOf("const " + name + " = ");
@@ -49,7 +49,7 @@ const CARD = (() => { try { const c = JSON.parse(fs.readFileSync("link_cards.jso
 const M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const fmt = iso => { const [y, m, d] = iso.split("-"); return `${+d} ${M[+m - 1]} ${y}`; };
 const noteIds = new Set(NOTES.map(n => n.n));
-const linkNotes = s => esc(s).replace(/\bnote\s+(\d{2})\b/gi, (m, n) => noteIds.has(n) ? `<a href="index.html#note-${n}">note ${n}</a>` : m);
+const linkNotes = s => esc(s).replace(/\bnote\s+(\d{2})\b/gi, (m, n) => noteIds.has(n) ? `<a href="record.html#note-${n}">note ${n}</a>` : m);
 
 const misses = CALLS.map((c, i) => ({ ...c, idx: i })).filter(c => c.grade === "miss" || c.grade === "partial")
   .sort((a, b) => a.date.localeCompare(b.date));
@@ -80,8 +80,8 @@ const sameLine = (a, b) => {
 };
 const repeats = misses.filter((a, i) => misses.some((b, j) => j !== i && sameLine(a, b))).length;
 const afterText = repeats >= 2
-  ? `${cap(word(repeats))} of these ${word(misses.length)} were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="index.html#note-13">note 13</a>, which counts the calls by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`
-  : `The record counts these by level as well as by week in <a href="index.html#note-13">note 13</a>, because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`;
+  ? `${cap(word(repeats))} of these ${word(misses.length)} were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="record.html#note-13">note 13</a>, which counts the calls by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`
+  : `The record counts these by level as well as by week in <a href="record.html#note-13">note 13</a>, because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`;
 
 const notesFor = c => {
   const ids = new Set();
@@ -116,7 +116,7 @@ const section = (c, k) => {
       </div>
     </div>
     ${notes.length ? `<div class="notes"><div class="lab">What was written about it afterwards</div>${notes.map(n => `<details><summary>Note ${esc(n.n)} · ${esc(n.title)}</summary><p>${esc(n.body)}</p></details>`).join("")}</div>` : ""}
-    <p class="row-link"><a href="index.html#${rowAnchor(c)}">This row on the record</a>${p.commit ? ` · <a href="https://github.com/TheSimplifier7/record/commit/${esc(p.commit)}">the commit that graded it</a>` : ""}</p>
+    <p class="row-link"><a href="record.html#${rowAnchor(c)}">This row on the record</a>${p.commit ? ` · <a href="https://github.com/TheSimplifier7/record/commit/${esc(p.commit)}">the commit that graded it</a>` : ""}</p>
   </section>`;
 };
 
@@ -200,12 +200,12 @@ ${HS.headTags({ fonts: false })}
 </head>
 <body>
 ${HS.top(null, "misses")}
-${HS.hero({ eyebrow: '<a href="./">The record</a><span>The wrong ones</span>', title: "The ones I got wrong.", col: "820px", pad: "28px", lede: `You have followed a gold call that was wrong and watched it disappear. These did not. Every call on the record that the close proved wrong, in full: the level as posted, what would prove it wrong, the close that did, and everything written about it afterwards. They stay because a record that keeps only its wins is not a record.` })}
+${HS.hero({ eyebrow: '<a href="record.html">The record</a><span>The wrong ones</span>', title: "The calls I got wrong.", col: "820px", pad: "28px", lede: "Read each original call, the close that graded it and any correction attached to it. These are weekly price calls, not a list of trades or losses." })}
 <div class="wrap">
   <p class="tally"><b>${misses.length}</b> wrong · <b>${pass}</b> held · <b>${notest}</b> never reached${open ? ` · <b>${open}</b> open` : ""} · ${CALLS.length} levels on the record. The wrong ones are ${resolved ? Math.round(misses.length / resolved * 100) : 0} percent of the ${resolved} graded. That is a small sample, so read the percentage with care.</p>
 ${misses.map(section).join("\n")}
   <p class="after">${afterText}</p>
-  <p class="law"><a href="index.html">Every row, including these</a> · Named before · Graded after · Nothing deleted</p>
+  <p class="law"><a href="record.html">Every row, including these</a> · Named before · Graded after · Nothing deleted</p>
 </div>
 ${HS.tail(null)}
 <script>

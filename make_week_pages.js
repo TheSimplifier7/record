@@ -185,12 +185,14 @@ function weekPage(m, i) {
 ${P.band("week-page")}
 ${P.hero({ eyebrow: `<a href="weeks.html">Week by week</a><span>${esc(ls.map(l => l.r.metal).join(" · "))}</span>`, title: `The week of ${esc(longDate(m))}`, lede: esc(status), key: true })}
 <main><div class="wrap">
+  <p>These are the levels published for this week. Friday's close grades them, not a move during the week.</p>
   <section class="lines" aria-label="The lines">
   ${ls.map(lineCard).join("\n  ")}
   </section>
   <nav class="wnav" aria-label="The weeks">
     ${prev ? `<a href="${fileOf(prev)}">Earlier: the week of ${esc(longDate(prev))}</a>` : `<span></span>`}
     <a href="weeks.html">Week by week</a>
+    <a href="record.html">Full record</a>
     ${next ? `<a href="${fileOf(next)}">Later: the week of ${esc(longDate(next))}</a>` : `<span></span>`}
   </nav>
   ${P.doors("week-page")}
@@ -205,7 +207,7 @@ function weeksPage() {
   const items = allMondays.slice().reverse().map(m => {
     const ls = weeks[m];
     if (!ls) {
-      return `<li><div class="wk"><span class="metal">The week of ${esc(longDate(m))}</span></div><div class="ls none">No line that week. <a href="./#note-28">Note 28</a> says why.</div></li>`;
+      return `<li><div class="wk"><span class="metal">The week of ${esc(longDate(m))}</span></div><div class="ls none">No line that week. <a href="record.html#note-28">Note 28</a> says why.</div></li>`;
     }
     const graded = ls.every(l => l.word !== "open");
     return `<li><div class="wk"><a href="${fileOf(m)}">The week of ${esc(longDate(m))}</a><small>${esc(graded ? countText(ls) : "Open until Friday's close")}</small></div>
@@ -213,12 +215,12 @@ function weeksPage() {
   }).join("\n    ");
   return P.head({ title, description, canonical: SITE + "weeks.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS + `.weeks .wk .metal{font:700 1.15rem/1.2 var(--f-cond);letter-spacing:.02em;text-transform:none}` }) + `
 ${P.band("weeks-page")}
-${P.hero({ eyebrow: "<span>Gold · Silver · Platinum</span>", title: "Week by week", lede: "Every week of the record on its own page, newest first.", key: true })}
+${P.hero({ eyebrow: "<span>Gold · Silver · Platinum</span>", title: "The weekly levels, one week at a time.", lede: "Choose a week to see the levels that were published and how Friday's close graded them. A week still in progress is marked open.", key: true })}
 <main><div class="wrap">
   <ol class="weeks" reversed>
     ${items}
   </ol>
-  <p class="fine" style="margin-top:18px">Levels posted before 31 August 2026 are in <a href="./#results">the full record</a>, in their original words.</p>
+  <p class="fine" style="margin-top:18px">Levels posted before 31 August 2026 are in <a href="record.html#results">the full record</a>, in their original words.</p>
   ${P.doors("weeks-page")}
 </div></main>
 ${P.foot()}`;
