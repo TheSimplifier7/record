@@ -101,14 +101,14 @@ const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
 const rd = f => fs.readFileSync(path.join(HERE, f), "utf8");
-const idx = rd("index.html");
+const idx = rd("record.html");
 /* Head tags are matched on the page with its HTML comments removed, because
    replaced lines are kept in comments beside the line that replaced them. */
 const head = idx.split("<style>")[0].replace(/<!--[\s\S]*?-->/g, "");
 
 const grab = (name, open, close) => {
   const m = idx.match(new RegExp("const " + name + " = (" + open + "[\\s\\S]*?\\n" + close + ");"));
-  if (!m) throw new Error(name + " not found in index.html");
+  if (!m) throw new Error(name + " not found in record.html");
   return eval("(" + m[1] + ")");
 };
 const CALLS = grab("CALLS", "\\[", "\\]");
@@ -344,7 +344,7 @@ if (typeof rowAnchor === "function") {
   check(dup.length === 0 && A.every(a => /^r-\d{4}-\d{2}-\d{2}-[a-z]+-[0-9]+(-[0-9]+)*$/.test(a)), "every row has an address of its own (" + A.length + ")" + (dup.length ? " (shared: " + dup.join(", ") + ")" : ""));
   const rr = (rec && rec.rows) || [];
   check(rr.length === CALLS.length && rr.every((r, i) => r.anchor === A[i]), "record.json carries the address the page builds on every row");
-  const ml = [...missesText.matchAll(/href="index\.html#([^"]+)"/g)].map(m => m[1]).filter(h => /^(r-|lrow-)/.test(h));
+  const ml = [...missesText.matchAll(/href="(?:index|record)\.html#([^"]+)"/g)].map(m => m[1]).filter(h => /^(r-|lrow-)/.test(h));
   check(ml.length > 0 && ml.every(h => A.includes(h)), "misses.html links every row by its address (" + ml.length + ")");
 }
 
@@ -415,8 +415,8 @@ check(dsc.length > 0 && dCaps.length > 200, "descent.js is beside the record, it
 /* Until 11 October 2026, note 50, the Method page mounted it too, and this read:
    const dMounted = ["index.html", "method.html"].filter(...);
    check(dMounted.length === 2, "the record and the Method page mount the animation and load descent.js" ...); */
-const dMounted = ["index.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"|\.src="descent\.js"/.test(s); });
-check(dMounted.length === 1 && dMounted[0] === "index.html", "the record mounts the animation and loads descent.js" + (dMounted.length === 1 && dMounted[0] === "index.html" ? "" : " (mounted on: " + (dMounted.join(", ") || "neither") + ")"));
+const dMounted = ["record.html", "method.html"].filter(f => { let s = ""; try { s = rd(f).replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {} return /<div[^>]*\bdata-descent\b/.test(s) && /<script[^>]+src="descent\.js"|\.src="descent\.js"/.test(s); });
+check(dMounted.length === 1 && dMounted[0] === "record.html", "the record mounts the animation and loads descent.js" + (dMounted.length === 1 && dMounted[0] === "record.html" ? "" : " (mounted on: " + (dMounted.join(", ") || "neither") + ")"));
 const dBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u]].filter(([, re]) => re.test(dCaps)).map(b => b[0]);
 check(dCaps.length > 0 && dBad.length === 0, "the animation's captions carry no em dash, exclamation mark, hashtag or emoji" + (dBad.length ? " (found: " + dBad.join(", ") + ")" : ""));
 const dCode = dsc.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -646,10 +646,10 @@ check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeaco
   const has = f => { try { return rd(f).length > 0; } catch (e) { return false; } };
   ["scene.js", "scene.css", "make_scene.js"].forEach(f => { if (!has(f)) probs.push(f + " is not beside the record"); });
   const live = idx;
-  if (!/<script src="scene\.js\?v=[0-9a-f]{10}"><\/script>/.test(live)) probs.push("index.html does not load scene.js");
-  if (!/<link rel="stylesheet" href="scene\.css\?v=[0-9a-f]{10}">/.test(live)) probs.push("index.html does not load scene.css");
+  if (!/<script src="scene\.js\?v=[0-9a-f]{10}"><\/script>/.test(live)) probs.push("record.html does not load scene.js");
+  if (!/<link rel="stylesheet" href="scene\.css\?v=[0-9a-f]{10}">/.test(live)) probs.push("record.html does not load scene.css");
   if (!probs.length) {
-    try { const ex = require(path.join(HERE, "make_scene.js")).expected(idx).s; if (ex !== idx) probs.push("the still in index.html is not the one record.json gives: run node make_scene.js"); }
+    try { const ex = require(path.join(HERE, "make_scene.js")).expected(idx).s; if (ex !== idx) probs.push("the still in record.html is not the one record.json gives: run node make_scene.js"); }
     catch (e) { probs.push("make_scene.js could not build the still: " + e.message); }
   }
   const f3 = (idx.match(/<article class="r3f-step">\s*<div class="r3f-top"><span class="r3f-num">03<\/span>[\s\S]*?<\/article>/) || [""])[0];

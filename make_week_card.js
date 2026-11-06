@@ -55,7 +55,7 @@ fs.copyFileSync(path.join(tmp, base + ".html"), path.join(HERE, "week_card.html"
 console.log(`week_card.html and ${png} written in ASSAY at 1200 x 630`);
 const re = /^<meta property="og:image" content="https:\/\/thesimplifier7\.com\/[^"]+">$/m;
 const v = require("crypto").createHash("sha256").update(fs.readFileSync(path.join(HERE, png))).digest("hex").slice(0, 10);
-const fp = path.join(HERE, "index.html");
+const fp = path.join(HERE, "record.html");
 const was = fs.readFileSync(fp, "utf8");
 if (!re.test(was)) { console.log("live og:image line not found in index.html; not changed"); process.exit(1); }
 const next = was.replace(re, `<meta property="og:image" content="https://thesimplifier7.com/${base}.png?v=${v}">`);

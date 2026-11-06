@@ -8,7 +8,7 @@
 const fs = require("fs");
 const vm = require("vm");
 
-const html = fs.readFileSync("index.html", "utf8");
+const html = fs.readFileSync("record.html", "utf8");
 
 function literal(name) {
   const start = html.indexOf("const " + name + " = ");

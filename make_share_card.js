@@ -29,7 +29,7 @@
 const fs = require("fs");
 const path = require("path");
 const HERE = __dirname;
-const idx = fs.readFileSync(path.join(HERE, "index.html"), "utf8");
+const idx = fs.readFileSync(path.join(HERE, "record.html"), "utf8");
 const CALLS = eval(idx.match(/const CALLS = (\[[\s\S]*?\n\]);/)[1]);
 
 /* ---- pick the row ---------------------------------------------------- */

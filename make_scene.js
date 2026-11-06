@@ -93,13 +93,13 @@ function expected(idx) {
 }
 
 if (require.main === module) {
-  const file = path.join(HERE, "index.html");
+  const file = path.join(HERE, "record.html");
   const idx = fs.readFileSync(file, "utf8");
   const { s, M } = expected(idx);
   const lines = M.metals.reduce((a, m) => a + m.lines.length, 0);
   if (process.argv.includes("--check")) {
-    if (s === idx) { console.log("make_scene.js: the still in index.html is current."); process.exit(0); }
-    console.log("make_scene.js: the still in index.html is not the one record.json gives. Run node make_scene.js."); process.exit(1);
+    if (s === idx) { console.log("make_scene.js: the still in record.html is current."); process.exit(0); }
+    console.log("make_scene.js: the still in record.html is not the one record.json gives. Run node make_scene.js."); process.exit(1);
   }
   if (s !== idx) fs.writeFileSync(file, s);
   console.log(`make_scene.js: the still written from record.json, ${M.metals.length} metals, ${lines} lines, ${M.counts.rows} rows${s === idx ? " (no change)" : ""}.`);
