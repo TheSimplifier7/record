@@ -11,7 +11,7 @@
    in record.json or tools.json are the founder's, copied as they stand on
    the record: the key line, counsel's two lines, "Join me on TradingView",
    "Monday email" (it read "Get the lines" until 3 November 2026), "Free. Not investment advice.", "Posted first on X",
-   "One email Monday, one email Friday, nothing else.", "Nothing removed.",
+   "One email each Monday evening, with the week's levels and the previous Friday's grades.", "Nothing removed.",
    "The Fan · what it is, and the terms".
 
    The counter (note 37): the page view, and one event when a TradingView
@@ -157,8 +157,8 @@ const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close ab
 
 function doors(where, { tools = true } = {}) {
   return `<div class="doors">
-  ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="./">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
-  <div class="door"><p class="t">The Monday Level</p><p><a class="btn quiet" href="./#join">Monday email</a></p><p class="fine">One email Monday, one email Friday, nothing else.</p></div>
+  ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="record.html">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
+  <div class="door"><p class="t">The Monday Level</p><p><a class="btn quiet" href="levels.html">Get Monday's levels free</a></p><p class="fine">One email each Monday evening, with the week's levels and the previous Friday's grades.</p></div>
 </div>`;
 }
 
@@ -167,7 +167,8 @@ function foot({ counsel = true, current = null } = {}) {
   ${counsel ? `<p class="counsel">${esc(COUNSEL[0])} ${esc(COUNSEL[1])}</p>` : ""}
   <div class="meta">
     <span>Posted first on X · <a href="${X}">@TheSimplifier7</a></span>
-    <span>The record · <a href="./">every line, graded</a></span>
+    <span>The record · <a href="record.html">every line, graded</a></span>
+    <span>The small print · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:hello@thesimplifier7.com">Contact</a></span>
     <span>The record as data · <a href="record.json">record.json</a></span>
     <span>The Fan · <a href="method.html">what it is, and the terms</a></span>
   </div>

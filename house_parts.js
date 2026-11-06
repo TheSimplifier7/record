@@ -42,13 +42,10 @@ const earlyTags = () => '<meta name="color-scheme" content="light dark">\n' + TH
 
 /* The band's places, as on the record. */
 const NAV = [
-  ["week", "./", "This week"],
-  ["results", "./#results", "Results"],
+  ["week", "./#week", "This week's levels"],
+  ["record", "record.html", "Full record"],
   ["fan", "method.html", "The Fan"],
-  ["tools", "tools.html", "Free tools", "hs-opt"],
-  ["banks", "./#banks", "Banks"],
-  ["rules", "./#rules", "Rules"],
-  ["join", "./#join", "Join"]
+  ["email", "levels.html", "Free weekly email"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -77,8 +74,8 @@ function band(current, where, { fixed = true } = {}) {
     </nav>
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
-      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
-      <a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-${esc(where)}-band"><span><span class="hs-long">Start your </span>7-day trial</span></a>
+      <a class="hs-btn hs-ghost hs-getlines" href="levels.html">Free weekly email</a>
+      <a class="hs-btn hs-gold" href="method.html" data-tv="plans-${esc(where)}-band">See The Fan</a>
     </div>
   </div>
 </header>`;
@@ -101,11 +98,13 @@ function bot(current) {
   const I = {
     week: '<rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/>',
     results: '<path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/>',
+    record: '<path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/>',
+    email: '<rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/>',
     fan: '<path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/>',
     banks: '<path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/>',
     join: '<rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/>'
   };
-  const B = [["week", "./", "This week"], ["results", "./#results", "Results"], ["fan", "method.html", "The Fan"], ["join", "./#join", "Join"]];
+  const B = [["week", "./#week", "This week"], ["record", "record.html", "Record"], ["fan", "method.html", "The Fan"], ["email", "levels.html", "Email"]];
   return `<nav class="hs-bot" aria-label="The record">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><svg viewBox="0 0 20 20" aria-hidden="true">${I[k]}</svg><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
@@ -113,10 +112,10 @@ function bot(current) {
 /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
 /* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
 /* 1 Nov 2026: The Fan's trial and its way out, at the foot of every page that takes this tail. */
-const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="./">The record</a> · <a href="method.html#plans" data-tv="plans-foot">The Fan and The Method: 7 days free on either plan. Cancel before day 8, pay nothing</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
+const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="record.html">Full record</a> · <a href="misses.html">Every wrong call</a> · <a href="tools.html">Free tools</a> · <a href="mentorship.html">1-to-1 mentorship</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:hello@thesimplifier7.com">Contact</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
 const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="svgfloor.js?v=${vOf("svgfloor.js")}" defer></script>\n<script src="refcarry.js?v=${vOf("refcarry.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
-const top = (current, where, o) => strip() + "\n" + band(current, where, o);
+const top = (current, where, o) => band(current, where, o);
 
 /* THE OLD DARK LOOK, CARRIED ONTO THE RECORD'S GROUND. The pages written in it name their colours with the same
    tokens; these give each token its place on the record's ground. Held is gold, as on the record (note 47), where

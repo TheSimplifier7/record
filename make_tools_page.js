@@ -42,21 +42,30 @@ const CSS = `
 @media (max-width:640px){.tool{grid-template-columns:1fr}.tool .go{grid-column:1;grid-row:auto;justify-self:start}}
 `;
 
+const BLURB = {
+  week: "Last week's high, low and closing price on your chart.",
+  clockface: "A view of whether the day's high or low may already have formed.",
+  atlas: "A view of which daily levels price may still reach before the close.",
+  ama: "A summary of direction and where price stands.",
+  sessions: "Compare gold's market sessions with their usual range.",
+  stopodds: "Explore how often prices moved a chosen distance in the tool's sample.",
+  tether: "A reference line for checking the current move."
+};
 const names = live.map(t => t.name);
 const list = names.length === 1 ? names[0] : names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
-const title = "The free tools on TradingView · The Simplifier";
-const description = `${list}. Free and open source, on TradingView.`;
+const title = "Free tools for your TradingView chart · The Simplifier";
+const description = "Separate free tools on TradingView. Each adds one view of price. They do not place trades or make decisions for you.";
 const img = { url: P.imageOf("tally_card_landscape_dark.png"), w: 1920, h: 1080 };
 
 const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
     <h2><span class="n">${esc(t.name)}</span>${esc(t.title)}</h2>
-    ${t.text ? `<p>${esc(t.text)}</p>` : ""}
-    <a class="btn quiet go" href="${esc(t.url)}" data-tv="tools-${esc(t.key)}">${esc(t.name)} on TradingView</a>
+    <p>${esc(BLURB[t.key] || t.text || "")}</p>
+    <a class="btn quiet go" href="${esc(t.url)}" data-tv="tools-${esc(t.key)}">Read about ${esc(t.name)} on TradingView</a>
   </article>`).join("\n  ");
 
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("tools-page", "tools")}
-${P.hero({ eyebrow: "<span>Free and open source</span>", title: "The free tools", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
+${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart.", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
   <section class="tools" aria-label="The tools">
   ${cards}

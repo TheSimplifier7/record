@@ -50,7 +50,16 @@ const fail = (f, why) => { throw new Error(`${f}: ${why}. Nothing written.`); };
 const HEAD_A = '<meta name="house-head" content="start">', HEAD_B = '<meta name="house-head" content="end">';
 function region(s, name) {
   if (name === "HEAD") { const i = s.indexOf(HEAD_A), j = s.indexOf(HEAD_B); return i >= 0 && j > i ? [i, j + HEAD_B.length] : null; }
-  if (name === "TOP") { const i = s.indexOf('<div class="hs-strip" id="hs-strip"'); if (i < 0) return null; const b = s.indexOf('<header class="hs-band', i); if (b < 0) return null; const j = s.indexOf("</header>", b); return j < 0 ? null : [i, j + 9]; }
+  if (name === "TOP") {
+    const strip = s.indexOf('<div class="hs-strip" id="hs-strip"');
+    const head = s.indexOf('<header class="hs-band');
+    const i = strip >= 0 ? strip : head;
+    if (i < 0) return null;
+    const b = s.indexOf('<header class="hs-band', i);
+    if (b < 0) return null;
+    const j = s.indexOf("</header>", b);
+    return j < 0 ? null : [i, j + 9];
+  }
   if (name === "TAIL") {
     const m = s.match(/<script src="house\.js\?v=[0-9a-f]{10}" defer><\/script>/); if (!m) return null;
     let i = m.index; const e = i + m[0].length;
