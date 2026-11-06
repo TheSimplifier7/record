@@ -54,8 +54,12 @@
       if (s) s.addEventListener("load", function () { if (window.goatcounter && typeof window.goatcounter.count === "function") go(); }, { once: true });
     };
     document.addEventListener("click", function (e) {
-      var a = e.target && e.target.closest ? e.target.closest("a[data-tv]") : null;
-      if (a) ev("door-tradingview/" + (a.getAttribute("data-tv") || ""), "A door used: TradingView");
+      var a = e.target && e.target.closest ? e.target.closest("a[data-tv], a[data-plan]") : null;
+      if (!a) return;
+      var plan = a.getAttribute("data-plan") || "";
+      var tv = a.getAttribute("data-tv") || "";
+      if (plan || /^buy-/.test(tv)) ev("plan-click/" + (plan || tv), "Plan button clicked. Not a completed trial.");
+      else if (tv) ev("door-tradingview/" + tv, "A door used: TradingView");
     }, true);
   } catch (e) {}
 
