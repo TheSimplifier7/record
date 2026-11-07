@@ -4,14 +4,14 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-11-02",
-  "generated": "2026-11-03T03:01:09.639Z",
+  "last_updated": "2026-11-07",
+  "generated": "2026-11-07T01:00:52.152Z",
   "tally": {
-    "resolved": 44,
-    "held": 35,
-    "wrong": 9,
+    "resolved": 47,
+    "held": 36,
+    "wrong": 11,
     "never_reached": 5,
-    "open": 3,
+    "open": 0,
     "hit": 4,
     "note": "Never reached counts for neither side. A hit is a held row that also went through its room, counted once, as held. Standing calls are not in these figures."
   },
@@ -64,9 +64,9 @@
       "book": "Turn",
       "call": "Gold holds above 3,962.52, his own level inside last week's range of 3,870 to 4,083: The Fan's line, set Monday at 10:00 New York and read off his 1 hour chart at 21:31 CET. Named before any 8h close through it.",
       "kill": "a weekly close below 3,962.52.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "HELD. The weekly close printed 4,069.990, 107.47 above the line of 3,962.52. Close read off the founder's own TVC chart, market shut, last update 23:27 CET 6 November.",
+      "grade": "pass",
+      "grade_word": "held",
       "grammar": 2,
       "side": "slate",
       "line": "3,962.52",
@@ -80,11 +80,11 @@
         "4,083"
       ],
       "read_at": "21:31 CET",
-      "close": null,
+      "close": "4,069.990",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-11-02",
+      "graded_on_close": "2026-11-06",
+      "graded_at": "2026-11-06T23:00:00+02:00",
+      "written": "2026-11-07",
       "commit": null
     },
     {
@@ -98,9 +98,9 @@
       "book": "Turn",
       "call": "Silver stays below 51.406, his own level inside last week's range of 48.85 to 54.63: The Fan's line, set Monday at 10:00 New York and read off his 30 minute chart at 21:32 CET. Named before any 8h close through it.",
       "kill": "a weekly close above 51.406.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "WRONG. The weekly close printed 51.9020, 0.496 above the line of 51.406. Close read off the founder's own TVC chart, market shut, last update 23:27 CET 6 November.",
+      "grade": "miss",
+      "grade_word": "wrong",
       "grammar": 2,
       "side": "copper",
       "line": "51.406",
@@ -114,11 +114,11 @@
         "54.63"
       ],
       "read_at": "21:32 CET",
-      "close": null,
+      "close": "51.9020",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-11-02",
+      "graded_on_close": "2026-11-06",
+      "graded_at": "2026-11-06T23:00:00+02:00",
+      "written": "2026-11-07",
       "commit": null
     },
     {
@@ -132,9 +132,9 @@
       "book": "Turn",
       "call": "Platinum stays below 1,486.31, his own level inside last week's range of 1,421 to 1,557: The Fan's line, set Monday at 10:00 New York and read off his 30 minute chart at 21:32 CET. Named before any 8h close through it.",
       "kill": "a weekly close above 1,486.31.",
-      "result": null,
-      "grade": "pending",
-      "grade_word": "open",
+      "result": "WRONG. The weekly close printed 1,535.70, 49.39 above the line of 1,486.31. Close read off the founder's own TVC chart, market shut, last update 23:27 CET 6 November.",
+      "grade": "miss",
+      "grade_word": "wrong",
       "grammar": 2,
       "side": "copper",
       "line": "1,486.31",
@@ -148,11 +148,11 @@
         "1,557"
       ],
       "read_at": "21:32 CET",
-      "close": null,
+      "close": "1,535.70",
       "pre_standard": false,
-      "graded_on_close": null,
-      "graded_at": null,
-      "written": "2026-11-02",
+      "graded_on_close": "2026-11-06",
+      "graded_at": "2026-11-06T23:00:00+02:00",
+      "written": "2026-11-07",
       "commit": null
     },
     {
@@ -2234,6 +2234,12 @@
       "Gold": "3,875.05",
       "Silver": "49.10",
       "Platinum": "1,433.40"
+    },
+    {
+      "date": "2026-11-06",
+      "Gold": "4,069.990",
+      "Silver": "51.9020",
+      "Platinum": "1,535.70"
     }
   ],
   "crowd": {

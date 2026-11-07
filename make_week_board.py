@@ -6,7 +6,8 @@
 Rebuilds only the head, the three rows and the foot of <aside class="wb" id="wb"> on record.html: open rows say
 where the last weekly close sat against the line, graded rows say HELD or WRONG with Friday's close. Everything
 else in the box (the Monday Level form and its consent line) and on the page stays exactly as it is. Every figure
-it writes is a figure in record.json. Run it again and nothing changes.
+it writes is a figure in record.json; a distance takes the line's own decimals, as the row's result does.
+Run it again and nothing changes.
 BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
 """
 import argparse, datetime as dt, hashlib, html, json, pathlib, re, sys
@@ -47,7 +48,7 @@ for r in rows:
     if graded:
         c = D(r["close"]); dist = abs(c - lv); above = c > lv
         word = "HELD" if r["grade"] == "pass" else "WRONG"
-        say = (f'Friday closed {e(r["close"])}, <b>{fmt(dist, max(places, dec(r["close"])))} {"above" if above else ("under" if not slate else "below")}</b>. '
+        say = (f'Friday closed {e(r["close"])}, <b>{fmt(dist, places)} {"above" if above else ("under" if not slate else "below")}</b>. '
                f'<span class="wb-v {"held" if word == "HELD" else "wrong"}">{word}</span>')
         cls = "held" if word == "HELD" else "wrong"
     else:
@@ -56,7 +57,7 @@ for r in rows:
             say, above, cls = "No weekly close on the record yet to set it against.", None, "open"
         else:
             c = D(lc); dist = abs(c - lv); above = c > lv
-            dtext = fmt(dist, max(places, dec(lc)))
+            dtext = fmt(dist, places)
             where = "above" if above else ("under" if not slate else "below")
             if above == slate:
                 say = f'Last close {e(lc)}, <b>{dtext} {where}</b>: the side it needs.'
