@@ -149,7 +149,7 @@ function band(where, current) {
 function bandBefore22Oct(where) {
   return `<header class="band"><div class="wrap">
   <a class="mark" href="./">THE SIMPLIFIER</a>
-  <nav aria-label="The site"><a href="./">The record</a><a class="hide-phone" href="weeks.html">Week by week</a><a class="hide-phone" href="tools.html">The free tools</a><a class="btn quiet" href="${TV}" data-tv="${esc(where)}-band">Join me on TradingView</a></nav>
+  <nav aria-label="The site"><a href="record.html">The record</a><a class="hide-phone" href="weeks.html">Week by week</a><a class="hide-phone" href="tools.html">The free tools</a><a class="btn quiet" href="${TV}" data-tv="${esc(where)}-band">Join me on TradingView</a></nav>
 </div></header>`;
 }
 

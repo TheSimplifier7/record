@@ -396,6 +396,7 @@
 <link rel="stylesheet" href="assay-site.css?v=6d6d511254">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
+<link rel="stylesheet" href="brand.css?v=6670bfa08a">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -412,16 +413,16 @@
 
 <header class="hs-band">
   <div class="hs-wrap hs-band-in">
-    <a class="hs-brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <nav class="hs-nav" aria-label="The site">
-      <a href="./#week">This week's levels</a>
-      <a href="record.html">Full record</a>
+      <a href="./#week">This week</a>
+      <a href="record.html">The record</a>
       <a href="method.html" aria-current="page">The Fan</a>
-      <a href="levels.html">Free weekly email</a>
+      <a href="./#join">Monday email</a>
     </nav>
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
-      <a class="hs-btn hs-ghost hs-getlines" href="levels.html">Free weekly email</a>
+      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
       <a class="hs-btn hs-gold" href="method.html" data-tv="plans-method-band">See The Fan</a>
     </div>
   </div>
@@ -430,7 +431,7 @@
 <main id="main" tabindex="-1">
 <div class="fan-head">
   <div class="wrap">
-    <p class="crumb"><a href="./">The record</a> · The Method and The Fan</p>
+    <p class="crumb"><a href="record.html">The record</a> · The Method and The Fan</p>
     <h1 id="fan-h">The Method and The Fan</h1>
     <p class="tagline">See the wider price picture on the chart you already use.</p>
     <p class="lede what">I built these two indicators for TradingView. An indicator is a tool that adds information to a price chart. The Fan includes The Method and adds the 2-hour view to a shorter chart, such as a 10-minute chart. That means you can see the wider pattern without switching away from the shorter moves. If you trade during the day and already make your own decisions, The Fan is the fuller view. If you only need the simpler reference line, The Method may be enough.</p>
@@ -439,10 +440,37 @@
   </div>
 </div>
 
+<section id="plans" class="plan-band" aria-labelledby="plans-h">
+  <div class="wrap">
+    <h2 id="plans-h">Try the tool on your own chart</h2>
+    <p class="plan-intro">Have your TradingView username ready. Stripe takes the payment details. Access is added within an hour, or by 09:00 Europe/Madrid if you join overnight. Enter the TradingView username you want the tool added to. Do not enter your password.</p>
+    <div class="plans">
+      <div class="plan plan-fan">
+        <div class="plan-top"><h2>The Fan</h2></div>
+        <p class="plan-price"><b>€149.99</b> a month</p>
+        <p class="plan-for">Everything in The Method, plus the wider 2-hour view on your shorter chart. €149.99 a month, including VAT.</p>
+        <a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="buy-fan" data-plan="fan">Start The Fan's 7-day trial</a>
+        <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.</p>
+      </div>
+      <div class="plan plan-method">
+        <div class="plan-top"><h2>The Method</h2></div>
+        <p class="plan-price"><b>€59</b> a month</p>
+        <p class="plan-for">The simpler line-based view, for traders who do not need the extra context. €59 a month, including VAT.</p>
+        <a class="hs-btn hs-ghost plan-btn" href="https://buy.stripe.com/9B628tfs5299cSb24e5kk01" data-tv="buy-method" data-plan="method">Start The Method's 7-day trial</a>
+        <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €59 including VAT on day 8, then every month until you cancel.</p>
+      </div>
+    </div>
+    <p class="card-why"><b>Why is a card required?</b> Your subscription continues after the free trial unless you cancel. Stripe handles the card details. I never see your full card number. You can cancel from the billing link below.</p>
+    <p class="fine">Access is added to the TradingView username you give at checkout within an hour, or by 09:00 Europe/Madrid if you join overnight.</p>
+    <p class="plan-links"><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+  </div>
+</section>
+
+
 <div class="wrap">
   <article class="fan" aria-labelledby="fan-h">
     <section id="shows" aria-labelledby="shows-h">
-      <h2 id="shows-h">Here is what you actually see.</h2>
+      <h2 id="shows-h">Here is what you actually see</h2>
       <p>The Method shows a reference line and where price stands against it. The Fan adds the wider price pattern to the shorter chart. The same market can still move back and forth around a line. More information does not remove uncertainty.</p>
       <div class="chart-pair">
         <figure class="chart">
@@ -459,7 +487,7 @@
     </section>
 
     <section id="compare" aria-labelledby="compare-h">
-      <h2 id="compare-h">The same starting point, with more context in The Fan.</h2>
+      <h2 id="compare-h">The same starting point, with more context in The Fan</h2>
       <p>Choose The Fan if you want the wider view while you watch shorter moves. Choose The Method if the simpler line-based view is all you need. You do not need to buy both.</p>
       <div class="compare-wrap">
         <table class="compare">
@@ -484,31 +512,7 @@
   </article>
 </div>
 
-<section id="plans" class="plan-band" aria-labelledby="plans-h">
-  <div class="wrap">
-    <h2 id="plans-h">Try the tool on your own chart.</h2>
-    <p class="plan-intro">Have your TradingView username ready. Stripe takes the payment details. Access is added within an hour, or by 09:00 Europe/Madrid if you join overnight. Enter the TradingView username you want the tool added to. Do not enter your password.</p>
-    <div class="plans">
-      <div class="plan plan-fan">
-        <div class="plan-top"><h2>The Fan</h2></div>
-        <p class="plan-price"><b>€149.99</b> a month</p>
-        <p class="plan-for">Everything in The Method, plus the wider 2-hour view on your shorter chart. €149.99 a month, including VAT.</p>
-        <a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="buy-fan" data-plan="fan">Start The Fan's 7-day trial</a>
-        <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.</p>
-      </div>
-      <div class="plan plan-method">
-        <div class="plan-top"><h2>The Method</h2></div>
-        <p class="plan-price"><b>€59</b> a month</p>
-        <p class="plan-for">The simpler line-based view, for traders who do not need the extra context. €59 a month, including VAT.</p>
-        <a class="hs-btn hs-ghost plan-btn" href="https://buy.stripe.com/9B628tfs5299cSb24e5kk01" data-tv="buy-method" data-plan="method">Start The Method's 7-day trial</a>
-        <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €59 including VAT on day 8, then every month until you cancel.</p>
-      </div>
-    </div>
-    <p class="card-why"><b>Why is a card required?</b> Your subscription continues after the free trial unless you cancel. Stripe handles the card details. I never see your full card number. You can cancel from the billing link below.</p>
-    <p class="fine">Access is added to the TradingView username you give at checkout within an hour, or by 09:00 Europe/Madrid if you join overnight.</p>
-    <p class="plan-links"><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
-  </div>
-</section>
+
 
 <div class="wrap">
   <article class="fan">
@@ -520,42 +524,28 @@
     </section>
 
     <section id="proof" aria-labelledby="proof-h">
-      <h2 id="proof-h">Check the weekly calls before you decide.</h2>
+      <h2 id="proof-h">Check the weekly calls before you decide</h2>
       <p>The weekly levels are read from The Fan. Each published level is graded on Friday's close, and the wrong ones remain on the record. That record shows how the weekly calls were graded. It does not prove that every tool feature predicts correctly, or that someone using it will make money.</p>
       <p><a href="record.html">Read the full record</a> · <a href="misses.html">Read every wrong call</a></p>
     </section>
 
     <section id="questions" class="faq" aria-labelledby="questions-h">
-      <h2 id="questions-h">Before you start.</h2>
+      <h2 id="questions-h">Before you start</h2>
       <p>You are buying a charting-tool licence, not personal advice or buy-and-sell instructions.</p>
-      <h3>What is an indicator?</h3>
-      <p>It is a tool that adds information to a price chart. These tools draw reference lines and the wider price pattern. They do not place trades for you.</p>
-      <h3>Do I need TradingView?</h3>
-      <p>Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The free Monday email does not need TradingView.</p>
-      <h3>What does "2-hour view on a 10-minute chart" mean?</h3>
-      <p>Each bar on a 10-minute chart covers ten minutes of prices. The Fan also shows the wider 2-hour view on that chart, so you can see shorter moves against the wider pattern.</p>
-      <h3>Should I choose The Fan or The Method?</h3>
-      <p>Choose The Fan if you want the wider view while looking at shorter moves. It includes The Method. Choose The Method if the simpler reference line is enough. Neither tool makes the decision for you.</p>
-      <h3>How does the free trial work?</h3>
-      <p>Either plan starts with 7 days free. A card is required, but nothing is charged during the trial. Cancel before day 8 and pay nothing. Otherwise, Stripe charges €149.99 for The Fan or €59 for The Method on day 8, then every month until you cancel. Prices include VAT. Check the exact first-charge date in checkout.</p>
-      <h3>Why is a card required?</h3>
-      <p>So the subscription can continue after the trial without another checkout. Stripe handles your card details. I never see your full card number. You choose whether to keep it by cancelling before day 8 if it is not for you.</p>
-      <h3>How do I cancel?</h3>
-      <p>Use <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> in the website footer, or the billing link in your Stripe receipt. Follow the steps until cancellation is confirmed and keep the confirmation. You can also email <a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a>. Cancel before day 8 to pay nothing. Removing the indicator from your chart does not cancel billing.</p>
-      <h3>What happens after I cancel?</h3>
-      <p>If you cancel during the free trial, you pay nothing and access ends when the trial ends. After a paid month has started, cancellation stops renewal and access continues until the end of the period you paid for. Your separate withdrawal rights are explained in the <a href="terms.html">Terms</a>.</p>
-      <h3>When do I get access?</h3>
-      <p>Within an hour of checkout, or by 09:00 Europe/Madrid if you join overnight. Access is attached to the exact TradingView username you give, not your password. Find it under Indicators, then Invite-only. If the tool is missing, refresh and check the username first.</p>
-      <h3>Does it tell me when to buy or sell?</h3>
-      <p>No. It shows information on your chart. Whether to trade, how much risk to take and when to stay out are your decisions. You do not need to place a trade to try the display.</p>
-      <h3>Is this financial advice?</h3>
-      <p>No. The tools, levels and record are for education and information. They do not consider your finances or give a personal recommendation. Trading can lose money. Past results do not guarantee future results, and no profit or income is promised.</p>
-      <h3>Can I see the calls that were wrong?</h3>
-      <p>Yes. Open <a href="misses.html">Read every wrong call</a>. Friday's close grades the weekly calls, and the wrong calls stay public. A call marked held is not a claim that a trade made money.</p>
-      <h3>What if I change plans?</h3>
-      <p>The current terms allow a move from The Method to The Fan through the billing page, paying the difference. If you are still in the trial, the trial continues. Read the price and date shown before confirming a change.</p>
-      <h3>Do I need experience?</h3>
-      <p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free Monday email</a> and read how the weekly calls are checked. The tool does not make trading safe.</p>
+      <details><summary>What is an indicator?</summary><p>It is a tool that adds information to a price chart. These tools draw reference lines and the wider price pattern. They do not place trades for you.</p></details>
+      <details><summary>Do I need TradingView?</summary><p>Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The free Monday email does not need TradingView.</p></details>
+      <details><summary>What does "2-hour view on a 10-minute chart" mean?</summary><p>Each bar on a 10-minute chart covers ten minutes of prices. The Fan also shows the wider 2-hour view on that chart, so you can see shorter moves against the wider pattern.</p></details>
+      <details><summary>Should I choose The Fan or The Method?</summary><p>Choose The Fan if you want the wider view while looking at shorter moves. It includes The Method. Choose The Method if the simpler reference line is enough. Neither tool makes the decision for you.</p></details>
+      <details><summary>How does the free trial work?</summary><p>Either plan starts with 7 days free. A card is required, but nothing is charged during the trial. Cancel before day 8 and pay nothing. Otherwise, Stripe charges €149.99 for The Fan or €59 for The Method on day 8, then every month until you cancel. Prices include VAT. Check the exact first-charge date in checkout.</p></details>
+      <details><summary>Why is a card required?</summary><p>So the subscription can continue after the trial without another checkout. Stripe handles your card details. I never see your full card number. You choose whether to keep it by cancelling before day 8 if it is not for you.</p></details>
+      <details><summary>How do I cancel?</summary><p>Use <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> in the website footer, or the billing link in your Stripe receipt. Follow the steps until cancellation is confirmed and keep the confirmation. You can also email <a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a>. Cancel before day 8 to pay nothing. Removing the indicator from your chart does not cancel billing.</p></details>
+      <details><summary>What happens after I cancel?</summary><p>If you cancel during the free trial, you pay nothing and access ends when the trial ends. After a paid month has started, cancellation stops renewal and access continues until the end of the period you paid for. Your separate withdrawal rights are explained in the <a href="terms.html">Terms</a>.</p></details>
+      <details><summary>When do I get access?</summary><p>Within an hour of checkout, or by 09:00 Europe/Madrid if you join overnight. Access is attached to the exact TradingView username you give, not your password. Find it under Indicators, then Invite-only. If the tool is missing, refresh and check the username first.</p></details>
+      <details><summary>Does it tell me when to buy or sell?</summary><p>No. It shows information on your chart. Whether to trade, how much risk to take and when to stay out are your decisions. You do not need to place a trade to try the display.</p></details>
+      <details><summary>Is this financial advice?</summary><p>No. The tools, levels and record are for education and information. They do not consider your finances or give a personal recommendation. Trading can lose money. Past results do not guarantee future results, and no profit or income is promised.</p></details>
+      <details><summary>Can I see the calls that were wrong?</summary><p>Yes. Open <a href="misses.html">Read every wrong call</a>. Friday's close grades the weekly calls, and the wrong calls stay public. A call marked held is not a claim that a trade made money.</p></details>
+      <details><summary>What if I change plans?</summary><p>The current terms allow a move from The Method to The Fan through the billing page, paying the difference. If you are still in the trial, the trial continues. Read the price and date shown before confirming a change.</p></details>
+      <details><summary>Do I need experience?</summary><p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free Monday email</a> and read how the weekly calls are checked. The tool does not make trading safe.</p></details>
     </section>
 
     <section id="final" aria-labelledby="final-h">
@@ -591,9 +581,9 @@
 
 <nav class="botnav" aria-label="The record">
   <a href="./#week"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
-  <a href="./#results"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Results</span></a>
+  <a href="record.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Record</span></a>
   <a href="method.html" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
-  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Join</span></a>
+  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Email</span></a>
 </nav>
 
 

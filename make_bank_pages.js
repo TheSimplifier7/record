@@ -294,7 +294,7 @@ ${HS.hero({ eyebrow: `<a href="targets.html">The bank board</a><span>${esc(r.hou
   <p class="body">In plain words: a target is held if price closes a week at the target or beyond it before its deadline. If the deadline passes without that close, it is wrong.</p>
   <div class="rule-box">${RULE}</div>
 
-  <div class="links"><a href="targets.html">The full board</a><a href="./">The record</a><a href="misses.html">The wrong ones</a></div>
+  <div class="links"><a href="targets.html">The full board</a><a href="record.html">The record</a><a href="misses.html">The wrong ones</a></div>
   <footer><span class="law">Named before · Graded after · Nothing deleted</span><span class="handle">@TheSimplifier7</span></footer>
 </div>
 ${HS.tail("banks")}

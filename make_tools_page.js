@@ -65,7 +65,7 @@ const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
 
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("tools-page", "tools")}
-${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart.", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
+${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
   <section class="tools" aria-label="The tools">
   ${cards}

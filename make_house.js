@@ -35,8 +35,8 @@ const HERE = __dirname;
 const SITE = "https://thesimplifier7.com/";
 
 const PAGES = [
-  { file: "targets.html", kind: "stone", current: "banks", where: "targets", eyebrow: '<a href="./">The record</a><span>The bank board</span>', canonical: true },
-  { file: "tick.html", kind: "stone", current: null, where: "tick", eyebrow: '<a href="./">The record</a><span>The tick book</span>', canonical: true },
+  { file: "targets.html", kind: "stone", current: "banks", where: "targets", eyebrow: '<a href="record.html">The record</a><span>The bank board</span>', canonical: true },
+  { file: "tick.html", kind: "stone", current: null, where: "tick", eyebrow: '<a href="record.html">The record</a><span>The tick book</span>', canonical: true },
   { file: "guest.html", kind: "stone", current: null, where: "guest", eyebrow: "<span>For producers and hosts</span>" },
   { file: "advisers.html", kind: "stone", current: null, where: "advisers", eyebrow: "<span>For advisers</span>" },
   { file: "year.html", kind: "stone", current: null, where: "year", eyebrow: "<span>By introduction</span>" },

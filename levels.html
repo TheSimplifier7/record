@@ -280,6 +280,7 @@
 <link rel="stylesheet" href="assay-site.css?v=6d6d511254">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=0bca60f245">
+<link rel="stylesheet" href="brand.css?v=6670bfa08a">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -307,16 +308,16 @@
 
 <header class="hs-band">
   <div class="hs-wrap hs-band-in">
-    <a class="hs-brand" href="./" aria-label="The Simplifier, the record">THE SIMPLIFIER</a>
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <nav class="hs-nav" aria-label="The site">
-      <a href="./#week">This week's levels</a>
-      <a href="record.html">Full record</a>
+      <a href="./#week">This week</a>
+      <a href="record.html">The record</a>
       <a href="method.html">The Fan</a>
-      <a href="levels.html" aria-current="page">Free weekly email</a>
+      <a href="./#join" aria-current="page">Monday email</a>
     </nav>
     <div class="hs-tools">
       <button class="hs-theme" id="hs-theme" type="button" aria-label="Switch between the light and the dark ground"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg><span id="hs-theme-word">Dark</span></button>
-      <a class="hs-btn hs-ghost hs-getlines" href="levels.html">Free weekly email</a>
+      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
       <a class="hs-btn hs-gold" href="method.html" data-tv="plans-levels-band">See The Fan</a>
     </div>
   </div>
@@ -325,16 +326,14 @@
 <main id="main" tabindex="-1">
 <div class="fan-head">
   <div class="wrap">
-    <p class="crumb"><a href="./">The record</a> · The Monday Level</p>
-    <h1 id="fan-h">Get Monday's levels free.</h1>
+    <p class="crumb"><a href="record.html">The record</a> · The Monday Level</p>
+    <h1 id="fan-h">Get Monday's levels free</h1>
     <p class="lede what">One email each Monday evening with the week's levels for gold, silver and platinum, and last week's Friday grades. The wrong ones are included. No card needed.</p>
   </div>
 </div>
 <div class="wrap">
   <article class="fan legal" aria-labelledby="fan-h">
     <section id="join-list" aria-labelledby="join-h">
-      <h2 id="join-h">What is inside.</h2>
-      <p>One level for each metal, a short explanation in plain English, and the previous week's results. You can read the same levels on the <a href="./#week">public record</a>.</p>
       <form class="lv-form" method="POST" action="https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec" accept-charset="UTF-8">
         <input type="hidden" name="action" value="signup">
         <input type="hidden" name="source_ref" id="lv-ref" value="levels">
@@ -347,7 +346,9 @@
         <p class="lv-fine"><a href="./#week">See this week's levels</a></p>
         <p class="lv-fine">Education and charting only. Not investment advice. Trading can lose money.</p>
       </form>
-    </section>
+    <h2 id="join-h" class="lv-after">What is inside</h2>
+      <p>One level for each metal, a short explanation in plain English, and the previous week's results. You can read the same levels on the <a href="./#week">public record</a>.</p>
+      </section>
   </article>
 </div>
 </main>
@@ -372,9 +373,9 @@
 
 <nav class="botnav" aria-label="The record">
   <a href="./#week"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
-  <a href="./#results"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Results</span></a>
+  <a href="record.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Record</span></a>
   <a href="method.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
-  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Join</span></a>
+  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Email</span></a>
 </nav>
 
 

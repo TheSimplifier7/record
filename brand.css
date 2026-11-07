@@ -1,0 +1,55 @@
+/* =========================================================================
+   brand.css  ·  THE FLOW, IN ASSAY  ·  7 November 2026
+
+   The last layer on every page. It changes no face and no colour of ASSAY
+   (assay-site.css, note 63: Barlow for words, IBM Plex Mono for figures,
+   Barlow Condensed for titles, gold only for a line, red only for a line
+   that broke, ivory for the one thing to press). It only makes the pages
+   flow to a sign up: Monday email once in the band, the email form's button
+   in ivory, the plans page's questions folded, the record's new text block
+   folded under its hero, and the record's count strip readable on a phone.
+   It restyles and never removes; with it gone every page reads as before.
+   BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
+   ========================================================================= */
+
+/* the band says Monday email once: as a place in the nav, not a second button */
+.hs-band .hs-nav a[href="./#join"]{display:inline-flex!important}
+.hs-band .hs-getlines{display:none!important}
+
+/* the one thing to press, in ivory */
+.lv-form button,.br-btn{min-height:48px;border:0;border-radius:999px;background:linear-gradient(170deg,#fffbf2 0%,#f1e9db 48%,#d6cab6 100%);color:#0b1a2e;font:600 1rem/1 "Barlow",sans-serif;padding:0 24px;cursor:pointer}
+.lv-form button:hover,.br-btn:hover{background:linear-gradient(170deg,#ffffff 0%,#f4ecdf 48%,#dbcfbb 100%)}
+.lv-form{border-radius:16px!important;padding:24px!important}
+.lv-form input[type="email"]{border-radius:12px!important;min-height:48px!important}
+
+/* the email page: the form first, then what is inside */
+.lv-after{margin-top:48px!important}
+
+/* the plans page: the questions fold */
+.faq details{border-top:1px solid var(--rule,rgba(201,211,230,.14))}
+.faq details:last-of-type{border-bottom:1px solid var(--rule,rgba(201,211,230,.14))}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:12px 0;font:500 1.0625rem/1.35 "Barlow",sans-serif;color:var(--ink,#eef2f8)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-3px,-3px);opacity:.6;transition:transform .2s ease}
+.faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+.faq details p{margin:0 0 16px;max-width:44rem}
+.compare caption{display:block;width:100%;text-align:left;font:600 1rem/1.4 "Barlow",sans-serif;padding:0 0 12px}
+
+/* the record: its hero first, how to read it folded under */
+.pre-fold{padding:8px 0 32px}
+.pre-fold details{max-width:1072px;margin:0 auto;border-top:1px solid var(--rule,rgba(201,211,230,.14));border-bottom:1px solid var(--rule,rgba(201,211,230,.14))}
+.pre-fold summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;font:500 1.0625rem/1.3 "Barlow",sans-serif}
+.pre-fold summary::-webkit-details-marker{display:none}
+.pre-fold summary::after{content:"";width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.6}
+.pre-fold details[open] summary::after{transform:rotate(225deg)}
+.pre-fold h2{font:700 1.5rem/1.1 var(--f-cond,"Barlow Condensed",sans-serif)!important;margin:24px 0 8px!important;text-transform:none!important;letter-spacing:0!important}
+.pre-fold p{max-width:44rem;margin:0 0 8px}
+.pre-fold .mig{opacity:.75}
+
+/* the record's count strip on a phone: each label on one line, nothing on top of another */
+@media (max-width:760px){
+  .r3-tele{flex-wrap:wrap!important;row-gap:12px!important}
+  .r3-kpis{display:flex!important;flex:1 1 100%!important;gap:8px 24px!important}
+  .r3-kpi{flex:0 0 auto!important;min-width:0!important}
+  .r3-kpi .r3-ey{white-space:nowrap!important;font-size:11px!important;letter-spacing:.02em!important}
+}
