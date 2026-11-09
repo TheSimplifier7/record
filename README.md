@@ -36,7 +36,7 @@ Two directional calls run on their own clocks, one for the year and one for the 
 
 The wrong ones, in full, at https://thesimplifier7.com/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.com/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.com/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.com/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.com/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.com/embed.html.
 
-The page is dark by default since 6 September 2026. A switch in the masthead turns the paper ground on for a reader who wants it, and remembers the choice on that device.
+The page is dark since 6 September 2026. The switch in the masthead that turned the paper ground on was taken off on 10 November 2026 (note 68).
 
 ## The files
 

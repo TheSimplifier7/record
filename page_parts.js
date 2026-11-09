@@ -58,9 +58,9 @@ const CSS = `
 --f-ui:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;--f-cond:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
 --f-serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;--f-fig:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
 --gutter:clamp(16px,4vw,40px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b111d;--bar:#131c2c;--raise:#111a29;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#a3aec0;--ink-4:#8d98ab;--rule:#222e42;--rule-2:#33415a;
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1A2E;--bar:#131c2c;--raise:#11233C;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#a3aec0;--ink-4:#8d98ab;--rule:#222e42;--rule-2:#33415a;
 --navy:#14244a;--held:#f2c45a;--held-bg:#3b2f0f;--mk-held:#d9a63a;--wrong:#ff8a80;--wrong-bg:#3a1714;--open:#8db0f5;--open-bg:#16264a;--nr:#a3aec0;--focus:#8db0f5;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0b111d;--bar:#131c2c;--raise:#111a29;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#a3aec0;--ink-4:#8d98ab;--rule:#222e42;--rule-2:#33415a;
+:root[data-theme="dark"]{--bg:#0B1A2E;--bar:#131c2c;--raise:#11233C;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#a3aec0;--ink-4:#8d98ab;--rule:#222e42;--rule-2:#33415a;
 --navy:#14244a;--held:#f2c45a;--held-bg:#3b2f0f;--mk-held:#d9a63a;--wrong:#ff8a80;--wrong-bg:#3a1714;--open:#8db0f5;--open-bg:#16264a;--nr:#a3aec0;--focus:#8db0f5;color-scheme:dark}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -102,7 +102,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 `;
 
 /* The reader's switch on the record, honoured before first paint. */
-const THEME_JS = `<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")})();</script>`;
+const THEME_JS = ""; /* 10 Nov 2026, note 68: the switch is off; the html tag names the dark ground. */
 
 /* Note 37's third event, a door used, by path alone. */
 const EVENTS_JS = `<script>(function(){try{
@@ -114,7 +114,7 @@ document.addEventListener("click",function(e){var a=e.target&&e.target.closest?e
 
 function head({ title, description, canonical, image, imageW, imageH, extraCss }) {
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,7 +122,7 @@ function head({ title, description, canonical, image, imageW, imageH, extraCss }
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(canonical)}">
 <meta name="theme-color" content="#0f1e3a">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Simplifier">
 <meta property="og:title" content="${esc(title)}">
@@ -133,7 +133,6 @@ function head({ title, description, canonical, image, imageW, imageH, extraCss }
 <meta property="og:image:height" content="${imageH}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
-${THEME_JS}
 ${H.FONTS}
 <style>${CSS}${extraCss || ""}</style>
 ${H.headTags({ fonts: false })}

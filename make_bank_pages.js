@@ -235,7 +235,7 @@ function page(r) {
   const desc = descLong.length <= 155 ? descLong : `${r.house} said ${r.metal.toLowerCase()} ${lvWin(fmtNum(r.level, dec), r.windowText)}. The quote, the closes since, and its grade: ${r.grade === "pending" ? "open" : gw.toLowerCase()}.`;
   if (desc.length > 159) throw new Error(r.slug + ": its description runs to " + desc.length + " characters; Bing asks for under 160. No page written.");
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -104,7 +104,7 @@ const METHOD_STYLE = `<style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
 .fan-head .wrap{padding-block:clamp(26px,4.5vw,52px) clamp(30px,4.5vw,48px)}
-.fan-head h1{font-size:clamp(3rem,8vw,5.75rem);line-height:.9;letter-spacing:-.005em;text-transform:none}
+.fan-head h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:.94;letter-spacing:-.005em;text-transform:none}
 .fan-head .tagline{font-family:var(--f-cond);font-weight:700;font-size:clamp(1.375rem,2.6vw,1.875rem);line-height:1.1;color:#f2c45a}
 .fan-head .lede{color:#c9d3e6}
 </style>`;

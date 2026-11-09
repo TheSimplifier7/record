@@ -57,6 +57,15 @@ function rowHtml(r) {
   return `<li class="hm-row"><span class="hm-metal">${esc(r.metal)}</span><span class="hm-lv">${esc(r.level)}</span><span class="hm-k"><b>${kind}.</b> ${must} ${state}</span></li>`;
 }
 const weekHead = `Graded on the close of Fri ${long(friday)}`;
+/* 10 Nov 2026, note 68: the card under a link to the front page is the week's card, the one the record carries. */
+const OG = (fs.readFileSync(path.join(HERE, "record.html"), "utf8").match(/<meta property="og:image" content="([^"]+)">/) || [])[1] || "https://thesimplifier7.com/link_method.png";
+/* A week with no line named: the card says whose lines it shows and links the note that says why. */
+const mondayOf = iso => { const d = d0(iso); return addDays(iso, -((d.getUTCDay() + 6) % 7)); };
+const thisMonday = mondayOf(R.last_updated);
+const stale = week < thisMonday;
+const noLines = stale ? (R.notes || []).find(n => (n.title || "").indexOf(`No lines this week, ${long(thisMonday)} ${thisMonday.slice(0, 4)}`) === 0) : null;
+const weekTitle = stale ? `The lines of ${long(week)}` : "This week's lines";
+const weekNone = stale ? `<p class="hm-none">No lines this week. None was on the record by Monday's deadline, so none was named.${noLines ? ` <a href="record.html#note-${esc(noLines.n)}">Note ${esc(noLines.n)}</a>` : ""}</p>` : "";
 
 /* ---- the record, every weekly row as a mark, oldest first */
 const marks = R.rows.filter(r => ["pass", "miss", "partial", "notest", "pending"].includes(r.grade))
@@ -102,7 +111,9 @@ body{color:var(--hm-ink)}
 .hm *,.hm *::before,.hm *::after{box-sizing:border-box}
 .hm .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hm a{color:inherit}
-.hm-in{max-width:var(--hm-wide);margin:0 auto;padding:0 24px}
+.hm-in{max-width:72rem;margin:0 auto;padding:0 var(--hs-gutter,24px);box-sizing:border-box}
+.hm-none{margin:0;padding:14px 0 0;font-size:14px;line-height:1.5;color:var(--hm-sec)}
+.hm-none a{color:var(--hm-ink)}
 .hm h2{font:700 clamp(2.25rem,4.6vw,3.25rem)/1 var(--f-cond,"Barlow Condensed",sans-serif);letter-spacing:-.005em;margin:0 0 16px;text-wrap:balance}
 .hm h3{font:700 1.5rem/1.1 var(--f-cond,"Barlow Condensed",sans-serif);margin:0}
 :where(.hm) p{margin:0}
@@ -219,7 +230,7 @@ body{color:var(--hm-ink)}
 `;
 
 const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -230,8 +241,11 @@ const html = `<!DOCTYPE html>
 <meta property="og:url" content="https://thesimplifier7.com/">
 <meta property="og:title" content="The Simplifier: Monday levels for gold, silver and platinum">
 <meta property="og:description" content="One price level for gold, silver and platinum each Monday. Friday's close grades them, and the wrong calls stay on the record.">
-<meta property="og:image" content="https://thesimplifier7.com/link_method.png">
+<meta property="og:image" content="${esc(OG)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@TheSimplifier7">
 <meta name="theme-color" content="#0B1A2E">
 ${H.earlyTags()}
 <script>(function(){var h=location.hash;var keep={"#week":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#proof":1,"#tools":1,"#fan":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>
@@ -260,10 +274,11 @@ ${H.band("week", "home")}
       <figcaption>The Fan's line on gold, January to November 2026</figcaption>
     </figure>
     <section class="hm-week" id="week" aria-labelledby="hm-wt">
-      <p class="hm-wh"><span id="hm-wt" style="color:var(--hm-ink);font-size:15px;font-weight:500;text-align:left">This week's lines</span><span>${esc(weekHead)}</span></p>
+      <p class="hm-wh"><span id="hm-wt" style="color:var(--hm-ink);font-size:15px;font-weight:500;text-align:left">${esc(weekTitle)}</span><span>${esc(weekHead)}</span></p>
       <ol class="hm-rows">
         ${rows.map(rowHtml).join("\n        ")}
       </ol>
+      ${weekNone}
       <p class="hm-wf"><span>The record: <b>${t.held}</b> held, <b>${t.wrong}</b> wrong, <b>0</b> deleted</span><a href="${esc(weekFile)}">The week in full</a></p>
     </section>
   </div>
@@ -274,7 +289,7 @@ ${H.band("week", "home")}
     <h2 id="proof-h">Named before the move. Graded after the close.</h2>
     <p class="hm-lede">Every call carries the close that would prove it wrong, and every wrong one stays where you can read it.</p>
     <div class="hm-steps">
-      <div class="hm-step"><h3>Monday</h3><p>One level each for gold, silver and platinum, posted on X and here before the week trades.</p></div>
+      <div class="hm-step"><h3>Monday</h3><p>One level each for gold, silver and platinum, named on Monday evening and written here before it is posted on X.</p></div>
       <div class="hm-step"><h3>Friday</h3><p>The 23:00 Madrid close grades each one. Held if it closed on the named side, wrong if it did not.</p></div>
       <div class="hm-step"><h3>Always</h3><p>Nothing on the record has been deleted. The wrong calls stay beside the ones that held.</p></div>
     </div>

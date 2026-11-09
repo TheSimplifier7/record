@@ -47,7 +47,7 @@
 /* the head of the page */
 .r3-copy{position:relative;z-index:3}
 .r3-copy .hd-eyebrow{margin:0}
-.r3-h1{margin:14px 0 0;font:700 clamp(3rem,4.8vw,4.375rem)/.9 var(--f-cond,"Barlow Condensed",sans-serif);letter-spacing:-.01em;color:#fff}
+.r3-h1{margin:14px 0 0;font:700 clamp(3rem,5vw,4.5rem)/.94 var(--f-cond,"Barlow Condensed",sans-serif);letter-spacing:-.01em;color:#fff}
 .r3-h1 em{font-style:normal;color:var(--r3-gold2)}
 .r3-copy .hd-keys{margin-top:16px;justify-content:flex-start}
 .r3-copy .hd-key{font-size:.9375rem;padding:8px 13px 8px 10px;gap:9px}

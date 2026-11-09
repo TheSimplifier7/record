@@ -71,7 +71,7 @@ const rows = CALLS.map((c, i) => {
        top; anchor is the row's address and does not. Note 35. */
     id: "lrow-" + i,
     anchor: rowAnchor(c),
-    url: "https://thesimplifier7.com/#" + rowAnchor(c),
+    url: "https://thesimplifier7.com/record.html#" + rowAnchor(c),
     named: c.date,
     type: c.type,
     metal: c.metal,

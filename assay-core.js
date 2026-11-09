@@ -98,7 +98,8 @@ function gauge(r, o) {
     const below = yp > yl, ly = below ? yp + 38 : yp - 44;
     s += `<text x="${W}" y="${ly.toFixed(1)}" text-anchor="end" font-family="Barlow" font-size="14" font-weight="600" letter-spacing="1.8" fill="var(--ink-3)" ${halo}>${esc(pt.label.toUpperCase())}</text>`;
     s += `<text x="${W}" y="${(ly + 22).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono" font-size="19" font-weight="600" fill="${isClose ? "var(--ink)" : "var(--ink-2)"}" ${halo}>${esc(pt.v)}</text>`;
-    if (Math.abs(yp - yl) <= 44) s += `<text x="${px - (broke ? 36 : 22)}" y="${(yp <= yl ? yl - 14 : yl + 27).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono" font-size="19" font-weight="600" fill="${col}" ${halo}>${rel === "on" ? "on it" : esc(d) + " " + rel}</text>`;
+    /* 10 Nov 2026, note 68: a label that would run off the left of the pane is set smaller, so its first figure is never cut. It read font-size="19" at any length. */
+    if (Math.abs(yp - yl) <= 44) { const nx = px - (broke ? 36 : 22), nFs = Math.max(12, Math.min(19, Math.floor((nx - 4) / (dTxt.length * 0.61)))); s += `<text x="${nx}" y="${(yp <= yl ? yl - 14 : yl + 27).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono" font-size="${nFs}" font-weight="600" fill="${col}" ${halo}>${rel === "on" ? "on it" : esc(d) + " " + rel}</text>`; }
   }
   return s + "</svg>";
 }
