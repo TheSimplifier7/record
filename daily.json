@@ -2,6 +2,20 @@
   "series": "The daily series: a level for gold, silver and platinum on every trading day, posted on X at 08:00 CET and graded on that day's close.",
   "start": "2026-11-12",
   "closed": [],
-  "days": [],
+  "days": [
+    {
+      "date": "2026-11-12",
+      "levels": [
+        {
+          "metal": "Gold",
+          "level": "4,066.93",
+          "side": "ceiling"
+        }
+      ],
+      "closes": {
+        "Gold": "3,875.50"
+      }
+    }
+  ],
   "corrections": []
 }
