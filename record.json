@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-11-12",
-  "generated": "2026-11-12T11:41:08.172Z",
+  "generated": "2026-11-12T22:48:01.398Z",
   "tally": {
     "resolved": 47,
     "held": 36,
@@ -1844,6 +1844,12 @@
       "kind": "standard",
       "title": "The film and the tick book are taken off the site, and the daily rule is worded by its Exit, 12 November 2026.",
       "body": "By the founder's rulings of 12 November 2026. None of it touches a row, a line, a close, a grade or a date on this page. THE FILM. Note 70 took the film's buttons off this page and left its file beside the record. The file, movement.js, is now removed as well, with the frame that showed it. THE TICK BOOK. The tick book, the second ledger note 25 opened on tick.html, is retired. It held one row, named on 10 September 2026 and never graded. Its page now says it is retired, and its files are taken off the site: ticks.js, seal.html, seal_tick.js, grade_tick.js, grade_week.js and verify_ticks.js. It was never part of this page's count, and record.json no longer carries it. What was published stays in this repository's public history and in the Internet Archive's copies; nothing there is altered. THE RULE'S WORDS. The daily rule is printed in these words: each level is a floor or a ceiling, and each has one Exit, a daily close through it. A floor exits on a close below it, a ceiling on a close above it, and a close exactly on the level counts as held. The rule is the one note 69 set; only its words change, and note 69 stands as written. The door to the daily levels on this page now reads: Every level names its Exit. It read: No forecast without its kill (note 40). The grades stay Held and Wrong. THE REST. The card under a link is a lighter file, card_daily.jpg. The door pages under tv and the four old addresses that forward a reader are counted before they forward. The trial links on the front page go straight to the plans. The Method is described on this page in the words used on every other page. The email form's unused code is removed."
+    },
+    {
+      "n": "72",
+      "kind": "standard",
+      "title": "The pages speak as we, in the founder's words, 12 November 2026.",
+      "body": "By the founder's brief of 12 November 2026. None of it touches a row, a line, a close, a grade or a date on this page, and no published call or note is reworded. Seven lines on the pages beside this one are his own words now. The front page's title reads: The call goes out every morning. The close grades it. We don't hide the misses. It read: Gold, silver and platinum levels, every trading day at 08:00 CET. The line under it reads: Metals desk since 2003. Gold, silver and platinum. Tools, not signals. Nobody here spoon-feeds you. Beside The Fan's trial: Try The Fan for 7 days. If it doesn't earn its keep, walk. No hard feelings. The plans open with: We sell tools, not signals. The price keeps the tyre-kickers out. 7 days to see if it earns the money. Cancel before day 8 and you pay nothing. The wrong ones open with: These are the ones that roasted us. They stay up. Anyone hiding their misses is selling you something. The foot of every page: The call lands every morning before New York opens. Graded at the close. Follow on X. The page after checkout opens with: You're in, and says where the call lands and how to read it. Counsel's two lines, the trial terms beside each button and the prices on The Fan's page stay as they are."
     }
   ],
   "targets": [

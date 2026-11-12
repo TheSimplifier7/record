@@ -200,7 +200,7 @@ ${HS.headTags({ fonts: false })}
 </head>
 <body>
 ${HS.top(null, "misses")}
-${HS.hero({ eyebrow: '<a href="record.html">The record</a><span>The wrong ones</span>', title: "The calls I got wrong.", col: "820px", pad: "28px", lede: "Read each original call, the close that graded it and any correction attached to it. These are weekly price calls, not a list of trades or losses." })}
+${HS.hero({ eyebrow: '<a href="record.html">The record</a><span>The wrong ones</span>', title: "The calls I got wrong.", col: "820px", pad: "28px", lede: "These are the ones that roasted us. They stay up. Anyone hiding their misses is selling you something. These are weekly price calls, not a list of trades or losses." })}
 <div class="wrap">
   <p class="tally"><b>${misses.length}</b> wrong · <b>${pass}</b> held · <b>${notest}</b> never reached${open ? ` · <b>${open}</b> open` : ""} · ${CALLS.length} levels on the record. The wrong ones are ${resolved ? Math.round(misses.length / resolved * 100) : 0} percent of the ${resolved} graded. That is a small sample, so read the percentage with care.</p>
 ${misses.map(section).join("\n")}

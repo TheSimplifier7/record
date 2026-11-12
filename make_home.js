@@ -74,7 +74,8 @@ const CSS = `
 .hm-plans .p{font:500 16px/1.4 var(--c-fig);color:var(--c-ink);text-align:right;white-space:nowrap}
 .hm-plans .p span{font:400 14px/1.4 var(--c-ui);color:var(--c-mut);margin-left:8px}
 .hm-plans p{grid-column:1/-1;margin:0;font-size:15px;line-height:1.5;max-width:none}
-.hm-fan .hm-acts{margin-top:32px}
+.hm-fan .hm-acts{margin-top:16px}
+.hm-trial{margin-top:32px!important;font-size:17px;line-height:1.5;color:var(--c-ink)}
 .hm-fan .hm-fine{margin-top:20px}
 .hm-plate{margin:0}
 .hm-plate a{display:block}
@@ -118,8 +119,8 @@ ${H.band(null, "home")}
 <section class="hm-hero as-lit" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="hm-h1">Gold, silver and platinum levels, every trading day at 08:00 CET.</h1>
-      <p class="hm-say">Each one is graded at the close. The wrong ones stay up.</p>
+      <h1 class="hm-h1" id="hm-h1">The call goes out every morning. The close grades it. We don't hide the misses.</h1>
+      <p class="hm-say">Metals desk since 2003. Gold, silver and platinum. Tools, not signals. Nobody here spoon-feeds you.</p>
       <p class="hm-acts">${follow("home-hero")}<a href="method.html#plans" data-tv="plans-home-hero">Try The Fan free for 7 days</a></p>
       <div class="hm-rec">
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
@@ -169,6 +170,7 @@ ${H.band(null, "home")}
         <li><h3>The Fan</h3><span class="p">€149.99<span>a month</span></span><p>Everything in The Method, plus the wider 2-hour view on your shorter chart.</p></li>
         <li><h3>The Method</h3><span class="p">€59<span>a month</span></span><p>The simpler line-based view, for traders who do not need the extra context.</p></li>
       </ul>
+      <p class="hm-trial">Try The Fan for 7 days. If it doesn't earn its keep, walk. No hard feelings.</p>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-home-fan">Start the 7-day free trial</a><a href="method.html">See what it shows</a></p>
       <p class="hm-fine">7 days free on either plan, VAT included. Card at checkout. ${CW}</p>
     </div>

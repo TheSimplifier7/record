@@ -147,7 +147,7 @@ const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Gold, silver and platinum levels on every trading day at 08:00 CET. Each one is graded at the close, and the wrong ones stay up.</p>
+    <p>The call lands every morning before New York opens. Graded at the close. <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="foot">Follow on X.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a><a href="record.html#rules">The rules</a></nav>

@@ -77,6 +77,7 @@ html .hs-foot{margin-top:96px;border-top:1px solid var(--c-rule);background:var(
 html .hs-foot-in{display:grid;grid-template-columns:minmax(0,5fr) repeat(3,minmax(0,2fr));gap:48px 32px;padding-block:48px 64px}
 html .hs-foot-id p{margin:16px 0 0;max-width:26rem}
 html .hs-foot-id p+p{margin-top:8px}
+html .hs-foot-id p a{color:var(--c-ink)!important;text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:4px!important;text-decoration-color:var(--c-rule-2)!important;border:0!important}
 html .hs-foot nav{display:flex;flex-direction:column;align-items:flex-start;gap:0}
 html .hs-foot-h{margin:0 0 8px;min-height:44px;display:flex;align-items:center;color:var(--c-ink);font-weight:500}
 html .hs-foot nav a{display:inline-flex;align-items:center;min-height:32px;color:var(--c-sec);text-decoration:none;border:0;transition:color .15s ease}
@@ -367,3 +368,6 @@ html .wb-say{border-top-width:2px}
 @media (max-width:760px){html .hs-band .hs-brand{font-size:13px!important;letter-spacing:.2em!important}html .hs-band .hs-brand::before{width:24px!important;height:24px!important;margin-right:10px}}
 html .wb-seal{margin-top:8px!important}
 html .wb-seal b{font:500 12.5px/1 var(--c-fig);letter-spacing:.04em;color:var(--c-sec)}
+/* on a phone the plate is kept under the glass, so no line of text sits on the engraving */
+@media (max-width:900px){.hm-today{overflow:hidden;margin-inline:calc(-1 * var(--c-gutter));padding:0 var(--c-gutter) 40px}}
+html .plan-band .plan-intro+.plan-intro{margin-top:12px}

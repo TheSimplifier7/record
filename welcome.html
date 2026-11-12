@@ -101,6 +101,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 .wl{padding-block:clamp(36px,6vw,72px) 40px}
 .wl h1{font-family:var(--f-cond);font-weight:700;font-size:clamp(2.6rem,7vw,4.5rem);line-height:.95;margin:0 0 14px;color:var(--ink)}
 .wl .lede{font-size:1.125rem;line-height:1.6;color:var(--ink-2);max-width:40rem;margin:0}
+.wl-read{max-width:40rem;margin:32px 0 0;padding:24px 0;border-top:1px solid var(--c-rule);border-bottom:1px solid var(--c-rule)}.wl-read h2{font-size:1.25rem!important;margin:0 0 8px}.wl-read p{margin:0}.wl-read p+p{margin-top:8px}.wl-read p+h2{margin-top:24px}.wl>.wrap>h2{margin:48px 0 8px;font-size:1.5rem!important}.wl>.wrap>h2+p{margin:0;max-width:40rem;color:var(--ink-2)}
 .wl-steps{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:14px;counter-reset:wl}
 .wl-steps > li{counter-increment:wl;position:relative;padding:20px 22px 20px 72px;border-radius:16px;border:1px solid color-mix(in srgb,currentColor 13%,transparent)}
 .wl-steps > li::before{content:counter(wl);position:absolute;left:22px;top:22px;width:32px;height:32px;border-radius:50%;background:#f2c45a;color:#0b1a2e;font:700 16px/32px var(--f-ui);text-align:center}
@@ -120,7 +121,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 <link rel="stylesheet" href="assay-site.css?v=8d8d25bbe0">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
-<link rel="stylesheet" href="brand.css?v=c6d12f367e">
+<link rel="stylesheet" href="brand.css?v=61406205eb">
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body class="hs-has-bot">
@@ -139,8 +140,17 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
   </div>
 </header>
 <main id="main" class="wl"><div class="wrap">
-  <h1>Here is how to set up your trial</h1>
-  <p class="lede">If you have just completed checkout, Stripe has sent your confirmation. That confirmation shows your plan and trial dates. Nothing is charged during the 7-day trial. If you have not completed checkout, opening this page does not start a trial.</p>
+  <h1>You're in.</h1>
+  <p class="lede">Here's where the call lands every morning, and how to read it in ten seconds.</p>
+  <section class="wl-read" aria-label="Where the call lands, and how to read it">
+    <h2>Where the call lands</h2>
+    <p>On X at 08:00 CET on every trading day, before New York opens: one level each for gold, silver and platinum. Then on <a href="levels.html">the daily levels</a>, with the close that graded it.</p>
+    <p><a href="https://x.com/TheSimplifier7" rel="noopener" data-x="welcome">Follow on X</a></p>
+    <h2>How to read it</h2>
+    <p>Each level is a floor or a ceiling. A floor exits on a close below it. A ceiling exits on a close above it. Held means the day closed on the side named; it is not a trade result.</p>
+  </section>
+  <h2>Set up your trial</h2>
+  <p>If you have just completed checkout, Stripe has sent your confirmation. That confirmation shows your plan and trial dates. Nothing is charged during the 7-day trial. If you have not completed checkout, opening this page does not start a trial.</p>
   <p><a href="https://www.tradingview.com/">Open TradingView</a></p>
   <ol class="wl-steps">
     <li><div>
@@ -175,7 +185,7 @@ document.querySelectorAll("[data-plan]").forEach(function(el){el.hidden=el.getAt
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Gold, silver and platinum levels on every trading day at 08:00 CET. Each one is graded at the close, and the wrong ones stay up.</p>
+    <p>The call lands every morning before New York opens. Graded at the close. <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="foot">Follow on X.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a><a href="record.html#rules">The rules</a></nav>
