@@ -144,11 +144,14 @@
   var postLink = function (day, words) { return day.post ? '<a href="' + esc(day.post) + '" rel="noopener">' + words + "</a>" : ""; };
   var followBtn = function (where) { return '<a class="hs-btn hs-gold" href="' + X + '" rel="noopener" data-x="' + esc(where) + '">Follow on X for the 08:00 levels</a>'; };
 
-  /* One level, drawn as what it is on a chart: a line with its price on it. */
+  /* One level, drawn as ASSAY's gauge draws it on the week card: the line in gold, the side that proves it wrong hatched and
+     fading from the line, and once the day has closed a pearl where the close sat, above the line or under it. */
   function levelRows(day) {
     return '<ol class="dy-rows">' + day.rows.map(function (r) {
       var says = r.grade === "open" ? must(r.side) : "Closed " + '<span class="dy-fig">' + esc(r.close) + "</span>, " + esc(r.dist) + ".";
-      return '<li class="dy-row dy-is-' + r.grade + '"><p class="dy-top"><span class="dy-metal">' + esc(r.metal) + '</span><span class="dy-lv">' + esc(r.level) + "</span></p>" +
+      var pin = r.grade === "open" ? "" : '<i class="dy-pin dy-pin-' + (num(r.close) > num(r.level) ? "above" : num(r.close) < num(r.level) ? "under" : "on") + '"></i>';
+      return '<li class="dy-row dy-' + r.side + " dy-is-" + r.grade + '"><p class="dy-top"><span class="dy-metal">' + esc(r.metal) + '</span><span class="dy-lv">' + esc(r.level) + "</span></p>" +
+        '<div class="dy-gauge" aria-hidden="true">' + pin + "</div>" +
         '<p class="dy-k"><span><b>' + kind(r.side) + ".</b> " + says + '</span><span class="dy-st">' + WORD[r.grade] + "</span></p></li>";
     }).join("") + "</ol>";
   }
@@ -217,19 +220,24 @@
     return '<span class="dy-tally">The daily series, ' + esc(since) + ": " + parts.join(", ") + "</span>";
   }
 
-  /* The look, in the calm layer's tokens (brand.css). A level is a line: gold while it stands, red once a close is through it. */
+  /* The look, in ASSAY's tokens (brand.css). The levels sit on a pane of glass over the record's rosette (plate.js). A level is a
+     line: gold while it stands, red once a close is through it. */
   var CSS = [
     ".dy{color:var(--c-sec);font-family:var(--c-ui)}.dy *{box-sizing:border-box}:where(.dy) p{margin:0}",
     ".dy a{color:var(--c-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--c-rule-2);transition:text-decoration-color .15s ease}.dy a:hover{text-decoration-color:currentColor}",
     ".dy-fig,.dy-lv{font-family:var(--c-fig);font-variant-numeric:tabular-nums;font-feature-settings:'zero' 0}.dy-n{text-align:right!important}.dy-mut{color:var(--c-mut)}",
     ".dy-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}",
     ".dy-g{color:var(--c-ink);white-space:nowrap}.dy-g::before{content:'';display:inline-block;width:12px;height:2px;margin-right:8px;vertical-align:middle;position:relative;top:-1px;background:var(--c-gold)}.dy-g.dy-wrong::before{background:var(--c-red)}.dy-g.dy-open::before{background:var(--c-ink);opacity:.4}",
-    ".dy-today{background:var(--c-raise);border:1px solid var(--c-rule);border-radius:12px;padding:28px 32px 24px}",
+    ".dy-today{position:relative;border-radius:16px;padding:28px 32px 24px;background-color:rgba(17,35,60,.55);background-image:linear-gradient(180deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.03) 45%,rgba(255,255,255,.015) 100%);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 1px 0 0 rgba(255,255,255,.05),inset 0 -1px 0 rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.05),0 2px 3px rgba(0,0,0,.35),4px 26px 46px -14px rgba(0,0,0,.72)}",
     ".dy-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px}.dy .dy-t{font:500 16px/1.5 var(--c-ui)!important;letter-spacing:0!important;margin:0;color:var(--c-ink)}.dy-d{font-size:14px;line-height:1.5;color:var(--c-mut);text-align:right}",
-    ".dy-rows{list-style:none;margin:4px 0 0;padding:0}.dy-row{padding-top:20px}",
-    ".dy-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--c-gold)}.dy-is-wrong .dy-top{border-bottom-color:var(--c-red)}",
+    ".dy-rows{list-style:none;margin:4px 0 0;padding:0}.dy-row{padding-top:16px}",
+    ".dy-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}",
+    ".dy-gauge{position:relative;height:28px;margin-top:4px}.dy-gauge::before{content:'';position:absolute;left:0;right:0;top:13px;height:2px;background:var(--c-gold)}.dy-is-wrong .dy-gauge::before{background:var(--c-red)}",
+    ".dy-gauge::after{content:'';position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(135deg,rgba(243,237,226,.32) 0 1px,transparent 1px 6px)}.dy-is-wrong .dy-gauge::after{background:repeating-linear-gradient(135deg,rgba(240,96,74,.75) 0 1px,transparent 1px 6px)}",
+    ".dy-floor .dy-gauge::after{top:15px;-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}.dy-ceiling .dy-gauge::after{top:1px;-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}",
+    ".dy-pin{position:absolute;left:66%;top:8px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:radial-gradient(circle at 36% 32%,#fff 0,var(--c-ink) 45%,var(--c-sec) 100%);box-shadow:0 0 0 2px var(--c-gold)}.dy-is-wrong .dy-pin{box-shadow:0 0 0 2px var(--c-red)}.dy-pin-above{top:-2px}.dy-pin-under{top:18px}",
     ".dy-metal{font:500 18px/1.2 var(--c-ui);color:var(--c-ink)}.dy-lv{font-weight:500;font-size:28px;line-height:1;letter-spacing:-.02em;color:var(--c-ink)}",
-    ".dy-k{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:8px;font-size:14px;line-height:1.5}.dy-k b{font-weight:400;color:var(--c-ink)}.dy-k .dy-fig{font-size:13px}.dy-st{color:var(--c-ink);white-space:nowrap}",
+    ".dy-k{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:4px;font-size:14px;line-height:1.5}.dy-k b{font-weight:400;color:var(--c-ink)}.dy-k .dy-fig{font-size:13px}.dy-st{color:var(--c-ink);white-space:nowrap}",
     ".dy-none{font-size:15px;line-height:1.6;color:var(--c-sec);padding-top:16px}.dy-rows+.dy-none{padding-top:20px}",
     ".dy-prev{margin-top:28px;padding-top:20px;border-top:1px solid var(--c-rule)}.dy-ph{font-size:14px;line-height:1.5;color:var(--c-mut)}",
     ".dy-prev table{width:100%;border-collapse:collapse;margin-top:4px;font-size:14px}.dy-prev th,.dy-prev td{padding:4px 0 4px 16px;line-height:1.75;text-align:left;font-weight:400;vertical-align:baseline;white-space:nowrap}.dy-prev th:first-child{padding-left:0}.dy-prev thead th{font-size:13px;color:var(--c-mut);padding-bottom:0}.dy-prev tbody th{color:var(--c-ink)}.dy-prev td.dy-fig{font-size:13px;color:var(--c-sec)}.dy-prev td:last-child{width:1%;padding-left:20px}",
@@ -243,7 +251,7 @@
     ".dy-all .dy-readrow td{border-bottom:0;padding-top:8px;padding-bottom:0;font-size:13px;color:var(--c-mut)}.dy-all td:last-child{width:1%}",
     ".dy .dy-h{font:500 17px/1.4 var(--c-ui)!important;color:var(--c-ink);margin:40px 0 8px}.dy-corr{margin:0;padding-left:18px;font-size:15px;line-height:1.6}.dy-corr b{font-weight:500;color:var(--c-ink)}",
     ".dy-tally b{font:500 .9375em var(--c-fig);color:var(--c-ink)}",
-    "@media (max-width:560px){.dy-today{padding:20px 20px 20px}.dy-lv{font-size:24px}.dy-metal{font-size:17px}.dy-last th,.dy-last td,.dy-all th,.dy-all td{padding:12px 12px 12px 0}.dy-last table{font-size:14px}.dy-cell{display:flex;flex-direction:column;align-items:flex-start;gap:2px}.dy-cell .dy-fig,.dy-all td.dy-fig{font-size:13px}.dy-cell .dy-g{font-size:13px}.dy-all table{font-size:14px}.dy-all .dy-wide{display:none}.dy-src{float:none;display:block;margin-top:2px}}"
+    "@media (max-width:560px){.dy-today{padding:20px 20px 20px;border-radius:12px}.dy-lv{font-size:24px}.dy-metal{font-size:17px}.dy-last th,.dy-last td,.dy-all th,.dy-all td{padding:12px 12px 12px 0}.dy-last table{font-size:14px}.dy-cell{display:flex;flex-direction:column;align-items:flex-start;gap:2px}.dy-cell .dy-fig,.dy-all td.dy-fig{font-size:13px}.dy-cell .dy-g{font-size:13px}.dy-all table{font-size:14px}.dy-all .dy-wide{display:none}.dy-src{float:none;display:block;margin-top:2px}}"
   ].join("\n");
 
   var api = { ORDER: ORDER, X: X, COUNSEL: COUNSEL, RULE: RULE, CSS: CSS, problems: problems, model: model, grade: grade, distance: distance, todayCard: todayCard, lastDays: lastDays, table: table, tally: tally, longDay: longDay, longDate: longDate, followBtn: followBtn };

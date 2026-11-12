@@ -15,6 +15,7 @@
      5. levels.html and index.html are the ones this daily.json draws: each is written again in memory and
         compared, so a page left behind after an edit to daily.json fails here.
      6. Counsel's two lines stand word for word on both pages, with the line that held is not a trade result.
+        The seal each page carries for the plate is the record's seal, as record.json gives it.
      7. Neither page offers a Monday email, says how The Fan's line is worked out, or carries an em dash,
         an exclamation mark or an HTML comment.
 
@@ -58,7 +59,7 @@ if (data) {
     /* 5: write each page again in a copy and compare */
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "daily-"));
     try {
-      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.png"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
+      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "assay-core.js", "plate.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.png"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
       for (const f of fs.readdirSync(HERE).filter(f => /^week-\d{4}-\d{2}-\d{2}\.html$/.test(f))) fs.writeFileSync(path.join(tmp, f), "");
       for (const [script, page] of [["make_daily.js", "levels.html"], ["make_home.js", "index.html"]]) {
         let out = null;
@@ -79,6 +80,9 @@ for (const page of ["levels.html", "index.html"]) {
   check(!new RegExp(["close", "earns", "it"].join(" "), "i").test(s), page + " does not say how The Fan's line is worked out");
   check(!/—|–|<!--/.test(s) && !/![\s"<]/.test(text), page + " carries no em dash, exclamation mark or HTML comment");
   check(/data-goatcounter="https:\/\/thesimplifier\.goatcounter\.com\/count"/.test(s), page + " carries the counter (note 37)");
+  { let seal = ""; try { seal = require("./house_parts.js").recordSeal(JSON.parse(rd("record.json"))); } catch (e) {}
+    const on = (s.match(/data-seal="([0-9a-f]{64})"/) || [])[1];
+    check(!!seal && on === seal, page + " carries the record's seal for the plate (" + (on ? on.slice(0, 6).toUpperCase() : "none") + ")"); }
   check(!/buy\.stripe\.com/.test(s), page + " carries no checkout; the plans are on method.html alone");
 }
 if (fails.length) { console.log("\n" + fails.length + " thing" + (fails.length === 1 ? "" : "s") + " did not hold. Do not upload."); process.exit(1); }

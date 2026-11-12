@@ -28,6 +28,7 @@ if (probs.length) { console.error("daily.json cannot be drawn:\n  " + probs.join
 const M = D.model(data);
 const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
 const t = R.tally;
+const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js draws the rosette under the levels from it */
 
 const title = "Daily gold, silver and platinum levels · The Simplifier";
 const description = "A level for gold, silver and platinum on every trading day, posted at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.";
@@ -37,19 +38,21 @@ const html = H.leanHead({ title, description, canonical: SITE + "levels.html", i
 ${H.band("today", "levels")}
 <main id="main" class="hm" tabindex="-1">
 
-<section class="hm-hero" aria-labelledby="hm-h1">
+<section class="hm-hero as-lit" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Daily levels</h1>
       <p class="hm-say">A level for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.</p>
       <p class="hm-acts">${D.followBtn("levels-top")}<a href="method.html" data-tv="plans-levels-top">Try The Fan free for 7 days</a></p>
-      <p class="hm-rec">
-        <span data-daily="tally">${D.tally(M)}</span>
-        <span><a href="record.html">The weekly series</a>, June to November 2026: <b>${t.held}</b> held, <b>${t.wrong}</b> wrong, <b>0</b> deleted</span>
-      </p>
+      <div class="hm-rec">
+        <p data-daily="tally">${D.tally(M)}</p>
+        <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
+        <p><a href="record.html">The weekly series</a>, June to November 2026</p>
+      </div>
     </div>
     <section class="hm-today" id="today" aria-labelledby="dy-t">
-      <div data-daily="today" data-where="levels">${D.todayCard(M, null, "levels")}</div>
+      <div data-plate data-seal="${SEAL}" data-daily="today" data-where="levels">${D.todayCard(M, null, "levels")}</div>
+      <p class="hm-seal">The record's seal <b>${SEAL.slice(0, 6).toUpperCase()}</b>. The engraving under the glass is drawn from every row on the record. Change one figure on the record and it changes.</p>
     </section>
   </div>
 </section>
@@ -79,6 +82,7 @@ ${H.band("today", "levels")}
 </section>
 </main>
 <script src="daily.js?v=${H.vOf("daily.js")}" defer></script>
+<script src="plate.js?v=${H.vOf("plate.js")}" defer></script>
 ${H.tail("today")}
 </body>
 </html>

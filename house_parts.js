@@ -74,6 +74,14 @@ ${pre ? pre + "\n" : ""}${headTags({ lean: true })}
 <body class="cp hs-has-bot">
 <a class="skip" href="#main">Skip to the page</a>`;
 }
+/* 12 Nov 2026, note 70: the record's seal, as ASSAY keys it on every card (assay-core.js) and as the lamp keyed it (lamp.js):
+   every row, oldest first, number|named|metal|level|side|grade|close, through SHA-256. plate.js draws the rosette from it. */
+function recordSeal(R) {
+  const A = require("./assay-core.js");
+  const rows = R.rows.map(r => Object.assign({}, r)).sort((a, b) => (a.named < b.named ? -1 : a.named > b.named ? 1 : 0) || (A.ORDER.indexOf(a.metal) - A.ORDER.indexOf(b.metal)));
+  rows.forEach((r, i) => { r.no = i + 1; });
+  return A.sha256(A.rowKey(rows));
+}
 const earlyTags = () => '<meta name="color-scheme" content="dark">';
 
 /* The band's places, as on the record. */
@@ -184,4 +192,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

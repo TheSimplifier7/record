@@ -74,6 +74,9 @@ function expected(idx) {
   const M = modelFrom(idx);
   const S = SceneR3.still(M);
   let s = idx.replace(/scene\.js\?v=[0-9a-f]{10}/g, "scene.js?v=" + vOf("scene.js")).replace(/scene\.css\?v=[0-9a-f]{10}/g, "scene.css?v=" + vOf("scene.css"));
+  /* 12 Nov 2026, note 70: the record's seal on the plate (plate.js), renewed with the still, so --check fails on a seal that is not the one record.json gives */
+  { const seal = require("./house_parts.js").recordSeal(JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8")));
+    s = s.replace(/data-seal="[0-9a-f]{64}"/g, 'data-seal="' + seal + '"').replace(/(<b id="wb-seal">)[0-9A-F]{6}(<\/b>)/, "$1" + seal.slice(0, 6).toUpperCase() + "$2"); }
   s = put(s, "MARKS", S.marks);
   s = put(s, "KPIS", S.tele);
   s = put(s, "WHEN", M.next ? M.next.label : "");

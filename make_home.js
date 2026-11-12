@@ -62,6 +62,7 @@ function weeklyLast(n) {
   }).join("")}</tbody></table></div>`;
 }
 const hasDays = M.days.length > 0;
+const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js draws the rosette under the levels from it */
 
 /* The calm page itself (the grid, the titles, the first screen) is brand.css; this is only what the front page alone carries. */
 const CSS = `
@@ -114,19 +115,21 @@ const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://t
 ${H.band(null, "home")}
 <main id="main" class="hm" tabindex="-1">
 
-<section class="hm-hero" aria-labelledby="hm-h1">
+<section class="hm-hero as-lit" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Gold, silver and platinum levels, every trading day at 08:00 CET.</h1>
       <p class="hm-say">Each one is graded at the close. The wrong ones stay up.</p>
       <p class="hm-acts">${follow("home-hero")}<a href="method.html" data-tv="plans-home-hero">Try The Fan free for 7 days</a></p>
-      <p class="hm-rec">
-        <span><a href="record.html">The weekly series</a>, June to November 2026: <b>${t.held}</b> held, <b>${t.wrong}</b> wrong, <b>0</b> deleted</span>
-        <span data-daily="tally">${D.tally(M)}</span>
-      </p>
+      <div class="hm-rec">
+        <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
+        <p><a href="record.html">The weekly series</a>, June to November 2026</p>
+        <p data-daily="tally">${D.tally(M)}</p>
+      </div>
     </div>
     <section class="hm-today" id="today" aria-labelledby="dy-t"><span id="week"></span>
-      <div data-daily="today" data-where="home">${D.todayCard(M, null, "home")}</div>
+      <div data-plate data-seal="${SEAL}" data-daily="today" data-where="home">${D.todayCard(M, null, "home")}</div>
+      <p class="hm-seal">The record's seal <b>${SEAL.slice(0, 6).toUpperCase()}</b>. The engraving under the glass is drawn from every row on the record. Change one figure on the record and it changes.</p>
     </section>
   </div>
 </section>
@@ -220,6 +223,7 @@ ${H.band(null, "home")}
 </section>
 </main>
 <script src="daily.js?v=${H.vOf("daily.js")}" defer></script>
+<script src="plate.js?v=${H.vOf("plate.js")}" defer></script>
 ${H.tail(null)}
 </body>
 </html>
