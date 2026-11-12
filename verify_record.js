@@ -181,7 +181,10 @@ const ogPath = og && path.join(HERE, og);
 let ogOk = false, ogDims = "missing";
 if (og && fs.existsSync(ogPath)) {
   const b = fs.readFileSync(ogPath);
-  const w = b.readUInt32BE(16), h = b.readUInt32BE(20);
+  /* 12 Nov 2026, note 71: the card is a JPG now, so its size is read from the JPG's own frame header as well as from a PNG's. It read the PNG header alone. */
+  let w = 0, h = 0;
+  if (b[0] === 0xFF && b[1] === 0xD8) { for (let i = 2; i + 9 < b.length;) { if (b[i] !== 0xFF) { i++; continue; } const m = b[i + 1]; if (m >= 0xC0 && m <= 0xCF && m !== 0xC4 && m !== 0xC8 && m !== 0xCC) { h = b.readUInt16BE(i + 5); w = b.readUInt16BE(i + 7); break; } i += 2 + b.readUInt16BE(i + 2); } }
+  else { w = b.readUInt32BE(16); h = b.readUInt32BE(20); }
   ogDims = w + " x " + h; ogOk = w === 1200 && h === 630;
 }
 check(ogOk, `og:image ${og} is in this folder at 1200 x 630 (${ogDims})`);
@@ -390,22 +393,26 @@ if (LC && LCM && typeof LCM.figuresFor === "function") {
 const GC_ADDR = "https://thesimplifier.goatcounter.com/count";
 const GC_TAG = '<script data-goatcounter="' + GC_ADDR + '" async src="https://gc.zgo.at/count.js"></script>';
 const COUNTER_V = (idx.match(/\nconst COUNTER\s*=\s*"([^"]*)"/) || [])[1];
-const counted = ["targets.html", "misses.html", "tick.html", "method.html", "guest.html", "advisers.html", "year.html"].concat(rt.map(t => t.page));
+const counted = ["targets.html", "misses.html", "method.html", "guest.html", "advisers.html", "year.html"].concat(rt.map(t => t.page));
 const uncounted = counted.filter(f => { try { return !rd(f).replace(/<!--[\s\S]*?-->/g, "").includes(GC_TAG); } catch (e) { return true; } });
 check(COUNTER_V === GC_ADDR && uncounted.length === 0, "the counter is on the record and on every page beside it (" + (counted.length + 1) + ")" + (COUNTER_V === GC_ADDR ? "" : " (COUNTER is not the address)") + (uncounted.length ? " (not on: " + uncounted.join(", ") + ")" : ""));
-const leaks = ["embed.html", "seal.html", "record-embed.js"].filter(f => { try { return /goatcounter|gc\.zgo\.at/i.test(rd(f)); } catch (e) { return false; } });
-check(leaks.length === 0, "the embed and the seal load no counter" + (leaks.length ? " (found in: " + leaks.join(", ") + ")" : ""));
+const leaks = ["embed.html", "record-embed.js"].filter(f => { try { return /goatcounter|gc\.zgo\.at/i.test(rd(f)); } catch (e) { return false; } });
+check(leaks.length === 0, "the embed loads no counter" + (leaks.length ? " (found in: " + leaks.join(", ") + ")" : ""));
 
 /* 18. THE RULINGS OF 24 SEPTEMBER 2026, added with notes 38 to 40. */
 const idxLive = idx.replace(/<!--[\s\S]*?-->/g, "");
 const offer = (idxLive.match(/<p class="integrity bounty" id="bounty">[\s\S]*?<\/p>/) || [""])[0];
 check(/\$1,000/.test(offer) && /after it was first published/.test(offer) && /changed after it was given/.test(offer) && /already disclosed/.test(offer), "the standing offer is on the record, whole (note 40)");
-check(!/No forecasts\./.test(idxLive) && /No forecast without its kill\./.test(idxLive), "the email door says no forecast without its kill (note 40)");
+/* 12 Nov 2026, note 71: the door reads "Every level names its Exit." It read "No forecast without its kill." (note 40), and this check asked for those words. */
+check(!/No forecasts\./.test(idxLive) && /Every level names its Exit\./.test(idxLive), "the door to the daily levels says every level names its Exit (note 71)");
 const sampleV = (idx.match(/\n\s*sample:\s*"([^"]*)"/) || [])[1] || "";
 check(!sampleV || /^https:\/\//.test(sampleV) || fs.existsSync(path.join(HERE, sampleV)), "the sample email the door links is beside the record" + (sampleV ? " (" + sampleV + ")" : " (none named yet)"));
-let sealSrc = ""; try { sealSrc = rd("seal.html"); } catch (e) {}
-check(sealSrc.includes("${metal}|${side}|${level}|${kill}|${grades}|${n}") && /crypto\.subtle\.digest\("SHA-256"/.test(sealSrc) && !/<script[^>]+src=|fetch\(|XMLHttpRequest/.test(sealSrc), "seal.html hashes metal|side|level|kill|grades|nonce with SHA-256, as verify_ticks.js does, and makes no request");
-check(fs.existsSync(path.join(HERE, "grade_week.js")), "grade_week.js, the tick book's weekly grader, is beside the record");
+/* 12 Nov 2026, note 71: the tick book is retired and the film is removed. The two checks that stood here held seal.html to the
+   string verify_ticks.js recomputed and asked for grade_week.js beside the record. Now none of those files may be here. */
+const GONE = ["ticks.js", "seal.html", "seal_tick.js", "grade_tick.js", "grade_week.js", "verify_ticks.js", "movement.js"];
+const stillHere = GONE.filter(f => fs.existsSync(path.join(HERE, f)));
+const loadsOne = fs.readdirSync(HERE).filter(f => f.endsWith(".html")).filter(f => /src\s*=\s*"(?:ticks|seal_tick|movement)\.js/.test(rd(f)));
+check(stillHere.length === 0 && loadsOne.length === 0, "the tick book's files and the film are not beside the record, and no page loads one (note 71)" + (stillHere.length ? " (still here: " + stillHere.join(", ") + ")" : "") + (loadsOne.length ? " (loaded by: " + loadsOne.join(", ") + ")" : ""));
 
 /* 19. WHAT A PRICE IS MADE OF, added with note 41. */
 let dsc = ""; try { dsc = rd("descent.js"); } catch (e) {}
@@ -580,19 +587,12 @@ if (DAYS_FROM && typeof parseDays === "function" && daysTxt !== null) {
 }
 
 /* 25. THE INNER WORKINGS, added 11 October 2026, note 50. */
-let mvt = ""; try { mvt = rd("movement.js"); } catch (e) {}
-const mA = mvt.indexOf("/* CAPTIONS-START */"), mB = mvt.indexOf("/* CAPTIONS-END */");
-const mCaps = mA >= 0 && mB > mA ? mvt.slice(mA, mB) : "";
-check(mvt.length > 0 && mCaps.length > 200, "movement.js is beside the record, its words between CAPTIONS-START and CAPTIONS-END (note 50)");
+/* 12 Nov 2026, note 71: movement.js is removed, so the checks on its captions and its network use are removed with it. */
 let methodLive = ""; try { methodLive = rd("method.html").replace(/<!--[\s\S]*?-->/g, ""); } catch (e) {}
 /* 6 Nov 2026: the sales page no longer mounts the inner-workings film. movement.js stays beside the record.
    The record page may still load it. The sales page must not mount descent.js either. */
 const mOn = /<div[^>]*\bdata-movement\b/.test(methodLive) || /src="movement\.js"|\.src="movement\.js"/.test(methodLive), mOld = /\bdata-descent\b|src="descent\.js"/.test(methodLive);
 check(!mOn && !mOld, "the sales page does not mount the inner workings or descent.js (6 Nov 2026)" + (mOn ? " (movement still mounted)" : "") + (mOld ? " (descent.js still on it)" : ""));
-const mBad = [["em dash", /\u2014/], ["exclamation mark", /!/], ["hashtag", /(^|[\s"'])#\w/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(copper|slate|box|room|kill|naming)\b/i]].filter(([, re]) => re.test(mCaps)).map(b => b[0]);
-check(mCaps.length > 0 && mBad.length === 0, "the inner workings' words carry no em dash, exclamation mark, hashtag, emoji or house word" + (mBad.length ? " (found: " + mBad.join(", ") + ")" : ""));
-const mCode = mvt.replace(/\/\*[\s\S]*?\*\//g, "");
-check(mvt.length > 0 && !/https?:\/\//.test(mCode) && !/XMLHttpRequest|sendBeacon|WebSocket|import\(/.test(mCode) && (mCode.match(/fetch\(/g) || []).length === 1 && /fetch\(src \|\| "record\.json"/.test(mCode), "movement.js asks the network for record.json and nothing else");
 
 /* 26. THE FAN BY THE MONTH, added 12 October 2026. From 1 November 2026 TradingView permits paid access to
    an invite-only script only through its Marketplace, billed monthly, and never as part of another paid

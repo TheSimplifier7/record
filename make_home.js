@@ -32,7 +32,7 @@ if (dprobs.length) { console.error("daily.json cannot be drawn:\n  " + dprobs.jo
 const M = D.model(DAILY);
 
 const X = D.X;
-const CARD = "https://thesimplifier7.com/card_daily.png?v=" + H.vOf("card_daily.png");
+const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
 const TITLE = "Daily gold, silver and platinum levels · The Simplifier";
 const DESC = "A level for gold, silver and platinum on every trading day, posted at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.";
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
@@ -120,7 +120,7 @@ ${H.band(null, "home")}
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Gold, silver and platinum levels, every trading day at 08:00 CET.</h1>
       <p class="hm-say">Each one is graded at the close. The wrong ones stay up.</p>
-      <p class="hm-acts">${follow("home-hero")}<a href="method.html" data-tv="plans-home-hero">Try The Fan free for 7 days</a></p>
+      <p class="hm-acts">${follow("home-hero")}<a href="method.html#plans" data-tv="plans-home-hero">Try The Fan free for 7 days</a></p>
       <div class="hm-rec">
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
         <p><a href="record.html">The weekly series</a>, June to November 2026</p>
@@ -138,7 +138,7 @@ ${H.band(null, "home")}
   <div class="hm-in"><div>
     <div class="hm-side">
       <h2 id="days-h">Named before the move. Graded after the close.</h2>
-      <p>Every level carries the close that would prove it wrong, and every wrong one stays where you can read it.</p>
+      <p>Every level names its Exit before the move, and every exit stays where you can read it.</p>
     </div>
     <div class="hm-main">
       ${hasDays ? `<h3>The last five days</h3>
@@ -170,7 +170,7 @@ ${H.band(null, "home")}
         <li><h3>The Method</h3><span class="p">€59<span>a month</span></span><p>The simpler line-based view, for traders who do not need the extra context.</p></li>
       </ul>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="method.html#plans" data-tv="plans-home-fan">Start the 7-day free trial</a><a href="method.html">See what it shows</a></p>
-      <p class="hm-fine">7 days free on either plan, VAT included. Card at checkout, nothing charged for 7 days. ${CW}</p>
+      <p class="hm-fine">7 days free on either plan, VAT included. Card at checkout. ${CW}</p>
     </div>
     <figure class="hm-plate">
       <a href="method.html"><img src="fan_gold_30m_2026-11-01-blurred-1200.webp" srcset="fan_gold_30m_2026-11-01-blurred-640.webp 640w, fan_gold_30m_2026-11-01-blurred-1200.webp 1200w" sizes="(min-width: 900px) 620px, calc(100vw - 40px)" width="1200" height="713" loading="lazy" decoding="async" alt="The Fan on gold, 30 minute, a TradingView snapshot of 1 November 2026 with its labels blurred."></a>
@@ -217,7 +217,7 @@ ${H.band(null, "home")}
     <div class="hm-side"><h2 id="choose-h">Start with tomorrow's levels</h2></div>
     <div class="hm-main">
       <p class="hm-big">Three levels at 08:00 CET, and the close that grades each one. Check every grade yourself.</p>
-      <p class="hm-acts">${follow("home-close")}<a href="method.html" data-tv="plans-home-close">Try The Fan free for 7 days</a></p>
+      <p class="hm-acts">${follow("home-close")}<a href="method.html#plans" data-tv="plans-home-close">Try The Fan free for 7 days</a></p>
     </div>
   </div></div>
 </section>

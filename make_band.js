@@ -28,6 +28,7 @@ const PAGES = [
   { file: "check-email.html", where: "check-email" },
   { file: "confirmed.html", where: "confirmed" },
   { file: "unsubscribed.html", where: "unsubscribed" },
+  { file: "tick.html", where: "tick" },
   { file: "method.html", where: "method", current: "fan", band: false }
 ];
 const fail = (f, why) => { throw new Error(`${f}: ${why}. Nothing written.`); };

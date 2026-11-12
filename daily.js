@@ -10,10 +10,11 @@
      in a page    it fetches daily.json and redraws the same blocks, so a day added to daily.json alone shows on
                   every page without a rebuild.
 
-   THE RULE, as the pages print it. Each level is a floor or a ceiling. A floor is wrong if the day closes under
-   it, a ceiling if the day closes above it; a close exactly on the level is not through it. The close is 17:00
-   in New York, 23:00 in Madrid in most weeks, read off the founder's own chart. Nothing is typed as a grade:
-   the word is worked out from the side, the level and the close, here and nowhere else.
+   THE RULE, as the pages print it (note 71): each level is a floor or a ceiling, and each has one Exit, a daily
+   close through it. A floor exits on a close below it, a ceiling on a close above it; a close exactly on the
+   level counts as held. The close is 17:00 in New York, 23:00 in Madrid in most weeks, read off the founder's
+   own chart. Nothing is typed as a grade: the word is worked out from the side, the level and the close, here
+   and nowhere else.
 
    A weekday inside the series with no row in daily.json is drawn as "Not on file", and a day he named nothing is
    written { "date": ..., "none": true } and drawn as "None named". Neither is ever left out, so a day that was
@@ -32,7 +33,7 @@
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var X = "https://x.com/TheSimplifier7";
   var COUNSEL = "This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.";
-  var RULE = "Each level is a floor or a ceiling. A floor is wrong if the day closes under it. A ceiling is wrong if the day closes above it. A close exactly on the level is not through it. The close is 17:00 in New York, which is 23:00 in Madrid in most weeks, read off my own chart.";
+  var RULE = "Each level is a floor or a ceiling, and each has one Exit: a daily close through it. A floor exits on a close below it. A ceiling exits on a close above it. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart.";
 
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
   var isIso = function (s) { return typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(d0(s).getTime()) && d0(s).toISOString().slice(0, 10) === s; };

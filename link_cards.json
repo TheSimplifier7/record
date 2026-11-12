@@ -1,6 +1,6 @@
 {
  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-11-07T01:00:39.483Z",
+ "generated": "2026-11-12T11:41:26.606Z",
  "cards": [
   {
    "name": "misses",
@@ -110,20 +110,6 @@
      "never_reached": 5,
      "open": 0
     }
-   }
-  },
-  {
-   "name": "tick",
-   "page": "tick.html",
-   "file": "link_tick.png",
-   "v": "170543c30c",
-   "image": "https://thesimplifier7.com/link_tick.png?v=170543c30c",
-   "figures": {
-    "rows": 0,
-    "held": 0,
-    "wrong": 0,
-    "never_reached": 0,
-    "open": 0
    }
   },
   {

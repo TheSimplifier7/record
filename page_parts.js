@@ -11,8 +11,6 @@
    in record.json or tools.json are the founder's, copied as they stand on
    the record: the key line, counsel's two lines, "Join me on TradingView",
    "Free. Not investment advice.", "Nothing removed.",
-   (12 November 2026, note 70: The Monday Level closed. The door that read "The Monday Level", "Get Monday's levels free",
-   "One email each Monday evening, with the week's levels and the previous Friday's grades." is the door to the daily levels.)
    "The Fan · what it is, and the terms".
 
    The counter (note 37): the page view, and one event when a TradingView

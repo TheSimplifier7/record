@@ -85,7 +85,6 @@ function recordSeal(R) {
 const earlyTags = () => '<meta name="color-scheme" content="dark">';
 
 /* The band's places, as on the record. */
-/* 12 Nov 2026, notes 69 and 70: the daily series. It read: ["week", "./#week", "This week"], ["record", "record.html", "The record"], ["fan", "method.html", "The Fan"], ["email", "./#join", "Monday email"] */
 const NAV = [
   ["today", "levels.html", "Daily levels"],
   ["record", "record.html", "The record"],
@@ -109,8 +108,7 @@ function strip() {
 </div>`;
 }
 
-/* 12 Nov 2026, note 70: the band in the calm layer. The name set as words, the four places, one quiet button to the trial.
-   It read: the name beside the portrait, a hidden "Monday email" button and a gold "See The Fan". */
+/* 12 Nov 2026, note 70: the band in the calm layer. The name set as words, the four places, one quiet button to the trial. */
 function band(current, where, { fixed = true } = {}) {
   return `<header class="hs-band${fixed ? "" : " hs-static"}">
   <div class="hs-wrap hs-band-in">

@@ -3,105 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<title>The Simplifier · The Tick Book</title>
-<meta name="description" content="Intraday calls in gold, silver and platinum on the five-minute clock, named and posted before the trade, graded on the day's close. The wrong ones stay.">
-<meta name="theme-color" content="#0f1e3a">
+<meta name="robots" content="noindex">
+<title>The tick book is retired · The Simplifier</title>
+<meta name="description" content="The tick book is retired and is no longer published. The daily levels and the weekly record are where the calls are kept.">
+<link rel="canonical" href="https://thesimplifier7.com/tick.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="The Simplifier">
 <meta property="og:url" content="https://thesimplifier7.com/tick.html">
-<meta property="og:title" content="The Simplifier · The Tick Book">
-<meta property="og:description" content="Intraday calls on the five-minute clock, named and posted before the trade, graded on the day's close. The wrong ones stay.">
-<meta property="og:image" content="https://thesimplifier7.com/link_tick.png?v=170543c30c">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:title" content="The tick book is retired · The Simplifier">
+<meta property="og:description" content="The tick book is retired and is no longer published. The daily levels and the weekly record are where the calls are kept.">
+<meta property="og:image" content="https://thesimplifier7.com/card_daily.jpg?v=2780bba215">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Simplifier. Gold, silver and platinum levels, every trading day at 08:00 CET, each one graded at the close.">
 <meta name="twitter:card" content="summary_large_image">
-
-
-<style>
-  :root{
-    --bg:#141210; --panel:#1D1A16; --rule:#4A4238; --rule-soft:#3A342C;
-    --ink:#EFE8DC; --ink-3:#CFC6B8; --ink-5:#B8AE9E; --ink-6:#A69C8C;
-    --gold:#CBA43C; --miss:#D2764A; --pass:#5FA57A; --notest:#9C9282; --pending:#6BA3C7;
-    --serif:'Newsreader',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
-    --pad:44px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink-3);font-family:var(--serif);font-variant-numeric:tabular-nums;line-height:1.6;-webkit-font-smoothing:antialiased;text-wrap:pretty}
-  .wrap{max-width:1080px;margin:0 auto;padding:52px var(--pad) 64px}
-  a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(203,164,60,.35)}
-  a:hover{color:var(--ink)}
-  header{border-bottom:1px solid var(--ink);padding-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:13px}
-  .brand svg{width:34px;height:26px;display:block;overflow:visible}
-  .brand .name{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
-  header .desc{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-5)}
-  .nav{display:flex;gap:22px;flex-wrap:wrap;padding:12px 0 0;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
-  .nav a{color:var(--ink-5);border-bottom:1px solid transparent;padding-bottom:2px}
-  .nav a:hover{color:var(--ink);border-bottom-color:var(--gold)}
-  .nav a.here{color:var(--ink);border-bottom-color:var(--gold)}
-  h1{font-size:44px;font-weight:500;line-height:1.05;color:var(--ink);margin:44px 0 6px;letter-spacing:-.01em}
-  .lede{font-size:21px;color:var(--ink);margin:0 0 26px;max-width:44ch}
-  p.body{font-size:17px;margin:0 0 14px;max-width:66ch}
-  .k{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:34px 0 12px}
-  .count{display:flex;gap:26px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--rule-soft);padding:18px 20px;margin:22px 0}
-  .count div{font-family:var(--mono)} .count .n{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
-  .count .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-5)}
-  .count .pass .n{color:var(--pass)} .count .miss .n{color:var(--miss)} .count .open .n{color:var(--pending)}
-  .rule-box{font-family:var(--mono);font-size:13.5px;line-height:1.75;color:var(--ink-5);padding-left:14px;border-left:3px solid var(--rule);margin:22px 0;max-width:80ch}
-  .tbl{overflow-x:auto;margin:10px 0 0}
-  table{border-collapse:collapse;width:100%;min-width:860px;font-size:15px}
-  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-6);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-weight:500;white-space:nowrap}
-  td{padding:14px 12px 14px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
-  td.d{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
-  td.d b{display:block;color:var(--ink);font-weight:600}
-  td.m{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
-  td.m i{display:block;font-style:normal;font-weight:500;color:var(--ink-6);letter-spacing:.08em;margin-top:3px}
-  td.lv{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--gold);white-space:nowrap}
-  td.lv .sealed{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-6)}
-  td.lv .hash{display:block;font-size:11px;font-weight:400;letter-spacing:0;color:var(--rule);word-break:break-all;white-space:normal;max-width:20ch;margin-top:3px}
-  td.kl{font-family:var(--mono);font-size:12.5px;color:var(--ink-5);white-space:nowrap}
-  td.kl b{color:var(--miss);font-weight:600}
-  td.res .seal-str{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-6);word-break:break-all;white-space:normal;margin-top:6px}
-  td.res{font-size:14.5px;color:var(--ink-3);max-width:52ch;min-width:28ch}
-  td.res .late{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--miss);margin-top:6px}
-  td.res .prov{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-6);margin-top:6px}
-  .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1.5px solid currentColor;white-space:nowrap}
-  .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
-  .g.pending{color:var(--pending)} .g.pass{color:var(--pass)} .g.miss{color:var(--miss)} .g.notest{color:var(--notest)}
-  .empty{font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink-5);padding:22px 20px;border:1px dashed var(--rule);margin-top:14px;max-width:80ch}
-  .fine{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-6);margin-top:12px}
-  [hidden]{display:none !important}
-  footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .law{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
-  .handle{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-6)}
-  @media (max-width:640px){ :root{--pad:22px} h1{font-size:34px} }
-    @media(max-width:760px){
-    .nav{position:relative;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-top:4px;font-size:11px;letter-spacing:.13em}
-    .nav::-webkit-scrollbar{display:none}
-    .nav a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;white-space:nowrap;border-bottom:0}
-    .nav a:first-child{padding-left:0}
-    .nav a:last-child{padding-right:18px}
-    .nav a.here{text-decoration-line:underline;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;text-underline-offset:7px}
-    .nav.nav-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
-    .nav.nav-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}
-    .nav.nav-l.nav-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 44px),transparent)}
-  }
-    @media(max-width:760px){
-    .tbl{overflow-x:visible}
-    table#book{min-width:0}
-    table#book thead{display:none}
-    table#book tr{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule)}
-    table#book td{padding:0;border:0}
-    table#book td.d{grid-column:1/3;grid-row:1}
-    table#book td:last-child{grid-column:3;grid-row:1;justify-self:end}
-    table#book td.m{grid-column:1;grid-row:2}
-    table#book td.lv{grid-column:2/4;grid-row:2}
-    table#book td.kl{grid-column:1/4;grid-row:3;white-space:normal}
-    table#book td.res{grid-column:1/4;grid-row:4;min-width:0;max-width:none}
-    td.res .prov,td.res .late{font-size:12px}
-  }
-</style>
-<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<meta name="house-head" content="start">
+<meta name="twitter:site" content="@TheSimplifier7">
+<meta name="twitter:title" content="The tick book is retired · The Simplifier">
+<meta name="twitter:description" content="The tick book is retired and is no longer published. The daily levels and the weekly record are where the calls are kept.">
+<meta name="twitter:image" content="https://thesimplifier7.com/card_daily.jpg?v=2780bba215">
+<meta name="theme-color" content="#0B1A2E">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style id="fonts">@font-face{font-family:"Barlow Fallback";font-weight:100 500;src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Helvetica"),local("Roboto");size-adjust:96%;ascent-override:103%;descent-override:20.6%;line-gap-override:0%}
@@ -132,43 +56,12 @@
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
-<style id="hs-stone">
-:root{--bg:#ffffff;--panel:#f5f7fa;--rule:#c9d0da;--rule-soft:#e1e5eb;--ink:#0e1116;--ink-2:#2e3644;--ink-3:#2e3644;--ink-5:#4e5869;--ink-6:#5b6576;
-  --gold:#7a5600;--miss:#b42323;--pass:#7a5600;--notest:#5f6979;--pending:#2b5ba8;--hs-link:#2b5ba8;--hs-link-rule:rgba(43,91,168,.35);--hs-here:rgba(200,150,46,.10);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1A2E;--panel:#11233C;--rule:#33415a;--rule-soft:#222e42;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#cdd5e1;--ink-5:#a3aec0;--ink-6:#8d98ab;
-  --gold:#f2c45a;--miss:#ff8a80;--pass:#f2c45a;--notest:#a3aec0;--pending:#8db0f5;--hs-link:#8db0f5;--hs-link-rule:rgba(141,176,245,.35);--hs-here:rgba(242,196,90,.08);color-scheme:dark}}
-:root[data-theme="light"]{--bg:#ffffff;--panel:#f5f7fa;--rule:#c9d0da;--rule-soft:#e1e5eb;--ink:#0e1116;--ink-2:#2e3644;--ink-3:#2e3644;--ink-5:#4e5869;--ink-6:#5b6576;
-  --gold:#7a5600;--miss:#b42323;--pass:#7a5600;--notest:#5f6979;--pending:#2b5ba8;--hs-link:#2b5ba8;--hs-link-rule:rgba(43,91,168,.35);--hs-here:rgba(200,150,46,.10);color-scheme:light}
-:root[data-theme="dark"]{--bg:#0B1A2E;--panel:#11233C;--rule:#33415a;--rule-soft:#222e42;--ink:#eef2f8;--ink-2:#cdd5e1;--ink-3:#cdd5e1;--ink-5:#a3aec0;--ink-6:#8d98ab;
-  --gold:#f2c45a;--miss:#ff8a80;--pass:#f2c45a;--notest:#a3aec0;--pending:#8db0f5;--hs-link:#8db0f5;--hs-link-rule:rgba(141,176,245,.35);--hs-here:rgba(242,196,90,.08);color-scheme:dark}
-body{background:var(--bg)}
-a{color:var(--hs-link);border-bottom-color:var(--hs-link-rule)}
-a:hover{color:var(--ink)}
-.facts{border-top:0;gap:12px}
-.facts>div{background:var(--panel);border:1px solid var(--rule-soft);border-radius:12px;padding:14px 16px}
-.facts>div>div{padding:0;border:0}
-.kill,.wrap .tally{border-radius:12px}
-.wrap .g,.wrap .grade{border-radius:999px}
-blockquote{border-left-color:var(--gold)}
-ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
-.hs-hero .status{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:20px 0 0}
-.hs-hero .g{display:inline-flex;align-items:center;gap:8px;font-family:var(--hs-fig);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:6px 11px;border:1.5px solid currentColor;border-radius:999px}
-.hs-hero .g i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
-.hs-hero .g.pending{color:#8db0f5}.hs-hero .g.pass{color:#f2c45a}.hs-hero .g.miss{color:#ff8a80}.hs-hero .g.notest{color:#c9d3e6}
-.hs-hero .status .when{font-family:var(--hs-fig);font-size:13px;color:#c9d3e6}
-</style>
-<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<link rel="stylesheet" href="house.css?v=45af705a4d">
-<link rel="stylesheet" href="assay-site.css?v=8d8d25bbe0">
-<link rel="stylesheet" href="floor.css?v=a35b2ffe79">
-<link rel="stylesheet" href="sharp.css?v=9ef17539af">
-<link rel="stylesheet" href="brand.css?v=0f3397f108">
-<link rel="canonical" href="https://thesimplifier7.com/tick.html">
-<meta name="house-head" content="end">
+<link rel="stylesheet" href="brand.css?v=c6d12f367e">
+<style>.rt{box-sizing:border-box;max-width:var(--c-frame);margin:0 auto;padding:96px var(--c-gutter) 0}.rt h1{margin:0;max-width:14em;font:500 clamp(2.25rem,4.2vw,3.5rem)/1.06 var(--c-ui);color:var(--c-ink)}.rt p{margin:24px 0 0;max-width:36rem;font-size:18px;line-height:1.6}.rt a{color:var(--c-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--c-rule-2)}@media (max-width:760px){.rt{padding-top:48px}}</style>
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
-<body>
+<body class="cp hs-has-bot">
+<a class="skip" href="#main">Skip to the page</a>
 <header class="hs-band">
   <div class="hs-wrap hs-band-in">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
@@ -183,122 +76,10 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
     </div>
   </div>
 </header>
-<div class="hs-hero"><div class="hs-hero-in" style="--hs-col:1080px;--hs-pad:var(--pad)">
-  <p class="hs-eyebrow"><a href="record.html">The record</a><span>The tick book</span></p>
-  <h1 class="hs-h1">The tick book</h1>
-<p class="hs-lede">Intraday calls on the five-minute chart. Posted before the trade, graded on that day's close. The wrong ones stay.</p>
-  
-  
-</div></div>
-<div class="wrap">
-
-<p class="body"><a href="record.html">The record</a> grades one level a week on Friday's close. This page grades my shorter-term calls the same way: the metal, the direction, the level and what would prove it wrong, written and posted before the trade, and graded on the 23:00 Madrid close of that day. Each row has two timestamps I cannot edit: the post that announced it and the public commit that wrote it. No position size and no profit or loss, ever: a row is a claim about price and a close, nothing else. None of this counts in the weekly results.</p>
-
-  <div class="count" id="count" hidden>
-    <div class="pass"><div class="n" id="c-pass">·</div><div class="t">held</div></div>
-    <div class="miss"><div class="n" id="c-miss">·</div><div class="t">wrong, kept</div></div>
-    <div><div class="n" id="c-notest">·</div><div class="t">never reached</div></div>
-    <div class="open"><div class="n" id="c-open">·</div>
-<div class="t">open, not yet graded</div></div>
-    <div><div class="n" id="c-sealed">·</div><div class="t">sealed, not opened</div></div>
-    <div><div class="n" id="c-all">·</div><div class="t">rows in the book</div></div>
-  </div>
-
-  <p class="body">In plain words: a call is right if price reached the level, never closed a five-minute bar past the point that proves it wrong, and finished the day on the right side. If price never reached the level, it counts for neither.</p>
-  <div class="rule-box"><b style="color:var(--ink)">The one rule.</b> Held if price traded to the level, no five-minute close printed through the kill before the grading close, and the grading close sits on the row's side of the level. Wrong if price traded to the level and either a five-minute close printed through the kill at any time before the grading close, or the grading close is not on the row's side. Never reached if price never traded to the level. The grading close is the last five-minute close before 23:00 Madrid on the day the row names, taken from the exported bars kept beside this page. A row still open 48 hours after the Friday close of its week is graded late and says so on the row.</div>
-
-  <div class="rule-box"><b style="color:var(--ink)">The seal.</b> A row is named by posting a SHA-256 seal of the call at the minute it is made: the metal, the side, the level, the kill, the grading day and a random nonce, hashed. The seal proves the call existed at that minute and that no part of it moved afterwards, and it reveals nothing while the trade is live. Every seal opens after the Friday close of its week, all of them together, with the string that produced it so anyone can recompute the hash. <b style="color:var(--ink)">Every seal published is opened, and a seal that is not opened counts as wrong.</b> That rule is what makes the count worth reading without taking this desk's word for anything.</div>
-
-  <div class="tbl" id="tbl" hidden>
-    <table id="book">
-      <thead><tr><th>Named</th><th>Metal</th><th>Level</th>
-<th>Proved wrong if</th><th>What price did</th><th>Grade</th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </div>
-  <p class="empty" id="empty" hidden></p>
-  <p class="fine" id="heldback" hidden></p>
-
-  <div class="k">How a row gets here</div>
-  <p class="body">At the setup, before any trade, the call is sealed on the phone: the metal, the side, the level and the kill are hashed, and the seal is posted on X with the metal and the minute. The post's timestamp is the naming, and it is the one this desk cannot move. Nothing tradeable is in the post. After the Friday close every seal of the week opens at once, written to <a href="ticks.js">ticks.js</a> with the string that produced each hash, so anyone can recompute it. A seal that is never opened counts as wrong, and every seal posted gets a row whatever price did afterwards, so the feed and the book can be laid side by side. The five-minute bars of the week are exported from the chart for each metal sealed and saved beside this page one file a day, each row is graded from its own day's file by a script that applies the rule and nothing else, and a second script refuses to let any graded row ship whose bars are not on file or disagree with its grade. Every graded row links its bars. Level, kill, side and the minute named are never edited after the first push; if one was wrong it says so in the result and stays.</p>
-
-  <footer>
-    <span class="law">Named before · Graded after · Nothing deleted</span>
-    <span class="handle">@TheSimplifier7</span>
-  </footer>
-</div>
-
-<script src="ticks.js"></script>
-<script>
-(function(){
-  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
-  const fmtDay = iso => { const [y,m,d] = iso.split("-"); return `${+d} ${MONTHS[+m-1]} ${y}`; };
-  const fmtNamed = iso => {
-    const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})([+-]\d{2}:\d{2}|Z)?$/.exec(iso);
-    if (!m) return "";
-    return `${+m[3]} ${MONTHS[+m[2]-1]} ${m[1]}|${m[4]}:${m[5]}${m[6] && m[6] !== "Z" ? " UTC" + m[6].replace(":00","") : m[6] ? " UTC" : ""}`;
-  };
-  const GL = { pending:["Open","pending"], pass:["Held","pass"], miss:["Wrong","miss"], notest:["Never reached","notest"] };
-  const need = ["named","metal","side","level","kill","grades","grade"];
-  const all = (typeof TICKS !== "undefined" && Array.isArray(TICKS)) ? TICKS : [];
-  const ok = all.filter(t => t && need.every(k => t[k] !== undefined && t[k] !== "") && GL[t.grade] && /^(long|short)$/.test(t.side) && /^(Gold|Silver|Platinum)$/.test(t.metal) && /^\d{4}-\d{2}-\d{2}$/.test(t.grades) && fmtNamed(t.named));
-  const held = all.length - ok.length;
-  const empty = document.getElementById("empty"), tbl = document.getElementById("tbl"), hb = document.getElementById("heldback");
-  if (held) { hb.textContent = held + (held === 1 ? " row is" : " rows are") + " held back for a missing field and not drawn."; hb.hidden = false; }
-  if (!ok.length) {
-    empty.textContent = "No rows yet. From 24 September 2026 every seal is posted on X the minute it is made and opens here after the Friday close of its week. Until the first week with a seal, this page is the rule and nothing else.";
-    empty.hidden = false;
-    return;
-  }
-  const today = new Date();
-  const rows = ok.slice().sort((a, b) => b.named.localeCompare(a.named));
-  const isOpen = t => t.revealed === true || !t.seal;
-  document.getElementById("rows").innerHTML = rows.map(t => {
-    const g = GL[t.grade];
-    const [dn, tm] = fmtNamed(t.named).split("|");
-    const friOf = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + ((5 - x.getUTCDay() + 7) % 7)); return x.toISOString().slice(0, 10); };
-    const late = t.grade === "pending" && (new Date(friOf(t.grades) + "T23:00:00+02:00").getTime() + 48 * 3600000) < today.getTime();
-    const open = isOpen(t);
-    const lv = open
-      ? esc(t.level)
-      : `<span class="sealed">Sealed</span><span class="hash">${esc(String(t.seal).slice(0, 12))}</span>`;
-    const kl = open
-      ? `5m close <b>${t.side === "long" ? "under" : "over"} ${esc(t.kill)}</b><br>grades on the ${esc(fmtDay(t.grades))} close`
-      : `opens with the week<br>grades on the ${esc(fmtDay(t.grades))} close`;
-    const res = open
-      ? `${t.result ? esc(t.result) : "Not yet graded."}`
-      : (t.grade === "pending" ? "Sealed and running." : "Graded on the close. The numbers open with the week.");
-    const sealStr = open && t.seal && t.nonce
-      ? `<span class="seal-str">Seal string: ${esc(t.metal)}|${esc(t.side)}|${esc(t.level)}|${esc(t.kill)}|${esc(t.grades)}|${esc(t.nonce)}<br>SHA-256: ${esc(t.seal)}</span>`
-      : "";
-    return `<tr>
-      <td class="d"><b>${esc(dn)}</b>${esc(tm)}${t.post ? `<br><a href="${esc(t.post)}" rel="nofollow noopener">the post</a>` : ""}</td>
-      <td class="m">${esc(t.metal)}${open ? `<i>${esc(t.side)}</i>` : ""}</td>
-      <td class="lv">${lv}</td>
-      <td class="kl">${kl}</td>
-      <td class="res">${res}${late ? `<span class="late">Graded late</span>` : ""}${sealStr}<span class="prov">Sealed before the trade; the commit that wrote it is in the <a href="https://github.com/TheSimplifier7/record/commits/main/ticks.js" rel="nofollow noopener">edit history</a>.${open && t.grade !== "pending" ? ` <a href="tick_${esc(t.grades)}_${esc(String(t.metal).toLowerCase())}_5m.csv">The bars that graded it.</a>` : ""}</span></td>
-      <td><span class="g ${g[1]}"><i></i>${g[0]}</span></td>
-    </tr>`;
-  }).join("");
-  tbl.hidden = false;
-  const n = k => ok.filter(t => t.grade === k).length;
-  document.getElementById("c-pass").textContent = n("pass");
-  document.getElementById("c-miss").textContent = n("miss");
-  document.getElementById("c-notest").textContent = n("notest");
-  document.getElementById("c-open").textContent = n("pending");
-  document.getElementById("c-sealed").textContent = ok.filter(t => !isOpen(t)).length;
-  document.getElementById("c-all").textContent = ok.length;
-  document.getElementById("count").hidden = false;
-})();
-</script>
-<script>
-(function(){try{var n=document.querySelector("nav.nav");if(!n)return;var h=n.querySelector(".here");
-var e=function(){n.classList.toggle("nav-l",n.scrollLeft>4);n.classList.toggle("nav-r",n.scrollLeft+n.clientWidth<n.scrollWidth-4);};
-var c=function(){if(h&&n.scrollWidth>n.clientWidth+4)n.scrollLeft=Math.max(0,h.offsetLeft-(n.clientWidth-h.offsetWidth)/2);e();};
-n.addEventListener("scroll",e,{passive:true});window.addEventListener("resize",e);c();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c);}catch(x){}})();
-</script>
+<main id="main" class="rt" tabindex="-1">
+  <h1>The tick book is retired</h1>
+  <p>It is no longer published. The calls are kept in two places: <a href="levels.html">the daily levels</a>, named on every trading day at 08:00 CET, and <a href="record.html">the weekly record</a>, June to November 2026.</p>
+</main>
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>

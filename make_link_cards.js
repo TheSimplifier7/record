@@ -90,14 +90,11 @@ function figuresFor(R) {
     wrong: T.filter(x => x.grade === "miss").length, left_off: (R.targets_left_off || []).length,
     next: next ? { house: house(next.source), level: next.level, metal: next.metal || "Gold", window_text: next.windowText, grades_on: gradingFriday(next.window), page: next.page } : null
   };
-  const tb = R.tick_book || {}, tt = tb.tally || {};
-  const tick = { rows: (tb.rows || []).length, held: tt.held || 0, wrong: tt.wrong || 0, never_reached: tt.never_reached || 0, open: tt.open || 0 };
   return {
     misses: { tally, latest_close: lastOn, latest },
     targets,
     method: { chart: METHOD_CHART },
-    year: { tally }, guest: { tally }, advisers: { tally }, embed: { tally },
-    tick
+    year: { tally }, guest: { tally }, advisers: { tally }, embed: { tally }
   };
 }
 
@@ -227,17 +224,6 @@ const CARDS = [
 <h1>A method, taught. A ledger, graded.</h1>
 <div class="sub">Nothing managed, nothing advised, nothing sold that you would have to disclose.</div>
 <div class="body">${tallyFigs(F.advisers.tally)}</div>` },
-  { name: "tick", page: "tick.html", label: "The record · the tick book", html: (F) => {
-      const f = F.tick;
-      return `<div class="k">The tick book</div>
-<h1>Intraday calls on the five-minute clock.</h1>
-<div class="sub">Named and posted before the trade, graded on the 23:00 Madrid close of the day it names. The wrong ones stay. None of it enters the weekly tally.</div>
-<div class="body">${f.rows ? `<div class="figs">
-  <div class="fig"><b class="p">${f.held}</b><span>held</span></div>
-  <div class="fig"><b class="m">${f.wrong}</b><span>wrong, kept</span></div>
-  <div class="fig"><b class="n">${f.never_reached}</b><span>never reached</span></div>
-  ${f.open ? `<div class="fig"><b class="o">${f.open}</b><span>open</span></div>` : ""}
-</div>` : `<div class="line" style="font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:${C.ink5}">No row in the book yet</div>`}</div>`; } },
   { name: "embed", page: "embed.html", label: "The record · for publishers", html: (F) => `<div class="k">Put the record on your page</div>
 <h1>One line of code.</h1>
 <div class="sub">The live tally and the last graded row, on your newsletter, your blog, your show notes. When a call is wrong, your readers see it.</div>

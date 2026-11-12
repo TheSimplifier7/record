@@ -9,8 +9,8 @@
      1. daily.json can be drawn: every day a trading day on or after the start, a level only for gold, silver or
         platinum, each with a side and a figure, nothing else on a row (no odds, no target, no free text).
      2. No day on file is later than today in Madrid, and a close is on file only for a day that has ended there.
-     3. The grade of every row is the one arithmetic gives: a floor is wrong under its level, a ceiling above it,
-        a close on the level is not through it.
+     3. The grade of every row is the one arithmetic gives: a floor exits on a close below its level, a ceiling on
+        a close above it, and a close on the level counts as held (note 71).
      4. The count the pages print is the count of those rows.
      5. levels.html and index.html are the ones this daily.json draws: each is written again in memory and
         compared, so a page left behind after an edit to daily.json fails here.
@@ -59,7 +59,7 @@ if (data) {
     /* 5: write each page again in a copy and compare */
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "daily-"));
     try {
-      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "assay-core.js", "plate.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.png"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
+      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "assay-core.js", "plate.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.jpg"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
       for (const f of fs.readdirSync(HERE).filter(f => /^week-\d{4}-\d{2}-\d{2}\.html$/.test(f))) fs.writeFileSync(path.join(tmp, f), "");
       for (const [script, page] of [["make_daily.js", "levels.html"], ["make_home.js", "index.html"]]) {
         let out = null;
@@ -75,7 +75,7 @@ for (const page of ["levels.html", "index.html"]) {
   let s = ""; try { s = rd(page); } catch (e) {}
   const text = s.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, "");
   check(text.includes(C1 + " " + C2), page + " carries counsel's two lines word for word (note 51)");
-  check(/It is not a trade result\./.test(text), page + " says that held is not a trade result");
+  check(/it is not a trade result\./i.test(text), page + " says that held is not a trade result");
   check(!/monday/i.test(s), page + " does not say Monday");
   check(!new RegExp(["close", "earns", "it"].join(" "), "i").test(s), page + " does not say how The Fan's line is worked out");
   check(!/—|–|<!--/.test(s) && !/![\s"<]/.test(text), page + " carries no em dash, exclamation mark or HTML comment");

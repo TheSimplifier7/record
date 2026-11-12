@@ -5,7 +5,7 @@
    The seal and the count are worked out from record.json; nothing is typed. The card carries no price, no level and no
    date, so it does not go stale: it changes only if a row on the record changes.
 
-     node make_daily_card.js          draws card_daily.png (1200 x 630) with Playwright; the page it is drawn from is removed after
+     node make_daily_card.js          draws card_daily.jpg (1200 x 630) with Playwright; the page it is drawn from is removed after
      node make_daily_card.js --keep   keeps that page, card_daily.html, to look at
 
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting. */
@@ -65,13 +65,14 @@ fs.writeFileSync(path.join(HERE, "card_daily.html"), html);
 console.log("card_daily.html written: the record's seal " + seal.hash.slice(0, 6).toUpperCase() + ", " + rows.length + " rows, " + t.held + " held, " + t.wrong + " wrong.");
 
 (async () => {
-  let chromium; try { ({ chromium } = require("playwright")); } catch (e) { console.log("Playwright is not installed here: open card_daily.html at 1200 by 630 and save it as card_daily.png."); return; }
+  let chromium; try { ({ chromium } = require("playwright")); } catch (e) { console.log("Playwright is not installed here: open card_daily.html at 1200 by 630 and save it as card_daily.jpg."); return; }
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: W, height: Hh }, deviceScaleFactor: 1 });
   await p.goto("file://" + path.join(HERE, "card_daily.html"), { waitUntil: "load" });
   await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(400);
-  await p.screenshot({ path: path.join(HERE, "card_daily.png"), clip: { x: 0, y: 0, width: W, height: Hh } });   /* a full-colour PNG, as the week cards are */
+  /* 12 Nov 2026, note 71: a JPG at about 120 KB, where a 729 KB PNG stood, so the card loads fast under a link */
+  await p.screenshot({ path: path.join(HERE, "card_daily.jpg"), type: "jpeg", quality: +(process.env.CARD_QUALITY || 80), clip: { x: 0, y: 0, width: W, height: Hh } });
   await b.close();
   if (!process.argv.includes("--keep")) fs.unlinkSync(path.join(HERE, "card_daily.html"));
-  console.log("card_daily.png drawn at " + W + " x " + Hh + ", " + Math.round(fs.statSync(path.join(HERE, "card_daily.png")).size / 1024) + " KB.");
+  console.log("card_daily.jpg drawn at " + W + " x " + Hh + ", " + Math.round(fs.statSync(path.join(HERE, "card_daily.jpg")).size / 1024) + " KB.");
 })();

@@ -58,7 +58,7 @@
 <meta property="og:url" content="https://thesimplifier7.com/record.html">
 <meta property="og:title" content="Gold, silver and platinum levels, graded · The Simplifier">
 <meta property="og:description" content="Every level I have named for gold, silver and platinum, and the close that graded it. The wrong ones stay up. Nothing is ever deleted.">
-<meta property="og:image" content="https://thesimplifier7.com/card_daily.png?v=2b25397b08">
+<meta property="og:image" content="https://thesimplifier7.com/card_daily.jpg?v=2780bba215">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -276,7 +276,6 @@
   .sl{display:flex;justify-content:space-between;gap:10px;font-size:.6875rem;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
   .sl b{font-weight:700} .sl b.w{color:var(--wrong)} .sl b.h{color:var(--held)}
   .tw-rule{font-size:.75rem;line-height:1.45;color:var(--ink-3);padding:8px 0 4px}
-  .tw-door{display:inline-flex;align-items:center;min-height:44px;font-size:.875rem;font-weight:700;color:var(--open);text-decoration:none}
 
     .table-sec{margin-top:18px}
   .season-wrap{overflow-x:auto}
@@ -700,16 +699,6 @@
   .door .fine,.door .cadence{font-size:.78rem;color:var(--ink-3);line-height:1.55}
   .door .cadence a{color:var(--open)}
   .door[data-ready="0"] .btn{opacity:.55;pointer-events:none}
-  .signup{display:flex;gap:8px;flex-wrap:wrap}
-  .signup input{min-width:0;flex:1 1 200px;min-height:44px;padding:0 12px;border:1px solid var(--rule-2);border-radius:4px;background:var(--bg);color:var(--ink);font:inherit;font-size:1rem}
-  .signup .btn{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
-  .signup .btn:hover{background:var(--btn-hover);border-color:var(--btn-hover);color:var(--btn-ink)}
-  form.signup label.consent{flex:1 1 100%;display:flex;gap:8px;align-items:flex-start;font-size:.8125rem;line-height:1.45;color:var(--ink-3);cursor:pointer}
-  .wb-mail form.signup label.consent{color:var(--r3-ink3,#a3aec0)}
-  form.signup label.consent a{color:inherit}
-  form.signup label.consent input[type="checkbox"]{flex:none;width:18px;height:18px;min-width:0;min-height:0;margin:1px 0 0;padding:0;border-radius:3px;accent-color:var(--btn)}
-  form.signup .trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-  #door-email .signup .btn{color:var(--ink)}
   .confirmed{font-size:.9375rem;font-weight:700;color:var(--held)}
   .card-why b{font-weight:600}
 
@@ -973,18 +962,6 @@
   .hd-path{stroke-dasharray:3000;stroke-dashoffset:0}
   .hd-stage.draw .hd-path{animation:hd-draw 2.2s cubic-bezier(.2,.7,.2,1) .25s both}
 
-    dialog.hd-film{padding:0;border:0;background:transparent;color:#eef2f8;width:min(1120px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 24px);overflow:visible}
-  dialog.hd-film::backdrop{background:rgba(3,6,14,.84);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-  .hd-film-in{display:grid;gap:14px}
-  .hd-film-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .hd-film-top h2{font-family:var(--f-cond);font-size:1.5rem;font-weight:700;letter-spacing:.02em;color:#fff}
-  .hd-film-top h2 span{color:#a3aec0;font-weight:600}
-  .hd-x{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:0;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
-  .hd-x:hover{background:rgba(255,255,255,.14)}
-  .hd-film-stage{min-height:120px;border-radius:14px;background:#060c18}
-  .hd-film-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
-  .hd-film-foot .hd-ghost{color:#fff}
-  .hd-film-foot .hd-counsel{flex:1 1 280px;color:#a3aec0;font-size:.75rem}
 
     .door{border-radius:16px;padding:22px}
   .door:first-child{border-top:1px solid var(--rule)}
@@ -1036,7 +1013,6 @@
     .hd-legend{display:none}
     .hd-side{display:flex;align-items:stretch;padding:16px 14px}
     .hd-pin{width:34px;height:34px;margin:-17px 0 0 -17px}
-    .hd-film-top h2{font-size:1.25rem}
   }
   @media (prefers-reduced-motion:reduce){
     .hd-dot,.hd-halo{animation:none}
@@ -1044,15 +1020,15 @@
     .hd-stage:not(.in) .hd-win{transform:none;opacity:1}
     .hd-stage.draw .hd-path{animation:none}
   }
-  @media print{.hd-strip,.hd-stage,dialog.hd-film{display:none}}
+  @media print{.hd-strip,.hd-stage{display:none}}
 </style>
 <link rel="stylesheet" href="scene.css?v=3ee90693cb">
 <link rel="stylesheet" href="lamp.css?v=edc443a822">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="member.css?v=484bfd3047">
-<link rel="stylesheet" href="board.css?v=60a2c79ebe">
-<link rel="stylesheet" href="brand.css?v=0f3397f108">
+<link rel="stylesheet" href="board.css?v=99e82426d0">
+<link rel="stylesheet" href="brand.css?v=c6d12f367e">
 <style id="preface-css">
 #preface{max-width:48rem;margin:0 auto;padding:28px clamp(16px,4vw,40px) 12px}
 #preface h2{font-family:var(--f-cond),sans-serif;font-weight:700;font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.15;margin:1.3rem 0 .45rem}
@@ -1130,7 +1106,7 @@
   <h2>Every wrong call</h2>
   <p>These calls did not pass their published test. They remain beside the ones that held. <a href="misses.html">Read the wrong calls in full</a>.</p>
   <h2>Longer-running calls and other records</h2>
-  <p>These use different time periods and tests. They are shown separately and are not added to the weekly count. <a href="tick.html">Technical daily record</a>. <a href="targets.html">Other people's targets</a>.</p>
+  <p>These use different time periods and tests. They are shown separately and are not added to the weekly count. <a href="targets.html">Other people's targets</a>.</p>
   <h2 id="rules">Rules, corrections and edit history</h2>
   <p>The record also keeps the way it was graded and the changes it has disclosed. Read the original notes and public edit history below.</p>
   <h2>The standing $1,000 integrity offer</h2>
@@ -1354,7 +1330,7 @@
     </div>
   </section>
 
-  <div class="wrap"><p class="out-links"><a href="misses.html">The wrong ones, in full</a><a href="tick.html">The tick book, the five-minute clock, graded</a></p></div>
+  <div class="wrap"><p class="out-links"><a href="misses.html">The wrong ones, in full</a></p></div>
 </section>
 
 <section class="view" id="v-banks" data-view="banks" aria-labelledby="crowd-h">
@@ -1454,14 +1430,14 @@
     <h3>The daily levels</h3>
     <p>One level each for gold, silver and platinum on every trading day, posted on X at 08:00 CET and graded on that day's close. The wrong ones stay up.</p>
     <p><a class="btn quiet" href="levels.html">See today's levels</a></p>
-    <p class="fine">No signals. No forecast without its kill.<br>The same call that goes on X.</p>
+    <p class="fine">No signals. Every level names its Exit.<br>The same call that goes on X.</p>
   </div>
   <div class="door" id="door-method" data-ready="0">
     <div class="eyebrow">7 days free</div>
     <h3>The Fan and The Method</h3>
     <p>The indicators I read these levels from, on your own TradingView chart. They draw structure. They do not tell you what to do. One TradingView username per licence.</p>
     <ul class="plans-list">
-      <li><b>The Method</b><span class="pr">€59 a month</span><span class="d">The line in the sand, the trip and the target, and the odds on every line.</span></li>
+      <li><b>The Method</b><span class="pr">€59 a month</span><span class="d">The simpler line-based view, for traders who do not need the extra context.</span></li>
       <li><b>The Fan</b><span class="pr">€149.99 a month</span><span class="d">Everything in The Method, with the 2 hour structure on your 10 minute chart.</span></li>
     </ul>
     <p><a class="btn" href="method.html#plans" data-tv="plans-door">Start your 7-day trial</a></p>
@@ -1501,7 +1477,6 @@
       <span>The record on your page · <a href="embed.html">one script tag</a></span>
       <span>The wrong ones · <a href="misses.html">in full</a></span>
       <span>The banks' targets · <a href="targets.html">graded on the close</a></span>
-      <span>The tick book · <a href="tick.html">the five-minute clock, graded</a></span>
       <span>The Fan · <a href="method.html">what it is, and the terms</a></span>
       <span>The rules · <a href="#rules">how every row is graded</a></span>
       <span>The small print · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span>
@@ -1518,20 +1493,6 @@
 
 <dialog class="sheet" id="row" aria-labelledby="row-lv"><div class="sheet-in" id="row-in"></div></dialog>
 
-<dialog class="hd-film" id="hd-film" aria-labelledby="hd-film-h">
-  <div class="hd-film-in">
-    <div class="hd-film-top">
-      <h2 id="hd-film-h">The Fan <span>· the inner workings</span></h2>
-      <button class="hd-x" id="hd-film-x" type="button" aria-label="Close the film"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-    </div>
-    <div class="hd-film-stage" id="hd-film-stage"></div>
-    <div class="hd-film-foot">
-      <a class="hd-btn hd-ghost" href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" data-tv="film">Join me on TradingView</a>
-      <a class="hd-btn hd-ghost" href="method.html">What it is, and the terms</a>
-      <p class="hd-counsel">This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p>
-    </div>
-  </div>
-</dialog>
 
 <script>
 
@@ -1602,10 +1563,7 @@ const COUNTER = "https://thesimplifier.goatcounter.com/count";
 const GUEST_FORM = "https://x.com/intent/post?text=%40TheSimplifier7%20";
 
 const DOORS = {
-  // 12 Nov 2026, note 70: The Monday Level is closed and takes no address. Empty keeps the email doors shut. It read the list's Apps Script address ending /exec.
-  list:  "",
-  tally: "https://tally.so/r/EkVxJA",
-  sample: ""
+  tally: "https://tally.so/r/EkVxJA"
 };
 
 
@@ -2062,6 +2020,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"71", kind:"standard", title:"The film and the tick book are taken off the site, and the daily rule is worded by its Exit, 12 November 2026.",
+    body:"By the founder's rulings of 12 November 2026. None of it touches a row, a line, a close, a grade or a date on this page. THE FILM. Note 70 took the film's buttons off this page and left its file beside the record. The file, movement.js, is now removed as well, with the frame that showed it. THE TICK BOOK. The tick book, the second ledger note 25 opened on tick.html, is retired. It held one row, named on 10 September 2026 and never graded. Its page now says it is retired, and its files are taken off the site: ticks.js, seal.html, seal_tick.js, grade_tick.js, grade_week.js and verify_ticks.js. It was never part of this page's count, and record.json no longer carries it. What was published stays in this repository's public history and in the Internet Archive's copies; nothing there is altered. THE RULE'S WORDS. The daily rule is printed in these words: each level is a floor or a ceiling, and each has one Exit, a daily close through it. A floor exits on a close below it, a ceiling on a close above it, and a close exactly on the level counts as held. The rule is the one note 69 set; only its words change, and note 69 stands as written. The door to the daily levels on this page now reads: Every level names its Exit. It read: No forecast without its kill (note 40). The grades stay Held and Wrong. THE REST. The card under a link is a lighter file, card_daily.jpg. The door pages under tv and the four old addresses that forward a reader are counted before they forward. The trial links on the front page go straight to the plans. The Method is described on this page in the words used on every other page. The email form's unused code is removed." },
   { n:"70", kind:"standard", title:"The Monday Level is closed, and the pages follow the daily series in one calm hand, 12 November 2026.",
     body:"By the founder's rulings and word of 12 November 2026. THE MONDAY LEVEL. The email list takes no new address: the forms are off this page, the front page and levels.html. By his ruling the people on the list are told once and the list is then deleted, as the privacy page promises. levels.html, the page that took an address, now carries the daily levels, so every link to it lands on the levels. THE FILM. The three buttons that opened The Fan's film from this page, in the band, at the head and in the bar on a phone, are taken off. The film's file stays beside the record. THE FAN'S WORDS. One sentence about The Fan's line, added to this page and to The Fan's page on 10 November (note 68), is removed from both. THE WORDS. The front page, the head of this page, The Fan's page, the week pages and the tools page no longer offer a Monday email or say that the levels are weekly. They say a level is named on every trading day and point to the daily levels. The gold button at the head of this page goes to today's levels, and the page no longer announces a next Friday. The member's words lead with his second sentence. THE FRAME. The band names four places on every page: Daily levels, The record, The Fan, Free tools. This page keeps its own places in a row under the band. The foot of the other pages is three short lists. THE LOOK. Every page is set by one last layer, brand.css, in ASSAY: Barlow at a medium weight for titles where Barlow Condensed stood, IBM Plex Mono for figures, ivory for the one thing to press, cut square, and hairlines where shadows and gradients were. The mark in the band is the portrait in its gold ring, as on the cards. THE PLATE. Under the levels on the front page and on levels.html, and behind the last lines at the head of this page, lies the record's seal, engraved: the rosette of the cards, drawn by plate.js from the SHA-256 of every row on this page, under a pane of glass, lit where the reader points. Change one figure on the record and the engraving changes. It is the engraving of note 63, which note 64 took off because it slowed the pages; it is drawn plainly now and asks the network for nothing. A level is drawn as the week card's gauge draws it: the line in gold, the side that proves it wrong hatched, a pearl where the close sat, and the line red once a close is through it. The front page no longer draws The Fan's line across its first screen. The card under a link to the front page is card_daily.png, drawn in ASSAY with the record's seal struck as a coin. THE TAGS. A link from a post or a reply on X, or from a TradingView signature or status, is told apart at checkout: x-post, x-reply, tv-sig, tv-status. No row, line, close, grade or date is touched." },
   { n:"69", kind:"standard", title:"The weekly series ended on the close of Friday 6 November 2026. From 12 November a level is named on every trading day.",
@@ -3293,7 +3253,7 @@ function drawWeek() {
     eye.textContent = `This week · result at the Fri ${dayMonth(friIso)} close`;
     title.textContent = up1(word(list.length)) + (list.length === 1 ? " line" : " lines") + ", graded on Friday's close";
     if (fri) { cd.setAttribute("data-close", fri.toISOString()); cd.hidden = false; tickPills(); }
-    rule.textContent = dirs.size === 1 ? `Each one is wrong if Friday closes ${dirs.has("below") ? "below" : "above"} it.` : "Each one is wrong if Friday closes on the wrong side of it.";
+    rule.textContent = dirs.size === 1 ? `Each one exits on a Friday close ${dirs.has("below") ? "below" : "above"} it.` : "Each one exits on a Friday close through it.";
   } else {
     eye.textContent = `The last week · graded Fri ${dayMonth(friIso)}`;
     title.textContent = "Graded " + fmtDate(friIso) + ", the last week of the weekly series";
@@ -3321,8 +3281,6 @@ function drawWeek() {
     stamp.innerHTML = bits.join(" ");
     stamp.hidden = !bits.length;
   }
-  const door = document.getElementById("tw-door");
-  if (door && typeof DOORS === "object" && /^https:\/\/\S+$/i.test(String(DOORS.list || "").trim())) door.hidden = false;
   sec.hidden = false;
 }
 drawWeek();
@@ -3659,19 +3617,8 @@ const guestDistance = g => {
 
 (function openDoors(){
   const live = v => typeof v === "string" && /^https:\/\/\S+$/i.test(v.trim());
-  const emailReady = live(DOORS.list), applyReady = live(DOORS.tally);
-  if (live(DOORS.sample)) { const el = document.getElementById("door-sample"); if (el) { el.setAttribute("href", DOORS.sample.trim()); el.hidden = false; } }
-  // 4 Nov 2026: the ref the visit came with, or site, on every email form (source_ref in the list Sheet)
-  const ref = (() => { try { const q = new URLSearchParams(location.search), r = q.get("ref") || q.get("utm_source") || ""; return /^[A-Za-z0-9_-]{1,40}$/.test(r) ? r : "site"; } catch (e) { return "site"; } })();
-  document.querySelectorAll('form.signup input[name="source_ref"]').forEach(i => { i.value = ref; });
-  if (emailReady) { document.querySelectorAll("form.signup").forEach(f => f.setAttribute("action", DOORS.list.trim())); const wm = document.getElementById("wb-mail"); if (wm) wm.hidden = false; document.getElementById("door-email").setAttribute("data-ready", "1"); }
-  if (applyReady && document.getElementById("apply-link")) { document.getElementById("apply-link").setAttribute("href", DOORS.tally.trim()); document.getElementById("door-apply").setAttribute("data-ready", "1"); }
+  if (live(DOORS.tally) && document.getElementById("apply-link")) { document.getElementById("apply-link").setAttribute("href", DOORS.tally.trim()); document.getElementById("door-apply").setAttribute("data-ready", "1"); }
   document.getElementById("door-method").setAttribute("data-ready", "1");
-  const say = msg => { document.querySelectorAll("form.signup").forEach(form => { const done = document.createElement("p"); done.className = "confirmed"; done.textContent = msg; form.replaceWith(done); }); };
-  if (emailReady) {
-    if (/[?&]confirmed=1(&|$)/.test(location.search)) say("You are in. The first level is on its way.");
-    else if (/[?&]subscribed=1(&|$)/.test(location.search)) say("Check your inbox and confirm it. The first level follows straight after.");
-  }
 })();
 
 document.querySelectorAll('a[href$="commits/main"]').forEach(a => { a.href = HISTORY_URL; });
@@ -3831,8 +3778,6 @@ route(true);
       const ap = t.closest("#apply-link");
       if (ap && /^https:\/\//.test(ap.getAttribute("href") || "")) ev("door-apply", "The application opened");
     }, true);
-    const f = document.getElementById("signup-form");
-    if (f) f.addEventListener("submit", () => ev("door-email", "The email form sent"));
   } catch (e) { if (window.console) console.warn("counter events", e); }
 })();
 
@@ -3917,38 +3862,6 @@ route(true);
     const d = document.querySelector(".r3-drift[data-still]"); if (d) d.removeAttribute("data-still");
   }
 
-  try {
-    const dlg = $("hd-film"), host = $("hd-film-stage");
-    if (!dlg || typeof dlg.showModal !== "function") return;
-    let player = null, loading = null;
-    const load = () => loading || (loading = new Promise((ok, no) => {
-      if (window.Movement) { ok(window.Movement); return; }
-      window.MOVEMENT_MANUAL = true;
-      const s = document.createElement("script"); s.src = "movement.js";
-      s.onload = () => window.Movement ? ok(window.Movement) : no(new Error("no Movement"));
-      s.onerror = () => no(new Error("movement.js did not load"));
-      document.head.appendChild(s);
-    }));
-    const count = where => { try { if (window.goatcounter && typeof window.goatcounter.count === "function") window.goatcounter.count({ path: "fan-film", title: "The Fan's inner workings opened (" + where + ")", event: true }); } catch (x) {} };
-    const open = (a, where) => {
-      try { dlg.showModal(); } catch (x) { return false; }
-      count(where);
-      load().then(M => {
-        if (!player) player = M.mount(host, { autoplay: "off", src: "record.json" });
-        if (!reduce && dlg.open) player.play();
-        try { if (player.el) player.el.focus({ preventScroll: true }); } catch (x) {}
-      }).catch(err => { say("film", err); try { dlg.close(); } catch (x) {} location.href = a.getAttribute("href") || "method.html"; });
-      return true;
-    };
-    document.addEventListener("click", e => {
-      const a = e.target && e.target.closest ? e.target.closest("a[data-film]") : null;
-      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (open(a, a.getAttribute("data-film") || "")) e.preventDefault();
-    });
-    $("hd-film-x").addEventListener("click", () => dlg.close());
-    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-    dlg.addEventListener("close", () => { try { if (player && player.state === "playing") player.pause(); } catch (x) {} });
-  } catch (e) { say("film", e); }
 })();
 </script>
 

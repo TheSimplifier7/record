@@ -31,7 +31,7 @@ The weekly series ran from June 2026 to the close of Friday 6 November 2026 (not
 
 ## The daily series
 
-From 12 November 2026 (note 69) a level is named for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each level is a floor or a ceiling, graded on that day's close, 17:00 in New York, read off my own chart: a floor is wrong if the day closes under it, a ceiling if the day closes above it, and a close exactly on the level is not through it. The page is https://thesimplifier7.com/levels.html.
+From 12 November 2026 (note 69) a level is named for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each level is a floor or a ceiling, and each has one Exit: a daily close through it. A floor exits on a close below it. A ceiling exits on a close above it. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart. The page is https://thesimplifier7.com/levels.html.
 
 The days are in daily.json, one entry a day. In the morning:
 
@@ -49,13 +49,13 @@ Two directional calls run on their own clocks, one for the year and one for the 
 
 ## What else is here
 
-The wrong ones, in full, at https://thesimplifier7.com/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.com/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.com/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.com/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.com/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.com/embed.html.
+The wrong ones, in full, at https://thesimplifier7.com/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.com/targets.html. The indicator the record is read from, at https://thesimplifier7.com/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.com/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.com/embed.html.
 
 The page is dark since 6 September 2026. The switch in the masthead that turned the paper ground on was taken off on 10 November 2026 (note 68).
 
 The look, from 12 November 2026 (note 70): every page is set by one last layer, brand.css, in ASSAY. Barlow at 400 and 500 for words, IBM Plex Mono for figures, hairlines and square ivory buttons, sentence case, gold for a line and nothing else, red for a line that broke. The front page and levels.html load brand.css alone; the other pages load it last, over their older layers. house_parts.js holds the band, the bar on a phone and the foot; make_house.js and make_band.js renew them on the pages written by hand, and make_band.js is run after make_house.js whenever house_parts.js changes.
 
-The plate, from 12 November 2026 (note 70): plate.js draws the record's rosette under the levels on the front page and levels.html and behind the last lines on the record, from the record's seal, the SHA-256 of every row as assay-core.js keys it. The seal is written into each page as data-seal when the page is built (make_home.js, make_daily.js, make_scene.js), so plate.js asks the network for nothing, and make_scene.js --check fails on a seal that is not the one record.json gives. After any change to a row, run the routine and the seal follows. make_daily_card.js draws card_daily.png, the card under a link to the front page, the record, levels.html and the mentorship page, in ASSAY, with the record's seal struck as a coin; run it after any change to a row.
+The plate, from 12 November 2026 (note 70): plate.js draws the record's rosette under the levels on the front page and levels.html and behind the last lines on the record, from the record's seal, the SHA-256 of every row as assay-core.js keys it. The seal is written into each page as data-seal when the page is built (make_home.js, make_daily.js, make_scene.js), so plate.js asks the network for nothing, and make_scene.js --check fails on a seal that is not the one record.json gives. After any change to a row, run the routine and the seal follows. make_daily_card.js draws card_daily.jpg, the card under a link to the front page, the record, levels.html and the mentorship page, in ASSAY, with the record's seal struck as a coin; run it after any change to a row.
 
 ## The files
 
@@ -94,24 +94,10 @@ The read's own line, from 10 October 2026 (note 49): READ_LINE in index.html fix
 <!-- 11 Oct 2026, note 50. The paragraph under this comment read "the animation under The Chart and on the Method page" and "read from index.html on the record and from record.json on the Method page", and its last sentence "whose pages stop loading it". -->
 descent.js, from 25 September 2026 (note 41), is the animation under The Chart on the record, and was on the Method page until 11 October 2026: the record's closes and levels, read from index.html, then an illustration of the last week, its trades and its orders, the people and the machines behind them, the matching engine and the metal in the vault, the source of every fact in its words named on screen and in the file's header. It changes no row and needs no step in the routine. verify_record.js check 19 refuses an upload whose record stops loading it, whose captions break the brand law, or whose animation asks the network for anything but record.json.
 
-<!-- 11 Oct 2026, note 50. -->
-movement.js, from 11 October 2026 (note 50), is the film on the Method page, The Fan's inner workings in ten parts, drawn in the browser: one line, the noise, the stride, the step, the flip, five rungs, the mirror, the clocks, the week and the decision. Parts 1 to 8 run The Fan's own engine on a seeded illustration tape with no price printed, and the screen says so while they run; part 9 reads the record's newest gold row from record.json, so it moves with each Friday. Every word it shows is listed with its source between CAPTIONS-START and CAPTIONS-END. It changes no row and needs no step in the routine. Its source is built from parts and its X cut is rendered from the same file: THE_MOVEMENT_KIT_11OCT in the desk's project. verify_record.js check 25 refuses an upload whose Method page stops loading it or goes back to descent.js, whose words break the brand law, or whose film asks the network for anything but record.json.
-
-<!-- 24 Sep 2026, the book v2. The paragraph and the command under this comment are how the tick book ran until 24 September and are kept. -->
-The tick book, from 24 September 2026: a seal is made on seal.html and posted on X at the setup, and nothing else happens that day. After the Friday close the week opens: the block seal.html builds goes into ticks.js, opened, and one five-minute export of the week per metal sealed is graded with
-
-    node grade_week.js <the export>.csv --write && node verify_ticks.js && node make_record_json.js
-
-grade_week.js writes each day's bars beside the page as tick_YYYY-MM-DD_<metal>_5m.csv, with no folder because a web upload flattens folders (note 36), never over a file already on file, and refuses a day the export does not finish.
-
 <!-- 12 Nov 2026, note 70. This read: "The emails: after the routine, node make_email.js monday writes the Monday Level from the rows named that day, and node make_email.js friday the Friday grade from the rows graded on that close, into mail/, which is not part of the site. Every figure in them comes from record.json." -->
+The film and the tick book, 12 November 2026 (note 71): movement.js, the film of The Fan's inner workings, is removed. The tick book is retired: ticks.js, seal.html, seal_tick.js, grade_tick.js, grade_week.js and verify_ticks.js are removed, tick.html says the book is retired, and record.json no longer carries it. verify_record.js refuses an upload that has any of those files beside the record.
+
 The emails: The Monday Level closed on 12 November 2026 (note 70). The forms are off every page, the people on the list are told once and the list is deleted. make_email.js stays in the folder and is no longer run.
-
-The tick book, after 23:00 Madrid on a day with rows: export the five-minute chart of that metal for that day from TradingView and save it as ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv, then
-
-    node grade_tick.js ticks/YYYY-MM-DD_<metal>_5m.csv --write && node verify_ticks.js && node make_record_json.js
-
-and upload ticks.js, record.json and the CSV together. Rows are graded from the bars on file by the rule on tick.html and never by hand; verify_ticks.js refuses any graded row whose bars are not beside the page or disagree with its grade.
 
 ---
 

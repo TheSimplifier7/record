@@ -33,7 +33,7 @@ const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js
 const title = "Daily gold, silver and platinum levels · The Simplifier";
 const description = "A level for gold, silver and platinum on every trading day, posted at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.";
 
-const html = H.leanHead({ title, description, canonical: SITE + "levels.html", image: SITE + "card_daily.png?v=" + H.vOf("card_daily.png"),
+const html = H.leanHead({ title, description, canonical: SITE + "levels.html", image: SITE + "card_daily.jpg?v=" + H.vOf("card_daily.jpg"),
   alt: "The Simplifier. Gold, silver and platinum levels, every trading day at 08:00 CET, each one graded at the close.", css: D.CSS }) + `
 ${H.band("today", "levels")}
 <main id="main" class="hm" tabindex="-1">
@@ -43,7 +43,7 @@ ${H.band("today", "levels")}
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Daily levels</h1>
       <p class="hm-say">A level for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.</p>
-      <p class="hm-acts">${D.followBtn("levels-top")}<a href="method.html" data-tv="plans-levels-top">Try The Fan free for 7 days</a></p>
+      <p class="hm-acts">${D.followBtn("levels-top")}<a href="method.html#plans" data-tv="plans-levels-top">Try The Fan free for 7 days</a></p>
       <div class="hm-rec">
         <p data-daily="tally">${D.tally(M)}</p>
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
@@ -62,7 +62,6 @@ ${H.band("today", "levels")}
     <div class="hm-side"><h2 id="rule-h">How a daily level is graded</h2></div>
     <div class="hm-main">
       <p class="hm-big">${esc(D.RULE)}</p>
-      <p>Held means the day closed on the side I named. It is not a trade result.</p>
       <p>The 08:00 post on X is the original. This page copies it into <a href="daily.json">daily.json</a>, and <a href="https://github.com/TheSimplifier7/record/commits/main/daily.json" rel="noopener">every change to that file is a public commit</a>. If this page and the post ever differ, the post stands and the difference is logged here as a correction. A trading day with nothing on file is shown as not on file, never left out.</p>
     </div>
   </div></div>
