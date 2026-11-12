@@ -11,7 +11,9 @@ check(tagFrom("") === "site", "no tag defaults to site");
 check(tagFrom("?ref=test-grok") === "test-grok", "test-grok is kept");
 check(tagFrom("?utm_source=x-bio") === "x-bio", "the X bio tag is kept");
 check(tagFrom("?ref=x-pin") === "x-pin", "the X pin tag is kept");
-check(CAMPAIGNS["test-grok"] === 1, "test-grok is on the allowlist");
+check(tagFrom("?ref=x-post") === "x-post", "the X post tag is kept");
+check(tagFrom("?ref=x-reply") === "x-reply", "the X reply tag is kept");
+check(CAMPAIGNS["test-grok"] === 1 && CAMPAIGNS["x-post"] === 1 && CAMPAIGNS["x-reply"] === 1, "test-grok, x-post and x-reply are on the allowlist");
 
 check(tagFrom("?ref=Bradley") === "site", "a name is not a campaign tag");
 check(tagFrom("?ref=John-Smith") === "site", "a hyphenated name is not a campaign tag");
@@ -34,6 +36,10 @@ check(phone.includes("client_reference_id=site") && !phone.includes("34600111222
 const tagged = rewrite(method, page + "?ref=test-grok", "test-grok");
 check(tagged.includes("client_reference_id=test-grok"), "test-grok reaches Stripe");
 check(tagged.startsWith(method), "the Method link is unchanged apart from the query");
+const posted = rewrite(fan, page + "?ref=x-post", "x-post");
+check(posted.includes("client_reference_id=x-post"), "x-post reaches Stripe");
+const replied = rewrite(fan, page + "?ref=x-reply", "x-reply");
+check(replied.includes("client_reference_id=x-reply"), "x-reply reaches Stripe");
 
 const internal = rewrite("levels.html", page + "?ref=x-pin", "x-pin");
 check(internal === "/levels.html?ref=x-pin", "an allowed tag is carried to the next page");
