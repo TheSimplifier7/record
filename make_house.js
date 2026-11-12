@@ -65,6 +65,8 @@ function region(s, name) {
     let i = m.index; let e = i + m[0].length;
     const nb = s.lastIndexOf('<nav class="hs-bot"', i); if (nb >= 0 && s.slice(s.indexOf("</nav>", nb) + 6, i).trim() === "") i = nb;
     const ff = s.lastIndexOf('<div class="hs-fanfoot">', i); if (ff >= 0 && s.slice(s.indexOf("</div></div>", ff) + 12, i).trim() === "") i = ff;
+    /* 12 Nov 2026, note 70: the foot is a footer of three short lists now; a page that already has it is renewed, not given a second. */
+    const hf = s.lastIndexOf('<footer class="hs-foot">', i); if (hf >= 0 && s.slice(s.indexOf("</footer>", hf) + 9, i).trim() === "") i = hf;
     /* Scripts that follow house.js used to be left in place, so a later run added
        another copy of svgfloor.js and refcarry.js. Fold those copies into this region
        so the replacement writes each file once. */
@@ -125,8 +127,8 @@ for (const p of PAGES) {
   if (first) {
     once(s, p.file, /<meta name="viewport"[^>]*>/, "viewport");
     s = s.replace(/(<meta name="viewport"[^>]*>)/, `$1\n${H.earlyTags()}`);
-    if (/<meta name="theme-color" content="[^"]*"/.test(s)) s = s.replace(/<meta name="theme-color" content="[^"]*"/, '<meta name="theme-color" content="#0f1e3a"');
-    else s = s.replace(/(<meta name="viewport"[^>]*>)/, '$1\n<meta name="theme-color" content="#0f1e3a">');
+    if (/<meta name="theme-color" content="[^"]*"/.test(s)) s = s.replace(/<meta name="theme-color" content="[^"]*"/, '<meta name="theme-color" content="#0B1A2E"'); /* 12 Nov 2026, note 70: the ground. It read #0f1e3a */
+    else s = s.replace(/(<meta name="viewport"[^>]*>)/, '$1\n<meta name="theme-color" content="#0B1A2E">');
   }
 
   /* the top of the body */

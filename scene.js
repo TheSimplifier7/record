@@ -293,7 +293,7 @@ function dockHTML(M, metal) {
     const part = (n, w) => (n === 1 ? "a " + w : String(NUMW[n] || n).toLowerCase() + " " + w + "s");
     const words = k.floor && k.ceiling ? part(k.floor, "floor") + " and " + part(k.ceiling, "ceiling") : k.floor ? part(k.floor, "floor") : part(k.ceiling, "ceiling");
     head = `<span class="r3-ey r3k-a"><i class="r3-dot" aria-hidden="true"></i>This week</span><span class="r3-ey r3k-b">${h(words.charAt(0).toUpperCase() + words.slice(1))}, open</span>`;
-  } else head = `<span class="r3-ey r3k-a">Last week</span><span class="r3-ey r3k-b">Graded on Friday's close</span>`;
+  } else head = `<span class="r3-ey r3k-a">The last week</span><span class="r3-ey r3k-b">Graded on Friday's close</span>`; /* 12 Nov 2026, note 69: the weekly series ended on 6 November, so "Last week" would be untrue from the week after. It read: Last week */
   const tabs = M.metals.map(m => {
     const L = m.lines.filter(x => x.word === "open").slice(-1)[0] || m.lines[m.lines.length - 1];
     const sub = L.word === "open" ? (L.lastGap ? "Last close " + L.lastGap + " " + (L.lastSide === "on" ? "on it" : L.lastSide) : "Waiting for Friday's close") : (L.mark === "hit" ? "held" : L.word) + (L.gap ? " · " + L.gap + " " + (L.side === "on" ? "on it" : L.side) : "");

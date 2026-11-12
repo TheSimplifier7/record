@@ -26,7 +26,22 @@ Corrections are published on the page as numbered notes. Notes are never renumbe
 ## Cadence
 
 <!-- 24 Sep 2026, note 33. This read: "A call is named on Sunday night, before the market opens, and written into this file open, so the commit timestamp sits hours before the tape exists." -->
-A call is named on Monday evening, on the week's own opening box after it freezes and before the first 8h close after that, and written into this file open, so the commit timestamp sits before any close through the box. Until 20 September 2026 calls were named on Sunday night, before the market opened (note 33). It is graded on Friday at the weekly close, 23:00 in Spain, and nothing is graded before the candle closes.
+<!-- 12 Nov 2026, note 69. This read: "A call is named on Monday evening, on the week's own opening box after it freezes and before the first 8h close after that, and written into this file open, so the commit timestamp sits before any close through the box. Until 20 September 2026 calls were named on Sunday night, before the market opened (note 33). It is graded on Friday at the weekly close, 23:00 in Spain, and nothing is graded before the candle closes." -->
+The weekly series ran from June 2026 to the close of Friday 6 November 2026 (note 69). In it a call was named on Monday evening, on the week's own opening box after it froze and before the first 8h close after that, and written into this file open, so the commit timestamp sat before any close through the box. Until 20 September 2026 calls were named on Sunday night, before the market opened (note 33). Each was graded on Friday at the weekly close, 23:00 in Spain, and nothing was graded before the candle closed. Its rows, closes, grades and count stay as they are.
+
+## The daily series
+
+From 12 November 2026 (note 69) a level is named for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each level is a floor or a ceiling, graded on that day's close, 17:00 in New York, read off my own chart: a floor is wrong if the day closes under it, a ceiling if the day closes above it, and a close exactly on the level is not through it. The page is https://thesimplifier7.com/levels.html.
+
+The days are in daily.json, one entry a day. In the morning:
+
+    { "date": "2026-11-12", "post": "https://x.com/TheSimplifier7/status/<the post>", "levels": [ { "metal": "Gold", "level": "<the level>", "side": "floor" }, { "metal": "Silver", "level": "<the level>", "side": "ceiling" }, { "metal": "Platinum", "level": "<the level>", "side": "floor" } ] }
+
+After that day's close the same entry gains "closes": { "Gold": "<the close>", "Silver": "<the close>", "Platinum": "<the close>" } and "read": "23:05 CET". A day on which none is named is { "date": "<the day>", "none": true }, and a day the market is shut goes in "closed". A level carries its metal, its figure and its side and nothing else: no odds, no target, no words. No grade is typed. daily.js works each one out from the side, the level and the close, in the build and in the page alike, and the page reads daily.json when it opens, so a day added to daily.json shows at once. After any edit to daily.json:
+
+    node make_daily.js && node make_home.js && node verify_daily.js
+
+and upload daily.json, levels.html and index.html together. verify_daily.js refuses an upload whose pages are not the ones daily.json draws, a day dated after today in Madrid, or a close on file before the close has printed. A weekday with nothing on file is drawn as not on file, never left out. The 08:00 post on X is the original; if the page and the post ever differ, the post stands and the difference goes in "corrections". The daily series is counted on its own and is not added to the weekly count.
 
 ## The standing calls
 
@@ -37,6 +52,8 @@ Two directional calls run on their own clocks, one for the year and one for the 
 The wrong ones, in full, at https://thesimplifier7.com/misses.html. The banks' gold, silver and platinum targets, graded on the close, at https://thesimplifier7.com/targets.html. The tick book, intraday calls on the five-minute clock named before the trade and graded on the day's close, at https://thesimplifier7.com/tick.html (rows in ticks.js). The indicator the record is read from, at https://thesimplifier7.com/method.html. Guest rows, graded by the same rule, at https://thesimplifier7.com/guest.html. The live tally on any page, one script tag, at https://thesimplifier7.com/embed.html.
 
 The page is dark since 6 September 2026. The switch in the masthead that turned the paper ground on was taken off on 10 November 2026 (note 68).
+
+The look, from 12 November 2026 (note 70): every page is set by one last layer, brand.css. Barlow at 400 and 500 for words, IBM Plex Mono for figures, hairlines and flat buttons, sentence case, gold for a level's line and nothing else, red for a line that broke. The front page and levels.html load brand.css alone; the other pages load it last, over their older layers. house_parts.js holds the band, the bar on a phone and the foot; make_house.js and make_band.js renew them on the pages written by hand, and make_band.js is run after make_house.js whenever house_parts.js changes. card_daily.html is the card under a link to the front page, the record and levels.html, drawn at 1200 by 630 and saved as card_daily.png.
 
 ## The files
 
@@ -85,7 +102,8 @@ The tick book, from 24 September 2026: a seal is made on seal.html and posted on
 
 grade_week.js writes each day's bars beside the page as tick_YYYY-MM-DD_<metal>_5m.csv, with no folder because a web upload flattens folders (note 36), never over a file already on file, and refuses a day the export does not finish.
 
-The emails: after the routine, node make_email.js monday writes the Monday Level from the rows named that day, and node make_email.js friday the Friday grade from the rows graded on that close, into mail/, which is not part of the site. Every figure in them comes from record.json.
+<!-- 12 Nov 2026, note 70. This read: "The emails: after the routine, node make_email.js monday writes the Monday Level from the rows named that day, and node make_email.js friday the Friday grade from the rows graded on that close, into mail/, which is not part of the site. Every figure in them comes from record.json." -->
+The emails: The Monday Level closed on 12 November 2026 (note 70). The forms are off every page, the people on the list are told once and the list is deleted. make_email.js stays in the folder and is no longer run.
 
 The tick book, after 23:00 Madrid on a day with rows: export the five-minute chart of that metal for that day from TradingView and save it as ticks/YYYY-MM-DD_<gold|silver|platinum>_5m.csv, then
 

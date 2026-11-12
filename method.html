@@ -24,7 +24,7 @@
    "name": "Do I need TradingView?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The free Monday email does not need TradingView."
+    "text": "Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The daily levels on X do not need TradingView."
    }
   },
   {
@@ -104,7 +104,7 @@
    "name": "Can I see the calls that were wrong?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. Open Read every wrong call. Friday's close grades the weekly calls, and the wrong calls stay public. A call marked held is not a claim that a trade made money."
+    "text": "Yes. Open Read every wrong call. Each call is graded on its close, and the wrong calls stay public. A call marked held is not a claim that a trade made money."
    }
   },
   {
@@ -120,7 +120,7 @@
    "name": "Do I need experience?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the free Monday email and read how the weekly calls are checked. The tool does not make trading safe."
+    "text": "You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the free daily levels and read how each call is checked. The tool does not make trading safe."
    }
   }
  ]
@@ -359,7 +359,7 @@
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <meta name="house-head" content="start">
 <link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style id="fonts">@font-face{font-family:"Barlow Fallback";font-weight:100 500;src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Helvetica"),local("Roboto");size-adjust:96%;ascent-override:103%;descent-override:20.6%;line-gap-override:0%}
 @font-face{font-family:"Barlow Fallback";font-weight:600 900;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("Helvetica Bold"),local("Roboto Bold");size-adjust:92%;ascent-override:108.8%;descent-override:21.8%;line-gap-override:0%}
 @font-face{font-family:"Barlow Condensed Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("Helvetica Bold"),local("Roboto Bold");size-adjust:75.3%;ascent-override:132.8%;descent-override:26.6%;line-gap-override:0%}
@@ -395,7 +395,7 @@
 <link rel="stylesheet" href="assay-site.css?v=8d8d25bbe0">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
-<link rel="stylesheet" href="brand.css?v=6670bfa08a">
+<link rel="stylesheet" href="brand.css?v=073dfe7063">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -414,14 +414,13 @@
   <div class="hs-wrap hs-band-in">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <nav class="hs-nav" aria-label="The site">
-      <a href="./#week">This week</a>
+      <a href="levels.html">Daily levels</a>
       <a href="record.html">The record</a>
       <a href="method.html" aria-current="page">The Fan</a>
-      <a href="./#join">Monday email</a>
+      <a href="tools.html">Free tools</a>
     </nav>
     <div class="hs-tools">
-      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
-      <a class="hs-btn hs-gold" href="method.html" data-tv="plans-method-band">See The Fan</a>
+      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-method-band">Try The Fan free</a>
     </div>
   </div>
 </header>
@@ -432,9 +431,9 @@
     <p class="crumb"><a href="record.html">The record</a> · The Method and The Fan</p>
     <h1 id="fan-h">The Method and The Fan</h1>
     <p class="tagline">See the wider price picture on the chart you already use.</p>
-    <p class="lede what">I built these two indicators for TradingView. The Fan is the indicator my weekly levels are read from: one mean that moves only when a close earns it, not a horizontal line drawn once, with the 2-hour structure on a shorter chart, such as a 10-minute chart. The Method is the simpler line-based view, and The Fan includes it. If you trade during the day and already make your own decisions, The Fan is the fuller view. If you only need the reference line, The Method may be enough.</p>
+    <p class="lede what">I built these two indicators for TradingView. The Fan is the indicator my levels are read from, with the 2-hour structure on a shorter chart, such as a 10-minute chart. The Method is the simpler line-based view, and The Fan includes it. If you trade during the day and already make your own decisions, The Fan is the fuller view. If you only need the reference line, The Method may be enough.</p>
     <p class="fan-price"><a href="#plans">See the plans <span class="go">Go</span></a></p>
-    <p class="lede"><a href="levels.html">New to charts? Start with the free weekly email</a></p>
+    <p class="lede"><a href="levels.html">New to charts? Start with the free daily levels</a></p>
   </div>
 </div>
 
@@ -505,7 +504,7 @@
           </tbody>
         </table>
       </div>
-      <p>I built and sell both tools. The Fan gives more context, not certainty. If the extra view is not useful to you, choose The Method or stay with the free weekly email.</p>
+      <p>I built and sell both tools. The Fan gives more context, not certainty. If the extra view is not useful to you, choose The Method or stay with the free daily levels.</p>
     </section>
   </article>
 </div>
@@ -514,24 +513,33 @@
 
 <div class="wrap">
   <article class="fan">
+    <section id="member" aria-labelledby="member-h">
+      <h2 id="member-h">From a member</h2>
+      <blockquote class="member-q"><p>Knowing what to look for relative to structure and trend, and waiting for the right combination to present itself, makes all the difference in the world.</p></blockquote>
+      <p>Jim, US</p>
+      <p class="fine">One person's experience, not a promise of your result.</p>
+    </section>
+
     <section id="help" aria-labelledby="help-h">
       <h2 id="help-h">Not sure it fits how you trade?</h2>
-      <p>Ask me for a 15-minute look at the tool before you start. I will show you the chart and answer your questions. If it does not fit what you need, I will say so. A call is optional. You can also write to me on X. I never message first.</p>
-      <p><a href="https://x.com/TheSimplifier7">Ask for a 15-minute demo</a></p>
+      <p>Ask me for a 15-minute look at the tool before you start. I will show you the chart and answer your questions. If it does not fit what you need, I will say so. A call is optional.</p>
+      <p><a href="mailto:hello@thesimplifier7.com?subject=Fan%20demo">Book a 15-minute demo</a></p>
       <p><a href="mailto:hello@thesimplifier7.com">Email a question</a></p>
     </section>
 
     <section id="proof" aria-labelledby="proof-h">
-      <h2 id="proof-h">Check the weekly calls before you decide</h2>
-      <p>The weekly levels are read from The Fan. Each published level is graded on Friday's close, and the wrong ones remain on the record. That record shows how the weekly calls were graded. It does not prove that every tool feature predicts correctly, or that someone using it will make money.</p>
-      <p><a href="record.html">Read the full record</a> · <a href="misses.html">Read every wrong call</a></p>
+      <h2 id="proof-h">Check the record before you decide</h2>
+      <p>My levels are read from The Fan. The weekly series, June to November 2026, was graded on Friday's close. From 12 November each daily level is graded on that day's close. The wrong ones remain on the record. The record shows how the calls were graded. It does not prove that every tool feature predicts correctly, or that someone using it will make money.</p>
+      <p><a href="levels.html">See the daily levels</a></p>
+      <p><a href="record.html">Read the full record</a></p>
+      <p><a href="misses.html">Read every wrong call</a></p>
     </section>
 
     <section id="questions" class="faq" aria-labelledby="questions-h">
       <h2 id="questions-h">Before you start</h2>
       <p>You are buying a charting-tool licence, not personal advice or buy-and-sell instructions.</p>
       <details><summary>What is an indicator?</summary><p>It is a tool that adds information to a price chart. These tools draw reference lines and the wider price pattern. They do not place trades for you.</p></details>
-      <details><summary>Do I need TradingView?</summary><p>Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The free Monday email does not need TradingView.</p></details>
+      <details><summary>Do I need TradingView?</summary><p>Yes, for The Fan or The Method. You need your own TradingView account. The free plan can run either tool, subject to its limit on indicators per chart. The daily levels on X do not need TradingView.</p></details>
       <details><summary>What does "2-hour view on a 10-minute chart" mean?</summary><p>Each bar on a 10-minute chart covers ten minutes of prices. The Fan also shows the wider 2-hour view on that chart, so you can see shorter moves against the wider pattern.</p></details>
       <details><summary>Should I choose The Fan or The Method?</summary><p>Choose The Fan if you want the wider view while looking at shorter moves. It includes The Method. Choose The Method if the simpler reference line is enough. Neither tool makes the decision for you.</p></details>
       <details><summary>How does the free trial work?</summary><p>Either plan starts with 7 days free. A card is required, but nothing is charged during the trial. Cancel before day 8 and pay nothing. Otherwise, Stripe charges €149.99 for The Fan or €59 for The Method on day 8, then every month until you cancel. Prices include VAT. Check the exact first-charge date in checkout.</p></details>
@@ -541,9 +549,9 @@
       <details><summary>When do I get access?</summary><p>Within an hour of checkout, or by 09:00 Europe/Madrid if you join overnight. Access is attached to the exact TradingView username you give, not your password. Find it under Indicators, then Invite-only. If the tool is missing, refresh and check the username first.</p></details>
       <details><summary>Does it tell me when to buy or sell?</summary><p>No. It shows information on your chart. Whether to trade, how much risk to take and when to stay out are your decisions. You do not need to place a trade to try the display.</p></details>
       <details><summary>Is this financial advice?</summary><p>No. The tools, levels and record are for education and information. They do not consider your finances or give a personal recommendation. Trading can lose money. Past results do not guarantee future results, and no profit or income is promised.</p></details>
-      <details><summary>Can I see the calls that were wrong?</summary><p>Yes. Open <a href="misses.html">Read every wrong call</a>. Friday's close grades the weekly calls, and the wrong calls stay public. A call marked held is not a claim that a trade made money.</p></details>
+      <details><summary>Can I see the calls that were wrong?</summary><p>Yes. Open <a href="misses.html">Read every wrong call</a>. Each call is graded on its close, and the wrong calls stay public. A call marked held is not a claim that a trade made money.</p></details>
       <details><summary>What if I change plans?</summary><p>The current terms allow a move from The Method to The Fan through the billing page, paying the difference. If you are still in the trial, the trial continues. Read the price and date shown before confirming a change.</p></details>
-      <details><summary>Do I need experience?</summary><p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free Monday email</a> and read how the weekly calls are checked. The tool does not make trading safe.</p></details>
+      <details><summary>Do I need experience?</summary><p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free daily levels</a> and read how each call is checked. The tool does not make trading safe.</p></details>
     </section>
 
     <section id="final" aria-labelledby="final-h">
@@ -552,42 +560,35 @@
       <p>Education and training. Not investment advice. No funds are handled. No result is promised. Trading involves risk, and you can lose money.</p>
       <p><a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00" data-tv="buy-fan-final" data-plan="fan">Start The Fan's 7-day trial</a></p>
       <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.</p>
-      <p><a href="levels.html">Get Monday's levels free</a></p>
+      <p><a href="levels.html">See today's levels, free</a></p>
     </section>
   </article>
 </div>
 </main>
 
 
-<footer>
-  <div class="wrap foot">
-    <div>
-      <p class="law">Named before · Graded after · Nothing deleted</p>
-      <p class="handle"><a href="https://x.com/TheSimplifier7">@TheSimplifier7</a></p>
-    </div>
-    <div class="foot-meta">
-      <span>The record · <a href="./">this week's lines</a></span>
-      <span>Your subscription · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></span>
-      <span>The wrong ones · <a href="misses.html">in full</a></span>
-      <span>The banks' targets · <a href="targets.html">graded on the close</a></span>
-      <span>The tick book · <a href="tick.html">the five-minute clock, graded</a></span>
-      <span>The rules · <a href="./#rules">how every row is graded</a></span>
-      <span>The small print · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span>
-    </div>
+<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
+  <div class="hs-foot-id">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
+    <p>Gold, silver and platinum levels on every trading day at 08:00 CET. Each one is graded at the close, and the wrong ones stay up.</p>
+    <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
   </div>
-</footer>
+  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a><a href="record.html#rules">The rules</a></nav>
+  <nav aria-label="The Fan"><p class="hs-foot-h">The Fan</p><a href="method.html">What it shows</a><a href="method.html#plans">Plans and the free trial</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+</div></footer>
 
-<nav class="botnav" aria-label="The record">
-  <a href="./#week"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg><span>This week</span></a>
-  <a href="record.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/></svg><span>Record</span></a>
-  <a href="method.html" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/></svg><span>The Fan</span></a>
-  <a href="./#join"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg><span>Email</span></a>
+<nav class="botnav" aria-label="The site, on a phone">
+  <a href="levels.html"><span>Levels</span></a>
+  <a href="record.html"><span>Record</span></a>
+  <a href="method.html" aria-current="page"><span>The Fan</span></a>
+  <a href="tools.html"><span>Tools</span></a>
 </nav>
 
 
-<script src="house.js?v=453bca10db" defer></script>
+<script src="house.js?v=64dbf06671" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>
-<script src="refcarry.js?v=9e96ddc842" defer></script>
+<script src="refcarry.js?v=d03f6b6e60" defer></script>
 <script src="trust.js?v=660fc62f08" defer></script>
 </body>
 </html>

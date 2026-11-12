@@ -10,8 +10,9 @@
    same tokens, the same four faces. The words a page carries that are not
    in record.json or tools.json are the founder's, copied as they stand on
    the record: the key line, counsel's two lines, "Join me on TradingView",
-   "Monday email" (it read "Get the lines" until 3 November 2026), "Free. Not investment advice.", "Posted first on X",
-   "One email each Monday evening, with the week's levels and the previous Friday's grades.", "Nothing removed.",
+   "Free. Not investment advice.", "Nothing removed.",
+   (12 November 2026, note 70: The Monday Level closed. The door that read "The Monday Level", "Get Monday's levels free",
+   "One email each Monday evening, with the week's levels and the previous Friday's grades." is the door to the daily levels.)
    "The Fan · what it is, and the terms".
 
    The counter (note 37): the page view, and one event when a TradingView
@@ -94,9 +95,8 @@ h2{font:700 1.35rem/1.15 var(--f-cond);letter-spacing:.02em;margin:0 0 14px;text
 .door{border:1px solid var(--rule);border-radius:14px;padding:20px;background:var(--raise);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 .door p{margin:0}
 .door .t{font:700 1.05rem/1.2 var(--f-cond);letter-spacing:.04em;text-transform:uppercase}
-footer{border-top:1px solid var(--rule);margin-top:44px;padding-block:24px 40px;color:var(--ink-3);font-size:.88rem}
-footer .counsel{font:400 1rem/1.5 var(--f-serif);color:var(--ink-2);margin:0 0 16px;max-width:42rem}
-footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
+footer.pg-foot{margin-top:48px;padding-block:24px 0;color:var(--ink-3);font-size:.88rem}
+footer.pg-foot .counsel{font:400 .9375rem/1.55 var(--f-ui);color:var(--ink-3);margin:0 0 8px;max-width:42rem}
 .fig{font-family:var(--f-fig);font-variant-numeric:tabular-nums}
 @media (max-width:560px){.band nav .hide-phone{display:none}}
 `;
@@ -121,7 +121,7 @@ function head({ title, description, canonical, image, imageW, imageH, extraCss }
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(canonical)}">
-<meta name="theme-color" content="#0f1e3a">
+<meta name="theme-color" content="#0B1A2E">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Simplifier">
@@ -157,20 +157,16 @@ const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close ab
 function doors(where, { tools = true } = {}) {
   return `<div class="doors">
   ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="record.html">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
-  <div class="door"><p class="t">The Monday Level</p><p><a class="btn quiet" href="levels.html">Get Monday's levels free</a></p><p class="fine">One email each Monday evening, with the week's levels and the previous Friday's grades.</p></div>
+  <div class="door"><p class="t">The daily levels</p><p><a class="btn quiet" href="levels.html">See today's levels</a></p><p class="fine">One level each for gold, silver and platinum on every trading day, graded on that day's close.</p></div>
 </div>`;
 }
 
 function foot({ counsel = true, current = null } = {}) {
-  return `<footer><div class="wrap">
+  /* 12 Nov 2026, note 70: the links are the house foot's now (house_parts.js), in three short lists. This foot keeps counsel's two lines
+     and the record as data. It read: five lines of links joined by dots, from "Posted first on X" to "The Fan · what it is, and the terms". */
+  return `<footer class="pg-foot"><div class="wrap">
   ${counsel ? `<p class="counsel">${esc(COUNSEL[0])} ${esc(COUNSEL[1])}</p>` : ""}
-  <div class="meta">
-    <span>Posted first on X · <a href="${X}">@TheSimplifier7</a></span>
-    <span>The record · <a href="record.html">every line, graded</a></span>
-    <span>The small print · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:hello@thesimplifier7.com">Contact</a></span>
-    <span>The record as data · <a href="record.json">record.json</a></span>
-    <span>The Fan · <a href="method.html">what it is, and the terms</a></span>
-  </div>
+  <p class="fine">The record as data: <a href="record.json">record.json</a></p>
 </div></footer>
 ${H.tail(current)}
 </body>

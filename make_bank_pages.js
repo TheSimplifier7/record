@@ -241,7 +241,7 @@ function page(r) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(seoTitle(r))} · The Simplifier</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="theme-color" content="#0f1e3a">
+<meta name="theme-color" content="#0B1A2E">
 ${HS.earlyTags()}
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">

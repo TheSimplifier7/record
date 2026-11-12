@@ -4,8 +4,8 @@
   "source": "https://github.com/TheSimplifier7/record/blob/main/index.html",
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
-  "last_updated": "2026-11-10",
-  "generated": "2026-11-09T22:53:46.937Z",
+  "last_updated": "2026-11-12",
+  "generated": "2026-11-12T10:43:28.885Z",
   "tally": {
     "resolved": 47,
     "held": 36,
@@ -1826,6 +1826,18 @@
       "kind": "standard",
       "title": "One ground, one frame, and the switch taken off, 10 November 2026.",
       "body": "By the founder's word of 9 November 2026. Every page now stands on the navy ground of ASSAY, the ground the front page already had, and the switch that turned a page light is taken off: on most pages it left the title and the first lines ivory on white, too faint to read. The band, the title and the text of the pages beside this one now start on one left edge, and their titles are set at one size. The picture under a link to the front page is the week's card in place of The Fan's, and the front page's Monday line now says what note 33 says: the levels are named on Monday evening and written here before they are posted on X. Each week's page now links its lines straight to their rows on this page. The gold button at the head of this page offers the free Monday email; The Fan's trial stays in the band, under the member's words and under Go deeper, so its place by note 64 gives way to his word of 9 November. The Fan's page says in its first lines what The Fan draws, in the words this page already used. The week card's drawing sets a distance label smaller when it would run off its pane; the cards already drawn stay as they were drawn. No row, line, close, grade or date is touched."
+    },
+    {
+      "n": "69",
+      "kind": "standard",
+      "title": "The weekly series ended on the close of Friday 6 November 2026. From 12 November a level is named on every trading day.",
+      "body": "By the founder's rulings of 12 November 2026. THE WEEKLY SERIES. The lines named on Monday 2 November and graded on the close of Friday 6 November were the last of the weekly series. Note 67 said lines would be named again on Monday 16 November; that no longer holds, and note 67 stands as it was written. The weekly rows, their closes, their grades and the count stay on this page as they are: 47 graded, 36 held, 11 wrong, 5 never reached, none open. THE DAILY SERIES. From Thursday 12 November 2026 a level is named for gold, silver and platinum on every trading day, posted on X at 08:00 CET. Each level is a floor or a ceiling. A floor is wrong if the day closes under it, a ceiling if the day closes above it, and a close exactly on the level is not through it. The close is 17:00 in New York, 23:00 in Madrid in most weeks, read off the founder's own chart, and all three metals are graded. The daily levels are kept on their own page, levels.html, drawn from daily.json, where every change is a public commit. The 08:00 post on X is the original; the page copies it and adds the close. A trading day with no level on file is shown as not on file, and a day on which none was named as none named; neither is left out. The daily series is counted on its own and is not added to the weekly count on this page. The standing offer at the foot of this page is unchanged: it covers this page's ledger and has not been extended to the daily series."
+    },
+    {
+      "n": "70",
+      "kind": "standard",
+      "title": "The Monday Level is closed, and the pages follow the daily series in one calm hand, 12 November 2026.",
+      "body": "By the founder's rulings and word of 12 November 2026. THE MONDAY LEVEL. The email list takes no new address: the forms are off this page, the front page and levels.html. By his ruling the people on the list are told once and the list is then deleted, as the privacy page promises. levels.html, the page that took an address, now carries the daily levels, so every link to it lands on the levels. THE FILM. The three buttons that opened The Fan's film from this page, in the band, at the head and in the bar on a phone, are taken off. The film's file stays beside the record. THE FAN'S WORDS. One sentence about The Fan's line, added to this page and to The Fan's page on 10 November (note 68), is removed from both. THE WORDS. The front page, the head of this page, The Fan's page, the week pages and the tools page no longer offer a Monday email or say that the levels are weekly. They say a level is named on every trading day and point to the daily levels. The gold button at the head of this page goes to today's levels, and the page no longer announces a next Friday. The member's words lead with his second sentence. THE FRAME. The band names four places on every page: Daily levels, The record, The Fan, Free tools. This page keeps its own places in a row under the band. The foot of the other pages is three short lists. THE LOOK. Every page is set by one layer, brand.css: titles in Barlow at a medium weight where Barlow Condensed stood, flat buttons, hairlines in place of shadows, the portrait off the band, and gold kept for a level's line. The front page no longer draws The Fan's line across its first screen; the card under a link to it does. THE TAGS. A link from a post or a reply on X, or from a TradingView signature or status, is told apart at checkout: x-post, x-reply, tv-sig, tv-status. No row, line, close, grade or date is touched."
     }
   ],
   "targets": [

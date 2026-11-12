@@ -14,7 +14,8 @@
       switch holds the reader's own choice, the same "theme" the record
       holds. A choice that matches the device is forgotten.
    3. THE COUNTER (note 37). A TradingView door used, by path alone:
-      door-tradingview/<where>. Nothing else.
+      door-tradingview/<where>; a plan button, plan-click/<plan>; and from
+      12 November 2026 a door to X, door-x/<where>. Nothing else.
    No cookie, no address, nothing sent but the counter's one event.
    ========================================================================= */
 (function () {
@@ -34,7 +35,7 @@
       var d = dark();
       if (word) word.textContent = d ? "Light" : "Dark";
       if (sw) sw.setAttribute("aria-label", d ? "Switch to the light ground" : "Switch to the dark ground");
-      if (meta) meta.setAttribute("content", d ? "#14244a" : "#0f1e3a");
+      if (meta) meta.setAttribute("content", "#0B1A2E"); /* 12 Nov 2026, note 70: the browser's own bar takes the ground. It read: d ? "#14244a" : "#0f1e3a" */
     };
     if (sw) sw.addEventListener("click", function () {
       var next = dark() ? "light" : "dark";
@@ -54,6 +55,9 @@
       if (s) s.addEventListener("load", function () { if (window.goatcounter && typeof window.goatcounter.count === "function") go(); }, { once: true });
     };
     document.addEventListener("click", function (e) {
+      /* 12 Nov 2026, note 70: a door to X used, by path alone: door-x/<where>. The follow buttons and the links to a day's post carry data-x. */
+      var x = e.target && e.target.closest ? e.target.closest("a[data-x]") : null;
+      if (x) { ev("door-x/" + (x.getAttribute("data-x") || ""), "A door used: X"); return; }
       var a = e.target && e.target.closest ? e.target.closest("a[data-tv], a[data-plan]") : null;
       if (!a) return;
       var plan = a.getAttribute("data-plan") || "";

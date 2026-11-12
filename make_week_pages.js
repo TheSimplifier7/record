@@ -125,32 +125,34 @@ function imageFor(m, ls) {
 const CSS = `
 .status{font:500 1.02rem/1.5 var(--f-ui);color:var(--ink-2);margin:6px 0 0}
 .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16.5rem),1fr));gap:14px}
-.line{border:1px solid var(--rule);border-radius:14px;background:var(--raise);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.line{border:1px solid var(--c-rule);border-radius:12px;background:var(--c-raise);padding:20px 20px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .line .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.metal{font:700 1.2rem/1 var(--f-cond);letter-spacing:.08em;text-transform:uppercase}
-.kind{font:700 .74rem/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;padding:5px 8px 4px;border-radius:3px;box-shadow:inset 0 0 0 1.5px var(--rule-2);color:var(--ink-2)}
-.lv{font:600 clamp(1.7rem,4.6vw,2.1rem)/1 var(--f-fig);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.metal{font:500 1.0625rem/1.2 var(--f-ui);color:var(--c-ink)}
+.kind{font:400 .875rem/1.2 var(--f-ui);color:var(--c-mut)}
+.lv{font:500 1.75rem/1 var(--f-fig);font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--c-ink);padding-bottom:12px;border-bottom:1px solid var(--c-gold)}
+.line.is-wrong .lv{border-bottom-color:var(--c-red)}
 .rule{margin:0;color:var(--ink-2);font-size:.95rem}
 .dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:.92rem;border-top:1px solid var(--rule);padding-top:12px}
 .dl dt{color:var(--ink-3)}
 .dl dd{margin:0;text-align:right;font-family:var(--f-fig);font-variant-numeric:tabular-nums}
-.grade{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--f-ui);letter-spacing:.08em;text-transform:uppercase}
-.grade i{width:12px;height:12px;display:inline-block;flex:none}
-.grade.held{color:var(--held)} .grade.held i{border-radius:50%;background:var(--mk-held)}
-.grade.wrong{color:var(--wrong)} .grade.wrong i{border-radius:2px;background:var(--wrong-chip)}
-.grade.nr{color:var(--nr)} .grade.nr i{border-radius:50%;box-shadow:inset 0 0 0 2px var(--nr)}
-.grade.open{color:var(--open)} .grade.open i{border-radius:50%;box-shadow:inset 0 0 0 2px var(--open);background:radial-gradient(circle,var(--open) 0 2px,transparent 2.5px)}
+/* 12 Nov 2026, note 70: a grade is its word beside a short line, gold for a line that stood, red for one that broke. It read: the word in capitals beside a dot or a square. */
+.grade{display:inline-flex;align-items:center;gap:8px;font:400 .9375rem/1 var(--f-ui);color:var(--c-ink);white-space:nowrap}
+.grade i{width:12px;height:2px;display:inline-block;flex:none;background:var(--c-gold)}
+.grade.wrong i{background:var(--c-red)}
+.grade.nr{color:var(--c-mut)} .grade.nr i{background:var(--c-mut);opacity:.6}
+.grade.open i{background:var(--c-ink);opacity:.4}
 .line .ft{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:.85rem;color:var(--ink-3)}
 .wnav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:34px 0 0;padding-top:16px;border-top:1px solid var(--rule);font-size:.92rem}
 .wnav span{color:var(--ink-3)}
+.ended{margin:0 0 24px;max-width:44rem;color:var(--c-sec)}
 .weeks{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--rule)}
 .weeks li{border-bottom:1px solid var(--rule);padding:16px 0;display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:8px 24px;align-items:baseline}
-.weeks .wk a{font:700 1.15rem/1.2 var(--f-cond);letter-spacing:.02em;text-decoration:none}
+.weeks .wk a{font:500 1.0625rem/1.3 var(--f-ui);text-decoration:none;color:var(--c-ink)}
 .weeks .wk a:hover{text-decoration:underline}
 .weeks .wk small{display:block;color:var(--ink-3);font:400 .85rem/1.4 var(--f-ui);margin-top:3px}
 .weeks .ls{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem}
 .weeks .ls span{white-space:nowrap}
-.weeks .ls .grade{font-size:.78rem;margin-left:6px}
+.weeks .ls .grade{font-size:.875rem;margin-left:8px}
 .weeks .ls.none{display:block;color:var(--ink-3)}
 @media (max-width:640px){.weeks li{grid-template-columns:1fr}}
 `;
@@ -158,7 +160,7 @@ const CSS = `
 function lineCard(l) {
   /* The row's own date, the day it went up (named). Not written: on a graded row that is the day the grade was written. */
   const r = l.r, wd = weekday(r.named);
-  return `<article class="line" id="${esc(r.anchor)}">
+  return `<article class="line${l.word === "wrong" ? " is-wrong" : ""}" id="${esc(r.anchor)}">
     <div class="hd"><span class="metal">${esc(r.metal)}</span><span class="kind">${l.kind === "floor" ? "Floor" : "Ceiling"}</span></div>
     <div class="lv">${esc(l.level)}</div>
     <p class="rule">${l.kind === "floor" ? "The week must close above it." : "The week must close under it."}</p>
@@ -166,7 +168,7 @@ function lineCard(l) {
       <dt>Friday's close</dt><dd>${l.close ? esc(l.close) : "Not yet"}</dd>
       ${l.close ? `<dt>Distance from the level</dt><dd>${l.side === "on" ? "on it" : esc(l.gap) + " " + l.side}</dd>` : ""}
     </dl>
-    <span class="grade ${MARK[l.word]}"><i aria-hidden="true"></i>${esc(l.word)}</span>
+    <span class="grade ${MARK[l.word]}"><i aria-hidden="true"></i>${esc(cap(l.word))}</span>
     <div class="ft"><span>Posted ${esc(wd)} ${esc(longDate(r.named))}</span><a href="${esc(r.url)}">This line on the record</a></div>
   </article>`;
 }
@@ -183,7 +185,7 @@ function weekPage(m, i) {
   const status = graded ? `Graded on Friday's close, ${longDate(friDate)}. ${countText(ls)}.` : `Open until Friday's close, ${longDate(fri)}. ${countText(ls)}.`;
   return P.head({ title, description, canonical: SITE + fileOf(m), image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("week-page")}
-${P.hero({ eyebrow: `<a href="weeks.html">Week by week</a><span>${esc(ls.map(l => l.r.metal).join(" · "))}</span>`, title: `The week of ${esc(longDate(m))}`, lede: esc(status), key: true })}
+${P.hero({ eyebrow: `<a href="record.html">The record</a><a href="weeks.html">Week by week</a>`, title: `The week of ${esc(longDate(m))}`, lede: esc(status), key: true })}
 <main><div class="wrap">
   <p>These are the levels published for this week. Friday's close grades them, not a move during the week.</p>
   <section class="lines" aria-label="The lines">
@@ -211,12 +213,13 @@ function weeksPage() {
     }
     const graded = ls.every(l => l.word !== "open");
     return `<li><div class="wk"><a href="${fileOf(m)}">The week of ${esc(longDate(m))}</a><small>${esc(graded ? countText(ls) : "Open until Friday's close")}</small></div>
-      <div class="ls">${ls.map(l => `<span>${esc(l.r.metal)} <span class="fig">${esc(l.level)}</span> ${l.kind}<span class="grade ${MARK[l.word]}"><i aria-hidden="true"></i>${esc(l.word)}</span></span>`).join("")}</div></li>`;
+      <div class="ls">${ls.map(l => `<span>${esc(l.r.metal)} <span class="fig">${esc(l.level)}</span> ${l.kind}<span class="grade ${MARK[l.word]}"><i aria-hidden="true"></i>${esc(cap(l.word))}</span></span>`).join("")}</div></li>`;
   }).join("\n    ");
-  return P.head({ title, description, canonical: SITE + "weeks.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS + `.weeks .wk .metal{font:700 1.15rem/1.2 var(--f-cond);letter-spacing:.02em;text-transform:none}` }) + `
+  return P.head({ title, description, canonical: SITE + "weeks.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS + `.weeks .wk .metal{font:500 1.0625rem/1.3 var(--f-ui)}` }) + `
 ${P.band("weeks-page")}
-${P.hero({ eyebrow: "<span>Gold · Silver · Platinum</span>", title: "The weekly levels, one week at a time.", lede: "Choose a week to see the levels that were published and how Friday's close graded them. A week still in progress is marked open.", key: true })}
+${P.hero({ eyebrow: '<a href="record.html">The record</a><span>The weekly series</span>', title: "The weekly levels, one week at a time.", lede: "Choose a week to see the levels that were published and how Friday's close graded them.", key: true })}
 <main><div class="wrap">
+  <p class="ended">The weekly series ended on the close of Friday 6 November 2026. From 12 November a level is named on every trading day: <a href="levels.html">the daily levels</a>.</p>
   <ol class="weeks" reversed>
     ${items}
   </ol>

@@ -135,7 +135,7 @@ const out = `<!DOCTYPE html>
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://thesimplifier7.com/misses.html">
-<meta name="theme-color" content="#0f1e3a">
+<meta name="theme-color" content="#0B1A2E">
 ${HS.earlyTags()}
 <style>
   :root{--bg:#141210;--panel:#1D1A16;--rule:#4A4238;--rule-soft:#3A342C;--ink:#EFE8DC;--ink-2:#E3DCCE;--ink-3:#CFC6B8;--ink-5:#B8AE9E;

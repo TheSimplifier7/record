@@ -7,9 +7,11 @@
 (function (root) {
   "use strict";
   var DEFAULT_TAG = "site";
-  /* Approved campaign tags only. x-bio and x-pin are the X bio and pin links.
+  /* Approved campaign tags only. x-bio and x-pin are the X bio and pin links;
+     x-post and x-reply are links in a post and in a reply on X; tv-sig and
+     tv-status are the TradingView signature and status links (12 Nov 2026).
      test-grok marks an authorised test. site is the untagged default. */
-  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "site": 1 };
+  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "x-post": 1, "x-reply": 1, "tv-sig": 1, "tv-status": 1, "site": 1 };
   function campaign(r) { return CAMPAIGNS[r] ? r : ""; }
   function tagFrom(search) {
     var q;

@@ -11,6 +11,9 @@ check(tagFrom("") === "site", "no tag defaults to site");
 check(tagFrom("?ref=test-grok") === "test-grok", "test-grok is kept");
 check(tagFrom("?utm_source=x-bio") === "x-bio", "the X bio tag is kept");
 check(tagFrom("?ref=x-pin") === "x-pin", "the X pin tag is kept");
+check(tagFrom("?ref=x-post") === "x-post" && tagFrom("?ref=x-reply") === "x-reply", "the X post and reply tags are kept (12 Nov 2026)");
+check(tagFrom("?ref=tv-sig") === "tv-sig" && tagFrom("?ref=tv-status") === "tv-status", "the TradingView signature and status tags are kept (12 Nov 2026)");
+check(tagFrom("?ref=x-dm") === "site", "an X tag that is not on the list falls back to site");
 check(CAMPAIGNS["test-grok"] === 1, "test-grok is on the allowlist");
 
 check(tagFrom("?ref=Bradley") === "site", "a name is not a campaign tag");

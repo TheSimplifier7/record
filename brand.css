@@ -1,48 +1,203 @@
 /* =========================================================================
-   brand.css  ·  THE FLOW, IN ASSAY  ·  7 November 2026
+   brand.css  ·  THE CALM LAYER  ·  12 November 2026  ·  note 70 on the record
 
-   The last layer on every page. It changes no face and no colour of ASSAY
-   (assay-site.css, note 63: Barlow for words, IBM Plex Mono for figures,
-   Barlow Condensed for titles, gold only for a line, red only for a line
-   that broke, ivory for the one thing to press). It only makes the pages
-   flow to a sign up: Monday email once in the band, the email form's button
-   in ivory, the plans page's questions folded, the record's new text block
-   folded under its hero, and the record's count strip readable on a phone.
-   It restyles and never removes; with it gone every page reads as before.
+   The last layer on every page, and the only layer on the front page and
+   the daily levels. It draws the frame every page shares, complete: the
+   band, the buttons, the bar at the foot of a phone and the foot. On the
+   pages that still load the older layers it sets the same frame over them.
+
+   The rules it keeps, from ASSAY:
+     ground #0B1A2E, raised #11233C, three inks: ivory, secondary, muted
+     Barlow for words at 400 and 500, IBM Plex Mono for figures
+     gold for a line and nothing else, red for a line that broke
+     hairlines, no shadow, no gradient, no glow, sentence case
+     spacing on 4, 8, 12, 16, 24, 32, 48, 64, 96
+
+   7 November 2026: it was the flow to the Monday email. That list closed on
+   12 November (note 70) and its rules are gone from here.
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
    ========================================================================= */
 
-/* the band says Monday email once: as a place in the nav, not a second button */
-.hs-band .hs-nav a[href="./#join"]{display:inline-flex!important}
-.hs-band .hs-getlines{display:none!important}
+html:root{
+  --c-bg:#0B1A2E;--c-raise:#11233C;--c-ink:#F3EDE2;--c-sec:#A8B3C4;--c-mut:#7D8CA3;
+  --c-gold:#E8B84F;--c-red:#F0604A;
+  --c-rule:rgba(243,237,226,.09);--c-rule-2:rgba(243,237,226,.18);
+  --c-ui:"Barlow","Barlow Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --c-fig:"IBM Plex Mono","IBM Plex Mono Fallback",ui-monospace,Menlo,Consolas,monospace;
+  --c-frame:72rem;--c-gutter:clamp(20px,4vw,40px);--c-bot:calc(52px + env(safe-area-inset-bottom,0px));
+  /* the title face on the older pages was Barlow Condensed; every title is Barlow now */
+  --hs-cond:var(--c-ui);--f-cond:var(--c-ui);--f-display:var(--c-ui);--f-serif:var(--c-ui);--f-text:var(--c-ui);
+  --hs-gutter:var(--c-gutter);
+}
+/* the older pages name their colours with their own tokens; each is given its place in ASSAY, so one page cannot drift from the next.
+   Held stays gold and wrong stays red, as the record ruled (note 47), in ASSAY's own gold and red. Open, and every link, is ivory. */
+html:root[data-theme]{
+  --bg:var(--c-bg);--panel:var(--c-raise);--raise:var(--c-raise);--bar:var(--c-raise);--navy:var(--c-bg);--navy-ink:var(--c-ink);--navy-ink-2:var(--c-sec);
+  --ink:var(--c-ink);--ink-2:var(--c-sec);--ink-3:var(--c-sec);--ink-4:var(--c-mut);--ink-5:var(--c-mut);--ink-6:var(--c-mut);
+  --rule:#1f2c40;--rule-2:#324058;--rule-soft:#1f2c40;
+  --gold:var(--c-gold);--held:var(--c-gold);--pass:var(--c-gold);--mk-held:var(--c-gold);--wrong:var(--c-red);--miss:var(--c-red);--wrong-chip:var(--c-red);
+  --open:var(--c-ink);--pending:var(--c-ink);--nr:var(--c-mut);--notest:var(--c-mut);--focus:var(--c-ink);
+  --btn:var(--c-ink);--btn-ink:var(--c-bg);--btn-hover:#fff;--hs-link:var(--c-ink);--hs-link-rule:var(--c-rule-2);
+  --hs-navy:var(--c-bg);--hs-ink:var(--c-ink);--hs-ink-2:var(--c-sec);--hs-gold:var(--c-gold);--hs-gold-t:var(--c-gold);--hs-red-t:var(--c-red);--hs-blue:var(--c-ink);--hs-focus:var(--c-ink);--hs-bg:var(--c-bg);
+}
+html{background:var(--c-bg);-webkit-text-size-adjust:100%}
+html body{background:var(--c-bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+:focus-visible{outline:2px solid var(--c-ink);outline-offset:3px;border-radius:2px}
 
-/* the one thing to press, in ivory */
-.lv-form button,.br-btn{min-height:48px;border:0;border-radius:999px;background:linear-gradient(170deg,#fffbf2 0%,#f1e9db 48%,#d6cab6 100%);color:#0b1a2e;font:600 1rem/1 "Barlow",sans-serif;padding:0 24px;cursor:pointer}
-.lv-form button:hover,.br-btn:hover{background:linear-gradient(170deg,#ffffff 0%,#f4ecdf 48%,#dbcfbb 100%)}
-.lv-form{border-radius:16px!important;padding:24px!important}
-.lv-form input[type="email"]{border-radius:12px!important;min-height:48px!important}
+/* ---------------------------------------------------------------- the band */
+html .hs-wrap{max-width:var(--c-frame);margin:0 auto;padding-inline:var(--c-gutter);box-sizing:border-box}
+html .hs-band,html .hd-band{position:sticky;top:0;z-index:40;display:block;padding:0!important;background:var(--c-bg)!important;color:var(--c-ink);font-family:var(--c-ui);
+  box-shadow:inset 0 -1px 0 var(--c-rule)!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html .hs-band.hs-static{position:relative}
+html .hs-band-in,html .hd-band .band-top{display:flex;align-items:stretch;gap:32px;min-height:64px!important}
+html .hs-brand,html .hd-band .brand,html .hs-foot .hs-brand{display:inline-flex;align-items:center;gap:0!important;min-height:44px;align-self:center;
+  font:600 13px/1 var(--c-ui)!important;letter-spacing:.18em!important;color:var(--c-ink)!important;text-decoration:none!important;white-space:nowrap;border:0!important}
+html .hs-brand::before,html .hd-band .brand::before{content:none!important;display:none!important}
+html .hs-nav,html .hd-band .topnav{display:flex;align-items:stretch;gap:4px!important;margin-left:auto;flex:0 1 auto!important;min-width:0}
+html .hs-nav a,html .hd-band .topnav a{display:inline-flex!important;align-items:center;min-height:44px;padding:0 12px!important;margin:0!important;
+  font:400 15px/1 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-sec)!important;text-decoration:none!important;white-space:nowrap;border:0!important;
+  transition:color .15s ease}
+html .hs-nav a:hover,html .hd-band .topnav a:hover{color:var(--c-ink)!important}
+html .hs-nav a[aria-current="page"],html .hd-band .topnav a[aria-current="page"]{color:var(--c-ink)!important;box-shadow:inset 0 -1px 0 var(--c-ink)}
+html .hs-nav a::after,html .hd-band .topnav a::after{content:none!important;display:none!important}
+html .hs-tools,html .hd-band .band-tools{display:flex;align-items:center;gap:8px;margin-left:0!important}
 
-/* the email page: the form first, then what is inside */
-.lv-after{margin-top:48px!important}
+/* ---------------------------------------------------------------- what is pressed */
+html .hs-btn,html .hd-btn,html a.btn,html button.btn,html .br-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px!important;
+  border-radius:8px!important;border:1px solid transparent!important;font:500 15px/1 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;text-decoration:none!important;white-space:nowrap;cursor:pointer;
+  box-shadow:none!important;transform:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease!important}
+html .hs-btn.hs-gold,html .hd-btn.hd-gold,html a.btn:not(.quiet),html button.btn:not(.quiet),html .br-btn,html .getlines{background:var(--c-ink)!important;color:var(--c-bg)!important}
+html .hs-btn.hs-gold:hover,html .hd-btn.hd-gold:hover,html a.btn:not(.quiet):hover,html button.btn:not(.quiet):hover,html .br-btn:hover,html .getlines:hover{background:#fff!important;color:var(--c-bg)!important}
+html .hs-btn.hs-gold svg path,html a.btn:not(.quiet) svg path{stroke:var(--c-bg)}
+html .hs-btn.hs-ghost,html .hd-btn.hd-ghost,html a.btn.quiet,html button.btn.quiet{background:transparent!important;color:var(--c-ink)!important;border-color:var(--c-rule-2)!important}
+html .hs-btn.hs-ghost:hover,html .hd-btn.hd-ghost:hover,html a.btn.quiet:hover,html button.btn.quiet:hover{background:transparent!important;border-color:rgba(243,237,226,.45)!important;color:var(--c-ink)!important}
+html .hs-band .hs-btn,html .hd-band .hd-btn{min-height:36px;padding:0 16px!important;font-size:14px!important}
+
+/* ---------------------------------------------------------------- the foot */
+html .hs-foot{margin-top:96px;border-top:1px solid var(--c-rule);background:var(--c-bg);color:var(--c-mut);font:400 14px/1.55 var(--c-ui)}
+html .hs-foot-in{display:grid;grid-template-columns:minmax(0,5fr) repeat(3,minmax(0,2fr));gap:48px 32px;padding-block:48px 64px}
+html .hs-foot-id p{margin:16px 0 0;max-width:26rem}
+html .hs-foot-id p+p{margin-top:8px}
+html .hs-foot nav{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+html .hs-foot-h{margin:0 0 8px;min-height:44px;display:flex;align-items:center;color:var(--c-ink);font-weight:500}
+html .hs-foot nav a{display:inline-flex;align-items:center;min-height:32px;color:var(--c-sec);text-decoration:none;border:0;transition:color .15s ease}
+html .hs-foot nav a:hover{color:var(--c-ink)}
+
+/* ---------------------------------------------------------------- the bar at the foot of a phone */
+html .hs-bot,html .botnav{display:none}
+@media (max-width:760px){
+  html .hs-band-in,html .hd-band .band-top{min-height:56px!important;gap:12px}
+  html .hs-nav,html .hd-band .topnav{display:none!important}
+  html .hs-tools,html .hd-band .band-tools{margin-left:auto!important}
+  html body.hs-has-bot,html body:has(.botnav){padding-bottom:var(--c-bot)!important}
+  html .hs-bot,html .botnav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;position:fixed;left:0;right:0;bottom:0;z-index:45;height:var(--c-bot)!important;
+    padding:0 0 env(safe-area-inset-bottom,0px)!important;background:var(--c-bg)!important;border:0!important;box-shadow:inset 0 1px 0 var(--c-rule-2)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  html .hs-bot a,html .botnav a{display:flex!important;flex-direction:row!important;align-items:center;justify-content:center;min-height:44px;color:var(--c-sec)!important;
+    font:400 14px/1 var(--c-ui)!important;letter-spacing:0!important;text-decoration:none!important;border:0!important;box-shadow:none!important}
+  html .hs-bot a[aria-current="page"],html .botnav a[aria-current="page"]{color:var(--c-ink)!important;font-weight:500!important;box-shadow:inset 0 1px 0 var(--c-ink)!important}
+  html .hs-bot a::before,html .botnav a::before{content:none!important;display:none!important}
+  html .hs-bot svg,html .botnav svg{display:none!important}
+  html .hs-foot{margin-top:64px}
+  html .hs-foot-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 24px;padding-block:40px 48px}
+  html .hs-foot-id{grid-column:1/-1}
+}
+@media print{html .hs-band,html .hd-band,html .hs-bot,html .botnav{display:none!important}}
+@media (prefers-reduced-motion:reduce){html .hs-btn,html .hd-btn,html .hs-nav a,html .hs-foot nav a{transition:none!important}}
+
+/* ---------------------------------------------------------------- the calm page: the front page and the daily levels */
+body.cp{margin:0;color:var(--c-sec);font:400 17px/1.6 var(--c-ui)}
+.cp .skip{position:absolute;left:-999px;top:0;z-index:99;background:var(--c-ink);color:var(--c-bg);padding:12px 16px;border-radius:0 0 8px 0;font:500 15px/1 var(--c-ui);text-decoration:none}
+.cp .skip:focus{left:0}
+.hm{overflow-x:clip}
+.hm *,.hm *::before,.hm *::after{box-sizing:border-box}
+.hm .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:where(.hm) p{margin:0}
+.hm-in{max-width:var(--c-frame);margin:0 auto;padding-inline:var(--c-gutter)}
+.hm a:not(.hs-btn){color:var(--c-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--c-rule-2);transition:text-decoration-color .15s ease}
+.hm a:not(.hs-btn):hover{text-decoration-color:currentColor}
+.hm h1,.hm h2,.hm h3{margin:0;color:var(--c-ink);text-wrap:balance}
+.hm h2{font:500 clamp(1.625rem,2.5vw,2rem)/1.16 var(--c-ui)}
+.hm h3{font:500 17px/1.4 var(--c-ui)}
+.hm-fine{font-size:14px;line-height:1.55;color:var(--c-mut);max-width:40rem}
+.hm-acts{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:40px}
+.hm-acts .hs-btn{min-height:48px;padding:0 24px!important;font-size:16px!important}
+.hm-links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;font-size:16px}
+/* the first screen: what the page is on the left, the levels on the right */
+.hm-hero{padding:96px 0 96px}
+.hm-hero .hm-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:start}
+.hm-h1{font:500 clamp(2.5rem,4.2vw,3.5rem)/1.06 var(--c-ui);letter-spacing:-.024em!important;max-width:11.5em}
+.hm-say{margin-top:24px;font-size:20px;line-height:1.5;max-width:26em}
+.hm-rec{margin-top:56px;padding-top:24px;border-top:1px solid var(--c-rule);display:grid;gap:4px;font-size:15px;line-height:1.55}
+.hm-rec b{font:500 .9375em var(--c-fig);color:var(--c-ink)}
+.hm-today{scroll-margin-top:88px}
+/* a section: its title on the left, what it holds on the right */
+.hm-sec{scroll-margin-top:64px}
+.hm-sec .hm-in>div{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:64px;border-top:1px solid var(--c-rule);padding:64px 0 96px}
+.hm-side p{margin-top:16px;font-size:16px;line-height:1.6;max-width:20rem}
+.hm-main>h3{margin-bottom:16px}
+.hm-main>p{max-width:40rem}
+.hm-main>p+p{margin-top:16px}
+.hm-big{font-size:20px;line-height:1.55;color:var(--c-ink)}
+.hm-last .hm-in>div{padding-bottom:32px}
+@media (max-width:900px){
+  .hm-hero{padding:40px 0 56px}
+  .hm-hero .hm-in{display:block}
+  .hm-h1{font-size:clamp(2.125rem,9.4vw,2.75rem);line-height:1.07}
+  .hm-say{margin-top:16px;font-size:18px}
+  .hm-acts{margin-top:28px;gap:16px 24px}
+  .hm-hero .hm-acts .hs-btn{width:100%}
+  .hm-rec{margin-top:32px;padding-top:20px}
+  .hm-today{margin-top:32px}
+  .hm-sec .hm-in>div{display:block;padding:40px 0 56px}
+  .hm-side{margin-bottom:28px}
+  .hm-side p{max-width:34rem}
+  .hm-big{font-size:18px}
+  .hm-last .hm-in>div{padding-bottom:16px}
+}
+
+/* ---------------------------------------------------------------- the older pages, set in the same hand */
+/* the head of a page */
+html .hs-hero,html .fan-head,html .band-hero:not(.r3){background:transparent!important;box-shadow:none!important;color:var(--c-ink)}
+html .hs-hero::before,html .hs-hero::after{content:none!important;display:none!important}
+html .hs-hero-in{max-width:var(--c-frame)!important;padding:72px var(--c-gutter) 48px!important}
+html .hs-h1,html .fan-head h1{max-width:18em!important;font:500 clamp(2.125rem,4.4vw,3.5rem)/1.06 var(--c-ui)!important;letter-spacing:-.022em!important;color:var(--c-ink)!important;text-wrap:balance}
+html .hs-h1 em{color:inherit}
+html .hs-eyebrow{display:flex!important;flex-wrap:wrap;gap:0 8px!important;margin:0 0 20px!important;padding:0!important;background:none!important;box-shadow:none!important;border-radius:0!important;
+  font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important}
+html .hs-eyebrow a{color:var(--c-sec)!important;text-decoration:none!important}
+html .hs-eyebrow a:hover{color:var(--c-ink)!important}
+html .hs-eyebrow b{font:inherit!important;color:inherit!important}
+html .hs-eyebrow>*+*::before{content:"/"!important;margin-right:8px!important;color:var(--c-mut)!important}
+html .hs-lede{margin-top:20px!important;max-width:40rem!important;font:400 18px/1.6 var(--c-ui)!important;color:var(--c-sec)!important}
+/* titles and labels: one face, two weights, sentence case */
+html body :is(h1,h2,h3,h4){font-family:var(--c-ui)!important;font-weight:500!important;text-transform:none!important}
+html body :is(h1,h2){letter-spacing:-.015em!important}
+html body :is(h3,h4){letter-spacing:0!important}
+@media (max-width:760px){
+  html .hs-hero-in{padding:40px var(--c-gutter) 32px!important}
+  html .hs-lede{font-size:17px!important}
+}
 
 /* the plans page: the questions fold */
-.faq details{border-top:1px solid var(--rule,rgba(201,211,230,.14))}
-.faq details:last-of-type{border-bottom:1px solid var(--rule,rgba(201,211,230,.14))}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:12px 0;font:500 1.0625rem/1.35 "Barlow",sans-serif;color:var(--ink,#eef2f8)}
+.faq details{border-top:1px solid var(--c-rule)}
+.faq details:last-of-type{border-bottom:1px solid var(--c-rule)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:12px 0;font:500 1.0625rem/1.35 var(--c-ui);color:var(--c-ink)}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"";flex:none;width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-3px,-3px);opacity:.6;transition:transform .2s ease}
 .faq details[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
 .faq details p{margin:0 0 16px;max-width:44rem}
-.compare caption{display:block;width:100%;text-align:left;font:600 1rem/1.4 "Barlow",sans-serif;padding:0 0 12px}
+.compare caption{display:block;width:100%;text-align:left;font:500 1rem/1.4 var(--c-ui);padding:0 0 12px}
 
-/* the record: its hero first, how to read it folded under */
+/* the record: how to read it, folded under its head */
 .pre-fold{padding:8px 0 32px}
-.pre-fold details{max-width:1072px;margin:0 auto;border-top:1px solid var(--rule,rgba(201,211,230,.14));border-bottom:1px solid var(--rule,rgba(201,211,230,.14))}
-.pre-fold summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;font:500 1.0625rem/1.3 "Barlow",sans-serif}
+.pre-fold details{max-width:1072px;margin:0 auto;border-top:1px solid var(--c-rule);border-bottom:1px solid var(--c-rule)}
+.pre-fold summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;font:500 1.0625rem/1.3 var(--c-ui)}
 .pre-fold summary::-webkit-details-marker{display:none}
 .pre-fold summary::after{content:"";width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.6}
 .pre-fold details[open] summary::after{transform:rotate(225deg)}
-.pre-fold h2{font:700 1.5rem/1.1 var(--f-cond,"Barlow Condensed",sans-serif)!important;margin:24px 0 8px!important;text-transform:none!important;letter-spacing:0!important}
+.pre-fold h2{font:500 1.375rem/1.2 var(--c-ui)!important;margin:24px 0 8px!important}
 .pre-fold p{max-width:44rem;margin:0 0 8px}
 .pre-fold .mig{opacity:.75}
 
@@ -53,3 +208,131 @@
   .r3-kpi{flex:0 0 auto!important;min-width:0!important}
   .r3-kpi .r3-ey{white-space:nowrap!important;font-size:11px!important;letter-spacing:.02em!important}
 }
+
+/* ---------------------------------------------------------------- the record's own page */
+/* its places, in a row under the band */
+html .rec-tabs{display:block!important;position:static;background:var(--c-bg);box-shadow:inset 0 -1px 0 var(--c-rule);overflow-x:auto;scrollbar-width:none}
+html .rec-tabs::-webkit-scrollbar{display:none}
+html .rec-tabs .wrap{display:flex;gap:4px;max-width:var(--c-frame);margin:0 auto;padding-inline:calc(var(--c-gutter) - 12px);box-sizing:border-box}
+html .rec-tabs a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font:400 14px/1 var(--c-ui);color:var(--c-sec);text-decoration:none;white-space:nowrap;border:0}
+html .rec-tabs a:hover{color:var(--c-ink)}
+html .rec-tabs a[aria-current="page"]{color:var(--c-ink);box-shadow:inset 0 -1px 0 var(--c-ink)}
+html .botnav a.is-here{color:var(--c-ink)!important;font-weight:500!important;box-shadow:inset 0 1px 0 var(--c-ink)!important}
+/* its ground and its inks are the site's */
+html .r3,html .r3f,html .mv{--r3-ground:var(--c-bg);--r3-ink:var(--c-ink);--r3-ink2:var(--c-sec);--r3-ink3:var(--c-mut);--r3-ink4:var(--c-mut);--r3-rule:var(--c-rule);--r3-rule2:var(--c-rule-2);
+  --r3-gold:var(--c-gold);--r3-gold2:var(--c-gold);--r3-red2:var(--c-red);--mv-gold:var(--c-gold);--mv-gold2:var(--c-mut);--mv-ink:var(--c-ink);--mv-ink2:var(--c-sec);--mv-ink3:var(--c-mut);--mv-rule:var(--c-rule)}
+html .band-hero.r3,html .r3f,html .mv{background:var(--c-bg)!important}
+html .r3-lights{display:none!important}
+html .hd-btn>svg,html .hd-btn .hd-len{display:none!important}
+/* the count */
+html .r3-tele{background:var(--c-raise)!important;border:1px solid var(--c-rule)!important;border-radius:12px!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html .r3-ey{font:400 13px/1.4 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important}
+html .r3-ey .r3-w{color:var(--c-ink)!important}
+html .r3-kpi b{font:500 26px/1 var(--c-fig)!important;letter-spacing:-.02em!important;color:var(--c-ink)!important}
+/* the head */
+html .r3-copy .hd-eyebrow{font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important;gap:0 24px!important;min-height:0!important}
+html .r3-copy .hd-eyebrow b{font:400 13px/1.5 var(--c-fig)!important;letter-spacing:0!important;color:var(--c-sec)!important}
+html .r3-copy .hd-eyebrow>span:last-child{flex-basis:auto!important}
+html .r3-h1{font:500 clamp(2.5rem,4.2vw,3.5rem)/1.06 var(--c-ui)!important;letter-spacing:-.024em!important;color:var(--c-ink)!important;margin-top:16px!important}
+html .hd-keys{gap:4px 24px!important;margin-top:24px!important}
+html .hd-key{padding:0!important;gap:12px!important;background:none!important;box-shadow:none!important;border-radius:0!important;font-size:15px!important;color:var(--c-sec)!important}
+html .hd-key b{font-weight:400!important;color:var(--c-ink)!important}
+html .r3-lede{margin-top:24px!important;max-width:34rem!important;font-size:16px!important;line-height:1.6!important;color:var(--c-sec)!important}
+html .r3-lede a,html .wb-f a,html .pre-fold a,html .mv a:not(.hd-btn),html .r3f a:not(.hd-btn){color:var(--c-ink)!important;font-weight:400!important;text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:4px!important;text-decoration-color:var(--c-rule-2)!important;border:0!important}
+html .r3-ctas{gap:12px!important;margin-top:32px!important}
+html .r3-ctas .hd-btn{min-height:48px;padding:0 24px!important;font-size:16px!important}
+html .wb-terms{margin-top:24px!important;font-size:14px!important;color:var(--c-mut)!important}
+html .wb-counsel{margin-top:4px!important;font-size:12.5px!important;color:var(--c-mut)!important}
+/* the last lines of the weekly series: each a line with its price on it, as the daily levels are drawn */
+html .wb{border-radius:12px!important;padding:28px 32px 20px!important;background:var(--c-raise)!important;border:1px solid var(--c-rule)!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html .wb-h{align-items:baseline}
+html .wb-t{font:500 16px/1.5 var(--c-ui)!important;letter-spacing:0!important;color:var(--c-ink)!important}
+html .wb-g{font:400 14px/1.5 var(--c-ui)!important;color:var(--c-mut)!important}
+html .wb-list{margin-top:4px!important}
+html .wb-row{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"n v" "s s"!important;column-gap:16px!important;row-gap:0!important;padding:20px 0 0!important;border-top:0!important}
+html .wb-glyph,html .wb-kind{display:none!important}
+html .wb-k2{display:inline!important;color:var(--c-ink)}
+html .wb-name{align-self:end!important;padding-bottom:12px;font:500 18px/1.2 var(--c-ui)!important;color:var(--c-ink)!important}
+html .wb-lv{align-self:end!important;padding-bottom:12px;font:500 28px/1 var(--c-fig)!important;letter-spacing:-.02em!important;color:var(--c-ink)!important}
+html .wb-say{position:relative;padding:8px 72px 0 0;border-top:1px solid var(--c-gold);font:400 14px/1.5 var(--c-ui)!important;color:var(--c-sec)!important}
+html .wb-row.wrong .wb-say{border-top-color:var(--c-red)}
+html .wb-say b{font-weight:400!important;color:inherit!important}
+html .wb-v{position:absolute;right:0;top:8px;margin:0!important;font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;text-transform:lowercase;color:var(--c-ink)!important}
+html .wb-v::first-letter{text-transform:uppercase}
+html .wb-f{margin-top:24px;padding-top:16px!important;border-top:1px solid var(--c-rule)!important;font:400 14px/1.5 var(--c-ui)!important;color:var(--c-mut)!important}
+html .wb-f a::after{content:none!important}
+/* a member */
+html .mv{padding-top:96px!important}
+html .mv-ey{font:400 14px/1.5 var(--c-ui)!important;color:var(--c-mut)!important}
+html .mv-mark,html .mv-close,html .mv-to,html .mv-mono{display:none!important}
+html .mv-rest{margin-top:0!important;max-width:28em!important;font:400 clamp(1.375rem,2.2vw,1.625rem)/1.42 var(--c-ui)!important;color:var(--c-ink)!important}
+html .mv-ba{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:32px!important;padding:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+html .mv-k{font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;color:var(--c-mut)!important}
+html .mv-col p,html .mv-col.now p{font-size:15px!important;color:var(--c-sec)!important}
+html .mv-also{font-size:15px!important;color:var(--c-sec)!important}
+html .mv-also q::before,html .mv-also q::after{color:inherit!important;font:inherit!important}
+html .mv-who b{font-weight:500!important}
+/* from the record to your chart */
+html .r3f .r3-gold{color:var(--c-mut)!important}
+html .r3f-h{font:500 clamp(1.625rem,2.5vw,2rem)/1.16 var(--c-ui)!important;letter-spacing:-.015em!important;color:var(--c-ink)!important}
+html .r3f-step,html .r3f-step.hot{padding:28px!important;border-radius:12px!important;background:var(--c-raise)!important;border:1px solid var(--c-rule)!important;box-shadow:none!important}
+html .r3f-step h3{font:500 20px/1.3 var(--c-ui)!important;color:var(--c-ink)!important}
+html .r3f-step p b{font-weight:500!important}
+html .r3f-num,html .r3f-arrow{display:none!important}
+html .r3f-tag,html .r3f-tag.tv,html .r3f-tag.free{font:400 13px/1.4 var(--c-ui)!important;letter-spacing:0!important;color:var(--c-mut)!important}
+html .r3f-ml{border-radius:12px!important;background:none!important;box-shadow:none!important;border:1px solid var(--c-rule)!important}
+/* the strips that head a section */
+html .bar,html .bar.navy{background:transparent!important;border-bottom:1px solid var(--c-rule)!important}
+html .bar p,html .bar h2,html .bar h3{font:500 14px/1.4 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-ink)!important}
+html .bar p+p,html .bar h2+p,html .bar h3+p{font-weight:400!important;color:var(--c-mut)!important}
+/* its figures in the figure face, its names in the word face */
+html :is(.season tbody td,.season tfoot td,.mstats b,.ob-fig .n,.offer .amt,.fx .lv,.lr .lv,.slab .lv,.od,.sc-pos){font-family:var(--c-fig)!important;font-weight:500!important;letter-spacing:-.02em!important}
+html :is(.season tbody th,.season tfoot th,.fx .metal,.lr .mt,.door h3,.vhead h2,.mhead h2,.subh,.tabs button,.detail .who b,.ep .who b,.board td.l){font-family:var(--c-ui)!important;font-weight:500!important;letter-spacing:0!important;text-transform:none!important}
+html .season thead th{font:400 13px/1.4 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important}
+html .pre-fold details.wrap{max-width:calc(var(--c-frame) - 2 * var(--c-gutter))!important;padding-inline:0!important}
+/* a link in running text: ivory, under one quiet rule */
+html body :is(main,footer,section,aside) a:not(.hs-btn):not(.hd-btn):not(.btn){border-bottom-color:var(--c-rule-2)!important;text-decoration-color:var(--c-rule-2)}
+html .foot-meta a,html .integrity a,html .offer a,html .wb-f a{font-weight:400!important}
+
+/* ---------------------------------------------------------------- the pages written from the plans template (The Fan, terms, privacy, the email flow) */
+html .fan-head{box-shadow:none!important;padding-block:24px 16px!important}
+html .fan-head::before{content:none!important}
+html .fan-head .crumb{font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important;margin:0 0 20px!important}
+html .fan-head .crumb a{min-height:0!important;color:var(--c-sec)!important;text-decoration:none!important}
+html .fan-head .tagline{margin-top:20px!important;max-width:40rem!important;font:400 20px/1.5 var(--c-ui)!important;letter-spacing:0!important;color:var(--c-ink)!important}
+html .fan-head .lede,html .fan-head .lede.what{margin-top:16px!important;max-width:40rem!important;font:400 17px/1.6 var(--c-ui)!important;color:var(--c-sec)!important}
+html .fan-price,html .fan-price a{font-size:16px!important;color:var(--c-ink)!important}
+html .fan-price .go{display:none!important}
+html .fan-price a{text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:4px!important;text-decoration-color:var(--c-rule-2)!important;min-height:0!important}
+html .fan-price{margin-top:24px!important}
+html .plan-band{background:var(--c-bg)!important;border-top:1px solid var(--c-rule);padding-block:64px!important}
+html .plan-band h2,html .fan h2,html .fan.legal h2{font-size:clamp(1.5rem,2.3vw,1.75rem)!important;line-height:1.2!important}
+html .plan,html .plan-fan{border-radius:12px!important;border:1px solid var(--c-rule)!important;background:var(--c-raise)!important;padding:28px!important}
+html .plan h2{font-size:20px!important}
+html .plan-price b{font:500 28px/1 var(--c-fig)!important;letter-spacing:-.02em!important;color:var(--c-ink)!important}
+html .plan-tag{padding:0!important;border:0!important;border-radius:0!important;opacity:1!important;font-size:14px!important;color:var(--c-mut)!important}
+html .plan .plan-checks li::before{background:var(--c-sec)!important}
+html .plan-band .plan-links a{color:var(--c-ink)!important}
+html .member-q{margin:0;padding:0;border:0}
+html .member-q p{max-width:28em;font:400 clamp(1.25rem,2vw,1.5rem)/1.45 var(--c-ui);color:var(--c-ink)}
+@media (max-width:760px){html .fan-head{padding-block:8px 8px!important}html .fan-head .tagline{font-size:18px!important}}
+html .plan-band{color:var(--c-sec)!important}
+html .member-q+p{margin-top:16px}
+/* the key line under a title: plain words, no pills */
+html .hs-key{gap:4px 24px!important;margin-top:20px!important}
+html .hs-key span{padding:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;font:400 15px/1.5 var(--c-ui)!important;color:var(--c-sec)!important}
+html .hs-key b{font-weight:400!important;color:var(--c-ink)!important}
+/* the record: a place other than the overview opens on its own matter, not on the member's words and the three steps */
+.js body:not([data-view="week"]) :is(.mv,.r3f){display:none!important}
+html .pre-fold details{max-width:calc(var(--c-frame) - 2 * var(--c-gutter))!important;padding-inline:0!important;margin-inline:auto!important}
+html .pre-fold{padding-inline:var(--c-gutter)}
+html .vhead{background:transparent!important}
+html .vhead h2{font-size:clamp(1.75rem,3vw,2.25rem)!important;line-height:1.15!important}
+html .vhead .law{font:400 14px/1.5 var(--c-ui)!important;letter-spacing:0!important;text-transform:none!important;color:var(--c-mut)!important}
+html #preface.pre-fold{max-width:var(--c-frame)!important;margin-inline:auto!important;box-sizing:border-box}
+@media (max-width:760px){
+  html .r3-ctas{flex-direction:column!important;align-items:stretch!important}
+  html .r3-ctas .hd-btn{width:100%}
+}
+html .compare td::before{text-transform:none!important;letter-spacing:0!important;font-weight:500!important}
+html body :is(main,footer,section,aside) a:not(.hs-btn):not(.hd-btn):not(.btn):hover{border-bottom-color:currentColor!important;text-decoration-color:currentColor}

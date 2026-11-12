@@ -27,7 +27,7 @@ const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g,
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
 
 const FONTS = '<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +
-  '<link rel="preload" href="barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +
+  '<link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +  /* 12 Nov 2026, note 70: titles are Barlow at 500. It read: barlow-condensed-latin-700-normal.woff2 */
   '<style id="fonts">' + fs.readFileSync(path.join(__dirname, "fonts.css"), "utf8").trim() + '</style>';
 /* The reader's choice on the record, applied before first paint, so nothing flashes. */
 /* 10 Nov 2026, note 68: the switch is off and every page names the dark ground on its html tag, so no script is needed before first paint. */
@@ -35,18 +35,54 @@ const THEME_JS = "";
 
 /* The tags a page's head carries for the house: after its own styles, so the house's few rules come last. */
 const ICONS = "<link rel=\"icon\" href=\"/favicon.ico?v=2\" sizes=\"16x16 32x32 48x48\">\n<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/icon-192.png?v=2\">\n<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png?v=2\">";  /* 1 Nov 2026: the icons index.html carries, on every page that takes the house head */
-function headTags({ fonts = true } = {}) {
+function headTags({ fonts = true, lean = false } = {}) {
+  /* 12 Nov 2026, note 70: lean is for a page drawn whole in the calm layer (the front page, the daily levels): brand.css carries the band, the buttons, the bar and the foot complete, so the four older layers are not asked for. */
+  if (lean) return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="brand.css?v=${vOf("brand.css")}">`;
   /* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: return (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">`; */
   return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="floor.css?v=${vOf("floor.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">\n<link rel="stylesheet" href="brand.css?v=${vOf("brand.css")}">`; /* 31 Oct 2026, note 64: sharp.css; 7 Nov 2026: brand.css, the flow in ASSAY, loaded last */
+}
+/* 12 Nov 2026, note 70: the head of a page drawn whole in the calm layer. pre is a script that must run before anything is drawn. */
+function leanHead({ title, description, canonical, image, alt, css = "", pre = "" }) {
+  return `<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<link rel="canonical" href="${esc(canonical)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Simplifier">
+<meta property="og:url" content="${esc(canonical)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:image" content="${esc(image)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(alt)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@TheSimplifier7">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${esc(image)}">
+<meta name="theme-color" content="#0B1A2E">
+${earlyTags()}
+${pre ? pre + "\n" : ""}${headTags({ lean: true })}
+<style>${css}</style>
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body class="cp hs-has-bot">
+<a class="skip" href="#main">Skip to the page</a>`;
 }
 const earlyTags = () => '<meta name="color-scheme" content="dark">';
 
 /* The band's places, as on the record. */
+/* 12 Nov 2026, notes 69 and 70: the daily series. It read: ["week", "./#week", "This week"], ["record", "record.html", "The record"], ["fan", "method.html", "The Fan"], ["email", "./#join", "Monday email"] */
 const NAV = [
-  ["week", "./#week", "This week"],
+  ["today", "levels.html", "Daily levels"],
   ["record", "record.html", "The record"],
   ["fan", "method.html", "The Fan"],
-  ["email", "./#join", "Monday email"]
+  ["tools", "tools.html", "Free tools"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -65,17 +101,17 @@ function strip() {
 </div>`;
 }
 
-/* 22 Oct 2026, note 55: the gold button reads Follow on TradingView. It read: <span class="hs-long">Join me on </span>TradingView */
+/* 12 Nov 2026, note 70: the band in the calm layer. The name set as words, the four places, one quiet button to the trial.
+   It read: the name beside the portrait, a hidden "Monday email" button and a gold "See The Fan". */
 function band(current, where, { fixed = true } = {}) {
   return `<header class="hs-band${fixed ? "" : " hs-static"}">
   <div class="hs-wrap hs-band-in">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <nav class="hs-nav" aria-label="The site">
-      ${NAV.map(([k, href, label, cls]) => `<a${cls ? ` class="${cls}"` : ""} href="${href}"${cur(k, current)}>${label}</a>`).join("\n      ")}
+      ${NAV.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}>${label}</a>`).join("\n      ")}
     </nav>
     <div class="hs-tools">
-      <a class="hs-btn hs-ghost hs-getlines" href="./#join">Monday email</a>
-      <a class="hs-btn hs-gold" href="method.html" data-tv="plans-${esc(where)}-band">See The Fan</a>
+      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-${esc(where)}-band">Try The Fan free</a>
     </div>
   </div>
 </header>`;
@@ -93,26 +129,25 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 </div></div>`;
 }
 
-/* The bar at the foot of a phone, the record's own five places. */
+/* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const I = {
-    week: '<rect x="3" y="4.5" width="14" height="12" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/>',
-    results: '<path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/>',
-    record: '<path d="M3 5h1M3 10h1M3 15h1M7 5h10M7 10h10M7 15h10"/>',
-    email: '<rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/>',
-    fan: '<path d="M3 16.5 7.8 3.3M3 16.5 12.9 6.6M3 16.5 16.2 11.7"/><path d="M7.8 3.3A14 14 0 0 1 16.2 11.7"/>',
-    banks: '<path d="M3 8l7-4 7 4M4.5 8v7M8.5 8v7M11.5 8v7M15.5 8v7M3 16.5h14"/>',
-    join: '<rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/>'
-  };
-  const B = [["week", "./#week", "This week"], ["record", "record.html", "Record"], ["fan", "method.html", "The Fan"], ["email", "./#join", "Email"]];
-  return `<nav class="hs-bot" aria-label="The record">
-  ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><svg viewBox="0 0 20 20" aria-hidden="true">${I[k]}</svg><span>${label}</span></a>`).join("\n  ")}
+  const B = [["today", "levels.html", "Levels"], ["record", "record.html", "Record"], ["fan", "method.html", "The Fan"], ["tools", "tools.html", "Tools"]];
+  return `<nav class="hs-bot" aria-label="The site, on a phone">
+  ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
 }
-/* 29 Oct 2026, note 63: the page in ASSAY, as the record's own page is drawn. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>`; */
-/* 31 Oct 2026, note 64: the engraving taken off every page, it slowed them. It read: const tail = current => `${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="lamp.js?v=${vOf("lamp.js")}" defer></script>`; */
-/* 1 Nov 2026: The Fan's trial and its way out, at the foot of every page that takes this tail. */
-const fanFoot = () => `<div class="hs-fanfoot"><div class="hs-wrap"><a href="record.html">Full record</a> · <a href="misses.html">Every wrong call</a> · <a href="tools.html">Free tools</a> · <a href="mentorship.html">1-to-1 mentorship</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:hello@thesimplifier7.com">Contact</a> · <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a></div></div>`;
+/* The foot of every page. 12 Nov 2026, note 70: three short lists under the name. It read as one line of links joined by dots. */
+const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
+const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
+  <div class="hs-foot-id">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
+    <p>Gold, silver and platinum levels on every trading day at 08:00 CET. Each one is graded at the close, and the wrong ones stay up.</p>
+    <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
+  </div>
+  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a><a href="record.html#rules">The rules</a></nav>
+  <nav aria-label="The Fan"><p class="hs-foot-h">The Fan</p><a href="method.html">What it shows</a><a href="method.html#plans">Plans and the free trial</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+</div></footer>`;
 const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="svgfloor.js?v=${vOf("svgfloor.js")}" defer></script>\n<script src="refcarry.js?v=${vOf("refcarry.js")}" defer></script>`;
 /* Everything that opens the body: the strip and the band. */
 const top = (current, where, o) => band(current, where, o);
@@ -149,4 +184,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
