@@ -8,8 +8,9 @@
   "use strict";
   var DEFAULT_TAG = "site";
   /* Approved campaign tags only. x-bio and x-pin are the X bio and pin links.
-     test-grok marks an authorised test. site is the untagged default. */
-  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "site": 1 };
+     x-post and x-reply are a post and a reply. test-grok marks an authorised
+     test. site is the untagged default. */
+  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "x-post": 1, "x-reply": 1, "site": 1 };
   function campaign(r) { return CAMPAIGNS[r] ? r : ""; }
   function tagFrom(search) {
     var q;
