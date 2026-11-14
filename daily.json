@@ -5,6 +5,7 @@
   "days": [
     {
       "date": "2026-11-12",
+      "post": "https://x.com/TheSimplifier7/status/2120777772519788924",
       "levels": [
         {
           "metal": "Gold",
@@ -14,6 +15,32 @@
       ],
       "closes": {
         "Gold": "3,875.50"
+      }
+    },
+    {
+      "date": "2026-11-13",
+      "post": "https://x.com/TheSimplifier7/status/2121136106334744716",
+      "levels": [
+        {
+          "metal": "Gold",
+          "level": "3,959",
+          "side": "ceiling"
+        },
+        {
+          "metal": "Silver",
+          "level": "49.97",
+          "side": "ceiling"
+        },
+        {
+          "metal": "Platinum",
+          "level": "1,513.50",
+          "side": "floor"
+        }
+      ],
+      "closes": {
+        "Gold": "3,874",
+        "Silver": "48.62",
+        "Platinum": "1,491"
       }
     }
   ],
