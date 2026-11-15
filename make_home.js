@@ -38,8 +38,13 @@ const DESC = "A level for gold, silver and platinum on every trading day, posted
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 const follow = where => `<a class="hs-btn hs-gold" href="${X}" rel="noopener" data-x="${where}">Follow on X for the 08:00 levels</a>`;
 
+const NUMW = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+/* 15 Nov 2026, HALLMARK quick fixes. The FAQ read "Seven open-source TradingView
+   tools" as typed; it now counts the live tools in tools.json, as tools.html does. */
+const TOOLS_LIVE = JSON.parse(fs.readFileSync(path.join(HERE, "tools.json"), "utf8")).tools.filter(x => x.live === true).length;
+const toolsWord = (NUMW[TOOLS_LIVE] || String(TOOLS_LIVE)).replace(/^./, c => c.toUpperCase());
 const FAQ = [
-  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X at 08:00 CET, and the close that graded each one. <a href="tools.html">Seven open-source TradingView tools</a> are free too.`],
+  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X at 08:00 CET, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
   ["When are the levels posted?", "At 08:00 CET on every trading day. In most weeks that is 02:00 in New York and 07:00 in London."],
   ["How is a level graded?", `${esc(D.RULE)} The wrong ones stay on the page. <a href="levels.html#rule">The rule in full</a>`],
   ["What is The Fan?", `A TradingView indicator, the one my levels are read from. It draws on your own chart and leaves every decision with you. <a href="method.html">See what it shows</a>`],
@@ -62,6 +67,11 @@ function weeklyLast(n) {
   }).join("")}</tbody></table></div>`;
 }
 const hasDays = M.days.length > 0;
+/* 15 Nov 2026, HALLMARK quick fixes. The heading read "The last five days" while
+   the daily series had two days on file. It now counts what it shows: the first
+   days of the series until there are five, then the last five. */
+const daysShown = Math.min(5, M.days.length);
+const daysHead = daysShown >= 5 ? "The last five days" : daysShown === 1 ? "The first day" : `The first ${NUMW[daysShown]} days`;
 const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js draws the rosette under the levels from it */
 
 /* The calm page itself (the grid, the titles, the first screen) is brand.css; this is only what the front page alone carries. */
@@ -142,7 +152,7 @@ ${H.band(null, "home")}
       <p>Every level names its Exit before the move, and every exit stays where you can read it.</p>
     </div>
     <div class="hm-main">
-      ${hasDays ? `<h3>The last five days</h3>
+      ${hasDays ? `<h3>${daysHead}</h3>
       <div data-daily="last">${D.lastDays(M, 5)}</div>` : `<h3>The weekly series, its last five weeks</h3>
       <div data-daily="last">${weeklyLast(5)}</div>`}
       <p class="hm-fine" style="margin-top:16px">Held means the close stayed on the side I named. It is not a trade result.${hasDays ? "" : " The first day of the daily series appears here after its close."}</p>

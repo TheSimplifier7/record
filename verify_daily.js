@@ -59,7 +59,7 @@ if (data) {
     /* 5: write each page again in a copy and compare */
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "daily-"));
     try {
-      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "assay-core.js", "plate.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.jpg"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
+      for (const f of ["daily.js", "daily.json", "record.json", "house_parts.js", "assay-core.js", "plate.js", "make_daily.js", "make_home.js", "fonts.css", "brand.css", "house.js", "svgfloor.js", "refcarry.js", "card_daily.jpg", "tools.json"]) fs.copyFileSync(path.join(HERE, f), path.join(tmp, f));
       for (const f of fs.readdirSync(HERE).filter(f => /^week-\d{4}-\d{2}-\d{2}\.html$/.test(f))) fs.writeFileSync(path.join(tmp, f), "");
       for (const [script, page] of [["make_daily.js", "levels.html"], ["make_home.js", "index.html"]]) {
         let out = null;

@@ -11,7 +11,9 @@
      x-post and x-reply are links in a post and in a reply on X; tv-sig and
      tv-status are the TradingView signature and status links (12 Nov 2026).
      test-grok marks an authorised test. site is the untagged default. */
-  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "x-post": 1, "x-reply": 1, "tv-sig": 1, "tv-status": 1, "site": 1 };
+  /* x-0800 is the link in the 08:00 post on X (15 Nov 2026); until then its
+     clicks reached Stripe marked site. */
+  var CAMPAIGNS = { "test-grok": 1, "x-bio": 1, "x-pin": 1, "x-post": 1, "x-reply": 1, "x-0800": 1, "tv-sig": 1, "tv-status": 1, "site": 1 };
   function campaign(r) { return CAMPAIGNS[r] ? r : ""; }
   function tagFrom(search) {
     var q;
