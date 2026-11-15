@@ -696,11 +696,14 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     if (!HP.SPACE_LIVE && h.includes("scripts/marketplace/TheSimplifier7")) probs.push(f + ": carries the Paid Space's link before it is live");
     for (const a of h.match(/<aside class="as-partner"[\s\S]*?<\/aside>/g) || []) if (!/data-tv="partner-block"[\s\S]*?<p class="as-partner-d">Partner link\./.test(a)) probs.push(f + ": a partner button without its disclosure under it");
     if (/<nav class="hs-nav"/.test(h) && !/<nav class="hs-nav"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the menu does not reach mentorship");
+    const mark = h.replace(/<script[\s\S]*?<\/script>/g, "");
+    for (const u of mark.match(/href="https:\/\/www\.tradingview\.com[^"]*"/g) || []) if (!u.includes("aff_id=1174265")) { probs.push(f + ": a TradingView link without his partner tag"); break; }
+    if (/<footer class="hs-foot">|id="not-advice"/.test(h) && !h.includes(HP.PARTNER_LINE)) probs.push(f + ": the foot does not carry the partner line");
     if (/<nav class="(hs-bot|botnav)"/.test(h) && !/<nav class="(hs-bot|botnav)"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the phone's bar does not reach mentorship");
   }
   const idx = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
   if (!/data-tv="home-hero">Try the set free for 7 days</.test(idx) || !/data-tv="home-close">Try the set free for 7 days</.test(idx)) probs.push("index.html: the gold buttons do not sell the trial");
-  check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
+  check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, every TradingView link carries aff_id=1174265 with the partner line in every foot, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
 }
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
