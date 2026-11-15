@@ -38,7 +38,9 @@ const DESC = "A level for gold, silver and platinum on every trading day, posted
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 /* 15 Nov 2026, HALLMARK, his brief of 15 November (R2 reopened): the gold buttons sell the trial, and Follow on TradingView
    lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the 08:00 levels. The Paid Space line
-   under the hero's button shows only once TradingView has approved the Space (SPACE_LIVE in house_parts.js). */
+   under the hero's button shows only once TradingView has approved the Space (SPACE_LIVE in house_parts.js).
+   15 Nov 2026, his word, late: the hero's button goes straight to the Stripe checkout with the terms beside it, and the
+   hallmark under it links to the record. It read: Try the set free for 7 days, to method.html#plans, then Read the record. */
 const trial = where => `<a class="hs-btn hs-gold" href="method.html#plans" data-tv="${where}">Try the set free for 7 days</a>`;
 const spaceLine = H.SPACE_LIVE ? `\n      <p class="hm-or"><a href="${H.SPACE}" ${H.OUT} data-tv="home-hero-tv">Or subscribe on TradingView</a></p>` : "";
 
@@ -129,6 +131,9 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 .hm-by p{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
 .hm-by b{display:block;font:500 17px/1.3 var(--c-ui);color:var(--c-ink)}
 .hm-hero .hm-acts{margin-top:32px}
+.hm-terms{font-size:15px;line-height:1.5;color:var(--c-sec)}
+.hm-rec a.as-hall{text-decoration:none;transition:border-color .2s}
+.hm-rec a.as-hall:hover,.hm-rec a.as-hall:focus-visible{border-color:var(--c-gold)}
 
 @media (max-width:900px){
   html body .hm-hero h1.hm-h1{font-size:clamp(40px,11.4vw,64px)!important}
@@ -151,9 +156,9 @@ ${H.band(null, "home")}
       <h1 class="hm-h1" id="hm-h1">Named before the move. Graded on the close.</h1>
       <p class="hm-say">Levels for gold, silver and platinum go out on X at 08:00 CET, before the day's trade. That day's close grades each one held or wrong, and every wrong one stays on the record, the same size as the rest.</p>
       <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk. Every level on this site is mine, named before the move.</span></p></div>
-      <p class="hm-acts">${trial("home-hero")}<a href="record.html">Read the record</a></p>${spaceLine}
+      <p class="hm-acts"><a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span></p>${spaceLine}
       <div class="hm-rec">
-        <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
+        <a class="as-hall" href="record.html"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></a>
         <p><a href="record.html">The weekly series</a>, June to November 2026</p>
         <p data-daily="tally">${D.tally(M)}</p>
       </div>

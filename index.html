@@ -107,6 +107,9 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 .hm-by p{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
 .hm-by b{display:block;font:500 17px/1.3 var(--c-ui);color:var(--c-ink)}
 .hm-hero .hm-acts{margin-top:32px}
+.hm-terms{font-size:15px;line-height:1.5;color:var(--c-sec)}
+.hm-rec a.as-hall{text-decoration:none;transition:border-color .2s}
+.hm-rec a.as-hall:hover,.hm-rec a.as-hall:focus-visible{border-color:var(--c-gold)}
 
 @media (max-width:900px){
   html body .hm-hero h1.hm-h1{font-size:clamp(40px,11.4vw,64px)!important}
@@ -171,9 +174,9 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
       <h1 class="hm-h1" id="hm-h1">Named before the move. Graded on the close.</h1>
       <p class="hm-say">Levels for gold, silver and platinum go out on X at 08:00 CET, before the day's trade. That day's close grades each one held or wrong, and every wrong one stays on the record, the same size as the rest.</p>
       <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk. Every level on this site is mine, named before the move.</span></p></div>
-      <p class="hm-acts"><a class="hs-btn hs-gold" href="method.html#plans" data-tv="home-hero">Try the set free for 7 days</a><a href="record.html">Read the record</a></p>
+      <p class="hm-acts"><a class="hs-btn hs-gold" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span></p>
       <div class="hm-rec">
-        <p class="as-hall"><span><b>36</b> held</span><span><b>11</b> wrong</span><span><b>0</b> deleted</span></p>
+        <a class="as-hall" href="record.html"><span><b>36</b> held</span><span><b>11</b> wrong</span><span><b>0</b> deleted</span></a>
         <p><a href="record.html">The weekly series</a>, June to November 2026</p>
         <p data-daily="tally"><span class="dy-tally">The daily series, since 12 November: <b>3</b> held, <b>1</b> wrong</span></p>
       </div>
@@ -260,7 +263,7 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
       <div class="hm-faq">
         <details><summary>What do I get free?</summary><p>Three levels every trading day, one each for gold, silver and platinum, posted on X at 08:00 CET, and the close that graded each one. <a href="tools.html">Eight open-source TradingView tools</a> are free too.</p></details>
         <details><summary>When are the levels posted?</summary><p>At 08:00 CET on every trading day. In most weeks that is 02:00 in New York and 07:00 in London.</p></details>
-        <details><summary>How is a level graded?</summary><p>Each level is a floor or a ceiling, and each has one Exit: a daily close through it. A floor exits on a close below it. A ceiling exits on a close above it. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart. The wrong ones stay on the page. <a href="levels.html#rule">The rule in full</a></p></details>
+        <details><summary>How is a level graded?</summary><p>Each level is a floor or a ceiling. Every level carries its own Exit, a price line I name each morning in the 08:00 post. A daily close through that Exit grades the level wrong. Otherwise it held. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart. The wrong ones stay on the page. <a href="levels.html#rule">The rule in full</a></p></details>
         <details><summary>What is the set?</summary><p>Four TradingView indicators, The Fan, The Keel, The Method and The Hinge, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you. <a href="method.html">See what they show</a></p></details>
         <details><summary>How do I cancel the trial?</summary><p>From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing.</p></details>
       </div>
@@ -279,7 +282,7 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
   </div></div>
 </section>
 </main>
-<script src="daily.js?v=c97ea5f798" defer></script>
+<script src="daily.js?v=9666c29e69" defer></script>
 <script src="plate.js?v=1879c01cc4" defer></script>
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
