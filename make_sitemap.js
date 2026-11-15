@@ -12,11 +12,18 @@
      the templates the cards are drawn from, which are not pages to read;
      Google's verification file (google<token>.html), which must stay beside
        the record for Search Console and is not a page.
-   index.html is listed as the record's own address. A week page carries the
+   index.html is listed as the site's own address. A week page carries the
    date it last changed: the close that graded it, or the day it was written
    while it is open, and never earlier than 21 October 2026, the day the
-   week pages were first written. The record and weeks.html carry
-   LAST_UPDATED. Others carry none, so no date is claimed that is not known.
+   week pages were first written.
+
+   15 November 2026, his word: every other page carries the day it last
+   changed, in Madrid, from its own history: the last commit that touched
+   it, or today if it differs from that commit as this runs. The record
+   and weeks.html never carry a day earlier than LAST_UPDATED. It read:
+   the record, weeks.html and index.html carried LAST_UPDATED and the
+   rest carried none. No page is listed that asks not to be indexed, so
+   welcome.html, which carries noindex, stays off.
 
    Run last, after every page is written. Writes sitemap.xml and nothing else.
    ========================================================================= */
@@ -43,10 +50,19 @@ const pages = fs.readdirSync(HERE).filter(f => /\.html$/.test(f) && TEMPLATES.in
   return !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(s);
 }).sort((a, b) => (a === "index.html" ? -1 : b === "index.html" ? 1 : a.localeCompare(b)));
 
+const { execFileSync } = require("child_process");
+const madrid = ms => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(ms));
+const git = args => { try { return execFileSync("git", args, { cwd: HERE, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim(); } catch (e) { return null; } };
+const changedDay = f => {
+  const dirty = git(["status", "--porcelain", "--", f]);
+  if (dirty) return madrid(Date.now());
+  const ct = git(["log", "-1", "--format=%ct", "--", f]);
+  return ct ? madrid(+ct * 1000) : null;
+};
 const entry = f => {
   const loc = f === "index.html" ? SITE : SITE + f;
-  let mod = null;
-  if (f === "index.html" || f === "record.html" || f === "weeks.html") mod = R.last_updated;
+  let mod = changedDay(f);
+  if ((f === "record.html" || f === "weeks.html") && (!mod || R.last_updated > mod)) mod = R.last_updated;
   const wm = f.match(/^week-(\d{4}-\d{2}-\d{2})\.html$/);
   if (wm && weekMod[wm[1]]) mod = weekMod[wm[1]] > PAGES_FROM ? weekMod[wm[1]] : PAGES_FROM;
   return `  <url><loc>${loc}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ""}</url>`;

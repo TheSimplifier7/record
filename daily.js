@@ -10,9 +10,11 @@
      in a page    it fetches daily.json and redraws the same blocks, so a day added to daily.json alone shows on
                   every page without a rebuild.
 
-   THE RULE, as the pages print it (note 71): each level is a floor or a ceiling, and each has one Exit, a daily
-   close through it. A floor exits on a close below it, a ceiling on a close above it; a close exactly on the
-   level counts as held. The close is 17:00 in New York, 23:00 in Madrid in most weeks, read off the founder's
+   THE RULE, as the pages print it (note 71; its Exit sentences set word for word to the record's rules section
+   on 15 November 2026, by his word): each level is a floor or a ceiling and carries its own Exit, the price line
+   named in the 08:00 post. A daily close through it grades the level wrong, otherwise it held; a close exactly on
+   the level counts as held. It read: each has one Exit, a daily close through it; a floor exits on a close below
+   it, a ceiling on a close above it. The close is 17:00 in New York, 23:00 in Madrid in most weeks, read off the founder's
    own chart. Nothing is typed as a grade: the word is worked out from the side, the level and the close, here
    and nowhere else.
 
@@ -33,7 +35,7 @@
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var X = "https://x.com/TheSimplifier7";
   var COUNSEL = "This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.";
-  var RULE = "Each level is a floor or a ceiling, and each has one Exit: a daily close through it. A floor exits on a close below it. A ceiling exits on a close above it. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart.";
+  var RULE = "Each level is a floor or a ceiling. Every level carries its own Exit, a price line I name each morning in the 08:00 post. A daily close through that Exit grades the level wrong. Otherwise it held. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart.";
 
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
   var isIso = function (s) { return typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(d0(s).getTime()) && d0(s).toISOString().slice(0, 10) === s; };

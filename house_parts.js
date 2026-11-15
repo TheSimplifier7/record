@@ -198,6 +198,8 @@ function partner(id, tag = "h2") {
 }
 
 /* The plans on method.html: the site's route first, the Paid Space beside it once TradingView approves it. */
+/* 15 Nov 2026, his word: the set's Stripe checkout, one address for the plans block and the home hero. */
+const SET_CHECKOUT = "https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04";
 const SET_TERMS = "7 days free, then €99 a month, VAT included. Card at checkout. Cancel before day 8 and pay nothing.";
 function plans(R) {
   const site = `<div class="s4-route" data-route="site">
@@ -208,7 +210,7 @@ function plans(R) {
         <li>Give your TradingView username at checkout, never your password.</li>
         <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
-      <a class="hs-btn hs-gold plan-btn s4-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="plans-site-trial" data-plan="set">Start the 7-day trial</a>
+      <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">Start the 7-day trial</a>
       <p class="s4-fine">${SET_TERMS}</p>
     </div>`;
   const tv = SPACE_LIVE ? `
@@ -270,4 +272,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { aff, AFF, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { aff, AFF, SET_CHECKOUT, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
