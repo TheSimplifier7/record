@@ -176,7 +176,7 @@ const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
     <p>${PARTNER_LINE}</p>
   </div>
-  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
+  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a><a href="distance.html">How far, and how likely</a></nav>
   <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>`;

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How far, and how likely · The Simplifier</title>
+<meta name="description" content="Every weekly level set against the last close before it was named, and how often a level that far away held in any week on file. Worked out from the record alone.">
+<link rel="canonical" href="https://thesimplifier7.com/distance.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Simplifier">
+<meta property="og:url" content="https://thesimplifier7.com/distance.html">
+<meta property="og:title" content="How far, and how likely · The Simplifier">
+<meta property="og:description" content="Every weekly level set against the last close before it was named, and how often a level that far away held in any week on file. Worked out from the record alone.">
+<meta property="og:image" content="https://thesimplifier7.com/tally_card_landscape_dark.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Simplifier. Gold, silver and platinum levels, graded on the close.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@TheSimplifier7">
+<meta name="twitter:title" content="How far, and how likely · The Simplifier">
+<meta name="twitter:description" content="Every weekly level set against the last close before it was named, and how often a level that far away held in any week on file. Worked out from the record alone.">
+<meta name="twitter:image" content="https://thesimplifier7.com/tally_card_landscape_dark.png">
+<meta name="theme-color" content="#0B1A2E">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style id="fonts">@font-face{font-family:"Barlow Fallback";font-weight:100 500;src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Helvetica"),local("Roboto");size-adjust:96%;ascent-override:103%;descent-override:20.6%;line-gap-override:0%}
+@font-face{font-family:"Barlow Fallback";font-weight:600 900;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("Helvetica Bold"),local("Roboto Bold");size-adjust:92%;ascent-override:108.8%;descent-override:21.8%;line-gap-override:0%}
+@font-face{font-family:"Barlow Condensed Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("Helvetica Bold"),local("Roboto Bold");size-adjust:75.3%;ascent-override:132.8%;descent-override:26.6%;line-gap-override:0%}
+@font-face{font-family:"IBM Plex Mono Fallback";src:local("Courier New"),local("CourierNewPSMT"),local("Liberation Mono"),local("Menlo");size-adjust:100%;ascent-override:102.5%;descent-override:27.5%;line-gap-override:0%}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(barlow-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(barlow-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(barlow-condensed-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(barlow-condensed-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(ibm-plex-mono-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(newsreader-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<link rel="stylesheet" href="brand.css?v=95f03564de">
+<style>
+.ds{max-width:var(--c-frame,72rem);margin:0 auto;padding:96px var(--c-gutter,40px) 32px;box-sizing:border-box}
+.ds-ey{margin:0;font-size:15px;color:var(--c-mut)}
+.ds-ey a{color:var(--c-sec)}
+html body .ds h1{margin:12px 0 0;max-width:14em;font:700 clamp(44px,6vw,80px)/.92 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif!important;text-transform:uppercase!important;letter-spacing:.005em!important;color:var(--c-ink)}
+.ds-lede{max-width:44rem;margin:20px 0 0;font-size:19px;line-height:1.6;color:var(--c-sec)}
+.ds-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:40px 0 0}
+.ds-card{background:var(--c-raise);border:1px solid var(--c-rule);border-radius:12px;padding:20px}
+.ds-card p{margin:0;font-size:14px;line-height:1.5;color:var(--c-mut)}
+.ds-card b{display:block;margin:8px 0 4px;font:500 34px/1.1 "IBM Plex Mono",ui-monospace,monospace;color:var(--c-ink);font-variant-numeric:tabular-nums}
+.ds-card span{font-size:15px;color:var(--c-sec)}
+html body .ds h2{margin:48px 0 12px;font:500 22px/1.3 var(--c-ui)!important;color:var(--c-ink)}
+.ds-t{overflow-x:auto;border:1px solid var(--c-rule);border-radius:12px}
+.ds table{width:100%;border-collapse:collapse;font-size:14px;min-width:820px}
+.ds th,.ds td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--c-rule);white-space:nowrap}
+.ds tr:last-child td{border-bottom:0}
+.ds th{font-weight:500;color:var(--c-mut);background:var(--c-raise)}
+.ds td.n{font:400 14px "IBM Plex Mono",ui-monospace,monospace;text-align:right;color:var(--c-ink);font-variant-numeric:tabular-nums}
+.ds td.gw{color:var(--c-red)}
+.ds td a{color:var(--c-ink)}
+.ds-m p{max-width:44rem;margin:0 0 12px;font-size:17px;line-height:1.65;color:var(--c-sec)}
+.ds-lede a,.ds-m a{color:var(--c-ink);text-decoration:underline;text-decoration-color:var(--c-rule-2);text-underline-offset:4px}
+@media (max-width:900px){.ds{padding-top:48px}.ds-cards{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body class="cp hs-has-bot">
+<a class="skip" href="#main">Skip to the page</a>
+<header class="hs-band">
+  <div class="hs-wrap hs-band-in">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
+    <nav class="hs-nav" aria-label="The site">
+      <a href="levels.html">Daily levels</a>
+      <a href="record.html" aria-current="page">The record</a>
+      <a href="method.html">The set</a>
+      <a href="tools.html">Free tools</a>
+      <a href="mentorship.html">Mentorship</a>
+    </nav>
+    <div class="hs-tools">
+      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-distance-band">Try the set free</a>
+    </div>
+  </div>
+</header>
+<main id="main" class="ds" tabindex="-1">
+  <p class="ds-ey"><a href="record.html">The record</a> / How far, and how likely</p>
+  <h1>How far, and how likely</h1>
+  <p class="ds-lede">Each weekly level against the last Friday close before it was named, and how often a level that far away held in any week on file. Everything here is worked out from <a href="record.json">record.json</a> alone: the rows, their grades and the closes the record already carries.</p>
+  <div class="ds-cards" data-distance="14/18">
+    <div class="ds-card"><p>All 18 levels</p><b>14 held</b><span>about 12 from a random week on file</span></div>
+    <div class="ds-card"><p>4 that asked price to move</p><b>4 held</b><span>about 2 from a random week on file</span></div>
+    <div class="ds-card"><p>14 that gave price room</p><b>10 held</b><span>about 10 from a random week on file</span></div>
+  </div>
+  <h2>The levels</h2>
+  <div class="ds-t"><table>
+    <thead><tr><th>Named</th><th>Metal</th><th>Side</th><th>Level</th><th>Last close</th><th>From the close</th><th>What it asked</th><th>Random week held</th><th>Graded</th></tr></thead>
+    <tbody>
+      <tr><td><a href="record.html#r-2026-11-02-gold-3962-52">2 Nov 2026</a></td><td>Gold</td><td>floor</td><td class="n">3,962.52</td><td class="n">3,875.05</td><td class="n">+2.26%</td><td>Asked price to move</td><td class="n">16%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-11-02-silver-51-406">2 Nov 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">51.406</td><td class="n">49.10</td><td class="n">+4.70%</td><td>Gave price room</td><td class="n">82%</td><td class="gw">Wrong</td></tr>
+      <tr><td><a href="record.html#r-2026-11-02-platinum-1486-31">2 Nov 2026</a></td><td>Platinum</td><td>ceiling</td><td class="n">1,486.31</td><td class="n">1,433.40</td><td class="n">+3.69%</td><td>Gave price room</td><td class="n">90%</td><td class="gw">Wrong</td></tr>
+      <tr><td><a href="record.html#r-2026-10-26-gold-4077-04">26 Oct 2026</a></td><td>Gold</td><td>ceiling</td><td class="n">4,077.04</td><td class="n">3,995.380</td><td class="n">+2.04%</td><td>Gave price room</td><td class="n">79%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-26-silver-55-624">26 Oct 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">55.624</td><td class="n">53.8280</td><td class="n">+3.34%</td><td>Gave price room</td><td class="n">76%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-26-platinum-1578-16">26 Oct 2026</a></td><td>Platinum</td><td>ceiling</td><td class="n">1,578.16</td><td class="n">1,550.50</td><td class="n">+1.78%</td><td>Gave price room</td><td class="n">90%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-19-gold-4190-38">19 Oct 2026</a></td><td>Gold</td><td>ceiling</td><td class="n">4,190.38</td><td class="n">4,165.015</td><td class="n">+0.61%</td><td>Gave price room</td><td class="n">58%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-19-silver-57-851">19 Oct 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">57.851</td><td class="n">56.9750</td><td class="n">+1.54%</td><td>Gave price room</td><td class="n">65%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-19-platinum-1659-10">19 Oct 2026</a></td><td>Platinum</td><td>ceiling</td><td class="n">1,659.10</td><td class="n">1,645.50</td><td class="n">+0.83%</td><td>Gave price room</td><td class="n">90%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-12-gold-4217-19">12 Oct 2026</a></td><td>Gold</td><td>ceiling</td><td class="n">4,217.19</td><td class="n">4,194.085</td><td class="n">+0.55%</td><td>Gave price room</td><td class="n">58%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-12-silver-61-449">12 Oct 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">61.449</td><td class="n">60.7790</td><td class="n">+1.10%</td><td>Gave price room</td><td class="n">65%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-12-platinum-1710-80">12 Oct 2026</a></td><td>Platinum</td><td>ceiling</td><td class="n">1,710.80</td><td class="n">1,686.90</td><td class="n">+1.42%</td><td>Gave price room</td><td class="n">90%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-05-gold-4170-41">5 Oct 2026</a></td><td>Gold</td><td>ceiling</td><td class="n">4,170.41</td><td class="n">4,142.710</td><td class="n">+0.67%</td><td>Gave price room</td><td class="n">58%</td><td class="gw">Wrong</td></tr>
+      <tr><td><a href="record.html#r-2026-10-05-silver-62-036">5 Oct 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">62.036</td><td class="n">60.4470</td><td class="n">+2.63%</td><td>Gave price room</td><td class="n">71%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-10-05-platinum-1699-00">5 Oct 2026</a></td><td>Platinum</td><td>floor</td><td class="n">1,699.00</td><td class="n">1,699.70</td><td class="n">-0.04%</td><td>Gave price room</td><td class="n">20%</td><td class="gw">Wrong</td></tr>
+      <tr><td><a href="record.html#r-2026-09-28-gold-4280-50">28 Sept 2026</a></td><td>Gold</td><td>ceiling</td><td class="n">4,280.50</td><td class="n">4,284.130</td><td class="n">-0.08%</td><td>Asked price to move</td><td class="n">58%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-09-28-silver-64-212">28 Sept 2026</a></td><td>Silver</td><td>ceiling</td><td class="n">64.212</td><td class="n">64.2560</td><td class="n">-0.07%</td><td>Asked price to move</td><td class="n">59%</td><td class="gh">Held</td></tr>
+      <tr><td><a href="record.html#r-2026-09-28-platinum-1775-80">28 Sept 2026</a></td><td>Platinum</td><td>ceiling</td><td class="n">1,775.80</td><td class="n">1,777.80</td><td class="n">-0.11%</td><td>Asked price to move</td><td class="n">80%</td><td class="gh">Held</td></tr>
+    </tbody>
+  </table></div>
+  <div class="ds-m">
+    <h2>How it is worked out</h2>
+    <p>Last close is the last Friday close in record.json before the level was named. A floor holds when the week closes at or above it; a ceiling holds when the week closes at or under it. A floor above the last close, or a ceiling under it, asked price to move. The others gave price room.</p>
+    <p>Random week held is the share of week-on-week changes in record.json's closes, for the same metal, that would have left the week on the level's side if it had been named that far from the close: 19 weeks for gold, 17 for silver and 10 for platinum. The figure from a random week is the sum of those shares.</p>
+    <h2>What it does not show</h2>
+    <p>18 levels is too few to prove an edge either way. The weeks used for the base rate are the same weeks the levels were graded in, so a falling market makes ceilings look easy for everyone; platinum's high shares are that. 29 of the 47 graded rows are left out, because they carry no stated side or were named before the first close on file, and giving them a side now would be a change to the record.</p>
+    <p>Nothing on this page changes a row, a grade or a note. <a href="record.html">Read the record</a></p>
+  </div>
+</main>
+<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
+  <div class="hs-foot-id">
+    <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
+    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="https://www.tradingview.com/u/TheSimplifier7/?aff_id=1174265#published-scripts" target="_blank" rel="sponsored noopener" data-tv="foot">Follow on TradingView.</a></p>
+    <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
+    <p>TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
+  </div>
+  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a><a href="distance.html">How far, and how likely</a></nav>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="foot-tv-account" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+</div></footer>
+<nav class="hs-bot" aria-label="The site, on a phone">
+  <a href="levels.html"><span>Levels</span></a>
+  <a href="record.html" aria-current="page"><span>Record</span></a>
+  <a href="method.html"><span>The set</span></a>
+  <a href="tools.html"><span>Tools</span></a>
+  <a href="mentorship.html"><span>Mentorship</span></a>
+</nav>
+<script src="house.js?v=c08b2c33cb" defer></script>
+<script src="svgfloor.js?v=ddba5e2fe2" defer></script>
+<script src="refcarry.js?v=f71593dabf" defer></script>
+</body>
+</html>

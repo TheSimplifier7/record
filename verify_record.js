@@ -701,6 +701,8 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     if (/<footer class="hs-foot">|id="not-advice"/.test(h) && !h.includes(HP.PARTNER_LINE)) probs.push(f + ": the foot does not carry the partner line");
     if (/<nav class="(hs-bot|botnav)"/.test(h) && !/<nav class="(hs-bot|botnav)"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the phone's bar does not reach mentorship");
   }
+  const dsNow = fs.existsSync(path.join(__dirname, "distance.html")) ? fs.readFileSync(path.join(__dirname, "distance.html"), "utf8") : "";
+  if (dsNow !== require("./make_distance.js").render()) probs.push("distance.html is not the page record.json gives: run node make_distance.js");
   const idx = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
   if (!/data-tv="home-hero">Try the set free for 7 days</.test(idx) || !/data-tv="home-close">Try the set free for 7 days</.test(idx)) probs.push("index.html: the gold buttons do not sell the trial");
   check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, every TradingView link carries aff_id=1174265 with the partner line in every foot, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
