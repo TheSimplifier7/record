@@ -36,7 +36,8 @@ const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.
 const TITLE = "Daily gold, silver and platinum levels · The Simplifier";
 const DESC = "A level for gold, silver and platinum on every trading day, posted at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.";
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
-const follow = where => `<a class="hs-btn hs-gold" href="${X}" rel="noopener" data-x="${where}">Follow on X for the 08:00 levels</a>`;
+/* 15 Nov 2026, HALLMARK, his ruling R2: TradingView is the first follow; X keeps the 08:00 post. It read: Follow on X for the 08:00 levels. */
+const follow = where => `<a class="hs-btn hs-gold" href="${H.TV}" rel="noopener" data-tv="${where}">Follow on TradingView</a>`;
 
 const NUMW = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 /* 15 Nov 2026, HALLMARK quick fixes. The FAQ read "Seven open-source TradingView
@@ -47,7 +48,7 @@ const FAQ = [
   ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X at 08:00 CET, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
   ["When are the levels posted?", "At 08:00 CET on every trading day. In most weeks that is 02:00 in New York and 07:00 in London."],
   ["How is a level graded?", `${esc(D.RULE)} The wrong ones stay on the page. <a href="levels.html#rule">The rule in full</a>`],
-  ["What is The Fan?", `A TradingView indicator, the one my levels are read from. It draws on your own chart and leaves every decision with you. <a href="method.html">See what it shows</a>`],
+  ["What is the set?", `Four TradingView indicators, The Fan, The Keel, The Method and The Hinge, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you. <a href="method.html">See what they show</a>`],
   ["How do I cancel the trial?", "From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing."]
 ];
 
@@ -113,7 +114,19 @@ const CSS = `
 
 .hm-close .hm-acts{margin-top:32px}
 
+/* 15 Nov 2026, HALLMARK: the head set as a poster in the brand's own face, as on the set page; the byline under his face */
+html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif!important;letter-spacing:.005em!important;text-transform:uppercase!important;text-wrap:balance}
+.hm-hero{overflow:hidden}
+.hm-hero .hm-say{max-width:30em}
+.hm-by{display:flex;align-items:center;gap:16px;margin-top:32px;max-width:34em}
+.hm-by img{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.5px var(--c-gold-lo),0 0 0 4px var(--c-bg)}
+.hm-by p{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
+.hm-by b{display:block;font:500 17px/1.3 var(--c-ui);color:var(--c-ink)}
+.hm-hero .hm-acts{margin-top:32px}
+
 @media (max-width:900px){
+  html body .hm-hero h1.hm-h1{font-size:clamp(40px,11.4vw,64px)!important}
+  .hm-by{margin-top:24px}
   .hm-fan .hm-in>div{display:block}
   .hm-plate{margin-top:40px}
   .hm-ba{gap:20px;margin-top:32px}
@@ -129,9 +142,10 @@ ${H.band(null, "home")}
 <section class="hm-hero as-lit" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="hm-h1">The call goes out every morning. The close grades it. We don't hide the misses.</h1>
-      <p class="hm-say">Metals desk since 2003. Gold, silver and platinum. Tools, not signals. Nobody here spoon-feeds you.</p>
-      <p class="hm-acts">${follow("home-hero")}<a href="method.html#plans" data-tv="plans-home-hero">Try The Fan free for 7 days</a></p>
+      <h1 class="hm-h1" id="hm-h1">Named before the move. Graded on the close.</h1>
+      <p class="hm-say">Levels for gold, silver and platinum go out on X at 08:00 CET, before the day's trade. That day's close grades each one held or wrong, and every wrong one stays on the record, the same size as the rest.</p>
+      <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk. Every level on this site is mine, named before the move.</span></p></div>
+      <p class="hm-acts">${follow("home-hero")}<a href="record.html">Read the record</a></p>
       <div class="hm-rec">
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
         <p><a href="record.html">The weekly series</a>, June to November 2026</p>
@@ -148,7 +162,7 @@ ${H.band(null, "home")}
 <section class="hm-sec" id="days" aria-labelledby="days-h">
   <div class="hm-in"><div>
     <div class="hm-side">
-      <h2 id="days-h">Named before the move. Graded after the close.</h2>
+      <h2 id="days-h">Every day, graded on its close</h2>
       <p>Every level names its Exit before the move, and every exit stays where you can read it.</p>
     </div>
     <div class="hm-main">
@@ -156,7 +170,7 @@ ${H.band(null, "home")}
       <div data-daily="last">${D.lastDays(M, 5)}</div>` : `<h3>The weekly series, its last five weeks</h3>
       <div data-daily="last">${weeklyLast(5)}</div>`}
       <p class="hm-fine" style="margin-top:16px">Held means the close stayed on the side I named. It is not a trade result.${hasDays ? "" : " The first day of the daily series appears here after its close."}</p>
-      <p class="hm-links"><a href="levels.html#days">Every day, in full</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a></p>
+      <p class="hm-links"><a href="levels.html#days">Every day, in full</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a></p>
     </div>
   </div></div>
 </section>
@@ -165,7 +179,7 @@ ${H.band(null, "home")}
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="offer-h">The standing $1,000 offer</h2></div>
     <div class="hm-main">
-      <p class="hm-big">Find a call on the weekly record that was changed, backdated or removed after it was published, or a grade that was changed after it was given, and I pay you $1,000 and log the finding on the record.</p>
+      <p class="hm-big">Find a level on the weekly record that was changed, backdated or removed after it was published, or a grade that was changed after it was given, and I pay you $1,000 and log the finding on the record.</p>
       <p class="hm-links"><a href="record.html#bounty">Read the offer</a><a href="record.html#rules">How the record is kept</a></p>
     </div>
   </div></div>
@@ -227,8 +241,8 @@ ${H.band(null, "home")}
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="choose-h">Start with tomorrow's levels</h2></div>
     <div class="hm-main">
-      <p class="hm-big">Three levels at 08:00 CET, and the close that grades each one. Check every grade yourself.</p>
-      <p class="hm-acts">${follow("home-close")}<a href="method.html#plans" data-tv="plans-home-close">Try The Fan free for 7 days</a></p>
+      <p class="hm-big">Three levels at 08:00 CET, and the close that grades each one. Check every grade yourself. <a href="${X}" rel="noopener" data-x="home-close">The 08:00 post on X</a></p>
+      <p class="hm-acts">${follow("home-close")}<a href="method.html#plans" data-tv="plans-home-close">Try the set free for 7 days</a></p>
     </div>
   </div></div>
 </section>
