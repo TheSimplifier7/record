@@ -80,7 +80,7 @@ const sameLine = (a, b) => {
 };
 const repeats = misses.filter((a, i) => misses.some((b, j) => j !== i && sameLine(a, b))).length;
 const afterText = repeats >= 2
-  ? `${cap(word(repeats))} of these ${word(misses.length)} were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="record.html#note-13">note 13</a>, which counts the calls by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`
+  ? `${cap(word(repeats))} of these ${word(misses.length)} were the same idea, restated for weeks while it held, and then wrong. The record says so in <a href="record.html#note-13">note 13</a>, which counts them by level as well as by week because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`
   : `The record counts these by level as well as by week in <a href="record.html#note-13">note 13</a>, because the weekly count flatters this desk and the level count does not. Read both before you decide what the green rows are worth.`;
 
 const notesFor = c => {
@@ -106,7 +106,7 @@ const section = (c, k) => {
     </div>
     <div class="cols">
       <div>
-        <div class="lab">The call, before the move</div>
+        <div class="lab">The level, before the move</div>
         <p>${esc(claim)}</p>
         ${kill ? `<div class="kill"><b>Proved wrong by</b>${esc(kill)}</div>` : `<div class="kill"><b>Proved wrong by</b>None published with this row. It predates the 3 July standard and is marked so on the record.</div>`}
       </div>
@@ -126,9 +126,9 @@ const out = `<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Simplifier · The ones I got wrong</title>
-<meta name="description" content="Every call on the record graded wrong, in full: the level, what would prove it wrong, the close that did, and what was written about it afterwards.">
+<meta name="description" content="Every level on the record graded wrong, in full: the level, what would prove it wrong, the close that did, and what was written about it afterwards.">
 <meta property="og:title" content="The ones I got wrong">
-<meta property="og:description" content="${misses.length} calls, posted before the move, graded wrong on the close and kept, with what would prove each wrong, the close that did and the corrections that followed.">
+<meta property="og:description" content="${misses.length} levels, posted before the move, graded wrong on the close and kept, with what would prove each wrong, the close that did and the corrections that followed.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://thesimplifier7.com/misses.html">
 <meta property="og:image" content="${CARD}">
@@ -200,7 +200,7 @@ ${HS.headTags({ fonts: false })}
 </head>
 <body>
 ${HS.top(null, "misses")}
-${HS.hero({ eyebrow: '<a href="record.html">The record</a><span>The wrong ones</span>', title: "The calls I got wrong.", col: "820px", pad: "28px", lede: "These are the ones that roasted us. They stay up. Anyone hiding their misses is selling you something. These are weekly price calls, not a list of trades or losses." })}
+${HS.hero({ eyebrow: '<a href="record.html">The record</a><span>The wrong ones</span>', title: "The levels I got wrong.", col: "820px", pad: "28px", lede: "These are the ones that roasted me. They stay up. Anyone hiding their misses is selling you something. These are weekly price levels, not a list of trades or losses." })}
 <div class="wrap">
   <p class="tally"><b>${misses.length}</b> wrong · <b>${pass}</b> held · <b>${notest}</b> never reached${open ? ` · <b>${open}</b> open` : ""} · ${CALLS.length} levels on the record. The wrong ones are ${resolved ? Math.round(misses.length / resolved * 100) : 0} percent of the ${resolved} graded. That is a small sample, so read the percentage with care.</p>
 ${misses.map(section).join("\n")}

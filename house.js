@@ -62,8 +62,15 @@
       if (!a) return;
       var plan = a.getAttribute("data-plan") || "";
       var tv = a.getAttribute("data-tv") || "";
-      if (plan || /^buy-/.test(tv)) ev("plan-click/" + (plan || tv), "Plan button clicked. Not a completed trial.");
-      else if (tv) ev("door-tradingview/" + tv, "A door used: TradingView");
+      var to = a.getAttribute("href") || "";
+      /* 15 Nov 2026, HALLMARK: each click is named by where it goes, so the funnel reads in steps: to-plans, then
+         plan-click (the checkout opened), then welcome.html (a trial started). Every link carrying data-tv used to count
+         as door-tradingview, the buttons to the plans included. */
+      if (plan || /^buy-/.test(tv) || /^https:\/\/buy\.stripe\.com\//.test(to)) ev("plan-click/" + (plan || tv), "Checkout opened. Not a completed trial.");
+      else if (/^https:\/\/www\.tradingview\.com\//.test(to)) ev((/aff_id=/.test(to) && !/\/u\/|\/script\/|\/scripts\//.test(to) ? "door-partner/" : "door-tradingview/") + tv, "A door used: TradingView");
+      else if (/method\.html#plans/.test(to)) ev("to-plans/" + tv, "A step to the plans");
+      else if (/mentorship\.html/.test(to)) ev("to-mentorship/" + tv, "A step to mentorship");
+      else if (tv) ev("door/" + tv, "A door used");
     }, true);
   } catch (e) {}
 

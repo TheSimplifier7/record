@@ -38,11 +38,16 @@
         }
       ],
       "closes": {
-        "Gold": "3,874",
+        "Gold": "3,883.98",
         "Silver": "48.62",
         "Platinum": "1,491"
       }
     }
   ],
-  "corrections": []
+  "corrections": [
+    {
+      "date": "2026-11-15",
+      "text": "Gold's close on Friday 13 November is 3,883.98 on my chart, TVC:GOLD at 23:00 Madrid. It was first published as 3,874. The grade does not change: held, 75.02 under the ceiling of 3,959."
+    }
+  ]
 }
