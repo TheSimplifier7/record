@@ -347,6 +347,46 @@
     .fan section>p,.fan p.body,.fan ul.shows li{font-size:1.0625rem}
     .fan .price{grid-template-columns:minmax(0,1fr)}
   }
+
+  .s4-head{max-width:var(--c-frame,72rem);margin:0 auto;padding:40px var(--c-gutter,40px) 64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px 56px;align-items:start;box-sizing:border-box}
+  @media (max-width:920px){.s4-head{grid-template-columns:1fr;padding-top:32px}}
+  .s4-eyebrow{margin:0;font:500 16px/1.4 var(--f-ui);color:var(--c-mut,#7D8CA3)}
+  html body .s4-head h1.s4-h1{margin:16px 0 0;max-width:none;font:700 clamp(44px,6vw,84px)/.92 var(--f-cond)!important;letter-spacing:.01em!important;text-transform:uppercase!important;color:var(--c-ink,#F3EDE2)!important;text-wrap:balance}
+  .s4-dek{margin:24px 0 0;max-width:34rem;font:400 20px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:28px 0 0;font:500 16px/1.4 var(--f-ui)}
+  .s4-links a{color:var(--c-ink,#F3EDE2);text-underline-offset:4px;text-decoration-color:var(--c-rule-2,#2A4468)}
+  .s4-plan{background:var(--c-raise,#11233C);border:1px solid #1A3050;border-radius:18px;padding:28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 2px 3px rgba(0,0,0,.35),4px 26px 46px -14px rgba(0,0,0,.6)}
+  .s4-plan h2{margin:0;font:600 16px/1.3 var(--f-ui);color:var(--c-ink,#F3EDE2)}
+  .s4-price{margin:16px 0 0;padding:20px 0;border-top:1px solid #1A3050;border-bottom:1px solid #1A3050;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;font:400 16px/1.4 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-price b{font:600 52px/1 var(--f-fig);font-variant-numeric:tabular-nums;color:var(--c-ink,#F3EDE2)}
+  .s4-steps{list-style:none;counter-reset:s4;margin:20px 0 0;padding:0;display:grid;gap:8px}
+  .s4-steps li{counter-increment:s4;display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font:400 15px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-steps li::before{content:counter(s4);font:500 14px/1.6 var(--f-fig);color:var(--c-mut,#7D8CA3)}
+  .s4-plan .s4-btn{display:flex;justify-content:center;align-items:center;width:100%;min-height:52px;margin:24px 0 0;box-sizing:border-box;font-size:17px}
+  .s4-fine{margin:12px 0 0;font:400 13px/1.5 var(--f-ui);color:var(--c-mut,#7D8CA3)}
+  .s4-note{margin:16px 0 0;padding-top:16px;border-top:1px solid #1A3050;font:400 15px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4);text-wrap:pretty}
+  .s4-small{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;font:400 13px/1.5 var(--f-ui)}
+  .s4-small a{color:var(--c-mut,#7D8CA3)}
+  .s4-band{border-top:1px solid #1A3050}
+  .s4-in{max-width:var(--c-frame,72rem);margin:0 auto;padding:64px var(--c-gutter,40px);box-sizing:border-box}
+  .s4-h2{margin:0;font:500 28px/1.2 var(--f-ui);color:var(--c-ink,#F3EDE2)}
+  .s4-sub{margin:12px 0 0;max-width:44rem;font:400 17px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-grid{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 40px}
+  @media (max-width:760px){.s4-grid{grid-template-columns:1fr;gap:40px}}
+  .s4-tool figure{margin:0;border:1px solid #1A3050;border-radius:10px;overflow:hidden;background:#131722}
+  .s4-tool img{display:block;width:100%;height:auto}
+  html body .s4-tool h3{margin:20px 0 0;font:700 24px/1 var(--f-cond)!important;letter-spacing:.06em!important;text-transform:uppercase!important;color:var(--c-ink,#F3EDE2)}
+  .s4-q{margin:12px 0 0;font:500 18px/1.45 var(--f-ui);color:var(--c-ink,#F3EDE2)}
+  .s4-not{margin:8px 0 0;font:400 15px/1.5 var(--f-ui);color:var(--c-mut,#7D8CA3)}
+  .s4-cap{margin:24px 0 0;max-width:44rem;font:400 14px/1.5 var(--f-ui);color:var(--c-mut,#7D8CA3)}
+  .s4-table{margin-top:32px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .s4-table table{border-collapse:collapse;min-width:640px;width:100%;max-width:60rem}
+  .s4-table th,.s4-table td{padding:14px 16px;border-bottom:1px solid #1A3050;text-align:right;font:500 20px/1.2 var(--f-fig);font-variant-numeric:tabular-nums;color:var(--c-ink,#F3EDE2)}
+  .s4-table thead th{font:500 14px/1.35 var(--f-ui);color:var(--c-mut,#7D8CA3);vertical-align:bottom}
+  .s4-table th[scope=row]{text-align:left;font:500 16px/1.2 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-table th:first-child{padding-left:0;text-align:left}
+  .s4-line{margin:24px 0 0;max-width:46rem;font:400 17px/1.55 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-fig{font-family:var(--f-fig);color:var(--c-ink,#F3EDE2)}
 </style>
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <meta name="house-head" content="start">
@@ -418,79 +458,80 @@
 </header>
 
 <main id="main" tabindex="-1">
-<div class="fan-head">
-  <div class="wrap">
-    <p class="crumb"><a href="record.html">The record</a> · The set of four</p>
-    <h1 id="fan-h">The Fan, The Keel, The Method and The Hinge</h1>
-    <p class="tagline">See the wider price picture on the chart you already use.</p>
-    <p class="lede what">I built these four indicators for TradingView, and they come as one set. The Fan is the indicator my levels are read from: which side of the 2 hour mean price is on, and whether the last test of the mean held. The Keel shows which way the flow runs, and the exact close that would end it. The Method shows how far price stands from the mean. The Hinge confirms swings early, grades every one on the chart, and carries the structure for the whole set. If you trade during the day and already make your own decisions, they are built for you.</p>
-    <p class="fan-price"><a href="#plans">See the plans <span class="go">Go</span></a></p>
-    <p class="lede"><a href="levels.html">New to charts? Start with the free daily levels</a></p>
+<div class="s4-head">
+  <div class="s4-intro">
+    <p class="s4-eyebrow">For gold and silver, on TradingView</p>
+    <h1 id="fan-h" class="s4-h1">The Fan, The Keel, The Method and The Hinge.</h1>
+    <p class="s4-dek">Four invite-only tools on your own TradingView chart. Each answers one question about where price stands. The Fan is the one my daily levels are read from.</p>
+    <p class="s4-links"><a href="record.html">Read the record first</a><a href="levels.html">New to charts? Start with the free daily levels</a></p>
   </div>
+  <section id="plans" class="s4-plan" aria-labelledby="plans-h">
+    <h2 id="plans-h">The set of four</h2>
+    <p class="s4-price"><b>€99</b> a month for all four, VAT included</p>
+    <ol class="s4-steps">
+      <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
+      <li>Give your TradingView username at checkout, never your password.</li>
+      <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+    </ol>
+    <a class="hs-btn hs-gold plan-btn s4-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="buy-set" data-plan="set">Start the 7-day trial</a>
+    <p class="s4-fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.</p>
+    <p class="s4-note">We sell tools, not signals. The price keeps the tyre-kickers out.</p>
+    <p class="s4-small"><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></p>
+  </section>
 </div>
 
-<section id="plans" class="plan-band" aria-labelledby="plans-h">
-  <div class="wrap">
-    <h2 id="plans-h">Try the set on your own chart</h2>
-    <p class="plan-intro">We sell tools, not signals. The price keeps the tyre-kickers out. 7 days to see if it earns the money. Cancel before day 8 and you pay nothing.</p>
-    <p class="plan-intro">Have your TradingView username ready. Stripe takes the payment details. Access is added within an hour, or by 09:00 Europe/Madrid if you join overnight. Enter the TradingView username you want the tools added to. Do not enter your password.</p>
-    <div class="plans">
-      <div class="plan plan-fan plan-set">
-        <div class="plan-top"><h2>The set of four</h2></div>
-        <p class="plan-price"><b>€99</b> a month</p>
-        <p class="plan-for">The Fan, The Keel, The Method and The Hinge, on your own TradingView chart. One subscription, €99 a month, including VAT.</p>
-        <a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="buy-set" data-plan="set">Start the 7-day trial</a>
-        <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.</p>
-      </div>
+
+<section id="tools" class="s4-band" aria-labelledby="tools-h">
+  <div class="s4-in">
+    <h2 id="tools-h" class="s4-h2">One question each</h2>
+    <p class="s4-sub">They are built to read together on one chart, and each one says what it will not do.</p>
+    <div class="s4-grid">
+    <article class="s4-tool">
+      <figure><img src="set_fan_gold_1h_2026-11-15-1200.webp" srcset="set_fan_gold_1h_2026-11-15-640.webp 640w, set_fan_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
+      <h3>The Fan</h3>
+      <p class="s4-q">Which side of the 2 hour mean is price on, and did the last test of the mean hold?</p>
+      <p class="s4-not">It says where price stands against the mean. It does not say where price goes next.</p>
+    </article>
+    <article class="s4-tool">
+      <figure><img src="set_keel_gold_1h_2026-11-15-1200.webp" srcset="set_keel_gold_1h_2026-11-15-640.webp 640w, set_keel_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
+      <h3>The Keel</h3>
+      <p class="s4-q">Which way does the flow run, and what exact close would end it?</p>
+      <p class="s4-not">It describes the flow. It does not call the next move.</p>
+    </article>
+    <article class="s4-tool">
+      <figure><img src="set_method_gold_1h_2026-11-15-1200.webp" srcset="set_method_gold_1h_2026-11-15-640.webp 640w, set_method_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
+      <h3>The Method</h3>
+      <p class="s4-q">How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?</p>
+      <p class="s4-not">A leg that has run far is no more due to come back than one that has not.</p>
+    </article>
+    <article class="s4-tool">
+      <figure><img src="set_hinge_gold_1h_2026-11-15-1200.webp" srcset="set_hinge_gold_1h_2026-11-15-640.webp 640w, set_hinge_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
+      <h3>The Hinge</h3>
+      <p class="s4-q">Is the swing confirmed, did the last one hold, and where is the structure?</p>
+      <p class="s4-not">It confirms swings earlier. It is not right more often.</p>
+    </article>
     </div>
-    <p class="card-why"><b>Why is a card required?</b> Your subscription continues after the free trial unless you cancel. Stripe handles the card details. I never see your full card number. You can cancel from the billing link below.</p>
-    <p class="fine">Access is added to the TradingView username you give at checkout within an hour, or by 09:00 Europe/Madrid if you join overnight.</p>
-    <p class="plan-links"><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="s4-cap">Gold, 1 hour, each as TradingView drew it on Sunday 15 November 2026, with the week closed. A past chart, not a live trade.</p>
   </div>
 </section>
-
-
-<div class="wrap">
-  <article class="fan" aria-labelledby="fan-h">
-    <section id="shows" aria-labelledby="shows-h">
-      <h2 id="shows-h">Here is what you actually see</h2>
-      <p>The Fan shows the 2 hour mean and where price stands against it, on a shorter chart. The Method, in its own pane, shows how far. The same market can still move back and forth around a line. More information does not remove uncertainty.</p>
-      <div class="chart-pair">
-        <figure class="chart">
-          <a href="fan_gold_30m_2026-11-01-blurred.png"><img src="fan_gold_30m_2026-11-01-blurred-1200.webp" srcset="fan_gold_30m_2026-11-01-blurred-640.webp 640w, fan_gold_30m_2026-11-01-blurred-1200.webp 1200w" sizes="(min-width: 860px) 520px, calc(100vw - 48px)" width="1200" height="713" loading="lazy" decoding="async" alt="The Fan on a gold 30 minute TradingView chart dated 1 November 2026. Labels are blurred. Historical example, not a live trade."></a>
-          <figcaption>The Fan. Gold, 30 minute, 1 November 2026. Chart by TradingView. Labels blurred.</figcaption>
-        </figure>
-        <figure class="chart">
-          <a href="method_gold_30m_2026-11-01-blurred.png"><img src="method_gold_30m_2026-11-01-blurred-1200.webp" srcset="method_gold_30m_2026-11-01-blurred-640.webp 640w, method_gold_30m_2026-11-01-blurred-1200.webp 1200w" sizes="(min-width: 860px) 520px, calc(100vw - 48px)" width="1200" height="713" loading="lazy" decoding="async" alt="The Method on the same gold 30 minute TradingView chart dated 1 November 2026. Labels are blurred. Historical example, not a live trade."></a>
-          <figcaption>The Method. The same gold chart, 30 minute, 1 November 2026. Chart by TradingView. Labels blurred.</figcaption>
-        </figure>
-      </div>
-      <p class="fine">Gold on a dated TradingView chart. This is a historical example, not a live trade. Every tool leaves the decision with you.</p>
-      <p><a href="#compare">What each tool answers</a></p>
-    </section>
-
-    <section id="compare" aria-labelledby="compare-h">
-      <h2 id="compare-h">One question each</h2>
-      <p>Each tool answers one question, and they are built to read together on one chart. One subscription covers all four.</p>
-      <div class="compare-wrap">
-        <table class="compare">
-          <caption>The four tools in the set</caption>
-          <thead>
-            <tr><th scope="col">Tool</th><th scope="col">The question it answers</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">The Fan</th><td data-label="The question it answers">Which side of the 2 hour mean is price on, and did the last test of the mean hold?</td></tr>
-            <tr><th scope="row">The Keel</th><td data-label="The question it answers">Which way does the flow run, and what exact close would end it?</td></tr>
-            <tr><th scope="row">The Method</th><td data-label="The question it answers">How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?</td></tr>
-            <tr><th scope="row">The Hinge</th><td data-label="The question it answers">Is the swing confirmed, did the last one hold, and where is the structure?</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>€99 a month for all four, VAT included. 7 days free, card required, first charge on day 8 unless you cancel before then. They run on your own TradingView account; the free plan can run them within its limit on indicators per chart.</p>
-      <p>I built and sell all four. They give more context, not certainty. If the extra view is not useful to you, stay with the free daily levels.</p>
-    </section>
-  </article>
-</div>
+<section id="proof" class="s4-band" aria-labelledby="proof-h">
+  <div class="s4-in">
+    <h2 id="proof-h" class="s4-h2">What the counts say</h2>
+    <p class="s4-sub">The Method, on the data it was built on and on data it never saw. In 100 legs, how many were back at The Fan's 2 hour mean within 12 two hour bars, from each zone.</p>
+    <div class="s4-table"><table>
+      <thead><tr><th scope="col">Zone</th><th scope="col">Gold, Jul 2014 to 2 Nov 2026</th><th scope="col">Gold before Jul 2014</th><th scope="col">Silver, 2020 to Oct 2026</th><th scope="col">Platinum</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Near the mean</th><td>84</td><td>79</td><td>84</td><td>88</td></tr>
+        <tr><th scope="row">Stretched</th><td>56</td><td>60</td><td>54</td><td>59</td></tr>
+        <tr><th scope="row">Far</th><td>29</td><td>27</td><td>30</td><td>29</td></tr>
+      </tbody>
+    </table></div>
+    <p class="s4-cap">The last three columns are a sealed test, registered before it ran. The counts describe the past, not the next bar.</p>
+    <p class="s4-line">The Hinge, on five years of gold: it confirmed a swing a median 2 bars sooner than the classic swing that waits 3 bars, and it was wrong about as often. Earlier, not more often right.</p>
+    <p class="s4-line">Every level I post is read from The Fan and graded on the close in public. The weekly series: <span class="s4-fig">36</span> held, <span class="s4-fig">11</span> wrong, <span class="s4-fig">0</span> deleted.</p>
+    <p class="s4-links"><a href="record.html">Read the full record</a><a href="misses.html">Read every wrong call</a><a href="levels.html">See the daily levels</a></p>
+  </div>
+</section>
 
 
 
@@ -510,13 +551,6 @@
       <p><a href="mailto:hello@thesimplifier7.com">Email a question</a></p>
     </section>
 
-    <section id="proof" aria-labelledby="proof-h">
-      <h2 id="proof-h">Check the record before you decide</h2>
-      <p>My levels are read from The Fan. The weekly series, June to November 2026, was graded on Friday's close. From 12 November each daily level is graded on that day's close. The wrong ones remain on the record. The record shows how the calls were graded. It does not prove that every tool feature predicts correctly, or that someone using it will make money.</p>
-      <p><a href="levels.html">See the daily levels</a></p>
-      <p><a href="record.html">Read the full record</a></p>
-      <p><a href="misses.html">Read every wrong call</a></p>
-    </section>
 
     <section id="questions" class="faq" aria-labelledby="questions-h">
       <h2 id="questions-h">Before you start</h2>
