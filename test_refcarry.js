@@ -4,6 +4,7 @@ const { tagFrom, rewrite, CAMPAIGNS } = require("./refcarry.js");
 const page = "https://thesimplifier7.com/method.html";
 const fan = "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00";
 const method = "https://buy.stripe.com/9B628tfs5299cSb24e5kk01";
+const set = "https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04"; /* the set of four, 15 Nov 2026 */
 const fails = [];
 const check = (cond, msg) => { if (!cond) fails.push(msg); };
 
@@ -37,6 +38,8 @@ check(phone.includes("client_reference_id=site") && !phone.includes("34600111222
 const tagged = rewrite(method, page + "?ref=test-grok", "test-grok");
 check(tagged.includes("client_reference_id=test-grok"), "test-grok reaches Stripe");
 check(tagged.startsWith(method), "the Method link is unchanged apart from the query");
+const setTagged = rewrite(set, page + "?ref=x-0800", "x-0800");
+check(setTagged && setTagged.startsWith(set + "?") && /client_reference_id=x-0800/.test(setTagged), "the set link carries the 08:00 tag to Stripe");
 
 const internal = rewrite("levels.html", page + "?ref=x-pin", "x-pin");
 check(internal === "/levels.html?ref=x-pin", "an allowed tag is carried to the next page");

@@ -608,27 +608,45 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   if (!/<b>\$1,299<\/b>\s*a month, through TradingView\./.test(mp)) probs.push("the price line does not read $1,299 a month, through TradingView");
   if (!/<div class="n">\$1,299<\/div>/.test(mp)) probs.push("the price block does not print $1,299");
   if (/\$199\b/.test(mp)) probs.push("$199 is still on the page outside a comment"); */
-  /* 1 Nov 2026, the founder's two briefs: The Fan and The Method side by side, each by its own Stripe trial, one way out. */
-  const BUY = { fan: "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00", method: "https://buy.stripe.com/9B628tfs5299cSb24e5kk01" }, MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
-  if (!/id="plans"/.test(mp)) probs.push("the two plans are not on the page");
-  const fanN = (mp.match(new RegExp('href="' + BUY.fan.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
-  const methodN = (mp.match(new RegExp('href="' + BUY.method.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
-  if (fanN < 1) probs.push("the Fan checkout is not on the page");
-  if (methodN < 1) probs.push("the Method checkout is not on the page");
-  const otherBuy = (mp.match(/https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+/g) || []).filter(u => u !== BUY.fan && u !== BUY.method);
-  if (otherBuy.length) probs.push("a checkout link is not the Fan or Method link");
-  if (!/<b>€149\.99<\/b> a month/.test(mp) || !/<b>€59<\/b> a month/.test(mp)) probs.push("a plan does not print its price");
-  const fanTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.";
-  const methodTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €59 including VAT on day 8, then every month until you cancel.";
-  if ((mp.split(fanTerms).length - 1) < 2) probs.push("the Fan trial terms are not beside each Fan button");
-  if (!mp.includes(methodTerms)) probs.push("the Method trial terms are not beside its button");
+  /* 15 Nov 2026, the founder's word: one set of four, The Fan, The Keel, The Method and The Hinge, at €99 a month by one Stripe trial.
+     The two plans of 1 Nov 2026 (the founder's two briefs: The Fan and The Method side by side, each by its own Stripe trial, one way out) read:
+    const BUY = { fan: "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00", method: "https://buy.stripe.com/9B628tfs5299cSb24e5kk01" }, MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
+    if (!/id="plans"/.test(mp)) probs.push("the two plans are not on the page");
+    const fanN = (mp.match(new RegExp('href="' + BUY.fan.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
+    const methodN = (mp.match(new RegExp('href="' + BUY.method.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
+    if (fanN < 1) probs.push("the Fan checkout is not on the page");
+    if (methodN < 1) probs.push("the Method checkout is not on the page");
+    const otherBuy = (mp.match(/https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+/g) || []).filter(u => u !== BUY.fan && u !== BUY.method);
+    if (otherBuy.length) probs.push("a checkout link is not the Fan or Method link");
+    if (!/<b>€149\.99<\/b> a month/.test(mp) || !/<b>€59<\/b> a month/.test(mp)) probs.push("a plan does not print its price");
+    const fanTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €149.99 including VAT on day 8, then every month until you cancel.";
+    const methodTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €59 including VAT on day 8, then every month until you cancel.";
+    if ((mp.split(fanTerms).length - 1) < 2) probs.push("the Fan trial terms are not beside each Fan button");
+    if (!mp.includes(methodTerms)) probs.push("the Method trial terms are not beside its button");
+    if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
+    if (/METHOD_SPACE|METHOD_FORM|METHOD_TERMS|Request access|Access by invitation|Access is by request/.test(mp)) probs.push("the page still carries the Space, the request form or access by request");
+    if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");
+    if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
+    if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
+    if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");
+    check(probs.length === 0, "The Fan and The Method are offered side by side, each by a 7 day trial through Stripe, the seat without them (12 October 2026; the trial, 31 Oct 2026, note 64; two plans, 1 Nov 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : "")); */
+  const SET = "https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04", MANAGE = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
+  if (!/id="plans"/.test(mp)) probs.push("the plan is not on the page");
+  const setN = (mp.match(new RegExp('href="' + SET.replace(/[.?/]/g, "\\$&") + '"', "g")) || []).length;
+  if (setN < 2) probs.push("the set's checkout is not on both buttons");
+  const otherBuy = (mp.match(/https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+/g) || []).filter(u => u !== SET);
+  if (otherBuy.length) probs.push("a checkout link is not the set's link");
+  if (!/<b>€99<\/b> a month/.test(mp)) probs.push("the set does not print its price");
+  const setTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.";
+  if ((mp.split(setTerms).length - 1) < 2) probs.push("the trial terms are not beside each button");
+  if (/€149\.99|€59\b/.test(mp)) probs.push("a price from the two plans is still on the page outside a comment");
   if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
   if (/METHOD_SPACE|METHOD_FORM|METHOD_TERMS|Request access|Access by invitation|Access is by request/.test(mp)) probs.push("the page still carries the Space, the request form or access by request");
   if (/\$199\b|\$1,299/.test(mp)) probs.push("an old price is still on the page outside a comment");
   if (/€\s?4,500|€\s?16,000|by the quarter|a quarter ·|a year · paid once|by the year/.test(mp)) probs.push("a quarter's or a year's price is still on the page");
   if (/comes with it/.test(mp)) probs.push("the seat line still carries the tool");
   if (/id="pay-quarter"|id="pay-year"|METHOD_PAY_QUARTER|METHOD_PAY_YEAR/.test(mp)) probs.push("a quarter's or a year's payment link is still live");
-  check(probs.length === 0, "The Fan and The Method are offered side by side, each by a 7 day trial through Stripe, the seat without them (12 October 2026; the trial, 31 Oct 2026, note 64; two plans, 1 Nov 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+  check(probs.length === 0, "The set of four is offered by one 7 day trial through Stripe at €99 a month, the seat without it (12 October 2026; the trial, 31 Oct 2026, note 64; the set, 15 Nov 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
 /* 26b. NO COMMENT ON ANY PAGE, added 1 November 2026. Every page is read by anyone with view-source; the history
