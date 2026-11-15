@@ -88,7 +88,7 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
 const NAV = [
   ["today", "levels.html", "Daily levels"],
   ["record", "record.html", "The record"],
-  ["fan", "method.html", "The Fan"],
+  ["fan", "method.html", "The set"],
   ["tools", "tools.html", "Free tools"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
@@ -117,7 +117,7 @@ function band(current, where, { fixed = true } = {}) {
       ${NAV.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}>${label}</a>`).join("\n      ")}
     </nav>
     <div class="hs-tools">
-      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-${esc(where)}-band">Try The Fan free</a>
+      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-${esc(where)}-band">Try the set free</a>
     </div>
   </div>
 </header>`;
@@ -137,21 +137,24 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 
 /* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const B = [["today", "levels.html", "Levels"], ["record", "record.html", "Record"], ["fan", "method.html", "The Fan"], ["tools", "tools.html", "Tools"]];
+  const B = [["today", "levels.html", "Levels"], ["record", "record.html", "Record"], ["fan", "method.html", "The set"], ["tools", "tools.html", "Tools"]];
   return `<nav class="hs-bot" aria-label="The site, on a phone">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
 }
-/* The foot of every page. 12 Nov 2026, note 70: three short lists under the name. It read as one line of links joined by dots. */
+/* The foot of every page. 12 Nov 2026, note 70: three short lists under the name. It read as one line of links joined by dots.
+   15 Nov 2026, HALLMARK, rulings R2 to R4: TradingView is the first follow, "levels" not "call", the set of four at €99.
+   It read: The call lands every morning before New York opens. Graded at the close. Follow on X. The list read The Fan,
+   What it shows, Plans and the free trial, and the menu read The Fan and Try The Fan free. */
 const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>The call lands every morning before New York opens. Graded at the close. <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="foot">Follow on X.</a></p>
+    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="${TV}" rel="noopener" data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
   </div>
-  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly call</a><a href="record.html#rules">The rules</a></nav>
-  <nav aria-label="The Fan"><p class="hs-foot-h">The Fan</p><a href="method.html">What it shows</a><a href="method.html#plans">Plans and the free trial</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>`;
 const tail = current => `${fanFoot()}\n${bot(current)}\n<script src="house.js?v=${vOf("house.js")}" defer></script>\n<script src="svgfloor.js?v=${vOf("svgfloor.js")}" defer></script>\n<script src="refcarry.js?v=${vOf("refcarry.js")}" defer></script>`;
