@@ -44,6 +44,7 @@ for (const f of pages) {
   t = t.replace(/<p class="as-proof" data-proof>[\s\S]*?<\/p>/g, H.proof(R));
   t = t.replace(/<aside class="as-partner" data-partner="([^"]+)" aria-labelledby="pb-[^"]+">\s*<(h[23]|p) [\s\S]*?<\/aside>/g, (m, id, tag) => H.partner(id, tag));
   t = t.replace(/(<div data-slot="([a-z-]+)">)[\s\S]*?(<\/div>)/g, (m, a, k, b) => SLOTS[k] ? a + SLOTS[k]() + b : m);
+  t = t.split(/(<script[\s\S]*?<\/script>)/).map((seg, i) => i % 2 ? seg : seg.replace(/href="(https:\/\/www\.tradingview\.com[^"]*)"/g, (m, u) => `href="${H.aff(u)}"`)).join("");
   for (const s of SHARED) t = t.replace(new RegExp(s.replace(".", "\\.") + "\\?v=[0-9a-f]{10}", "g"), `${s}?v=${H.vOf(s)}`);
   if (t !== before) { fs.writeFileSync(file, t); changed++; }
 }

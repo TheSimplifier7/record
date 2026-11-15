@@ -32,7 +32,7 @@ const fs = require("fs");
 const path = require("path");
 
 const SITE = "https://thesimplifier7.com/";
-const TV = "https://www.tradingview.com/u/TheSimplifier7/#published-scripts";
+const TV = H.TV; /* 15 Nov 2026, HALLMARK: the profile link with his partner tag, from house_parts.js. It read: https://www.tradingview.com/u/TheSimplifier7/#published-scripts */
 const X = "https://x.com/TheSimplifier7";
 const GC_TAG = '<script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
 const KEY = ["Floor: the week must close above it.", "Ceiling: the week must close under it.", "Only Friday's close counts."];

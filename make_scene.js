@@ -50,7 +50,7 @@ function modelFrom(idx) {
     grade: r.grade, hit: /\bhit\b/.test(String(r.grade_word || "")), close: closeOf(r),
     lineFrom: r.line_from || "", readAt: r.read_at || "", anchor: r.anchor, box: r.box || null
   }));
-  const tools = (TJ.tools || []).filter(t => t.live).map(t => ({ key: t.key, name: t.name, sub: String(t.title || "").split(": ").slice(1).join(": ") || t.name, url: t.url }));
+  const tools = (TJ.tools || []).filter(t => t.live).map(t => ({ key: t.key, name: t.name, sub: String(t.title || "").split(": ").slice(1).join(": ") || t.name, url: require("./house_parts.js").aff(t.url) })); /* 15 Nov 2026, HALLMARK: the script links carry his partner tag. It read: url: t.url */
   return SceneR3.model({ calls, closes: R.closes || [], lineFrom: grabConst(idx, "LINE_FROM"), counsel: grabConst(idx, "NOT_ADVICE"), tools });
 }
 

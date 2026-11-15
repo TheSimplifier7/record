@@ -22,7 +22,15 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
-const TV = "https://www.tradingview.com/u/TheSimplifier7/#published-scripts";
+/* 15 Nov 2026, HALLMARK, his word: every TradingView link carries his partner tag, aff_id=1174265, and nothing else.
+   It read: https://www.tradingview.com/u/TheSimplifier7/#published-scripts */
+const AFF = "aff_id=1174265";
+const aff = u => {
+  if (!/^https:\/\/www\.tradingview\.com\//.test(u) || /[?&]aff_id=/.test(u)) return u;
+  const i = u.indexOf("#"), base = i < 0 ? u : u.slice(0, i), hash = i < 0 ? "" : u.slice(i);
+  return base + (base.includes("?") ? "&amp;" : "?") + AFF + hash;
+};
+const TV = aff("https://www.tradingview.com/u/TheSimplifier7/#published-scripts");
 
 /* 15 Nov 2026, HALLMARK, his brief of 15 November. The doors to TradingView, used exactly as given.
    PARTNER is the free account through his partner link; BLACK_FRIDAY replaces it from 23 Nov 09:00 to 2 Dec 08:59 Madrid
@@ -34,6 +42,7 @@ const BLACK_FRIDAY = "https://www.tradingview.com/black-friday/?aff_id=1174265";
 const SPACE = "https://www.tradingview.com/scripts/marketplace/TheSimplifier7/?aff_id=1174265";
 const SPACE_LIVE = false;
 const OUT = 'target="_blank" rel="sponsored noopener"';
+const PARTNER_LINE = "TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.";
 const BOTH = "Same four tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
@@ -165,7 +174,7 @@ const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
-    <p>The TradingView account link here is a partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
+    <p>${PARTNER_LINE}</p>
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
   <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
@@ -261,4 +270,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { aff, AFF, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

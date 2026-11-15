@@ -64,7 +64,7 @@ const img = { url: P.imageOf("tally_card_landscape_dark.png"), w: 1920, h: 1080 
 const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
     <h2><span class="n">${esc(t.name)}</span>${esc(t.title)}</h2>
     <p>${esc(BLURB[t.key] || t.text || "")}</p>
-    <a class="btn quiet go" href="${esc(t.url)}" data-tv="tools-${esc(t.key)}">Read about ${esc(t.name)} on TradingView</a>
+    <a class="btn quiet go" href="${require("./house_parts.js").aff(esc(t.url))}" data-tv="tools-${esc(t.key)}">Read about ${esc(t.name)} on TradingView</a>
   </article>`).join("\n  ");
 
 /* 15 Nov 2026, HALLMARK, his brief of 15 November: a route from the free tools to the paid set, and the partner block under the intro. */
