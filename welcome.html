@@ -121,7 +121,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 <link rel="stylesheet" href="assay-site.css?v=8d8d25bbe0">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
-<link rel="stylesheet" href="brand.css?v=61406205eb">
+<link rel="stylesheet" href="brand.css?v=95f03564de">
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body class="hs-has-bot">
@@ -133,6 +133,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
       <a href="record.html">The record</a>
       <a href="method.html">The set</a>
       <a href="tools.html">Free tools</a>
+      <a href="mentorship.html">Mentorship</a>
     </nav>
     <div class="hs-tools">
       <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-welcome-band">Try the set free</a>
@@ -141,9 +142,17 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
 </header>
 <main id="main" class="wl"><div class="wrap">
   <h1>You're in.</h1>
-  <p class="lede">Here's where the call lands every morning, and how to read it in ten seconds.</p>
-  <section class="wl-read" aria-label="Where the call lands, and how to read it">
-    <h2>Where the call lands</h2>
+  <p class="lede">First, find the four tools on your chart. Then see where the levels land every morning, and how to read them in ten seconds.</p>
+  <section class="wl-read wl-find" aria-label="Find the four tools in TradingView">
+    <h2>Find the four tools in TradingView</h2>
+    <p>I add access to the username you gave at checkout within an hour, or by 09:00 Europe/Madrid if you joined overnight. Sign in to that TradingView account. Open a chart, choose Indicators, then Invite-only, and add the four tools.</p>
+    <p>If you cannot see them, refresh and check the username. If your free TradingView plan is at its indicator limit, remove another indicator. If access has not appeared after the stated window, contact me. Do not buy a second subscription.</p>
+    <p><a href="mailto:hello@thesimplifier7.com">Ask for setup help</a> or write to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>. Do not send a password.</p>
+    <div data-slot="welcome-space"></div>
+    <p><a href="https://www.tradingview.com/">Open TradingView</a></p>
+  </section>
+  <section class="wl-read" aria-label="Where the levels land, and how to read them">
+    <h2>Where the levels land</h2>
     <p>On X at 08:00 CET on every trading day, before New York opens: one level each for gold, silver and platinum. Then on <a href="levels.html">the daily levels</a>, with the close that graded it.</p>
     <p><a href="https://x.com/TheSimplifier7" rel="noopener" data-x="welcome">Follow on X</a></p>
     <h2>How to read it</h2>
@@ -151,14 +160,7 @@ footer .meta{display:flex;flex-wrap:wrap;gap:6px 22px}
   </section>
   <h2>Set up your trial</h2>
   <p>If you have just completed checkout, Stripe has sent your confirmation. That confirmation shows your plan and trial dates. Nothing is charged during the 7-day trial. If you have not completed checkout, opening this page does not start a trial.</p>
-  <p><a href="https://www.tradingview.com/">Open TradingView</a></p>
   <ol class="wl-steps">
-    <li><div>
-      <h2>Find the tool in TradingView</h2>
-      <p>I add access to the username you gave at checkout within an hour, or by 09:00 Europe/Madrid if you joined overnight. Sign in to that TradingView account. Open a chart, choose Indicators, then Invite-only, and select your tool.</p>
-      <p>If you cannot see it, refresh and check the username. If your free TradingView plan is at its indicator limit, remove another indicator. If access has not appeared after the stated window, contact me. Do not buy a second subscription.</p>
-      <p><a href="mailto:hello@thesimplifier7.com">Ask for setup help</a> or write to <a href="https://x.com/TheSimplifier7">@TheSimplifier7</a>. Do not send a password.</p>
-    </div></li>
     <li><div>
       <h2>Try the display before you think about a trade</h2>
       <p>Start with one metal and a chart you know. You do not need to trade to decide whether the information is useful to you. Watch an unclear period as well as a clear one.</p>
@@ -185,20 +187,22 @@ document.querySelectorAll("[data-plan]").forEach(function(el){el.hidden=el.getAt
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" rel="noopener" data-tv="foot">Follow on TradingView.</a></p>
+    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" target="_blank" rel="sponsored noopener" data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
+    <p>The TradingView account link here is a partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
-  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
-  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="foot-tv-account" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>
 <nav class="hs-bot" aria-label="The site, on a phone">
   <a href="levels.html"><span>Levels</span></a>
   <a href="record.html"><span>Record</span></a>
   <a href="method.html"><span>The set</span></a>
   <a href="tools.html"><span>Tools</span></a>
+  <a href="mentorship.html"><span>Mentorship</span></a>
 </nav>
-<script src="house.js?v=64dbf06671" defer></script>
+<script src="house.js?v=b510d59308" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>
 <script src="refcarry.js?v=f71593dabf" defer></script>
 </body>

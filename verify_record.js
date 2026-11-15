@@ -637,7 +637,8 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   const otherBuy = (mp.match(/https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+/g) || []).filter(u => u !== SET);
   if (otherBuy.length) probs.push("a checkout link is not the set's link");
   if (!/<b>€99<\/b> a month/.test(mp)) probs.push("the set does not print its price");
-  const setTerms = "7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.";
+  /* 15 Nov 2026, HALLMARK, his brief: the terms line under each trial button is the brief's, kept in house_parts.js. It read: 7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel. */
+  const setTerms = require("./house_parts.js").SET_TERMS;
   if ((mp.split(setTerms).length - 1) < 2) probs.push("the trial terms are not beside each button");
   if (/€149\.99|€59\b/.test(mp)) probs.push("a price from the two plans is still on the page outside a comment");
   if (!mp.includes('href="' + MANAGE + '"')) probs.push("the way to manage or cancel is not on the page");
@@ -678,6 +679,28 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   const bad = [["em dash", /\u2014/], ["exclamation mark", /![^=]/], ["emoji", /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u], ["a house word", /\b(box|room|kill|naming)\b/i]].filter(([, re]) => re.test(words)).map(b => b[0]);
   if (bad.length) probs.push("the scene's words carry: " + bad.join(", "));
   check(probs.length === 0, "the scene is beside the record, its still is the one record.json gives, and the Space shows no price before TradingView says yes (note 55)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
+/* 15 Nov 2026, HALLMARK, his brief of 15 November: the buy blocks carry the record as their proof, counted from record.json;
+   the Paid Space's link is on no page until TradingView approves it; every partner button shows its disclosure; and
+   every page's menu reaches mentorship in one tap. */
+{
+  const HP = require("./house_parts.js");
+  const RJ = JSON.parse(fs.readFileSync(path.join(__dirname, "record.json"), "utf8"));
+  const want = HP.proof(RJ);
+  const pages = fs.readdirSync(__dirname).filter(f => f.endsWith(".html"));
+  const probs = [];
+  for (const f of pages) {
+    const h = fs.readFileSync(path.join(__dirname, f), "utf8");
+    for (const m of h.match(/<p class="as-proof" data-proof>[\s\S]*?<\/p>/g) || []) if (m !== want) probs.push(f + ": a proof line does not match record.json's tally");
+    if (!HP.SPACE_LIVE && h.includes("scripts/marketplace/TheSimplifier7")) probs.push(f + ": carries the Paid Space's link before it is live");
+    for (const a of h.match(/<aside class="as-partner"[\s\S]*?<\/aside>/g) || []) if (!/data-tv="partner-block"[\s\S]*?<p class="as-partner-d">Partner link\./.test(a)) probs.push(f + ": a partner button without its disclosure under it");
+    if (/<nav class="hs-nav"/.test(h) && !/<nav class="hs-nav"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the menu does not reach mentorship");
+    if (/<nav class="(hs-bot|botnav)"/.test(h) && !/<nav class="(hs-bot|botnav)"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the phone's bar does not reach mentorship");
+  }
+  const idx = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+  if (!/data-tv="home-hero">Try the set free for 7 days</.test(idx) || !/data-tv="home-close">Try the set free for 7 days</.test(idx)) probs.push("index.html: the gold buttons do not sell the trial");
+  check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
 }
 
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");

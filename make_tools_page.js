@@ -31,6 +31,10 @@ for (const t of live) {
 }
 
 const CSS = `
+/* 15 Nov 2026, HALLMARK: at 360 px the buttons' long names pushed the cards past the screen. */
+.tool{min-width:0}
+.tool .go{white-space:normal;max-width:100%;text-align:left;height:auto;padding-block:10px;min-height:44px}
+
 .cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 0}
 .cta .fine{margin:0}
 .tools{display:grid;gap:14px;margin:6px 0 0}
@@ -63,10 +67,13 @@ const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
     <a class="btn quiet go" href="${esc(t.url)}" data-tv="tools-${esc(t.key)}">Read about ${esc(t.name)} on TradingView</a>
   </article>`).join("\n  ");
 
+/* 15 Nov 2026, HALLMARK, his brief of 15 November: a route from the free tools to the paid set, and the partner block under the intro. */
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("tools-page", "tools")}
 ${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
+  <p class="tools-set">The levels I post are read from The Fan, one of the set of four. <a href="method.html#plans" data-tv="tools-set">See the set</a></p>
+  ${require("./house_parts.js").partner("tools", "h2")}
   <section class="tools" aria-label="The tools">
   ${cards}
   </section>
