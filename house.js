@@ -67,6 +67,22 @@
     }, true);
   } catch (e) {}
 
+  /* 15 Nov 2026, HALLMARK, his brief of 15 November. Every link to TradingView opens in a new tab and is marked sponsored,
+     the record's own pages included, without touching a row or a note. Then TradingView's Black Friday sale: from 23 Nov
+     09:00 to 2 Dec 08:59 Madrid the partner link becomes the sale link, and the $15 line steps aside. Outside the window,
+     and without scripts, the page reads as written. */
+  try {
+    var tvs = document.querySelectorAll('a[href^="https://www.tradingview.com"]');
+    for (var i = 0; i < tvs.length; i++) { tvs[i].setAttribute("target", "_blank"); tvs[i].setAttribute("rel", "sponsored noopener"); }
+    var now = Date.now();
+    if (now >= Date.UTC(2026, 10, 23, 8, 0, 0) && now < Date.UTC(2026, 11, 2, 8, 0, 0)) {
+      var bf = document.querySelectorAll("a[data-bf-href]");
+      for (var j = 0; j < bf.length; j++) { bf[j].setAttribute("href", bf[j].getAttribute("data-bf-href")); if (bf[j].getAttribute("data-bf-text")) bf[j].textContent = bf[j].getAttribute("data-bf-text"); }
+      var off = document.querySelectorAll("[data-bf-off]");
+      for (var k = 0; k < off.length; k++) off[k].hidden = true;
+    }
+  } catch (e) {}
+
   /* 1. THE STRIP */
   var strip = $("hs-strip");
   if (!strip || !window.fetch) return;

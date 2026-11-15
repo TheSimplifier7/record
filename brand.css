@@ -90,11 +90,11 @@ html .hs-bot,html .botnav{display:none}
   html .hs-nav,html .hd-band .topnav{display:none!important}
   html .hs-tools,html .hd-band .band-tools{margin-left:auto!important}
   html body.hs-has-bot,html body:has(.botnav){padding-bottom:var(--c-bot)!important}
-  html .hs-bot,html .botnav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;position:fixed;left:0;right:0;bottom:0;z-index:45;height:var(--c-bot)!important;
+  html .hs-bot,html .botnav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;position:fixed;left:0;right:0;bottom:0;z-index:45;height:var(--c-bot)!important;
     padding:0 0 env(safe-area-inset-bottom,0px)!important;background:var(--c-bg)!important;border:0!important;box-shadow:inset 0 1px 0 var(--c-rule-2)!important;
     -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
   html .hs-bot a,html .botnav a{display:flex!important;flex-direction:row!important;align-items:center;justify-content:center;min-height:44px;color:var(--c-sec)!important;
-    font:400 14px/1 var(--c-ui)!important;letter-spacing:0!important;text-decoration:none!important;border:0!important;box-shadow:none!important}
+    font:400 13px/1 var(--c-ui)!important;letter-spacing:0!important;text-decoration:none!important;border:0!important;box-shadow:none!important}
   html .hs-bot a[aria-current="page"],html .botnav a[aria-current="page"]{color:var(--c-ink)!important;font-weight:500!important;box-shadow:inset 0 1px 0 var(--c-ink)!important}
   html .hs-bot a::before,html .botnav a::before{content:none!important;display:none!important}
   html .hs-bot svg,html .botnav svg{display:none!important}
@@ -371,3 +371,21 @@ html .wb-seal b{font:500 12.5px/1 var(--c-fig);letter-spacing:.04em;color:var(--
 /* on a phone the plate is kept under the glass, so no line of text sits on the engraving */
 @media (max-width:900px){.hm-today{overflow:hidden;margin-inline:calc(-1 * var(--c-gutter));padding:0 var(--c-gutter) 40px}}
 html .plan-band .plan-intro+.plan-intro{margin-top:12px}
+
+/* ---------------------------------------------------------------- 15 Nov 2026, HALLMARK, his brief of 15 November.
+   The proof line under every buy block, the partner block with its disclosure always shown, and five places in the
+   phone's bar (Mentorship joins them; the bar read four places in 14px). */
+html .as-proof{margin:16px 0 0!important;max-width:40rem;font:400 14px/1.6 var(--c-ui)!important;color:var(--c-sec)!important}
+html .as-proof b{font-weight:500;color:var(--c-ink);font-variant-numeric:tabular-nums}
+html .as-proof a{margin-left:4px;color:var(--c-ink)!important;text-decoration:underline;text-decoration-color:var(--c-rule-2);text-underline-offset:4px}
+html .as-partner{margin:32px 0;padding:24px;max-width:40rem;border:1px solid var(--c-rule);border-radius:12px;background:var(--c-raise)}
+html .as-partner .as-partner-h{margin:0 0 8px!important;font:500 18px/1.3 var(--c-ui)!important;color:var(--c-ink)!important;text-transform:none!important;letter-spacing:0!important}
+html .as-partner p{margin:0 0 16px;font-size:15px;line-height:1.6;color:var(--c-sec)}
+html .as-partner .hs-btn{min-height:44px}
+html .as-partner .as-partner-d{margin:12px 0 0!important;font-size:13px!important;line-height:1.5!important;color:var(--c-mut)!important}
+
+html .tools-set{margin:32px 0 0;max-width:40rem;font:400 17px/1.6 var(--c-ui);color:var(--c-sec)}
+html .tools-set a{color:var(--c-ink)!important;text-decoration:underline;text-decoration-color:var(--c-rule-2);text-underline-offset:4px}
+html .as-both{margin:16px 0 0;font-size:15px;line-height:1.6;color:var(--c-sec)}
+@media (max-width:380px){html .hs-bot a,html .botnav a{font-size:12px!important}}
+html .wl-find [data-slot]:empty{display:none}

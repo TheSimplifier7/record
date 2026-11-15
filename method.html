@@ -101,10 +101,10 @@
   },
   {
    "@type": "Question",
-   "name": "Can I see the calls that were wrong?",
+   "name": "Can I see the levels that were wrong?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. Open Read every wrong call. Each call is graded on its close, and the wrong calls stay public. A call marked held is not a claim that a trade made money."
+    "text": "Yes. Open Read every wrong level. Each level is graded on its close, and the wrong ones stay public. A level marked held is not a claim that a trade made money."
    }
   },
   {
@@ -112,7 +112,7 @@
    "name": "Do I need experience?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the free daily levels and read how each call is checked. The tool does not make trading safe."
+    "text": "You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the free daily levels and read how each level is checked. The tool does not make trading safe."
    }
   }
  ]
@@ -367,6 +367,14 @@
   .s4-note{margin:16px 0 0;padding-top:16px;border-top:1px solid #1A3050;font:400 15px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4);text-wrap:pretty}
   .s4-small{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;font:400 13px/1.5 var(--f-ui)}
   .s4-small a{color:var(--c-mut,#7D8CA3)}
+  .s4-routes{display:grid;gap:24px 32px}
+  .s4-route-h{margin:20px 0 0;font:500 15px/1.4 var(--f-ui);color:var(--c-ink,#F3EDE2)}
+  .s4-head:has(.s4-two){grid-template-columns:minmax(0,1fr)}
+  .s4-two .s4-routes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .s4-two .s4-route+.s4-route{padding-left:32px;border-left:1px solid #1A3050}
+  .s4-both{margin:24px 0 0;padding-top:16px;border-top:1px solid #1A3050;font:400 15px/1.5 var(--f-ui);color:var(--c-sec,#A8B3C4)}
+  .s4-plan .as-proof{margin-top:16px!important;max-width:none}
+  @media (max-width:760px){.s4-two .s4-routes{grid-template-columns:minmax(0,1fr)}.s4-two .s4-route+.s4-route{padding:24px 0 0;border-left:0;border-top:1px solid #1A3050}}
   .s4-band{border-top:1px solid #1A3050}
   .s4-in{max-width:var(--c-frame,72rem);margin:0 auto;padding:64px var(--c-gutter,40px);box-sizing:border-box}
   .s4-h2{margin:0;font:500 28px/1.2 var(--f-ui);color:var(--c-ink,#F3EDE2)}
@@ -427,7 +435,7 @@
 <link rel="stylesheet" href="assay-site.css?v=8d8d25bbe0">
 <link rel="stylesheet" href="floor.css?v=a35b2ffe79">
 <link rel="stylesheet" href="sharp.css?v=9ef17539af">
-<link rel="stylesheet" href="brand.css?v=61406205eb">
+<link rel="stylesheet" href="brand.css?v=95f03564de">
 <style id="hs-method">
 .fan-head{position:relative;overflow:hidden;isolation:isolate}
 .fan-head::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 420px at 18% -20%,rgba(224,169,59,.14),transparent 62%),radial-gradient(800px 520px at 85% 110%,rgba(141,176,245,.09),transparent 66%)}
@@ -450,6 +458,7 @@
       <a href="record.html">The record</a>
       <a href="method.html" aria-current="page">The set</a>
       <a href="tools.html">Free tools</a>
+      <a href="mentorship.html">Mentorship</a>
     </nav>
     <div class="hs-tools">
       <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-method-band">Try the set free</a>
@@ -467,16 +476,23 @@
   </div>
   <section id="plans" class="s4-plan" aria-labelledby="plans-h">
     <h2 id="plans-h">The set of four</h2>
-    <p class="s4-price"><b>€99</b> a month for all four, VAT included</p>
-    <ol class="s4-steps">
-      <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
-      <li>Give your TradingView username at checkout, never your password.</li>
-      <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
-    </ol>
-    <a class="hs-btn hs-gold plan-btn s4-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="buy-set" data-plan="set">Start the 7-day trial</a>
-    <p class="s4-fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.</p>
-    <p class="s4-note">We sell tools, not signals. The price keeps the tyre-kickers out.</p>
+    <div class="s4-routes">
+    <div class="s4-route" data-route="site">
+      
+      <p class="s4-price"><b>€99</b> a month for all four, VAT included</p>
+      <ol class="s4-steps">
+        <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
+        <li>Give your TradingView username at checkout, never your password.</li>
+        <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+      </ol>
+      <a class="hs-btn hs-gold plan-btn s4-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="plans-site-trial" data-plan="set">Start the 7-day trial</a>
+      <p class="s4-fine">7 days free, then €99 a month, VAT included. Card at checkout. Cancel before day 8 and pay nothing.</p>
+    </div>
+    </div>
+    
+    <p class="as-proof" data-proof>Every level graded in public on the close, wrong ones included. Weekly record: <b>36</b> held, <b>11</b> wrong, <b>0</b> deleted. <a href="record.html">Read the record</a></p>
     <p class="s4-small"><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></p>
+    <p class="s4-note">I sell tools, not signals. The price keeps the tyre-kickers out.</p>
   </section>
 </div>
 
@@ -496,7 +512,7 @@
       <figure><img src="set_keel_gold_1h_2026-11-15-1200.webp" srcset="set_keel_gold_1h_2026-11-15-640.webp 640w, set_keel_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
       <h3>The Keel</h3>
       <p class="s4-q">Which way does the flow run, and what exact close would end it?</p>
-      <p class="s4-not">It describes the flow. It does not call the next move.</p>
+      <p class="s4-not">It describes the flow. It does not predict the next move.</p>
     </article>
     <article class="s4-tool">
       <figure><img src="set_method_gold_1h_2026-11-15-1200.webp" srcset="set_method_gold_1h_2026-11-15-640.webp 640w, set_method_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 560px, calc(100vw - 40px)" width="1200" height="480" loading="lazy" alt="The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026"></figure>
@@ -529,7 +545,7 @@
     <p class="s4-cap">The last three columns are a sealed test, registered before it ran. The counts describe the past, not the next bar.</p>
     <p class="s4-line">The Hinge, on five years of gold: it confirmed a swing a median 2 bars sooner than the classic swing that waits 3 bars, and it was wrong about as often. Earlier, not more often right.</p>
     <p class="s4-line">Every level I post is read from The Fan and graded on the close in public. The weekly series: <span class="s4-fig">36</span> held, <span class="s4-fig">11</span> wrong, <span class="s4-fig">0</span> deleted.</p>
-    <p class="s4-links"><a href="record.html">Read the full record</a><a href="misses.html">Read every wrong call</a><a href="levels.html">See the daily levels</a></p>
+    <p class="s4-links"><a href="record.html">Read the full record</a><a href="misses.html">Read every wrong level</a><a href="levels.html">See the daily levels</a></p>
   </div>
 </section>
 
@@ -556,9 +572,14 @@
       <h2 id="questions-h">Before you start</h2>
       <p>You are buying a charting-tool licence, not personal advice or buy-and-sell instructions.</p>
       <details><summary>What is an indicator?</summary><p>It is a tool that adds information to a price chart. These tools draw reference lines and the wider price pattern. They do not place trades for you.</p></details>
-      <details><summary>Do I need TradingView?</summary><p>Yes, for the four tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. The daily levels on X do not need TradingView.</p></details>
+      <details><summary>Do I need TradingView?</summary><p>Yes, for the four tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. The daily levels on X do not need TradingView.</p><aside class="as-partner" data-partner="method-faq" aria-labelledby="pb-method-faq">
+  <h3 class="as-partner-h" id="pb-method-faq">New to TradingView?</h3>
+  <p>The four tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
+  <a class="hs-btn hs-ghost" href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="partner-block" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a>
+  <p class="as-partner-d">Partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
+</aside></details>
       <details><summary>What does "2-hour view on a 10-minute chart" mean?</summary><p>Each bar on a 10-minute chart covers ten minutes of prices. The Fan also shows the wider 2-hour view on that chart, so you can see shorter moves against the wider pattern.</p></details>
-      <details><summary>What do I get?</summary><p>All four: The Fan, The Keel, The Method and The Hinge, added to the TradingView username you give at checkout. One subscription, €99 a month including VAT. Neither the tools nor I make the decision for you.</p></details>
+      <details><summary>What do I get?</summary><p>All four: The Fan, The Keel, The Method and The Hinge, added to the TradingView username you give at checkout. One subscription, €99 a month including VAT. Neither the tools nor I make the decision for you.</p><div data-slot="faq-both"></div></details>
       <details><summary>How does the free trial work?</summary><p>The set starts with 7 days free. A card is required, but nothing is charged during the trial. Cancel before day 8 and pay nothing. Otherwise, Stripe charges €99 including VAT on day 8, then every month until you cancel.</p></details>
       <details><summary>Why is a card required?</summary><p>So the subscription can continue after the trial without another checkout. Stripe handles your card details. I never see your full card number. You choose whether to keep it by cancelling before day 8 if it is not for you.</p></details>
       <details><summary>How do I cancel?</summary><p>Use <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a> in the website footer, or the billing link in your Stripe receipt. Follow the steps until cancellation is confirmed and keep the confirmation. You can also email <a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a>. Cancel before day 8 to pay nothing. Removing the indicator from your chart does not cancel billing.</p></details>
@@ -566,8 +587,8 @@
       <details><summary>When do I get access?</summary><p>Within an hour of checkout, or by 09:00 Europe/Madrid if you join overnight. Access is attached to the exact TradingView username you give, not your password. Find it under Indicators, then Invite-only. If the tool is missing, refresh and check the username first.</p></details>
       <details><summary>Does it tell me when to buy or sell?</summary><p>No. It shows information on your chart. Whether to trade, how much risk to take and when to stay out are your decisions. You do not need to place a trade to try the display.</p></details>
       <details><summary>Is this financial advice?</summary><p>No. The tools, levels and record are for education and information. They do not consider your finances or give a personal recommendation. Trading can lose money. Past results do not guarantee future results, and no profit or income is promised.</p></details>
-      <details><summary>Can I see the calls that were wrong?</summary><p>Yes. Open <a href="misses.html">Read every wrong call</a>. Each call is graded on its close, and the wrong calls stay public. A call marked held is not a claim that a trade made money.</p></details>
-      <details><summary>Do I need experience?</summary><p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free daily levels</a> and read how each call is checked. The tool does not make trading safe.</p></details>
+      <details><summary>Can I see the levels that were wrong?</summary><p>Yes. Open <a href="misses.html">Read every wrong level</a>. Each level is graded on its close, and the wrong ones stay public. A level marked held is not a claim that a trade made money.</p></details>
+      <details><summary>Do I need experience?</summary><p>You should understand a price chart and be able to make your own trading decisions before paying for a tool. If you are new, start with the <a href="levels.html">free daily levels</a> and read how each level is checked. The tool does not make trading safe.</p></details>
     </section>
 
     <section id="final" aria-labelledby="final-h">
@@ -576,7 +597,8 @@
       <p>One subscription covers all four.</p>
       <p>Education and training. Not investment advice. No funds are handled. No result is promised. Trading involves risk, and you can lose money.</p>
       <p><a class="hs-btn hs-gold plan-btn" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="buy-set-final" data-plan="set">Start the 7-day trial</a></p>
-      <p class="fine">7 days free. Card required at checkout. Nothing charged during the trial. Cancel before day 8 and pay nothing. Otherwise, €99 including VAT on day 8, then every month until you cancel.</p>
+      <p class="fine">7 days free, then €99 a month, VAT included. Card at checkout. Cancel before day 8 and pay nothing.</p>
+      <p class="as-proof" data-proof>Every level graded in public on the close, wrong ones included. Weekly record: <b>36</b> held, <b>11</b> wrong, <b>0</b> deleted. <a href="record.html">Read the record</a></p>
       <p><a href="levels.html">See today's levels, free</a></p>
     </section>
   </article>
@@ -587,23 +609,25 @@
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" rel="noopener" data-tv="foot">Follow on TradingView.</a></p>
+    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="https://www.tradingview.com/u/TheSimplifier7/#published-scripts" target="_blank" rel="sponsored noopener" data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
+    <p>The TradingView account link here is a partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
-  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
-  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="foot-tv-account" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>
 
 <nav class="botnav" aria-label="The site, on a phone">
   <a href="levels.html"><span>Levels</span></a>
   <a href="record.html"><span>Record</span></a>
-  <a href="method.html" aria-current="page"><span>The Fan</span></a>
+  <a href="method.html" aria-current="page"><span>The set</span></a>
   <a href="tools.html"><span>Tools</span></a>
+  <a href="mentorship.html"><span>Mentorship</span></a>
 </nav>
 
 
-<script src="house.js?v=64dbf06671" defer></script>
+<script src="house.js?v=b510d59308" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>
 <script src="refcarry.js?v=f71593dabf" defer></script>
 <script src="trust.js?v=660fc62f08" defer></script>
