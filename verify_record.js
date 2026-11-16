@@ -752,5 +752,28 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   check(probs.length === 0, "the weekly email's box is on the front page and levels.html only, posts to his own script with double opt-in and loads no one else's script, and the list's pages and privacy page say the list is open and who runs it (16 Nov 2026, note 75)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
 }
 
+/* 16 Nov 2026, his word: the legal notice Spanish law asks for (LSSI-CE art. 10) lives on aviso-legal.html, kept out of
+   search, and is one tap from every page through the small print in the foot. The tax number and the street are on no
+   other page, except the model withdrawal form in the Terms. */
+{
+  const probs = [];
+  const NIF = "Y7256974M", STREET = /R[ií]o Guadiana/;
+  const av = fs.existsSync(path.join(__dirname, "aviso-legal.html")) ? fs.readFileSync(path.join(__dirname, "aviso-legal.html"), "utf8") : "";
+  if (!av) probs.push("aviso-legal.html is missing");
+  else {
+    if (!/<meta name="robots" content="noindex">/.test(av)) probs.push("aviso-legal.html does not ask not to be indexed");
+    if (!av.includes(NIF) || !STREET.test(av) || !av.includes("hello@thesimplifier7.com")) probs.push("aviso-legal.html does not carry the tax number, the address and the email");
+  }
+  for (const f of fs.readdirSync(__dirname).filter(f => f.endsWith(".html") && f !== "aviso-legal.html")) {
+    const h = fs.readFileSync(path.join(__dirname, f), "utf8");
+    if (h.includes(NIF)) probs.push(f + ": carries the tax number");
+    const streets = (h.match(/R[ií]o Guadiana/g) || []).length;
+    if (streets > (f === "terms.html" ? 1 : 0)) probs.push(f + ": carries the street address");
+    if (/<footer class="hs-foot">/.test(h) && !/<footer class="hs-foot">[\s\S]*?href="aviso-legal.html"[\s\S]*?<\/footer>/.test(h)) probs.push(f + ": the foot does not link the Aviso legal");
+  }
+  if (!/The small print[^<]*<a href="terms.html">Terms<\/a>[\s\S]{0,120}href="aviso-legal.html"/.test(fs.readFileSync(path.join(__dirname, "record.html"), "utf8"))) probs.push("record.html: the small print does not link the Aviso legal");
+  check(probs.length === 0, "the Aviso legal carries the owner, tax number, address and email, is kept out of search, and is one tap from every page; the tax number and the street are on no other page but the Terms' withdrawal form (16 Nov 2026)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

@@ -78,7 +78,7 @@ parts.push([`Every day, graded, with each 08:00 post: ${SITE}levels.html`]);
 parts.push([`The levels are read from The Fan, one of the four TradingView tools in the set. 7 days free, then €99 a month: ${SITE}method.html`]);
 parts.push(["This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from."]);
 parts.push(["Bradley"]);
-const foot = ["You get this because you asked for it at thesimplifier7.com.", "Unsubscribe: {{UNSUBSCRIBE_URL}}", "Or write to hello@thesimplifier7.com.", "The Simplifier, Bradley Van Eden, Espartinas, Sevilla, Spain."];
+const foot = ["You get this because you asked for it at thesimplifier7.com.", "Unsubscribe: {{UNSUBSCRIBE_URL}}", "Or write to hello@thesimplifier7.com.", `The Simplifier, Bradley Van Eden. Legal notice: ${SITE}aviso-legal.html`];
 
 const all = [subject, ...parts.flat(), ...foot].join("\n");
 const bad = [["em dash", /—/], ["en dash", /–/], ["exclamation mark", /!/], ["hashtag", /(^|\s)#\w/]].filter(([, re]) => re.test(all));
