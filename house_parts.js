@@ -63,14 +63,14 @@ function headTags({ fonts = true, lean = false } = {}) {
   return ICONS + "\n" + (fonts ? FONTS + "\n" : "") + `<link rel="stylesheet" href="house.css?v=${vOf("house.css")}">\n<link rel="stylesheet" href="assay-site.css?v=${vOf("assay-site.css")}">\n<link rel="stylesheet" href="floor.css?v=${vOf("floor.css")}">\n<link rel="stylesheet" href="sharp.css?v=${vOf("sharp.css")}">\n<link rel="stylesheet" href="brand.css?v=${vOf("brand.css")}">`; /* 31 Oct 2026, note 64: sharp.css; 7 Nov 2026: brand.css, the flow in ASSAY, loaded last */
 }
 /* 12 Nov 2026, note 70: the head of a page drawn whole in the calm layer. pre is a script that must run before anything is drawn. */
-function leanHead({ title, description, canonical, image, alt, css = "", pre = "" }) {
+function leanHead({ title, description, canonical, image, alt, css = "", pre = "", noindex = false }) {
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(description)}">
+${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(canonical)}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Simplifier">
@@ -178,7 +178,7 @@ const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   </div>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
   <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
-  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>`;
 
 /* 15 Nov 2026, HALLMARK, his brief: the record as the proof, once in every buy block, counted from record.json and never typed. */
