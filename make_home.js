@@ -7,7 +7,8 @@
    day, on X at 08:00 CET, each graded on that day's close; the weekly series ended on the close of Friday
    6 November and is kept whole on record.html. The page runs: the promise and the one thing to press, the
    count, today's levels, the last days graded, the standing offer, The Fan, a member, who I am, five questions.
-   The email form is gone with The Monday Level.
+   The email form is gone with The Monday Level. 16 Nov 2026, his word: the list stays open, and its box is back at
+   the foot of the page, above the footer (H.signup in house_parts.js).
 
    Drawn in the calm layer (brand.css, note 70): Barlow at 400 and 500 for words, IBM Plex Mono for figures,
    hairlines and no shadow, sentence case, spacing on 4, 8, 12, 16, 24, 32, 48, 64, 96. Gold is a level's line
@@ -250,7 +251,7 @@ ${H.band(null, "home")}
   </div></div>
 </section>
 
-<section class="hm-sec hm-close hm-last" id="join" aria-labelledby="choose-h"><span id="choose"></span>
+<section class="hm-sec hm-close" id="join" aria-labelledby="choose-h"><span id="choose"></span>
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="choose-h">Start with tomorrow's levels</h2></div>
     <div class="hm-main">
@@ -260,6 +261,8 @@ ${H.band(null, "home")}
     </div>
   </div></div>
 </section>
+
+${H.signup("home")}
 </main>
 <script src="daily.js?v=${H.vOf("daily.js")}" defer></script>
 <script src="plate.js?v=${H.vOf("plate.js")}" defer></script>

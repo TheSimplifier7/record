@@ -56,7 +56,7 @@
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
-<link rel="stylesheet" href="brand.css?v=95f03564de">
+<link rel="stylesheet" href="brand.css?v=936e20857d">
 <style>
 /* The Fan */
 .hm-fan .hm-in>div{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}
@@ -271,13 +271,32 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
   </div></div>
 </section>
 
-<section class="hm-sec hm-close hm-last" id="join" aria-labelledby="choose-h"><span id="choose"></span>
+<section class="hm-sec hm-close" id="join" aria-labelledby="choose-h"><span id="choose"></span>
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="choose-h">Start with tomorrow's levels</h2></div>
     <div class="hm-main">
       <p class="hm-big">Three levels at 08:00 CET, and the close that grades each one. Check every grade yourself. <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="home-close">The 08:00 post on X</a></p>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="method.html#plans" data-tv="home-close">Try the set free for 7 days</a><a href="record.html">Read the record</a></p>
       <p class="as-proof" data-proof>Every level graded in public on the close, wrong ones included. Weekly record: <b>36</b> held, <b>11</b> wrong, <b>0</b> deleted. <a href="record.html">Read the record</a></p>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec hm-last hm-mail" id="email" aria-labelledby="mail-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="mail-h">The week graded, by email</h2></div>
+    <div class="hm-main">
+      <p>One email on Saturday morning: every level of the week, the close that graded it, the wrong ones first. Free.</p>
+      <form class="as-mail" method="POST" action="https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec" accept-charset="UTF-8">
+        <input type="hidden" name="action" value="signup">
+        <input type="hidden" name="source_ref" value="home" data-ref-base="home">
+        <label class="as-mail-l" for="mail-email">Your email address</label>
+        <input id="mail-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <div class="as-mail-trap" aria-hidden="true"><label for="mail-co">Leave this empty</label><input id="mail-co" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="as-mail-ok"><input type="checkbox" name="consent" value="yes" required><span>I agree to receive one email a week from The Simplifier and have read the <a href="privacy.html">Privacy policy</a>. I can unsubscribe from any email.</span></label>
+        <button class="hs-btn hs-ghost" type="submit">Send me the week graded</button>
+        <p class="as-mail-fine">A confirmation email comes first, and nothing else is sent until you confirm.</p>
+      </form>
     </div>
   </div></div>
 </section>
@@ -304,6 +323,6 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 </nav>
 <script src="house.js?v=c08b2c33cb" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>
-<script src="refcarry.js?v=f71593dabf" defer></script>
+<script src="refcarry.js?v=c4e8ef4ee6" defer></script>
 </body>
 </html>

@@ -718,5 +718,39 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, every TradingView link carries aff_id=1174265 with the partner line in every foot, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
 }
 
+/* 16 Nov 2026, his word (note 75): the weekly email's box is on the front page and levels.html and nowhere else; it
+   posts to his own Apps Script with the fields the script has always taken, keeps the trap and the consent tick, and
+   loads no one else's script. The list's pages no longer say it is closed, and the privacy page names who runs it. */
+{
+  const HP = require("./house_parts.js");
+  const probs = [];
+  const pages = fs.readdirSync(__dirname).filter(f => f.endsWith(".html"));
+  for (const f of pages) {
+    const h = fs.readFileSync(path.join(__dirname, f), "utf8");
+    const forms = h.match(/<form class="as-mail"[\s\S]*?<\/form>/g) || [];
+    const posts = (h.match(/script\.google\.com\/macros/g) || []).length;
+    const want = f === "index.html" || f === "levels.html";
+    if (want !== (forms.length === 1) || posts !== (want ? 1 : 0)) { probs.push(f + (want ? ": does not carry the one email box" : ": carries an email box or the script's address")); continue; }
+    if (!want) continue;
+    const m = forms[0], base = f === "index.html" ? "home" : "levels";
+    if (!m.includes(`action="${HP.MAIL_ENDPOINT}"`) || !/method="POST"/.test(m)) probs.push(f + ": the box does not post to the list's own script");
+    if (!m.includes('<input type="hidden" name="action" value="signup">')) probs.push(f + ": the box does not ask the script to sign up");
+    if (!m.includes(`name="source_ref" value="${base}" data-ref-base="${base}"`)) probs.push(f + ": the box does not say where it sits");
+    if (!/name="email" type="email"[^>]*required/.test(m)) probs.push(f + ": the address is not required");
+    if (!/class="as-mail-trap" aria-hidden="true">[\s\S]*?name="company"/.test(m)) probs.push(f + ": the trap is missing");
+    if (!/name="consent" value="yes" required/.test(m) || !m.includes('href="privacy.html"')) probs.push(f + ": the consent tick or the privacy link is missing");
+    if (!/A confirmation email comes first, and nothing else is sent until you confirm\./.test(m)) probs.push(f + ": the box does not say a confirmation comes first");
+    const off = (h.match(/<script[^>]*\ssrc="(https?:)?\/\/[^"]+"/g) || []).filter(t => !/gc\.zgo\.at\/count\.js/.test(t));
+    if (off.length) probs.push(f + ": loads a script from another site: " + off.join(" "));
+  }
+  for (const f of ["check-email.html", "confirmed.html", "unsubscribed.html", "privacy.html"]) {
+    const t = fs.readFileSync(path.join(__dirname, f), "utf8").replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>|<[^>]+>/g, " ");
+    if (/closed to new|list is then deleted|closing email|Monday Level|Monday evening/i.test(t)) probs.push(f + ": still says the list is closed, or the old name");
+  }
+  const pv = fs.readFileSync(path.join(__dirname, "privacy.html"), "utf8");
+  if (!/Google Sheets and Apps Script/.test(pv) || !/<b>Resend<\/b>/.test(pv) || /\bKit\b|kit\.com/.test(pv)) probs.push("privacy.html: does not name Google Sheets, Apps Script and Resend, or still names Kit");
+  check(probs.length === 0, "the weekly email's box is on the front page and levels.html only, posts to his own script with double opt-in and loads no one else's script, and the list's pages and privacy page say the list is open and who runs it (16 Nov 2026, note 75)" + (probs.length ? "\n          " + probs.join("\n          ") : ""));
+}
+
 console.log(fails.length ? `\n${fails.length} CHECK(S) FAILED. Do not upload.` : "\nThe record verifies. Safe to upload.");
 process.exit(fails.length ? 1 : 0);

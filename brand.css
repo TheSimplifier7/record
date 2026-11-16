@@ -389,3 +389,16 @@ html .tools-set a{color:var(--c-ink)!important;text-decoration:underline;text-de
 html .as-both{margin:16px 0 0;font-size:15px;line-height:1.6;color:var(--c-sec)}
 @media (max-width:380px){html .hs-bot a,html .botnav a{font-size:12px!important}}
 html .wl-find [data-slot]:empty{display:none}
+/* 16 Nov 2026, the email box on the front page and levels.html: one column on the page's own grid, a field, the consent
+   line and a quiet button, so the trial's button stays the one bright thing on the screen. */
+html .as-mail{display:grid;gap:12px;max-width:34rem;margin:24px 0 0}
+html .as-mail-l{font:500 15px/1.4 var(--c-ui);color:var(--c-ink)}
+html .as-mail input[type="email"]{width:100%;min-height:52px;padding:0 16px;border:1px solid var(--c-rule-2);border-radius:4px;background:var(--c-raise);color:var(--c-ink);font:400 17px/1.4 var(--c-ui)}
+html .as-mail input[type="email"]:focus{outline:2px solid var(--c-ink);outline-offset:2px}
+html .as-mail-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+html .as-mail-ok{display:flex;gap:12px;align-items:flex-start;font:400 15px/1.5 var(--c-ui);color:var(--c-sec)}
+html .as-mail-ok input{margin:2px 0 0;width:20px;height:20px;flex:none;accent-color:var(--c-gold)}
+html .as-mail-ok a{color:var(--c-ink)!important;text-decoration:underline;text-decoration-color:var(--c-rule-2);text-underline-offset:4px}
+html .as-mail .hs-btn{justify-self:start;min-height:48px;padding:0 24px!important;font-size:16px!important;cursor:pointer}
+html .as-mail-fine{margin:0;font:400 14px/1.5 var(--c-ui);color:var(--c-mut)}
+@media (max-width:640px){html .as-mail .hs-btn{justify-self:stretch}}
