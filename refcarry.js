@@ -40,7 +40,11 @@
       return v.pathname + v.search + v.hash;
     } catch (e) { return null; }
   }
-  var api = { campaign: campaign, tagFrom: tagFrom, rewrite: rewrite, CAMPAIGNS: CAMPAIGNS, DEFAULT_TAG: DEFAULT_TAG };
+  /* 16 Nov 2026: the email box sends where it sits as source_ref (home, levels), and an allowlisted campaign tag
+     after it (home-x-0800), so the list learns which link a sign-up came from. Anything else is ignored, as at
+     checkout. It read, before 12 November: any tag of up to 40 letters, digits, _ or -. */
+  function sourceRef(base, tag) { return campaign(tag) && tag !== DEFAULT_TAG ? base + "-" + tag : base; }
+  var api = { campaign: campaign, tagFrom: tagFrom, rewrite: rewrite, sourceRef: sourceRef, CAMPAIGNS: CAMPAIGNS, DEFAULT_TAG: DEFAULT_TAG };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (typeof document === "undefined") return;
   var tag = tagFrom(window.location.search);
@@ -51,6 +55,8 @@
   function stampAll() {
     var as = document.querySelectorAll("a[href]");
     for (var i = 0; i < as.length; i++) stamp(as[i]);
+    var refs = document.querySelectorAll('input[name="source_ref"][data-ref-base]');
+    for (var j = 0; j < refs.length; j++) refs[j].value = sourceRef(refs[j].getAttribute("data-ref-base"), tag);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", stampAll);
   else stampAll();

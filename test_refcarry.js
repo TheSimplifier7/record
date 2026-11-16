@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-const { tagFrom, rewrite, CAMPAIGNS } = require("./refcarry.js");
+const { tagFrom, rewrite, sourceRef, CAMPAIGNS } = require("./refcarry.js");
 const page = "https://thesimplifier7.com/method.html";
 const fan = "https://buy.stripe.com/4gMbJ3gw91552dx4cm5kk00";
 const method = "https://buy.stripe.com/9B628tfs5299cSb24e5kk01";
@@ -40,6 +40,12 @@ check(tagged.includes("client_reference_id=test-grok"), "test-grok reaches Strip
 check(tagged.startsWith(method), "the Method link is unchanged apart from the query");
 const setTagged = rewrite(set, page + "?ref=x-0800", "x-0800");
 check(setTagged && setTagged.startsWith(set + "?") && /client_reference_id=x-0800/.test(setTagged), "the set link carries the 08:00 tag to Stripe");
+
+/* 16 Nov 2026: the email box's source_ref */
+check(sourceRef("home", tagFrom("")) === "home", "an untagged sign-up on the front page is marked home");
+check(sourceRef("levels", tagFrom("?ref=x-0800")) === "levels-x-0800", "an allowlisted tag follows the box's place");
+check(sourceRef("home", tagFrom("?ref=Bradley")) === "home", "a name never reaches the list");
+check(sourceRef("home", tagFrom("?ref=someone@email.com")) === "home", "an email never reaches the list as a tag");
 
 const internal = rewrite("levels.html", page + "?ref=x-pin", "x-pin");
 check(internal === "/levels.html?ref=x-pin", "an allowed tag is carried to the next page");

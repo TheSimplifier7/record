@@ -3,7 +3,8 @@
    12 November 2026, note 69: by the founder's ruling a level is named for gold, silver and platinum on every
    trading day, on X at 08:00 CET, and each is graded on that day's close. levels.html was the page that took
    an address for The Monday Level; that list is closed (note 70) and the address now carries the daily series,
-   so every link that pointed at it still lands on the levels.
+   so every link that pointed at it still lands on the levels. 16 November 2026, his word (note 75): the list stays
+   open, and the page takes an address again, in the box under the days (H.signup in house_parts.js).
 
    Run after any change to daily.json, then node make_home.js:
      node make_daily.js && node make_home.js && node verify_daily.js
@@ -67,7 +68,7 @@ ${H.band("today", "levels")}
   </div></div>
 </section>
 
-<section class="hm-sec hm-last" id="days" aria-labelledby="days-h">
+<section class="hm-sec" id="days" aria-labelledby="days-h">
   <div class="hm-in"><div>
     <div class="hm-side">
       <h2 id="days-h">Every day, graded</h2>
@@ -79,6 +80,8 @@ ${H.band("today", "levels")}
     </div>
   </div></div>
 </section>
+
+${H.signup("levels")}
 </main>
 <script src="daily.js?v=${H.vOf("daily.js")}" defer></script>
 <script src="plate.js?v=${H.vOf("plate.js")}" defer></script>

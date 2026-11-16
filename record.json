@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-11-12",
-  "generated": "2026-11-15T17:54:27.438Z",
+  "generated": "2026-11-16T04:22:55.494Z",
   "tally": {
     "resolved": 47,
     "held": 36,
@@ -1862,6 +1862,12 @@
       "kind": "standard",
       "title": "Correction, 15 November 2026.",
       "body": "By the founder's word. Gold's daily close for Friday 13 November is 3,883.98 on his chart, TVC:GOLD at 23:00 Madrid. It was first published as 3,874. The grade stays held, 75.02 under the ceiling of 3,959. The correction is listed on the daily levels page with the old figure beside it. No weekly row, grade or earlier note is changed."
+    },
+    {
+      "n": "75",
+      "kind": "standard",
+      "title": "The weekly email stays open, 16 November 2026.",
+      "body": "By the founder's word of 16 November 2026. Note 70 said the people on The Monday Level list would be told once and the list then deleted. That no longer holds, and note 70 stands as it was written. The list stays open. The people who confirmed before 12 November are kept, and the first email they receive says so in its first lines, with the way off beside it. A box on the front page and on levels.html takes an address again, with double opt-in: nothing is sent until the address is confirmed. The email comes once a week, on Saturday morning, and carries every daily level of the week with the close that graded it, the wrong ones first, read from daily.json. The privacy page says so. No row, line, close, grade or date is touched."
     }
   ],
   "targets": [

@@ -197,6 +197,33 @@ function partner(id, tag = "h2") {
 </aside>`;
 }
 
+/* 16 Nov 2026, his word: the email list stays, on his own Google Sheet and Apps Script, sending through Resend from
+   hello@thesimplifier7.com. The box posts to the same script the site used before 12 November, with the same fields, so the
+   script's double opt-in is unchanged: it answers with check-email.html, sends the confirmation, and adds nothing to the
+   list until the link in it is pressed. No script of anyone else's is loaded for it. refcarry.js adds an allowlisted
+   campaign tag to source_ref, as it does at checkout. */
+const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
+function signup(where) {
+  return `<section class="hm-sec hm-last hm-mail" id="email" aria-labelledby="mail-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="mail-h">The week graded, by email</h2></div>
+    <div class="hm-main">
+      <p>One email on Saturday morning: every level of the week, the close that graded it, the wrong ones first. Free.</p>
+      <form class="as-mail" method="POST" action="${MAIL_ENDPOINT}" accept-charset="UTF-8">
+        <input type="hidden" name="action" value="signup">
+        <input type="hidden" name="source_ref" value="${where}" data-ref-base="${where}">
+        <label class="as-mail-l" for="mail-email">Your email address</label>
+        <input id="mail-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <div class="as-mail-trap" aria-hidden="true"><label for="mail-co">Leave this empty</label><input id="mail-co" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="as-mail-ok"><input type="checkbox" name="consent" value="yes" required><span>I agree to receive one email a week from The Simplifier and have read the <a href="privacy.html">Privacy policy</a>. I can unsubscribe from any email.</span></label>
+        <button class="hs-btn hs-ghost" type="submit">Send me the week graded</button>
+        <p class="as-mail-fine">A confirmation email comes first, and nothing else is sent until you confirm.</p>
+      </form>
+    </div>
+  </div></div>
+</section>`;
+}
+
 /* The plans on method.html: the site's route first, the Paid Space beside it once TradingView approves it. */
 /* 15 Nov 2026, his word: the set's Stripe checkout, one address for the plans block and the home hero. */
 const SET_CHECKOUT = "https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04";
@@ -272,4 +299,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { aff, AFF, SET_CHECKOUT, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
