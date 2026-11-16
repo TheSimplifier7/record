@@ -172,7 +172,7 @@ const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Levels for gold, silver and platinum every trading day at 08:00 CET, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
+    <p>Levels for gold, silver and platinum every trading day before the London open, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
     <p>${PARTNER_LINE}</p>
   </div>

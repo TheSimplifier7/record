@@ -5,7 +5,7 @@
   "history": "https://github.com/TheSimplifier7/record/commits/main",
   "standard_from": "2026-07-03",
   "last_updated": "2026-11-12",
-  "generated": "2026-11-16T04:36:01.812Z",
+  "generated": "2026-11-16T23:06:27.354Z",
   "tally": {
     "resolved": 47,
     "held": 36,
@@ -1868,6 +1868,12 @@
       "kind": "standard",
       "title": "The weekly email stays open, 16 November 2026.",
       "body": "By the founder's word of 16 November 2026. Note 70 said the people on The Monday Level list would be told once and the list then deleted. That no longer holds, and note 70 stands as it was written. The list stays open. The people who confirmed before 12 November are kept, and the first email they receive says so in its first lines, with the way off beside it. A box on the front page and on levels.html takes an address again, with double opt-in: nothing is sent until the address is confirmed. The email comes once a week, on Saturday morning, and carries every daily level of the week with the close that graded it, the wrong ones first, read from daily.json. The privacy page says so. No row, line, close, grade or date is touched."
+    },
+    {
+      "n": "76",
+      "kind": "standard",
+      "title": "The morning promise, 17 November 2026.",
+      "body": "By the founder's word of 17 November 2026. The daily levels are promised before the London open, 09:00 CET, so before London and New York trade, and no longer at 08:00 CET. Each post's own time, read from its id on X: 12 November at 08:16:37, 13 November at 08:00:31, 16 November at 08:05:18, all CET. Two of the three went out after 08:00, and all three before 09:00. The rules section now reads: Every level carries its own Exit, a price line I name on X each morning before the London open at 09:00 CET. It read: a price line I name each morning in the 08:00 post. The pages beside this one say the same, the levels page prints each post's time beside its day, and a check fails the build if a post is linked from after 09:00. No row, line, close, grade or date is touched."
     }
   ],
   "targets": [

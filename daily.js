@@ -1,7 +1,7 @@
 /* daily.js · THE DAILY SERIES · 12 November 2026 · note 69 on the record
 
    By the founder's ruling of 12 November 2026 a level is named for gold, silver and platinum on every trading
-   day, on X at 08:00 CET, and each one is graded on that day's close. This file reads daily.json, grades every
+   day, on X before the London open (09:00 CET; it read 08:00 CET until 17 November 2026), and each one is graded on that day's close. This file reads daily.json, grades every
    row by arithmetic on its close and draws the blocks the pages show: today's levels, the last days, every day
    since the series began, and the count. The same code runs in two places, so the two can never disagree:
 
@@ -12,7 +12,7 @@
 
    THE RULE, as the pages print it (note 71; its Exit sentences set word for word to the record's rules section
    on 15 November 2026, by his word): each level is a floor or a ceiling and carries its own Exit, the price line
-   named in the 08:00 post. A daily close through it grades the level wrong, otherwise it held; a close exactly on
+   named in the morning post, before the London open. A daily close through it grades the level wrong, otherwise it held; a close exactly on
    the level counts as held. It read: each has one Exit, a daily close through it; a floor exits on a close below
    it, a ceiling on a close above it. The close is 17:00 in New York, 23:00 in Madrid in most weeks, read off the founder's
    own chart. Nothing is typed as a grade: the word is worked out from the side, the level and the close, here
@@ -35,7 +35,7 @@
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var X = "https://x.com/TheSimplifier7";
   var COUNSEL = "This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.";
-  var RULE = "Each level is a floor or a ceiling. Every level carries its own Exit, a price line I name each morning in the 08:00 post. A daily close through that Exit grades the level wrong. Otherwise it held. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart.";
+  var RULE = "Each level is a floor or a ceiling. Every level carries its own Exit, a price line I name on X each morning before the London open at 09:00 CET. A daily close through that Exit grades the level wrong. Otherwise it held. A close exactly on the level counts as held. Held means the day closed on the side I named; it is not a trade result. The close is 17:00 New York, 23:00 Madrid in most weeks, read off my own chart.";
 
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
   var isIso = function (s) { return typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(d0(s).getTime()) && d0(s).toISOString().slice(0, 10) === s; };
@@ -145,7 +145,14 @@
   /* A grade is its word beside a short line: gold for a line that stands, red for a line that broke, ivory for one still open. */
   var mark = function (g) { return '<span class="dy-g dy-' + g + '">' + WORD[g] + "</span>"; };
   var postLink = function (day, words) { return day.post ? '<a href="' + esc(day.post) + '" rel="noopener">' + words + "</a>" : ""; };
-  var followBtn = function (where) { return '<a class="hs-btn hs-gold" href="' + X + '" rel="noopener" data-x="' + esc(where) + '">Follow on X for the 08:00 levels</a>'; };
+  /* 17 Nov 2026, his word: the promise is before the London open, 09:00 CET. Each post's own time is read from its id
+     on X and printed beside its day, so the promise can be checked against every morning. */
+  var postAt = function (url) {
+    var m = /status\/(\d+)$/.exec(url || ""); if (!m || typeof BigInt !== "function") return "";
+    var ms = Number((BigInt(m[1]) >> BigInt(22)) + BigInt(1288834974657));
+    try { return new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", hour: "2-digit", minute: "2-digit", hour12: false, timeZoneName: "short" }).format(new Date(ms)); } catch (e) { return ""; }
+  };
+  var followBtn = function (where) { return '<a class="hs-btn hs-gold" href="' + X + '" rel="noopener" data-x="' + esc(where) + '">Follow on X for the morning levels</a>'; };
 
   /* One level, drawn as ASSAY's gauge draws it on the week card: the line in gold, the side that proves it wrong hatched and
      fading from the line, and once the day has closed a pearl where the close sat, above the line or under it. */
@@ -166,14 +173,14 @@
     var head, body, foot = "", w = esc(where || "today");
     var onX = '<a href="' + X + '" rel="noopener" data-x="' + w + '-see">See it on X</a>';
     if (!day) {
-      head = '<div class="dy-head"><h2 class="dy-t" id="dy-t">Today\'s levels</h2><p class="dy-d">Posted at 08:00 CET</p></div>';
-      body = '<p class="dy-none">The daily series began on ' + esc(longDay(M.start)) + " " + M.start.slice(0, 4) + ". No day is on file here yet. Each day's three levels are on X first, at 08:00 CET.</p>";
+      head = '<div class="dy-head"><h2 class="dy-t" id="dy-t">Today\'s levels</h2><p class="dy-d">Posted before the London open</p></div>';
+      body = '<p class="dy-none">The daily series began on ' + esc(longDay(M.start)) + " " + M.start.slice(0, 4) + ". No day is on file here yet. Each day's three levels are on X first, before the London open.</p>";
     } else {
       var isToday = !!today && day.date === today;
       head = '<div class="dy-head"><h2 class="dy-t" id="dy-t">' + (isToday ? "Today's levels" : "The latest levels on file") + '</h2><p class="dy-d">' + esc(midDay(day.date)) + "</p></div>";
       body = levelRows(day);
-      if (today && !isToday && isWeekday(today) && today > day.date) body += '<p class="dy-none">Today\'s levels are not on file here yet. They are on X first, at 08:00 CET.</p>';
-      if (day.post) onX = '<a href="' + esc(day.post) + '" rel="noopener" data-x="' + w + '-post">The 08:00 post on X</a>';
+      if (today && !isToday && isWeekday(today) && today > day.date) body += '<p class="dy-none">Today\'s levels are not on file here yet. They are on X first, before the London open.</p>';
+      if (day.post) onX = '<a href="' + esc(day.post) + '" rel="noopener" data-x="' + w + '-post">The morning post on X</a>' + (postAt(day.post) ? ", posted " + esc(postAt(day.post)) : "");
       var prev = named[1];
       if (prev && day.rows.every(function (r) { return r.grade === "open"; })) {
         foot = '<div class="dy-prev"><p class="dy-ph">' + esc(midDay(prev.date)) + ', graded</p><table><thead><tr><th scope="col"><span class="dy-sr">Metal</span></th><th scope="col" class="dy-n">Level</th><th scope="col" class="dy-n">Close</th><th scope="col"><span class="dy-sr">Grade</span></th></tr></thead><tbody>' + prev.rows.map(function (r) {
@@ -203,7 +210,7 @@
     if (!M.days.length) return '<div class="dy dy-all"><p class="dy-none">No day is on file yet. The first appears here once its levels are written to daily.json.</p></div>';
     var cols = '<thead><tr><th scope="col">Metal</th><th scope="col">Side</th><th scope="col" class="dy-n">Level</th><th scope="col" class="dy-n">Close</th><th scope="col" class="dy-n dy-wide">Distance</th><th scope="col">Grade</th></tr></thead>';
     return '<div class="dy dy-all"><table>' + cols + M.days.map(function (d) {
-      var h = '<tr class="dy-dayrow" id="d-' + d.date + '"><th scope="rowgroup" colspan="6"><span class="dy-day">' + esc(midDay(d.date)) + "</span>" + (d.post ? '<span class="dy-src">' + postLink(d, "The post on X") + "</span>" : "") + "</th></tr>";
+      var h = '<tr class="dy-dayrow" id="d-' + d.date + '"><th scope="rowgroup" colspan="6"><span class="dy-day">' + esc(midDay(d.date)) + "</span>" + (d.post ? '<span class="dy-src">' + postLink(d, "The post on X") + (postAt(d.post) ? ", " + esc(postAt(d.post)) : "") + "</span>" : "") + "</th></tr>";
       if (d.state === "gap") return "<tbody>" + h + '<tr><td colspan="6" class="dy-mut">Not on file. No level for this day was written here, so none is graded.</td></tr></tbody>';
       if (d.state === "none") return "<tbody>" + h + '<tr><td colspan="6" class="dy-mut">None named. No level was posted for this day.</td></tr></tbody>';
       return "<tbody>" + h + d.rows.map(function (r) {
