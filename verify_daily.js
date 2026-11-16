@@ -88,5 +88,19 @@ for (const page of ["levels.html", "index.html"]) {
   { const n = (s.match(/buy\.stripe\.com/g) || []).length;
     check(page === "index.html" ? n === 1 : n === 0, page === "index.html" ? page + " carries one checkout, the hero's button" : page + " carries no checkout; the plans are on method.html"); }
 }
+/* 17 Nov 2026, his word: the levels are promised before the London open, 09:00 CET (Madrid time all year). Every linked
+   post's own time, read from its id on X, must fall on its day and before 09:00, and no page may promise 08:00 again. */
+{
+  const madrid = ms => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date(ms)).replace(", ", "T");
+  const late = [];
+  for (const d of (data && data.days) || []) {
+    const m = /status\/(\d+)$/.exec(d.post || ""); if (!m) continue;
+    const at = madrid(Number((BigInt(m[1]) >> 22n) + 1288834974657n));
+    if (at.slice(0, 10) !== d.date || at.slice(11) >= "09:00:00") late.push(d.date + " posted " + at);
+  }
+  check(late.length === 0, "every linked morning post went out on its day before the London open, 09:00 CET" + (late.length ? " (" + late.join("; ") + ")" : ""));
+  const promise = ["index.html", "levels.html", "record.html", "welcome.html", "method.html", "tools.html"].filter(f => { const t = rd(f); const i = t.indexOf("const NOTES = ["); const body = i < 0 ? t : t.slice(0, i) + t.slice(t.indexOf("\n];", i)); return /at 08:00 CET|08:00 post|08:00 levels|Posted at 08:00/.test(body); });
+  check(promise.length === 0, "no page promises the levels at 08:00 CET" + (promise.length ? " (" + promise.join(", ") + ")" : ""));
+}
 if (fails.length) { console.log("\n" + fails.length + " thing" + (fails.length === 1 ? "" : "s") + " did not hold. Do not upload."); process.exit(1); }
 console.log("\nThe daily series verifies.");

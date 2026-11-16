@@ -35,10 +35,10 @@ const M = D.model(DAILY);
 const X = D.X;
 const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
 const TITLE = "Daily gold, silver and platinum levels · The Simplifier";
-const DESC = "A level for gold, silver and platinum on every trading day, posted at 08:00 CET. Each one is graded on that day's close, and the wrong ones stay up.";
+const DESC = "A level for gold, silver and platinum on every trading day, posted before the London open. Each one is graded on that day's close, and the wrong ones stay up.";
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 /* 15 Nov 2026, HALLMARK, his brief of 15 November (R2 reopened): the gold buttons sell the trial, and Follow on TradingView
-   lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the 08:00 levels. The Paid Space line
+   lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the morning levels. The Paid Space line
    under the hero's button shows only once TradingView has approved the Space (SPACE_LIVE in house_parts.js).
    15 Nov 2026, his word, late: the hero's button goes straight to the Stripe checkout with the terms beside it, and the
    hallmark under it links to the record. It read: Try the set free for 7 days, to method.html#plans, then Read the record. */
@@ -51,8 +51,8 @@ const NUMW = ["no", "one", "two", "three", "four", "five", "six", "seven", "eigh
 const TOOLS_LIVE = JSON.parse(fs.readFileSync(path.join(HERE, "tools.json"), "utf8")).tools.filter(x => x.live === true).length;
 const toolsWord = (NUMW[TOOLS_LIVE] || String(TOOLS_LIVE)).replace(/^./, c => c.toUpperCase());
 const FAQ = [
-  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X at 08:00 CET, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
-  ["When are the levels posted?", "At 08:00 CET on every trading day. In most weeks that is 02:00 in New York and 07:00 in London."],
+  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X before the London open, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
+  ["When are the levels posted?", "Before the London open at 09:00 CET on every trading day, so before London and New York trade. Each post's own time is on X, and the levels page shows it beside the day."],
   ["How is a level graded?", `${esc(D.RULE)} The wrong ones stay on the page. <a href="levels.html#rule">The rule in full</a>`],
   ["What is the set?", `Four TradingView indicators, The Fan, The Keel, The Method and The Hinge, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you.${H.SPACE_LIVE ? " " + H.BOTH : ""} <a href="method.html">See what they show</a>`],
   ["How do I cancel the trial?", "From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing."]
@@ -146,7 +146,7 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 ` + D.CSS;
 
 const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://thesimplifier7.com/", image: CARD,
-  alt: "The Simplifier. Gold, silver and platinum levels, every trading day at 08:00 CET, each one graded at the close.", css: CSS,
+  alt: "The Simplifier. Gold, silver and platinum levels, every trading day before the London open, each one graded at the close.", css: CSS,
   pre: '<script>(function(){var h=location.hash;var keep={"#today":1,"#week":1,"#days":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#offer":1,"#fan":1,"#faq":1,"#who":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>' }) + `
 ${H.band(null, "home")}
 <main id="main" class="hm" tabindex="-1">
@@ -155,7 +155,7 @@ ${H.band(null, "home")}
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Named before the move. Graded on the close.</h1>
-      <p class="hm-say">Levels for gold, silver and platinum go out on X at 08:00 CET, before the day's trade. That day's close grades each one held or wrong, and every wrong one stays on the record, the same size as the rest.</p>
+      <p class="hm-say">Levels for gold, silver and platinum go out on X before London and New York open. That day's close grades each one held or wrong, and every wrong one stays on the record, the same size as the rest.</p>
       <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk. Every level on this site is mine, named before the move.</span></p></div>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span></p>${spaceLine}
       <div class="hm-rec">
@@ -255,7 +255,7 @@ ${H.band(null, "home")}
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="choose-h">Start with tomorrow's levels</h2></div>
     <div class="hm-main">
-      <p class="hm-big">Three levels at 08:00 CET, and the close that grades each one. Check every grade yourself. <a href="${X}" rel="noopener" data-x="home-close">The 08:00 post on X</a></p>
+      <p class="hm-big">Three levels before the London open, and the close that grades each one. Check every grade yourself. <a href="${X}" rel="noopener" data-x="home-close">The morning post on X</a></p>
       <p class="hm-acts">${trial("home-close")}<a href="record.html">Read the record</a></p>
       ${H.proof(R)}
     </div>

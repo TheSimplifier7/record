@@ -63,7 +63,7 @@ const sHeld = upto.filter(r => r.grade === "held").length, sWrong = upto.filter(
 
 const span = first === fri ? dm(fri) : first.slice(5, 7) === fri.slice(5, 7) ? `${+first.slice(8)} to ${dm(fri)}` : `${dm(first)} to ${dm(fri)}`;
 const subject = `The week graded: ${span} ${fri.slice(0, 4)}`;
-const EXIT = "Every level carries its own Exit, a price line I name each morning in the 08:00 post. A daily close through that Exit grades the level wrong. Otherwise it held.";
+const EXIT = "Every level carries its own Exit, a price line I name on X each morning before the London open at 09:00 CET. A daily close through that Exit grades the level wrong. Otherwise it held.";
 if (!D.RULE.includes(EXIT)) { console.error("the rule in daily.js no longer carries the Exit sentences this email quotes. Nothing written."); process.exit(1); }
 
 const parts = [];
@@ -74,7 +74,7 @@ if (held.length) parts.push(["The ones that held", ...held.map(line)]);
 if (quiet.length) parts.push(["Days with no level", ...quiet]);
 parts.push([`The daily series since ${dm(M.start)}: ${sHeld} held, ${sWrong} wrong, nothing deleted.`]);
 parts.push([`How a level is graded: ${EXIT} Only the close at 17:00 New York counts.`]);
-parts.push([`Every day, graded, with each 08:00 post: ${SITE}levels.html`]);
+parts.push([`Every day, graded, with each morning post: ${SITE}levels.html`]);
 parts.push([`The levels are read from The Fan, one of the four TradingView tools in the set. 7 days free, then €99 a month: ${SITE}method.html`]);
 parts.push(["This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from."]);
 parts.push(["Bradley"]);

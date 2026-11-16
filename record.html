@@ -63,7 +63,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
-<meta property="og:image:alt" content="The Simplifier. Gold, silver and platinum levels, every trading day at 08:00 CET, each one graded at the close.">
+<meta property="og:image:alt" content="The Simplifier. Gold, silver and platinum levels, every trading day before the London open, each one graded at the close.">
 
 <link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -1110,7 +1110,7 @@
   <p>These use different time periods and tests. They are shown separately and are not added to the weekly count. <a href="targets.html">Other people's targets</a>.</p>
   <h2 id="rules">Rules, corrections and edit history</h2>
   <p>The record also keeps the way it was graded and the changes it has disclosed. Read the original notes and public edit history below.</p>
-  <p class="rules-daily">The daily levels. Every level carries its own Exit, a price line I name each morning in the 08:00 post. A daily close through that Exit grades the level wrong. Otherwise it held.</p>
+  <p class="rules-daily">The daily levels. Every level carries its own Exit, a price line I name on X each morning before the London open at 09:00 CET. A daily close through that Exit grades the level wrong. Otherwise it held.</p>
       <h2>The standing $1,000 integrity offer</h2>
   <p>This offer concerns qualifying changes to the published record, not whether a call was right. The full existing conditions are below. <a href="#bounty">Read the offer and its terms</a>.</p>
   <p>This is structural analysis, not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from. Trading involves risk and past results do not guarantee future results. <a href="levels.html">See today's levels</a>. <a href="method.html">See the set</a>.</p>
@@ -1175,7 +1175,7 @@
     </div>
     <div class="r3f-ml" id="daily">
       <span class="r3-ey">The daily series</span>
-      <p>From 12 November 2026 a level is named for gold, silver and platinum on every trading day at 08:00 CET, and graded on that day's close.</p>
+      <p>From 12 November 2026 a level is named for gold, silver and platinum on every trading day before the London open, and graded on that day's close.</p>
       <a class="hd-btn hd-ghost" href="levels.html">Today's levels</a>
     </div>
   </div>
@@ -1431,7 +1431,7 @@
   <div class="door" id="door-email" data-ready="1">
     <div class="eyebrow">Free</div>
     <h3>The daily levels</h3>
-    <p>One level each for gold, silver and platinum on every trading day, posted on X at 08:00 CET and graded on that day's close. The wrong ones stay up.</p>
+    <p>One level each for gold, silver and platinum on every trading day, posted on X before the London open and graded on that day's close. The wrong ones stay up.</p>
     <p><a class="btn quiet" href="levels.html">See today's levels</a></p>
     <p class="fine">No signals. Every level names its Exit.<br>The same call that goes on X.</p>
   </div>
@@ -2024,6 +2024,8 @@ const GUEST = [
 ];
 
 const NOTES = [
+  { n:"76", kind:"standard", title:"The morning promise, 17 November 2026.",
+    body:"By the founder's word of 17 November 2026. The daily levels are promised before the London open, 09:00 CET, so before London and New York trade, and no longer at 08:00 CET. Each post's own time, read from its id on X: 12 November at 08:16:37, 13 November at 08:00:31, 16 November at 08:05:18, all CET. Two of the three went out after 08:00, and all three before 09:00. The rules section now reads: Every level carries its own Exit, a price line I name on X each morning before the London open at 09:00 CET. It read: a price line I name each morning in the 08:00 post. The pages beside this one say the same, the levels page prints each post's time beside its day, and a check fails the build if a post is linked from after 09:00. No row, line, close, grade or date is touched." },
   { n:"75", kind:"standard", title:"The weekly email stays open, 16 November 2026.",
     body:"By the founder's word of 16 November 2026. Note 70 said the people on The Monday Level list would be told once and the list then deleted. That no longer holds, and note 70 stands as it was written. The list stays open. The people who confirmed before 12 November are kept, and the first email they receive says so in its first lines, with the way off beside it. A box on the front page and on levels.html takes an address again, with double opt-in: nothing is sent until the address is confirmed. The email comes once a week, on Saturday morning, and carries every daily level of the week with the close that graded it, the wrong ones first, read from daily.json. The privacy page says so. No row, line, close, grade or date is touched." },
   { n:"74", kind:"standard", title:"Correction, 15 November 2026.",

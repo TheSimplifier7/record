@@ -51,7 +51,7 @@ html,body{width:${W}px;height:${Hh}px;background:#0B1A2E}
   <div class="mast"><div class="mark"><img src="avatar_square.jpg" alt=""><span class="word">The Simplifier</span></div><div class="url"><u>thesimplifier7.com</u></div></div>
   <div class="say">
     <h1 class="h1">Gold, silver and platinum levels</h1>
-    <p class="dek"><b>Every trading day at 08:00 CET.</b> Each one graded at the close. The wrong ones stay up.</p>
+    <p class="dek"><b>Every trading day before the London open.</b> Each one graded at the close. The wrong ones stay up.</p>
   </div>
   <div class="coin">${seal.svg}</div>
   <div class="foot">
