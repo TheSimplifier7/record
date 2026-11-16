@@ -42,6 +42,31 @@
         "Silver": "48.62",
         "Platinum": "1,491"
       }
+    },
+    {
+      "date": "2026-11-16",
+      "levels": [
+        {
+          "metal": "Gold",
+          "level": "3,874",
+          "side": "ceiling"
+        },
+        {
+          "metal": "Silver",
+          "level": "48.90",
+          "side": "ceiling"
+        },
+        {
+          "metal": "Platinum",
+          "level": "1,495.63",
+          "side": "ceiling"
+        }
+      ],
+      "closes": {
+        "Gold": "3,852",
+        "Silver": "46.87",
+        "Platinum": "1,444.50"
+      }
     }
   ],
   "corrections": [
