@@ -17,7 +17,7 @@ const H = require("./house_parts.js");
 
 const S = [
   ["Education, not advice", [
-    "Everything I publish, on this site, on X and on TradingView as TheSimplifier7, is for education and information. That includes the daily levels, the weekly record, the free tools, the four paid tools and the mentorship.",
+    "Everything I publish, on this site, on X and on TradingView as TheSimplifier7, is for education and information. That includes the daily levels, the weekly record, the free tools, the five paid tools and the mentorship.",
     "None of it is investment advice, a personal recommendation, or an offer to buy or sell anything. I do not know your circumstances, and nothing here is fitted to them.",
     "I am not authorised or registered by the CNMV, or by any other regulator, as an investment firm or adviser. I do not manage money or place trades for anyone."
   ]],

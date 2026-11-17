@@ -72,7 +72,7 @@ const html = P.head({ title, description, canonical: SITE + "tools.html", image:
 ${P.band("tools-page", "tools")}
 ${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
-  <p class="tools-set">The levels I post are read from The Fan, one of the set of four. <a href="method.html#plans" data-tv="tools-set">See the set</a></p>
+  <p class="tools-set">The levels I post are read from The Fan, one of the set of five. <a href="method.html#plans" data-tv="tools-set">See the set</a></p>
   ${require("./house_parts.js").partner("tools", "h2")}
   <section class="tools" aria-label="The tools">
   ${cards}

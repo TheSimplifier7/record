@@ -35,7 +35,7 @@ const M = D.model(DAILY);
 const X = D.X;
 const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
 const TITLE = "Gold and silver indicators for TradingView · The Simplifier";
-const DESC = "Four invite-only TradingView indicators for gold and silver. Each answers one question about where price stands. 7 days free, then €99 a month, VAT included.";
+const DESC = `${["No","One","Two","Three","Four","Five","Six","Seven"][H.SET_TOOLS.length]} invite-only TradingView indicators for gold and silver, built from an institutional metals desk. Read the structure before you trade it. 7 days free, then €99 a month, VAT included.`;
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 /* 15 Nov 2026, HALLMARK, his brief of 15 November (R2 reopened): the gold buttons sell the trial, and Follow on TradingView
    lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the morning levels. The Paid Space line
@@ -47,6 +47,7 @@ const spaceLine = H.SPACE_LIVE ? `\n      <p class="hm-or"><a href="${H.SPACE}" 
 
 const NUMW = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 const SET = H.SET_TOOLS, SETL = NUMW[SET.length], SETW = SETL.replace(/^./, c => c.toUpperCase());
+const HERO = SET.find(x => x.name === "The Ratchet") || SET[0];
 /* 15 Nov 2026, HALLMARK quick fixes. The FAQ read "Seven open-source TradingView
    tools" as typed; it now counts the live tools in tools.json, as tools.html does. */
 const TOOLS_LIVE = JSON.parse(fs.readFileSync(path.join(HERE, "tools.json"), "utf8")).tools.filter(x => x.live === true).length;
@@ -56,7 +57,8 @@ const FAQ = [
   ["Do I need TradingView?", `Yes, for the ${SETL} tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. You give your TradingView username at checkout, never your password.`],
   ["How do I cancel the trial?", "From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing."],
   ["Is the mentorship part of the subscription?", `No. It is personal teaching over twelve weeks, priced on the call and put in writing before payment. <a href="mentorship.html">Read about the mentorship</a>`],
-  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X before the London open, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`]
+  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X before the London open, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
+  ["Do you publish your own levels?", `Yes. Three levels every trading day, posted on X before the London open, each graded on that day's close with the wrong ones kept. ${H.proof(R).replace(/^<p class="as-proof" data-proof>|<\/p>$/g, "")} Held means the close stayed on the side I named. It is not a trade result. This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.`]
 ];
 
 /* Until the first day of the daily series is graded, the proof on this page is the weekly series: its last five
@@ -92,6 +94,11 @@ const CSS = `
 .hm-tool p{margin:0 0 8px;font-size:16px;line-height:1.55;color:var(--c-ink)}
 .hm-tool p.hm-not{color:var(--c-mut);font-size:15px}
 .hm-set+.hm-links{margin-top:32px}
+.hm-tool:last-child:nth-child(odd){grid-column:1/-1}
+.hm-tool figcaption{margin-top:8px;font-size:12px;color:var(--c-mut)}
+.hm-gets{display:grid;gap:32px}
+.hm-gets h3{margin:0 0 8px;font:500 20px/1.3 var(--c-ui);color:var(--c-ink)}
+.hm-gets p{margin:0;max-width:40rem;font-size:17px;line-height:1.6;color:var(--c-sec)}
 .hm-steps{margin:16px 0 0;padding-left:1.2em;max-width:40rem;font-size:17px;line-height:1.6;color:var(--c-sec)}
 .hm-steps li+li{margin-top:6px}
 #price .hm-big b{font:700 1.4em/1 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif;color:var(--c-ink)}
@@ -161,24 +168,37 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 
 const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://thesimplifier7.com/", image: CARD,
   alt: "The Simplifier. Gold, silver and platinum levels, every trading day before the London open, each one graded at the close.", css: CSS,
-  pre: '<script>(function(){var h=location.hash;var keep={"#today":1,"#week":1,"#days":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#offer":1,"#fan":1,"#faq":1,"#who":1,"#set":1,"#price":1,"#mentorship":1,"#trust":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>' }) + `
+  pre: '<script>(function(){var h=location.hash;var keep={"#today":1,"#week":1,"#days":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#offer":1,"#fan":1,"#faq":1,"#who":1,"#set":1,"#price":1,"#mentorship":1,"#trust":1,"#gets":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>' }) + `
 ${H.band(null, "home")}
 <main id="main" class="hm" tabindex="-1">
 
 <section class="hm-hero" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="hm-h1">${SETW} indicators for gold and silver, on your own chart</h1>
-      <p class="hm-say">Invite-only tools on your TradingView chart. Each answers one question about where price stands, and The Fan is the one my daily levels are read from. You still make every decision.</p>
+      <h1 class="hm-h1" id="hm-h1">Read gold's structure before you trade it</h1>
+      <p class="hm-say">${SETW} invite-only indicators for your TradingView chart, built by a trader who started on an institutional metals desk in 2003. They show which side of the mean price is on, which way the flow runs, how far a leg has stretched, whether the swing is confirmed and how much of the structure has turned. You still make every decision.</p>
       <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk.</span></p></div>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span></p>${spaceLine}
       <p class="hm-links"><a href="#set">See the ${SETL}</a><a href="mentorship.html" data-tv="home-hero-mentorship">1-to-1 mentorship</a></p>
     </div>
     <figure class="hm-plate hm-shot">
-      <a href="#set"><img src="${SET[0].img}-1200.webp" srcset="${SET[0].img}-640.webp 640w, ${SET[0].img}-1200.webp 1200w" sizes="(min-width: 900px) 520px, calc(100vw - 40px)" width="1200" height="${SET[0].h}" alt="${esc(SET[0].alt)}" decoding="async" fetchpriority="high"></a>
-      <figcaption>${esc(SET[0].name)} on gold, 1 hour, 15 November 2026. Chart by TradingView. A past chart, not a live trade.</figcaption>
+      <a href="#set"><img src="${HERO.img}-1200.webp" srcset="${HERO.img}-640.webp 640w, ${HERO.img}-1200.webp 1200w" sizes="(min-width: 900px) 520px, calc(100vw - 40px)" width="1200" height="${HERO.h}" alt="${esc(HERO.alt)}" decoding="async" fetchpriority="high"></a>
+      <figcaption>${esc(HERO.name)} on ${esc(HERO.cap.replace(/^Gold/, "gold"))}. Chart by TradingView. A past chart, not a live trade.</figcaption>
     </figure>
   </div>
+</section>
+
+<section class="hm-sec" id="gets" aria-labelledby="gets-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="gets-h">What it gives you</h2></div>
+    <div class="hm-main">
+      <div class="hm-gets">
+        <div><h3>Structure, not noise</h3><p>${SETW} readings on one chart, each answering one question, so you know where price stands before you act.</p></div>
+        <div><h3>Your exit before your entry</h3><p>The Keel names the exact close that would end the flow, and The Ratchet's trail flips only on a close back through it. You see what would prove you wrong before you are in.</p></div>
+        <div><h3>A read you learn, not a signal you follow</h3><p>Each tool says what it will not do, and nothing on the chart tells you to buy or sell. You learn to judge the structure yourself, and the mentorship takes that further.</p></div>
+      </div>
+    </div>
+  </div></div>
 </section>
 
 <section class="hm-sec" id="set" aria-labelledby="set-h">
@@ -186,17 +206,17 @@ ${H.band(null, "home")}
     <div class="hm-side">
       <h2 id="set-h">One question each</h2>
       <p>They are built to read together on one chart, and each one says what it will not do.</p>
-      <p class="hm-fine">Gold, 1 hour, each as TradingView drew it on Sunday 15 November 2026, with the week closed. A past chart, not a live trade.</p>
     </div>
     <div class="hm-main">
       <div class="hm-set">
         ${SET.map(x => `<article class="hm-tool">
-          <figure class="hm-plate"><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="${x.h}" alt="${esc(x.alt)}" loading="lazy" decoding="async"></figure>
+          <figure class="hm-plate"><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="${x.h}" alt="${esc(x.alt)}" loading="lazy" decoding="async"><figcaption>${esc(x.cap)}. Chart by TradingView.</figcaption></figure>
           <h3>${esc(x.name)}</h3>
           <p>${esc(x.q)}</p>
           <p class="hm-not">${esc(x.not)}</p>
         </article>`).join("\n        ")}
       </div>
+      <p class="hm-fine" style="margin-top:24px">Past charts, not live trades.</p>
       <p class="hm-links"><a href="method.html">What the counts say, and before you start</a></p>
     </div>
   </div></div>
@@ -248,18 +268,6 @@ ${H.band(null, "home")}
       <div class="hm-faq">
         ${FAQ.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("\n        ")}
       </div>
-    </div>
-  </div></div>
-</section>
-
-<section class="hm-sec" id="trust" aria-labelledby="trust-h">
-  <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="trust-h">The record behind it</h2></div>
-    <div class="hm-main">
-      <p>Every level I post is read from The Fan and graded on the close in public, wrong ones kept. Find a level that was changed, backdated or removed after it was published, and I pay you $1,000.</p>
-      ${H.proof(R)}
-      <p class="hm-fine">Held means the close stayed on the side I named. It is not a trade result. This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p>
-      <p class="hm-links"><a href="levels.html">The daily levels</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#bounty">The $1,000 offer</a></p>
     </div>
   </div></div>
 </section>
