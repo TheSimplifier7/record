@@ -108,13 +108,13 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
 /* The band's places, as on the record. */
 /* 17 Nov 2026, his word: the site sells the indicators and the mentorship; the record sits behind them, last in the
    menu. It read: Daily levels, The record, The set, Free tools, Mentorship. */
-/* 18 Nov 2026, his word: the record is tucked away, in the foot and one answer on the front page; the menu sells.
-   It read, from 17 Nov: Indicators, Mentorship, Free tools, Daily levels, The record. */
+/* 18 Nov 2026, his word: the site sells a service, knowledge and insight; the record and the levels are tucked away,
+   in the foot and one answer on the front page. It read, from 17 Nov: Indicators, Mentorship, Free tools, Daily levels,
+   The record. */
 const NAV = [
   ["fan", "method.html", "Indicators"],
   ["mentorship", "mentorship.html", "Mentorship"],
-  ["tools", "tools.html", "Free tools"],
-  ["today", "levels.html", "Daily levels"]
+  ["tools", "tools.html", "Free tools"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -162,7 +162,7 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 
 /* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Tools"], ["today", "levels.html", "Levels"]];
+  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Free tools"]];
   return `<nav class="hs-bot" aria-label="The site, on a phone">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
@@ -175,7 +175,7 @@ const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>TradingView indicators for gold and silver, and 1-to-1 mentorship. Free levels every trading day before the London open, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
+    <p>TradingView indicators for gold and silver, and 1-to-1 mentorship. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
     <p>${PARTNER_LINE}</p>
   </div>
@@ -280,7 +280,6 @@ function plans(R) {
     ${site}${tv}
     </div>
     ${SPACE_LIVE ? `<p class="s4-both">${BOTH}</p>` : ""}
-    ${proof(R)}
     <p class="s4-small"><a href="${BILLING}">Manage or cancel your subscription</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></p>
     <p class="s4-note">I sell tools, not signals. The price keeps the tyre-kickers out.</p>
   </section>`;

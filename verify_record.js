@@ -735,10 +735,10 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     const h = fs.readFileSync(path.join(__dirname, f), "utf8");
     const forms = h.match(/<form class="as-mail"[\s\S]*?<\/form>/g) || [];
     const posts = (h.match(/script\.google\.com\/macros/g) || []).length;
-    const want = f === "index.html" || f === "levels.html";
+    const want = f === "levels.html";   /* 18 Nov 2026: the front page no longer carries the levels' email box */
     if (want !== (forms.length === 1) || posts !== (want ? 1 : 0)) { probs.push(f + (want ? ": does not carry the one email box" : ": carries an email box or the script's address")); continue; }
     if (!want) continue;
-    const m = forms[0], base = f === "index.html" ? "home" : "levels";
+    const m = forms[0], base = "levels";
     if (!m.includes(`action="${HP.MAIL_ENDPOINT}"`) || !/method="POST"/.test(m)) probs.push(f + ": the box does not post to the list's own script");
     if (!m.includes('<input type="hidden" name="action" value="signup">')) probs.push(f + ": the box does not ask the script to sign up");
     if (!m.includes(`name="source_ref" value="${base}" data-ref-base="${base}"`)) probs.push(f + ": the box does not say where it sits");

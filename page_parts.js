@@ -152,7 +152,12 @@ function bandBefore22Oct(where) {
 
 const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close above it.</span><span><b>Ceiling:</b> the week must close under it.</span><span>Only Friday's close counts.</span></p>`;
 
-function doors(where, { tools = true } = {}) {
+function doors(where, { tools = true, sell = false } = {}) {
+  /* 18 Nov 2026, his word: the pages that sell lead to the set and the mentorship, never to the levels. */
+  if (sell) return `<div class="doors">
+  <div class="door"><p class="t">The set of five</p><p><a class="btn quiet" href="method.html" data-tv="${esc(where)}-set">See the indicators</a></p><p class="fine">7 days free, then €99 a month, VAT included.</p></div>
+  <div class="door"><p class="t">1-to-1 mentorship</p><p><a class="btn quiet" href="mentorship.html" data-tv="${esc(where)}-mentorship">See the mentorship</a></p><p class="fine">Twelve weeks of personal teaching on your own chart.</p></div>
+</div>`;
   return `<div class="doors">
   ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="record.html">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}
   <div class="door"><p class="t">The daily levels</p><p><a class="btn quiet" href="levels.html">See today's levels</a></p><p class="fine">One level each for gold, silver and platinum on every trading day, graded on that day's close.</p></div>
