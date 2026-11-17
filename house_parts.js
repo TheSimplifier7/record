@@ -106,12 +106,14 @@ function recordSeal(R) {
 const earlyTags = () => '<meta name="color-scheme" content="dark">';
 
 /* The band's places, as on the record. */
+/* 17 Nov 2026, his word: the site sells the indicators and the mentorship; the record sits behind them, last in the
+   menu. It read: Daily levels, The record, The set, Free tools, Mentorship. */
 const NAV = [
-  ["today", "levels.html", "Daily levels"],
-  ["record", "record.html", "The record"],
-  ["fan", "method.html", "The set"],
+  ["fan", "method.html", "Indicators"],
+  ["mentorship", "mentorship.html", "Mentorship"],
   ["tools", "tools.html", "Free tools"],
-  ["mentorship", "mentorship.html", "Mentorship"]
+  ["today", "levels.html", "Daily levels"],
+  ["record", "record.html", "The record"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -159,7 +161,7 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 
 /* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const B = [["today", "levels.html", "Levels"], ["record", "record.html", "Record"], ["fan", "method.html", "The set"], ["tools", "tools.html", "Tools"], ["mentorship", "mentorship.html", "Mentorship"]];
+  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Tools"], ["today", "levels.html", "Levels"], ["record", "record.html", "Record"]];
   return `<nav class="hs-bot" aria-label="The site, on a phone">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
@@ -172,12 +174,12 @@ const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>Levels for gold, silver and platinum every trading day before the London open, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
+    <p>TradingView indicators for gold and silver, and 1-to-1 mentorship. Free levels every trading day before the London open, graded on the close. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
     <p>${PARTNER_LINE}</p>
   </div>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the ${({4:"four",5:"five",6:"six"})[SET_TOOLS.length] || SET_TOOLS.length} tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
-  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>`;
 
@@ -202,6 +204,20 @@ function partner(id, tag = "h2") {
    script's double opt-in is unchanged: it answers with check-email.html, sends the confirmation, and adds nothing to the
    list until the link in it is pressed. No script of anyone else's is loaded for it. refcarry.js adds an allowlisted
    campaign tag to source_ref, as it does at checkout. */
+/* 17 Nov 2026, his word: the site is a sales funnel for the indicators and the mentorship, the record behind them.
+   The paid set, one source for the home page; each line is method.html's own wording of 15 Nov 2026, and
+   verify_record checks method.html still carries it. A fifth tool (The Ratchet) joins here when he sends its
+   TradingView link, its one question and its chart. */
+const SET_TOOLS = [
+  { name: "The Fan", img: "set_fan_gold_1h_2026-11-15", h: 480, alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "Which side of the 2 hour mean is price on, and did the last test of the mean hold?", not: "It says where price stands against the mean. It does not say where price goes next." },
+  { name: "The Keel", img: "set_keel_gold_1h_2026-11-15", h: 480, alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "Which way does the flow run, and what exact close would end it?", not: "It describes the flow. It does not predict the next move." },
+  { name: "The Method", img: "set_method_gold_1h_2026-11-15", h: 480, alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?", not: "A leg that has run far is no more due to come back than one that has not." },
+  { name: "The Hinge", img: "set_hinge_gold_1h_2026-11-15", h: 480, alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "Is the swing confirmed, did the last one hold, and where is the structure?", not: "It confirms swings earlier. It is not right more often." }
+];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
 function signup(where) {
   return `<section class="hm-sec hm-last hm-mail" id="email" aria-labelledby="mail-h">
@@ -299,4 +315,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
