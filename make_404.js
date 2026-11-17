@@ -40,8 +40,7 @@ ${H.band(null, "404")}
 <main id="main" class="nf" tabindex="-1"><div class="nf-in">
   <h1>This page is not here</h1>
   <p>The address you followed does not exist. Nothing on the record is ever removed, so if a link to a level brought you here, the level is on the record.</p>
-  <p class="nf-acts"><a class="hs-btn hs-gold" href="levels.html" data-tv="nf-levels">See today's levels</a><a href="record.html">Read the record</a><a href="method.html#plans" data-tv="nf-set">Try the set free for 7 days</a></p>
-  ${H.proof(R)}
+  <p class="nf-acts"><a class="hs-btn hs-gold" href="method.html" data-tv="nf-set">See the indicators</a><a href="mentorship.html">1-to-1 mentorship</a><a href="record.html">The record</a></p>
 </div></main>
 ${H.tail(null)}
 </body>

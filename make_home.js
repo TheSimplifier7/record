@@ -8,7 +8,8 @@
    6 November and is kept whole on record.html. The page runs: the promise and the one thing to press, the
    count, today's levels, the last days graded, the standing offer, The Fan, a member, who I am, five questions.
    The email form is gone with The Monday Level. 16 Nov 2026, his word: the list stays open, and its box is back at
-   the foot of the page, above the footer (H.signup in house_parts.js).
+   the foot of the page, above the footer (H.signup in house_parts.js). 18 Nov 2026, his word: no levels to lead
+   with anywhere on the front page, so the box (it sends the week graded) stays on levels.html only.
 
    Drawn in the calm layer (brand.css, note 70): Barlow at 400 and 500 for words, IBM Plex Mono for figures,
    hairlines and no shadow, sentence case, spacing on 4, 8, 12, 16, 24, 32, 48, 64, 96. Gold is a level's line
@@ -53,11 +54,11 @@ const HERO = SET.find(x => x.name === "The Ratchet") || SET[0];
 const TOOLS_LIVE = JSON.parse(fs.readFileSync(path.join(HERE, "tools.json"), "utf8")).tools.filter(x => x.live === true).length;
 const toolsWord = (NUMW[TOOLS_LIVE] || String(TOOLS_LIVE)).replace(/^./, c => c.toUpperCase());
 const FAQ = [
-  ["What is the set?", `${SETW} TradingView indicators, ${SET.map(x => x.name).join(", ").replace(/, ([^,]*)$/, " and $1")}, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you.${H.SPACE_LIVE ? " " + H.BOTH : ""} <a href="method.html">See what they show</a>`],
+  ["What is the set?", `${SETW} TradingView indicators, ${SET.map(x => x.name).join(", ").replace(/, ([^,]*)$/, " and $1")}, at €99 a month, VAT included. They draw on your own chart and leave every decision with you.${H.SPACE_LIVE ? " " + H.BOTH : ""} <a href="method.html">See what they show</a>`],
   ["Do I need TradingView?", `Yes, for the ${SETL} tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. You give your TradingView username at checkout, never your password.`],
   ["How do I cancel the trial?", "From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing."],
   ["Is the mentorship part of the subscription?", `No. It is personal teaching over twelve weeks, priced on the call and put in writing before payment. <a href="mentorship.html">Read about the mentorship</a>`],
-  ["What do I get free?", `Three levels every trading day, one each for gold, silver and platinum, posted on X before the London open, and the close that graded each one. <a href="tools.html">${toolsWord} open-source TradingView tools</a> are free too.`],
+  ["What do I get free?", `${toolsWord} open-source TradingView tools, free to add to your own chart. <a href="tools.html">See the free tools</a>`],
   ["Do you publish your own levels?", `Yes. Three levels every trading day, posted on X before the London open, each graded on that day's close with the wrong ones kept. ${H.proof(R).replace(/^<p class="as-proof" data-proof>|<\/p>$/g, "")} Held means the close stayed on the side I named. It is not a trade result. This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.`]
 ];
 
@@ -272,7 +273,6 @@ ${H.band(null, "home")}
   </div></div>
 </section>
 
-${H.signup("home")}
 </main>
 ${H.tail(null)}
 </body>
