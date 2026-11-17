@@ -210,18 +210,18 @@ function partner(id, tag = "h2") {
    verify_record checks method.html still carries it. A fifth tool (The Ratchet) joins here when he sends its
    TradingView link, its one question and its chart. */
 const SET_TOOLS = [
-  { name: "The Fan", img: "set_fan_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Fan", win: "Know which side of the mean you are trading from.", img: "set_fan_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "Which side of the 2 hour mean is price on, and did the last test of the mean hold?", not: "It says where price stands against the mean. It does not say where price goes next." },
-  { name: "The Keel", img: "set_keel_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Keel", win: "See the flow, and the exact close that would end it.", img: "set_keel_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "Which way does the flow run, and what exact close would end it?", not: "It describes the flow. It does not predict the next move." },
-  { name: "The Method", img: "set_method_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Method", win: "Know how far this leg has run, against every gold leg since 2014.", img: "set_method_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?", not: "A leg that has run far is no more due to come back than one that has not." },
-  { name: "The Hinge", img: "set_hinge_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Hinge", win: "Know when a swing is confirmed, and where the structure sits.", img: "set_hinge_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "Is the swing confirmed, did the last one hold, and where is the structure?", not: "It confirms swings earlier. It is not right more often." },
   /* 18 Nov 2026, his word: The Ratchet joins the set at the same price. Its question is drawn from his own TradingView
      description (the trail that steps only on a full stride, the glow that shows how much of the structure has turned);
      what it will not do is his sentence there. Chart: his, 30 minute, at 00:03 CET on 18 November 2026. */
-  { name: "The Ratchet", img: "set_ratchet_gold_30m_2026-11-18", h: 713, cap: "Gold, 30 minute, 18 November 2026", alt: "The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026",
+  { name: "The Ratchet", win: "See how much of the structure has turned, and the close that would flip it.", img: "set_ratchet_gold_30m_2026-11-18", h: 713, cap: "Gold, 30 minute, 18 November 2026", alt: "The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026",
     tv: "https://www.tradingview.com/script/sVPjezsq-The-Ratchet-TheSimplifier7/",
     q: "Which side of its trail is price on, and how much of the structure has turned with it?", not: "It is a trail that shows the structure, not an edge." }
 ];
