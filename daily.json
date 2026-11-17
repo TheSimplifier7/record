@@ -68,6 +68,27 @@
         "Silver": "46.87",
         "Platinum": "1,444.50"
       }
+    },
+    {
+      "date": "2026-11-17",
+      "post": "https://x.com/TheSimplifier7/status/2122583369506562242",
+      "levels": [
+        {
+          "metal": "Gold",
+          "level": "3,871",
+          "side": "floor"
+        },
+        {
+          "metal": "Silver",
+          "level": "47.414",
+          "side": "floor"
+        },
+        {
+          "metal": "Platinum",
+          "level": "1,467.86",
+          "side": "floor"
+        }
+      ]
     }
   ],
   "corrections": [
