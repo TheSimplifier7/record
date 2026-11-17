@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gold and silver indicators for TradingView · The Simplifier</title>
-<meta name="description" content="Four invite-only TradingView indicators for gold and silver. Each answers one question about where price stands. 7 days free, then €99 a month, VAT included.">
+<meta name="description" content="Five invite-only TradingView indicators for gold and silver, built from an institutional metals desk. Read the structure before you trade it. 7 days free, then €99 a month, VAT included.">
 <link rel="canonical" href="https://thesimplifier7.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Simplifier">
 <meta property="og:url" content="https://thesimplifier7.com/">
 <meta property="og:title" content="Gold and silver indicators for TradingView · The Simplifier">
-<meta property="og:description" content="Four invite-only TradingView indicators for gold and silver. Each answers one question about where price stands. 7 days free, then €99 a month, VAT included.">
+<meta property="og:description" content="Five invite-only TradingView indicators for gold and silver, built from an institutional metals desk. Read the structure before you trade it. 7 days free, then €99 a month, VAT included.">
 <meta property="og:image" content="https://thesimplifier7.com/card_daily.jpg?v=9eaba2a37f">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -18,11 +18,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
 <meta name="twitter:title" content="Gold and silver indicators for TradingView · The Simplifier">
-<meta name="twitter:description" content="Four invite-only TradingView indicators for gold and silver. Each answers one question about where price stands. 7 days free, then €99 a month, VAT included.">
+<meta name="twitter:description" content="Five invite-only TradingView indicators for gold and silver, built from an institutional metals desk. Read the structure before you trade it. 7 days free, then €99 a month, VAT included.">
 <meta name="twitter:image" content="https://thesimplifier7.com/card_daily.jpg?v=9eaba2a37f">
 <meta name="theme-color" content="#0B1A2E">
 <meta name="color-scheme" content="dark">
-<script>(function(){var h=location.hash;var keep={"#today":1,"#week":1,"#days":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#offer":1,"#fan":1,"#faq":1,"#who":1,"#set":1,"#price":1,"#mentorship":1,"#trust":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>
+<script>(function(){var h=location.hash;var keep={"#today":1,"#week":1,"#days":1,"#join":1,"#member":1,"#main":1,"#choose":1,"#offer":1,"#fan":1,"#faq":1,"#who":1,"#set":1,"#price":1,"#mentorship":1,"#trust":1,"#gets":1};if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>
 <link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
@@ -66,6 +66,11 @@
 .hm-tool p{margin:0 0 8px;font-size:16px;line-height:1.55;color:var(--c-ink)}
 .hm-tool p.hm-not{color:var(--c-mut);font-size:15px}
 .hm-set+.hm-links{margin-top:32px}
+.hm-tool:last-child:nth-child(odd){grid-column:1/-1}
+.hm-tool figcaption{margin-top:8px;font-size:12px;color:var(--c-mut)}
+.hm-gets{display:grid;gap:32px}
+.hm-gets h3{margin:0 0 8px;font:500 20px/1.3 var(--c-ui);color:var(--c-ink)}
+.hm-gets p{margin:0;max-width:40rem;font-size:17px;line-height:1.6;color:var(--c-sec)}
 .hm-steps{margin:16px 0 0;padding-left:1.2em;max-width:40rem;font-size:17px;line-height:1.6;color:var(--c-sec)}
 .hm-steps li+li{margin-top:6px}
 #price .hm-big b{font:700 1.4em/1 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif;color:var(--c-ink)}
@@ -172,7 +177,6 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
       <a href="mentorship.html">Mentorship</a>
       <a href="tools.html">Free tools</a>
       <a href="levels.html">Daily levels</a>
-      <a href="record.html">The record</a>
     </nav>
     <div class="hs-tools">
       <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-home-band">Try the set free</a>
@@ -184,17 +188,30 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 <section class="hm-hero" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="hm-h1">Four indicators for gold and silver, on your own chart</h1>
-      <p class="hm-say">Invite-only tools on your TradingView chart. Each answers one question about where price stands, and The Fan is the one my daily levels are read from. You still make every decision.</p>
+      <h1 class="hm-h1" id="hm-h1">Read gold's structure before you trade it</h1>
+      <p class="hm-say">Five invite-only indicators for your TradingView chart, built by a trader who started on an institutional metals desk in 2003. They show which side of the mean price is on, which way the flow runs, how far a leg has stretched, whether the swing is confirmed and how much of the structure has turned. You still make every decision.</p>
       <div class="hm-by"><img src="avatar_square.jpg" width="64" height="64" alt="" decoding="async"><p><b>Bradley</b><span>Trading since 2003, from an institutional metals desk.</span></p></div>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span></p>
-      <p class="hm-links"><a href="#set">See the four</a><a href="mentorship.html" data-tv="home-hero-mentorship">1-to-1 mentorship</a></p>
+      <p class="hm-links"><a href="#set">See the five</a><a href="mentorship.html" data-tv="home-hero-mentorship">1-to-1 mentorship</a></p>
     </div>
     <figure class="hm-plate hm-shot">
-      <a href="#set"><img src="set_fan_gold_1h_2026-11-15-1200.webp" srcset="set_fan_gold_1h_2026-11-15-640.webp 640w, set_fan_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 520px, calc(100vw - 40px)" width="1200" height="480" alt="The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" decoding="async" fetchpriority="high"></a>
-      <figcaption>The Fan on gold, 1 hour, 15 November 2026. Chart by TradingView. A past chart, not a live trade.</figcaption>
+      <a href="#set"><img src="set_ratchet_gold_30m_2026-11-18-1200.webp" srcset="set_ratchet_gold_30m_2026-11-18-640.webp 640w, set_ratchet_gold_30m_2026-11-18-1200.webp 1200w" sizes="(min-width: 900px) 520px, calc(100vw - 40px)" width="1200" height="713" alt="The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026" decoding="async" fetchpriority="high"></a>
+      <figcaption>The Ratchet on gold, 30 minute, 18 November 2026. Chart by TradingView. A past chart, not a live trade.</figcaption>
     </figure>
   </div>
+</section>
+
+<section class="hm-sec" id="gets" aria-labelledby="gets-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="gets-h">What it gives you</h2></div>
+    <div class="hm-main">
+      <div class="hm-gets">
+        <div><h3>Structure, not noise</h3><p>Five readings on one chart, each answering one question, so you know where price stands before you act.</p></div>
+        <div><h3>Your exit before your entry</h3><p>The Keel names the exact close that would end the flow, and The Ratchet's trail flips only on a close back through it. You see what would prove you wrong before you are in.</p></div>
+        <div><h3>A read you learn, not a signal you follow</h3><p>Each tool says what it will not do, and nothing on the chart tells you to buy or sell. You learn to judge the structure yourself, and the mentorship takes that further.</p></div>
+      </div>
+    </div>
+  </div></div>
 </section>
 
 <section class="hm-sec" id="set" aria-labelledby="set-h">
@@ -202,35 +219,41 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
     <div class="hm-side">
       <h2 id="set-h">One question each</h2>
       <p>They are built to read together on one chart, and each one says what it will not do.</p>
-      <p class="hm-fine">Gold, 1 hour, each as TradingView drew it on Sunday 15 November 2026, with the week closed. A past chart, not a live trade.</p>
     </div>
     <div class="hm-main">
       <div class="hm-set">
         <article class="hm-tool">
-          <figure class="hm-plate"><img src="set_fan_gold_1h_2026-11-15-640.webp" srcset="set_fan_gold_1h_2026-11-15-640.webp 640w, set_fan_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"></figure>
+          <figure class="hm-plate"><img src="set_fan_gold_1h_2026-11-15-640.webp" srcset="set_fan_gold_1h_2026-11-15-640.webp 640w, set_fan_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"><figcaption>Gold, 1 hour, 15 November 2026. Chart by TradingView.</figcaption></figure>
           <h3>The Fan</h3>
           <p>Which side of the 2 hour mean is price on, and did the last test of the mean hold?</p>
           <p class="hm-not">It says where price stands against the mean. It does not say where price goes next.</p>
         </article>
         <article class="hm-tool">
-          <figure class="hm-plate"><img src="set_keel_gold_1h_2026-11-15-640.webp" srcset="set_keel_gold_1h_2026-11-15-640.webp 640w, set_keel_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"></figure>
+          <figure class="hm-plate"><img src="set_keel_gold_1h_2026-11-15-640.webp" srcset="set_keel_gold_1h_2026-11-15-640.webp 640w, set_keel_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"><figcaption>Gold, 1 hour, 15 November 2026. Chart by TradingView.</figcaption></figure>
           <h3>The Keel</h3>
           <p>Which way does the flow run, and what exact close would end it?</p>
           <p class="hm-not">It describes the flow. It does not predict the next move.</p>
         </article>
         <article class="hm-tool">
-          <figure class="hm-plate"><img src="set_method_gold_1h_2026-11-15-640.webp" srcset="set_method_gold_1h_2026-11-15-640.webp 640w, set_method_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"></figure>
+          <figure class="hm-plate"><img src="set_method_gold_1h_2026-11-15-640.webp" srcset="set_method_gold_1h_2026-11-15-640.webp 640w, set_method_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"><figcaption>Gold, 1 hour, 15 November 2026. Chart by TradingView.</figcaption></figure>
           <h3>The Method</h3>
           <p>How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?</p>
           <p class="hm-not">A leg that has run far is no more due to come back than one that has not.</p>
         </article>
         <article class="hm-tool">
-          <figure class="hm-plate"><img src="set_hinge_gold_1h_2026-11-15-640.webp" srcset="set_hinge_gold_1h_2026-11-15-640.webp 640w, set_hinge_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"></figure>
+          <figure class="hm-plate"><img src="set_hinge_gold_1h_2026-11-15-640.webp" srcset="set_hinge_gold_1h_2026-11-15-640.webp 640w, set_hinge_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="480" alt="The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026" loading="lazy" decoding="async"><figcaption>Gold, 1 hour, 15 November 2026. Chart by TradingView.</figcaption></figure>
           <h3>The Hinge</h3>
           <p>Is the swing confirmed, did the last one hold, and where is the structure?</p>
           <p class="hm-not">It confirms swings earlier. It is not right more often.</p>
         </article>
+        <article class="hm-tool">
+          <figure class="hm-plate"><img src="set_ratchet_gold_30m_2026-11-18-640.webp" srcset="set_ratchet_gold_30m_2026-11-18-640.webp 640w, set_ratchet_gold_30m_2026-11-18-1200.webp 1200w" sizes="(min-width: 900px) 340px, calc(100vw - 40px)" width="1200" height="713" alt="The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026" loading="lazy" decoding="async"><figcaption>Gold, 30 minute, 18 November 2026. Chart by TradingView.</figcaption></figure>
+          <h3>The Ratchet</h3>
+          <p>Which side of its trail is price on, and how much of the structure has turned with it?</p>
+          <p class="hm-not">It is a trail that shows the structure, not an edge.</p>
+        </article>
       </div>
+      <p class="hm-fine" style="margin-top:24px">Past charts, not live trades.</p>
       <p class="hm-links"><a href="method.html">What the counts say, and before you start</a></p>
     </div>
   </div></div>
@@ -238,13 +261,13 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
 
 <section class="hm-sec" id="price" aria-labelledby="price-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="price-h">One plan, all four</h2></div>
+    <div class="hm-side"><h2 id="price-h">One plan, all five</h2></div>
     <div class="hm-main">
-      <p class="hm-big"><b>€99</b> a month for all four, VAT included</p>
+      <p class="hm-big"><b>€99</b> a month for all five, VAT included</p>
       <ol class="hm-steps">
         <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
         <li>Give your TradingView username at checkout, never your password.</li>
-        <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+        <li>The five tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="home-price">Start the 7-day trial</a></p>
       <p class="hm-fine">7 days free, then €99 a month, VAT included. Card at checkout. Cancel before day 8 and pay nothing. <a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00" rel="noopener">Manage or cancel your subscription</a></p>
@@ -280,24 +303,13 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
     <div class="hm-side"><h2 id="faq-h">Questions</h2></div>
     <div class="hm-main">
       <div class="hm-faq">
-        <details><summary>What is the set?</summary><p>Four TradingView indicators, The Fan, The Keel, The Method and The Hinge, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you. <a href="method.html">See what they show</a></p></details>
-        <details><summary>Do I need TradingView?</summary><p>Yes, for the four tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. You give your TradingView username at checkout, never your password.</p></details>
+        <details><summary>What is the set?</summary><p>Five TradingView indicators, The Fan, The Keel, The Method, The Hinge and The Ratchet, at €99 a month, VAT included. The Fan is the one my levels are read from. They draw on your own chart and leave every decision with you. <a href="method.html">See what they show</a></p></details>
+        <details><summary>Do I need TradingView?</summary><p>Yes, for the five tools. You need your own TradingView account. The free plan can run them, subject to its limit on indicators per chart. You give your TradingView username at checkout, never your password.</p></details>
         <details><summary>How do I cancel the trial?</summary><p>From the billing page linked at the foot of every page, or with one message to me on X. Cancel before day 8 and you pay nothing.</p></details>
         <details><summary>Is the mentorship part of the subscription?</summary><p>No. It is personal teaching over twelve weeks, priced on the call and put in writing before payment. <a href="mentorship.html">Read about the mentorship</a></p></details>
         <details><summary>What do I get free?</summary><p>Three levels every trading day, one each for gold, silver and platinum, posted on X before the London open, and the close that graded each one. <a href="tools.html">Eight open-source TradingView tools</a> are free too.</p></details>
+        <details><summary>Do you publish your own levels?</summary><p>Yes. Three levels every trading day, posted on X before the London open, each graded on that day's close with the wrong ones kept. Every level graded in public on the close, wrong ones included. Weekly record: <b>36</b> held, <b>11</b> wrong, <b>0</b> deleted. <a href="record.html">Read the record</a> Held means the close stayed on the side I named. It is not a trade result. This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p></details>
       </div>
-    </div>
-  </div></div>
-</section>
-
-<section class="hm-sec" id="trust" aria-labelledby="trust-h">
-  <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="trust-h">The record behind it</h2></div>
-    <div class="hm-main">
-      <p>Every level I post is read from The Fan and graded on the close in public, wrong ones kept. Find a level that was changed, backdated or removed after it was published, and I pay you $1,000.</p>
-      <p class="as-proof" data-proof>Every level graded in public on the close, wrong ones included. Weekly record: <b>36</b> held, <b>11</b> wrong, <b>0</b> deleted. <a href="record.html">Read the record</a></p>
-      <p class="hm-fine">Held means the close stayed on the side I named. It is not a trade result. This is structural analysis. It is not a recommendation to buy or sell. I develop and sell The Fan, the indicator these levels are read from.</p>
-      <p class="hm-links"><a href="levels.html">The daily levels</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#bounty">The $1,000 offer</a></p>
     </div>
   </div></div>
 </section>
@@ -328,7 +340,7 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
     <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
     <p>TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
   </div>
-  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the four tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="foot-tv-account" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
+  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the five tools show</a><a href="method.html#plans">€99 a month, 7 days free</a><a href="https://www.tradingview.com/?aff_id=1174265" target="_blank" rel="sponsored noopener" data-tv="foot-tv-account" data-bf-href="https://www.tradingview.com/black-friday/?aff_id=1174265" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
   <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
 </div></footer>
@@ -337,7 +349,6 @@ html body .hm-hero h1.hm-h1{max-width:9.6em;font:700 clamp(48px,6.4vw,92px)/.92 
   <a href="mentorship.html"><span>Mentorship</span></a>
   <a href="tools.html"><span>Tools</span></a>
   <a href="levels.html"><span>Levels</span></a>
-  <a href="record.html"><span>Record</span></a>
 </nav>
 <script src="house.js?v=c08b2c33cb" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>

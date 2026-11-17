@@ -43,7 +43,7 @@ const SPACE = "https://www.tradingview.com/scripts/marketplace/TheSimplifier7/?a
 const SPACE_LIVE = false;
 const OUT = 'target="_blank" rel="sponsored noopener"';
 const PARTNER_LINE = "TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.";
-const BOTH = "Same four tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
+const BOTH = "Same five tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
 
@@ -108,12 +108,13 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
 /* The band's places, as on the record. */
 /* 17 Nov 2026, his word: the site sells the indicators and the mentorship; the record sits behind them, last in the
    menu. It read: Daily levels, The record, The set, Free tools, Mentorship. */
+/* 18 Nov 2026, his word: the record is tucked away, in the foot and one answer on the front page; the menu sells.
+   It read, from 17 Nov: Indicators, Mentorship, Free tools, Daily levels, The record. */
 const NAV = [
   ["fan", "method.html", "Indicators"],
   ["mentorship", "mentorship.html", "Mentorship"],
   ["tools", "tools.html", "Free tools"],
-  ["today", "levels.html", "Daily levels"],
-  ["record", "record.html", "The record"]
+  ["today", "levels.html", "Daily levels"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -161,13 +162,13 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 
 /* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Tools"], ["today", "levels.html", "Levels"], ["record", "record.html", "Record"]];
+  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Tools"], ["today", "levels.html", "Levels"]];
   return `<nav class="hs-bot" aria-label="The site, on a phone">
   ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
 </nav>`;
 }
 /* The foot of every page. 12 Nov 2026, note 70: three short lists under the name. It read as one line of links joined by dots.
-   15 Nov 2026, HALLMARK, rulings R2 to R4: TradingView is the first follow, "levels" not "call", the set of four at €99.
+   15 Nov 2026, HALLMARK, rulings R2 to R4: TradingView is the first follow, "levels" not "call", the set of five at €99.
    It read: The call lands every morning before New York opens. Graded at the close. Follow on X. The list read The Fan,
    What it shows, Plans and the free trial, and the menu read The Fan and Try The Fan free. */
 const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
@@ -193,7 +194,7 @@ function proof(R) {
 function partner(id, tag = "h2") {
   return `<aside class="as-partner" data-partner="${esc(id)}" aria-labelledby="pb-${esc(id)}">
   <${tag} class="as-partner-h" id="pb-${esc(id)}">New to TradingView?</${tag}>
-  <p>The four tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
+  <p>The five tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
   <a class="hs-btn hs-ghost" href="${PARTNER}" ${OUT} data-tv="partner-block" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a>
   <p class="as-partner-d">Partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
 </aside>`;
@@ -209,14 +210,20 @@ function partner(id, tag = "h2") {
    verify_record checks method.html still carries it. A fifth tool (The Ratchet) joins here when he sends its
    TradingView link, its one question and its chart. */
 const SET_TOOLS = [
-  { name: "The Fan", img: "set_fan_gold_1h_2026-11-15", h: 480, alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Fan", img: "set_fan_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "Which side of the 2 hour mean is price on, and did the last test of the mean hold?", not: "It says where price stands against the mean. It does not say where price goes next." },
-  { name: "The Keel", img: "set_keel_gold_1h_2026-11-15", h: 480, alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Keel", img: "set_keel_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "Which way does the flow run, and what exact close would end it?", not: "It describes the flow. It does not predict the next move." },
-  { name: "The Method", img: "set_method_gold_1h_2026-11-15", h: 480, alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+  { name: "The Method", img: "set_method_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
     q: "How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?", not: "A leg that has run far is no more due to come back than one that has not." },
-  { name: "The Hinge", img: "set_hinge_gold_1h_2026-11-15", h: 480, alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
-    q: "Is the swing confirmed, did the last one hold, and where is the structure?", not: "It confirms swings earlier. It is not right more often." }
+  { name: "The Hinge", img: "set_hinge_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "Is the swing confirmed, did the last one hold, and where is the structure?", not: "It confirms swings earlier. It is not right more often." },
+  /* 18 Nov 2026, his word: The Ratchet joins the set at the same price. Its question is drawn from his own TradingView
+     description (the trail that steps only on a full stride, the glow that shows how much of the structure has turned);
+     what it will not do is his sentence there. Chart: his, 30 minute, at 00:03 CET on 18 November 2026. */
+  { name: "The Ratchet", img: "set_ratchet_gold_30m_2026-11-18", h: 713, cap: "Gold, 30 minute, 18 November 2026", alt: "The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026",
+    tv: "https://www.tradingview.com/script/sVPjezsq-The-Ratchet-TheSimplifier7/",
+    q: "Which side of its trail is price on, and how much of the structure has turned with it?", not: "It is a trail that shows the structure, not an edge." }
 ];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
 function signup(where) {
@@ -247,11 +254,11 @@ const SET_TERMS = "7 days free, then €99 a month, VAT included. Card at checko
 function plans(R) {
   const site = `<div class="s4-route" data-route="site">
       ${SPACE_LIVE ? '<p class="s4-route-h">On this site</p>' : ""}
-      <p class="s4-price"><b>€99</b> a month for all four, VAT included</p>
+      <p class="s4-price"><b>€99</b> a month for all five, VAT included</p>
       <ol class="s4-steps">
         <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
         <li>Give your TradingView username at checkout, never your password.</li>
-        <li>The four tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+        <li>The five tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
       <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">Start the 7-day trial</a>
       <p class="s4-fine">${SET_TERMS}</p>
@@ -259,16 +266,16 @@ function plans(R) {
   const tv = SPACE_LIVE ? `
     <div class="s4-route" data-route="tradingview">
       <p class="s4-route-h">On TradingView</p>
-      <p class="s4-price"><b>$99</b> a month for all four, billed by TradingView</p>
+      <p class="s4-price"><b>$99</b> a month for all five, billed by TradingView</p>
       <ol class="s4-steps">
         <li>Subscribe on TradingView's website with your TradingView account.</li>
-        <li>TradingView adds the four tools to your account automatically.</li>
+        <li>TradingView adds the five tools to your account automatically.</li>
       </ol>
       <a class="hs-btn hs-ghost s4-btn" href="${SPACE}" ${OUT} data-tv="plans-tv-space">Subscribe on TradingView</a>
       <p class="s4-fine">$99 a month, billed by TradingView. VAT added at checkout where it applies. No free trial. You can ask TradingView for a refund within 14 days of a payment. Cancel in your TradingView account.</p>
     </div>` : "";
   return `<section id="plans" class="s4-plan${SPACE_LIVE ? " s4-two" : ""}" aria-labelledby="plans-h">
-    <h2 id="plans-h">The set of four</h2>
+    <h2 id="plans-h">The set of five</h2>
     <div class="s4-routes">
     ${site}${tv}
     </div>

@@ -712,8 +712,10 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   if (!heroBtn.test(idx)) probs.push("index.html: the hero's button does not go straight to the checkout with its terms beside it");
   /* 17 Nov 2026, his word: the front page is a funnel for the indicators and the mentorship; the record's count moves from
      under the hero to the trust band, counted from record.json, and the price block sells the same trial. */
-  const trust = idx.match(/<section class="hm-sec" id="trust"[\s\S]*?<\/section>/);
-  if (!trust || !/data-proof/.test(trust[0])) probs.push("index.html: the trust band does not carry the record's count");
+  /* 18 Nov 2026, his word: the record is tucked into one answer in the front page's questions. */
+  const faqRec = idx.match(/<summary>Do you publish your own levels\?<\/summary><p>[\s\S]*?Weekly record: <b>(\d+)<\/b> held, <b>(\d+)<\/b> wrong, <b>0<\/b> deleted/);
+  if (!faqRec) probs.push("index.html: the questions do not carry the record's count");
+  else if (+faqRec[1] !== RJ.tally.held || +faqRec[2] !== RJ.tally.wrong) probs.push(`index.html: the record's count reads ${faqRec[1]} held, ${faqRec[2]} wrong; record.json counts ${RJ.tally.held} and ${RJ.tally.wrong}`);
   if (!new RegExp('<a class="hs-btn hs-gold" href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '" data-tv="home-price">Start the 7-day trial</a>').test(idx)) probs.push("index.html: the price block's button does not sell the trial");
   if (!/id="mentorship"[\s\S]*?href="mentorship.html"/.test(idx)) probs.push("index.html: the mentorship section does not lead to mentorship.html");
   { const meth = fs.readFileSync(path.join(__dirname, "method.html"), "utf8");
