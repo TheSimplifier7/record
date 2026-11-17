@@ -80,13 +80,15 @@ for (const page of ["levels.html", "index.html"]) {
   check(!new RegExp(["close", "earns", "it"].join(" "), "i").test(s), page + " does not say how The Fan's line is worked out");
   check(!/—|–|<!--/.test(s) && !/![\s"<]/.test(text), page + " carries no em dash, exclamation mark or HTML comment");
   check(/data-goatcounter="https:\/\/thesimplifier\.goatcounter\.com\/count"/.test(s), page + " carries the counter (note 37)");
-  { let seal = ""; try { seal = require("./house_parts.js").recordSeal(JSON.parse(rd("record.json"))); } catch (e) {}
+  /* 17 Nov 2026, his word: the front page sells the indicators and the mentorship, so the plate and the day card are on levels.html only. */
+  if (page !== "index.html") { let seal = ""; try { seal = require("./house_parts.js").recordSeal(JSON.parse(rd("record.json"))); } catch (e) {}
     const on = (s.match(/data-seal="([0-9a-f]{64})"/) || [])[1];
     check(!!seal && on === seal, page + " carries the record's seal for the plate (" + (on ? on.slice(0, 6).toUpperCase() : "none") + ")"); }
   /* 15 Nov 2026, his word: the home hero's button goes straight to the set's checkout; every other checkout stays on
      method.html. It read: carries no checkout; the plans are on method.html alone. */
   { const n = (s.match(/buy\.stripe\.com/g) || []).length;
-    check(page === "index.html" ? n === 1 : n === 0, page === "index.html" ? page + " carries one checkout, the hero's button" : page + " carries no checkout; the plans are on method.html"); }
+    /* 17 Nov 2026: the front page is the funnel; its hero and its price block each carry the set's checkout. */
+    check(page === "index.html" ? n === 2 : n === 0, page === "index.html" ? page + " carries two checkouts, the hero's and the price block's" : page + " carries no checkout; the plans are on method.html"); }
 }
 /* 17 Nov 2026, his word: the levels are promised before the London open, 09:00 CET (Madrid time all year). Every linked
    post's own time, read from its id on X, must fall on its day and before 09:00, and no page may promise 08:00 again. */

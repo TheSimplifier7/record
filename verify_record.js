@@ -659,8 +659,8 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
      checkout and no other. It read: the checkouts are on method.html alone (1 November 2026). */
   const buyOff = fs.readdirSync(HERE).filter(f => f.endsWith(".html") && f !== "method.html").filter(f => {
     const n = (rd(f).match(/buy\.stripe\.com/g) || []).length;
-    return f === "index.html" ? n !== 1 : n > 0; });
-  check(buyOff.length === 0, "the checkouts are on method.html, and on index.html only the hero's button (1 November 2026; the hero, 15 Nov 2026)" + (buyOff.length ? " (" + buyOff.join(", ") + ")" : ""));
+    return f === "index.html" ? n !== 2 : n > 0; });
+  check(buyOff.length === 0, "the checkouts are on method.html, and on index.html only the hero's and the price block's buttons (1 November 2026; the funnel, 17 Nov 2026)" + (buyOff.length ? " (" + buyOff.join(", ") + ")" : ""));
 }
 
 /* 27. THE SCENE, added 22 October 2026, note 55. */
@@ -710,11 +710,15 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
      hallmark under it carries the weekly count from record.json and links to the record. */
   const heroBtn = new RegExp('<a class="hs-btn hs-gold" href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span>');
   if (!heroBtn.test(idx)) probs.push("index.html: the hero's button does not go straight to the checkout with its terms beside it");
-  const hall = idx.match(/<div class="hm-rec">\s*<a class="as-hall" href="record.html"><span><b>(\d+)<\/b> held<\/span><span><b>(\d+)<\/b> wrong<\/span><span><b>0<\/b> deleted<\/span><\/a>/);
-  if (!hall) probs.push("index.html: the hallmark under the hero's button does not link to the record");
-  else { const held = RJ.tally.held, wrong = RJ.tally.wrong;
-    if (+hall[1] !== held || +hall[2] !== wrong) probs.push(`index.html: the hero's hallmark reads ${hall[1]} held, ${hall[2]} wrong; record.json counts ${held} and ${wrong}`); }
-  if (!/data-tv="home-close">Try the set free for 7 days</.test(idx)) probs.push("index.html: the closing gold button does not sell the trial");
+  /* 17 Nov 2026, his word: the front page is a funnel for the indicators and the mentorship; the record's count moves from
+     under the hero to the trust band, counted from record.json, and the price block sells the same trial. */
+  const trust = idx.match(/<section class="hm-sec" id="trust"[\s\S]*?<\/section>/);
+  if (!trust || !/data-proof/.test(trust[0])) probs.push("index.html: the trust band does not carry the record's count");
+  if (!new RegExp('<a class="hs-btn hs-gold" href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '" data-tv="home-price">Start the 7-day trial</a>').test(idx)) probs.push("index.html: the price block's button does not sell the trial");
+  if (!/id="mentorship"[\s\S]*?href="mentorship.html"/.test(idx)) probs.push("index.html: the mentorship section does not lead to mentorship.html");
+  { const meth = fs.readFileSync(path.join(__dirname, "method.html"), "utf8");
+    const drift = HP.SET_TOOLS.filter(x => !meth.includes(HP.esc(x.q)) || !meth.includes(HP.esc(x.not)));
+    if (drift.length) probs.push("method.html no longer carries the words the front page gives " + drift.map(x => x.name).join(", ")); }
   check(probs.length === 0, "the buy blocks carry the record from record.json, the Paid Space waits for TradingView, every partner button shows its disclosure, every TradingView link carries aff_id=1174265 with the partner line in every foot, and mentorship is one tap from every page (his brief, 15 Nov 2026)" + (probs.length ? "\n          " + probs.slice(0, 12).join("\n          ") : ""));
 }
 
