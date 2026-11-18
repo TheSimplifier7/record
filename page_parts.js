@@ -155,8 +155,8 @@ const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close ab
 function doors(where, { tools = true, sell = false } = {}) {
   /* 18 Nov 2026, his word: the pages that sell lead to the set and the mentorship, never to the levels. */
   if (sell) return `<div class="doors">
-  <div class="door"><p class="t">The set of five</p><p><a class="btn quiet" href="method.html" data-tv="${esc(where)}-set">See the indicators</a></p><p class="fine">7 days free, then €99 a month, VAT included.</p></div>
-  <div class="door"><p class="t">1-to-1 mentorship</p><p><a class="btn quiet" href="mentorship.html" data-tv="${esc(where)}-mentorship">See the mentorship</a></p><p class="fine">Twelve weeks of personal teaching on your own chart.</p></div>
+  <div class="door"><p class="t">The set of five</p><p><a class="btn quiet" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="${esc(where)}-set">Start 7 days free</a></p><p class="fine">7 days free, then €99 a month, VAT included.</p></div>
+  <div class="door"><p class="t">The lessons</p><p><a class="btn quiet" href="https://x.com/TheSimplifier7" rel="noopener" data-x="${esc(where)}-lessons">Read them on X</a></p><p class="fine">Free, on X.</p></div>
 </div>`;
   return `<div class="doors">
   ${tools ? `<div class="door"><p class="t">The free tools</p><p><a class="btn quiet" href="${TV}" data-tv="${esc(where)}">Join me on TradingView</a></p><p class="fine">Free.<br>Not investment advice.</p></div>` : `<div class="door"><p class="t">The record</p><p><a class="btn quiet" href="record.html">Every line, graded</a></p><p class="fine">Nothing removed.</p></div>`}

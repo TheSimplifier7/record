@@ -402,3 +402,10 @@ html .as-mail-ok a{color:var(--c-ink)!important;text-decoration:underline;text-d
 html .as-mail .hs-btn{justify-self:start;min-height:48px;padding:0 24px!important;font-size:16px!important;cursor:pointer}
 html .as-mail-fine{margin:0;font:400 14px/1.5 var(--c-ui);color:var(--c-mut)}
 @media (max-width:640px){html .as-mail .hs-btn{justify-self:stretch}}
+/* 18 Nov 2026, the report's design brief: on a phone the bar at the foot is the price and the one button. */
+@media (max-width:760px){
+  html nav.hs-bot{grid-template-columns:minmax(0,1fr) auto!important;align-items:center;column-gap:12px;padding:0 16px env(safe-area-inset-bottom,0px)!important}
+  html nav.hs-bot .hs-buy-t{margin:0;font:400 14px/1.3 var(--c-ui);color:var(--c-sec)}
+  html nav.hs-bot a.hs-btn.hs-buy-b{display:inline-flex!important;justify-content:center;min-height:40px;padding:0 18px!important;border-radius:6px;background:var(--c-ink)!important;color:var(--c-bg)!important;font:500 14px/1 var(--c-ui)!important}
+}
+@media (max-width:760px){html body.hs-has-bot .hs-tools{display:none!important}}

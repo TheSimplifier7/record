@@ -108,13 +108,15 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
 /* The band's places, as on the record. */
 /* 17 Nov 2026, his word: the site sells the indicators and the mentorship; the record sits behind them, last in the
    menu. It read: Daily levels, The record, The set, Free tools, Mentorship. */
-/* 18 Nov 2026, his word: the site sells a service, knowledge and insight; the record and the levels are tucked away,
-   in the foot and one answer on the front page. It read, from 17 Nov: Indicators, Mentorship, Free tools, Daily levels,
-   The record. */
+/* 18 Nov 2026, the team's report (to-10-report.md) by his word: one job, start the trial. The menu is the set, the
+   price and the lessons on X; the record, the levels and the mentorship live in the foot. It read: Indicators,
+   Mentorship, Free tools. */
+const LESSONS = "https://x.com/TheSimplifier7";
+const BUY = "Start 7 days free";
 const NAV = [
-  ["fan", "method.html", "Indicators"],
-  ["mentorship", "mentorship.html", "Mentorship"],
-  ["tools", "tools.html", "Free tools"]
+  ["set", "./#set", "The set"],
+  ["pricing", "./#pricing", "Pricing"],
+  ["lessons", LESSONS, "Lessons"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
@@ -142,7 +144,7 @@ function band(current, where, { fixed = true } = {}) {
       ${NAV.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}>${label}</a>`).join("\n      ")}
     </nav>
     <div class="hs-tools">
-      <a class="hs-btn hs-ghost" href="method.html#plans" data-tv="plans-${esc(where)}-band">Try the set free</a>
+      <a class="hs-btn hs-ghost" href="${SET_CHECKOUT}" data-tv="band-${esc(where)}">${BUY}</a>
     </div>
   </div>
 </header>`;
@@ -162,9 +164,9 @@ function hero({ eyebrow = "", title, lede = "", under = "", key = false, col, pa
 
 /* The bar at the foot of a phone. 12 Nov 2026, note 70: four places in words, no pictures. It read: This week, Record, The Fan, Email, each under a drawn icon. */
 function bot(current) {
-  const B = [["fan", "method.html", "Indicators"], ["mentorship", "mentorship.html", "Mentorship"], ["tools", "tools.html", "Free tools"]];
+  /* 18 Nov 2026: on a phone, a slim bar with the price and the one button, on every page. */
   return `<nav class="hs-bot" aria-label="The site, on a phone">
-  ${B.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}><span>${label}</span></a>`).join("\n  ")}
+  <p class="hs-buy-t">€99 a month, 7 days free</p><a class="hs-btn hs-gold hs-buy-b" href="${SET_CHECKOUT}" data-tv="bar-${esc(current || "page")}">${BUY}</a>
 </nav>`;
 }
 /* The foot of every page. 12 Nov 2026, note 70: three short lists under the name. It read as one line of links joined by dots.
@@ -172,16 +174,15 @@ function bot(current) {
    It read: The call lands every morning before New York opens. Graded at the close. Follow on X. The list read The Fan,
    What it shows, Plans and the free trial, and the menu read The Fan and Try The Fan free. */
 const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
+const RISK = "Education and charting tools only. Not investment advice. Trading involves risk and you can lose money. Past charts do not predict future prices.";
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
-    <p>TradingView indicators for gold and silver, and 1-to-1 mentorship. <a href="${TV}" ${OUT} data-tv="foot">Follow on TradingView.</a></p>
-    <p>Education and training. Not investment advice. Trading involves risk, and you can lose money.</p>
+    <p>${RISK}</p>
     <p>${PARTNER_LINE}</p>
   </div>
-  <nav aria-label="The set"><p class="hs-foot-h">The set</p><a href="method.html">What the ${({4:"four",5:"five",6:"six"})[SET_TOOLS.length] || SET_TOOLS.length} tools show</a><a href="method.html#plans">€99 a month, 7 days free</a>${SPACE_LIVE ? `<a href="${SPACE}" ${OUT} data-tv="foot-tv-space">Our Paid Space on TradingView</a>` : ""}<a href="${PARTNER}" ${OUT} data-tv="foot-tv-account" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a><a href="tools.html">Free tools</a><a href="mentorship.html">1-to-1 mentorship</a></nav>
-  <nav aria-label="The levels"><p class="hs-foot-h">The levels</p><a href="levels.html">Daily levels</a><a href="record.html">The weekly record</a><a href="misses.html">Every wrong weekly level</a><a href="record.html#rules">The rules</a></nav>
-  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">Contact</a><a href="${BILLING}">Manage or cancel your subscription</a><a href="https://x.com/TheSimplifier7" rel="noopener">@TheSimplifier7 on X</a></nav>
+  <nav aria-label="The site"><p class="hs-foot-h">The site</p><a href="record.html">The record</a><a href="tools.html">Free tools</a><a href="${LESSONS}" rel="noopener">Lessons on X</a><a href="mentorship.html">Want it taught one to one? Ask about mentorship.</a></nav>
+  <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a><a href="${BILLING}">Manage subscription</a></nav>
 </div></footer>`;
 
 /* 15 Nov 2026, HALLMARK, his brief: the record as the proof, once in every buy block, counted from record.json and never typed. */
@@ -211,19 +212,19 @@ function partner(id, tag = "h2") {
    TradingView link, its one question and its chart. */
 const SET_TOOLS = [
   { name: "The Fan", win: "Know which side of the mean you are trading from.", img: "set_fan_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Fan alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
-    q: "Which side of the 2 hour mean is price on, and did the last test of the mean hold?", not: "It says where price stands against the mean. It does not say where price goes next." },
+    q: "Which side of the line is price on, and did the last test of it hold?", not: "It says where price stands against the mean. It does not say where price goes next." },
   { name: "The Keel", win: "See the flow, and the exact close that would end it.", img: "set_keel_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Keel alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
-    q: "Which way does the flow run, and what exact close would end it?", not: "It describes the flow. It does not predict the next move." },
-  { name: "The Method", win: "Know how far this leg has run, against every gold leg since 2014.", img: "set_method_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
-    q: "How far does price stand from the mean, and how does this leg compare with every gold leg since 2014?", not: "A leg that has run far is no more due to come back than one that has not." },
+    q: "Which way is the flow running, and what close would end it?", not: "It describes the flow. It does not predict the next move." },
+  { name: "The Method", win: "Know how far this leg has run against the legs before it.", img: "set_method_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Method alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
+    q: "How far has this leg run against the legs that came before it?", not: "A leg that has run far is no more due to come back than one that has not." },
   { name: "The Hinge", win: "Know when a swing is confirmed, and where the structure sits.", img: "set_hinge_gold_1h_2026-11-15", h: 480, cap: "Gold, 1 hour, 15 November 2026", alt: "The Hinge alone on Bradley's gold 1 hour chart on TradingView, 15 November 2026",
-    q: "Is the swing confirmed, did the last one hold, and where is the structure?", not: "It confirms swings earlier. It is not right more often." },
+    q: "Is the swing confirmed, and did the last one hold?", not: "It confirms swings earlier. It is not right more often." },
   /* 18 Nov 2026, his word: The Ratchet joins the set at the same price. Its question is drawn from his own TradingView
      description (the trail that steps only on a full stride, the glow that shows how much of the structure has turned);
      what it will not do is his sentence there. Chart: his, 30 minute, at 00:03 CET on 18 November 2026. */
   { name: "The Ratchet", win: "See how much of the structure has turned, and the close that would flip it.", img: "set_ratchet_gold_30m_2026-11-18", h: 713, cap: "Gold, 30 minute, 18 November 2026", alt: "The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026",
     tv: "https://www.tradingview.com/script/sVPjezsq-The-Ratchet-TheSimplifier7/",
-    q: "Which side of its trail is price on, and how much of the structure has turned with it?", not: "It is a trail that shows the structure, not an edge." }
+    q: "Which side of its trail is price on, and how much of the structure has turned?", not: "It is a trail that shows the structure, not an edge." }
 ];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
 function signup(where) {
@@ -260,7 +261,7 @@ function plans(R) {
         <li>Give your TradingView username at checkout, never your password.</li>
         <li>The five tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
-      <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">Start the 7-day trial</a>
+      <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">${BUY}</a>
       <p class="s4-fine">${SET_TERMS}</p>
     </div>`;
   const tv = SPACE_LIVE ? `
@@ -321,4 +322,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { LESSONS, BUY, RISK, SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

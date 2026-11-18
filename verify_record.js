@@ -657,10 +657,18 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   check(withC.length === 0, "no page carries an HTML comment (1 November 2026)" + (withC.length ? " (" + withC.join(", ") + ")" : ""));
   /* 15 Nov 2026, his word: the home hero's button goes straight to the set's checkout, so index.html carries that one
      checkout and no other. It read: the checkouts are on method.html alone (1 November 2026). */
-  const buyOff = fs.readdirSync(HERE).filter(f => f.endsWith(".html") && f !== "method.html").filter(f => {
-    const n = (rd(f).match(/buy\.stripe\.com/g) || []).length;
-    return f === "index.html" ? n !== 2 : n > 0; });
-  check(buyOff.length === 0, "the checkouts are on method.html, and on index.html only the hero's and the price block's buttons (1 November 2026; the funnel, 17 Nov 2026)" + (buyOff.length ? " (" + buyOff.join(", ") + ")" : ""));
+  /* 18 Nov 2026, the team's report by his word: one button wording, "Start 7 days free", and every checkout link on every
+     page is the set's own Stripe link. It read: the checkouts are on method.html, and on index.html only the hero's and
+     the price block's buttons. */
+  const HPb = require("./house_parts.js");
+  const buyOff = [];
+  for (const f of fs.readdirSync(HERE).filter(f => f.endsWith(".html"))) {
+    for (const m of rd(f).matchAll(/<a\b[^>]*href="(https:\/\/buy\.stripe\.com\/[^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
+      const words = m[2].replace(/<[^>]+>/g, "").trim();
+      if (m[1] !== HPb.SET_CHECKOUT || words !== HPb.BUY) buyOff.push(f + " (" + words + ")");
+    }
+  }
+  check(buyOff.length === 0, "every checkout link is the set's own Stripe link and reads Start 7 days free (18 Nov 2026)" + (buyOff.length ? " (" + buyOff.slice(0, 8).join(", ") + ")" : ""));
 }
 
 /* 27. THE SCENE, added 22 October 2026, note 55. */
@@ -699,25 +707,27 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     for (const m of h.match(/<p class="as-proof" data-proof>[\s\S]*?<\/p>/g) || []) if (m !== want) probs.push(f + ": a proof line does not match record.json's tally");
     if (!HP.SPACE_LIVE && h.includes("scripts/marketplace/TheSimplifier7")) probs.push(f + ": carries the Paid Space's link before it is live");
     for (const a of h.match(/<aside class="as-partner"[\s\S]*?<\/aside>/g) || []) if (!/data-tv="partner-block"[\s\S]*?<p class="as-partner-d">Partner link\./.test(a)) probs.push(f + ": a partner button without its disclosure under it");
-    if (/<nav class="hs-nav"/.test(h) && !/<nav class="hs-nav"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the menu does not reach mentorship");
+    if (/<footer class="hs-foot">/.test(h) && !/<footer class="hs-foot">[\s\S]*?href="mentorship.html"[\s\S]*?<\/footer>/.test(h)) probs.push(f + ": the foot does not reach mentorship");
     const mark = h.replace(/<script[\s\S]*?<\/script>/g, "");
     for (const u of mark.match(/href="https:\/\/www\.tradingview\.com[^"]*"/g) || []) if (!u.includes("aff_id=1174265")) { probs.push(f + ": a TradingView link without his partner tag"); break; }
     if (/<footer class="hs-foot">|id="not-advice"/.test(h) && !h.includes(HP.PARTNER_LINE)) probs.push(f + ": the foot does not carry the partner line");
-    if (/<nav class="(hs-bot|botnav)"/.test(h) && !/<nav class="(hs-bot|botnav)"[\s\S]*?href="mentorship.html"[\s\S]*?<\/nav>/.test(h)) probs.push(f + ": the phone's bar does not reach mentorship");
+    if (/<nav class="hs-bot"/.test(h) && !new RegExp('<nav class="hs-bot"[\\s\\S]*?href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '"[^>]*>' + HP.BUY + '</a>').test(h)) probs.push(f + ": the phone's bar does not carry the trial button");
   }
   const idx = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
-  /* 15 Nov 2026, his word, late: the hero's button goes straight to the Stripe checkout with its terms beside it, and the
-     hallmark under it carries the weekly count from record.json and links to the record. */
-  const heroBtn = new RegExp('<a class="hs-btn hs-gold" href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '" data-tv="home-hero">Start the 7-day trial</a><span class="hm-terms">7 days free, then €99 a month</span>');
-  if (!heroBtn.test(idx)) probs.push("index.html: the hero's button does not go straight to the checkout with its terms beside it");
-  /* 17 Nov 2026, his word: the front page is a funnel for the indicators and the mentorship; the record's count moves from
-     under the hero to the trust band, counted from record.json, and the price block sells the same trial. */
-  /* 18 Nov 2026, his word: the record is tucked into one answer in the front page's questions. */
-  const faqRec = idx.match(/<summary>Do you publish your own levels\?<\/summary><p>[\s\S]*?Weekly record: <b>(\d+)<\/b> held, <b>(\d+)<\/b> wrong, <b>0<\/b> deleted/);
-  if (!faqRec) probs.push("index.html: the questions do not carry the record's count");
-  else if (+faqRec[1] !== RJ.tally.held || +faqRec[2] !== RJ.tally.wrong) probs.push(`index.html: the record's count reads ${faqRec[1]} held, ${faqRec[2]} wrong; record.json counts ${RJ.tally.held} and ${RJ.tally.wrong}`);
-  if (!new RegExp('<a class="hs-btn hs-gold" href="' + HP.SET_CHECKOUT.replace(/[.\/]/g, "\\$&") + '" data-tv="home-price">Start the 7-day trial</a>').test(idx)) probs.push("index.html: the price block's button does not sell the trial");
-  if (!/id="mentorship"[\s\S]*?href="mentorship.html"/.test(idx)) probs.push("index.html: the mentorship section does not lead to mentorship.html");
+  /* 18 Nov 2026, the team's report by his word: the front page starts trials. At least five buttons in the page itself,
+     every one the set's Stripe link reading Start 7 days free with its own click name; the hero's button straight under
+     the sub; no mentorship, no record and no levels above the foot but the one line under the desk story; every
+     #anchor on the page is kept by its own redirect script. */
+  { const main = (idx.match(/<main[\s\S]*?<\/main>/) || [""])[0];
+    const btns = [...main.matchAll(/<a class="hs-btn hs-gold" href="([^"]+)" data-tv="([^"]+)">([^<]+)<\/a>/g)];
+    if (btns.length < 5 || btns.some(b => b[1] !== HP.SET_CHECKOUT || b[3] !== HP.BUY)) probs.push(`index.html: ${btns.length} trial buttons in the page, not five or more reading ${HP.BUY}`);
+    if (new Set(btns.map(b => b[2])).size !== btns.length) probs.push("index.html: two trial buttons share a click name");
+    if (!/<p class="hm-say">[^<]*<\/p>\s*<p class="hm-acts"><a class="hs-btn hs-gold" href="[^"]+" data-tv="home-hero">/.test(main)) probs.push("index.html: the hero's button is not straight under the sub");
+    if (/href="mentorship.html"/.test(main)) probs.push("index.html: mentorship is above the foot");
+    if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line");
+    const keep = (idx.match(/var keep=(\{[^}]*\})/) || [])[1]; const ids = [...main.matchAll(/\sid="([^"]+)"/g)].map(m => "#" + m[1]);
+    const lost = !keep ? ids : ids.filter(id => !keep.includes(JSON.stringify(id)));
+    if (lost.length) probs.push("index.html: these anchors would bounce to the record: " + lost.join(" ")); }
   { const meth = fs.readFileSync(path.join(__dirname, "method.html"), "utf8");
     const drift = HP.SET_TOOLS.filter(x => !meth.includes(HP.esc(x.q)) || !meth.includes(HP.esc(x.not)));
     if (drift.length) probs.push("method.html no longer carries the words the front page gives " + drift.map(x => x.name).join(", ")); }

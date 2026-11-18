@@ -38,6 +38,8 @@ for (const f of pages) {
   const before = fs.readFileSync(file, "utf8");
   let t = before;
   t = t.replace(/<nav class="hs-nav" aria-label="The site">[\s\S]*?<\/nav>/, m => navFor(currentOf(m) || KEY[f] || "").replace(/^\s+/, ""));
+  /* 18 Nov 2026: one button wording on every page; the band's button goes straight to the set's checkout. */
+  t = t.replace(/<div class="hs-tools">\s*<a class="hs-btn hs-ghost" href="[^"]*" data-tv="(?:plans-)?([^"]*?)(?:-band)?">[^<]*<\/a>/, (m, w) => `<div class="hs-tools">\n      <a class="hs-btn hs-ghost" href="${H.SET_CHECKOUT}" data-tv="band-${w.replace(/^band-/, "")}">${H.BUY}</a>`);
   t = t.replace(/(<nav class="(?:hs-bot|botnav)" aria-label="The site, on a phone">)[\s\S]*?(<\/nav>)/, (m, a, b) => a + botLinks(currentOf(m) || KEY[f] || "") + b);
   if (f !== "record.html") t = t.replace(/<footer class="hs-foot">[\s\S]*?<\/footer>/, H.fanFoot());
   if (f === "method.html") t = t.replace(/<section id="plans"[\s\S]*?<\/section>/, H.plans(R));

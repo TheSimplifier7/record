@@ -74,8 +74,9 @@ const C1 = "This is structural analysis. It is not a recommendation to buy or se
 for (const page of ["levels.html", "index.html"]) {
   let s = ""; try { s = rd(page); } catch (e) {}
   const text = s.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, "");
-  check(text.includes(C1 + " " + C2), page + " carries counsel's two lines word for word (note 51)");
-  check(/it is not a trade result\./i.test(text), page + " says that held is not a trade result");
+  /* 18 Nov 2026: the front page carries no levels, so counsel's lines and the trade-result line stay with the levels. */
+  if (page !== "index.html") check(text.includes(C1 + " " + C2), page + " carries counsel's two lines word for word (note 51)");
+  if (page !== "index.html") check(/it is not a trade result\./i.test(text), page + " says that held is not a trade result");
   check(!/monday/i.test(s), page + " does not say Monday");
   check(!new RegExp(["close", "earns", "it"].join(" "), "i").test(s), page + " does not say how The Fan's line is worked out");
   check(!/—|–|<!--/.test(s) && !/![\s"<]/.test(text), page + " carries no em dash, exclamation mark or HTML comment");
@@ -86,9 +87,10 @@ for (const page of ["levels.html", "index.html"]) {
     check(!!seal && on === seal, page + " carries the record's seal for the plate (" + (on ? on.slice(0, 6).toUpperCase() : "none") + ")"); }
   /* 15 Nov 2026, his word: the home hero's button goes straight to the set's checkout; every other checkout stays on
      method.html. It read: carries no checkout; the plans are on method.html alone. */
+  /* 18 Nov 2026: one button wording everywhere; verify_record checks every checkout link. Here: the levels page sells
+     nothing beyond the band, the phone bar and its one top link. */
   { const n = (s.match(/buy\.stripe\.com/g) || []).length;
-    /* 17 Nov 2026: the front page is the funnel; its hero and its price block each carry the set's checkout. */
-    check(page === "index.html" ? n === 2 : n === 0, page === "index.html" ? page + " carries two checkouts, the hero's and the price block's" : page + " carries no checkout; the plans are on method.html"); }
+    check(page === "index.html" ? n >= 5 : n <= 3, page === "index.html" ? page + " carries the trial button five times or more" : page + " carries the set's checkout only in the band, the phone bar and its top link"); }
 }
 /* 17 Nov 2026, his word: the levels are promised before the London open, 09:00 CET (Madrid time all year). Every linked
    post's own time, read from its id on X, must fall on its day and before 09:00, and no page may promise 08:00 again. */
