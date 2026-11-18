@@ -44,7 +44,7 @@ ${H.band("today", "levels")}
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Daily levels</h1>
       <p class="hm-say">A level for gold, silver and platinum on every trading day, posted on X before the London open. Each one is graded on that day's close, and the wrong ones stay up.</p>
-      <p class="hm-acts">${D.followBtn("levels-top")}<a href="method.html#plans" data-tv="plans-levels-top">Try the set free for 7 days</a></p>
+      <p class="hm-acts">${D.followBtn("levels-top")}<a href="${H.SET_CHECKOUT}" data-tv="levels-top">${H.BUY}</a></p>
       <div class="hm-rec">
         <p data-daily="tally">${D.tally(M)}</p>
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
