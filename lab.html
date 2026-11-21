@@ -96,6 +96,16 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-n{position:absolute;left:0;right:0;text-align:center;font:400 13px/1 var(--c-fig);color:var(--c-ink)}
 .lb-vb:not(.lb-zb){border-bottom:1px solid var(--c-rule-2)}
 .lb-zb{position:relative;height:200px;padding:0}
+.lb-pl{left:6%;right:52%}
+.lb-pr{left:52%;right:6%}
+.lb-nl{left:0;right:50%}
+.lb-nr{left:50%;right:0}
+.lb-one{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--c-sec);z-index:1}
+.lb-key{flex-wrap:wrap;row-gap:6px}
+.lb-key span{white-space:nowrap}
+.lb-nl,.lb-nr{z-index:2}
+.lb-nb{font-weight:400;background:var(--c-raise);padding:0 2px}
+.lb-key .lb-dsh{display:inline-block;width:14px;height:0;border-top:1px dashed var(--c-sec);border-radius:0;vertical-align:3px}
 .lb-zb::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--c-rule-2)}
 .lb-cats{display:grid;column-gap:12px;margin-top:10px;font-size:13px;line-height:1.35;color:var(--c-sec);text-align:center}
 .lb-key{display:flex;gap:20px;margin-bottom:12px;font-size:13px;color:var(--c-sec)}
@@ -156,11 +166,12 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <div class="lb-ledw">
       <p class="lb-led-h">Counted so far</p>
       <ul class="lb-led">
+        <li><a href="#coil">A squeeze comes before a bigger move<span>Does not hold</span></a></li>
         <li><a href="#pools">Swing highs and lows pull price<span>Does not hold</span></a></li>
         <li><a href="#channel">A channel's 2 deviation wall<span>Does not hold</span></a></li>
         <li><a href="#speeds">The slow half reads the day<span>Holds, day-long legs</span></a></li>
         <li><a href="#stack">Every clock behind a turn<span>A lead</span></a></li>
-        <li><a href="#bench">Tight compression before a move<span>On the bench</span></a></li>
+        <li><a href="#bench">Gold turns at round numbers<span>On the bench</span></a></li>
       </ul>
     </div>
   </div>
@@ -171,6 +182,20 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <div class="hm-side"><h2 id="cards-h">The cards</h2><p>One concept a card: the question, what was counted, what came out.</p></div>
     <div class="hm-main">
       <div class="lb-cards">
+        <article class="lb-card" id="coil" aria-labelledby="coil-h">
+          <div class="lb-t">
+            <p class="lb-v">Does not hold</p>
+            <h3 id="coil-h">Does a squeeze on gold come before a bigger move?</h3>
+            <p class="lb-a">No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have passed: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.</p>
+            <p class="lb-d">A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Read in ATRs, the same moves came to 1.05 to 1.14.</p>
+            <p class="lb-desk"><b>From the desk</b>Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.</p>
+          </div>
+          <figure class="lb-fig">
+            <div class="lb-key"><span><i class="lb-b1"></i>after a squeeze</span><span><i class="lb-b3"></i>after an ordinary stretch</span><span><i class="lb-dsh"></i>the usual range for that hour</span></div>
+            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour. 5 minutes, 2025 to 2026: 0.80 after a squeeze, 1.38 after an ordinary stretch. 5 minutes, 2020 to 2025: 0.80 and 1.17. 40 minutes, 2025 to 2026: 0.89 and 1.30. 40 minutes, 2020 to 2025: 0.85 and 1.16"><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-b3 lb-pr" style="height:86.25%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(86.25% + 5px)"><b class="lb-nb">1.38</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-b3 lb-pr" style="height:73.13%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(73.13% + 5px)"><b class="lb-nb">1.17</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:55.63%"></span><span class="lb-n lb-nl" style="bottom:calc(55.63% + 5px)"><b class="lb-nb">0.89</b></span><span class="lb-bar lb-b3 lb-pr" style="height:81.25%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(81.25% + 5px)"><b class="lb-nb">1.30</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:53.13%"></span><span class="lb-n lb-nl" style="bottom:calc(53.13% + 5px)"><b class="lb-nb">0.85</b></span><span class="lb-bar lb-b3 lb-pr" style="height:72.50%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(72.50% + 5px)"><b class="lb-nb">1.16</b></span></div></div>
+            <div class="lb-cats lb-c4"><span>5 min<br>2025 to 2026</span><span>5 min<br>2020 to 2025</span><span>40 min<br>2025 to 2026</span><span>40 min<br>2020 to 2025</span></div>
+            <figcaption>The range of the next 12 candles against the usual range for that hour of the day, the median of each.</figcaption></figure>
+        </article>
         <article class="lb-card" id="pools" aria-labelledby="pools-h">
           <div class="lb-t">
             <p class="lb-v">Does not hold</p>
@@ -240,7 +265,8 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <div class="hm-side"><h2 id="bench-h">On the bench</h2><p>What the lab is counting next.</p></div>
     <div class="hm-main">
       <div class="lb-bench">
-        <div><h3>Does tight compression on gold come before a bigger move?</h3><p>Every squeeze since 2013 against quiet stretches of the same length at the same hour. If it holds, it becomes a tool.</p></div>
+        <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
+        <div><h3>The squeeze most traders run</h3><p>My squeeze did not hold. John Carter's, Bollinger Bands inside Keltner Channels, gets its own count, direction and all.</p></div>
         <div><h3>Swear by a concept?</h3><p>Send it to the lab on <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="lab-bench">X</a>. If enough of you swear by it, it gets counted, and you see the card either way.</p></div>
       </div>
     </div>

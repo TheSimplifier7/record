@@ -47,8 +47,10 @@ const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 
 /* His lines from the desk, one a card. Empty until he writes them. */
-/* 21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
+/* 22 Nov 2026, 00:21: the coil's card from F-001; its desk line drafted in his voice by his standing word.
+   21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
 const DESK = {
+  coil: "Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.",
   pools: "On a bank desk you see the orders, not the lines on a chart. The orders sit where people need to trade, and they move every day. A swing high is a line you drew. Gold has no idea it is there.",
   channel: "A channel is the last fifty closes drawn neatly. The wall promises one close in twenty beyond it and gold gives you one in three. Respect the close, not the line someone fitted to yesterday.",
   speeds: "The fast line keeps you busy. The slow line keeps you in the trade. Over a day the slow half was right more often and changed its mind less than half as often, and every change of mind costs you a spread and a decision.",
@@ -107,8 +109,24 @@ function stackChart() {
             <div class="lb-cats lb-c3">${B.map(([t]) => `<span>${esc(t)}</span>`).join("")}</div>`;
 }
 
+/* The coil, F-001 (ALEMBIC R&D, 22 Nov 2026, RD_FINDINGS): the median range of the next 12 candles against the usual range for
+   that slot of the day over the trailing 365 days; after a squeeze against after an ordinary candle at the same slot. Typed from
+   the finding as filed: 5 minutes 0.80 and 1.38 (chosen), 0.80 and 1.17 (checked); 40 minutes 0.89 and 1.30, 0.85 and 1.16. */
+function coilChart() {
+  const R = [["5 min", "2025 to 2026", 0.80, 1.38], ["5 min", "2020 to 2025", 0.80, 1.17], ["40 min", "2025 to 2026", 0.89, 1.30], ["40 min", "2020 to 2025", 0.85, 1.16]];
+  const max = 1.6;
+  return `<div class="lb-key"><span><i class="lb-b1"></i>after a squeeze</span><span><i class="lb-b3"></i>after an ordinary stretch</span><span><i class="lb-dsh"></i>the usual range for that hour</span></div>
+            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour. 5 minutes, 2025 to 2026: 0.80 after a squeeze, 1.38 after an ordinary stretch. 5 minutes, 2020 to 2025: 0.80 and 1.17. 40 minutes, 2025 to 2026: 0.89 and 1.30. 40 minutes, 2020 to 2025: 0.85 and 1.16">${R.map(([c, w, a, b]) =>
+    `<div class="lb-col"><span class="lb-one" style="bottom:${pct(1, max)}"></span><span class="lb-bar lb-b1 lb-pl" style="height:${pct(a, max)}"></span><span class="lb-n lb-nl" style="bottom:calc(${pct(a, max)} + 5px)"><b class="lb-nb">${a.toFixed(2)}</b></span><span class="lb-bar lb-b3 lb-pr" style="height:${pct(b, max)}"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(${pct(b, max)} + 5px)"><b class="lb-nb">${b.toFixed(2)}</b></span></div>`).join("")}</div>
+            <div class="lb-cats lb-c4">${R.map(([c, w]) => `<span>${c}<br>${w}</span>`).join("")}</div>`;
+}
+
 /* ---- the cards ---- */
 const CARDS = [
+  { id: "coil", verdict: "Does not hold", q: "Does a squeeze on gold come before a bigger move?",
+    a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have passed: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.",
+    svg: coilChart, cap: "The range of the next 12 candles against the usual range for that hour of the day, the median of each.",
+    data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Read in ATRs, the same moves came to 1.05 to 1.14." },
   { id: "pools", verdict: "Does not hold", q: "Do swing highs and lows pull price to them?",
     a: "No. Price reached the nearest untouched swing high or low as often as any level the same distance away, and a swept one turned back no more often than any other high or low.",
     svg: poolsChart, cap: "Reached within 4 hours, in 100, by distance in ATRs. Solid: the nearest untouched swing high (ivory) or low (grey). Dashed: any level as far away. The lines lie on top of each other.",
@@ -141,8 +159,8 @@ const cardHtml = c => `<article class="lb-card" id="${c.id}" aria-labelledby="${
             <figcaption>${esc(c.cap)}</figcaption></figure>
         </article>`;
 
-const LEDGER = [["Swing highs and lows pull price", "Does not hold", "pools"], ["A channel's 2 deviation wall", "Does not hold", "channel"],
-  ["The slow half reads the day", "Holds, day-long legs", "speeds"], ["Every clock behind a turn", "A lead", "stack"], ["Tight compression before a move", "On the bench", "bench"]];
+const LEDGER = [["A squeeze comes before a bigger move", "Does not hold", "coil"], ["Swing highs and lows pull price", "Does not hold", "pools"], ["A channel's 2 deviation wall", "Does not hold", "channel"],
+  ["The slow half reads the day", "Holds, day-long legs", "speeds"], ["Every clock behind a turn", "A lead", "stack"], ["Gold turns at round numbers", "On the bench", "bench"]];
 
 const CSS = `
 html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.92 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif!important;letter-spacing:.005em!important;text-transform:uppercase!important;text-wrap:balance}
@@ -184,6 +202,16 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-n{position:absolute;left:0;right:0;text-align:center;font:400 13px/1 var(--c-fig);color:var(--c-ink)}
 .lb-vb:not(.lb-zb){border-bottom:1px solid var(--c-rule-2)}
 .lb-zb{position:relative;height:200px;padding:0}
+.lb-pl{left:6%;right:52%}
+.lb-pr{left:52%;right:6%}
+.lb-nl{left:0;right:50%}
+.lb-nr{left:50%;right:0}
+.lb-one{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--c-sec);z-index:1}
+.lb-key{flex-wrap:wrap;row-gap:6px}
+.lb-key span{white-space:nowrap}
+.lb-nl,.lb-nr{z-index:2}
+.lb-nb{font-weight:400;background:var(--c-raise);padding:0 2px}
+.lb-key .lb-dsh{display:inline-block;width:14px;height:0;border-top:1px dashed var(--c-sec);border-radius:0;vertical-align:3px}
 .lb-zb::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--c-rule-2)}
 .lb-cats{display:grid;column-gap:12px;margin-top:10px;font-size:13px;line-height:1.35;color:var(--c-sec);text-align:center}
 .lb-key{display:flex;gap:20px;margin-bottom:12px;font-size:13px;color:var(--c-sec)}
@@ -249,7 +277,8 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="bench-h">On the bench</h2><p>What the lab is counting next.</p></div>
     <div class="hm-main">
       <div class="lb-bench">
-        <div><h3>Does tight compression on gold come before a bigger move?</h3><p>Every squeeze since 2013 against quiet stretches of the same length at the same hour. If it holds, it becomes a tool.</p></div>
+        <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
+        <div><h3>The squeeze most traders run</h3><p>My squeeze did not hold. John Carter's, Bollinger Bands inside Keltner Channels, gets its own count, direction and all.</p></div>
         <div><h3>Swear by a concept?</h3><p>Send it to the lab on <a href="${H.LESSONS}" rel="noopener" data-x="lab-bench">X</a>. If enough of you swear by it, it gets counted, and you see the card either way.</p></div>
       </div>
     </div>
