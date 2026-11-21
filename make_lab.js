@@ -47,7 +47,13 @@ const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 
 /* His lines from the desk, one a card. Empty until he writes them. */
-const DESK = { pools: "", channel: "", speeds: "", stack: "" };
+/* 21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
+const DESK = {
+  pools: "On a bank desk you see the orders, not the lines on a chart. The orders sit where people need to trade, and they move every day. A swing high is a line you drew. Gold has no idea it is there.",
+  channel: "A channel is the last fifty closes drawn neatly. The wall promises one close in twenty beyond it and gold gives you one in three. Respect the close, not the line someone fitted to yesterday.",
+  speeds: "The fast line keeps you busy. The slow line keeps you in the trade. Over a day the slow half was right more often and changed its mind less than half as often, and every change of mind costs you a spread and a decision.",
+  stack: "The trades worth sizing up had the whole day behind them, not just the last hour. One clock saying go is an opinion. Every clock saying go is the market agreeing with you. It stays a lead until the sealed test is in, and the card says so."
+};
 
 /* ---- the charts: counts drawn in ink, secondary and muted; figures in Plex Mono ----
    The bars are HTML, so their words never scale with the chart (svgfloor.js sizes words inside an SVG up to
