@@ -262,7 +262,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-main">
       <div class="lb-tools">
         <div><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold is running, and how hard, as a river on your chart. <a href="#speeds">Its card</a></p></div>
-        <div><h3>The Gate</h3><p class="lb-tag">Paid. Joining the set.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
+        <div><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
       </div>
       <p class="hm-free" style="margin-top:28px">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="${H.LESSONS}" rel="noopener" data-x="lab-free-lessons">lessons on X</a>.</p>
     </div>

@@ -190,6 +190,7 @@ html.from-x .hm-fromx{display:flex}
 .hm-card h3{margin:0 0 6px;font:500 18px/1.3 var(--c-ui);color:var(--c-ink)}
 .hm-card p{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
 .hm-row+.hm-fine{margin-top:20px}
+.hm-card .hm-join{margin:0 0 6px;font-size:13px;line-height:1.4;color:var(--c-mut)}
 .hm-steps{margin:0;padding-left:1.2em;font-size:18px;line-height:1.6;color:var(--c-ink)}
 .hm-steps li+li{margin-top:8px}
 .hm-story p{margin:0 0 12px;max-width:40rem;font-size:19px;line-height:1.55;color:var(--c-ink)}
@@ -223,6 +224,16 @@ html.from-x .hm-fromx{display:flex}
    pull request): the 2011 margin hikes were five in eight trading days, TradingView's free plan runs two indicators a
    chart, and he was on the desk from 2003, not since. One button wording, every button a plain Stripe link with its
    own click name. Mentorship, the record and the levels sit in the foot (and one line under the desk story). */
+/* 21 Nov 2026, his word of 21:59: "sounds great to add a joining the set tab on the site". A tool that is live on TradingView and
+   on its way into the set shows here, after the set's own cards, marked Joining the set, and is not counted in the set's
+   number until it moves into H.SET_TOOLS with its page on method.html. The Gate went live, invite-only, at 22:04 Madrid. Its
+   chart is his own publication chart, gold 10 minute on TradingView, 19 and 20 November 2026; its question is the one on its
+   TradingView page. It read, until then, the five cards and the line: Gold, 15 November 2026 and 18 November 2026. */
+const JOINING = [
+  { id: "gate", name: "The Gate", img: "set_gate_gold_10m_2026-11-20", h: 503, when: "10 minute, 19 and 20 November 2026",
+    alt: "The Gate on Bradley's gold 10 minute chart on TradingView, 19 and 20 November 2026",
+    q: "Do the bigger clocks agree with the turn on your chart, and where is the line that proves the trade wrong?" }
+];
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 const TESTIMONIALS = [];   /* real ones only, with their permission; the block shows once one is here */
@@ -270,8 +281,14 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
           <h3>${esc(x.name)}</h3>
           <p>${esc(x.q)}</p>
         </article>`).join("\n        ")}
+        ${JOINING.map(x => `<article class="hm-card hm-joining" id="${x.id}">
+          <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.alt)}" loading="lazy" decoding="async"></figure>
+          <p class="hm-join">Joining the set</p>
+          <h3>${esc(x.name)}</h3>
+          <p>${esc(x.q)}</p>
+        </article>`).join("\n        ")}
       </div>
-      <p class="hm-fine">Gold, ${SET.filter(x => x !== HERO).length ? "15 November 2026 and 18 November 2026" : ""}. Past charts, not live trades. Charts by TradingView.</p>
+      <p class="hm-fine">${JOINING.length ? "Gold, 15 and 18 November 2026; " + JOINING.map(x => x.name + ", " + x.when).join("; ") : "Gold, 15 November 2026 and 18 November 2026"}. Past charts, not live trades. Charts by TradingView.</p>
       <p class="hm-acts">${BTN("set")}</p>
     </div>
   </div></div>
