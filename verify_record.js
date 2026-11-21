@@ -724,7 +724,11 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     if (new Set(btns.map(b => b[2])).size !== btns.length) probs.push("index.html: two trial buttons share a click name");
     if (!/<p class="hm-say">[^<]*<\/p>\s*<p class="hm-acts"><a class="hs-btn hs-gold" href="[^"]+" data-tv="home-hero">/.test(main)) probs.push("index.html: the hero's button is not straight under the sub");
     if (/href="mentorship.html"/.test(main)) probs.push("index.html: mentorship is above the foot");
-    if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line");
+    /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the desk story's one line
+       points to the lab, and the record is above the foot nowhere. It read:
+       if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line"); */
+    if (/href="record.html"/.test(main) || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot");
+    if ((main.match(/href="lab.html"/g) || []).length !== 1) probs.push("index.html: the desk story's one line does not point to the lab");
     const keep = (idx.match(/var keep=(\{[^}]*\})/) || [])[1]; const ids = [...main.matchAll(/\sid="([^"]+)"/g)].map(m => "#" + m[1]);
     const lost = !keep ? ids : ids.filter(id => !keep.includes(JSON.stringify(id)));
     if (lost.length) probs.push("index.html: these anchors would bounce to the record: " + lost.join(" ")); }
