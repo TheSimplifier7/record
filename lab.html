@@ -81,13 +81,29 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-svg{display:block;width:100%;height:auto;overflow:visible}
 .lb-grid line{stroke:var(--c-rule);stroke-width:1;vector-effect:non-scaling-stroke}
 .lb-ax{font:400 12px var(--c-fig);fill:var(--c-mut)}
-.lb-l1,.lb-l2{fill:none;stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.lb-l1{stroke:var(--c-ink)}
-.lb-l2{stroke:var(--c-sec)}
-.lb-dash{stroke-width:1.25;stroke-dasharray:3 3;opacity:.8}
-.lb-b1{background:var(--c-ink)}
-.lb-b2{background:var(--c-sec)}
-.lb-b3{background:var(--c-mut)}
+.lb-red{--k:var(--c-red);--kt:#EE7B70}
+.lb-rose{--k:#F6C9C4;--kt:#F6C9C4}
+.lb-gold{--k:var(--c-gold);--kt:var(--c-gold)}
+.lb-blue{--k:#8DB0F5;--kt:#8DB0F5}
+.lb-ice{--k:#DCE6FA;--kt:#DCE6FA}
+.lb-ivory{--k:var(--c-ink);--kt:var(--c-ink)}
+.lb-grey{--k:var(--c-sec);--kt:var(--c-sec)}
+.lb-ln{fill:none;stroke:var(--k);stroke-width:2.75;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--k) 55%,transparent))}
+.lb-dash{stroke-width:1.75;stroke-dasharray:4 4;filter:none}
+.lb-bar,.lb-hbar{background:var(--k);background:linear-gradient(to top,color-mix(in srgb,var(--k) 55%,transparent),var(--k));box-shadow:0 0 18px color-mix(in srgb,var(--k) 30%,transparent)}
+.lb-hbar{background:linear-gradient(to right,color-mix(in srgb,var(--k) 55%,transparent),var(--k))}
+.lb-bar.lb-neg{background:linear-gradient(to bottom,color-mix(in srgb,var(--k) 55%,transparent),var(--k))}
+.lb-n.lb-red,.lb-n.lb-rose,.lb-n.lb-gold,.lb-n.lb-blue,.lb-n.lb-ivory,.lb-hn{color:var(--kt,var(--c-ink))}
+.lb-key i{background:var(--k)}
+.lb-key i:not(.lb-dsh){box-shadow:0 0 8px color-mix(in srgb,var(--k) 45%,transparent)}
+.lb-v{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--kt)!important}
+.lb-v::before,.lb-lv::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--k);box-shadow:0 0 10px var(--k)}
+.lb-led a span.lb-lv{display:inline-flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--kt)}
+.lb-led a:hover span.lb-lv{color:var(--kt);filter:brightness(1.15)}
+.lb-tally{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:12px 0 4px}
+.lb-tally i{height:6px;border-radius:3px;background:var(--k);box-shadow:0 0 12px color-mix(in srgb,var(--k) 50%,transparent)}
+.lb-tools>div{padding-top:16px;border-top:2px solid var(--k)}
+.lb-tools>div .lb-tag{color:var(--kt)}
 .lb-c3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .lb-c4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .lb-vb{display:grid;column-gap:12px;height:168px;padding-top:24px}
@@ -100,12 +116,12 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-pr{left:52%;right:6%}
 .lb-nl{left:0;right:50%}
 .lb-nr{left:50%;right:0}
-.lb-one{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--c-sec);z-index:1}
+.lb-one{position:absolute;left:0;right:0;height:0;border-top:1.5px dashed var(--c-ink);z-index:1;opacity:.85}
 .lb-key{flex-wrap:wrap;row-gap:6px}
 .lb-key span{white-space:nowrap}
 .lb-nl,.lb-nr{z-index:2}
 .lb-nb{font-weight:400;background:var(--c-raise);padding:0 2px}
-.lb-key .lb-dsh{display:inline-block;width:14px;height:0;border-top:1px dashed var(--c-sec);border-radius:0;vertical-align:3px}
+.lb-key .lb-dsh{display:inline-block;width:16px;height:0;background:none;border-top:2px dashed var(--k,var(--c-ink));border-radius:0;vertical-align:3px}
 .lb-zb::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--c-rule-2)}
 .lb-cats{display:grid;column-gap:12px;margin-top:10px;font-size:13px;line-height:1.35;color:var(--c-sec);text-align:center}
 .lb-key{display:flex;gap:20px;margin-bottom:12px;font-size:13px;color:var(--c-sec)}
@@ -114,7 +130,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-hg p{margin:0 0 6px;font-size:13px;line-height:1.35;color:var(--c-sec)}
 .lb-hr{display:flex;align-items:center;gap:8px;height:18px}
 .lb-hbar{flex:none;height:12px;border-radius:2px}
-.lb-hn{font:400 13px/1 var(--c-fig);color:var(--c-ink)}
+.lb-hn{font:400 13px/1 var(--c-fig)}
 .lb-fm{color:var(--c-sec)}
 .lb-bench{display:grid;gap:32px}
 .lb-bench h3,.lb-tools h3{margin:0 0 6px;font:500 18px/1.3 var(--c-ui);color:var(--c-ink)}
@@ -165,13 +181,14 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     </div>
     <div class="lb-ledw">
       <p class="lb-led-h">Counted so far</p>
+      <div class="lb-tally" aria-hidden="true"><i class="lb-red"></i><i class="lb-red"></i><i class="lb-red"></i><i class="lb-gold"></i><i class="lb-ivory"></i><i class="lb-grey"></i></div>
       <ul class="lb-led">
-        <li><a href="#coil">A squeeze comes before a bigger move<span>Does not hold</span></a></li>
-        <li><a href="#pools">Swing highs and lows pull price<span>Does not hold</span></a></li>
-        <li><a href="#channel">A channel's 2 deviation wall<span>Does not hold</span></a></li>
-        <li><a href="#speeds">The slow half reads the day<span>Holds, day-long legs</span></a></li>
-        <li><a href="#stack">Every clock behind a turn<span>A lead</span></a></li>
-        <li><a href="#bench">Gold turns at round numbers<span>On the bench</span></a></li>
+        <li><a href="#coil">A squeeze comes before a bigger move<span class="lb-lv lb-red">Does not hold</span></a></li>
+        <li><a href="#pools">Swing highs and lows pull price<span class="lb-lv lb-red">Does not hold</span></a></li>
+        <li><a href="#channel">A channel's 2 deviation wall<span class="lb-lv lb-red">Does not hold</span></a></li>
+        <li><a href="#speeds">The slow half reads the day<span class="lb-lv lb-gold">Holds, day-long legs</span></a></li>
+        <li><a href="#stack">Every clock behind a turn<span class="lb-lv lb-ivory">A lead</span></a></li>
+        <li><a href="#bench">Gold turns at round numbers<span class="lb-lv lb-grey">On the bench</span></a></li>
       </ul>
     </div>
   </div>
@@ -179,57 +196,60 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 
 <section class="hm-sec" id="cards" aria-labelledby="cards-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="cards-h">The cards</h2><p>One concept a card: the question, what was counted, what came out.</p></div>
+    <div class="hm-side"><h2 id="cards-h">The cards</h2><p>One concept a card: the question, what was counted, what came out. Gold where it held, red where it broke, ivory while it is a lead. Blue is what it was measured against.</p></div>
     <div class="hm-main">
       <div class="lb-cards">
         <article class="lb-card" id="coil" aria-labelledby="coil-h">
           <div class="lb-t">
-            <p class="lb-v">Does not hold</p>
+            <p class="lb-v lb-red">Does not hold</p>
             <h3 id="coil-h">Does a squeeze on gold come before a bigger move?</h3>
             <p class="lb-a">No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have passed: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.</p>
             <p class="lb-d">A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Read in ATRs, the same moves came to 1.05 to 1.14.</p>
             <p class="lb-desk"><b>From the desk</b>Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.</p>
           </div>
           <figure class="lb-fig">
-            <div class="lb-key"><span><i class="lb-b1"></i>after a squeeze</span><span><i class="lb-b3"></i>after an ordinary stretch</span><span><i class="lb-dsh"></i>the usual range for that hour</span></div>
-            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour. 5 minutes, 2025 to 2026: 0.80 after a squeeze, 1.38 after an ordinary stretch. 5 minutes, 2020 to 2025: 0.80 and 1.17. 40 minutes, 2025 to 2026: 0.89 and 1.30. 40 minutes, 2020 to 2025: 0.85 and 1.16"><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-b3 lb-pr" style="height:86.25%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(86.25% + 5px)"><b class="lb-nb">1.38</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-b3 lb-pr" style="height:73.13%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(73.13% + 5px)"><b class="lb-nb">1.17</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:55.63%"></span><span class="lb-n lb-nl" style="bottom:calc(55.63% + 5px)"><b class="lb-nb">0.89</b></span><span class="lb-bar lb-b3 lb-pr" style="height:81.25%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(81.25% + 5px)"><b class="lb-nb">1.30</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-b1 lb-pl" style="height:53.13%"></span><span class="lb-n lb-nl" style="bottom:calc(53.13% + 5px)"><b class="lb-nb">0.85</b></span><span class="lb-bar lb-b3 lb-pr" style="height:72.50%"></span><span class="lb-n lb-nr lb-fm" style="bottom:calc(72.50% + 5px)"><b class="lb-nb">1.16</b></span></div></div>
+            <div class="lb-key"><span><i class="lb-red"></i>after a squeeze</span><span><i class="lb-blue"></i>after an ordinary stretch</span><span><i class="lb-dsh"></i>the usual range for that hour</span></div>
+            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour. 5 minutes, 2025 to 2026: 0.80 after a squeeze, 1.38 after an ordinary stretch. 5 minutes, 2020 to 2025: 0.80 and 1.17. 40 minutes, 2025 to 2026: 0.89 and 1.30. 40 minutes, 2020 to 2025: 0.85 and 1.16"><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-red lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl lb-red" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-blue lb-pr" style="height:86.25%"></span><span class="lb-n lb-nr lb-blue" style="bottom:calc(86.25% + 5px)"><b class="lb-nb">1.38</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-red lb-pl" style="height:50.00%"></span><span class="lb-n lb-nl lb-red" style="bottom:calc(50.00% + 5px)"><b class="lb-nb">0.80</b></span><span class="lb-bar lb-blue lb-pr" style="height:73.13%"></span><span class="lb-n lb-nr lb-blue" style="bottom:calc(73.13% + 5px)"><b class="lb-nb">1.17</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-red lb-pl" style="height:55.63%"></span><span class="lb-n lb-nl lb-red" style="bottom:calc(55.63% + 5px)"><b class="lb-nb">0.89</b></span><span class="lb-bar lb-blue lb-pr" style="height:81.25%"></span><span class="lb-n lb-nr lb-blue" style="bottom:calc(81.25% + 5px)"><b class="lb-nb">1.30</b></span></div><div class="lb-col"><span class="lb-one" style="bottom:62.50%"></span><span class="lb-bar lb-red lb-pl" style="height:53.13%"></span><span class="lb-n lb-nl lb-red" style="bottom:calc(53.13% + 5px)"><b class="lb-nb">0.85</b></span><span class="lb-bar lb-blue lb-pr" style="height:72.50%"></span><span class="lb-n lb-nr lb-blue" style="bottom:calc(72.50% + 5px)"><b class="lb-nb">1.16</b></span></div></div>
             <div class="lb-cats lb-c4"><span>5 min<br>2025 to 2026</span><span>5 min<br>2020 to 2025</span><span>40 min<br>2025 to 2026</span><span>40 min<br>2020 to 2025</span></div>
             <figcaption>The range of the next 12 candles against the usual range for that hour of the day, the median of each.</figcaption></figure>
         </article>
         <article class="lb-card" id="pools" aria-labelledby="pools-h">
           <div class="lb-t">
-            <p class="lb-v">Does not hold</p>
+            <p class="lb-v lb-red">Does not hold</p>
             <h3 id="pools-h">Do swing highs and lows pull price to them?</h3>
             <p class="lb-a">No. Price reached the nearest untouched swing high or low as often as any level the same distance away, and a swept one turned back no more often than any other high or low.</p>
             <p class="lb-d">5 minute gold, 2 Jan 2020 to 30 Jun 2025: 28,613 swing highs and 29,683 swing lows. The same answer from 1 Jul 2025 to 30 Oct 2026.</p>
             <p class="lb-desk"><b>From the desk</b>On a bank desk you see the orders, not the lines on a chart. The orders sit where people need to trade, and they move every day. A swing high is a line you drew. Gold has no idea it is there.</p>
           </div>
           <figure class="lb-fig">
+            <div class="lb-key"><span><i class="lb-red"></i>swing high</span><span><i class="lb-rose"></i>swing low</span><span><i class="lb-dsh lb-blue"></i>any level as far away</span></div>
             <svg class="lb-svg" viewBox="0 0 320 164" role="img" aria-label="Reached within 4 hours, in 100: swing highs 86.7, 71.6, 50.1 and 19.5 by distance, against 87.8, 72.3, 50.4 and 20.5 for any level as far away; swing lows 87.5, 71.5, 49.9 and 19.2, against 86.8, 70.7, 49.2 and 19.8">
   <g class="lb-grid"><line x1="0" x2="320" y1="16" y2="16"/><line x1="0" x2="320" y1="86" y2="86"/><line x1="0" x2="320" y1="156" y2="156"/></g>
   <text class="lb-ax" x="0" y="12">100</text><text class="lb-ax" x="0" y="82">50</text><text class="lb-ax" x="0" y="152">0</text>
-  <polyline class="lb-l1" points="40,34.6 120,55.8 200,85.9 280,128.7"/><polyline class="lb-l1 lb-dash" points="40,33.1 120,54.8 200,85.4 280,127.3"/>
-  <polyline class="lb-l2" points="40,33.5 120,55.9 200,86.1 280,129.1"/><polyline class="lb-l2 lb-dash" points="40,34.5 120,57.0 200,87.1 280,128.3"/>
+  <defs><linearGradient id="lb-pool-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0604A" stop-opacity=".32"/><stop offset="1" stop-color="#F0604A" stop-opacity="0"/></linearGradient></defs>
+  <polygon class="lb-area" fill="url(#lb-pool-fill)" points="40,156 40,34.6 120,55.8 200,85.9 280,128.7 280,156"/>
+  <polyline class="lb-ln lb-red" points="40,34.6 120,55.8 200,85.9 280,128.7"/><polyline class="lb-ln lb-rose" points="40,33.5 120,55.9 200,86.1 280,129.1"/>
+  <polyline class="lb-ln lb-dash lb-blue" points="40,33.1 120,54.8 200,85.4 280,127.3"/><polyline class="lb-ln lb-dash lb-ice" points="40,34.5 120,57.0 200,87.1 280,128.3"/>
 </svg>
             <div class="lb-cats lb-c4"><span>under 1</span><span>1 to 2</span><span>2 to 4</span><span>over 4</span></div>
-            <figcaption>Reached within 4 hours, in 100, by distance in ATRs. Solid: the nearest untouched swing high (ivory) or low (grey). Dashed: any level as far away. The lines lie on top of each other.</figcaption></figure>
+            <figcaption>Reached within 4 hours, in 100, by distance in ATRs: the nearest untouched swing high or low, against any level as far away (dashed). The lines lie on top of each other.</figcaption></figure>
         </article>
         <article class="lb-card" id="channel" aria-labelledby="channel-h">
           <div class="lb-t">
-            <p class="lb-v">Does not hold</p>
+            <p class="lb-v lb-red">Does not hold</p>
             <h3 id="channel-h">Does a channel's 2 deviation wall hold?</h3>
             <p class="lb-a">Not as promised. Carried ten candles on, one close in three went beyond it, against one in twenty promised, and more than twice as often against the run as with it.</p>
             <p class="lb-d">5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025: 8,081 channels. From 1 Jul 2025 to 30 Oct 2026: 33.2 beyond.</p>
             <p class="lb-desk"><b>From the desk</b>A channel is the last fifty closes drawn neatly. The wall promises one close in twenty beyond it and gold gives you one in three. Respect the close, not the line someone fitted to yesterday.</p>
           </div>
           <figure class="lb-fig">
-            <div class="lb-vb lb-c4" role="img" aria-label="Closes beyond a 2 deviation wall in the next 10 candles, in 100: promised 4.6, beyond in all 31.9, with the run 9.3, against the run 22.6"><div class="lb-col"><span class="lb-bar lb-b3" style="height:11.50%"></span><span class="lb-n" style="bottom:calc(11.50% + 6px)">4.6</span></div><div class="lb-col"><span class="lb-bar lb-b1" style="height:79.75%"></span><span class="lb-n" style="bottom:calc(79.75% + 6px)">31.9</span></div><div class="lb-col"><span class="lb-bar lb-b2" style="height:23.25%"></span><span class="lb-n" style="bottom:calc(23.25% + 6px)">9.3</span></div><div class="lb-col"><span class="lb-bar lb-b2" style="height:56.50%"></span><span class="lb-n" style="bottom:calc(56.50% + 6px)">22.6</span></div></div>
+            <div class="lb-vb lb-c4" role="img" aria-label="Closes beyond a 2 deviation wall in the next 10 candles, in 100: promised 4.6, beyond in all 31.9, with the run 9.3, against the run 22.6"><div class="lb-col"><span class="lb-bar lb-blue" style="height:11.50%"></span><span class="lb-n lb-blue" style="bottom:calc(11.50% + 6px)">4.6</span></div><div class="lb-col"><span class="lb-bar lb-red" style="height:79.75%"></span><span class="lb-n lb-red" style="bottom:calc(79.75% + 6px)">31.9</span></div><div class="lb-col"><span class="lb-bar lb-rose" style="height:23.25%"></span><span class="lb-n lb-rose" style="bottom:calc(23.25% + 6px)">9.3</span></div><div class="lb-col"><span class="lb-bar lb-red" style="height:56.50%"></span><span class="lb-n lb-red" style="bottom:calc(56.50% + 6px)">22.6</span></div></div>
             <div class="lb-cats lb-c4"><span>promised</span><span>beyond, all</span><span>with the run</span><span>against the run</span></div>
             <figcaption>Closes beyond a wall in the next 10 candles, in 100.</figcaption></figure>
         </article>
         <article class="lb-card" id="speeds" aria-labelledby="speeds-h">
           <div class="lb-t">
-            <p class="lb-v">Holds, on legs about a day long</p>
+            <p class="lb-v lb-gold">Holds, on legs about a day long</p>
             <h3 id="speeds-h">Does the slow half of a trend read the day better than the fast half?</h3>
             <p class="lb-a">Yes, on legs about a day long: 69.9 in 100 against 67.5, and 69.3 against 66.7 on years the count never saw, changing colour less than half as often. On small legs the fast half reads better, so The Flow keeps both.</p>
             <p class="lb-d">5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348.</p>
@@ -237,13 +257,13 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
             <p class="lb-desk"><b>From the desk</b>The fast line keeps you busy. The slow line keeps you in the trade. Over a day the slow half was right more often and changed its mind less than half as often, and every change of mind costs you a spread and a decision.</p>
           </div>
           <figure class="lb-fig">
-            <div class="lb-key"><span><i class="lb-b1"></i>slow half</span><span><i class="lb-b3"></i>fast half</span></div>
-            <div class="lb-hb" role="img" aria-label="The slow half against the fast half. Legs about a day long: 69.9 against 67.5. Small legs: 60.2 against 68.0. Colour changes a day: 4.3 against 9.7"><div class="lb-hg"><p>Legs about a day long, read right, in 100</p><div class="lb-hr"><span class="lb-hbar lb-b1" style="width:calc((100% - 56px) * 0.6990)"></span><span class="lb-hn">69.9</span></div><div class="lb-hr"><span class="lb-hbar lb-b3" style="width:calc((100% - 56px) * 0.6750)"></span><span class="lb-hn lb-fm">67.5</span></div></div><div class="lb-hg"><p>Small legs, read right, in 100</p><div class="lb-hr"><span class="lb-hbar lb-b1" style="width:calc((100% - 56px) * 0.6020)"></span><span class="lb-hn">60.2</span></div><div class="lb-hr"><span class="lb-hbar lb-b3" style="width:calc((100% - 56px) * 0.6800)"></span><span class="lb-hn lb-fm">68.0</span></div></div><div class="lb-hg"><p>Colour changes a day</p><div class="lb-hr"><span class="lb-hbar lb-b1" style="width:calc((100% - 56px) * 0.3583)"></span><span class="lb-hn">4.3</span></div><div class="lb-hr"><span class="lb-hbar lb-b3" style="width:calc((100% - 56px) * 0.8083)"></span><span class="lb-hn lb-fm">9.7</span></div></div></div>
+            <div class="lb-key"><span><i class="lb-gold"></i>slow half</span><span><i class="lb-blue"></i>fast half</span></div>
+            <div class="lb-hb" role="img" aria-label="The slow half against the fast half. Legs about a day long: 69.9 against 67.5. Small legs: 60.2 against 68.0. Colour changes a day: 4.3 against 9.7"><div class="lb-hg"><p>Legs about a day long, read right, in 100</p><div class="lb-hr"><span class="lb-hbar lb-gold" style="width:calc((100% - 56px) * 0.6990)"></span><span class="lb-hn lb-gold">69.9</span></div><div class="lb-hr"><span class="lb-hbar lb-blue" style="width:calc((100% - 56px) * 0.6750)"></span><span class="lb-hn lb-blue">67.5</span></div></div><div class="lb-hg"><p>Small legs, read right, in 100</p><div class="lb-hr"><span class="lb-hbar lb-gold" style="width:calc((100% - 56px) * 0.6020)"></span><span class="lb-hn lb-gold">60.2</span></div><div class="lb-hr"><span class="lb-hbar lb-blue" style="width:calc((100% - 56px) * 0.6800)"></span><span class="lb-hn lb-blue">68.0</span></div></div><div class="lb-hg"><p>Colour changes a day</p><div class="lb-hr"><span class="lb-hbar lb-gold" style="width:calc((100% - 56px) * 0.3583)"></span><span class="lb-hn lb-gold">4.3</span></div><div class="lb-hr"><span class="lb-hbar lb-blue" style="width:calc((100% - 56px) * 0.8083)"></span><span class="lb-hn lb-blue">9.7</span></div></div></div>
             <figcaption>The slow half: the 26 over or under the 60. The fast half: the 12 over or under the 26.</figcaption></figure>
         </article>
         <article class="lb-card" id="stack" aria-labelledby="stack-h">
           <div class="lb-t">
-            <p class="lb-v">A lead, not yet a sealed test</p>
+            <p class="lb-v lb-ivory">A lead, not yet a sealed test</p>
             <h3 id="stack-h">Does a turn pay more with every bigger clock behind it?</h3>
             <p class="lb-a">On 5 minute gold since July 2014, 11,169 turns with the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind them made 0.140 of their risk a turn, and were ahead in each of three stretches of years. Turns against the day's clock lost 0.153.</p>
             <p class="lb-d">The turn: the chart's own 40 candle average changing direction. 5 minute gold, July 2014 to 2 Nov 2026.</p>
@@ -251,7 +271,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
             <p class="lb-desk"><b>From the desk</b>The trades worth sizing up had the whole day behind them, not just the last hour. One clock saying go is an opinion. Every clock saying go is the market agreeing with you. It stays a lead until the sealed test is in, and the card says so.</p>
           </div>
           <figure class="lb-fig">
-            <div class="lb-vb lb-zb lb-c3" role="img" aria-label="Average a turn in units of its risk: every clock behind plus 0.140, the day's clock behind plus 0.075, the day's clock against minus 0.153"><div class="lb-col"><span class="lb-bar lb-b1" style="bottom:50%;height:35.00%"></span><span class="lb-n" style="bottom:calc(50% + 35.00% + 6px)">+0.140</span></div><div class="lb-col"><span class="lb-bar lb-b2" style="bottom:50%;height:18.75%"></span><span class="lb-n" style="bottom:calc(50% + 18.75% + 6px)">+0.075</span></div><div class="lb-col"><span class="lb-bar lb-b3" style="top:50%;bottom:auto;height:38.25%"></span><span class="lb-n" style="top:calc(50% + 38.25% + 6px);bottom:auto">−0.153</span></div></div>
+            <div class="lb-vb lb-zb lb-c3" role="img" aria-label="Average a turn in units of its risk: every clock behind plus 0.140, the day's clock behind plus 0.075, the day's clock against minus 0.153"><div class="lb-col"><span class="lb-bar lb-ivory" style="bottom:50%;height:35.00%"></span><span class="lb-n lb-ivory" style="bottom:calc(50% + 35.00% + 6px)">+0.140</span></div><div class="lb-col"><span class="lb-bar lb-blue" style="bottom:50%;height:18.75%"></span><span class="lb-n lb-blue" style="bottom:calc(50% + 18.75% + 6px)">+0.075</span></div><div class="lb-col"><span class="lb-bar lb-neg lb-red" style="top:50%;bottom:auto;height:38.25%"></span><span class="lb-n lb-red" style="top:calc(50% + 38.25% + 6px);bottom:auto">−0.153</span></div></div>
             <div class="lb-cats lb-c3"><span>every clock behind</span><span>the day's clock behind</span><span>the day's clock against</span></div>
             <figcaption>Average a turn, in units of its risk. Exits at the next 50 dollar levels, spread paid.</figcaption></figure>
         </article>
@@ -278,8 +298,8 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>Only what held. The question behind each tool is on its card.</p></div>
     <div class="hm-main">
       <div class="lb-tools">
-        <div><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold is running, and how hard, as a river on your chart. <a href="#speeds">Its card</a></p></div>
-        <div><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
+        <div class="lb-gold"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold is running, and how hard, as a river on your chart. <a href="#speeds">Its card</a></p></div>
+        <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
       </div>
       <p class="hm-free" style="margin-top:28px">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="https://x.com/TheSimplifier7" rel="noopener" data-x="lab-free-lessons">lessons on X</a>.</p>
     </div>
