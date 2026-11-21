@@ -234,6 +234,8 @@ const FAQ10 = [
   ["Does it make the decisions for me?", "No. Nothing on the chart says buy or sell. You read it, you decide."],
   ["Which metals?", "Gold, silver and platinum."]
 ];
+/* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the line under the desk story points
+   to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
 const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
 
 <section class="hm-hero" aria-labelledby="hm-h1">
@@ -299,7 +301,7 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
         <p>That is the habit these tools put on your chart.</p>
       </div>
       <p class="hm-links"><a href="${H.LESSONS}" rel="noopener" data-x="home-desk-lesson">Today's lesson is on X</a></p>
-      <p class="hm-fine">Every level I name is graded in public on the close: <a href="record.html">the record</a>.</p>
+      <p class="hm-fine">Every concept the crowd swears by, counted on gold since 2013: <a href="lab.html">the lab</a>.</p>
     </div>
   </div></div>
 </section>

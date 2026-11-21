@@ -113,8 +113,10 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
    Mentorship, Free tools. */
 const LESSONS = "https://x.com/TheSimplifier7";
 const BUY = "Start 7 days free";
+/* 21 Nov 2026, his word: "we need to showcase that we are an indicator lab". The lab joins the band. It read: The set, Pricing, Lessons. */
 const NAV = [
   ["set", "./#set", "The set"],
+  ["lab", "lab.html", "The lab"],
   ["pricing", "./#pricing", "Pricing"],
   ["lessons", LESSONS, "Lessons"]
 ];
@@ -175,13 +177,14 @@ function bot(current) {
    What it shows, Plans and the free trial, and the menu read The Fan and Try The Fan free. */
 const BILLING = "https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00";
 const RISK = "Education and charting tools only. Not investment advice. Trading involves risk and you can lose money. Past charts do not predict future prices.";
+/* 21 Nov 2026, his word of 19:57: "i don't use the record anymore". The foot's first link is the lab. It read: <a href="record.html">The record</a>. record.html stays where it is, whole. */
 const fanFoot = () => `<footer class="hs-foot"><div class="hs-wrap hs-foot-in">
   <div class="hs-foot-id">
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <p>${RISK}</p>
     <p>${PARTNER_LINE}</p>
   </div>
-  <nav aria-label="The site"><p class="hs-foot-h">The site</p><a href="record.html">The record</a><a href="tools.html">Free tools</a><a href="${LESSONS}" rel="noopener">Lessons on X</a><a href="mentorship.html">Want it taught one to one? Ask about mentorship.</a></nav>
+  <nav aria-label="The site"><p class="hs-foot-h">The site</p><a href="lab.html">The lab</a><a href="tools.html">Free tools</a><a href="${LESSONS}" rel="noopener">Lessons on X</a><a href="mentorship.html">Want it taught one to one? Ask about mentorship.</a></nav>
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a><a href="${BILLING}">Manage subscription</a></nav>
 </div></footer>`;
 
