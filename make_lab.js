@@ -166,7 +166,8 @@ const CARDS = [
     a: "Yes, on legs about a day long: 69.9 in 100 against 67.5, and 69.3 against 66.7 on years the count never saw, changing colour less than half as often. On small legs the fast half reads better, so The Flow keeps both.",
     svg: speedsChart, cap: "The slow half: the 26 over or under the 60. The fast half: the 12 over or under the 26.",
     data: "5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348.",
-    shipped: "Shipped in The Flow: its tide takes its own side." },
+    shipped: "Shipped in The Flow: its tide takes its own side.",
+    owed: "I counted this before the lab had its standing protocol. Its reading under that protocol is owed, and I'll print it here whichever way it falls." },
   { id: "stack", led: "Every clock behind a turn", ledv: "A lead", tone: "lb-ivory", verdict: "A lead, not yet a sealed test", q: "Does a turn pay more with every bigger clock behind it?",
     a: "On 5 minute gold since July 2014, 11,169 turns with the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind them made 0.140 of their risk a turn, and were ahead in each of three stretches of years. Turns against the day's clock lost 0.153.",
     svg: stackChart, cap: "Average a turn, in units of its risk. Exits at the next 50 dollar levels, spread paid.",
@@ -204,8 +205,8 @@ const cardHtml = c => `<article class="lb-card" id="${c.id}" aria-labelledby="${
             <p class="lb-v ${c.tone}">${esc(c.verdict)}</p>
             <h3 id="${c.id}-h">${esc(c.q)}</h3>
             <p class="lb-a">${esc(c.a)}</p>
-            <p class="lb-d">${esc(c.data)}</p>${c.shipped ? `\n            <p class="lb-s">${esc(c.shipped)}</p>` : ""}${DESK[c.id] ? `\n            <p class="lb-desk"><b>From the desk</b>${esc(DESK[c.id])}</p>` : ""}
-            <p class="lb-rule">Trade it differently? <a href="${H.LESSONS}" rel="noopener" data-x="lab-rule-${c.id}">Send me your exact rule on X</a> and I'll count it.</p>
+            <p class="lb-d">${esc(c.data)}</p>${c.shipped ? `\n            <p class="lb-s">${esc(c.shipped)}</p>` : ""}${c.owed ? `\n            <p class="lb-d">${esc(c.owed)}</p>` : ""}${DESK[c.id] ? `\n            <p class="lb-desk"><b>From the desk</b>${esc(DESK[c.id])}</p>` : ""}
+            <p class="lb-rule">Trade it differently? <a href="${H.LESSONS}" rel="noopener" data-x="lab-rule-${c.id}">Send me your exact rule on X</a>. Each month I count the rule asked for most.</p>
           </div>
           <figure class="lb-fig">
             ${c.svg()}
