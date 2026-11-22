@@ -1,0 +1,201 @@
+{
+ "about": "The lab's findings as filed, copied from its one source (FINDINGS.json in ALEMBIC Mark 2). make_lab.js draws every chart from this file and refuses to print a figure it does not hold.",
+ "cards": {
+  "pools": {
+   "id": "F-000a",
+   "question": "Do swing highs and lows pull price to them?",
+   "verdict": "DOES NOT HOLD",
+   "filed": "2026-11-21",
+   "by": "the lab, before R&D",
+   "figures": {
+    "reached_within_4h_in_100": {
+     "swing_highs": 39.7,
+     "any_level_as_far": 40.4,
+     "swing_lows": 37.1,
+     "any_level_as_far_lows": 37.1
+    },
+    "swept_turned_back_1atr_in_100": {
+     "highs": 46.4,
+     "other_highs": 47.5,
+     "lows": 51.5,
+     "other_lows": 51.5
+    },
+    "lab_chart_by_distance_in_100": {
+     "swing_highs": [
+      86.7,
+      71.6,
+      50.1,
+      19.5
+     ],
+     "any_level_highs": [
+      87.8,
+      72.3,
+      50.4,
+      20.5
+     ],
+     "swing_lows": [
+      87.5,
+      71.5,
+      49.9,
+      19.2
+     ],
+     "any_level_lows": [
+      86.8,
+      70.7,
+      49.2,
+      19.8
+     ],
+     "distance_atr_buckets": [
+      "under 1",
+      "1 to 2",
+      "2 to 4",
+      "over 4"
+     ]
+    },
+    "events": {
+     "swing_highs": 28613,
+     "swing_lows": 29683
+    }
+   },
+   "window": "5 minute gold, 2 Jan 2020 to 30 Jun 2025; the same from 1 Jul 2025 to 30 Oct 2026"
+  },
+  "channel": {
+   "id": "F-000b",
+   "question": "Does a channel's 2 deviation wall hold?",
+   "verdict": "DOES NOT HOLD as promised",
+   "filed": "2026-11-21",
+   "by": "the lab, before R&D",
+   "figures": {
+    "closes_beyond_in_next_10_in_100": {
+     "promised": 4.6,
+     "beyond_all": 31.9,
+     "beyond_all_recent": 33.2,
+     "with_the_run": 9.3,
+     "against_the_run": 22.6,
+     "quantile_regression_walls": 49.5
+    },
+    "channels": 8081
+   },
+   "window": "5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025; recent 1 Jul 2025 to 30 Oct 2026"
+  },
+  "speeds": {
+   "id": "F-000c",
+   "question": "Does the slow half of a trend read the day better than the fast half?",
+   "verdict": "HOLDS on legs about a day long",
+   "filed": "2026-11-21",
+   "by": "the lab, before R&D",
+   "figures": {
+    "day_legs_read_right_in_100": {
+     "slow_chosen": 69.9,
+     "fast_chosen": 67.5,
+     "slow_checked": 69.3,
+     "fast_checked": 66.7
+    },
+    "small_legs_read_right_in_100": {
+     "slow": 60.2,
+     "fast": 68.0
+    },
+    "colour_changes_a_day": {
+     "slow": 4.3,
+     "fast": 9.7
+    },
+    "day_legs": {
+     "chosen": 325,
+     "checked": 1348
+    }
+   },
+   "window": "5 minute gold, chosen 1 Jul 2025 to 2 Nov 2026, checked 2 Jan 2020 to 30 Jun 2025",
+   "definitions": [
+    "the slow half: the 26 over or under the 60 (The Assay's tide); the fast half: the 12 over or under the 26 (the wave); legs about a day long: the zigzag at 25 mean bar moves; small legs: the zigzag at 10"
+   ]
+  },
+  "stack": {
+   "id": "F-000d",
+   "question": "Does a turn pay more with every bigger clock behind it?",
+   "verdict": "A LEAD",
+   "filed": "2026-11-19",
+   "by": "the lab, before R&D",
+   "figures": {
+    "turns_every_clock_behind": 11169,
+    "R_per_turn": {
+     "every_clock_behind": 0.14,
+     "every_clock_behind_t": 7.97,
+     "day_clock_behind": 0.075,
+     "day_clock_against": -0.153
+    },
+    "exit": "his 50 dollar levels, spread paid"
+   },
+   "window": "5 minute gold, July 2014 to 2 Nov 2026",
+   "definitions": [
+    "the turn: the chart's own 40 candle average changing direction, on 5 minutes; the stack: the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind the turn; ahead in each of three stretches of years"
+   ]
+  },
+  "coil": {
+   "id": "F-001",
+   "question": "Does a squeeze on gold come before a bigger move?",
+   "verdict": "DOES NOT HOLD",
+   "filed": "2026-11-22 00:1x",
+   "by": "R&D",
+   "cells": [
+    {
+     "clock": "5m",
+     "window": "chosen",
+     "edge": 0.582,
+     "coil_read": 0.8,
+     "baseline_read": 1.38,
+     "coils": 486,
+     "never_broke": 43,
+     "beat_baseline_median_in_100": 11.5,
+     "edge_in_atr": 1.053
+    },
+    {
+     "clock": "5m",
+     "window": "checked",
+     "edge": 0.685,
+     "coil_read": 0.8,
+     "baseline_read": 1.17,
+     "coils": 3210,
+     "never_broke": 452,
+     "beat_baseline_median_in_100": 19.1,
+     "edge_in_atr": 1.077
+    },
+    {
+     "clock": "40m",
+     "window": "chosen",
+     "edge": 0.687,
+     "coil_read": 0.89,
+     "baseline_read": 1.3,
+     "coils": 76,
+     "never_broke": 4,
+     "beat_baseline_median_in_100": 17.1,
+     "edge_in_atr": 1.144
+    },
+    {
+     "clock": "40m",
+     "window": "checked",
+     "edge": 0.731,
+     "coil_read": 0.85,
+     "baseline_read": 1.16,
+     "coils": 559,
+     "never_broke": 44,
+     "beat_baseline_median_in_100": 23.1,
+     "edge_in_atr": 1.099
+    }
+   ],
+   "windows": {
+    "chosen": "1 Jul 2025 to 2 Nov 2026 07:48 New York",
+    "checked": "2 Jan 2020 to 30 Jun 2025"
+   },
+   "definition": "a squeeze: the last 12 candles' high to low in the lowest tenth of every 12 candle range on that clock over the trailing 365 days, past only; the read: the next 12 candles' high to low against the median 12 candle range from the same slot of the day over the trailing 365 days",
+   "atr_line": "EDGE in ATRs, the coils' median over the slot-matched baseline median (R&D, 22 Nov 02:3x). Say it as: in ATRs every cell reads the move after a squeeze bigger, 1.05 to 1.14; on the hour's usual range every cell reads it smaller, 0.58 to 0.73. Never: it would have passed.",
+   "bar": "1.10 on both windows on both clocks",
+   "readings": [
+    {
+     "id": "F-001a",
+     "filed": "2026-11-22 02:3x",
+     "reading": "P-001: 5m chosen FAIL, 5m checked FAIL, 40m checked FAIL, 40m chosen TOO FEW TO SAY (n 76); the word stays DOES NOT HOLD"
+    }
+   ]
+  }
+ }
+}
