@@ -20,6 +20,12 @@
                DAY WITH, DAY AGAINST, all)
    A figure is never worked out here. A new count is a new card, added to
    CARDS with its own source line.
+   22 Nov 2026, 13:21, his yes to the one-source PR: every chart now draws
+   from lab.json, which the lab writes from its FINDINGS.json (his yes of
+   22 Nov, 02:59) with claude/code/MAKE_LAB_JSON_22NOV.py, and this script
+   refuses to write the page if a card's words print a figure lab.json does
+   not hold for that card. The tone of each card comes from its verdict word
+   as filed. The counts above stay the cards' sources.
 
    The desk's line on a card is his, written by him. Until he writes one the
    card carries none; nothing stands in for it.
@@ -46,6 +52,10 @@ const path = require("path");
 const H = require("./house_parts.js");
 const HERE = __dirname;
 const esc = H.esc;
+
+/* THE ONE SOURCE: lab.json, written by the lab from FINDINGS.json. */
+const LAB = JSON.parse(fs.readFileSync(path.join(HERE, "lab.json"), "utf8")).cards;
+const F = id => { if (!LAB[id]) throw new Error("lab.json has no card " + id); return LAB[id]; };
 
 const TITLE = "The lab · The Simplifier";
 const DESC = "Every concept the trading crowd swears by, counted on every minute of gold since January 2013. What holds becomes a tool on your chart. What does not, I show you anyway.";
@@ -74,9 +84,10 @@ const pct = (v, m) => (v / m * 100).toFixed(2) + "%";
 function poolsChart() {
   const X = [40, 120, 200, 280], y = v => 156 - v * 1.4;
   const pts = a => a.map((v, i) => `${X[i]},${y(v).toFixed(1)}`).join(" ");
-  const hiS = [86.7, 71.6, 50.1, 19.5], hiB = [87.8, 72.3, 50.4, 20.5], loS = [87.5, 71.5, 49.9, 19.2], loB = [86.8, 70.7, 49.2, 19.8];
+  const P = F("pools").figures.lab_chart_by_distance_in_100;
+  const hiS = P.swing_highs, hiB = P.any_level_highs, loS = P.swing_lows, loB = P.any_level_lows;
   return `<div class="lb-key"><span><i class="lb-red"></i>swing high</span><span><i class="lb-rose"></i>swing low</span><span><i class="lb-dsh lb-blue"></i>any level as far away</span></div>
-            <svg class="lb-svg" viewBox="0 0 320 164" role="img" aria-label="Reached within 4 hours, in 100: swing highs 86.7, 71.6, 50.1 and 19.5 by distance, against 87.8, 72.3, 50.4 and 20.5 for any level as far away; swing lows 87.5, 71.5, 49.9 and 19.2, against 86.8, 70.7, 49.2 and 19.8">
+            <svg class="lb-svg" viewBox="0 0 320 164" role="img" aria-label="Reached within 4 hours, in 100: swing highs ${hiS.join(", ")} by distance, against ${hiB.join(", ")} for any level as far away; swing lows ${loS.join(", ")}, against ${loB.join(", ")}">
   <g class="lb-grid"><line x1="0" x2="320" y1="16" y2="16"/><line x1="0" x2="320" y1="86" y2="86"/><line x1="0" x2="320" y1="156" y2="156"/></g>
   <text class="lb-ax" x="0" y="12">100</text><text class="lb-ax" x="0" y="82">50</text><text class="lb-ax" x="0" y="152">0</text>
   <defs><linearGradient id="lb-pool-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0604A" stop-opacity=".32"/><stop offset="1" stop-color="#F0604A" stop-opacity="0"/></linearGradient></defs>
@@ -84,7 +95,7 @@ function poolsChart() {
   <polyline class="lb-ln lb-red" points="${pts(hiS)}"/><polyline class="lb-ln lb-rose" points="${pts(loS)}"/>
   <polyline class="lb-ln lb-dash lb-blue" points="${pts(hiB)}"/><polyline class="lb-ln lb-dash lb-ice" points="${pts(loB)}"/>
 </svg>
-            <div class="lb-cats lb-c4"><span>under 1</span><span>1 to 2</span><span>2 to 4</span><span>over 4</span></div>`;
+            <div class="lb-cats lb-c4">${P.distance_atr_buckets.map(t => `<span>${esc(t)}</span>`).join("")}</div>`;
 }
 
 /* Vertical bars from a common floor: [word, value, ink class], scaled to max. */
@@ -95,23 +106,26 @@ function vbars(B, max, label) {
 }
 
 /* Channel: closes beyond a 2 deviation wall in the next 10 candles, in 100, earlier stretch. */
-const channelChart = () => vbars([["promised", 4.6, "lb-blue"], ["beyond, all", 31.9, "lb-red"], ["with the run", 9.3, "lb-rose"], ["against the run", 22.6, "lb-red"]], 40,
-  "Closes beyond a 2 deviation wall in the next 10 candles, in 100: promised 4.6, beyond in all 31.9, with the run 9.3, against the run 22.6");
+const channelChart = () => { const C = F("channel").figures.closes_beyond_in_next_10_in_100;
+  return vbars([["promised", C.promised, "lb-blue"], ["beyond, all", C.beyond_all, "lb-red"], ["with the run", C.with_the_run, "lb-rose"], ["against the run", C.against_the_run, "lb-red"]], 40,
+  `Closes beyond a 2 deviation wall in the next 10 candles, in 100: promised ${C.promised}, beyond in all ${C.beyond_all}, with the run ${C.with_the_run}, against the run ${C.against_the_run}`); };
 
 /* The two speeds: day-long legs and small legs, read right in 100; colour changes a day. Chosen stretch. */
 function speedsChart() {
-  const R = [["Legs about a day long, read right, in 100", 69.9, 67.5, 100], ["Small legs, read right, in 100", 60.2, 68.0, 100], ["Colour changes a day", 4.3, 9.7, 12]];
+  const S = F("speeds").figures, D = S.day_legs_read_right_in_100, L = S.small_legs_read_right_in_100, K = S.colour_changes_a_day;
+  const R = [["Legs about a day long, read right, in 100", D.slow_chosen, D.fast_chosen, 100], ["Small legs, read right, in 100", L.slow, L.fast, 100], ["Colour changes a day", K.slow, K.fast, 12]];
   const row = (v, m, c) => `<div class="lb-hr"><span class="lb-hbar ${c}" style="width:calc((100% - 56px) * ${(v / m).toFixed(4)})"></span><span class="lb-hn ${c}">${v.toFixed(1)}</span></div>`;
   return `<div class="lb-key"><span><i class="lb-gold"></i>slow half</span><span><i class="lb-blue"></i>fast half</span></div>
-            <div class="lb-hb" role="img" aria-label="The slow half against the fast half. Legs about a day long: 69.9 against 67.5. Small legs: 60.2 against 68.0. Colour changes a day: 4.3 against 9.7">${R.map(([t, a, b, m]) =>
+            <div class="lb-hb" role="img" aria-label="The slow half against the fast half. Legs about a day long: ${D.slow_chosen.toFixed(1)} against ${D.fast_chosen.toFixed(1)}. Small legs: ${L.slow.toFixed(1)} against ${L.fast.toFixed(1)}. Colour changes a day: ${K.slow.toFixed(1)} against ${K.fast.toFixed(1)}">${R.map(([t, a, b, m]) =>
     `<div class="lb-hg"><p>${esc(t)}</p>${row(a, m, "lb-gold")}${row(b, m, "lb-blue")}</div>`).join("")}</div>`;
 }
 
 /* The stack: average a turn in units of its risk, spread paid, 5 minute gold since July 2014. */
 function stackChart() {
-  const B = [["every clock behind", 0.140, "lb-ivory"], ["the day's clock behind", 0.075, "lb-blue"], ["the day's clock against", -0.153, "lb-red"]];
+  const T = F("stack").figures.R_per_turn;
+  const B = [["every clock behind", T.every_clock_behind, "lb-ivory"], ["the day's clock behind", T.day_clock_behind, "lb-blue"], ["the day's clock against", T.day_clock_against, "lb-red"]];
   const half = 0.2;
-  return `<div class="lb-vb lb-zb lb-c3" role="img" aria-label="Average a turn in units of its risk: every clock behind plus 0.140, the day's clock behind plus 0.075, the day's clock against minus 0.153">${B.map(([t, v, c]) => {
+  return `<div class="lb-vb lb-zb lb-c3" role="img" aria-label="Average a turn in units of its risk: ${B.map(([t, v]) => `${t} ${v >= 0 ? "plus" : "minus"} ${Math.abs(v).toFixed(3)}`).join(", ")}">${B.map(([t, v, c]) => {
     const h = (Math.abs(v) / half * 50).toFixed(2) + "%", lab = (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(3);
     return v >= 0
       ? `<div class="lb-col"><span class="lb-bar ${c}" style="bottom:50%;height:${h}"></span><span class="lb-n ${c}" style="bottom:calc(50% + ${h} + 6px)">${lab}</span></div>`
@@ -124,39 +138,66 @@ function stackChart() {
    that slot of the day over the trailing 365 days; after a squeeze against after an ordinary candle at the same slot. Typed from
    the finding as filed: 5 minutes 0.80 and 1.38 (chosen), 0.80 and 1.17 (checked); 40 minutes 0.89 and 1.30, 0.85 and 1.16. */
 function coilChart() {
-  const R = [["5 min", "2025 to 2026", 0.80, 1.38], ["5 min", "2020 to 2025", 0.80, 1.17], ["40 min", "2025 to 2026", 0.89, 1.30], ["40 min", "2020 to 2025", 0.85, 1.16]];
+  const cell = (k, w) => { const c = F("coil").cells.find(x => x.clock === k && x.window === w); if (!c) throw new Error("coil cell " + k + " " + w); return c; };
+  const R = [["5m", "chosen"], ["5m", "checked"], ["40m", "chosen"], ["40m", "checked"]].map(([k, w]) => { const c = cell(k, w);
+    return [k === "5m" ? "5 min" : "40 min", w === "chosen" ? "2025 to 2026" : "2020 to 2025", c.coil_read, c.baseline_read]; });
   const max = 1.6;
   return `<div class="lb-key"><span><i class="lb-red"></i>after a squeeze</span><span><i class="lb-blue"></i>after an ordinary stretch</span><span><i class="lb-dsh"></i>the usual range for that hour</span></div>
-            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour. 5 minutes, 2025 to 2026: 0.80 after a squeeze, 1.38 after an ordinary stretch. 5 minutes, 2020 to 2025: 0.80 and 1.17. 40 minutes, 2025 to 2026: 0.89 and 1.30. 40 minutes, 2020 to 2025: 0.85 and 1.16">${R.map(([c, w, a, b]) =>
+            <div class="lb-vb lb-c4" role="img" aria-label="The range of the next 12 candles against the usual range for that hour, after a squeeze and after an ordinary stretch. ${R.map(([c, w, a, b]) => `${c.replace("min", "minutes")}, ${w}: ${a.toFixed(2)} and ${b.toFixed(2)}`).join(". ")}">${R.map(([c, w, a, b]) =>
     `<div class="lb-col"><span class="lb-one" style="bottom:${pct(1, max)}"></span><span class="lb-bar lb-red lb-pl" style="height:${pct(a, max)}"></span><span class="lb-n lb-nl lb-red" style="bottom:calc(${pct(a, max)} + 5px)"><b class="lb-nb">${a.toFixed(2)}</b></span><span class="lb-bar lb-blue lb-pr" style="height:${pct(b, max)}"></span><span class="lb-n lb-nr lb-blue" style="bottom:calc(${pct(b, max)} + 5px)"><b class="lb-nb">${b.toFixed(2)}</b></span></div>`).join("")}</div>
             <div class="lb-cats lb-c4">${R.map(([c, w]) => `<span>${c}<br>${w}</span>`).join("")}</div>`;
 }
 
 /* ---- the cards ---- */
 const CARDS = [
-  { id: "coil", tone: "lb-red", verdict: "Does not hold", q: "Does a squeeze on gold come before a bigger move?",
+  { id: "coil", led: "A squeeze comes before a bigger move", ledv: "Does not hold", tone: "lb-red", verdict: "Does not hold", q: "Does a squeeze on gold come before a bigger move?",
     a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs, every clock reads the move after a squeeze bigger, 1.05 to 1.14 times an ordinary stretch: the ATR shrinks while price is quiet, so any move after it looks big.",
     svg: coilChart, cap: "The range of the next 12 candles against the usual range for that hour of the day, the median of each.",
     data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Squeeze against ordinary stretch: 0.58 to 0.73 on the hour's usual range, 1.05 to 1.14 in ATRs. On the lab's standing protocol three cells fail and 40 minutes since July 2025 is too few to say (76)." },
-  { id: "pools", tone: "lb-red", verdict: "Does not hold", q: "Do swing highs and lows pull price to them?",
+  { id: "pools", led: "Swing highs and lows pull price", ledv: "Does not hold", tone: "lb-red", verdict: "Does not hold", q: "Do swing highs and lows pull price to them?",
     a: "No. Price reached the nearest untouched swing high or low as often as any level the same distance away, and a swept one turned back no more often than any other high or low.",
     svg: poolsChart, cap: "Reached within 4 hours, in 100, by distance in ATRs: the nearest untouched swing high or low, against any level as far away (dashed). The lines lie on top of each other.",
     data: "5 minute gold, 2 Jan 2020 to 30 Jun 2025: 28,613 swing highs and 29,683 swing lows. The same answer from 1 Jul 2025 to 30 Oct 2026." },
-  { id: "channel", tone: "lb-red", verdict: "Does not hold", q: "Does a channel's 2 deviation wall hold?",
+  { id: "channel", led: "A channel's 2 deviation wall", ledv: "Does not hold", tone: "lb-red", verdict: "Does not hold", q: "Does a channel's 2 deviation wall hold?",
     a: "Not as promised. Carried ten candles on, one close in three went beyond it, against one in twenty promised, and more than twice as often against the run as with it.",
     svg: channelChart, cap: "Closes beyond a wall in the next 10 candles, in 100.",
     data: "5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025: 8,081 channels. From 1 Jul 2025 to 30 Oct 2026: 33.2 beyond." },
-  { id: "speeds", tone: "lb-gold", verdict: "Holds, on legs about a day long", q: "Does the slow half of a trend read the day better than the fast half?",
+  { id: "speeds", led: "The slow half reads the day", ledv: "Holds, day-long legs", tone: "lb-gold", verdict: "Holds, on legs about a day long", q: "Does the slow half of a trend read the day better than the fast half?",
     a: "Yes, on legs about a day long: 69.9 in 100 against 67.5, and 69.3 against 66.7 on years the count never saw, changing colour less than half as often. On small legs the fast half reads better, so The Flow keeps both.",
     svg: speedsChart, cap: "The slow half: the 26 over or under the 60. The fast half: the 12 over or under the 26.",
     data: "5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348.",
     shipped: "Shipped in The Flow: its tide takes its own side." },
-  { id: "stack", tone: "lb-ivory", verdict: "A lead, not yet a sealed test", q: "Does a turn pay more with every bigger clock behind it?",
+  { id: "stack", led: "Every clock behind a turn", ledv: "A lead", tone: "lb-ivory", verdict: "A lead, not yet a sealed test", q: "Does a turn pay more with every bigger clock behind it?",
     a: "On 5 minute gold since July 2014, 11,169 turns with the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind them made 0.140 of their risk a turn, and were ahead in each of three stretches of years. Turns against the day's clock lost 0.153.",
     svg: stackChart, cap: "Average a turn, in units of its risk. Exits at the next 50 dollar levels, spread paid.",
     data: "The turn: the chart's own 40 candle average changing direction. 5 minute gold, July 2014 to 2 Nov 2026.",
     shipped: "Shipped in The Gate: it marks only the turns the whole stack backs." }
 ];
+
+/* The tone of a card is its verdict word as filed; the card's own words must say the same. */
+const TONE = [[/^HOLDS/, "lb-gold", /^Holds/], [/^DOES NOT HOLD/, "lb-red", /^Does not hold/], [/^A LEAD/, "lb-ivory", /^A lead/]];
+for (const c of CARDS) {
+  const v = F(c.id).verdict, t = TONE.find(([re]) => re.test(v));
+  if (!t) throw new Error(c.id + ": verdict word not known: " + v);
+  if (!t[2].test(c.verdict)) throw new Error(c.id + ": the card says \"" + c.verdict + "\" but lab.json files " + v);
+  c.tone = t[1];
+}
+
+/* THE FIGURE CHECK. Every figure a card's words print must be one lab.json holds for that card (any value, key or
+   filed sentence of it), at the precision printed. A figure the source does not hold stops the build. */
+const NUM = /\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?/g;
+const numbersOf = v => typeof v === "number" ? [v] : typeof v === "string" ? (v.match(NUM) || []).map(x => +x.replace(/,/g, ""))
+  : Array.isArray(v) ? v.flatMap(numbersOf) : v && typeof v === "object" ? Object.entries(v).flatMap(([k, x]) => [...numbersOf(k), ...numbersOf(x)]) : [];
+for (const c of CARDS) {
+  const hay = numbersOf(F(c.id)).map(Math.abs);
+  for (const field of ["q", "a", "data", "cap", "shipped"]) {
+    for (const tok of (c[field] || "").match(NUM) || []) {
+      const p = +tok.replace(/,/g, ""), d = (tok.split(".")[1] || "").length;
+      if (!hay.some(h => Math.abs(+h.toFixed(d) - p) < 1e-9)) throw new Error(c.id + "." + field + ": " + tok + " is not in lab.json");
+    }
+  }
+}
+const SCORE = ["lb-gold", "lb-red", "lb-ivory"].map(k => CARDS.filter(c => c.tone === k).length);
 
 const cardHtml = c => `<article class="lb-card" id="${c.id}" aria-labelledby="${c.id}-h">
           <div class="lb-t">
@@ -164,14 +205,14 @@ const cardHtml = c => `<article class="lb-card" id="${c.id}" aria-labelledby="${
             <h3 id="${c.id}-h">${esc(c.q)}</h3>
             <p class="lb-a">${esc(c.a)}</p>
             <p class="lb-d">${esc(c.data)}</p>${c.shipped ? `\n            <p class="lb-s">${esc(c.shipped)}</p>` : ""}${DESK[c.id] ? `\n            <p class="lb-desk"><b>From the desk</b>${esc(DESK[c.id])}</p>` : ""}
+            <p class="lb-rule">Trade it differently? <a href="${H.LESSONS}" rel="noopener" data-x="lab-rule-${c.id}">Send me your exact rule on X</a> and I'll count it.</p>
           </div>
           <figure class="lb-fig">
             ${c.svg()}
             <figcaption>${esc(c.cap)}</figcaption></figure>
         </article>`;
 
-const LEDGER = [["A squeeze comes before a bigger move", "Does not hold", "coil", "lb-red"], ["Swing highs and lows pull price", "Does not hold", "pools", "lb-red"], ["A channel's 2 deviation wall", "Does not hold", "channel", "lb-red"],
-  ["The slow half reads the day", "Holds, day-long legs", "speeds", "lb-gold"], ["Every clock behind a turn", "A lead", "stack", "lb-ivory"], ["Gold turns at round numbers", "On the bench", "bench", "lb-grey"]];
+const LEDGER = [...CARDS.map(c => [c.led, c.ledv, c.id, c.tone]), ["Gold turns at round numbers", "On the bench", "bench", "lb-grey"]];
 
 const CSS = `
 html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.92 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif!important;letter-spacing:.005em!important;text-transform:uppercase!important;text-wrap:balance}
@@ -193,6 +234,8 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-fig figcaption{margin-top:10px;font-size:13px;line-height:1.5;color:var(--c-mut)}
 .lb-d{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--c-mut)}
 .lb-s{margin:12px 0 0;font-size:15px;line-height:1.5;color:var(--c-ink)}
+.lb-rule{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--c-mut)}
+.lb-rule a{color:var(--c-sec)}
 .lb-desk{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--c-rule);font-size:16px;line-height:1.55;color:var(--c-ink)}
 .lb-desk b{display:block;margin-bottom:4px;font-weight:400;font-size:14px;color:var(--c-mut)}
 .lb-svg{display:block;width:100%;height:auto;overflow:visible}
@@ -217,7 +260,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-v::before,.lb-lv::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--k);box-shadow:0 0 10px var(--k)}
 .lb-led a span.lb-lv{display:inline-flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--kt)}
 .lb-led a:hover span.lb-lv{color:var(--kt);filter:brightness(1.15)}
-.lb-tally{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:12px 0 4px}
+.lb-tally{display:grid;grid-template-columns:repeat(${LEDGER.length},minmax(0,1fr));gap:4px;margin:12px 0 4px}
 .lb-tally i{height:6px;border-radius:3px;background:var(--k);box-shadow:0 0 12px color-mix(in srgb,var(--k) 50%,transparent)}
 .lb-tools>div{padding-top:16px;border-top:2px solid var(--k)}
 .lb-tools>div .lb-tag{color:var(--kt)}
@@ -280,7 +323,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
     <div class="lb-ledw">
-      <p class="lb-led-h">Counted so far</p>
+      <p class="lb-led-h">Counted so far: ${CARDS.length}. Held ${SCORE[0]}, did not hold ${SCORE[1]}, a lead ${SCORE[2]}.</p>
       <div class="lb-tally" aria-hidden="true">${LEDGER.map(([, , , k]) => `<i class="${k}"></i>`).join("")}</div>
       <ul class="lb-led">
         ${LEDGER.map(([t, v, id, k]) => `<li><a href="#${id}">${esc(t)}<span class="lb-lv ${k}">${esc(v)}</span></a></li>`).join("\n        ")}
