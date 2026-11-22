@@ -134,9 +134,9 @@ function coilChart() {
 /* ---- the cards ---- */
 const CARDS = [
   { id: "coil", tone: "lb-red", verdict: "Does not hold", q: "Does a squeeze on gold come before a bigger move?",
-    a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have passed: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.",
+    a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have looked like a pass: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.",
     svg: coilChart, cap: "The range of the next 12 candles against the usual range for that hour of the day, the median of each.",
-    data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Read in ATRs, the same moves came to 1.05 to 1.14." },
+    data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. In ATRs the reading was 1.05 to 1.14." },
   { id: "pools", tone: "lb-red", verdict: "Does not hold", q: "Do swing highs and lows pull price to them?",
     a: "No. Price reached the nearest untouched swing high or low as often as any level the same distance away, and a swept one turned back no more often than any other high or low.",
     svg: poolsChart, cap: "Reached within 4 hours, in 100, by distance in ATRs: the nearest untouched swing high or low, against any level as far away (dashed). The lines lie on top of each other.",
