@@ -54,7 +54,8 @@ const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 
 /* His lines from the desk, one a card. Empty until he writes them. */
-/* 22 Nov 2026, 00:21: the coil's card from F-001; its desk line drafted in his voice by his standing word.
+/* 22 Nov 2026, 02:4x: the coil's ATR words as R&D confirmed them (RD_FINDINGS 02:3x; F-001a, P-001), replacing "it would have passed".
+   22 Nov 2026, 00:21: the coil's card from F-001; its desk line drafted in his voice by his standing word.
    21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
 const DESK = {
   coil: "Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.",
@@ -134,9 +135,9 @@ function coilChart() {
 /* ---- the cards ---- */
 const CARDS = [
   { id: "coil", tone: "lb-red", verdict: "Does not hold", q: "Does a squeeze on gold come before a bigger move?",
-    a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs it would have passed: the ATR shrinks while price is quiet, so any move after a squeeze looks big against it.",
+    a: "No. After a squeeze, the next 12 candles moved less than they do after an ordinary stretch at the same hour of the day, on both clocks and on both stretches of years. Measured in ATRs, every clock reads the move after a squeeze bigger, 1.05 to 1.14 times an ordinary stretch: the ATR shrinks while price is quiet, so any move after it looks big.",
     svg: coilChart, cap: "The range of the next 12 candles against the usual range for that hour of the day, the median of each.",
-    data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Read in ATRs, the same moves came to 1.05 to 1.14." },
+    data: "A squeeze: the last 12 candles' range in the lowest tenth of the past year's on that clock. 5 minute gold: 486 squeezes from 1 Jul 2025 to 2 Nov 2026, 3,210 from 2 Jan 2020 to 30 Jun 2025. 40 minute gold: 76 and 559. Squeeze against ordinary stretch: 0.58 to 0.73 on the hour's usual range, 1.05 to 1.14 in ATRs. On the lab's standing protocol three cells fail and 40 minutes since July 2025 is too few to say (76)." },
   { id: "pools", tone: "lb-red", verdict: "Does not hold", q: "Do swing highs and lows pull price to them?",
     a: "No. Price reached the nearest untouched swing high or low as often as any level the same distance away, and a swept one turned back no more often than any other high or low.",
     svg: poolsChart, cap: "Reached within 4 hours, in 100, by distance in ATRs: the nearest untouched swing high or low, against any level as far away (dashed). The lines lie on top of each other.",
