@@ -64,6 +64,7 @@ const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 
 /* His lines from the desk, one a card. Empty until he writes them. */
+/* 23 Nov 2026, 05:5x: the two speeds' desk line redrafted in his voice after F-003 (DOES NOT HOLD against shuffled candles); the line it replaces is in git. */
 /* 22 Nov 2026, 02:4x: the coil's ATR words as R&D confirmed them (RD_FINDINGS 02:3x; F-001a, P-001), replacing "it would have passed".
    22 Nov 2026, 00:21: the coil's card from F-001; its desk line drafted in his voice by his standing word.
    21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
@@ -71,7 +72,7 @@ const DESK = {
   coil: "Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.",
   pools: "On a bank desk you see the orders, not the lines on a chart. The orders sit where people need to trade, and they move every day. A swing high is a line you drew. Gold has no idea it is there.",
   channel: "A channel is the last fifty closes drawn neatly. The wall promises one close in twenty beyond it and gold gives you one in three. Respect the close, not the line someone fitted to yesterday.",
-  speeds: "The fast line keeps you busy. The slow line keeps you in the trade. Over a day the slow half was right more often and changed its mind less than half as often, and every change of mind costs you a spread and a decision.",
+  speeds: "I built the slow line, then had my own count of it run against gold's candles shuffled. The shuffled candles scored higher, so it does not read the day. What it does do is change its mind less than half as often as the fast line, and every change of mind costs you a spread and a decision.",
   stack: "The trades worth sizing up had the whole day behind them, not just the last hour. One clock saying go is an opinion. Every clock saying go is the market agreeing with you. It stays a lead until the sealed test is in, and the card says so."
 };
 
@@ -110,14 +111,14 @@ const channelChart = () => { const C = F("channel").figures.closes_beyond_in_nex
   return vbars([["promised", C.promised, "lb-blue"], ["beyond, all", C.beyond_all, "lb-red"], ["with the run", C.with_the_run, "lb-rose"], ["against the run", C.against_the_run, "lb-red"]], 40,
   `Closes beyond a 2 deviation wall in the next 10 candles, in 100: promised ${C.promised}, beyond in all ${C.beyond_all}, with the run ${C.with_the_run}, against the run ${C.against_the_run}`); };
 
-/* The two speeds: day-long legs and small legs, read right in 100; colour changes a day. Chosen stretch. */
+/* The two speeds, F-003: day-long legs the slow half matched, in 100, on gold in order against the same candles shuffled inside each day. */
 function speedsChart() {
-  const S = F("speeds").figures, D = S.day_legs_read_right_in_100, L = S.small_legs_read_right_in_100, K = S.colour_changes_a_day;
-  const R = [["Legs about a day long, read right, in 100", D.slow_chosen, D.fast_chosen, 100], ["Small legs, read right, in 100", L.slow, L.fast, 100], ["Colour changes a day", K.slow, K.fast, 12]];
-  const row = (v, m, c) => `<div class="lb-hr"><span class="lb-hbar ${c}" style="width:calc((100% - 56px) * ${(v / m).toFixed(4)})"></span><span class="lb-hn ${c}">${v.toFixed(1)}</span></div>`;
-  return `<div class="lb-key"><span><i class="lb-gold"></i>slow half</span><span><i class="lb-blue"></i>fast half</span></div>
-            <div class="lb-hb" role="img" aria-label="The slow half against the fast half. Legs about a day long: ${D.slow_chosen.toFixed(1)} against ${D.fast_chosen.toFixed(1)}. Small legs: ${L.slow.toFixed(1)} against ${L.fast.toFixed(1)}. Colour changes a day: ${K.slow.toFixed(1)} against ${K.fast.toFixed(1)}">${R.map(([t, a, b, m]) =>
-    `<div class="lb-hg"><p>${esc(t)}</p>${row(a, m, "lb-gold")}${row(b, m, "lb-blue")}</div>`).join("")}</div>`;
+  const T = F("speeds").figures.tide_matched_day_legs_in_100;
+  const R = [["Jul 2025 to Nov 2026", T.gold_chosen, T.shuffled_chosen], ["2020 to mid 2025", T.gold_checked, T.shuffled_checked]];
+  const row = (v, c) => `<div class="lb-hr"><span class="lb-hbar ${c}" style="width:calc((100% - 56px) * ${(v / 100).toFixed(4)})"></span><span class="lb-hn ${c}">${v.toFixed(1)}</span></div>`;
+  return `<div class="lb-key"><span><i class="lb-red"></i>gold, in order</span><span><i class="lb-grey"></i>the same candles, shuffled</span></div>
+            <div class="lb-hb" role="img" aria-label="Day-long legs the slow half matched, in 100. ${R.map(([t, a, b]) => `${t}: gold ${a.toFixed(1)}, shuffled ${b.toFixed(1)}`).join(". ")}">${R.map(([t, a, b]) =>
+    `<div class="lb-hg"><p>${esc(t)}</p>${row(a, "lb-red")}${row(b, "lb-grey")}</div>`).join("")}</div>`;
 }
 
 /* The stack: average a turn in units of its risk, spread paid, 5 minute gold since July 2014. */
@@ -162,12 +163,11 @@ const CARDS = [
     a: "Not as promised. Carried ten candles on, one close in three went beyond it, against one in twenty promised, and more than twice as often against the run as with it.",
     svg: channelChart, cap: "Closes beyond a wall in the next 10 candles, in 100.",
     data: "5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025: 8,081 channels. From 1 Jul 2025 to 30 Oct 2026: 33.2 beyond." },
-  { id: "speeds", led: "The slow half reads the day", ledv: "Holds, day-long legs", tone: "lb-gold", verdict: "Holds, on legs about a day long", q: "Does the slow half of a trend read the day better than the fast half?",
-    a: "Yes, on legs about a day long: 69.9 in 100 against 67.5, and 69.3 against 66.7 on years the count never saw, changing colour less than half as often. On small legs the fast half reads better, so The Flow keeps both.",
-    svg: speedsChart, cap: "The slow half: the 26 over or under the 60. The fast half: the 12 over or under the 26.",
-    data: "5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348.",
-    shipped: "Shipped in The Flow: its tide takes its own side.",
-    owed: "I counted this before the lab had its standing protocol. Its reading under that protocol is owed, and I'll print it here whichever way it falls." },
+  { id: "speeds", led: "The slow half reads the day", ledv: "Does not hold", tone: "lb-red", verdict: "Does not hold, against gold's own candles shuffled", q: "Does the slow half of a trend read the day better than the fast half?",
+    a: "No. It matched legs about a day long 69.9 and 69.3 times in 100, but on the same candles shuffled inside each day it matched them 72.8 and 72.2 times. Any pair of averages scores about that against legs drawn after the fact. Read forward, its side matched the next 276 candles' move 50.2 and 50.1 times in 100.",
+    svg: speedsChart, cap: "Legs about a day long the slow half matched, in 100: gold in order against the same candles shuffled.",
+    data: "5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348. 200 shuffled copies of each. As I first filed it, the slow half beat the fast half 69.9 to 67.5 and 69.3 to 66.7; the shuffled candles show the same gap.",
+    shipped: "The Flow keeps the slow half for what it does: it changes colour 4.3 times a day against the fast half's 9.7. That describes, it does not predict." },
   { id: "stack", led: "Every clock behind a turn", ledv: "A lead", tone: "lb-ivory", verdict: "A lead, not yet a sealed test", q: "Does a turn pay more with every bigger clock behind it?",
     a: "On 5 minute gold since July 2014, 11,169 turns with the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind them made 0.140 of their risk a turn, and were ahead in each of three stretches of years. Turns against the day's clock lost 0.153.",
     svg: stackChart, cap: "Average a turn, in units of its risk. Exits at the next 50 dollar levels, spread paid.",
@@ -359,10 +359,10 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 
 <section class="hm-sec" id="shipped" aria-labelledby="shipped-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>Only what held. The question behind each tool is on its card.</p></div>
+    <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>What the lab shipped, and what each one's count says. The question behind each tool is on its card.</p></div>
     <div class="hm-main">
       <div class="lb-tools">
-        <div class="lb-gold"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold is running, and how hard, as a river on your chart. <a href="#speeds">Its card</a></p></div>
+        <div class="lb-red"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold has been running, and how hard, as a river on your chart. It describes; its card says why. <a href="#speeds">Its card</a></p></div>
         <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
       </div>
       <p class="hm-free" style="margin-top:28px">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="${H.LESSONS}" rel="noopener" data-x="lab-free-lessons">lessons on X</a>.</p>

@@ -79,35 +79,106 @@
    "window": "5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025; recent 1 Jul 2025 to 30 Oct 2026"
   },
   "speeds": {
-   "id": "F-000c",
+   "id": "F-003",
    "question": "Does the slow half of a trend read the day better than the fast half?",
-   "verdict": "HOLDS on legs about a day long",
-   "filed": "2026-11-21",
-   "by": "the lab, before R&D",
+   "verdict": "DOES NOT HOLD",
+   "filed": "2026-11-23 05:34",
+   "by": "R&D",
    "figures": {
-    "day_legs_read_right_in_100": {
+    "tide_matched_day_legs_in_100": {
+     "gold_chosen": 69.9,
+     "shuffled_chosen": 72.8,
+     "gold_checked": 69.3,
+     "shuffled_checked": 72.2
+    },
+    "tide_less_wave_points": {
+     "gold_chosen": 2.4,
+     "shuffled_chosen": 3.1,
+     "gold_checked": 2.6,
+     "shuffled_checked": 2.7
+    },
+    "as_first_filed_in_100": {
      "slow_chosen": 69.9,
      "fast_chosen": 67.5,
      "slow_checked": 69.3,
      "fast_checked": 66.7
     },
-    "small_legs_read_right_in_100": {
-     "slow": 60.2,
-     "fast": 68.0
+    "forward_read": {
+     "candles": 276,
+     "tide_chosen": 50.2,
+     "tide_checked": 50.1,
+     "wave_chosen": 50.5,
+     "wave_checked": 50.1,
+     "up_share_chosen": 52.7,
+     "up_share_checked": 53.7
     },
     "colour_changes_a_day": {
      "slow": 4.3,
-     "fast": 9.7
+     "fast": 9.7,
+     "from": "the lab's OUT for F-000c, reproduced by R&D 21 of 21"
     },
     "day_legs": {
      "chosen": 325,
      "checked": 1348
-    }
+    },
+    "shuffled_series": 200
    },
-   "window": "5 minute gold, chosen 1 Jul 2025 to 2 Nov 2026, checked 2 Jan 2020 to 30 Jun 2025",
-   "definitions": [
-    "the slow half: the 26 over or under the 60 (The Assay's tide); the fast half: the 12 over or under the 26 (the wave); legs about a day long: the zigzag at 25 mean bar moves; small legs: the zigzag at 10"
-   ]
+   "cells": [
+    {
+     "cell": "tide on gold less tide on shuffled",
+     "window": "chosen",
+     "points": -2.9,
+     "interval": [
+      -4.39,
+      -1.52
+     ],
+     "legs": 325,
+     "days": 344,
+     "reading": "FAIL"
+    },
+    {
+     "cell": "gap on gold less gap on shuffled",
+     "window": "chosen",
+     "points": -0.64,
+     "interval": [
+      -1.73,
+      0.37
+     ],
+     "legs": 325,
+     "days": 344,
+     "reading": "FAIL"
+    },
+    {
+     "cell": "tide on gold less tide on shuffled",
+     "window": "checked",
+     "points": -2.94,
+     "interval": [
+      -3.67,
+      -2.24
+     ],
+     "legs": 1348,
+     "days": 1418,
+     "reading": "FAIL"
+    },
+    {
+     "cell": "gap on gold less gap on shuffled",
+     "window": "checked",
+     "points": -0.13,
+     "interval": [
+      -0.64,
+      0.35
+     ],
+     "legs": 1348,
+     "days": 1418,
+     "reading": "FAIL"
+    }
+   ],
+   "windows": {
+    "chosen": "1 Jul 2025 to 2 Nov 2026 07:48 New York",
+    "checked": "2 Jan 2020 to 30 Jun 2025"
+   },
+   "definition": "the slow half (the tide): the 26 average over or under the 60; the fast half (the wave): the 12 over or under the 26; legs about a day long: a zigzag on 5 minute gold turning after 25 mean bar moves, drawn after the fact from the same closes; the control: the same 5 minute candles put in random order inside each 17:00 to 17:00 New York day, the first candle kept first, 200 series, seed 23112026",
+   "bar": "3 points above the shuffled candles, on both cells and both windows (P-001, the lab's control Q-015 of 23 Nov 02:00)"
   },
   "stack": {
    "id": "F-000d",
