@@ -64,7 +64,7 @@ const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 
 /* His lines from the desk, one a card. Empty until he writes them. */
-/* 23 Nov 2026, 05:5x: the two speeds' desk line redrafted in his voice after F-003 (DOES NOT HOLD against shuffled candles); the line it replaces is in git. */
+/* 23 Nov 2026, 05:5x: the two speeds' desk line redrafted in his voice after F-003 (DOES NOT HOLD against shuffled candles); the line it replaces is in git. 08:0x: one clause narrowed on R&D's FIGURES FIX of 07:52. */
 /* 22 Nov 2026, 02:4x: the coil's ATR words as R&D confirmed them (RD_FINDINGS 02:3x; F-001a, P-001), replacing "it would have passed".
    22 Nov 2026, 00:21: the coil's card from F-001; its desk line drafted in his voice by his standing word.
    21 Nov 2026, 21:29, his word: "write the from the desk in my voice". Drafted by the lab in his voice; his merge is his approval. */
@@ -72,7 +72,7 @@ const DESK = {
   coil: "Every desk has someone sitting on a quiet market, waiting for it to explode. Most days it stays quiet and he pays for the wait. On gold, quiet came before quiet.",
   pools: "On a bank desk you see the orders, not the lines on a chart. The orders sit where people need to trade, and they move every day. A swing high is a line you drew. Gold has no idea it is there.",
   channel: "A channel is the last fifty closes drawn neatly. The wall promises one close in twenty beyond it and gold gives you one in three. Respect the close, not the line someone fitted to yesterday.",
-  speeds: "I built the slow line, then had my own count of it run against gold's candles shuffled. The shuffled candles scored higher, so it does not read the day. What it does do is change its mind less than half as often as the fast line, and every change of mind costs you a spread and a decision.",
+  speeds: "I built the slow line, then had my own count of it run against gold's candles shuffled. The shuffled candles scored higher, so it reads the day's legs no better than shuffled candles do. What it does do is change its mind less than half as often as the fast line, and every change of mind costs you a spread and a decision.",
   stack: "The trades worth sizing up had the whole day behind them, not just the last hour. One clock saying go is an opinion. Every clock saying go is the market agreeing with you. It stays a lead until the sealed test is in, and the card says so."
 };
 
@@ -164,10 +164,10 @@ const CARDS = [
     svg: channelChart, cap: "Closes beyond a wall in the next 10 candles, in 100.",
     data: "5 minute gold, the line over 50 closes, 2 Jan 2020 to 30 Jun 2025: 8,081 channels. From 1 Jul 2025 to 30 Oct 2026: 33.2 beyond." },
   { id: "speeds", led: "The slow half reads the day", ledv: "Does not hold", tone: "lb-red", verdict: "Does not hold, against gold's own candles shuffled", q: "Does the slow half of a trend read the day better than the fast half?",
-    a: "No. It matched legs about a day long 69.9 and 69.3 times in 100, but on the same candles shuffled inside each day it matched them 72.8 and 72.2 times: inside the day, gold's candle order gave it nothing over random order. Read forward, its side matched the next 276 candles' move 50.2 and 50.1 times in 100.",
+    a: "No. It matched legs about a day long 69.9 and 69.3 times in 100, but on the same candles shuffled inside each day it matched them 72.8 and 72.2 times on average over 200 shuffles: inside the day, gold's candle order gave it nothing over random order. Read forward, its side matched the next 276 candles' move 50.2 and 50.1 times in 100; saying up every time matched 52.7 and 53.7.",
     svg: speedsChart, cap: "Legs about a day long the slow half matched, in 100: gold in order against the same candles shuffled.",
     data: "5 minute gold, chosen on 1 Jul 2025 to 2 Nov 2026: 325 day-long legs. Checked on 2 Jan 2020 to 30 Jun 2025: 1,348. 200 shuffled copies of each. As I first filed it, the slow half beat the fast half 69.9 to 67.5 and 69.3 to 66.7; the shuffled candles show a gap as big.",
-    shipped: "The Flow keeps the slow half for what it does: it changes colour 4.3 times a day against the fast half's 9.7. That describes, it does not predict." },
+    shipped: "The Flow keeps the slow half for what it does: it changes colour 4.3 times a day against the fast half's 9.7 to 9.8. That describes, it does not predict." },
   { id: "stack", led: "Every clock behind a turn", ledv: "A lead", tone: "lb-ivory", verdict: "A lead, not yet a sealed test", q: "Does a turn pay more with every bigger clock behind it?",
     a: "On 5 minute gold since July 2014, 11,169 turns with the 23 hour, 8 hour, 2 hour and 40 minute clocks all behind them made 0.140 of their risk a turn, and were ahead in each of three stretches of years. Turns against the day's clock lost 0.153.",
     svg: stackChart, cap: "Average a turn, in units of its risk. Exits at the next 50 dollar levels, spread paid.",

@@ -115,7 +115,10 @@
     "colour_changes_a_day": {
      "slow": 4.3,
      "fast": 9.7,
-     "from": "the lab's OUT for F-000c, reproduced by R&D 21 of 21"
+     "from": "the lab's OUT for F-000c, reproduced by R&D 21 of 21",
+     "fast_chosen": 9.7,
+     "fast_checked": 9.8,
+     "corrected": "R&D, FIGURES · LAB CARD · THE TWO SPEEDS, 23 Nov 07:52: the fast half changes colour 9.7 times a day on the chosen window and 9.8 on the checked (the lab's OUT_COUNT_FLOW_TIDE_21NOV.txt, lines 6 and 17); the slow half 4.3 on both. \"fast\" above stays as first copied."
     },
     "day_legs": {
      "chosen": 325,
