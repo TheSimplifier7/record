@@ -4,15 +4,17 @@
  "checks": ["Sourced", "Clean", "No repaint", "Chart-friendly", "Proven on gold", "The bar"],
  "bench": [
   {"name": "Project 01", "passed": [1, 1, 1, 1, 1, 1], "state": "Through all six", "text": "Through every check. Being finished for release.", "figures": [], "src": "lab records, 25 Nov"},
-  {"name": "Project 02", "passed": [1, 1, 1, 1, 0, 0], "state": "Rebuilt, look not good enough", "text": "Thrown out once, rebuilt clean. Not good enough to look at yet.", "figures": [], "src": "lab records, 25 Nov"},
-  {"name": "Project 03", "passed": [0, 0, 0, 0, 0, 0], "state": "Not started", "text": "Waiting its turn.", "figures": [], "src": "lab records, 25 Nov"},
-  {"name": "Project 04", "passed": [0, 0, 0, 0, 0, 0], "state": "Found, not built", "text": "Brought in by the scout. Not built.", "figures": [], "src": "lab records, 25 Nov"}
+  {"name": "Project 02", "passed": [1, 1, 1, 1, 0, 0], "state": "In the bin", "text": "Thrown out once, rebuilt clean, still not good enough to look at. Dropped as a tool of its own. The one useful part goes to Project 01 to be counted.", "figures": [1], "src": "lab records, 25 Nov (RD_CARDS I-101; his choice of 12:34 in LAB_LOG)"},
+  {"name": "Project 03", "passed": [1, 1, 1, 1, 0, 0], "state": "Built, parked", "text": "Built twice, clean both times. It adds too little beside the bar, so it waits on the shelf.", "figures": [], "src": "lab records, 25 Nov (RD_CARDS B-101, B-102, D-101; SCOUT_CARDS shelf check; LAB_LOG ruling)"},
+  {"name": "Project 04", "passed": [0, 0, 0, 0, 0, 0], "state": "In the bin", "text": "Brought in by the scout, thrown out by the scout's own checks before a build.", "figures": [], "src": "lab records, 25 Nov (SCOUT_CARDS kill questions, run VKTM)"}
  ],
  "shipped": [
   {"name": "The Gate", "state": "Live on TradingView", "src": "lab records"},
   {"name": "The Flow", "state": "Coming to TradingView", "src": "lab records"}
  ],
  "bin": [
+  {"kind": "draft", "what": "Project 02, draft 8", "why": "Clean, but nobody could read it as a level. Dropped as a tool of its own.", "date": "25 Nov", "figures": [2, 8], "src": "lab records (RD_CARDS I-101; LAB_LOG 25 Nov 12:3x)"},
+  {"kind": "concept", "what": "Project 04", "why": "It looked good on the day picked to show it, and did not hold up on a day nobody picked.", "date": "25 Nov", "figures": [4], "src": "lab records (SCOUT_CARDS, run VKTM)"},
   {"kind": "concept", "what": "The squeeze before a bigger move", "why": "Gold moved less after a squeeze, not more.", "date": "22 Nov", "figures": [], "src": "FINDINGS.json F-001"},
   {"kind": "concept", "what": "Swing highs and lows pulling price", "why": "Reached as often as any level the same distance away.", "date": "21 Nov", "figures": [], "src": "FINDINGS.json F-000a"},
   {"kind": "concept", "what": "The channel's 2 deviation wall", "why": "Promised one close in twenty beyond it. Gold gave one in three.", "date": "21 Nov", "figures": [2], "src": "FINDINGS.json F-000b"},
@@ -22,6 +24,10 @@
   {"kind": "call", "what": "My own call on the slow half", "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-000c then F-003"}
  ],
  "log": [
+  {"date": "25 Nov", "text": "Dropped Project 02 as a tool of its own. Its useful part goes to Project 01, to be counted first.", "figures": [1, 2], "src": "lab records (LAB_LOG 25 Nov 12:3x)"},
+  {"date": "25 Nov", "text": "The scout's tighter checks threw out four ideas in two runs. Nothing reached the bench, and that counts as a good run.", "figures": [], "src": "lab records (SCOUT_CARDS, runs VKTM and HMPL)"},
+  {"date": "25 Nov", "text": "Threw out Project 04 before a build.", "figures": [4], "src": "lab records (SCOUT_CARDS, run VKTM)"},
+  {"date": "25 Nov", "text": "Built Project 03 twice. Clean both times, not good enough beside the bar. Parked.", "figures": [3], "src": "lab records (RD_CARDS B-101, B-102)"},
   {"date": "25 Nov", "text": "Project 02 came back clean. Still not good enough to look at.", "figures": [2], "src": "lab records"},
   {"date": "25 Nov", "text": "Project 02 rebuild started.", "figures": [2], "src": "lab records"},
   {"date": "24 Nov", "text": "Threw out Project 02 on draft 7.", "figures": [2, 7], "src": "lab records"},
