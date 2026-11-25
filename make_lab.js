@@ -452,7 +452,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>Three seats and one rule: nothing reaches my desk until it has earned it.</p></div>
     <div class="hm-main">
       <ol class="lb-steps">
-        <li><h3>The hunt</h3><p>A scout goes looking for what traders actually use and argue about, then reads what is already on TradingView. If it has been done well, I am not making another copy. If it has been done badly, that is the opening.</p></li>
+        <li><h3>The hunt</h3><p>A scout goes through every angle: YouTube, the open web, university papers, what traders actually use and argue about. Most of the time goes where you would expect, on TradingView, reading what is already out there. If it has been done well, I am not making another copy. If it has been done badly, that is the opening.</p></li>
         <li><h3>The build</h3><p>Before a line of code, the idea gets a solutions page: what goes wrong with it on a real gold chart, the sources that say how to fix it, and the fix for each. No page, no code. Then research and development builds it.</p></li>
         <li><h3>The beating</h3><p>Every build runs the six checks below. Fail one and it goes back. No exceptions for ideas I happen to like.</p></li>
         <li><h3>My desk</h3><p>If it survives all that, it goes on my own gold charts and I read the market with it the way I do every day. Plenty die here too.</p></li>
