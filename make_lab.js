@@ -79,7 +79,7 @@ for (const [part, list] of [["bench", DESKF.bench], ["bin", DESKF.bin], ["log", 
     if (!e.src) throw new Error("lab_desk.json " + part + ": an entry names no source: " + words);
   }
 }
-const STOPS = ["Idea", ...["Sourced", "Clean", "No repaint", "No squash", "Real gold", "The bar"], "Your chart"];
+const STOPS = ["Idea", ...DESKF.checks, "Your chart"];
 const reach = t => { let k = 0; while (k < 6 && t.passed[k]) k++; return k; };
 const BIN_C = DESKF.bin.filter(e => e.kind === "concept").length;
 const BIN_D = DESKF.bin.filter(e => e.kind === "draft").reduce((a, e) => a + (/drafts (\d+) to (\d+)/.test(e.what) ? (+RegExp.$2 - +RegExp.$1 + 1) : 1), 0);
@@ -441,7 +441,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     </div>
     <div class="lb-kill">
       <div class="gl"><p class="lb-kt">Concepts that held</p><p class="lb-kn lb-red">${SCORE[0]}<small> / ${CARDS.length}</small></p><p class="lb-kp">${SCORE[1]} dead, ${SCORE[2]} still a lead. Counted on gold and buried in plain view.</p></div>
-      <div class="gl"><p class="lb-kt">Tool drafts binned</p><p class="lb-kn lb-red">${BIN_D}</p><p class="lb-kp">Squashed candles, lines that meant nothing, an engine that had to go.</p></div>
+      <div class="gl"><p class="lb-kt">Tool drafts binned</p><p class="lb-kn lb-red">${BIN_D}</p><p class="lb-kp">Built, tested, and thrown out. They stay in the bin, in plain view.</p></div>
       <div class="gl"><p class="lb-kt">Made it through</p><p class="lb-kn lb-gold">${DESKF.shipped.length}</p><p class="lb-kp">${DESKF.shipped.map(x => esc(x.name + ": " + x.state)).join(". ")}.</p></div>
     </div>
   </div>
@@ -452,8 +452,8 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>Three seats and one rule: nothing reaches my desk until it has earned it.</p></div>
     <div class="hm-main">
       <ol class="lb-steps">
-        <li><h3>The hunt</h3><p>A scout goes through every angle: YouTube, the open web, university papers, what traders actually use and argue about. Most of the time goes where you would expect, on TradingView, reading what is already out there. If it has been done well, I am not making another copy. If it has been done badly, that is the opening.</p></li>
-        <li><h3>The build</h3><p>Before a line of code, the idea gets a solutions page: what goes wrong with it on a real gold chart, the sources that say how to fix it, and the fix for each. No page, no code. Then research and development builds it.</p></li>
+        <li><h3>The hunt</h3><p>A scout looks everywhere, every angle, for what traders actually use and argue about. If it has been done well already, I am not making another copy. If it has been done badly, that is the opening.</p></li>
+        <li><h3>The build</h3><p>Before a line of code, the idea gets written up properly, with its sources. No write-up, no code. Then research and development builds it.</p></li>
         <li><h3>The beating</h3><p>Every build runs the six checks below. Fail one and it goes back. No exceptions for ideas I happen to like.</p></li>
         <li><h3>My desk</h3><p>If it survives all that, it goes on my own gold charts and I read the market with it the way I do every day. Plenty die here too.</p></li>
       </ol>
@@ -466,12 +466,12 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="checks-h">The six checks</h2><p>All six, every time. Fixes to a tool already on your chart run checks 2 to 4 again.</p></div>
     <div class="hm-main">
       <ol class="lb-checks">
-        <li><h3>Sourced</h3><p>Every part of the method traces back to something you could read yourself. No secret sauce.</p></li>
-        <li><h3>Clean code</h3><p>It passes a line by line check and stays inside TradingView's limits, so it loads and does not choke your chart.</p></li>
-        <li><h3>No repaint</h3><p>The script is replayed candle by candle and has to draw exactly what it drew live. If it rewrites history after the fact, it is lying to you, and it is out.</p></li>
-        <li><h3>No squashed candles</h3><p>A line that stretches the price scale until your candles go flat is useless. It is measured on 5, 15 and 30 minute charts, and the answer has to be zero.</p></li>
-        <li><h3>On real gold</h3><p>Drawn on my own 5 and 30 minute gold and looked at hard, next to what is already out there.</p></li>
-        <li><h3>Beside The Flow Structure</h3><p>It is the bar. A new tool has to stand next to it on the same chart and hold its own. Fine is not finished.</p></li>
+        <li><h3>Sourced</h3><p>Every idea has to stand on something real.</p></li>
+        <li><h3>Clean</h3><p>It loads fast and does not choke your chart.</p></li>
+        <li><h3>No repaint</h3><p>If it rewrites history after the fact, it is lying to you, and it is out.</p></li>
+        <li><h3>Chart-friendly</h3><p>Your candles stay the star. Nothing on it gets in the way of reading price.</p></li>
+        <li><h3>Proven on gold</h3><p>It has to earn its place on my own gold charts.</p></li>
+        <li><h3>The bar</h3><p>It has to stand next to the best of what I already have. Fine is not finished.</p></li>
       </ol>
     </div>
   </div></div>
@@ -519,11 +519,11 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="counted-h">How a concept gets counted</h2><p>The tools are half the lab. The other half is testing what the crowd swears by. Same discipline, written down before anyone looks at the data.</p></div>
     <div class="hm-main">
       <ol class="lb-checks lb-rules">
-        <li><h3>The rules come first</h3><p>The claim, the measure, the baseline and the bar it has to clear are written before the data is touched. One run. Run it again and it is a new finding with its own number.</p></li>
-        <li><h3>A fair fight</h3><p>Every concept goes up against something dumb: a level nobody draws, the same candles shuffled, an ordinary stretch at the same hour. If it cannot beat that, it has nothing.</p></li>
-        <li><h3>A bar to clear</h3><p>Close is not enough. A hit rate has to beat its baseline by 3 in 100. A trade has to make 0.05 of its risk after the spread. Miss the bar and it does not hold.</p></li>
-        <li><h3>Years it never saw</h3><p>Gold from January 2013 to December 2019 is locked away. Nothing becomes a tool until it holds there too.</p></li>
-        <li><h3>Checked again every month</h3><p>On the first Monday, anything that held or looked like a lead runs again on the new data. If it flips, you see the flip.</p></li>
+        <li><h3>The rules come first</h3><p>The test is written down before anyone looks at the data. One run, no second tries.</p></li>
+        <li><h3>A fair fight</h3><p>Every concept goes up against something dumb. If it cannot beat that, it has nothing.</p></li>
+        <li><h3>A bar to clear</h3><p>Close is not enough. The bar is set before the run, costs paid. Miss it and it does not hold.</p></li>
+        <li><h3>Years it never saw</h3><p>Some of gold's history is locked away. Nothing becomes a tool until it holds there too.</p></li>
+        <li><h3>Checked again every month</h3><p>Anything that held runs again on new data. If it flips, you see the flip.</p></li>
       </ol>
     </div>
   </div></div>
