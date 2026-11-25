@@ -65,6 +65,9 @@ const F = id => { if (!LAB[id]) throw new Error("lab.json has no card " + id); r
    gets made, the six checks, what is on the bench and which checks each has passed, the bin, and a dated log. Those come
    from lab_desk.json, which the lab writes from its own records (each entry names its source) and only ever adds to.
    Every figure an entry prints must be in that entry's own figures list, or the build stops. */
+/* 25 Nov 2026, his word of 01:21: "remove the cards, they take up a lot of real estate". The five cards are off the page.
+   Their verdicts stay in the hero's counted list; every card's words, figures and charts stay in CARDS below and in
+   lab.json, still checked on every build, so a card can come back with one line. Nothing is deleted. */
 const DESKF = JSON.parse(fs.readFileSync(path.join(HERE, "lab_desk.json"), "utf8"));
 for (const [part, list] of [["bench", DESKF.bench], ["bin", DESKF.bin], ["log", DESKF.log]]) {
   for (const e of list) {
@@ -242,8 +245,8 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb .hm-say{margin-top:20px;max-width:34em}
 .lb-led{margin:8px 0 0;padding:0;list-style:none;border-top:1px solid var(--c-rule)}
 .lb-led li{border-bottom:1px solid var(--c-rule)}
-.lb-led a{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;font-size:15px;line-height:1.4;color:var(--c-ink);text-decoration:none!important}
-.lb-led a span{color:var(--c-sec);text-align:right}
+.lb-led a,.lb-led .lb-lr{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;font-size:15px;line-height:1.4;color:var(--c-ink);text-decoration:none!important}
+.lb-led a span,.lb-led .lb-lr span{color:var(--c-sec);text-align:right}
 .lb-led a:hover span{color:var(--c-ink)}
 .lb-led-h{margin:0;font-size:14px;color:var(--c-mut)}
 .lb-cards{display:grid;gap:56px}
@@ -280,7 +283,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-key i:not(.lb-dsh){box-shadow:0 0 8px color-mix(in srgb,var(--k) 45%,transparent)}
 .lb-v{display:flex;align-items:center;gap:10px;font-weight:500;color:var(--kt)!important}
 .lb-v::before,.lb-lv::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--k);box-shadow:0 0 10px var(--k)}
-.lb-led a span.lb-lv{display:inline-flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--kt)}
+.lb-led a span.lb-lv,.lb-led .lb-lr span.lb-lv{display:inline-flex;align-items:center;justify-content:flex-end;gap:8px;color:var(--kt)}
 .lb-led a:hover span.lb-lv{color:var(--kt);filter:brightness(1.15)}
 .lb-tally{display:grid;grid-template-columns:repeat(${LEDGER.length},minmax(0,1fr));gap:4px;margin:12px 0 4px}
 .lb-tally i{height:6px;border-radius:3px;background:var(--k);box-shadow:0 0 12px color-mix(in srgb,var(--k) 50%,transparent)}
@@ -390,7 +393,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
       <p class="lb-led-h">Counted so far: ${CARDS.length}. Held ${SCORE[0]}, did not hold ${SCORE[1]}, a lead ${SCORE[2]}.</p>
       <div class="lb-tally" aria-hidden="true">${LEDGER.map(([, , , k]) => `<i class="${k}"></i>`).join("")}</div>
       <ul class="lb-led">
-        ${LEDGER.map(([t, v, id, k]) => `<li><a href="#${id}">${esc(t)}<span class="lb-lv ${k}">${esc(v)}</span></a></li>`).join("\n        ")}
+        ${LEDGER.map(([t, v, id, k]) => `<li><div class="lb-lr">${esc(t)}<span class="lb-lv ${k}">${esc(v)}</span></div></li>`).join("\n        ")}
       </ul>
     </div>
   </div>
@@ -478,17 +481,6 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
   </div></div>
 </section>
 
-<section class="hm-sec gl-stage" id="cards" aria-labelledby="cards-h">
-  <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="cards-h">The cards</h2><p>One concept a card: the question, what was counted, what came out. Gold where it held, red where it broke, ivory while it is a lead. Blue is what it was measured against.</p></div>
-    <div class="hm-main">
-      <div class="lb-cards">
-        ${CARDS.map(cardHtml).join("\n        ")}
-      </div>
-    </div>
-  </div></div>
-</section>
-
 <section class="hm-sec" id="bench" aria-labelledby="bench-h">
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="bench-h">Counting next</h2><p>The next concepts going on trial.</p></div>
@@ -496,7 +488,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
       <div class="lb-bench">
         <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
         <div><h3>The squeeze most traders run</h3><p>My squeeze did not hold. John Carter's, Bollinger Bands inside Keltner Channels, gets its own count, direction and all.</p></div>
-        <div><h3>Swear by a concept?</h3><p>Send it to the lab on <a href="${H.LESSONS}" rel="noopener" data-x="lab-bench">X</a>. If enough of you swear by it, it gets counted, and you see the card either way.</p></div>
+        <div><h3>Swear by a concept?</h3><p>Send it to the lab on <a href="${H.LESSONS}" rel="noopener" data-x="lab-bench">X</a>. If enough of you swear by it, it gets counted, and you see the verdict either way.</p></div>
       </div>
     </div>
   </div></div>
@@ -504,11 +496,11 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 
 <section class="hm-sec" id="shipped" aria-labelledby="shipped-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>What the lab shipped, and what each one's count says. The question behind each tool is on its card.</p></div>
+    <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>What made it through.</p></div>
     <div class="hm-main">
       <div class="lb-tools">
-        <div class="lb-red"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold has been running, and how hard, as a river on your chart. It describes; its card says why. <a href="#speeds">Its card</a></p></div>
-        <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on. <a href="#stack">Its card</a></p></div>
+        <div class="lb-red"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold has been running, and how hard, as a river on your chart. It describes; it does not predict.</p></div>
+        <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="./#gate">joining the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on.</p></div>
       </div>
       <p class="hm-free" style="margin-top:28px">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="${H.LESSONS}" rel="noopener" data-x="lab-free-lessons">lessons on X</a>.</p>
     </div>
@@ -542,4 +534,4 @@ if (/—|<!--|!\s|–|#[A-Za-z]{2,}\b(?![^<]*>)/.test(html.replace(/<!DOCTYPE ht
   console.error("lab.html has an em dash, an en dash, an exclamation, a hashtag or an HTML comment"); process.exit(1);
 }
 fs.writeFileSync(path.join(HERE, "lab.html"), html);
-console.log("lab.html written: " + CARDS.length + " cards, " + Object.values(DESK).filter(Boolean).length + " lines from the desk.");
+console.log("lab.html written: " + CARDS.length + " cards checked and kept off the page, " + Object.values(DESK).filter(Boolean).length + " lines from the desk.");

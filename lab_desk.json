@@ -149,7 +149,7 @@
   {
    "kind": "call",
    "what": "My own call on the slow half",
-   "why": "I filed it as holding. The shuffle proved me wrong, and the card says so.",
+   "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.",
    "date": "23 Nov",
    "figures": [
     23
@@ -196,7 +196,7 @@
   },
   {
    "date": "23 Nov",
-   "text": "Ran my own slow line against shuffled candles. The shuffle won. Card corrected.",
+   "text": "Ran my own slow line against shuffled candles. The shuffle won. Verdict corrected.",
    "figures": [],
    "src": "FINDINGS.json F-003"
   },
