@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The lab · The Simplifier</title>
-<meta name="description" content="Every concept the trading crowd swears by, counted on every minute of gold since January 2013. What holds becomes a tool on your chart. What does not, I show you anyway.">
+<meta name="description" content="How THE SIMPLIFIER's gold indicators get made: a scout, a build, six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.">
 <link rel="canonical" href="https://thesimplifier7.com/lab.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Simplifier">
 <meta property="og:url" content="https://thesimplifier7.com/lab.html">
 <meta property="og:title" content="The lab · The Simplifier">
-<meta property="og:description" content="Every concept the trading crowd swears by, counted on every minute of gold since January 2013. What holds becomes a tool on your chart. What does not, I show you anyway.">
+<meta property="og:description" content="How THE SIMPLIFIER's gold indicators get made: a scout, a build, six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.">
 <meta property="og:image" content="https://thesimplifier7.com/card_daily.jpg?v=9eaba2a37f">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@TheSimplifier7">
 <meta name="twitter:title" content="The lab · The Simplifier">
-<meta name="twitter:description" content="Every concept the trading crowd swears by, counted on every minute of gold since January 2013. What holds becomes a tool on your chart. What does not, I show you anyway.">
+<meta name="twitter:description" content="How THE SIMPLIFIER's gold indicators get made: a scout, a build, six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.">
 <meta name="twitter:image" content="https://thesimplifier7.com/card_daily.jpg?v=9eaba2a37f">
 <meta name="theme-color" content="#0B1A2E">
 <meta name="color-scheme" content="dark">
@@ -162,6 +162,39 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
   .lb-fig{margin-top:20px;padding:12px 10px 10px}
   .hm-final .hm-acts .hs-btn{width:100%}
 }
+.lb-steps,.lb-checks,.lb-log,.lb-binl{margin:0;padding:0;list-style:none}
+.lb-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;counter-reset:st}
+.lb-steps li,.lb-checks li{counter-increment:st;position:relative;padding-top:16px;border-top:2px solid var(--c-rule-2)}
+.lb-steps li::before,.lb-checks li::before{content:counter(st,decimal-leading-zero);display:block;margin-bottom:6px;font:400 13px/1 var(--c-fig);color:var(--c-gold)}
+.lb-steps h3,.lb-checks h3,.lb-now h3{margin:0 0 6px;font:500 18px/1.3 var(--c-ui);color:var(--c-ink)}
+.lb-steps p,.lb-checks p,.lb-now p,.lb-binl p,.lb-log p{margin:0;font-size:16px;line-height:1.55;color:var(--c-sec)}
+.lb-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 32px;counter-reset:st}
+.lb-rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lb-now{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.lb-nw{padding:20px;border-radius:14px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
+.lb-nwh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lb-st{font-size:14px!important;color:var(--c-mut)!important}
+.lb-pips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:12px 0 14px}
+.lb-pips span{display:block;text-align:center}
+.lb-pips i{display:block;height:6px;border-radius:3px;background:var(--c-rule-2)}
+.lb-pips b{display:block;margin-top:5px;font:400 12px/1 var(--c-fig);color:var(--c-mut)}
+.lb-pips .on i{background:var(--c-gold);box-shadow:0 0 12px color-mix(in srgb,var(--c-gold) 55%,transparent)}
+.lb-pips .on b{color:var(--c-gold)}
+.lb-binn{display:flex;flex-wrap:wrap;gap:12px 32px;margin:0 0 20px;font-size:15px;color:var(--c-sec)}
+.lb-binn b{display:block;font:700 44px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:#EE7B70;text-shadow:0 0 18px color-mix(in srgb,#F0604A 40%,transparent)}
+.lb-binl{border-top:1px solid var(--c-rule)}
+.lb-binl li{padding:12px 0;border-bottom:1px solid var(--c-rule)}
+.lb-bw{display:flex;justify-content:space-between;gap:16px;color:var(--c-ink)!important}
+.lb-bw s{text-decoration:line-through;text-decoration-color:color-mix(in srgb,#F0604A 70%,transparent);text-decoration-thickness:1.5px}
+.lb-bw span{flex:none;font:400 13px/1.6 var(--c-fig);color:var(--c-mut)}
+.lb-log{border-left:1px solid var(--c-rule-2);padding-left:20px}
+.lb-log li{position:relative;display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0}
+.lb-log li::before{content:"";position:absolute;left:-24.5px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--c-gold)}
+.lb-log time{font:400 13px/1.9 var(--c-fig);color:var(--c-mut)}
+@media (max-width:900px){
+  .lb-steps,.lb-checks,.lb-rules,.lb-now{grid-template-columns:1fr;gap:24px}
+  .lb-log li{grid-template-columns:56px 1fr}
+}
 </style>
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -172,7 +205,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <a class="hs-brand" href="./" aria-label="The Simplifier, home">THE SIMPLIFIER</a>
     <nav class="hs-nav" aria-label="The site">
       <a href="./#set">The set</a>
-      <a href="lab.html">The lab</a>
+      <a href="lab.html" aria-current="page">The lab</a>
       <a href="./#pricing">Pricing</a>
       <a href="https://x.com/TheSimplifier7">Lessons</a>
     </nav>
@@ -186,8 +219,8 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 <section class="hm-hero gl-stage" aria-labelledby="lb-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="lb-h1">Every concept the crowd swears by, counted.</h1>
-      <p class="hm-say">On every minute of gold since January 2013, against a fair baseline named before the run, then checked on years the count never saw. What holds becomes a tool on your chart. What does not, I show you anyway.</p>
+      <h1 class="hm-h1" id="lb-h1">The method to the madness.</h1>
+      <p class="hm-say">Plenty of indicators get built in an afternoon and sold by evening. Mine go through a loop built to kill them. What survives goes on your chart. What dies stays on this page, with the reason it died.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
     <div class="lb-ledw gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
@@ -203,6 +236,111 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
       </ul>
     </div>
   </div>
+</section>
+
+<section class="hm-sec gl-stage" id="method" aria-labelledby="method-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>Three seats and one rule: nothing reaches my desk until it has earned it.</p></div>
+    <div class="hm-main">
+      <ol class="lb-steps">
+        <li><h3>The hunt</h3><p>A scout goes looking for what traders actually use and argue about, then reads what is already on TradingView. If it has been done well, I am not making another copy. If it has been done badly, that is the opening.</p></li>
+        <li><h3>The build</h3><p>Before a line of code, the idea gets a solutions page: what goes wrong with it on a real gold chart, the sources that say how to fix it, and the fix for each. No page, no code. Then research and development builds it.</p></li>
+        <li><h3>The beating</h3><p>Every build runs the six checks below. Fail one and it goes back. No exceptions for ideas I happen to like.</p></li>
+        <li><h3>My desk</h3><p>If it survives all that, it goes on my own gold charts and I read the market with it the way I do every day. Plenty die here too.</p></li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="checks" aria-labelledby="checks-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="checks-h">The six checks</h2><p>All six, every time. Fixes to a tool already on your chart run checks 2 to 4 again.</p></div>
+    <div class="hm-main">
+      <ol class="lb-checks">
+        <li><h3>Sourced</h3><p>Every part of the method traces back to something you could read yourself. No secret sauce.</p></li>
+        <li><h3>Clean code</h3><p>It passes a line by line check and stays inside TradingView's limits, so it loads and does not choke your chart.</p></li>
+        <li><h3>No repaint</h3><p>The script is replayed candle by candle and has to draw exactly what it drew live. If it rewrites history after the fact, it is lying to you, and it is out.</p></li>
+        <li><h3>No squashed candles</h3><p>A line that stretches the price scale until your candles go flat is useless. It is measured on 5, 15 and 30 minute charts, and the answer has to be zero.</p></li>
+        <li><h3>On real gold</h3><p>Drawn on my own 5 and 30 minute gold and looked at hard, next to what is already out there.</p></li>
+        <li><h3>Beside The Flow Structure</h3><p>It is the bar. A new tool has to stand next to it on the same chart and hold its own. Fine is not finished.</p></li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec gl-stage" id="now" aria-labelledby="now-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="now-h">In the lab right now</h2><p>What is on the bench and how far each one has got. No dates promised. A lit mark is a check passed. As of 25 Nov 2026.</p></div>
+    <div class="hm-main">
+      <div class="lb-now">
+        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Flow Structure</h3><p class="lb-st">Through the checks</p></div>
+          <div class="lb-pips" role="img" aria-label="The Flow Structure: 6 of 6 checks passed"><span class="on" title="Sourced"><i></i><b>1</b></span><span class="on" title="Clean code"><i></i><b>2</b></span><span class="on" title="No repaint"><i></i><b>3</b></span><span class="on" title="No squashed candles"><i></i><b>4</b></span><span class="on" title="On real gold"><i></i><b>5</b></span><span class="on" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
+          <p>The market's skeleton, joint to joint, and the one level the trend stands on. Replayed on 98,777 closed 5 minute candles, it drew exactly what it drew live. It is the bar for check 6. Six lines of its page are being corrected before it ships.</p></div>
+        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Flow Pivots</h3><p class="lb-st">Back in the rebuild</p></div>
+          <div class="lb-pips" role="img" aria-label="The Flow Pivots: 1 of 6 checks passed"><span class="on" title="Sourced"><i></i><b>1</b></span><span class="" title="Clean code"><i></i><b>2</b></span><span class="" title="No repaint"><i></i><b>3</b></span><span class="" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
+          <p>Draft 7 got thrown out on 24 Nov. The rebuild started on 25 Nov from a new solutions page: one band, the clutter gone, and squashed candles at zero or it does not come back.</p></div>
+        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Strata</h3><p class="lb-st">Waiting for its solutions page</p></div>
+          <div class="lb-pips" role="img" aria-label="The Strata: 0 of 6 checks passed"><span class="" title="Sourced"><i></i><b>1</b></span><span class="" title="Clean code"><i></i><b>2</b></span><span class="" title="No repaint"><i></i><b>3</b></span><span class="" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
+          <p>Every swing the skeleton confirms, left behind as a thin band at its price. Where bands stack, the layer gets deeper. One question decides it: is The Flow Structure better with it or without it.</p></div>
+        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Thrust</h3><p class="lb-st">Found, not built</p></div>
+          <div class="lb-pips" role="img" aria-label="The Thrust: 0 of 6 checks passed"><span class="" title="Sourced"><i></i><b>1</b></span><span class="" title="Clean code"><i></i><b>2</b></span><span class="" title="No repaint"><i></i><b>3</b></span><span class="" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
+          <p>Brought in by the scout on 24 Nov. It weighs each push of a trend against the one before: heavy while it keeps gaining ground, thin when it gains less. Nothing gets built until the rule for a near tie is written down first.</p></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="bin" aria-labelledby="bin-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="bin-h">The bin</h2><p>Most labs hide this part. Nothing that fails here gets quietly deleted.</p></div>
+    <div class="hm-main">
+      <p class="lb-binn"><span><b>4</b> concepts that did not hold</span><span><b>6</b> tool drafts thrown out</span><span><b>1</b> call of my own, wrong and corrected</span></p>
+      <ul class="lb-binl">
+        <li><p class="lb-bw"><s>The squeeze before a bigger move</s><span>22 Nov</span></p><p>Gold moved less after a squeeze, not more.</p></li>
+        <li><p class="lb-bw"><s>Swing highs and lows pulling price</s><span>21 Nov</span></p><p>Reached as often as any level the same distance away.</p></li>
+        <li><p class="lb-bw"><s>The channel's 2 deviation wall</s><span>21 Nov</span></p><p>Promised one close in twenty beyond it. Gold gave one in three.</p></li>
+        <li><p class="lb-bw"><s>The slow half reading the day</s><span>23 Nov</span></p><p>Gold's own candles, shuffled, scored higher.</p></li>
+        <li><p class="lb-bw"><s>The Flow Pivots, draft 7</s><span>24 Nov</span></p><p>It squashed the candles, and its waves meant nothing.</p></li>
+        <li><p class="lb-bw"><s>The Flow Structure, drafts 1 to 5</s><span>24 Nov</span></p><p>The whole engine scrapped and started again.</p></li>
+        <li><p class="lb-bw"><s>My own call on the slow half</s><span>23 Nov</span></p><p>I filed it as holding. The shuffle proved me wrong, and the card says so.</p></li>
+      </ul>
+      <p class="lb-s" style="margin-top:20px">Drafts are cheap, so I burn them. The Gate shipped on its 27th. The ones that never make it stay right here, in plain view.</p>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="log" aria-labelledby="log-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="log-h">The lab log</h2><p>What moved, and when. Newest first. Come back and it will be longer.</p></div>
+    <div class="hm-main">
+      <ol class="lb-log">
+        <li><time>25 Nov</time><p>The Flow Pivots rebuild started.</p></li>
+        <li><time>24 Nov</time><p>Threw out The Flow Pivots on draft 7.</p></li>
+        <li><time>24 Nov</time><p>The scout brought in The Thrust. Not built yet.</p></li>
+        <li><time>24 Nov</time><p>The Flow Structure replayed on 98,777 closed candles. Not one drawing moved.</p></li>
+        <li><time>24 Nov</time><p>The Gate shipped on its 27th draft.</p></li>
+        <li><time>23 Nov</time><p>Ran my own slow line against shuffled candles. The shuffle won. Card corrected.</p></li>
+        <li><time>22 Nov</time><p>Counted the squeeze. It does not hold.</p></li>
+        <li><time>21 Nov</time><p>Counted swing highs and lows, and the channel wall. Neither holds.</p></li>
+        <li><time>19 Nov</time><p>Counted every clock behind a turn. A lead, not yet sealed.</p></li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="counted" aria-labelledby="counted-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="counted-h">How a concept gets counted</h2><p>The tools are half the lab. The other half is testing what the crowd swears by. Same discipline, written down before anyone looks at the data.</p></div>
+    <div class="hm-main">
+      <ol class="lb-checks lb-rules">
+        <li><h3>The rules come first</h3><p>The claim, the measure, the baseline and the bar it has to clear are written before the data is touched. One run. Run it again and it is a new finding with its own number.</p></li>
+        <li><h3>A fair fight</h3><p>Every concept goes up against something dumb: a level nobody draws, the same candles shuffled, an ordinary stretch at the same hour. If it cannot beat that, it has nothing.</p></li>
+        <li><h3>A bar to clear</h3><p>Close is not enough. A hit rate has to beat its baseline by 3 in 100. A trade has to make 0.05 of its risk after the spread. Miss the bar and it does not hold.</p></li>
+        <li><h3>Years it never saw</h3><p>Gold from January 2013 to December 2019 is locked away. Nothing becomes a tool until it holds there too.</p></li>
+        <li><h3>Checked again every month</h3><p>On the first Monday, anything that held or looked like a lead runs again on the new data. If it flips, you see the flip.</p></li>
+      </ol>
+    </div>
+  </div></div>
 </section>
 
 <section class="hm-sec gl-stage" id="cards" aria-labelledby="cards-h">
@@ -298,7 +436,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 
 <section class="hm-sec" id="bench" aria-labelledby="bench-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="bench-h">On the bench</h2><p>What the lab is counting next.</p></div>
+    <div class="hm-side"><h2 id="bench-h">Counting next</h2><p>The next concepts going on trial.</p></div>
     <div class="hm-main">
       <div class="lb-bench">
         <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
@@ -344,7 +482,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
   <nav aria-label="The small print"><p class="hs-foot-h">The small print</p><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="aviso-legal.html">Aviso legal</a><a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a><a href="https://billing.stripe.com/p/login/4gMbJ3gw91552dx4cm5kk00">Manage subscription</a></nav>
 </div></footer>
 <nav class="hs-bot" aria-label="The site, on a phone">
-  <p class="hs-buy-t">€99 a month, 7 days free</p><a class="hs-btn hs-gold hs-buy-b" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="bar-page">Start 7 days free</a>
+  <p class="hs-buy-t">€99 a month, 7 days free</p><a class="hs-btn hs-gold hs-buy-b" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="bar-lab">Start 7 days free</a>
 </nav>
 <script src="house.js?v=c08b2c33cb" defer></script>
 <script src="svgfloor.js?v=ddba5e2fe2" defer></script>
