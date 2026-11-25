@@ -13,6 +13,7 @@
   {"name": "The Flow", "state": "Coming to TradingView", "src": "lab records"}
  ],
  "bin": [
+  {"kind": "concept", "what": "Project 05", "why": "It passed the test the lab set, then failed a harder one: it told a trader nothing the candles do not already show.", "date": "25 Nov", "figures": [5], "src": "lab records (RD_CARDS B-103 and D-105; LAB_LOG 25 Nov 15:4x and 15:5x)"},
   {"kind": "draft", "what": "Project 02, draft 8", "why": "Clean, but nobody could read it as a level. Dropped as a tool of its own.", "date": "25 Nov", "figures": [2, 8], "src": "lab records (RD_CARDS I-101; LAB_LOG 25 Nov 12:3x)"},
   {"kind": "concept", "what": "Project 04", "why": "It looked good on the day picked to show it, and did not hold up on a day nobody picked.", "date": "25 Nov", "figures": [4], "src": "lab records (SCOUT_CARDS, run VKTM)"},
   {"kind": "concept", "what": "The squeeze before a bigger move", "why": "Gold moved less after a squeeze, not more.", "date": "22 Nov", "figures": [], "src": "FINDINGS.json F-001"},
@@ -24,6 +25,8 @@
   {"kind": "call", "what": "My own call on the slow half", "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-000c then F-003"}
  ],
  "log": [
+  {"date": "25 Nov", "text": "Raised the bar. A tool now has to beat what plain geometry would show, named before the data is opened, not just a coin. Project 05 met the old bar, missed the new one and went in the bin.", "figures": [5], "src": "lab records (LAB_LOG 25 Nov 15:4x)"},
+  {"date": "25 Nov", "text": "The scout threw out three more ideas. Nothing reached the bench.", "figures": [], "src": "lab records (SCOUT_CARDS, runs QRDW and WTHB)"},
   {"date": "25 Nov", "text": "Dropped Project 02 as a tool of its own. Its useful part goes to Project 01, to be counted first.", "figures": [1, 2], "src": "lab records (LAB_LOG 25 Nov 12:3x)"},
   {"date": "25 Nov", "text": "The scout's tighter checks threw out four ideas in two runs. Nothing reached the bench, and that counts as a good run.", "figures": [], "src": "lab records (SCOUT_CARDS, runs VKTM and HMPL)"},
   {"date": "25 Nov", "text": "Threw out Project 04 before a build.", "figures": [4], "src": "lab records (SCOUT_CARDS, run VKTM)"},
