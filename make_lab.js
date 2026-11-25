@@ -60,8 +60,26 @@ const esc = H.esc;
 const LAB = JSON.parse(fs.readFileSync(path.join(HERE, "lab.json"), "utf8")).cards;
 const F = id => { if (!LAB[id]) throw new Error("lab.json has no card " + id); return LAB[id]; };
 
+/* 25 Nov 2026, his word of 00:43 ("let people know what is the method to the madness...write like a human") and 01:00
+   ("make it fucking intriguing. make people interested in coming back"). The page now leads with the method: how a tool
+   gets made, the six checks, what is on the bench and which checks each has passed, the bin, and a dated log. Those come
+   from lab_desk.json, which the lab writes from its own records (each entry names its source) and only ever adds to.
+   Every figure an entry prints must be in that entry's own figures list, or the build stops. */
+const DESKF = JSON.parse(fs.readFileSync(path.join(HERE, "lab_desk.json"), "utf8"));
+for (const [part, list] of [["bench", DESKF.bench], ["bin", DESKF.bin], ["log", DESKF.log]]) {
+  for (const e of list) {
+    const words = [e.text, e.what, e.why].filter(Boolean).join(" ");
+    for (const tok of words.match(/\d{1,3}(?:,\d{3})+|\d+/g) || []) {
+      const n = +tok.replace(/,/g, "");
+      if (!(e.figures || []).includes(n)) throw new Error("lab_desk.json " + part + ": " + tok + " is not in its figures: " + words);
+    }
+    if (!e.src) throw new Error("lab_desk.json " + part + ": an entry names no source: " + words);
+  }
+}
+for (const b of DESKF.bench) if (b.passed.length !== DESKF.checks.length) throw new Error("lab_desk.json: " + b.name + " does not mark all six checks");
+
 const TITLE = "The lab · The Simplifier";
-const DESC = "Every concept the trading crowd swears by, counted on every minute of gold since January 2013. What holds becomes a tool on your chart. What does not, I show you anyway.";
+const DESC = "How THE SIMPLIFIER's gold indicators get made: a scout, a build, six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.";
 const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="lab-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
@@ -324,6 +342,39 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
   .lb-fig{margin-top:20px;padding:12px 10px 10px}
   .hm-final .hm-acts .hs-btn{width:100%}
 }
+.lb-steps,.lb-checks,.lb-log,.lb-binl{margin:0;padding:0;list-style:none}
+.lb-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;counter-reset:st}
+.lb-steps li,.lb-checks li{counter-increment:st;position:relative;padding-top:16px;border-top:2px solid var(--c-rule-2)}
+.lb-steps li::before,.lb-checks li::before{content:counter(st,decimal-leading-zero);display:block;margin-bottom:6px;font:400 13px/1 var(--c-fig);color:var(--c-gold)}
+.lb-steps h3,.lb-checks h3,.lb-now h3{margin:0 0 6px;font:500 18px/1.3 var(--c-ui);color:var(--c-ink)}
+.lb-steps p,.lb-checks p,.lb-now p,.lb-binl p,.lb-log p{margin:0;font-size:16px;line-height:1.55;color:var(--c-sec)}
+.lb-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 32px;counter-reset:st}
+.lb-rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lb-now{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.lb-nw{padding:20px;border-radius:14px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
+.lb-nwh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lb-st{font-size:14px!important;color:var(--c-mut)!important}
+.lb-pips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:12px 0 14px}
+.lb-pips span{display:block;text-align:center}
+.lb-pips i{display:block;height:6px;border-radius:3px;background:var(--c-rule-2)}
+.lb-pips b{display:block;margin-top:5px;font:400 12px/1 var(--c-fig);color:var(--c-mut)}
+.lb-pips .on i{background:var(--c-gold);box-shadow:0 0 12px color-mix(in srgb,var(--c-gold) 55%,transparent)}
+.lb-pips .on b{color:var(--c-gold)}
+.lb-binn{display:flex;flex-wrap:wrap;gap:12px 32px;margin:0 0 20px;font-size:15px;color:var(--c-sec)}
+.lb-binn b{display:block;font:700 44px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:#EE7B70;text-shadow:0 0 18px color-mix(in srgb,#F0604A 40%,transparent)}
+.lb-binl{border-top:1px solid var(--c-rule)}
+.lb-binl li{padding:12px 0;border-bottom:1px solid var(--c-rule)}
+.lb-bw{display:flex;justify-content:space-between;gap:16px;color:var(--c-ink)!important}
+.lb-bw s{text-decoration:line-through;text-decoration-color:color-mix(in srgb,#F0604A 70%,transparent);text-decoration-thickness:1.5px}
+.lb-bw span{flex:none;font:400 13px/1.6 var(--c-fig);color:var(--c-mut)}
+.lb-log{border-left:1px solid var(--c-rule-2);padding-left:20px}
+.lb-log li{position:relative;display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0}
+.lb-log li::before{content:"";position:absolute;left:-24.5px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--c-gold)}
+.lb-log time{font:400 13px/1.9 var(--c-fig);color:var(--c-mut)}
+@media (max-width:900px){
+  .lb-steps,.lb-checks,.lb-rules,.lb-now{grid-template-columns:1fr;gap:24px}
+  .lb-log li{grid-template-columns:56px 1fr}
+}
 `;
 
 const MAIN = `<main id="main" class="hm lb" tabindex="-1">
@@ -331,8 +382,8 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 <section class="hm-hero gl-stage" aria-labelledby="lb-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="lb-h1">Every concept the crowd swears by, counted.</h1>
-      <p class="hm-say">On every minute of gold since January 2013, against a fair baseline named before the run, then checked on years the count never saw. What holds becomes a tool on your chart. What does not, I show you anyway.</p>
+      <h1 class="hm-h1" id="lb-h1">The method to the madness.</h1>
+      <p class="hm-say">Plenty of indicators get built in an afternoon and sold by evening. Mine go through a loop built to kill them. What survives goes on your chart. What dies stays on this page, with the reason it died.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
     <div class="lb-ledw gl" data-plate data-seal="${SEAL}">
@@ -343,6 +394,88 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
       </ul>
     </div>
   </div>
+</section>
+
+<section class="hm-sec gl-stage" id="method" aria-labelledby="method-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>Three seats and one rule: nothing reaches my desk until it has earned it.</p></div>
+    <div class="hm-main">
+      <ol class="lb-steps">
+        <li><h3>The hunt</h3><p>A scout goes looking for what traders actually use and argue about, then reads what is already on TradingView. If it has been done well, I am not making another copy. If it has been done badly, that is the opening.</p></li>
+        <li><h3>The build</h3><p>Before a line of code, the idea gets a solutions page: what goes wrong with it on a real gold chart, the sources that say how to fix it, and the fix for each. No page, no code. Then research and development builds it.</p></li>
+        <li><h3>The beating</h3><p>Every build runs the six checks below. Fail one and it goes back. No exceptions for ideas I happen to like.</p></li>
+        <li><h3>My desk</h3><p>If it survives all that, it goes on my own gold charts and I read the market with it the way I do every day. Plenty die here too.</p></li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="checks" aria-labelledby="checks-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="checks-h">The six checks</h2><p>All six, every time. Fixes to a tool already on your chart run checks 2 to 4 again.</p></div>
+    <div class="hm-main">
+      <ol class="lb-checks">
+        <li><h3>Sourced</h3><p>Every part of the method traces back to something you could read yourself. No secret sauce.</p></li>
+        <li><h3>Clean code</h3><p>It passes a line by line check and stays inside TradingView's limits, so it loads and does not choke your chart.</p></li>
+        <li><h3>No repaint</h3><p>The script is replayed candle by candle and has to draw exactly what it drew live. If it rewrites history after the fact, it is lying to you, and it is out.</p></li>
+        <li><h3>No squashed candles</h3><p>A line that stretches the price scale until your candles go flat is useless. It is measured on 5, 15 and 30 minute charts, and the answer has to be zero.</p></li>
+        <li><h3>On real gold</h3><p>Drawn on my own 5 and 30 minute gold and looked at hard, next to what is already out there.</p></li>
+        <li><h3>Beside The Flow Structure</h3><p>It is the bar. A new tool has to stand next to it on the same chart and hold its own. Fine is not finished.</p></li>
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec gl-stage" id="now" aria-labelledby="now-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="now-h">In the lab right now</h2><p>What is on the bench and how far each one has got. No dates promised. A lit mark is a check passed. As of ${esc(DESKF.as_of)}.</p></div>
+    <div class="hm-main">
+      <div class="lb-now">
+        ${DESKF.bench.map(b => { const n = b.passed.filter(Boolean).length; return `<div class="lb-nw gl"><div class="lb-nwh"><h3>${esc(b.name)}</h3><p class="lb-st">${esc(b.state)}</p></div>
+          <div class="lb-pips" role="img" aria-label="${esc(b.name)}: ${n} of ${DESKF.checks.length} checks passed">${b.passed.map((p, i) => `<span class="${p ? "on" : ""}" title="${esc(DESKF.checks[i])}"><i></i><b>${i + 1}</b></span>`).join("")}</div>
+          <p>${esc(b.text)}</p></div>`; }).join("\n        ")}
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="bin" aria-labelledby="bin-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="bin-h">The bin</h2><p>Most labs hide this part. Nothing that fails here gets quietly deleted.</p></div>
+    <div class="hm-main">
+      <p class="lb-binn"><span><b>${DESKF.bin.filter(e => e.kind === "concept").length}</b> concepts that did not hold</span><span><b>${DESKF.bin.filter(e => e.kind === "draft").reduce((a, e) => a + (/drafts (\d+) to (\d+)/.test(e.what) ? (+RegExp.$2 - +RegExp.$1 + 1) : 1), 0)}</b> tool drafts thrown out</span><span><b>${DESKF.bin.filter(e => e.kind === "call").length}</b> call of my own, wrong and corrected</span></p>
+      <ul class="lb-binl">
+        ${DESKF.bin.map(e => `<li><p class="lb-bw"><s>${esc(e.what)}</s><span>${esc(e.date)}</span></p><p>${esc(e.why)}</p></li>`).join("\n        ")}
+      </ul>
+      <p class="lb-s" style="margin-top:20px">Drafts are cheap, so I burn them. The Gate shipped on its 27th. The ones that never make it stay right here, in plain view.</p>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="log" aria-labelledby="log-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="log-h">The lab log</h2><p>What moved, and when. Newest first. Come back and it will be longer.</p></div>
+    <div class="hm-main">
+      <ol class="lb-log">
+        ${DESKF.log.map(e => `<li><time>${esc(e.date)}</time><p>${esc(e.text)}</p></li>`).join("\n        ")}
+      </ol>
+    </div>
+  </div></div>
+</section>
+
+<section class="hm-sec" id="counted" aria-labelledby="counted-h">
+  <div class="hm-in"><div>
+    <div class="hm-side"><h2 id="counted-h">How a concept gets counted</h2><p>The tools are half the lab. The other half is testing what the crowd swears by. Same discipline, written down before anyone looks at the data.</p></div>
+    <div class="hm-main">
+      <ol class="lb-checks lb-rules">
+        <li><h3>The rules come first</h3><p>The claim, the measure, the baseline and the bar it has to clear are written before the data is touched. One run. Run it again and it is a new finding with its own number.</p></li>
+        <li><h3>A fair fight</h3><p>Every concept goes up against something dumb: a level nobody draws, the same candles shuffled, an ordinary stretch at the same hour. If it cannot beat that, it has nothing.</p></li>
+        <li><h3>A bar to clear</h3><p>Close is not enough. A hit rate has to beat its baseline by 3 in 100. A trade has to make 0.05 of its risk after the spread. Miss the bar and it does not hold.</p></li>
+        <li><h3>Years it never saw</h3><p>Gold from January 2013 to December 2019 is locked away. Nothing becomes a tool until it holds there too.</p></li>
+        <li><h3>Checked again every month</h3><p>On the first Monday, anything that held or looked like a lead runs again on the new data. If it flips, you see the flip.</p></li>
+      </ol>
+    </div>
+  </div></div>
 </section>
 
 <section class="hm-sec gl-stage" id="cards" aria-labelledby="cards-h">
@@ -358,7 +491,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 
 <section class="hm-sec" id="bench" aria-labelledby="bench-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="bench-h">On the bench</h2><p>What the lab is counting next.</p></div>
+    <div class="hm-side"><h2 id="bench-h">Counting next</h2><p>The next concepts going on trial.</p></div>
     <div class="hm-main">
       <div class="lb-bench">
         <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
