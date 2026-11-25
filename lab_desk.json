@@ -33,20 +33,20 @@
    "name": "The Flow Pivots",
    "passed": [
     1,
-    0,
-    0,
-    0,
+    1,
+    1,
+    1,
     0,
     0
    ],
-   "state": "Back in the rebuild",
-   "text": "Draft 7 got thrown out on 24 Nov. The rebuild started on 25 Nov from a new solutions page: one band, the clutter gone, and squashed candles at zero or it does not come back.",
+   "state": "Proven clean, face under review",
+   "text": "Draft 7 got thrown out on 24 Nov. Draft 8 came back the next night clean, with no repaint and squashed candles at zero. Its face still does not stand beside The Flow Structure, so it stays on the bench until that is settled.",
    "figures": [
     7,
     24,
-    25
+    8
    ],
-   "src": "ALEMBIC_NOW (rejected 24 Nov 22:52, R&D order item 4); PIVOTS_SOLUTIONS_24NOV.md; RD_CARDS RUNNING 25 Nov 01:44 REWORK"
+   "src": "ALEMBIC_NOW (rejected 24 Nov 22:52, R&D order item 4); PIVOTS_SOLUTIONS_24NOV.md; RD_CARDS RUNNING 25 Nov 01:44 REWORK; RD_CARDS I-101, 25 Nov 02:01 (draft 8: static CLEAN, replay EQUAL, squash 0.00 on 5, 15, 30; DOES NOT STAND BESIDE STRUCTURE)"
   },
   {
    "name": "The Strata",
@@ -160,6 +160,14 @@
  "log": [
   {
    "date": "25 Nov",
+   "text": "The Flow Pivots draft 8 came back clean, no repaint, no squash. The face still is not good enough.",
+   "figures": [
+    8
+   ],
+   "src": "RD_CARDS I-101, 25 Nov 02:01"
+  },
+  {
+   "date": "25 Nov",
    "text": "The Flow Pivots rebuild started.",
    "figures": [],
    "src": "RD_CARDS RUNNING 25 Nov 01:44"
@@ -217,6 +225,18 @@
    "text": "Counted every clock behind a turn. A lead, not yet sealed.",
    "figures": [],
    "src": "FINDINGS.json F-000d"
+  }
+ ],
+ "shipped": [
+  {
+   "name": "The Gate",
+   "state": "Live on TradingView",
+   "src": "ALEMBIC_NOW (draft 27 shipped 24 Nov)"
+  },
+  {
+   "name": "The Flow",
+   "state": "Coming to TradingView",
+   "src": "ALEMBIC_NOW (publish copy from draft 11)"
   }
  ]
 }

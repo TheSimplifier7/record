@@ -79,6 +79,11 @@ for (const [part, list] of [["bench", DESKF.bench], ["bin", DESKF.bin], ["log", 
     if (!e.src) throw new Error("lab_desk.json " + part + ": an entry names no source: " + words);
   }
 }
+const STOPS = ["Idea", ...["Sourced", "Clean", "No repaint", "No squash", "Real gold", "The bar"], "Your chart"];
+const reach = t => { let k = 0; while (k < 6 && t.passed[k]) k++; return k; };
+const BIN_C = DESKF.bin.filter(e => e.kind === "concept").length;
+const BIN_D = DESKF.bin.filter(e => e.kind === "draft").reduce((a, e) => a + (/drafts (\d+) to (\d+)/.test(e.what) ? (+RegExp.$2 - +RegExp.$1 + 1) : 1), 0);
+const TRACK_ALT = "The six checks as a track. " + DESKF.bench.map(t => t.name + ": " + reach(t) + " of 6 checks passed, " + t.state).join(". ") + ". In the bin: " + BIN_C + " concepts and " + BIN_D + " tool drafts.";
 for (const b of DESKF.bench) if (b.passed.length !== DESKF.checks.length) throw new Error("lab_desk.json: " + b.name + " does not mark all six checks");
 
 const TITLE = "The lab · The Simplifier";
@@ -345,6 +350,44 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
   .lb-fig{margin-top:20px;padding:12px 10px 10px}
   .hm-final .hm-acts .hs-btn{width:100%}
 }
+.lb .hm-hero .hm-in.lb-trkw{display:block;margin-top:40px}
+.lb-trk{padding:24px 28px 18px;border-radius:16px}
+.lb-tr{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:16px;padding:10px 0}
+.lb-th{padding:0 0 6px}
+.lb-th{grid-template-columns:200px repeat(8,minmax(0,1fr));gap:0 0}
+.lb-th b{font:400 12px/1.3 var(--c-fig);color:var(--c-mut);text-align:center;text-transform:uppercase;letter-spacing:.03em}
+.lb-th b i{display:block;font-style:normal;color:var(--c-gold)}
+.lb-tr > span{font:500 16px/1.25 var(--c-ui);color:var(--c-ink)}
+.lb-tr > span em{display:block;font:400 13px/1.35 var(--c-ui);font-style:normal;color:var(--c-mut);margin-top:2px}
+.lb-lane{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));height:24px;margin-left:-16px}
+.lb-lane::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:var(--c-rule)}
+.lb-lane u{position:relative;display:block;text-decoration:none}
+.lb-lane u::after{content:"";position:absolute;left:50%;top:5px;width:2px;height:14px;margin-left:-1px;background:var(--c-rule-2)}
+.lb-lane u.on::after{background:var(--c-gold);box-shadow:0 0 8px var(--c-gold)}
+.lb-tk{position:absolute;left:0;top:9px;height:6px;border-radius:3px;background:#8DB0F5;box-shadow:0 0 14px color-mix(in srgb,#8DB0F5 60%,transparent)}
+.lb-tk::after{content:"";position:absolute;right:-8px;top:-5px;width:16px;height:16px;border-radius:50%;background:inherit;box-shadow:inherit}
+.lb-tk.lb-done{background:var(--c-gold);box-shadow:0 0 16px color-mix(in srgb,var(--c-gold) 65%,transparent)}
+.lb-trbin{margin:14px 0 0;padding-top:14px;border-top:2px solid color-mix(in srgb,#F0604A 70%,transparent);font-size:15px;color:var(--c-sec)}
+.lb-trbin b{margin-right:14px;font-weight:500;color:#EE7B70;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.lb-kill{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.lb-kill > div{padding:20px 22px;border-radius:16px}
+.lb-kt{margin:0;font:400 12px/1 var(--c-fig);text-transform:uppercase;letter-spacing:.06em;color:var(--c-mut)}
+.lb-kn{margin:10px 0 6px;font:700 72px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:var(--kt);text-shadow:0 0 22px color-mix(in srgb,var(--k) 45%,transparent)}
+.lb-kn small{font-size:30px;color:var(--c-mut);text-shadow:none}
+.lb-kp{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
+@media (max-width:900px){
+  .lb .hm-hero .hm-in.lb-trkw{margin-top:28px}
+  .lb-trk{padding:18px 16px 14px}
+  .lb-tr.lb-th{grid-template-columns:repeat(8,minmax(0,1fr));gap:0}
+  .lb-th > span{display:none}
+  .lb-th b{font-size:0}
+  .lb-th b i{font-size:12px}
+  .lb-th b:first-of-type,.lb-th b:last-of-type{font-size:0}
+  .lb-tr{grid-template-columns:1fr;gap:6px}
+  .lb-lane{margin-left:0}
+  .lb-kill{grid-template-columns:1fr}
+  .lb-kn{font-size:60px}
+}
 .lb-steps,.lb-checks,.lb-log,.lb-binl{margin:0;padding:0;list-style:none}
 .lb-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;counter-reset:st}
 .lb-steps li,.lb-checks li{counter-increment:st;position:relative;padding-top:16px;border-top:2px solid var(--c-rule-2)}
@@ -389,12 +432,17 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
       <p class="hm-say">Plenty of indicators get built in an afternoon and sold by evening. Mine go through a loop built to kill them. What survives goes on your chart. What dies stays on this page, with the reason it died.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
-    <div class="lb-ledw gl" data-plate data-seal="${SEAL}">
-      <p class="lb-led-h">Counted so far: ${CARDS.length}. Held ${SCORE[0]}, did not hold ${SCORE[1]}, a lead ${SCORE[2]}.</p>
-      <div class="lb-tally" aria-hidden="true">${LEDGER.map(([, , , k]) => `<i class="${k}"></i>`).join("")}</div>
-      <ul class="lb-led">
-        ${LEDGER.map(([t, v, id, k]) => `<li><div class="lb-lr">${esc(t)}<span class="lb-lv ${k}">${esc(v)}</span></div></li>`).join("\n        ")}
-      </ul>
+  </div>
+  <div class="hm-in lb-trkw">
+    <div class="lb-trk gl" data-plate data-seal="${SEAL}" role="img" aria-label="${esc(TRACK_ALT)}">
+      <div class="lb-tr lb-th" aria-hidden="true"><span></span>${STOPS.map((t, i) => `<b><i>${i > 0 && i < 7 ? i : ""}</i>${esc(t)}</b>`).join("")}</div>
+      ${DESKF.bench.map(t => { const k = reach(t); return `<div class="lb-tr" aria-hidden="true"><span>${esc(t.name)}<em>${esc(t.state)}</em></span><div class="lb-lane"><i class="lb-tk${k === 6 ? " lb-done" : ""}" style="width:calc(${((k + 0.5) / 8 * 100).toFixed(3)}% + 0px)"></i>${STOPS.map((_, i) => `<u class="${i >= 1 && i <= 6 && t.passed[i - 1] ? "on" : ""}"></u>`).join("")}</div></div>`; }).join("\n      ")}
+      <p class="lb-trbin"><b>The bin</b>${BIN_C} concepts, ${BIN_D} tool drafts. Everything that falls off the track lands there, in plain view.</p>
+    </div>
+    <div class="lb-kill">
+      <div class="gl"><p class="lb-kt">Concepts that held</p><p class="lb-kn lb-red">${SCORE[0]}<small> / ${CARDS.length}</small></p><p class="lb-kp">${SCORE[1]} dead, ${SCORE[2]} still a lead. Counted on gold and buried in plain view.</p></div>
+      <div class="gl"><p class="lb-kt">Tool drafts binned</p><p class="lb-kn lb-red">${BIN_D}</p><p class="lb-kp">Squashed candles, lines that meant nothing, an engine that had to go.</p></div>
+      <div class="gl"><p class="lb-kt">Made it through</p><p class="lb-kn lb-gold">${DESKF.shipped.length}</p><p class="lb-kp">${DESKF.shipped.map(x => esc(x.name + ": " + x.state)).join(". ")}.</p></div>
     </div>
   </div>
 </section>
@@ -446,7 +494,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="bin-h">The bin</h2><p>Most labs hide this part. Nothing that fails here gets quietly deleted.</p></div>
     <div class="hm-main">
-      <p class="lb-binn"><span><b>${DESKF.bin.filter(e => e.kind === "concept").length}</b> concepts that did not hold</span><span><b>${DESKF.bin.filter(e => e.kind === "draft").reduce((a, e) => a + (/drafts (\d+) to (\d+)/.test(e.what) ? (+RegExp.$2 - +RegExp.$1 + 1) : 1), 0)}</b> tool drafts thrown out</span><span><b>${DESKF.bin.filter(e => e.kind === "call").length}</b> call of my own, wrong and corrected</span></p>
+      <p class="lb-binn"><span><b>${DESKF.bin.filter(e => e.kind === "concept").length}</b> concepts that did not hold</span><span><b>${BIN_D}</b> tool drafts thrown out</span><span><b>${DESKF.bin.filter(e => e.kind === "call").length}</b> call of my own, wrong and corrected</span></p>
       <ul class="lb-binl">
         ${DESKF.bin.map(e => `<li><p class="lb-bw"><s>${esc(e.what)}</s><span>${esc(e.date)}</span></p><p>${esc(e.why)}</p></li>`).join("\n        ")}
       </ul>

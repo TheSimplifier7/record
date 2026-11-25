@@ -162,6 +162,44 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
   .lb-fig{margin-top:20px;padding:12px 10px 10px}
   .hm-final .hm-acts .hs-btn{width:100%}
 }
+.lb .hm-hero .hm-in.lb-trkw{display:block;margin-top:40px}
+.lb-trk{padding:24px 28px 18px;border-radius:16px}
+.lb-tr{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:16px;padding:10px 0}
+.lb-th{padding:0 0 6px}
+.lb-th{grid-template-columns:200px repeat(8,minmax(0,1fr));gap:0 0}
+.lb-th b{font:400 12px/1.3 var(--c-fig);color:var(--c-mut);text-align:center;text-transform:uppercase;letter-spacing:.03em}
+.lb-th b i{display:block;font-style:normal;color:var(--c-gold)}
+.lb-tr > span{font:500 16px/1.25 var(--c-ui);color:var(--c-ink)}
+.lb-tr > span em{display:block;font:400 13px/1.35 var(--c-ui);font-style:normal;color:var(--c-mut);margin-top:2px}
+.lb-lane{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));height:24px;margin-left:-16px}
+.lb-lane::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:var(--c-rule)}
+.lb-lane u{position:relative;display:block;text-decoration:none}
+.lb-lane u::after{content:"";position:absolute;left:50%;top:5px;width:2px;height:14px;margin-left:-1px;background:var(--c-rule-2)}
+.lb-lane u.on::after{background:var(--c-gold);box-shadow:0 0 8px var(--c-gold)}
+.lb-tk{position:absolute;left:0;top:9px;height:6px;border-radius:3px;background:#8DB0F5;box-shadow:0 0 14px color-mix(in srgb,#8DB0F5 60%,transparent)}
+.lb-tk::after{content:"";position:absolute;right:-8px;top:-5px;width:16px;height:16px;border-radius:50%;background:inherit;box-shadow:inherit}
+.lb-tk.lb-done{background:var(--c-gold);box-shadow:0 0 16px color-mix(in srgb,var(--c-gold) 65%,transparent)}
+.lb-trbin{margin:14px 0 0;padding-top:14px;border-top:2px solid color-mix(in srgb,#F0604A 70%,transparent);font-size:15px;color:var(--c-sec)}
+.lb-trbin b{margin-right:14px;font-weight:500;color:#EE7B70;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.lb-kill{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.lb-kill > div{padding:20px 22px;border-radius:16px}
+.lb-kt{margin:0;font:400 12px/1 var(--c-fig);text-transform:uppercase;letter-spacing:.06em;color:var(--c-mut)}
+.lb-kn{margin:10px 0 6px;font:700 72px/1 "Barlow Condensed","Arial Narrow",sans-serif;color:var(--kt);text-shadow:0 0 22px color-mix(in srgb,var(--k) 45%,transparent)}
+.lb-kn small{font-size:30px;color:var(--c-mut);text-shadow:none}
+.lb-kp{margin:0;font-size:15px;line-height:1.5;color:var(--c-sec)}
+@media (max-width:900px){
+  .lb .hm-hero .hm-in.lb-trkw{margin-top:28px}
+  .lb-trk{padding:18px 16px 14px}
+  .lb-tr.lb-th{grid-template-columns:repeat(8,minmax(0,1fr));gap:0}
+  .lb-th > span{display:none}
+  .lb-th b{font-size:0}
+  .lb-th b i{font-size:12px}
+  .lb-th b:first-of-type,.lb-th b:last-of-type{font-size:0}
+  .lb-tr{grid-template-columns:1fr;gap:6px}
+  .lb-lane{margin-left:0}
+  .lb-kill{grid-template-columns:1fr}
+  .lb-kn{font-size:60px}
+}
 .lb-steps,.lb-checks,.lb-log,.lb-binl{margin:0;padding:0;list-style:none}
 .lb-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;counter-reset:st}
 .lb-steps li,.lb-checks li{counter-increment:st;position:relative;padding-top:16px;border-top:2px solid var(--c-rule-2)}
@@ -223,17 +261,20 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
       <p class="hm-say">Plenty of indicators get built in an afternoon and sold by evening. Mine go through a loop built to kill them. What survives goes on your chart. What dies stays on this page, with the reason it died.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
-    <div class="lb-ledw gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
-      <p class="lb-led-h">Counted so far: 5. Held 0, did not hold 4, a lead 1.</p>
-      <div class="lb-tally" aria-hidden="true"><i class="lb-red"></i><i class="lb-red"></i><i class="lb-red"></i><i class="lb-red"></i><i class="lb-ivory"></i><i class="lb-grey"></i></div>
-      <ul class="lb-led">
-        <li><div class="lb-lr">A squeeze comes before a bigger move<span class="lb-lv lb-red">Does not hold</span></div></li>
-        <li><div class="lb-lr">Swing highs and lows pull price<span class="lb-lv lb-red">Does not hold</span></div></li>
-        <li><div class="lb-lr">A channel's 2 deviation wall<span class="lb-lv lb-red">Does not hold</span></div></li>
-        <li><div class="lb-lr">The slow half reads the day<span class="lb-lv lb-red">Does not hold</span></div></li>
-        <li><div class="lb-lr">Every clock behind a turn<span class="lb-lv lb-ivory">A lead</span></div></li>
-        <li><div class="lb-lr">Gold turns at round numbers<span class="lb-lv lb-grey">On the bench</span></div></li>
-      </ul>
+  </div>
+  <div class="hm-in lb-trkw">
+    <div class="lb-trk gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f" role="img" aria-label="The six checks as a track. The Flow Structure: 6 of 6 checks passed, Through the checks. The Flow Pivots: 4 of 6 checks passed, Proven clean, face under review. The Strata: 0 of 6 checks passed, Waiting for its solutions page. The Thrust: 0 of 6 checks passed, Found, not built. In the bin: 4 concepts and 6 tool drafts.">
+      <div class="lb-tr lb-th" aria-hidden="true"><span></span><b><i></i>Idea</b><b><i>1</i>Sourced</b><b><i>2</i>Clean</b><b><i>3</i>No repaint</b><b><i>4</i>No squash</b><b><i>5</i>Real gold</b><b><i>6</i>The bar</b><b><i></i>Your chart</b></div>
+      <div class="lb-tr" aria-hidden="true"><span>The Flow Structure<em>Through the checks</em></span><div class="lb-lane"><i class="lb-tk lb-done" style="width:calc(81.250% + 0px)"></i><u class=""></u><u class="on"></u><u class="on"></u><u class="on"></u><u class="on"></u><u class="on"></u><u class="on"></u><u class=""></u></div></div>
+      <div class="lb-tr" aria-hidden="true"><span>The Flow Pivots<em>Proven clean, face under review</em></span><div class="lb-lane"><i class="lb-tk" style="width:calc(56.250% + 0px)"></i><u class=""></u><u class="on"></u><u class="on"></u><u class="on"></u><u class="on"></u><u class=""></u><u class=""></u><u class=""></u></div></div>
+      <div class="lb-tr" aria-hidden="true"><span>The Strata<em>Waiting for its solutions page</em></span><div class="lb-lane"><i class="lb-tk" style="width:calc(6.250% + 0px)"></i><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u></div></div>
+      <div class="lb-tr" aria-hidden="true"><span>The Thrust<em>Found, not built</em></span><div class="lb-lane"><i class="lb-tk" style="width:calc(6.250% + 0px)"></i><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u><u class=""></u></div></div>
+      <p class="lb-trbin"><b>The bin</b>4 concepts, 6 tool drafts. Everything that falls off the track lands there, in plain view.</p>
+    </div>
+    <div class="lb-kill">
+      <div class="gl"><p class="lb-kt">Concepts that held</p><p class="lb-kn lb-red">0<small> / 5</small></p><p class="lb-kp">4 dead, 1 still a lead. Counted on gold and buried in plain view.</p></div>
+      <div class="gl"><p class="lb-kt">Tool drafts binned</p><p class="lb-kn lb-red">6</p><p class="lb-kp">Squashed candles, lines that meant nothing, an engine that had to go.</p></div>
+      <div class="gl"><p class="lb-kt">Made it through</p><p class="lb-kn lb-gold">2</p><p class="lb-kp">The Gate: Live on TradingView. The Flow: Coming to TradingView.</p></div>
     </div>
   </div>
 </section>
@@ -276,9 +317,9 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
         <div class="lb-nw gl"><div class="lb-nwh"><h3>The Flow Structure</h3><p class="lb-st">Through the checks</p></div>
           <div class="lb-pips" role="img" aria-label="The Flow Structure: 6 of 6 checks passed"><span class="on" title="Sourced"><i></i><b>1</b></span><span class="on" title="Clean code"><i></i><b>2</b></span><span class="on" title="No repaint"><i></i><b>3</b></span><span class="on" title="No squashed candles"><i></i><b>4</b></span><span class="on" title="On real gold"><i></i><b>5</b></span><span class="on" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
           <p>The market's skeleton, joint to joint, and the one level the trend stands on. Replayed on 98,777 closed 5 minute candles, it drew exactly what it drew live. It is the bar for check 6. Six lines of its page are being corrected before it ships.</p></div>
-        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Flow Pivots</h3><p class="lb-st">Back in the rebuild</p></div>
-          <div class="lb-pips" role="img" aria-label="The Flow Pivots: 1 of 6 checks passed"><span class="on" title="Sourced"><i></i><b>1</b></span><span class="" title="Clean code"><i></i><b>2</b></span><span class="" title="No repaint"><i></i><b>3</b></span><span class="" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
-          <p>Draft 7 got thrown out on 24 Nov. The rebuild started on 25 Nov from a new solutions page: one band, the clutter gone, and squashed candles at zero or it does not come back.</p></div>
+        <div class="lb-nw gl"><div class="lb-nwh"><h3>The Flow Pivots</h3><p class="lb-st">Proven clean, face under review</p></div>
+          <div class="lb-pips" role="img" aria-label="The Flow Pivots: 4 of 6 checks passed"><span class="on" title="Sourced"><i></i><b>1</b></span><span class="on" title="Clean code"><i></i><b>2</b></span><span class="on" title="No repaint"><i></i><b>3</b></span><span class="on" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
+          <p>Draft 7 got thrown out on 24 Nov. Draft 8 came back the next night clean, with no repaint and squashed candles at zero. Its face still does not stand beside The Flow Structure, so it stays on the bench until that is settled.</p></div>
         <div class="lb-nw gl"><div class="lb-nwh"><h3>The Strata</h3><p class="lb-st">Waiting for its solutions page</p></div>
           <div class="lb-pips" role="img" aria-label="The Strata: 0 of 6 checks passed"><span class="" title="Sourced"><i></i><b>1</b></span><span class="" title="Clean code"><i></i><b>2</b></span><span class="" title="No repaint"><i></i><b>3</b></span><span class="" title="No squashed candles"><i></i><b>4</b></span><span class="" title="On real gold"><i></i><b>5</b></span><span class="" title="Beside The Flow Structure"><i></i><b>6</b></span></div>
           <p>Every swing the skeleton confirms, left behind as a thin band at its price. Where bands stack, the layer gets deeper. One question decides it: is The Flow Structure better with it or without it.</p></div>
@@ -314,6 +355,7 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
     <div class="hm-side"><h2 id="log-h">The lab log</h2><p>What moved, and when. Newest first. Come back and it will be longer.</p></div>
     <div class="hm-main">
       <ol class="lb-log">
+        <li><time>25 Nov</time><p>The Flow Pivots draft 8 came back clean, no repaint, no squash. The face still is not good enough.</p></li>
         <li><time>25 Nov</time><p>The Flow Pivots rebuild started.</p></li>
         <li><time>24 Nov</time><p>Threw out The Flow Pivots on draft 7.</p></li>
         <li><time>24 Nov</time><p>The scout brought in The Thrust. Not built yet.</p></li>
