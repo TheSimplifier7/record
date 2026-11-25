@@ -1,242 +1,36 @@
 {
- "about": "The lab's desk, as of the date below: what is on the bench and which of the six checks each has passed, what went in the bin, and the dated log. Written by the lab from its own records in ALEMBIC Mark 2 (ALEMBIC_NOW, RD_CARDS, SCOUT_CARDS, FINDINGS.json, the status). Each entry names its source. make_lab.js refuses to print a figure an entry's own figures list does not hold. Add to it; never delete from it.",
+ "about": "The lab's desk as shown on the site: the bench under codenames, the bin and the dated log. Public words only. Nothing here says what an unshipped tool is or how it is made; the full entries, with their sources, stay in the lab's own records (ALEMBIC Mark 2). A codename keeps its number for life and takes its public name when the tool ships. make_lab.js refuses to print a figure an entry's own figures list does not hold.",
  "as_of": "25 Nov 2026",
- "checks": [
-  "Sourced",
-  "Clean code",
-  "No repaint",
-  "No squashed candles",
-  "On real gold",
-  "Beside The Flow Structure"
- ],
+ "checks": ["Sourced", "Clean", "No repaint", "Chart-friendly", "Proven on gold", "The bar"],
  "bench": [
-  {
-   "name": "The Flow Structure",
-   "passed": [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1
-   ],
-   "state": "Through the checks",
-   "text": "The market's skeleton, joint to joint, and the one level the trend stands on. Replayed on 98,777 closed 5 minute candles, it drew exactly what it drew live. It is the bar for check 6. Six lines of its page are being corrected before it ships.",
-   "figures": [
-    98777,
-    5,
-    6
-   ],
-   "src": "ALEMBIC_NOW 24 Nov 22:4x; RD_CARDS R-101 (REPAINT EQUAL, static check CLEAN) and FIG-101 (FIX on six page lines); STRUCTURE_SOLUTIONS_24NOV.md; SCOUT_CARDS SHELF 24 Nov 22:47; MK2_STATUS (squash 0.00 on 5, 15, 30)"
-  },
-  {
-   "name": "The Flow Pivots",
-   "passed": [
-    1,
-    1,
-    1,
-    1,
-    0,
-    0
-   ],
-   "state": "Proven clean, face under review",
-   "text": "Draft 7 got thrown out on 24 Nov. Draft 8 came back the next night clean, with no repaint and squashed candles at zero. Its face still does not stand beside The Flow Structure, so it stays on the bench until that is settled.",
-   "figures": [
-    7,
-    24,
-    8
-   ],
-   "src": "ALEMBIC_NOW (rejected 24 Nov 22:52, R&D order item 4); PIVOTS_SOLUTIONS_24NOV.md; RD_CARDS RUNNING 25 Nov 01:44 REWORK; RD_CARDS I-101, 25 Nov 02:01 (draft 8: static CLEAN, replay EQUAL, squash 0.00 on 5, 15, 30; DOES NOT STAND BESIDE STRUCTURE)"
-  },
-  {
-   "name": "The Strata",
-   "passed": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "state": "Waiting for its solutions page",
-   "text": "Every swing the skeleton confirms, left behind as a thin band at its price. Where bands stack, the layer gets deeper. One question decides it: is The Flow Structure better with it or without it.",
-   "figures": [],
-   "src": "ALEMBIC_NOW, R&D order item 4b"
-  },
-  {
-   "name": "The Thrust",
-   "passed": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "state": "Found, not built",
-   "text": "Brought in by the scout on 24 Nov. It weighs each push of a trend against the one before: heavy while it keeps gaining ground, thin when it gains less. Nothing gets built until the rule for a near tie is written down first.",
-   "figures": [
-    24
-   ],
-   "src": "SCOUT_CARDS S-101, 24 Nov 22:47 (marked FOR R&D; weak point: near equal gains)"
-  }
- ],
- "bin": [
-  {
-   "kind": "concept",
-   "what": "The squeeze before a bigger move",
-   "why": "Gold moved less after a squeeze, not more.",
-   "date": "22 Nov",
-   "figures": [
-    22
-   ],
-   "src": "FINDINGS.json F-001"
-  },
-  {
-   "kind": "concept",
-   "what": "Swing highs and lows pulling price",
-   "why": "Reached as often as any level the same distance away.",
-   "date": "21 Nov",
-   "figures": [
-    21
-   ],
-   "src": "FINDINGS.json F-000a"
-  },
-  {
-   "kind": "concept",
-   "what": "The channel's 2 deviation wall",
-   "why": "Promised one close in twenty beyond it. Gold gave one in three.",
-   "date": "21 Nov",
-   "figures": [
-    2,
-    21
-   ],
-   "src": "FINDINGS.json F-000b"
-  },
-  {
-   "kind": "concept",
-   "what": "The slow half reading the day",
-   "why": "Gold's own candles, shuffled, scored higher.",
-   "date": "23 Nov",
-   "figures": [
-    23
-   ],
-   "src": "FINDINGS.json F-003"
-  },
-  {
-   "kind": "draft",
-   "what": "The Flow Pivots, draft 7",
-   "why": "It squashed the candles, and its waves meant nothing.",
-   "date": "24 Nov",
-   "figures": [
-    7,
-    24
-   ],
-   "src": "ALEMBIC_NOW; MK2_STATUS 24 Nov 22:52 and 22:59"
-  },
-  {
-   "kind": "draft",
-   "what": "The Flow Structure, drafts 1 to 5",
-   "why": "The whole engine scrapped and started again.",
-   "date": "24 Nov",
-   "figures": [
-    1,
-    5,
-    24
-   ],
-   "src": "ALEMBIC_NOW (Retired: Structure drafts 1 to 5, the 3 ATR engine)"
-  },
-  {
-   "kind": "call",
-   "what": "My own call on the slow half",
-   "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.",
-   "date": "23 Nov",
-   "figures": [
-    23
-   ],
-   "src": "FINDINGS.json F-000c then F-003; lab.html speeds card"
-  }
- ],
- "log": [
-  {
-   "date": "25 Nov",
-   "text": "The Flow Pivots draft 8 came back clean, no repaint, no squash. The face still is not good enough.",
-   "figures": [
-    8
-   ],
-   "src": "RD_CARDS I-101, 25 Nov 02:01"
-  },
-  {
-   "date": "25 Nov",
-   "text": "The Flow Pivots rebuild started.",
-   "figures": [],
-   "src": "RD_CARDS RUNNING 25 Nov 01:44"
-  },
-  {
-   "date": "24 Nov",
-   "text": "Threw out The Flow Pivots on draft 7.",
-   "figures": [
-    7
-   ],
-   "src": "ALEMBIC_NOW"
-  },
-  {
-   "date": "24 Nov",
-   "text": "The scout brought in The Thrust. Not built yet.",
-   "figures": [],
-   "src": "SCOUT_CARDS S-101"
-  },
-  {
-   "date": "24 Nov",
-   "text": "The Flow Structure replayed on 98,777 closed candles. Not one drawing moved.",
-   "figures": [
-    98777
-   ],
-   "src": "RD_CARDS R-101"
-  },
-  {
-   "date": "24 Nov",
-   "text": "The Gate shipped on its 27th draft.",
-   "figures": [
-    27
-   ],
-   "src": "ALEMBIC_NOW (THE GATE draft 27, shipped 24 Nov)"
-  },
-  {
-   "date": "23 Nov",
-   "text": "Ran my own slow line against shuffled candles. The shuffle won. Verdict corrected.",
-   "figures": [],
-   "src": "FINDINGS.json F-003"
-  },
-  {
-   "date": "22 Nov",
-   "text": "Counted the squeeze. It does not hold.",
-   "figures": [],
-   "src": "FINDINGS.json F-001"
-  },
-  {
-   "date": "21 Nov",
-   "text": "Counted swing highs and lows, and the channel wall. Neither holds.",
-   "figures": [],
-   "src": "FINDINGS.json F-000a, F-000b"
-  },
-  {
-   "date": "19 Nov",
-   "text": "Counted every clock behind a turn. A lead, not yet sealed.",
-   "figures": [],
-   "src": "FINDINGS.json F-000d"
-  }
+  {"name": "Project 01", "passed": [1, 1, 1, 1, 1, 1], "state": "Through all six", "text": "Through every check. Being finished for release.", "figures": [], "src": "lab records, 25 Nov"},
+  {"name": "Project 02", "passed": [1, 1, 1, 1, 0, 0], "state": "Rebuilt, look not good enough", "text": "Thrown out once, rebuilt clean. Not good enough to look at yet.", "figures": [], "src": "lab records, 25 Nov"},
+  {"name": "Project 03", "passed": [0, 0, 0, 0, 0, 0], "state": "Not started", "text": "Waiting its turn.", "figures": [], "src": "lab records, 25 Nov"},
+  {"name": "Project 04", "passed": [0, 0, 0, 0, 0, 0], "state": "Found, not built", "text": "Brought in by the scout. Not built.", "figures": [], "src": "lab records, 25 Nov"}
  ],
  "shipped": [
-  {
-   "name": "The Gate",
-   "state": "Live on TradingView",
-   "src": "ALEMBIC_NOW (draft 27 shipped 24 Nov)"
-  },
-  {
-   "name": "The Flow",
-   "state": "Coming to TradingView",
-   "src": "ALEMBIC_NOW (publish copy from draft 11)"
-  }
+  {"name": "The Gate", "state": "Live on TradingView", "src": "lab records"},
+  {"name": "The Flow", "state": "Coming to TradingView", "src": "lab records"}
+ ],
+ "bin": [
+  {"kind": "concept", "what": "The squeeze before a bigger move", "why": "Gold moved less after a squeeze, not more.", "date": "22 Nov", "figures": [], "src": "FINDINGS.json F-001"},
+  {"kind": "concept", "what": "Swing highs and lows pulling price", "why": "Reached as often as any level the same distance away.", "date": "21 Nov", "figures": [], "src": "FINDINGS.json F-000a"},
+  {"kind": "concept", "what": "The channel's 2 deviation wall", "why": "Promised one close in twenty beyond it. Gold gave one in three.", "date": "21 Nov", "figures": [2], "src": "FINDINGS.json F-000b"},
+  {"kind": "concept", "what": "The slow half reading the day", "why": "Gold's own candles, shuffled, scored higher.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-003"},
+  {"kind": "draft", "what": "Project 02, draft 7", "why": "It failed the chart, and I threw it out.", "date": "24 Nov", "figures": [2, 7], "src": "lab records"},
+  {"kind": "draft", "what": "Project 01, drafts 1 to 5", "why": "The whole engine scrapped and started again.", "date": "24 Nov", "figures": [1, 5], "src": "lab records"},
+  {"kind": "call", "what": "My own call on the slow half", "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-000c then F-003"}
+ ],
+ "log": [
+  {"date": "25 Nov", "text": "Project 02 came back clean. Still not good enough to look at.", "figures": [2], "src": "lab records"},
+  {"date": "25 Nov", "text": "Project 02 rebuild started.", "figures": [2], "src": "lab records"},
+  {"date": "24 Nov", "text": "Threw out Project 02 on draft 7.", "figures": [2, 7], "src": "lab records"},
+  {"date": "24 Nov", "text": "The scout brought in Project 04.", "figures": [4], "src": "lab records"},
+  {"date": "24 Nov", "text": "Project 01 passed its replay. Not one drawing moved.", "figures": [1], "src": "lab records"},
+  {"date": "24 Nov", "text": "The Gate shipped on its 27th draft.", "figures": [27], "src": "lab records"},
+  {"date": "23 Nov", "text": "Ran my own slow line against shuffled candles. The shuffle won. Verdict corrected.", "figures": [], "src": "FINDINGS.json F-003"},
+  {"date": "22 Nov", "text": "Counted the squeeze. It does not hold.", "figures": [], "src": "FINDINGS.json F-001"},
+  {"date": "21 Nov", "text": "Counted swing highs and lows, and the channel wall. Neither holds.", "figures": [], "src": "FINDINGS.json F-000a, F-000b"},
+  {"date": "19 Nov", "text": "Counted every clock behind a turn. A lead, not yet sealed.", "figures": [], "src": "FINDINGS.json F-000d"}
  ]
 }
