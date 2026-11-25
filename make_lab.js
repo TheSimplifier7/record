@@ -51,6 +51,9 @@ const fs = require("fs");
 const path = require("path");
 const H = require("./house_parts.js");
 const HERE = __dirname;
+/* 25 Nov 2026, HALLMARK, his word of 00:55: glass on every thing. The counted list sits on glass over the record's rosette (plate.js),
+   cut from the record's seal; every chart sits on glass over the same rosette, drawn still (rosette.svg, make_rosette.js). */
+const SEAL = H.recordSeal(JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8")));
 const esc = H.esc;
 
 /* THE ONE SOURCE: lab.json, written by the lab from FINDINGS.json. */
@@ -208,7 +211,7 @@ const cardHtml = c => `<article class="lb-card" id="${c.id}" aria-labelledby="${
             <p class="lb-d">${esc(c.data)}</p>${c.shipped ? `\n            <p class="lb-s">${esc(c.shipped)}</p>` : ""}${c.owed ? `\n            <p class="lb-d">${esc(c.owed)}</p>` : ""}${DESK[c.id] ? `\n            <p class="lb-desk"><b>From the desk</b>${esc(DESK[c.id])}</p>` : ""}
             <p class="lb-rule">Trade it differently? <a href="${H.LESSONS}" rel="noopener" data-x="lab-rule-${c.id}">Send me your exact rule on X</a>. Each month I count the rule asked for most.</p>
           </div>
-          <figure class="lb-fig">
+          <figure class="lb-fig gl">
             ${c.svg()}
             <figcaption>${esc(c.cap)}</figcaption></figure>
         </article>`;
@@ -300,8 +303,17 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 .lb-tools .lb-tag{margin:0 0 8px;font-size:14px;color:var(--c-mut)}
 .hm-micro{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--c-mut)}
 .hm-final .hm-big{margin:0}
+.lb-ledw.gl{padding:24px 24px 8px}
+.lb-ledw.gl .lb-led li:last-child{border-bottom:0}
+.lb-card{position:relative}
+.lb-card::before{content:"";position:absolute;z-index:0;right:-140px;top:-60px;width:720px;height:720px;pointer-events:none;background:url(rosette.svg) center/contain no-repeat;opacity:.34;
+  -webkit-mask-image:radial-gradient(closest-side,#000 40%,transparent);mask-image:radial-gradient(closest-side,#000 40%,transparent)}
+.lb-card > *{position:relative;z-index:1}
+.lb-fig.gl{border:0;border-radius:14px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
 @media (max-width:900px){
   .lb .hm-hero{padding:24px 0 32px}
+  .lb-ledw.gl{padding:18px 18px 4px}
+  .lb-card::before{right:-180px;top:auto;bottom:-120px;width:560px;height:560px}
   html body .lb .hm-hero h1.hm-h1{font-size:clamp(36px,10.6vw,56px)!important}
   .lb .hm-say{margin-top:14px;font-size:17px;line-height:1.5}
   .lb-ledw{margin-top:32px}
@@ -316,14 +328,14 @@ html body .lb .hm-hero h1.hm-h1{max-width:11em;font:700 clamp(48px,5.6vw,84px)/.
 
 const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 
-<section class="hm-hero" aria-labelledby="lb-h1">
+<section class="hm-hero gl-stage" aria-labelledby="lb-h1">
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="lb-h1">Every concept the crowd swears by, counted.</h1>
       <p class="hm-say">On every minute of gold since January 2013, against a fair baseline named before the run, then checked on years the count never saw. What holds becomes a tool on your chart. What does not, I show you anyway.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
-    <div class="lb-ledw">
+    <div class="lb-ledw gl" data-plate data-seal="${SEAL}">
       <p class="lb-led-h">Counted so far: ${CARDS.length}. Held ${SCORE[0]}, did not hold ${SCORE[1]}, a lead ${SCORE[2]}.</p>
       <div class="lb-tally" aria-hidden="true">${LEDGER.map(([, , , k]) => `<i class="${k}"></i>`).join("")}</div>
       <ul class="lb-led">
@@ -333,7 +345,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
   </div>
 </section>
 
-<section class="hm-sec" id="cards" aria-labelledby="cards-h">
+<section class="hm-sec gl-stage" id="cards" aria-labelledby="cards-h">
   <div class="hm-in"><div>
     <div class="hm-side"><h2 id="cards-h">The cards</h2><p>One concept a card: the question, what was counted, what came out. Gold where it held, red where it broke, ivory while it is a lead. Blue is what it was measured against.</p></div>
     <div class="hm-main">
@@ -388,6 +400,7 @@ const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://t
 ${H.band("lab", "lab")}
 ${MAIN}
 ${H.tail("lab")}
+<script src="plate.js?v=${H.vOf("plate.js")}" defer></script>
 </body>
 </html>
 `;
