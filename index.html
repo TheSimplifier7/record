@@ -56,7 +56,7 @@
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(newsreader-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-ext-400-italic.woff2) format('woff2');unicode-range:U+0100-02AF,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(newsreader-latin-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
-<link rel="stylesheet" href="brand.css?v=8dbc776654">
+<link rel="stylesheet" href="brand.css?v=0fe3d0f74d">
 <style>
 .hm-shot img{border-radius:8px}
 .hm-hero .hm-in{align-items:center}
@@ -200,6 +200,19 @@ html.from-x .hm-fromx{display:flex}
 .hm-card-price ul li+li{margin-top:4px}
 .hm-free{margin-top:20px;font-size:16px;color:var(--c-sec)}
 .hm-final .hm-big{margin:0}
+/* 25 Nov 2026, his word of 00:55: glass on every thing. The chart, the cards, the price and the last block are panes of the
+   levels card's glass (brand.css .gl), each over the record's rosette (plate.js), lit where the reader points or scrolls. */
+.hm-shot.gl{padding:12px 12px 14px}
+.hm-shot.gl img{border:0;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.hm-shot.gl figcaption{margin-top:10px;padding:0 4px}
+.hm-row{gap:20px}
+.hm-card.gl{padding:10px 10px 18px;border-radius:14px}
+.hm-card.gl figure{margin:0 0 14px}
+.hm-card.gl img{border:0;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.hm-card.gl :is(h3,p){padding:0 6px}
+.hm-card-price.gl{max-width:32rem;padding:32px;border:0;border-radius:16px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
+.hm-pane.gl{max-width:36rem;padding:32px}
+.hm-strip{position:relative;z-index:1}
 @media (max-width:900px){
   .hm10 .hm-hero{padding:24px 0 32px}
   .hm10 .hm-hero h1.hm-h1{font-size:clamp(36px,10.6vw,56px)!important}
@@ -213,6 +226,11 @@ html.from-x .hm-fromx{display:flex}
   .hm-card{scroll-snap-align:start}
   .hm-card img{aspect-ratio:4/5}
   .hm-story p{font-size:17px}
+  .hm-shot.gl{margin:28px 0 0;padding:8px 8px 12px}
+  .hm-shot.gl img{aspect-ratio:4/5;object-fit:cover;object-position:75% 50%;border-radius:8px}
+  .hm-shot.gl figcaption{padding:0 4px}
+  .hm-row{padding:4px var(--c-gutter) 24px}
+  .hm-card-price.gl,.hm-pane.gl{padding:24px}
 }
 </style>
 <script data-goatcounter="https://thesimplifier.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -235,7 +253,7 @@ html.from-x .hm-fromx{display:flex}
 </header>
 <main id="main" class="hm hm10" tabindex="-1">
 
-<section class="hm-hero" aria-labelledby="hm-h1">
+<section class="hm-hero gl-stage" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Read gold, silver and platinum the way a desk does.</h1>
@@ -244,7 +262,7 @@ html.from-x .hm-fromx{display:flex}
       <p class="hm-acts"><a class="hs-btn hs-gold" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="home-hero">Start 7 days free</a></p>
       <p class="hm-micro">Nothing charged for 7 days. Cancel before day 8 and pay nothing.</p>
     </div>
-    <figure class="hm-shot">
+    <figure class="hm-shot gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
       <img src="set_ratchet_gold_30m_2026-11-18-1200.webp" srcset="set_ratchet_gold_30m_2026-11-18-640.webp 640w, set_ratchet_gold_30m_2026-11-18-1200.webp 1200w" sizes="(min-width: 900px) 520px, 100vw" width="1200" height="713" alt="Bradley's gold chart on TradingView, 30 minute, 18 November 2026" decoding="async" fetchpriority="high">
       <figcaption>18 November 2026. Past chart, not a live trade. Chart by TradingView.</figcaption>
     </figure>
@@ -257,37 +275,37 @@ html.from-x .hm-fromx{display:flex}
   </ul></div>
 </section>
 
-<section class="hm-sec" id="set" aria-labelledby="set-h">
+<section class="hm-sec gl-stage" id="set" aria-labelledby="set-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="set-h">The set</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="set-h">The set</h2></div>
     <div class="hm-main">
-      <div class="hm-row">
-        <article class="hm-card">
+      <div class="hm-row" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
+        <article class="hm-card gl">
           <figure><img src="set_fan_gold_1h_2026-11-15-640.webp" srcset="set_fan_gold_1h_2026-11-15-640.webp 640w, set_fan_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="480" alt="The Fan on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>The Fan</h3>
           <p>Which side of the line is price on, and did the last test of it hold?</p>
         </article>
-        <article class="hm-card">
+        <article class="hm-card gl">
           <figure><img src="set_keel_gold_1h_2026-11-15-640.webp" srcset="set_keel_gold_1h_2026-11-15-640.webp 640w, set_keel_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="480" alt="The Keel on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>The Keel</h3>
           <p>Which way is the flow running, and what close would end it?</p>
         </article>
-        <article class="hm-card">
+        <article class="hm-card gl">
           <figure><img src="set_method_gold_1h_2026-11-15-640.webp" srcset="set_method_gold_1h_2026-11-15-640.webp 640w, set_method_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="480" alt="The Method on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>The Method</h3>
           <p>How far has this leg run against the legs that came before it?</p>
         </article>
-        <article class="hm-card">
+        <article class="hm-card gl">
           <figure><img src="set_hinge_gold_1h_2026-11-15-640.webp" srcset="set_hinge_gold_1h_2026-11-15-640.webp 640w, set_hinge_gold_1h_2026-11-15-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="480" alt="The Hinge on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>The Hinge</h3>
           <p>Is the swing confirmed, and did the last one hold?</p>
         </article>
-        <article class="hm-card">
+        <article class="hm-card gl">
           <figure><img src="set_ratchet_gold_30m_2026-11-18-640.webp" srcset="set_ratchet_gold_30m_2026-11-18-640.webp 640w, set_ratchet_gold_30m_2026-11-18-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="713" alt="The Ratchet on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>The Ratchet</h3>
           <p>Which side of its trail is price on, and how much of the structure has turned?</p>
         </article>
-        <article class="hm-card hm-joining" id="gate">
+        <article class="hm-card gl hm-joining" id="gate">
           <figure><img src="set_gate_gold_10m_2026-11-20-640.webp" srcset="set_gate_gold_10m_2026-11-20-640.webp 640w, set_gate_gold_10m_2026-11-20-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="503" alt="The Gate on Bradley's gold 10 minute chart on TradingView, 19 and 20 November 2026" loading="lazy" decoding="async"></figure>
           <p class="hm-join">Joining the set</p>
           <h3>The Gate</h3>
@@ -329,11 +347,11 @@ html.from-x .hm-fromx{display:flex}
   </div></div>
 </section>
 
-<section class="hm-sec" id="pricing" aria-labelledby="pricing-h">
+<section class="hm-sec gl-stage" id="pricing" aria-labelledby="pricing-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="pricing-h">Pricing</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="pricing-h">Pricing</h2></div>
     <div class="hm-main">
-      <div class="hm-card-price">
+      <div class="hm-card-price gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
         <h3>The set</h3>
         <p class="hm-p"><b>€99</b> a month, VAT included. 7 days free.</p>
         <ul>
@@ -369,17 +387,18 @@ html.from-x .hm-fromx{display:flex}
   </div></div>
 </section>
 
-<section class="hm-sec hm-final" id="start" aria-labelledby="final-h">
+<section class="hm-sec hm-final gl-stage" id="start" aria-labelledby="final-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="final-h">Your chart, the desk's read.</h2></div>
-    <div class="hm-main">
+    <div class="hm-side" data-plate-copy><h2 id="final-h">Your chart, the desk's read.</h2></div>
+    <div class="hm-main"><div class="hm-pane gl" data-plate data-seal="fbfa6bf7ddfaa7809d26bbfcbf64d1f54d3d165121d6603461b5de7a5d1d131f">
       <p class="hm-big">Gold, silver and platinum only. 7 days free, then €99 a month.</p>
       <p class="hm-acts"><a class="hs-btn hs-gold" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="home-final">Start 7 days free</a></p>
       <p class="hm-micro">Nothing charged for 7 days. Cancel before day 8 and pay nothing.</p>
-    </div>
+    </div></div>
   </div></div>
 </section>
 
+<script src="plate.js?v=da774d1e02" defer></script>
 <script>(function(){try{var m=/[?&]ref=(x-bio|x-pin|x-post|x-reply|x-0800)(?:&|$)/.exec(location.search);if(m)document.documentElement.classList.add("from-x")}catch(e){}})();</script>
 </main>
 <footer class="hs-foot"><div class="hs-wrap hs-foot-in">

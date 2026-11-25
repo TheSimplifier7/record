@@ -278,7 +278,8 @@ function plans(R) {
       <a class="hs-btn hs-ghost s4-btn" href="${SPACE}" ${OUT} data-tv="plans-tv-space">Subscribe on TradingView</a>
       <p class="s4-fine">$99 a month, billed by TradingView. VAT added at checkout where it applies. No free trial. You can ask TradingView for a refund within 14 days of a payment. Cancel in your TradingView account.</p>
     </div>` : "";
-  return `<section id="plans" class="s4-plan${SPACE_LIVE ? " s4-two" : ""}" aria-labelledby="plans-h">
+  /* 25 Nov 2026, glass on every thing: the plan is a pane of the house glass over the record's rosette (plate.js) */
+  return `<section id="plans" class="s4-plan gl${SPACE_LIVE ? " s4-two" : ""}" data-plate data-seal="${recordSeal(R)}" aria-labelledby="plans-h">
     <h2 id="plans-h">The set of five</h2>
     <div class="s4-routes">
     ${site}${tv}

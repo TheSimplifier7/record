@@ -202,6 +202,19 @@ html.from-x .hm-fromx{display:flex}
 .hm-card-price ul li+li{margin-top:4px}
 .hm-free{margin-top:20px;font-size:16px;color:var(--c-sec)}
 .hm-final .hm-big{margin:0}
+/* 25 Nov 2026, his word of 00:55: glass on every thing. The chart, the cards, the price and the last block are panes of the
+   levels card's glass (brand.css .gl), each over the record's rosette (plate.js), lit where the reader points or scrolls. */
+.hm-shot.gl{padding:12px 12px 14px}
+.hm-shot.gl img{border:0;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.hm-shot.gl figcaption{margin-top:10px;padding:0 4px}
+.hm-row{gap:20px}
+.hm-card.gl{padding:10px 10px 18px;border-radius:14px}
+.hm-card.gl figure{margin:0 0 14px}
+.hm-card.gl img{border:0;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.hm-card.gl :is(h3,p){padding:0 6px}
+.hm-card-price.gl{max-width:32rem;padding:32px;border:0;border-radius:16px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
+.hm-pane.gl{max-width:36rem;padding:32px}
+.hm-strip{position:relative;z-index:1}
 @media (max-width:900px){
   .hm10 .hm-hero{padding:24px 0 32px}
   .hm10 .hm-hero h1.hm-h1{font-size:clamp(36px,10.6vw,56px)!important}
@@ -215,6 +228,11 @@ html.from-x .hm-fromx{display:flex}
   .hm-card{scroll-snap-align:start}
   .hm-card img{aspect-ratio:4/5}
   .hm-story p{font-size:17px}
+  .hm-shot.gl{margin:28px 0 0;padding:8px 8px 12px}
+  .hm-shot.gl img{aspect-ratio:4/5;object-fit:cover;object-position:75% 50%;border-radius:8px}
+  .hm-shot.gl figcaption{padding:0 4px}
+  .hm-row{padding:4px var(--c-gutter) 24px}
+  .hm-card-price.gl,.hm-pane.gl{padding:24px}
 }
 `;
 
@@ -249,7 +267,7 @@ const FAQ10 = [
    to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
 const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
 
-<section class="hm-hero" aria-labelledby="hm-h1">
+<section class="hm-hero gl-stage" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Read gold, silver and platinum the way a desk does.</h1>
@@ -258,7 +276,7 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
       <p class="hm-acts">${BTN("hero")}</p>
       <p class="hm-micro">${MICRO}</p>
     </div>
-    <figure class="hm-shot">
+    <figure class="hm-shot gl" data-plate data-seal="${SEAL}">
       <img src="${HERO.img}-1200.webp" srcset="${HERO.img}-640.webp 640w, ${HERO.img}-1200.webp 1200w" sizes="(min-width: 900px) 520px, 100vw" width="1200" height="${HERO.h}" alt="Bradley's gold chart on TradingView, ${esc(HERO.cap.replace(/^Gold, /, ""))}" decoding="async" fetchpriority="high">
       <figcaption>${esc(HERO.cap.replace(/^Gold, [^,]*, /, ""))}. Past chart, not a live trade. Chart by TradingView.</figcaption>
     </figure>
@@ -271,17 +289,17 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
   </ul></div>
 </section>
 
-<section class="hm-sec" id="set" aria-labelledby="set-h">
+<section class="hm-sec gl-stage" id="set" aria-labelledby="set-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="set-h">The set</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="set-h">The set</h2></div>
     <div class="hm-main">
-      <div class="hm-row">
-        ${SET.map(x => `<article class="hm-card">
+      <div class="hm-row" data-plate data-seal="${SEAL}">
+        ${SET.map(x => `<article class="hm-card gl">
           <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.name)} on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
           <h3>${esc(x.name)}</h3>
           <p>${esc(x.q)}</p>
         </article>`).join("\n        ")}
-        ${JOINING.map(x => `<article class="hm-card hm-joining" id="${x.id}">
+        ${JOINING.map(x => `<article class="hm-card gl hm-joining" id="${x.id}">
           <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.alt)}" loading="lazy" decoding="async"></figure>
           <p class="hm-join">Joining the set</p>
           <h3>${esc(x.name)}</h3>
@@ -323,11 +341,11 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
   </div></div>
 </section>
 
-<section class="hm-sec" id="pricing" aria-labelledby="pricing-h">
+<section class="hm-sec gl-stage" id="pricing" aria-labelledby="pricing-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="pricing-h">Pricing</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="pricing-h">Pricing</h2></div>
     <div class="hm-main">
-      <div class="hm-card-price">
+      <div class="hm-card-price gl" data-plate data-seal="${SEAL}">
         <h3>The set</h3>
         <p class="hm-p"><b>€99</b> a month, VAT included. 7 days free.</p>
         <ul>
@@ -364,17 +382,18 @@ ${TESTIMONIALS.length ? `
   </div></div>
 </section>
 
-<section class="hm-sec hm-final" id="start" aria-labelledby="final-h">
+<section class="hm-sec hm-final gl-stage" id="start" aria-labelledby="final-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="final-h">Your chart, the desk's read.</h2></div>
-    <div class="hm-main">
+    <div class="hm-side" data-plate-copy><h2 id="final-h">Your chart, the desk's read.</h2></div>
+    <div class="hm-main"><div class="hm-pane gl" data-plate data-seal="${SEAL}">
       <p class="hm-big">Gold, silver and platinum only. 7 days free, then €99 a month.</p>
       <p class="hm-acts">${BTN("final")}</p>
       <p class="hm-micro">${MICRO}</p>
-    </div>
+    </div></div>
   </div></div>
 </section>
 
+<script src="plate.js?v=${H.vOf("plate.js")}" defer></script>
 <script>(function(){try{var m=/[?&]ref=(x-bio|x-pin|x-post|x-reply|x-0800)(?:&|$)/.exec(location.search);if(m)document.documentElement.classList.add("from-x")}catch(e){}})();</script>
 </main>`;
 

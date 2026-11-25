@@ -409,3 +409,34 @@ html .as-mail-fine{margin:0;font:400 14px/1.5 var(--c-ui);color:var(--c-mut)}
   html nav.hs-bot a.hs-btn.hs-buy-b{display:inline-flex!important;justify-content:center;min-height:40px;padding:0 18px!important;border-radius:6px;background:var(--c-ink)!important;color:var(--c-bg)!important;font:500 14px/1 var(--c-ui)!important}
 }
 @media (max-width:760px){html body.hs-has-bot .hs-tools{display:none!important}}
+
+/* ================================================================ 25 Nov 2026, HALLMARK, his word of 00:55: glass on every thing.
+   One glass, the levels card's, everywhere. A pane is only glass where something lies behind it to bend: the record's rosette
+   (plate.js) under every pane on the front page, and the page itself under the band and the phone's bar as it scrolls by. */
+html:root{--c-glass:rgba(17,35,60,.42);--c-glass-blur:blur(12px) saturate(155%);
+  --c-glass-sheen:linear-gradient(180deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.03) 45%,rgba(255,255,255,.012) 100%);
+  --c-glass-edge:inset 0 1px 0 rgba(255,255,255,.16),inset 1px 0 0 rgba(255,255,255,.05),inset 0 -1px 0 rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.05);
+  --c-glass-drop:0 2px 3px rgba(0,0,0,.35),4px 26px 46px -14px rgba(0,0,0,.72)}
+.gl{position:relative;border-radius:16px;background-color:var(--c-glass);background-image:var(--c-glass-sheen);
+  -webkit-backdrop-filter:var(--c-glass-blur);backdrop-filter:var(--c-glass-blur);box-shadow:var(--c-glass-edge),var(--c-glass-drop)}
+/* the bevel: the pane's cut edge catches the key light, upper left, as the cards are lit */
+.gl::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,.06) 32%,rgba(255,255,255,0) 58%,rgba(255,255,255,.08) 86%,rgba(255,255,255,.2));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+/* a stage holds a plate: the plate may not widen the page, and the words of the stage sit above the engraving */
+.gl-stage{position:relative;overflow:hidden}
+@supports (overflow:clip){.gl-stage{overflow:clip;overflow-clip-margin:0}}
+.gl-stage :is(h1,h2,p,ul,ol,.hm-side,.hm-copy){position:relative;z-index:1}
+/* the band: glass over the page as it scrolls under */
+html .hs-band,html .hd-band{background:rgba(11,26,46,.62)!important;-webkit-backdrop-filter:blur(18px) saturate(160%)!important;backdrop-filter:blur(18px) saturate(160%)!important;
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.08),0 10px 24px -18px rgba(0,0,0,.8)!important}
+@media (max-width:760px){
+  html .hs-bot,html .botnav{background:rgba(11,26,46,.66)!important;-webkit-backdrop-filter:blur(18px) saturate(160%)!important;backdrop-filter:blur(18px) saturate(160%)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 -10px 24px -18px rgba(0,0,0,.8)!important}
+}
+/* without glass in the browser, the panes are the raised navy they were */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .gl{background:var(--c-raise)}
+  html .hs-band,html .hd-band{background:var(--c-bg)!important}
+  @media (max-width:760px){html .hs-bot,html .botnav{background:var(--c-bg)!important}}
+}

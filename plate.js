@@ -21,6 +21,12 @@
    are kept clear of it. Without WebGL the plate is drawn as it was on
    12 November: the rosette in gold, under the light the stylesheet casts.
    With scripts off the page reads as it does without the plate.
+   25 November 2026, HALLMARK, his word of 00:55: glass on every thing. The
+   plate now lies under every pane of glass on the front page, so each plate
+   waits until it is near the screen and the browser is idle before it cuts
+   its engraving, and one engraving is cut once and shared by every plate of
+   the same size. The words beside a plate are found by its h1, or by an
+   element marked data-plate-copy (a section's own heading).
    BRAND LAW. No em dashes, hashtags, exclamation marks, emoji, forecasting.
    ========================================================================= */
 (function () {
@@ -43,7 +49,7 @@
   }
   var Q = .8;
   function engrave(g, S, B, full, w) {
-    var C = S / 2, P = S / 2;
+    var C = S / 2, P = S / 2, F = typeof full === "number" ? full : 1, n = function (k) { return Math.max(240, Math.round(k * F)); };
     var k2 = B.k1 + 3 + B.b1 % 6;
     function curve(f, steps) {
       g.beginPath();
@@ -52,20 +58,20 @@
     }
     var i, ph;
     g.lineWidth = w * 1.1;
-    for (i = 0; i < B.N; i++) { ph = TAU * i / B.N; (function (ph) { curve(function (th) { return P * Q * (.47 + B.a1 * Math.sin(B.k1 * th + ph) + B.a2 * Math.sin(k2 * th - 2 * ph)); }, full ? 1800 : 420); })(ph); }
+    for (i = 0; i < B.N; i++) { ph = TAU * i / B.N; (function (ph) { curve(function (th) { return P * Q * (.47 + B.a1 * Math.sin(B.k1 * th + ph) + B.a2 * Math.sin(k2 * th - 2 * ph)); }, full ? n(1800) : 420); })(ph); }
     g.lineWidth = w * 1.4;
-    curve(function () { return P * Q * .72; }, 720);
+    curve(function () { return P * Q * .72; }, n(720));
     if (!full) return;
-    curve(function () { return P * Q * .745; }, 720);
+    curve(function () { return P * Q * .745; }, n(720));
     g.lineWidth = w * .9;
-    for (i = 0; i < B.M; i++) { (function (r0, ph) { curve(function (th) { return r0 + P * B.a4 * Math.sin(B.m * th + ph); }, 1200); })(P * (.04 + .17 * i / B.M), i * .61); }
+    for (i = 0; i < B.M; i++) { (function (r0, ph) { curve(function (th) { return r0 + P * B.a4 * Math.sin(B.m * th + ph); }, n(1200)); })(P * (.04 + .17 * i / B.M), i * .61); }
     g.lineWidth = w * 1.4;
-    curve(function () { return P * .228; }, 720);
+    curve(function () { return P * .228; }, n(720));
     g.lineWidth = w;
-    for (i = 0; i < B.N1; i++) { (function (ph) { curve(function (th) { return P * (.84 + B.a3 * Math.sin(B.k3 * th + ph)); }, 1800); })(TAU * i / B.N1); }
+    for (i = 0; i < B.N1; i++) { (function (ph) { curve(function (th) { return P * (.84 + B.a3 * Math.sin(B.k3 * th + ph)); }, n(1800)); })(TAU * i / B.N1); }
     g.lineWidth = w * 1.4;
-    curve(function () { return P * .965; }, 720);
-    curve(function () { return P * .985; }, 720);
+    curve(function () { return P * .965; }, n(720));
+    curve(function () { return P * .985; }, n(720));
   }
 
   var VS = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
@@ -89,14 +95,28 @@
     " gl_FragColor=vec4(add,max(add.r,max(add.g,add.b)));" +
     "}";
 
-  Array.prototype.forEach.call(hosts, function (host) {
+  var HM = {};
+  var idle = window.requestIdleCallback ? function (f) { requestIdleCallback(f, { timeout: 1500 }); } : function (f) { setTimeout(f, 120); };
+  function begin(host) { idle(function () { mount(host); }); }
+  function start() {
+    if (!window.IntersectionObserver) { Array.prototype.forEach.call(hosts, begin); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); begin(e.target); } }); }, { rootMargin: "320px 0px" });
+    Array.prototype.forEach.call(hosts, function (h) { io.observe(h); });
+  }
+  /* the engraving is cut on the reader's first move (a scroll, a touch, the pointer, a key), never while the page is
+     still loading, so the first screen and the button come first */
+  var go = false, EV = ["scroll", "pointermove", "pointerdown", "touchstart", "keydown", "wheel"];
+  function first() { if (go) return; go = true; EV.forEach(function (e) { removeEventListener(e, first, true); }); start(); }
+  EV.forEach(function (e) { addEventListener(e, first, { capture: true, passive: true }); });
+
+  function mount(host) {
     var hash = host.getAttribute("data-seal") || "";
     if (!/^[0-9a-f]{64}$/.test(hash) || !host.parentNode) return;
     var B = bands(hash);
     var cv = document.createElement("canvas"); cv.className = "as-plate"; cv.setAttribute("aria-hidden", "true");
     host.parentNode.insertBefore(cv, host);
-    var stage = host.closest("section, .band-hero") || host.parentNode;
-    var h1 = stage.querySelector("h1"), copy = !h1 || host.contains(h1) ? null : h1.parentNode.contains(host) ? h1 : h1.parentNode;
+    var stage = (host.parentNode.closest && host.parentNode.closest(".gl-stage")) || host.closest("section, .band-hero") || host.parentNode;
+    var h1 = stage.querySelector("h1") || stage.querySelector("[data-plate-copy]"), copy = !h1 || host.contains(h1) ? null : h1.parentNode.contains(host) ? h1 : h1.parentNode;
 
     var gl = null, prog = null, U = {}, tex = null, texS = 0;
     try { gl = cv.getContext("webgl", { alpha: true, premultipliedAlpha: true, antialias: false }); } catch (e) { gl = null; }
@@ -112,7 +132,7 @@
         tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        cv.className = "as-plate as-plate-gl"; cv.style.opacity = "1"; cv.style.webkitMaskImage = cv.style.maskImage = "none";
+        cv.className = "as-plate as-plate-gl"; cv.style.opacity = "0"; cv.style.transition = "opacity .8s ease"; cv.style.webkitMaskImage = cv.style.maskImage = "none";
       } catch (e) {
         gl = null; var fresh = document.createElement("canvas"); fresh.className = "as-plate"; fresh.setAttribute("aria-hidden", "true");
         cv.parentNode.replaceChild(fresh, cv); cv = fresh;
@@ -124,9 +144,13 @@
     var D = 0, dpr = 1, last = "", lamp = { x: 0, y: 0, tx: 0, ty: 0 }, raf = 0, safe = [0, 0, 0, 0];
 
     function heightMap(S) {
+      var k = hash + "/" + S; if (HM[k]) return HM[k];
+      return (HM[k] = cut(S));
+    }
+    function cut(S) {
       var c = document.createElement("canvas"); c.width = c.height = S;
       var g = c.getContext("2d"); g.fillStyle = "#000"; g.fillRect(0, 0, S, S); g.strokeStyle = "#fff"; g.lineJoin = "round";
-      engrave(g, S, B, true, S / 1900);
+      engrave(g, S, B, S >= 2048 ? 1 : .4, S / 1900);
       var s = document.createElement("canvas"); s.width = s.height = S;
       var sg = s.getContext("2d"); if ("filter" in sg) sg.filter = "blur(" + (S / 2300).toFixed(2) + "px)"; sg.drawImage(c, 0, 0);
       return s;
@@ -147,6 +171,7 @@
       gl.uniform2f(U.uC, P, P); gl.uniform1f(U.uR, P); gl.uniform1f(U.uSig, P * .62);
       gl.uniform3f(U.uL, lamp.x, lamp.y, P * .42); gl.uniform4f(U.uSafe, safe[0], safe[1], safe[2], 0);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      if (cv.style.opacity !== "1") cv.style.opacity = "1";
       if (Math.abs(lamp.tx - lamp.x) + Math.abs(lamp.ty - lamp.y) > .5) raf = requestAnimationFrame(frame);
     }
     function ask() { if (!raf) raf = requestAnimationFrame(frame); }
@@ -160,12 +185,18 @@
       if (key === last) return; last = key;
       cv.style.width = cv.style.height = D + "px"; cv.style.left = Math.round(left) + "px"; cv.style.top = Math.round(top) + "px";
       cv.width = cv.height = Math.round(D * dpr);
+      /* on a glass stage the engraving fades out at the stage's top and foot, so no plate ends on a cut line */
+      if (stage.classList && stage.classList.contains("gl-stage")) {
+        var sr0 = stage.getBoundingClientRect(), cr0 = cv.getBoundingClientRect(), a0 = Math.round(sr0.top - cr0.top), z0 = Math.round(sr0.bottom - cr0.top), f0 = Math.min(140, Math.round(sr0.height / 4));
+        var mk = "linear-gradient(to bottom,transparent " + a0 + "px,#000 " + (a0 + f0) + "px,#000 " + (z0 - f0) + "px,transparent " + z0 + "px)";
+        cv.style.webkitMaskImage = cv.style.maskImage = mk;
+      }
       if (!gl) {
         ctx.clearRect(0, 0, cv.width, cv.height); ctx.strokeStyle = "#E8B84F"; ctx.lineJoin = "round";
         engrave(ctx, cv.width, B, false, Math.max(1, dpr * .9));
         return;
       }
-      var S = Math.min(2048, Math.max(1024, cv.width));
+      var S = cv.width > 1200 ? 2048 : 1024;
       if (S !== texS) { texS = S; gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, heightMap(S)); }
       var cr = cv.getBoundingClientRect(), hr = host.getBoundingClientRect(); safe = [0, 0, 0, 0];
       if (copy) {
@@ -175,6 +206,7 @@
       }
       var r0 = rest();
       if (r0) { lamp.x = lamp.tx = r0[0]; lamp.y = lamp.ty = r0[1]; }
+      else if (!lamp.tx && stage.classList && stage.classList.contains("gl-stage")) { lamp.x = lamp.tx = (hr.left - cr.left + hr.width * .22) * dpr; lamp.y = lamp.ty = (cr.bottom - hr.top - hr.height * .12) * dpr; }
       else if (!lamp.tx) { lamp.x = lamp.tx = cv.width * .26; lamp.y = lamp.ty = cv.height * .82; }
       ask();
     }
@@ -194,5 +226,5 @@
     } else if (gl) {
       addEventListener("scroll", function () { var r0 = rest(); if (r0) aim(r0[0], r0[1]); }, { passive: true });
     }
-  });
+  }
 })();
