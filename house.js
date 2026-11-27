@@ -139,3 +139,14 @@
     strip.classList.add("on");
   }).catch(function () {});
 })();
+
+/* 27 Nov 2026: the phone's menu closes after a tap on a link, on Escape, or on a tap outside it. */
+(function () {
+  function shut(except) { document.querySelectorAll("details.hs-menu[open]").forEach(function (d) { if (d !== except) d.removeAttribute("open"); }); }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest(".hs-menu-p a");
+    if (a) { shut(null); return; }
+    shut(e.target.closest ? e.target.closest("details.hs-menu") : null);
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") shut(null); });
+})();

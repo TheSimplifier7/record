@@ -665,6 +665,8 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   for (const f of fs.readdirSync(HERE).filter(f => f.endsWith(".html"))) {
     for (const m of rd(f).matchAll(/<a\b[^>]*href="(https:\/\/buy\.stripe\.com\/[^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
       const words = m[2].replace(/<[^>]+>/g, "").trim();
+      /* 27 Nov 2026: the yearly Desk Suite's own link, once he turns it on, reads Pay yearly; nothing else may. */
+      if (HPb.ANNUAL.live && HPb.ANNUAL.url && m[1] === HPb.ANNUAL.url && words === "Pay yearly") continue;
       if (m[1] !== HPb.SET_CHECKOUT || words !== HPb.BUY) buyOff.push(f + " (" + words + ")");
     }
   }
@@ -757,10 +759,12 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     const h = fs.readFileSync(path.join(__dirname, f), "utf8");
     const forms = h.match(/<form class="as-mail"[\s\S]*?<\/form>/g) || [];
     const posts = (h.match(/script\.google\.com\/macros/g) || []).length;
-    const want = f === "levels.html";   /* 18 Nov 2026: the front page no longer carries the levels' email box */
+    /* 27 Nov 2026, 10:18, his word: the box for The Monday Level sits on the front page (mid-page), on the lab above the last
+       call, and on levels.html. It read: const want = f === "levels.html"; (18 Nov 2026: the front page no longer carried it) */
+    const want = f === "levels.html" || f === "index.html" || f === "lab.html";
     if (want !== (forms.length === 1) || posts !== (want ? 1 : 0)) { probs.push(f + (want ? ": does not carry the one email box" : ": carries an email box or the script's address")); continue; }
     if (!want) continue;
-    const m = forms[0], base = "levels";
+    const m = forms[0], base = { "levels.html": "levels", "index.html": "home-mid", "lab.html": "lab" }[f];
     if (!m.includes(`action="${HP.MAIL_ENDPOINT}"`) || !/method="POST"/.test(m)) probs.push(f + ": the box does not post to the list's own script");
     if (!m.includes('<input type="hidden" name="action" value="signup">')) probs.push(f + ": the box does not ask the script to sign up");
     if (!m.includes(`name="source_ref" value="${base}" data-ref-base="${base}"`)) probs.push(f + ": the box does not say where it sits");
@@ -773,7 +777,9 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   }
   for (const f of ["check-email.html", "confirmed.html", "unsubscribed.html", "privacy.html"]) {
     const t = fs.readFileSync(path.join(__dirname, f), "utf8").replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>|<[^>]+>/g, " ");
-    if (/closed to new|list is then deleted|closing email|Monday Level|Monday evening/i.test(t)) probs.push(f + ": still says the list is closed, or the old name");
+    /* 27 Nov 2026, 10:31, his word: the email is The Sunday Desk Note, on Sunday evening; the old name and the Saturday send
+       are gone from the list's pages. (10:18 had briefly allowed The Monday Level.) */
+    if (/closed to new|list is then deleted|closing email|Monday Level|Monday evening|Saturday morning/i.test(t)) probs.push(f + ": still says the list is closed, the old name or the old day");
   }
   const pv = fs.readFileSync(path.join(__dirname, "privacy.html"), "utf8");
   if (!/Google Sheets and Apps Script/.test(pv) || !/<b>Resend<\/b>/.test(pv) || /\bKit\b|kit\.com/.test(pv)) probs.push("privacy.html: does not name Google Sheets, Apps Script and Resend, or still names Kit");

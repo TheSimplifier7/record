@@ -115,13 +115,23 @@ const LESSONS = "https://x.com/TheSimplifier7";
 /* 27 Nov 2026, his brief of 02:17: the trial button reads Start 7-day free trial, one wording still, on every button. It read: Start 7 days free. */
 const BUY = "Start 7-day free trial";
 /* 21 Nov 2026, his word: "we need to showcase that we are an indicator lab". The lab joins the band. It read: The set, Pricing, Lessons. */
-/* 27 Nov 2026, his brief of 02:17: the menu is the three ways in. It read: The set, The lab, Pricing, Lessons. */
+/* 27 Nov 2026, his brief of 02:17: the menu is the three ways in. It read: The set, The lab, Pricing, Lessons.
+   27 Nov 2026, 10:18, his word: free tools join the menu, mentorship goes to its own page, and on a phone the menu
+   opens from the band (it was hidden under 760 px, so a phone reached the lab and mentorship only from the foot). */
 const NAV = [
   ["lab", "lab.html", "The lab"],
   ["set", "./#set", "Desk Suite"],
-  ["mentorship", "./#mentorship", "Mentorship"],
+  ["tools", "tools.html", "Free tools"],
+  ["mentorship", "mentorship.html", "Mentorship"],
   ["lessons", LESSONS, "Lessons"]
 ];
+/* The phone's menu: the same links, opened from the band. No script needed to open it; house.js closes it after a tap. */
+const menu = () => `<details class="hs-menu">
+      <summary>Menu</summary>
+      <nav class="hs-menu-p" aria-label="The site, menu">
+        ${NAV.map(([k, href, label]) => `<a href="${href}"${href.startsWith("http") ? ' rel="noopener"' : ""}>${label}</a>`).join("\n        ")}
+      </nav>
+    </details>`;
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
 
 function strip() {
@@ -147,6 +157,7 @@ function band(current, where, { fixed = true } = {}) {
     <nav class="hs-nav" aria-label="The site">
       ${NAV.map(([k, href, label]) => `<a href="${href}"${cur(k, current)}>${label}</a>`).join("\n      ")}
     </nav>
+    ${menu()}
     <div class="hs-tools">
       <a class="hs-btn hs-ghost" href="${SET_CHECKOUT}" data-tv="band-${esc(where)}">${BUY}</a>
     </div>
@@ -232,12 +243,18 @@ const SET_TOOLS = [
     q: "Which side of its trail is price on, and how much of the structure has turned?", not: "It is a trail that shows the structure, not an edge." }
 ];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
-function signup(where) {
-  return `<section class="hm-sec hm-last hm-mail" id="email" aria-labelledby="mail-h">
+/* 27 Nov 2026, 10:31, his word: the email is The Sunday Desk Note, sent Sunday evening (his script moves from Saturday).
+   10:18 it read The Monday Level, on Saturday. */
+/* 27 Nov 2026, 10:18, his word: the box is for the email he sends on Saturdays, The Monday Level, framed as open-source
+   scripts, lab receipts and desk notes ahead of Monday's open, with no promise of a script every week. It sits on the
+   front page mid-page, on the lab above the last call, and on levels.html. It read: The week graded, by email. One
+   email on Saturday morning: every level of the week, the close that graded it, the wrong ones first. Free. */
+function signup(where, { last = true } = {}) {
+  return `<section class="hm-sec${last ? " hm-last" : ""} hm-mail" id="email" aria-labelledby="mail-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="mail-h">The week graded, by email</h2></div>
+    <div class="hm-side"><h2 id="mail-h">The Sunday Desk Note</h2></div>
     <div class="hm-main">
-      <p>One email on Saturday morning: every level of the week, the close that graded it, the wrong ones first. Free.</p>
+      <p>One email on Sunday evening, ahead of Monday's open: open-source TradingView scripts, receipts from the Empirical Lab and a note from the desk. No macro fairy tales. No spam. Free.</p>
       <form class="as-mail" method="POST" action="${MAIL_ENDPOINT}" accept-charset="UTF-8">
         <input type="hidden" name="action" value="signup">
         <input type="hidden" name="source_ref" value="${where}" data-ref-base="${where}">
@@ -245,7 +262,7 @@ function signup(where) {
         <input id="mail-email" name="email" type="email" autocomplete="email" maxlength="254" required>
         <div class="as-mail-trap" aria-hidden="true"><label for="mail-co">Leave this empty</label><input id="mail-co" name="company" type="text" tabindex="-1" autocomplete="off"></div>
         <label class="as-mail-ok"><input type="checkbox" name="consent" value="yes" required><span>I agree to receive one email a week from The Simplifier and have read the <a href="privacy.html">Privacy policy</a>. I can unsubscribe from any email.</span></label>
-        <button class="hs-btn hs-ghost" type="submit">Send me the week graded</button>
+        <button class="hs-btn hs-ghost" type="submit">Send me the Sunday Desk Note</button>
         <p class="as-mail-fine">A confirmation email comes first, and nothing else is sent until you confirm.</p>
       </form>
     </div>
@@ -253,9 +270,38 @@ function signup(where) {
 </section>`;
 }
 
+/* 27 Nov 2026, 10:18, his word: Jim's words exactly as he approved them, never spliced or rearranged, signed Jim, US, in a
+   grid built for two or three voices, next to the Desk Suite and mentorship blocks and on mentorship.html. These are the
+   words that ran on the record page until 18 Nov, each answer in its own place. Add a voice only with its owner's OK. */
+const VOICES = [
+  { who: "Jim, US", what: "Mentorship client",
+    lead: "Remoras follow sharks. Knowing what to look for relative to structure and trend, and waiting for the right combination to present itself, makes all the difference in the world.",
+    before: "Very inconsistent for lack of trading protocol and discipline.",
+    now: "Still a bit gun-shy, but gaining confidence and comfort.",
+    also: "From the first post I saw, it was clear the approach and philosophy are set apart from the herd." }
+];
+const VOICE_FINE = "In their own words, shared with their permission. One trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
+function voices(where) {
+  if (!VOICES.length) return "";
+  return `<div class="vx" data-n="${VOICES.length}">
+      ${VOICES.map(v => `<figure class="vx-c gl">
+        <blockquote>
+          <p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>
+          ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>` : ""}
+          ${v.also ? `<p class="vx-also">&ldquo;${esc(v.also)}&rdquo;</p>` : ""}
+        </blockquote>
+        <figcaption><b>${esc(v.who)}</b>${v.what ? `<span>${esc(v.what)}</span>` : ""}</figcaption>
+      </figure>`).join("\n      ")}
+    </div>
+    <p class="vx-fine">${VOICE_FINE}</p>`;
+}
+
 /* The plans on method.html: the site's route first, the Paid Space beside it once TradingView approves it. */
 /* 15 Nov 2026, his word: the set's Stripe checkout, one address for the plans block and the home hero. */
 const SET_CHECKOUT = "https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04";
+/* 27 Nov 2026, 10:18, his word: the yearly Desk Suite is built and stays hidden until he gives its Stripe link, has checked
+   TradingView's vendor wording, and the Terms cover the 14-day withdrawal on a yearly payment. Turn on: live true, url set. */
+const ANNUAL = { live: false, url: "", price: "€990", per: "a year, VAT included", note: "Two months free, and a private 30-minute 1:1 chart audit." };
 const SET_TERMS = "7 days free, then €99 a month, VAT included. Card at checkout. Cancel before day 8 and pay nothing.";
 function plans(R) {
   const site = `<div class="s4-route" data-route="site">
@@ -328,4 +374,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { LESSONS, BUY, RISK, SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { ANNUAL, VOICES, VOICE_FINE, voices, menu, LESSONS, BUY, RISK, SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

@@ -77,7 +77,9 @@ for (const page of ["levels.html", "index.html"]) {
   /* 18 Nov 2026: the front page carries no levels, so counsel's lines and the trade-result line stay with the levels. */
   if (page !== "index.html") check(text.includes(C1 + " " + C2), page + " carries counsel's two lines word for word (note 51)");
   if (page !== "index.html") check(/it is not a trade result\./i.test(text), page + " says that held is not a trade result");
-  check(!/monday/i.test(s), page + " does not say Monday");
+  /* 27 Nov 2026, 10:18, his word: only the email's name, The Monday Level, and Monday's open; no Monday line. It read: !/monday/i.test(s) */
+  /* 10:31: the email is The Sunday Desk Note; only Monday's open remains. */
+  check(!/monday/i.test(s.replace(/Monday's open/g, "")), page + " does not say Monday");
   check(!new RegExp(["close", "earns", "it"].join(" "), "i").test(s), page + " does not say how The Fan's line is worked out");
   check(!/—|–|<!--/.test(s) && !/![\s"<]/.test(text), page + " carries no em dash, exclamation mark or HTML comment");
   check(/data-goatcounter="https:\/\/thesimplifier\.goatcounter\.com\/count"/.test(s), page + " carries the counter (note 37)");

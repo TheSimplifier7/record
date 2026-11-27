@@ -245,6 +245,10 @@ html.from-x .hm-fromx{display:flex}
 .hm-jim figcaption{margin-top:6px;font-size:15px;color:var(--c-gold)}
 .hm-jim+.hm-fine{max-width:44rem}
 .hm-mentor{margin-top:28px;max-width:40rem}
+.hm-mentor-solo{margin-top:0}
+.hm-annual{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--c-sec)}
+.hm-annual b{color:var(--c-ink)}
+#pricing .vx{margin-top:24px}
 .hm-mentor p{margin:0 0 12px;font-size:18px;line-height:1.55;color:var(--c-ink)}
 .hm-mentor .hm-acts{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .hm-or2{font-size:15px;color:var(--c-sec)}
@@ -297,24 +301,17 @@ const JOINING = [
 ];
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
-/* Jim, a mentorship client, from the US: his answers as Bradley gave them on 27 Nov 2026, edited for length; brand law
-   puts commas where the brief had dashes. The lines that ran on the record page until 18 Nov ("Remoras follow sharks...",
-   "Very inconsistent for lack of trading protocol and discipline", "From the first post I saw...") are the same answers. */
-const JIM = {
-  lead: "It\u2019s about gaining understanding and clarity that go beyond the charts.",
-  body: [
-    "Before working with Bradley, my trading was inconsistent. I lacked a real protocol and discipline. From the first post I saw from The Simplifier on X, it was clear the approach and philosophy were set apart from the herd.",
-    "Learning the Remora philosophy, understanding that remoras follow sharks, knowing what to look for relative to structure and trend, and waiting for the right combination to present itself, made all the difference in the world. The turning point was placing five out of six successful day trades.",
-    "If you\u2019re already losing trades, what else do you have to lose, and where else are you going to find this approach?"
-  ],
-  who: "Jim, from the US",
-  note: "Jim is a mentorship client. His own words, edited for length. One trader's experience, not a promise of your result. Trading involves risk and you can lose money."
-};
+/* 27 Nov 2026, 10:18, his word: Jim's words only as he approved them, never spliced (H.VOICES, the grid H.voices). The
+   block that ran here from PR 44 rearranged his answers and added lines; it is gone. */
+/* 27 Nov 2026, 10:18: one name for what the Desk Suite holds: the core tools plus The Gate, joining the suite until he says
+   subscribers have it. */
 const SUITE = (function () {
   const n = SET.map(x => x.name);
   const list = n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
-  return JOINING.length ? list + ", with " + JOINING.map(x => x.name).join(" and ") + " joining the suite" : list;
+  return JOINING.length ? `${SETL} core tools, ${list}, plus ${JOINING.map(x => x.name).join(" and ")} as it joins the suite` : `${SETL} core tools, ${list}`;
 })();
+const FREE = JSON.parse(fs.readFileSync(path.join(HERE, "tools.json"), "utf8")).tools.filter(x => x.live === true);
+const FREE_LATEST = FREE.length ? FREE[FREE.length - 1].name : "";
 const TESTIMONIALS = [];   /* real ones only, with their permission; the block shows once one is here */
 const FAQ10 = [
   ["Do I need TradingView?", "Yes, your own TradingView account. The tools go on your username within the hour. TradingView's free plan shows two indicators on a chart at a time; its paid plans show more."],
@@ -323,7 +320,7 @@ const FAQ10 = [
   ["How do I cancel?", `Cancel from the billing link at the foot of every page, or with one message to me on X.`],
   ["Does it make the decisions for me?", "No. Nothing on the chart says buy or sell. You read it, you decide."],
   ["Which metals?", "Gold, silver and platinum."],
-  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. Its price is given on the call and put in writing before you pay."]
+  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. It is €6,000 (plus VAT where applicable) for 24 private sessions, strictly by application."]
 ];
 /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the line under the desk story points
    to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
@@ -378,28 +375,30 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
         <article class="hm-tier gl">
           <h3>The Empirical Lab</h3>
           <p class="hm-tp"><b>Free</b></p>
-          <p class="hm-tw">Research and TradingView scripts that put what the crowd believes about gold to the test, counted on gold back to 2013.</p>
-          <p class="hm-tf">For traders who want proof before they spend a euro.</p>
+          <p class="hm-tw">${NUMW[FREE.length] ? NUMW[FREE.length].replace(/^./, c => c.toUpperCase()) : FREE.length} open-source TradingView scripts${FREE_LATEST ? `, ${esc(FREE_LATEST)} the latest` : ""}, the lab&rsquo;s counts of what the crowd believes about gold, and the Sunday Desk Note by email.</p>
+          <p class="hm-tf">For traders who want to check the read on their own 30-minute gold chart before they spend a euro.</p>
           <p class="hm-tc"><a class="hs-btn hs-ghost" href="lab.html" data-tv="home-tier-lab">Explore the lab</a></p>
-          <p class="hm-micro">No card, no sign-up.</p>
+          <p class="hm-micro">No card, no sign-up. <a href="tools.html" data-x="home-tier-tools">The free tools</a></p>
         </article>
         <article class="hm-tier hm-tier-main gl">
           <h3>The Desk Suite</h3>
           <p class="hm-tp"><b>€99</b> a month, VAT included</p>
-          <p class="hm-tw">All ${SETL} structural tools on your own TradingView chart: ${SUITE}.</p>
+          <p class="hm-tw">On your own TradingView chart: ${SUITE}.</p>
           <p class="hm-tf">For active traders who want institutional structure on their charts.</p>
           <p class="hm-tc">${BTN("tier")}</p>
-          <p class="hm-micro">7 days free. Cancel before day 8 and pay nothing. 14-day withdrawal right.</p>
+          <p class="hm-micro">7 days free. Cancel before day 8 and pay nothing. 14-day withdrawal right.</p>${H.ANNUAL.live && H.ANNUAL.url ? `
+          <p class="hm-annual"><b>${esc(H.ANNUAL.price)}</b> ${esc(H.ANNUAL.per)}. ${esc(H.ANNUAL.note)} <a href="${H.ANNUAL.url}" data-tv="home-tier-annual">Pay yearly</a></p>` : ""}
         </article>
         <article class="hm-tier gl">
           <h3>1:1 Desk Mentorship</h3>
-          <p class="hm-tp"><b>By application</b></p>
-          <p class="hm-tw">Private, one to one, with me: protocol, discipline, structure and the Remora framework. Seats are capped.</p>
+          <p class="hm-tp"><b>€6,000</b> plus VAT where applicable, for 24 private sessions</p>
+          <p class="hm-tw">Private, one to one, with me: protocol, discipline, structure and the Remora framework. Strictly by application. Seats are capped.</p>
           <p class="hm-tf">For serious traders tired of inconsistency who want a real desk protocol.</p>
           <p class="hm-tc"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-tier-mentorship">Apply</a></p>
           <p class="hm-micro">Or send DESK to me <a href="${H.LESSONS}" rel="noopener" data-x="home-tier-dm">on X</a>.</p>
         </article>
       </div>
+      ${H.voices("home")}
     </div>
   </div></div>
 </section>
@@ -456,21 +455,15 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
   </div></div>
 </section>
 
+${H.signup("home-mid", { last: false })}
+
 <section class="hm-sec gl-stage" id="mentorship" aria-labelledby="mentorship-h">
   <div class="hm-in"><div>
     <div class="hm-side" data-plate-copy><h2 id="mentorship-h">1:1 Desk Mentorship</h2></div>
     <div class="hm-main">
-      <figure class="hm-jim gl" data-plate data-seal="${SEAL}">
-        <blockquote>
-          <p class="hm-vq">&ldquo;${esc(JIM.lead)}&rdquo;</p>
-          ${JIM.body.map(p => `<p>${esc(p)}</p>`).join("\n          ")}
-        </blockquote>
-        <figcaption><span class="hm-who">${esc(JIM.who)}</span></figcaption>
-      </figure>
-      <p class="hm-fine">${esc(JIM.note)}</p>
-      <div class="hm-mentor">
+      <div class="hm-mentor hm-mentor-solo">
         <p>Twelve weeks, two sessions a week, on your own TradingView chart. I take you back through past scenarios until you can spot them yourself. I don&rsquo;t tell you when to trade, and no one handles your money.</p>
-        <p>The price is given on the call and put in writing before you pay.</p>
+        <p>€6,000 (plus VAT where applicable) for 24 private sessions, strictly by application, put in writing before you pay.</p>
         <p class="hm-acts"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-mentorship-apply">Apply for 1:1 mentorship</a><span class="hm-or2">or send DESK to me <a href="${H.LESSONS}" rel="noopener" data-x="home-mentorship-dm">on X</a></span></p>
       </div>
     </div>
@@ -527,6 +520,10 @@ ${H.tail("home")}
 `;
 
 if (/—|<!--|!\s|–/.test(html.replace(/<!DOCTYPE html>/, ""))) { console.error("homepage has an em dash, an en dash, an exclamation or an HTML comment"); process.exit(1); }
-if (/monday/i.test(html)) { console.error("the front page still says Monday"); process.exit(1); }
+/* 27 Nov 2026, 10:18, his word: the email he sends on Saturdays keeps its name, The Monday Level, and goes out ahead of
+   Monday's open; no other Monday on the front page (the old Monday lines graded on Friday stay retired). It read:
+   if (/monday/i.test(html)) ... the front page still says Monday */
+/* 10:31: the email is now The Sunday Desk Note; only Monday's open remains. */
+if (/monday/i.test(html.replace(/Monday's open/g, ""))) { console.error("the front page still says Monday"); process.exit(1); }
 fs.writeFileSync(path.join(HERE, "index.html"), html);
 console.log("index.html written: the daily series since " + DAILY.start + ", " + M.days.length + " trading day(s) on file; the weekly series " + t.held + " held, " + t.wrong + " wrong.");
