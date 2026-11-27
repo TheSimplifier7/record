@@ -323,7 +323,7 @@ function plans(R) {
   const tv = SPACE_LIVE ? `
     <div class="s4-route" data-route="tradingview">
       <p class="s4-route-h">On TradingView</p>
-      <p class="s4-price"><b>$99</b> a month for all five, billed by TradingView</p>
+      <p class="s4-price"><b>$99</b> a month for all six, billed by TradingView</p>
       <ol class="s4-steps">
         <li>Subscribe on TradingView's website with your TradingView account.</li>
         <li>TradingView adds the six tools to your account automatically.</li>
