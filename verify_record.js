@@ -668,7 +668,7 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
       if (m[1] !== HPb.SET_CHECKOUT || words !== HPb.BUY) buyOff.push(f + " (" + words + ")");
     }
   }
-  check(buyOff.length === 0, "every checkout link is the set's own Stripe link and reads Start 7 days free (18 Nov 2026)" + (buyOff.length ? " (" + buyOff.slice(0, 8).join(", ") + ")" : ""));
+  check(buyOff.length === 0, "every checkout link is the set's own Stripe link and reads " + HPb.BUY + " (18 Nov 2026, wording of 27 Nov)" + (buyOff.length ? " (" + buyOff.slice(0, 8).join(", ") + ")" : ""));
 }
 
 /* 27. THE SCENE, added 22 October 2026, note 55. */
@@ -723,12 +723,20 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     if (btns.length < 5 || btns.some(b => b[1] !== HP.SET_CHECKOUT || b[3] !== HP.BUY)) probs.push(`index.html: ${btns.length} trial buttons in the page, not five or more reading ${HP.BUY}`);
     if (new Set(btns.map(b => b[2])).size !== btns.length) probs.push("index.html: two trial buttons share a click name");
     if (!/<p class="hm-say">[^<]*<\/p>\s*<p class="hm-acts"><a class="hs-btn hs-gold" href="[^"]+" data-tv="home-hero">/.test(main)) probs.push("index.html: the hero's button is not straight under the sub");
-    if (/href="mentorship.html"/.test(main)) probs.push("index.html: mentorship is above the foot");
+    /* 27 Nov 2026, his brief of 02:17: the three-tier funnel. The Remora section, three ways in (the lab, the Desk Suite,
+       mentorship), and a mentorship section that reaches the application. It read:
+       if (/href="mentorship.html"/.test(main)) probs.push("index.html: mentorship is above the foot"); */
+    if (!/id="remora"/.test(main)) probs.push("index.html: no Remora section");
+    { const tiers = (main.match(/<article class="hm-tier[^"]*"/g) || []).length;
+      if (tiers !== 3) probs.push(`index.html: ${tiers} tiers, not three`); }
+    if (!/<section[^>]*id="mentorship"[\s\S]*?href="mentorship.html"[\s\S]*?<\/section>/.test(main)) probs.push("index.html: the mentorship section does not reach the application");
+    if (/<blockquote[\s\S]*?<\/blockquote>/.test(main) && !/One trader's experience, not a promise of your result/.test(main)) probs.push("index.html: a testimonial runs without its small print");
     /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the desk story's one line
        points to the lab, and the record is above the foot nowhere. It read:
        if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line"); */
     if (/href="record.html"/.test(main) || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot");
-    if ((main.match(/href="lab.html"/g) || []).length !== 1) probs.push("index.html: the desk story's one line does not point to the lab");
+    /* 27 Nov 2026: the lab is also a tier, so the page reaches it more than once. It read: exactly one link, the desk story's. */
+    if (!/Every concept the crowd swears by[^<]*<a href="lab.html">/.test(main)) probs.push("index.html: the desk story's one line does not point to the lab");
     const keep = (idx.match(/var keep=(\{[^}]*\})/) || [])[1]; const ids = [...main.matchAll(/\sid="([^"]+)"/g)].map(m => "#" + m[1]);
     const lost = !keep ? ids : ids.filter(id => !keep.includes(JSON.stringify(id)));
     if (lost.length) probs.push("index.html: these anchors would bounce to the record: " + lost.join(" ")); }

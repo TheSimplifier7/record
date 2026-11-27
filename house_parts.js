@@ -112,12 +112,14 @@ const earlyTags = () => '<meta name="color-scheme" content="dark">';
    price and the lessons on X; the record, the levels and the mentorship live in the foot. It read: Indicators,
    Mentorship, Free tools. */
 const LESSONS = "https://x.com/TheSimplifier7";
-const BUY = "Start 7 days free";
+/* 27 Nov 2026, his brief of 02:17: the trial button reads Start 7-day free trial, one wording still, on every button. It read: Start 7 days free. */
+const BUY = "Start 7-day free trial";
 /* 21 Nov 2026, his word: "we need to showcase that we are an indicator lab". The lab joins the band. It read: The set, Pricing, Lessons. */
+/* 27 Nov 2026, his brief of 02:17: the menu is the three ways in. It read: The set, The lab, Pricing, Lessons. */
 const NAV = [
-  ["set", "./#set", "The set"],
   ["lab", "lab.html", "The lab"],
-  ["pricing", "./#pricing", "Pricing"],
+  ["set", "./#set", "Desk Suite"],
+  ["mentorship", "./#mentorship", "Mentorship"],
   ["lessons", LESSONS, "Lessons"]
 ];
 const cur = (k, current) => k === current ? ' aria-current="page"' : "";
