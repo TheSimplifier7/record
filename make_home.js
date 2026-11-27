@@ -290,11 +290,13 @@ html.from-x .hm-fromx{display:flex}
    number until it moves into H.SET_TOOLS with its page on method.html. The Gate went live, invite-only, at 22:04 Madrid. Its
    chart is his own publication chart, gold 10 minute on TradingView, 19 and 20 November 2026; its question is the one on its
    TradingView page. It read, until then, the five cards and the line: Gold, 15 November 2026 and 18 November 2026. */
+/* 27 Nov 2026: The Gate moved into H.SET_TOOLS on his word; JOINING read:
 const JOINING = [
   { id: "gate", name: "The Gate", img: "set_gate_gold_10m_2026-11-20", h: 503, when: "10 minute, 19 and 20 November 2026",
     alt: "The Gate on Bradley's gold 10 minute chart on TradingView, 19 and 20 November 2026",
     q: "Do the bigger clocks agree with the turn on your chart, and where is the line that proves the trade wrong?" }
-];
+]; */
+const JOINING = [];
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 /* Jim, a mentorship client, from the US: his answers as Bradley gave them on 27 Nov 2026, edited for length; brand law
@@ -421,7 +423,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
           <p>${esc(x.q)}</p>
         </article>`).join("\n        ")}
       </div>
-      <p class="hm-fine">${JOINING.length ? "Gold, 15 and 18 November 2026; " + JOINING.map(x => x.name + ", " + x.when).join("; ") : "Gold, 15 November 2026 and 18 November 2026"}. Past charts, not live trades. Charts by TradingView.</p>
+      <p class="hm-fine">${JOINING.length ? "Gold, 15 and 18 November 2026; " + JOINING.map(x => x.name + ", " + x.when).join("; ") : "Gold, 15 November 2026 and 18 November 2026; The Gate, 10 minute, 19 and 20 November 2026"}. Past charts, not live trades. Charts by TradingView.</p>
       <p class="hm-acts">${BTN("set")}</p>
     </div>
   </div></div>
@@ -517,7 +519,7 @@ const IDS = Array.from(new Set(["main"].concat((MAIN.match(/\sid="([^"]+)"/g) ||
 const KEEP = "{" + IDS.map(id => JSON.stringify("#" + id) + ":1").join(",") + "}";
 
 const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://thesimplifier7.com/", image: CARD,
-  alt: "The Simplifier. Five TradingView tools for gold, silver and platinum.", css: CSS + CSS10,
+  alt: "The Simplifier. Six TradingView tools for gold, silver and platinum.", css: CSS + CSS10,
   pre: '<script>(function(){var h=location.hash;var keep=' + KEEP + ';if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>' }) + `
 ${H.band(null, "home")}
 ${MAIN}

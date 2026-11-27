@@ -43,7 +43,7 @@ const SPACE = "https://www.tradingview.com/scripts/marketplace/TheSimplifier7/?a
 const SPACE_LIVE = false;
 const OUT = 'target="_blank" rel="sponsored noopener"';
 const PARTNER_LINE = "TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.";
-const BOTH = "Same five tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
+const BOTH = "Same six tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
 
@@ -200,7 +200,7 @@ function proof(R) {
 function partner(id, tag = "h2") {
   return `<aside class="as-partner" data-partner="${esc(id)}" aria-labelledby="pb-${esc(id)}">
   <${tag} class="as-partner-h" id="pb-${esc(id)}">New to TradingView?</${tag}>
-  <p>The five tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
+  <p>The six tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
   <a class="hs-btn hs-ghost" href="${PARTNER}" ${OUT} data-tv="partner-block" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a>
   <p class="as-partner-d">Partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
 </aside>`;
@@ -229,7 +229,12 @@ const SET_TOOLS = [
      what it will not do is his sentence there. Chart: his, 30 minute, at 00:03 CET on 18 November 2026. */
   { name: "The Ratchet", win: "See how much of the structure has turned, and the close that would flip it.", img: "set_ratchet_gold_30m_2026-11-18", h: 713, cap: "Gold, 30 minute, 18 November 2026", alt: "The Ratchet on Bradley's gold 30 minute chart on TradingView, 18 November 2026",
     tv: "https://www.tradingview.com/script/sVPjezsq-The-Ratchet-TheSimplifier7/",
-    q: "Which side of its trail is price on, and how much of the structure has turned?", not: "It is a trail that shows the structure, not an edge." }
+    q: "Which side of its trail is price on, and how much of the structure has turned?", not: "It is a trail that shows the structure, not an edge." },
+  /* 27 Nov 2026, his word (the unblock order): The Gate joins the set this weekend, from JOINING on the home page. Its question
+     is the one on its TradingView page; what it will not do is drafted from that page ("not what it does next") for his edit.
+     Chart: held at the 10 minute picture of 20 Nov until his 30 minute shot replaces it (the 30 minute floor, 26 Nov). */
+  { name: "The Gate", win: "See whether the bigger clocks agree with your turn, and the line that proves it wrong.", img: "set_gate_gold_10m_2026-11-20", h: 503, cap: "Gold, 10 minute, 19 and 20 November 2026", alt: "The Gate on Bradley's gold 10 minute chart on TradingView, 19 and 20 November 2026",
+    q: "Do the bigger clocks agree with the turn on your chart, and where is the line that proves the trade wrong?", not: "It says what price did at the line and whether the clocks agree. It does not say what price does next." }
 ];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
 function signup(where) {
@@ -264,7 +269,7 @@ function plans(R) {
       <ol class="s4-steps">
         <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
         <li>Give your TradingView username at checkout, never your password.</li>
-        <li>The five tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+        <li>The six tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
       <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">${BUY}</a>
       <p class="s4-fine">${SET_TERMS}</p>
@@ -275,14 +280,14 @@ function plans(R) {
       <p class="s4-price"><b>$99</b> a month for all five, billed by TradingView</p>
       <ol class="s4-steps">
         <li>Subscribe on TradingView's website with your TradingView account.</li>
-        <li>TradingView adds the five tools to your account automatically.</li>
+        <li>TradingView adds the six tools to your account automatically.</li>
       </ol>
       <a class="hs-btn hs-ghost s4-btn" href="${SPACE}" ${OUT} data-tv="plans-tv-space">Subscribe on TradingView</a>
       <p class="s4-fine">$99 a month, billed by TradingView. VAT added at checkout where it applies. No free trial. You can ask TradingView for a refund within 14 days of a payment. Cancel in your TradingView account.</p>
     </div>` : "";
   /* 25 Nov 2026, glass on every thing: the plan is a pane of the house glass over the record's rosette (plate.js) */
   return `<section id="plans" class="s4-plan gl${SPACE_LIVE ? " s4-two" : ""}" data-plate data-seal="${recordSeal(R)}" aria-labelledby="plans-h">
-    <h2 id="plans-h">The set of five</h2>
+    <h2 id="plans-h">The set of six</h2>
     <div class="s4-routes">
     ${site}${tv}
     </div>
