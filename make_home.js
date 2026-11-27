@@ -320,7 +320,7 @@ const FAQ10 = [
   ["How do I cancel?", `Cancel from the billing link at the foot of every page, or with one message to me on X.`],
   ["Does it make the decisions for me?", "No. Nothing on the chart says buy or sell. You read it, you decide."],
   ["Which metals?", "Gold, silver and platinum."],
-  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. It is €6,000 for 24 private sessions, strictly by application."]
+  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. It is €6,000 (plus VAT where applicable) for 24 private sessions, strictly by application."]
 ];
 /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the line under the desk story points
    to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
@@ -391,7 +391,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
         </article>
         <article class="hm-tier gl">
           <h3>1:1 Desk Mentorship</h3>
-          <p class="hm-tp"><b>€6,000</b> for 24 private sessions</p>
+          <p class="hm-tp"><b>€6,000</b> plus VAT where applicable, for 24 private sessions</p>
           <p class="hm-tw">Private, one to one, with me: protocol, discipline, structure and the Remora framework. Strictly by application. Seats are capped.</p>
           <p class="hm-tf">For serious traders tired of inconsistency who want a real desk protocol.</p>
           <p class="hm-tc"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-tier-mentorship">Apply</a></p>
@@ -463,7 +463,7 @@ ${H.signup("home-mid", { last: false })}
     <div class="hm-main">
       <div class="hm-mentor hm-mentor-solo">
         <p>Twelve weeks, two sessions a week, on your own TradingView chart. I take you back through past scenarios until you can spot them yourself. I don&rsquo;t tell you when to trade, and no one handles your money.</p>
-        <p>€6,000 for 24 private sessions, strictly by application, put in writing before you pay.</p>
+        <p>€6,000 (plus VAT where applicable) for 24 private sessions, strictly by application, put in writing before you pay.</p>
         <p class="hm-acts"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-mentorship-apply">Apply for 1:1 mentorship</a><span class="hm-or2">or send DESK to me <a href="${H.LESSONS}" rel="noopener" data-x="home-mentorship-dm">on X</a></span></p>
       </div>
     </div>
