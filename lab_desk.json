@@ -1,6 +1,6 @@
 {
  "about": "The lab's desk as shown on the site: the bench under codenames, the bin and the dated log. Public words only. Nothing here says what an unshipped tool is or how it is made; the full entries, with their sources, stay in the lab's own records (ALEMBIC Mark 2). A codename keeps its number for life and takes its public name when the tool ships. make_lab.js refuses to print a figure an entry's own figures list does not hold.",
- "as_of": "26 Nov 2026",
+ "as_of": "27 Nov 2026",
  "checks": ["Sourced", "Clean", "No repaint", "Chart-friendly", "Proven on gold", "The bar"],
  "bench": [
   {"name": "Project 01", "passed": [1, 1, 1, 1, 1, 1], "state": "Through all six", "text": "Through every check. Being finished for release.", "figures": [], "src": "lab records, 25 Nov"},
@@ -14,6 +14,7 @@
   {"name": "The Flow", "state": "Coming to TradingView", "src": "lab records"}
  ],
  "bin": [
+  {"kind": "concept", "what": "Three more of the scout's ideas", "why": "Each was written down in full before the data was opened, then counted against chance on gold. None beat it.", "date": "27 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-012 to C-014, runs HZRQ and BQXE)"},
   {"kind": "concept", "what": "Four of the scout's ideas", "why": "Each was counted against chance on gold before anything was built. None beat it.", "date": "26 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-008 to C-011; QUANT_CARDS D-114, V-109)"},
   {"kind": "concept", "what": "Project 05", "why": "It passed the test the lab set, then failed a harder one: it told a trader nothing the candles do not already show.", "date": "25 Nov", "figures": [5], "src": "lab records (RD_CARDS B-103 and D-105; LAB_LOG 25 Nov 15:4x and 15:5x)"},
   {"kind": "draft", "what": "Project 02, draft 8", "why": "Clean, but nobody could read it as a level. Dropped as a tool of its own.", "date": "25 Nov", "figures": [2, 8], "src": "lab records (RD_CARDS I-101; LAB_LOG 25 Nov 12:3x)"},
@@ -27,6 +28,8 @@
   {"kind": "call", "what": "My own call on the slow half", "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-000c then F-003"}
  ],
  "log": [
+  {"date": "27 Nov", "text": "Project 06 held up on ten more years of gold that nobody had counted before, every one of them.", "figures": [6], "src": "lab records (QUANT_CARDS D-120)"},
+  {"date": "27 Nov", "text": "Three more ideas thrown out overnight. One was tested on two years held back on purpose, and failed there too.", "figures": [], "src": "lab records (SCOUT_CARDS C-012 to C-014)"},
   {"date": "26 Nov", "text": "Project 06 went through all six checks and is with me to look at on my own chart.", "figures": [6], "src": "lab records (PUBLISH_CARDS EP-106)"},
   {"date": "26 Nov", "text": "Four ideas in, four thrown out, each counted against chance before a line of code. Nothing weak reached the bench.", "figures": [], "src": "lab records (SCOUT_CARDS C-008 to C-011)"},
   {"date": "26 Nov", "text": "Nothing below the half hour chart is counted, built or published from here.", "figures": [], "src": "lab records (LAB_LOG 26 Nov 05:02)"},
