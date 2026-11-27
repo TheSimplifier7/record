@@ -73,6 +73,15 @@
       "live": true,
       "text": "An assay is the test that tells you whether a bar of gold is what its stamp says it is. This script runs that test on its own marks.",
       "text_from": "Its TradingView page, read 15 November 2026; published open source 13 November 2026."
+    },
+    {
+      "key": "flow",
+      "name": "The Flow",
+      "title": "The Flow",
+      "url": "https://www.tradingview.com/script/gLSvGcL4-The-Flow-TheSimplifier7/",
+      "live": true,
+      "text": "Is the move still pushing, or is it pulling back? The Flow answers that on your candles, in one look, and one word at the edge of the chart says what it sees.",
+      "text_from": "The first paragraph of the description he pasted, from the lab's paste-ready file of 27 Nov 2026; published open source 27 Nov 2026, 14:32 Madrid. Checked against the live page by eye, not by fetch."
     }
   ]
 }
