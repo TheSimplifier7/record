@@ -278,18 +278,40 @@ const VOICES = [
     lead: "Remoras follow sharks. Knowing what to look for relative to structure and trend, and waiting for the right combination to present itself, makes all the difference in the world.",
     before: "Very inconsistent for lack of trading protocol and discipline.",
     now: "Still a bit gun-shy, but gaining confidence and comfort.",
-    also: "From the first post I saw, it was clear the approach and philosophy are set apart from the herd." }
+    also: "From the first post I saw, it was clear the approach and philosophy are set apart from the herd." },
+  /* 27 Nov 2026, 17:11, his word: Justin's written OK received; his words verbatim, his own capitals kept. The front page
+     runs his first two paragraphs and the first sentence of his third, whole sentences in his order, and points to the full
+     text on mentorship.html, where all three paragraphs run. */
+  { who: "Justin, Cape Town", what: "Mentorship client",
+    paras: [
+      "I did some great trades but then because of financial stress I would just keep going and gave back all the money to the markets. I was impatient because I never had a strategy, I would think that every candle is worth a go.",
+      "When you showed me that we need to make our decisions at the key levels and mean lines, the rest is just the price delivery from those levels, that's when I had the biggest aha moment in my trading life.",
+      "If you want a guy that is going to lay it straight and he is brutally honest, he is going to tell you exactly what you are doing wrong and he will ask you why you did it. He makes you think logically and if you want to be profitable, Do not hesitate to hit him up. He is the best of the best with so much knowledge that it's scary."
+    ],
+    home: 2 + 1 / 10 }
 ];
-const VOICE_FINE = "In their own words, shared with their permission. One trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
+const VOICE_FINE = "In their own words, shared with their permission. Each is one trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
+/* A voice's paragraphs: in full, or on the front page the first whole paragraphs and the first whole sentence(s) of the
+   next, never a word changed or moved. home: 2 + 1/10 reads two paragraphs and one sentence. */
+function paras(v, where) {
+  if (where !== "home" || v.home == null) return v.paras;
+  const whole = Math.floor(v.home), sent = Math.round((v.home - whole) * 10);
+  const out = v.paras.slice(0, whole);
+  if (sent && v.paras[whole]) out.push((v.paras[whole].match(/[^.?!]+[.?!]+/g) || []).slice(0, sent).join("").trim());
+  return out;
+}
+function cut(v, where) { return paras(v, where).join(" ") !== v.paras.join(" "); }
 function voices(where) {
   if (!VOICES.length) return "";
   return `<div class="vx" data-n="${VOICES.length}">
       ${VOICES.map(v => `<figure class="vx-c gl">
         <blockquote>
-          <p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>
+          ${v.lead ? `<p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>` : ""}
           ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>` : ""}
           ${v.also ? `<p class="vx-also">&ldquo;${esc(v.also)}&rdquo;</p>` : ""}
+          ${v.paras ? paras(v, where).map((t, i, a) => `<p class="vx-p">${i === 0 ? "&ldquo;" : ""}${esc(t)}${i === a.length - 1 ? (cut(v, where) ? " &hellip;&rdquo;" : "&rdquo;") : ""}</p>`).join("\n          ") : ""}
         </blockquote>
+        ${v.paras && cut(v, where) ? `<p class="vx-more">From a longer note. <a href="mentorship.html">Read it in full</a></p>` : ""}
         <figcaption><b>${esc(v.who)}</b>${v.what ? `<span>${esc(v.what)}</span>` : ""}</figcaption>
       </figure>`).join("\n      ")}
     </div>

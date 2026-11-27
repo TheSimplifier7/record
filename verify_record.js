@@ -732,7 +732,7 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
     { const tiers = (main.match(/<article class="hm-tier[^"]*"/g) || []).length;
       if (tiers !== 3) probs.push(`index.html: ${tiers} tiers, not three`); }
     if (!/<section[^>]*id="mentorship"[\s\S]*?href="mentorship.html"[\s\S]*?<\/section>/.test(main)) probs.push("index.html: the mentorship section does not reach the application");
-    if (/<blockquote[\s\S]*?<\/blockquote>/.test(main) && !/One trader's experience, not a promise of your result/.test(main)) probs.push("index.html: a testimonial runs without its small print");
+    if (/<blockquote[\s\S]*?<\/blockquote>/.test(main) && !/one trader's experience, not a promise of your result/i.test(main)) probs.push("index.html: a testimonial runs without its small print");
     /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the desk story's one line
        points to the lab, and the record is above the foot nowhere. It read:
        if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line"); */
