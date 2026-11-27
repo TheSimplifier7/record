@@ -96,7 +96,7 @@ html:has(#hs-stone) table#book thead th { text-transform: none !important; lette
 
 /* 4. the trial */
 .r3-under a, .fan .fan-price + .fan-cta a + a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-.r3f-more { display: inline-block; margin-top: 12px; font-size: 14px; color: #a8b3c4; text-decoration: underline; text-underline-offset: 3px; }
+.r3f-more { display: inline-block; margin-top: 12px; font-size: 14px; color: #B8C3D4; text-decoration: underline; text-underline-offset: 3px; }
 .r3f-step .hd-btn.hd-gold { margin-top: 4px; }
 .fan-cta { margin-top: 20px; }
 .fan-cta .hs-btn { display: inline-flex; }

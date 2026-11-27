@@ -17,7 +17,7 @@
    ========================================================================= */
 
 html:root{
-  --c-bg:#0B1A2E;--c-raise:#11233C;--c-ink:#F3EDE2;--c-sec:#A8B3C4;--c-mut:#7D8CA3;
+  --c-bg:#0B1A2E;--c-raise:#11233C;--c-ink:#F3EDE2;--c-sec:#B8C3D4;--c-mut:#94A3B8;
   --c-gold:#E8B84F;--c-red:#F0604A;
   --c-rule:rgba(243,237,226,.09);--c-rule-2:rgba(243,237,226,.18);
   --c-ui:"Barlow","Barlow Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -439,4 +439,45 @@ html .hs-band,html .hd-band{background:rgba(11,26,46,.62)!important;-webkit-back
   .gl{background:var(--c-raise)}
   html .hs-band,html .hd-band{background:var(--c-bg)!important}
   @media (max-width:760px){html .hs-bot,html .botnav{background:var(--c-bg)!important}}
+}
+
+
+/* ================================================================ 27 Nov 2026, 10:18, his word: readability and the phone.
+   Text: secondary and muted copy raised (secondary #B8C3D4, 9.8:1 on the navy; muted #94A3B8, 6.8:1; they read #A8B3C4 and
+   #7D8CA3). Body copy capped near 65 characters a line. The phone's menu: the band carries a Menu button under 760 px,
+   opening the same links as the desktop menu (the menu was hidden there before). */
+html main :is(p,li,dd){max-width:min(32em,100%)!important}
+html main :is(.hm-acts,.hm-links,.hm-tc,.s4-small){max-width:none!important}
+html main .vx-c :is(p,dd){max-width:none!important}
+html .hs-menu{display:none}
+@media (max-width:760px){
+  html .hs-menu{display:flex;align-items:center;margin-left:auto}
+  html .hs-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border:1px solid rgba(243,237,226,.24);border-radius:8px;
+    font:500 15px/1 var(--c-ui);color:var(--c-ink);-webkit-tap-highlight-color:transparent}
+  html .hs-menu>summary::-webkit-details-marker{display:none}
+  html .hs-menu[open]>summary{background:rgba(243,237,226,.08);border-color:rgba(243,237,226,.4)}
+  html .hs-menu-p{position:absolute;left:0;right:0;top:100%;z-index:41;display:flex;flex-direction:column;padding:6px var(--c-gutter) 14px;
+    background:#0D1D33!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 30px -18px rgba(0,0,0,.85);border-bottom:1px solid rgba(243,237,226,.1)}
+  html .hs-menu-p a{display:flex;align-items:center;min-height:52px;font:500 18px/1.2 var(--c-ui);color:var(--c-ink);text-decoration:none;border-top:1px solid rgba(243,237,226,.08)}
+  html .hs-menu-p a:first-child{border-top:0}
+  html .hs-menu-p a[aria-current="page"]{color:var(--c-gold)}
+}
+/* The voices: a grid built for two or three, each on the house glass. */
+.vx{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;margin-top:28px}
+.vx[data-n="1"]{grid-template-columns:minmax(0,46rem)}
+.vx-c{margin:0;padding:28px 28px 22px;display:flex;flex-direction:column}
+.vx-c blockquote{margin:0}
+.vx-q{margin:0 0 18px;font:500 21px/1.45 var(--c-ui);color:var(--c-ink)}
+.vx-ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px;padding:14px 0;border-top:1px solid var(--c-rule);border-bottom:1px solid var(--c-rule)}
+.vx-ba dt{margin:0 0 6px;font:500 13px/1 "IBM Plex Mono",monospace;color:var(--c-mut)}
+.vx-ba dd{margin:0;font-size:16px;line-height:1.5;color:var(--c-ink)}
+.vx-also{margin:0 0 16px;font-size:16px;line-height:1.55;color:var(--c-sec)}
+.vx-c figcaption{margin-top:auto;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:15px;color:var(--c-gold)}
+.vx-c figcaption span{font-size:14px;color:var(--c-mut)}
+.vx-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--c-mut)}
+@media (max-width:760px){
+  .vx-c{padding:22px 20px 18px}
+  .vx-q{font-size:19px}
+  .vx-ba{grid-template-columns:1fr}
 }
