@@ -91,6 +91,7 @@ ${H.tail("today")}
 `;
 
 if (/—|–|<!--|!\s/.test(html.replace(/<!DOCTYPE html>/, ""))) { console.error("levels.html has an em dash, an en dash, an exclamation or an HTML comment. Nothing written."); process.exit(1); }
-if (/monday/i.test(html)) { console.error("levels.html still says Monday. Nothing written."); process.exit(1); }
+/* 27 Nov 2026, 10:18, his word: the email box names The Monday Level, ahead of Monday's open; no other Monday. It read: if (/monday/i.test(html)) */
+if (/monday/i.test(html.replace(/Monday's open/g, ""))) { console.error("levels.html still says Monday. Nothing written."); process.exit(1); }
 fs.writeFileSync(path.join(HERE, "levels.html"), html);
 console.log(`levels.html written: ${M.days.length} trading day(s) since ${data.start}, ${M.tally.held} held, ${M.tally.wrong} wrong, ${M.tally.open} open, ${M.tally.none} none named, ${M.tally.gap} not on file.`);
