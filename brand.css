@@ -481,3 +481,8 @@ html .hs-menu{display:none}
   .vx-q{font-size:19px}
   .vx-ba{grid-template-columns:1fr}
 }
+/* 27 Nov 2026: a voice in paragraphs (Justin), and the pointer to a longer note. */
+.vx-p{margin:0 0 14px;font-size:17px;line-height:1.6;color:var(--c-ink)}
+.vx-more{margin:0 0 14px;font-size:14px;color:var(--c-mut)}
+.vx-more a{color:var(--c-sec)}
+@media (max-width:760px){.vx-p{font-size:16px}}
