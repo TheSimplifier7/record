@@ -733,6 +733,14 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
       if (tiers !== 3) probs.push(`index.html: ${tiers} tiers, not three`); }
     if (!/<section[^>]*id="mentorship"[\s\S]*?href="mentorship.html"[\s\S]*?<\/section>/.test(main)) probs.push("index.html: the mentorship section does not reach the application");
     if (/<blockquote[\s\S]*?<\/blockquote>/.test(main) && !/one trader's experience, not a promise of your result/i.test(main)) probs.push("index.html: a testimonial runs without its small print");
+    /* 28 Nov 2026: every quote on a voice card is the client's own words, found whole in the full note; a summary that is
+       not his words is labelled as Bradley's. */
+    for (const v of require("./house_parts.js").VOICES) {
+      if (!v.paras) continue;
+      const full = v.paras.join(" ").replace(/\s+/g, " ");
+      for (const k of ["lead", "also"]) if (v[k] && !full.includes(v[k])) probs.push(`voices: ${v.who}'s ${k} quote is not word for word from the note`);
+      if (v.before && !v.summary) probs.push(`voices: ${v.who}'s Before and Now are not his words and carry no summary label`);
+    }
     /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the desk story's one line
        points to the lab, and the record is above the foot nowhere. It read:
        if ((main.match(/href="record.html"/g) || []).length !== 1 || /href="levels.html"/.test(main)) probs.push("index.html: the record or the levels are above the foot beyond the desk story's one line"); */

@@ -486,3 +486,14 @@ html .hs-menu{display:none}
 .vx-more{margin:0 0 14px;font-size:14px;color:var(--c-mut)}
 .vx-more a{color:var(--c-sec)}
 @media (max-width:760px){.vx-p{font-size:16px}}
+/* 28 Nov 2026: one card shape for every voice. Equal heights in a row; the name sits at the foot; the full note opens in place. */
+.vx-c .vx-q{min-height:0}
+.vx-sum{margin:-8px 0 16px;font-size:12px;line-height:1.4;color:var(--c-mut)}
+.vx-full{margin:0 0 16px}
+.vx-full>summary{list-style:none;cursor:pointer;font-size:14px;color:var(--c-mut)}
+.vx-full>summary::-webkit-details-marker{display:none}
+.vx-full>summary span{color:var(--c-sec);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(243,237,226,.3)}
+.vx-full[open]>summary span{color:var(--c-ink)}
+.vx-full[open]{padding-top:2px}
+.vx-full[open]>summary{margin-bottom:14px}
+.vx-full .vx-p{font-size:15px;line-height:1.6;color:var(--c-sec)}
