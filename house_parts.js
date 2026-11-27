@@ -280,11 +280,11 @@ const VOICES = [
     now: "Still a bit gun-shy, but gaining confidence and comfort.",
     also: "From the first post I saw, it was clear the approach and philosophy are set apart from the herd." },
   /* 27 Nov 2026, 17:27, his word: David's words approved verbatim, slot 2 beside Jim for his years as a portfolio manager at
-     a large multinational bank. Word for word, his own spellings kept. The front page runs his first two paragraphs whole and
+     a large multinational bank. Word for word; at 17:29 his OK came for two fixes: used to find, showed me how to capitalize. The front page runs his first two paragraphs whole and
      points to the full text on mentorship.html, where all three run. */
   { who: "David, Luxembourg", what: "Mentorship client",
     paras: [
-      "I worked as a portfolio manager for a large multinational bank. I only saw the market going up and use to find weird and wonderful ways to convince myself that this was a buying opportunity. From so many years working and seeing the market this way it came as a complete paradigm shift when Bradley showed me capitalize from the market in both directions and there are sharks making money from either side of the trade. It took a while for me to kick these well trodden habits but he helped me open my eyes.",
+      "I worked as a portfolio manager for a large multinational bank. I only saw the market going up and used to find weird and wonderful ways to convince myself that this was a buying opportunity. From so many years working and seeing the market this way it came as a complete paradigm shift when Bradley showed me how to capitalize from the market in both directions and there are sharks making money from either side of the trade. It took a while for me to kick these well trodden habits but he helped me open my eyes.",
       "He showed me to be fluid, to take myself out of the equation and to see how price is interacting with the key levels and mean lines. He showed me to view the market with perspective, where is it coming from and to where it will deliver.",
       "Sign up with him if you want the best mentor and a no nonsense approach. He is worth his weight in gold."
     ],
