@@ -44,7 +44,7 @@
 .hd-band .brand { gap: 12px; font: 700 17px/1 var(--f-cond); letter-spacing: .26em; color: #f3ede2; }
 .hd-band .brand::before { content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #0b1a2e url("avatar_square.jpg") center / cover no-repeat;
   box-shadow: 0 0 0 1.5px #e8b84f, 0 0 0 4px #0b1a2e, 0 0 0 5px #2a4468, 3px 8px 14px rgba(0, 0, 0, .55); }
-.hd-band .topnav a { position: relative; font: 500 15px/1 var(--f-ui); letter-spacing: .01em; color: #a8b3c4; border-bottom: 0; transition: color .2s ease; }
+.hd-band .topnav a { position: relative; font: 500 15px/1 var(--f-ui); letter-spacing: .01em; color: #B8C3D4; border-bottom: 0; transition: color .2s ease; }
 .hd-band .topnav a:hover, .hd-band .topnav a[aria-current="page"] { color: #f3ede2; }
 .hd-band .topnav a[aria-current="page"]::after, .botnav a[aria-current="page"]::before { content: ""; position: absolute; left: 50%; width: 20px; height: 6px; transform: translateX(-50%);
   clip-path: polygon(16% 0, 84% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, #f7d88e, #e8b84f 55%, #b98a2c); }
@@ -62,13 +62,13 @@
 .hd-btn.hd-ghost { color: #f3ede2; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .035)); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 0 0 1px rgba(255, 255, 255, .07), 3px 10px 22px -12px rgba(0, 0, 0, .75); }
 .hd-btn.hd-ghost:hover { color: #fff; background: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05)); }
-.hd-len { border-radius: 999px; background: rgba(255, 255, 255, .07); color: #a8b3c4; }
+.hd-len { border-radius: 999px; background: rgba(255, 255, 255, .07); color: #B8C3D4; }
 
 /* the head: the season reads as an eyebrow, not a box; the two keys are glass */
-.r3-copy .hd-eyebrow { padding: 0; background: none; box-shadow: none; gap: 2px 18px; font: 600 12px/1.4 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: #7d8ca3; }
+.r3-copy .hd-eyebrow { padding: 0; background: none; box-shadow: none; gap: 2px 18px; font: 600 12px/1.4 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: #94A3B8; }
 .r3-copy .hd-eyebrow b { font: 600 12.5px/1.4 var(--f-fig); letter-spacing: .02em; color: #e8b84f; }
 .r3-copy .hd-key { border-radius: 999px; padding: 8px 16px 8px 12px; background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 0 0 1px rgba(255, 255, 255, .06); color: #a8b3c4; }
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 0 0 1px rgba(255, 255, 255, .06); color: #B8C3D4; }
 .r3-copy .hd-key b { color: #f3ede2; }
 
 /* the standing offer under the week: a pane, not a brown box */

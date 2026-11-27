@@ -69,6 +69,11 @@ const F = id => { if (!LAB[id]) throw new Error("lab.json has no card " + id); r
    Their verdicts stay in the hero's counted list; every card's words, figures and charts stay in CARDS below and in
    lab.json, still checked on every build, so a card can come back with one line. Nothing is deleted. */
 const DESKF = JSON.parse(fs.readFileSync(path.join(HERE, "lab_desk.json"), "utf8"));
+/* 27 Nov 2026, 10:18, his word: a shipped tool's TradingView link goes in lab_desk.json ("url"); with it, the tool reads
+   Live on TradingView, linked, everywhere on the page. Without it, it reads as the desk file says. */
+for (const x of DESKF.shipped) if (x.url) x.state = "Live on TradingView";
+const FLOW = DESKF.shipped.find(x => x.name === "The Flow") || {};
+const FLOW_TAG = FLOW.url ? `Free. <a href="${H.aff(FLOW.url)}" ${H.OUT} data-tv="lab-flow-tv">Live on TradingView</a>.` : "Free. " + esc(FLOW.state || "Coming to TradingView") + ".";
 for (const [part, list] of [["bench", DESKF.bench], ["bin", DESKF.bin], ["log", DESKF.log]]) {
   for (const e of list) {
     const words = [e.text, e.what, e.why].filter(Boolean).join(" ");
@@ -87,7 +92,7 @@ const TRACK_ALT = "The six checks as a track. " + DESKF.bench.map(t => t.name + 
 for (const b of DESKF.bench) if (b.passed.length !== DESKF.checks.length) throw new Error("lab_desk.json: " + b.name + " does not mark all six checks");
 
 const TITLE = "The lab · The Simplifier";
-const DESC = "How THE SIMPLIFIER's gold indicators get made: a scout, a build, six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.";
+const DESC = "How THE SIMPLIFIER's gold indicators get made: six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.";
 const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="lab-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
@@ -449,11 +454,11 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 
 <section class="hm-sec gl-stage" id="method" aria-labelledby="method-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>Three seats and one rule: nothing reaches my desk until it has earned it.</p></div>
+    <div class="hm-side"><h2 id="method-h">How a tool gets made</h2><p>One rule: nothing reaches my desk until it has earned it.</p></div>
     <div class="hm-main">
       <ol class="lb-steps">
-        <li><h3>The hunt</h3><p>A scout looks everywhere, every angle, for what traders actually use and argue about. If it has been done well already, I am not making another copy. If it has been done badly, that is the opening.</p></li>
-        <li><h3>The build</h3><p>Before a line of code, the idea gets written up properly, with its sources. No write-up, no code. Then research and development builds it.</p></li>
+        <li><h3>The idea</h3><p>It starts with what traders actually use and argue about. If it has been done well already, I am not making another copy. If it has been done badly, that is the opening.</p></li>
+        <li><h3>The build</h3><p>Before a line of code, the idea gets written up properly, with its sources. No write-up, no code.</p></li>
         <li><h3>The beating</h3><p>Every build runs the six checks below. Fail one and it goes back. No exceptions for ideas I happen to like.</p></li>
         <li><h3>My desk</h3><p>If it survives all that, it goes on my own gold charts and I read the market with it the way I do every day. Plenty die here too.</p></li>
       </ol>
@@ -547,13 +552,15 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="shipped-h">Shipped from the lab</h2><p>What made it through.</p></div>
     <div class="hm-main">
       <div class="lb-tools">
-        <div class="lb-red"><h3>The Flow</h3><p class="lb-tag">Free. Coming to TradingView.</p><p>Which way gold has been running, and how hard, as a river on your chart. It describes; it does not predict.</p></div>
-        <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="method.html#plans">in the set</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on.</p></div>
+        <div class="lb-red"><h3>The Flow</h3><p class="lb-tag">${FLOW_TAG}</p><p>Which way gold has been running, and how hard, as a river on your chart. It describes; it does not predict.</p></div>
+        <div class="lb-ivory"><h3>The Gate</h3><p class="lb-tag">Paid. Live on TradingView, and <a href="method.html#plans">in the Desk Suite</a>.</p><p>Every bigger clock over your chart in one strip, and the line they agree on.</p></div>
       </div>
       <p class="hm-free" style="margin-top:28px">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="${H.LESSONS}" rel="noopener" data-x="lab-free-lessons">lessons on X</a>.</p>
     </div>
   </div></div>
 </section>
+
+${H.signup("lab", { last: false })}
 
 <section class="hm-sec hm-final" id="start" aria-labelledby="final-h">
   <div class="hm-in"><div>
