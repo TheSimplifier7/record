@@ -35,8 +35,8 @@ const M = D.model(DAILY);
 
 const X = D.X;
 const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
-const TITLE = "Gold, silver and platinum tools for TradingView · The Simplifier";
-const DESC = `${["No","One","Two","Three","Four","Five","Six","Seven"][H.SET_TOOLS.length]} tools on your own TradingView chart, from a trader who started on a London bank metals desk in 2003. 7 days free, then €99 a month.`;
+const TITLE = "Your chart, the desk\u2019s read · Gold, silver and platinum · The Simplifier";
+const DESC = `Gold, silver and platinum from a former London metals derivatives desk: free research in the lab, ${["no","one","two","three","four","five","six","seven"][H.SET_TOOLS.length]} structural tools for your TradingView chart, 7 days free then €99 a month, and 1:1 desk mentorship by application.`;
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 /* 15 Nov 2026, HALLMARK, his brief of 15 November (R2 reopened): the gold buttons sell the trial, and Follow on TradingView
    lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the morning levels. The Paid Space line
@@ -215,8 +215,51 @@ html.from-x .hm-fromx{display:flex}
 .hm-card-price.gl{max-width:32rem;padding:32px;border:0;border-radius:16px;background-color:var(--c-glass);background-image:var(--c-glass-sheen)}
 .hm-pane.gl{max-width:36rem;padding:32px}
 .hm-strip{position:relative;z-index:1}
+/* 27 Nov 2026: the three-tier funnel. The headline's second line in the line's gold; the Remora pane; three tiers on glass, the
+   Desk Suite's the one bright button; Jim's words on glass inside the mentorship section. */
+.hm11 .hm-hero h1.hm-h1{max-width:12em}
+.hm-gold{color:var(--c-gold)}
+.hm11 .hm-h1 .hm-gold,.hm-remora .hm-shark .hm-gold{display:block}
+.hm-alt{display:inline-block;margin-left:20px;font-size:16px;color:var(--c-ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(243,237,226,.35)}
+.hm-remora{max-width:40rem}
+.hm-remora p{margin:0 0 14px;font-size:19px;line-height:1.55;color:var(--c-ink)}
+.hm-remora p:last-child{margin-bottom:0}
+.hm-remora .hm-shark{margin:0 0 20px;font:700 clamp(32px,3.4vw,44px)/1.02 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif;letter-spacing:.005em;text-transform:uppercase;color:var(--c-ink)}
+.hm11 .hm-wide .hm-in>div{display:block}
+.hm11 .hm-wide .hm-side{margin-bottom:32px}
+.hm-tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.hm-tier{display:flex;flex-direction:column;padding:30px 28px 26px}
+.hm-tier h3{margin:0;font:500 19px/1.3 var(--c-ui);color:var(--c-ink)}
+.hm-tier .hm-tp{margin:10px 0 14px;font-size:15px;color:var(--c-sec)}
+.hm-tier .hm-tp b{display:block;margin-bottom:4px;font:700 44px/1 "Barlow Condensed","Barlow Condensed Fallback","Arial Narrow",sans-serif;color:var(--c-ink)}
+.hm-tier .hm-tw{margin:0 0 10px;font-size:16px;line-height:1.5;color:var(--c-ink)}
+.hm-tier .hm-tf{margin:0 0 18px;font-size:14px;line-height:1.5;color:var(--c-sec)}
+.hm-tier .hm-tc{margin:auto 0 0}
+.hm-tier .hm-tc .hs-btn{width:100%;justify-content:center}
+.hm-tier .hm-micro{margin-top:10px;font-size:13px;min-height:2.9em}
+.hm-tier-main::after{content:"";position:absolute;left:24px;right:24px;top:0;height:2px;background:var(--c-gold);border-radius:0 0 2px 2px}
+.hm-jim{margin:0;padding:32px 32px 26px;max-width:44rem}
+.hm-jim blockquote{margin:0}
+.hm-jim p{margin:0 0 14px;font-size:17px;line-height:1.6;color:var(--c-ink)}
+.hm-jim .hm-vq{margin:0 0 18px;font:500 24px/1.35 var(--c-ui);color:var(--c-ink)}
+.hm-jim figcaption{margin-top:6px;font-size:15px;color:var(--c-gold)}
+.hm-jim+.hm-fine{max-width:44rem}
+.hm-mentor{margin-top:28px;max-width:40rem}
+.hm-mentor p{margin:0 0 12px;font-size:18px;line-height:1.55;color:var(--c-ink)}
+.hm-mentor .hm-acts{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.hm-or2{font-size:15px;color:var(--c-sec)}
+.hm-final .hm-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 0}
 @media (max-width:900px){
   .hm10 .hm-hero{padding:24px 0 32px}
+  .hm-alt{display:block;margin:14px 0 0;text-align:center}
+  .hm-tiers{grid-template-columns:none;gap:16px}
+  .hm-tier{padding:22px 20px 20px}
+  .hm-remora p{font-size:17px}
+  .hm-jim{padding:24px 20px 20px}
+  .hm-jim .hm-vq{font-size:21px}
+  .hm-jim p{font-size:16px}
+  .hm-mentor p{font-size:17px}
+  .hm-mentor .hm-acts .hs-btn{width:100%;justify-content:center}
   .hm10 .hm-hero h1.hm-h1{font-size:clamp(36px,10.6vw,56px)!important}
   .hm10 .hm-say{margin-top:14px;font-size:17px;line-height:1.5}
   .hm10 .hm-acts .hs-btn{width:100%}
@@ -254,6 +297,24 @@ const JOINING = [
 ];
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="home-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
+/* Jim, a mentorship client, from the US: his answers as Bradley gave them on 27 Nov 2026, edited for length; brand law
+   puts commas where the brief had dashes. The lines that ran on the record page until 18 Nov ("Remoras follow sharks...",
+   "Very inconsistent for lack of trading protocol and discipline", "From the first post I saw...") are the same answers. */
+const JIM = {
+  lead: "It\u2019s about gaining understanding and clarity that go beyond the charts.",
+  body: [
+    "Before working with Bradley, my trading was inconsistent. I lacked a real protocol and discipline. From the first post I saw from The Simplifier on X, it was clear the approach and philosophy were set apart from the herd.",
+    "Learning the Remora philosophy, understanding that remoras follow sharks, knowing what to look for relative to structure and trend, and waiting for the right combination to present itself, made all the difference in the world. The turning point was placing five out of six successful day trades.",
+    "If you\u2019re already losing trades, what else do you have to lose, and where else are you going to find this approach?"
+  ],
+  who: "Jim, from the US",
+  note: "Jim is a mentorship client. His own words, edited for length. One trader's experience, not a promise of your result. Trading involves risk and you can lose money."
+};
+const SUITE = (function () {
+  const n = SET.map(x => x.name);
+  const list = n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
+  return JOINING.length ? list + ", with " + JOINING.map(x => x.name).join(" and ") + " joining the suite" : list;
+})();
 const TESTIMONIALS = [];   /* real ones only, with their permission; the block shows once one is here */
 const FAQ10 = [
   ["Do I need TradingView?", "Yes, your own TradingView account. The tools go on your username within the hour. TradingView's free plan shows two indicators on a chart at a time; its paid plans show more."],
@@ -261,20 +322,28 @@ const FAQ10 = [
   ["How fast do I get access?", "Added within the hour, or by 09:00 Madrid if you join overnight."],
   ["How do I cancel?", `Cancel from the billing link at the foot of every page, or with one message to me on X.`],
   ["Does it make the decisions for me?", "No. Nothing on the chart says buy or sell. You read it, you decide."],
-  ["Which metals?", "Gold, silver and platinum."]
+  ["Which metals?", "Gold, silver and platinum."],
+  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. Its price is given on the call and put in writing before you pay."]
 ];
 /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the line under the desk story points
    to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
-const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
+/* 27 Nov 2026, his brief of 02:17 (Website Overhaul, the 3-Tier Institutional Funnel): the front page matches the X banner,
+   YOUR CHART. THE DESK'S READ., puts the Remora philosophy under the hero, sets out three ways in (the Empirical Lab, free;
+   the Desk Suite, €99 a month; 1:1 Desk Mentorship, by application), and puts Jim's words inside the mentorship section.
+   This reopens the 18 Nov ruling that kept mentorship in the foot. Figures held to his public word: the London desk ran
+   2003 to 2013 (his X bio of 24 Nov) and he has traded for over two decades (mentorship.html), so the brief's "23 years of
+   London metals derivatives plumbing" reads as ten years on the desk and two decades of trading. No em dashes (brand law).
+   The page it replaced opened: Read gold, silver and platinum the way a desk does. */
+const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
 
 <section class="hm-hero gl-stage" aria-labelledby="hm-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="hm-h1">Read gold, silver and platinum the way a desk does.</h1>
+      <h1 class="hm-h1" id="hm-h1">Your chart. <span class="hm-gold">The desk&rsquo;s read.</span></h1>
       <p class="hm-fromx"><img src="avatar_square.jpg" width="28" height="28" alt="" decoding="async">From @TheSimplifier7 on X</p>
-      <p class="hm-say">${SETW} tools on your own TradingView chart, from a trader who started on a London bank metals desk in 2003. 7 days free, then €99 a month.</p>
-      <p class="hm-acts">${BTN("hero")}</p>
-      <p class="hm-micro">${MICRO}</p>
+      <p class="hm-say">Ten years on a London metals derivatives desk and two decades of trading, distilled into empirical research, structural TradingView tools and 1:1 desk mentorship. No buy or sell arrows. No macro fairy tales.</p>
+      <p class="hm-acts">${BTN("hero")}<a class="hm-alt" href="#mentorship" data-x="home-hero-mentorship">Apply for 1:1 mentorship</a></p>
+      <p class="hm-micro">The Desk Suite: 7 days free, then €99 a month. ${MICRO.replace("Nothing charged for 7 days. ", "")}</p>
     </div>
     <figure class="hm-shot gl" data-plate data-seal="${SEAL}">
       <img src="${HERO.img}-1200.webp" srcset="${HERO.img}-640.webp 640w, ${HERO.img}-1200.webp 1200w" sizes="(min-width: 900px) 520px, 100vw" width="1200" height="${HERO.h}" alt="Bradley's gold chart on TradingView, ${esc(HERO.cap.replace(/^Gold, /, ""))}" decoding="async" fetchpriority="high">
@@ -285,13 +354,59 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
 
 <section class="hm-strip" aria-label="Who and how">
   <div class="hm-in"><ul>
-    <li>Since 2003</li><li>London bank metals desk</li><li>On your chart within the hour</li><li>Cancel before day 8</li>
+    <li>Since 2003</li><li>London metals derivatives desk</li><li>On your chart within the hour</li><li>Cancel before day 8</li>
   </ul></div>
+</section>
+
+<section class="hm-sec gl-stage" id="remora" aria-labelledby="remora-h">
+  <div class="hm-in"><div>
+    <div class="hm-side" data-plate-copy><h2 id="remora-h">The Remora philosophy</h2></div>
+    <div class="hm-main"><div class="hm-pane hm-remora gl" data-plate data-seal="${SEAL}">
+      <p class="hm-shark">Sharks move the market. <span class="hm-gold">Remoras get paid.</span></p>
+      <p>Most traders lose trying to call the top, the bottom and the next macro story.</p>
+      <p>Desks don&rsquo;t trade stories. They move size on collateral, margin and liquidity, and that size leaves its mark in structure and trend.</p>
+      <p>You don&rsquo;t need to be the shark. Read the structure and the trend, wait for the sharks to show their hand, and swim alongside them.</p>
+    </div></div>
+  </div></div>
+</section>
+
+<section class="hm-sec hm-wide gl-stage" id="pricing" aria-labelledby="pricing-h">
+  <div class="hm-in"><div>
+    <div class="hm-side" data-plate-copy><h2 id="pricing-h">Three ways in</h2></div>
+    <div class="hm-main">
+      <div class="hm-tiers" data-plate data-seal="${SEAL}">
+        <article class="hm-tier gl">
+          <h3>The Empirical Lab</h3>
+          <p class="hm-tp"><b>Free</b></p>
+          <p class="hm-tw">Research and TradingView scripts that put what the crowd believes about gold to the test, counted on gold back to 2013.</p>
+          <p class="hm-tf">For traders who want proof before they spend a euro.</p>
+          <p class="hm-tc"><a class="hs-btn hs-ghost" href="lab.html" data-tv="home-tier-lab">Explore the lab</a></p>
+          <p class="hm-micro">No card, no sign-up.</p>
+        </article>
+        <article class="hm-tier hm-tier-main gl">
+          <h3>The Desk Suite</h3>
+          <p class="hm-tp"><b>€99</b> a month, VAT included</p>
+          <p class="hm-tw">All ${SETL} structural tools on your own TradingView chart: ${SUITE}.</p>
+          <p class="hm-tf">For active traders who want institutional structure on their charts.</p>
+          <p class="hm-tc">${BTN("tier")}</p>
+          <p class="hm-micro">7 days free. Cancel before day 8 and pay nothing. 14-day withdrawal right.</p>
+        </article>
+        <article class="hm-tier gl">
+          <h3>1:1 Desk Mentorship</h3>
+          <p class="hm-tp"><b>By application</b></p>
+          <p class="hm-tw">Private, one to one, with me: protocol, discipline, structure and the Remora framework. Seats are capped.</p>
+          <p class="hm-tf">For serious traders tired of inconsistency who want a real desk protocol.</p>
+          <p class="hm-tc"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-tier-mentorship">Apply</a></p>
+          <p class="hm-micro">Or send DESK to me <a href="${H.LESSONS}" rel="noopener" data-x="home-tier-dm">on X</a>.</p>
+        </article>
+      </div>
+    </div>
+  </div></div>
 </section>
 
 <section class="hm-sec gl-stage" id="set" aria-labelledby="set-h">
   <div class="hm-in"><div>
-    <div class="hm-side" data-plate-copy><h2 id="set-h">The set</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="set-h">The Desk Suite</h2></div>
     <div class="hm-main">
       <div class="hm-row" data-plate data-seal="${SEAL}">
         ${SET.map(x => `<article class="hm-card gl">
@@ -301,7 +416,7 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
         </article>`).join("\n        ")}
         ${JOINING.map(x => `<article class="hm-card gl hm-joining" id="${x.id}">
           <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.alt)}" loading="lazy" decoding="async"></figure>
-          <p class="hm-join">Joining the set</p>
+          <p class="hm-join">Joining the suite</p>
           <h3>${esc(x.name)}</h3>
           <p>${esc(x.q)}</p>
         </article>`).join("\n        ")}
@@ -314,7 +429,7 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
 
 <section class="hm-sec" id="how" aria-labelledby="how-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="how-h">How it works</h2></div>
+    <div class="hm-side"><h2 id="how-h">How the trial works</h2></div>
     <div class="hm-main">
       <ol class="hm-steps">
         <li>Start the trial with your TradingView username.</li>
@@ -341,24 +456,23 @@ const MAIN = `<main id="main" class="hm hm10" tabindex="-1">
   </div></div>
 </section>
 
-<section class="hm-sec gl-stage" id="pricing" aria-labelledby="pricing-h">
+<section class="hm-sec gl-stage" id="mentorship" aria-labelledby="mentorship-h">
   <div class="hm-in"><div>
-    <div class="hm-side" data-plate-copy><h2 id="pricing-h">Pricing</h2></div>
+    <div class="hm-side" data-plate-copy><h2 id="mentorship-h">1:1 Desk Mentorship</h2></div>
     <div class="hm-main">
-      <div class="hm-card-price gl" data-plate data-seal="${SEAL}">
-        <h3>The set</h3>
-        <p class="hm-p"><b>€99</b> a month, VAT included. 7 days free.</p>
-        <ul>
-          <li>All ${SETL} tools on your own TradingView chart</li>
-          <li>Added within the hour, or by 09:00 Madrid if you join overnight</li>
-          <li>Your username, never your password</li>
-          <li>Cancel before day 8 and pay nothing</li>
-          <li>14-day withdrawal right</li>
-        </ul>
-        <p class="hm-acts">${BTN("pricing")}</p>
-        <p class="hm-fine">Education and charting tools only. Not investment advice.</p>
+      <figure class="hm-jim gl" data-plate data-seal="${SEAL}">
+        <blockquote>
+          <p class="hm-vq">&ldquo;${esc(JIM.lead)}&rdquo;</p>
+          ${JIM.body.map(p => `<p>${esc(p)}</p>`).join("\n          ")}
+        </blockquote>
+        <figcaption><span class="hm-who">${esc(JIM.who)}</span></figcaption>
+      </figure>
+      <p class="hm-fine">${esc(JIM.note)}</p>
+      <div class="hm-mentor">
+        <p>Twelve weeks, two sessions a week, on your own TradingView chart. I take you back through past scenarios until you can spot them yourself. I don&rsquo;t tell you when to trade, and no one handles your money.</p>
+        <p>The price is given on the call and put in writing before you pay.</p>
+        <p class="hm-acts"><a class="hs-btn hs-ghost" href="mentorship.html" data-tv="home-mentorship-apply">Apply for 1:1 mentorship</a><span class="hm-or2">or send DESK to me <a href="${H.LESSONS}" rel="noopener" data-x="home-mentorship-dm">on X</a></span></p>
       </div>
-      <p class="hm-free">Not ready? Take the <a href="tools.html">free tools</a> and keep reading the <a href="${H.LESSONS}" rel="noopener" data-x="home-free-lessons">lessons on X</a>.</p>
     </div>
   </div></div>
 </section>
@@ -386,8 +500,8 @@ ${TESTIMONIALS.length ? `
   <div class="hm-in"><div>
     <div class="hm-side" data-plate-copy><h2 id="final-h">Your chart, the desk's read.</h2></div>
     <div class="hm-main"><div class="hm-pane gl" data-plate data-seal="${SEAL}">
-      <p class="hm-big">Gold, silver and platinum only. 7 days free, then €99 a month.</p>
-      <p class="hm-acts">${BTN("final")}</p>
+      <p class="hm-big">Gold, silver and platinum only. The Desk Suite, 7 days free, then €99 a month.</p>
+      <p class="hm-acts">${BTN("final")}<a class="hm-alt" href="#mentorship" data-x="home-final-mentorship">Or apply for 1:1 mentorship</a></p>
       <p class="hm-micro">${MICRO}</p>
     </div></div>
   </div></div>
