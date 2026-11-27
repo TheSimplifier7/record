@@ -777,8 +777,9 @@ check(!mOn && !mOld, "the sales page does not mount the inner workings or descen
   }
   for (const f of ["check-email.html", "confirmed.html", "unsubscribed.html", "privacy.html"]) {
     const t = fs.readFileSync(path.join(__dirname, f), "utf8").replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>|<[^>]+>/g, " ");
-    /* 27 Nov 2026, 10:18, his word: the email keeps its name, The Monday Level. It read: ...|closing email|Monday Level|Monday evening/ */
-    if (/closed to new|list is then deleted|closing email|Monday evening/i.test(t)) probs.push(f + ": still says the list is closed, or the old evening send");
+    /* 27 Nov 2026, 10:31, his word: the email is The Sunday Desk Note, on Sunday evening; the old name and the Saturday send
+       are gone from the list's pages. (10:18 had briefly allowed The Monday Level.) */
+    if (/closed to new|list is then deleted|closing email|Monday Level|Monday evening|Saturday morning/i.test(t)) probs.push(f + ": still says the list is closed, the old name or the old day");
   }
   const pv = fs.readFileSync(path.join(__dirname, "privacy.html"), "utf8");
   if (!/Google Sheets and Apps Script/.test(pv) || !/<b>Resend<\/b>/.test(pv) || /\bKit\b|kit\.com/.test(pv)) probs.push("privacy.html: does not name Google Sheets, Apps Script and Resend, or still names Kit");

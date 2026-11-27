@@ -243,6 +243,8 @@ const SET_TOOLS = [
     q: "Which side of its trail is price on, and how much of the structure has turned?", not: "It is a trail that shows the structure, not an edge." }
 ];
 const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSsNWj75AaSExhEO9JtZkk9KUBLyu_cusOmqfNThSORKoNNYjduOr/exec";
+/* 27 Nov 2026, 10:31, his word: the email is The Sunday Desk Note, sent Sunday evening (his script moves from Saturday).
+   10:18 it read The Monday Level, on Saturday. */
 /* 27 Nov 2026, 10:18, his word: the box is for the email he sends on Saturdays, The Monday Level, framed as open-source
    scripts, lab receipts and desk notes ahead of Monday's open, with no promise of a script every week. It sits on the
    front page mid-page, on the lab above the last call, and on levels.html. It read: The week graded, by email. One
@@ -250,9 +252,9 @@ const MAIL_ENDPOINT = "https://script.google.com/macros/s/AKfycbzBzhbQC6s4R06NSs
 function signup(where, { last = true } = {}) {
   return `<section class="hm-sec${last ? " hm-last" : ""} hm-mail" id="email" aria-labelledby="mail-h">
   <div class="hm-in"><div>
-    <div class="hm-side"><h2 id="mail-h">The Monday Level</h2></div>
+    <div class="hm-side"><h2 id="mail-h">The Sunday Desk Note</h2></div>
     <div class="hm-main">
-      <p>One email on Saturday, ahead of Monday's open: open-source TradingView scripts, receipts from the Empirical Lab and a note from the desk. No macro fairy tales. No spam. Free.</p>
+      <p>One email on Sunday evening, ahead of Monday's open: open-source TradingView scripts, receipts from the Empirical Lab and a note from the desk. No macro fairy tales. No spam. Free.</p>
       <form class="as-mail" method="POST" action="${MAIL_ENDPOINT}" accept-charset="UTF-8">
         <input type="hidden" name="action" value="signup">
         <input type="hidden" name="source_ref" value="${where}" data-ref-base="${where}">
@@ -260,7 +262,7 @@ function signup(where, { last = true } = {}) {
         <input id="mail-email" name="email" type="email" autocomplete="email" maxlength="254" required>
         <div class="as-mail-trap" aria-hidden="true"><label for="mail-co">Leave this empty</label><input id="mail-co" name="company" type="text" tabindex="-1" autocomplete="off"></div>
         <label class="as-mail-ok"><input type="checkbox" name="consent" value="yes" required><span>I agree to receive one email a week from The Simplifier and have read the <a href="privacy.html">Privacy policy</a>. I can unsubscribe from any email.</span></label>
-        <button class="hs-btn hs-ghost" type="submit">Send me The Monday Level</button>
+        <button class="hs-btn hs-ghost" type="submit">Send me the Sunday Desk Note</button>
         <p class="as-mail-fine">A confirmation email comes first, and nothing else is sent until you confirm.</p>
       </form>
     </div>

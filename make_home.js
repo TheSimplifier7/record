@@ -375,7 +375,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
         <article class="hm-tier gl">
           <h3>The Empirical Lab</h3>
           <p class="hm-tp"><b>Free</b></p>
-          <p class="hm-tw">${NUMW[FREE.length] ? NUMW[FREE.length].replace(/^./, c => c.toUpperCase()) : FREE.length} open-source TradingView scripts${FREE_LATEST ? `, ${esc(FREE_LATEST)} the latest` : ""}, the lab&rsquo;s counts of what the crowd believes about gold, and The Monday Level by email.</p>
+          <p class="hm-tw">${NUMW[FREE.length] ? NUMW[FREE.length].replace(/^./, c => c.toUpperCase()) : FREE.length} open-source TradingView scripts${FREE_LATEST ? `, ${esc(FREE_LATEST)} the latest` : ""}, the lab&rsquo;s counts of what the crowd believes about gold, and the Sunday Desk Note by email.</p>
           <p class="hm-tf">For traders who want to check the read on their own 30-minute gold chart before they spend a euro.</p>
           <p class="hm-tc"><a class="hs-btn hs-ghost" href="lab.html" data-tv="home-tier-lab">Explore the lab</a></p>
           <p class="hm-micro">No card, no sign-up. <a href="tools.html" data-x="home-tier-tools">The free tools</a></p>
@@ -523,6 +523,7 @@ if (/—|<!--|!\s|–/.test(html.replace(/<!DOCTYPE html>/, ""))) { console.erro
 /* 27 Nov 2026, 10:18, his word: the email he sends on Saturdays keeps its name, The Monday Level, and goes out ahead of
    Monday's open; no other Monday on the front page (the old Monday lines graded on Friday stay retired). It read:
    if (/monday/i.test(html)) ... the front page still says Monday */
-if (/monday/i.test(html.replace(/The Monday Level|Monday's open/g, ""))) { console.error("the front page still says Monday"); process.exit(1); }
+/* 10:31: the email is now The Sunday Desk Note; only Monday's open remains. */
+if (/monday/i.test(html.replace(/Monday's open/g, ""))) { console.error("the front page still says Monday"); process.exit(1); }
 fs.writeFileSync(path.join(HERE, "index.html"), html);
 console.log("index.html written: the daily series since " + DAILY.start + ", " + M.days.length + " trading day(s) on file; the weekly series " + t.held + " held, " + t.wrong + " wrong.");
