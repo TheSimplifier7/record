@@ -155,7 +155,7 @@ const keyLine = () => `<p class="key"><span><b>Floor:</b> the week must close ab
 function doors(where, { tools = true, sell = false } = {}) {
   /* 18 Nov 2026, his word: the pages that sell lead to the set and the mentorship, never to the levels. */
   if (sell) return `<div class="doors">
-  <div class="door"><p class="t">The set of five</p><p><a class="btn quiet" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="${esc(where)}-set">Start 7-day free trial</a></p><p class="fine">7 days free, then €99 a month, VAT included.</p></div>
+  <div class="door"><p class="t">The Desk Suite (six tools)</p><p><a class="btn quiet" href="https://buy.stripe.com/fZufZjcfT155bO7gZ85kk04" data-tv="${esc(where)}-set">Start 7-day free trial</a></p><p class="fine">7 days free, then €99 a month, VAT included.</p></div>
   <div class="door"><p class="t">The lessons</p><p><a class="btn quiet" href="https://x.com/TheSimplifier7" rel="noopener" data-x="${esc(where)}-lessons">Read them on X</a></p><p class="fine">Free, on X.</p></div>
 </div>`;
   return `<div class="doors">

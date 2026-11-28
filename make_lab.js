@@ -433,8 +433,8 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
 <section class="hm-hero gl-stage" aria-labelledby="lb-h1">
   <div class="hm-in">
     <div class="hm-copy">
-      <h1 class="hm-h1" id="lb-h1">The method to the madness.</h1>
-      <p class="hm-say">Plenty of indicators get built in an afternoon and sold by evening. Mine go through a loop built to kill them. What survives goes on your chart. What dies stays on this page, with the reason it died.</p>
+      <h1 class="hm-h1" id="lb-h1">Tested on gold. Anything that fails goes in the bin.</h1>
+      <p class="hm-say">Most indicators are built in an afternoon and sold by evening. Ours go through a pre-registered empirical loop built to kill weak ideas on 30-minute and higher gold. What survives earns a place on your chart. What dies stays on this page in plain view.</p>
       <p class="hm-micro">From a trader who started on a London bank metals desk in 2003.</p>
     </div>
   </div>
@@ -539,7 +539,7 @@ const MAIN = `<main id="main" class="hm lb" tabindex="-1">
     <div class="hm-side"><h2 id="bench-h">Counting next</h2><p>The next concepts going on trial.</p></div>
     <div class="hm-main">
       <div class="lb-bench">
-        <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 level against the same grids moved to prices nobody draws. One author has published a number for it, so the lab reproduces his first. My own tools take profit at $50 levels, so this one matters twice.</p></div>
+        <div><h3>Does gold turn at round numbers?</h3><p>Every touch of a $20, $50 and $100 gold handle tested against matched placebo prices nobody draws, to see whether round-number stop clustering is real edge or retail folklore. One author has published a number for it, so the lab reproduces his first.</p></div>
         <div><h3>The squeeze most traders run</h3><p>My squeeze did not hold. John Carter's, Bollinger Bands inside Keltner Channels, gets its own count, direction and all.</p></div>
         <div><h3>Swear by a concept?</h3><p>Send it to the lab on <a href="${H.LESSONS}" rel="noopener" data-x="lab-bench">X</a>. If enough of you swear by it, it gets counted, and you see the verdict either way.</p></div>
       </div>

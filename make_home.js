@@ -36,7 +36,8 @@ const M = D.model(DAILY);
 const X = D.X;
 const CARD = H.OG_DESK();   /* 28 Nov 2026: the site's card (make_og_cards.js); it read card_daily.jpg, the levels card */
 const TITLE = "Your chart, the desk\u2019s read · Gold, silver and platinum · The Simplifier";
-const DESC = `Gold, silver and platinum from a former London metals derivatives desk: free research in the lab, ${["no","one","two","three","four","five","six","seven"][H.SET_TOOLS.length]} structural tools for your TradingView chart, 7 days free then €99 a month, and 1:1 desk mentorship by application.`;
+/* 28 Nov 2026, his copy polish of 11:18: six structural TradingView tools, the five core tools plus The Gate, as on og-desk-v2.png. */
+const DESC = `Gold, silver and platinum from a former London metals derivatives desk: free research in the lab, ${["no","one","two","three","four","five","six","seven"][H.SET_TOOLS.length + 1]} structural TradingView tools, 7 days free then €99 a month, and 1:1 desk mentorship by application.`;
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
 /* 15 Nov 2026, HALLMARK, his brief of 15 November (R2 reopened): the gold buttons sell the trial, and Follow on TradingView
    lives in the foot. It read: Follow on TradingView, and before that, Follow on X for the morning levels. The Paid Space line
@@ -246,6 +247,7 @@ html.from-x .hm-fromx{display:flex}
 .hm-jim+.hm-fine{max-width:44rem}
 .hm-mentor{margin-top:28px;max-width:40rem}
 .hm-mentor-solo{margin-top:0}
+.hm-intro{margin:0 0 24px;font-size:18px;line-height:1.55;color:var(--c-ink)}
 .hm-annual{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--c-sec)}
 .hm-annual b{color:var(--c-ink)}
 #pricing .vx{margin-top:24px}
@@ -320,7 +322,7 @@ const FAQ10 = [
   ["How do I cancel?", `Cancel from the billing link at the foot of every page, or with one message to me on X.`],
   ["Does it make the decisions for me?", "No. Nothing on the chart says buy or sell. You read it, you decide."],
   ["Which metals?", "Gold, silver and platinum."],
-  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: twelve weeks, two sessions a week, by application. It is €6,000 (plus VAT where applicable) for 24 private sessions, strictly by application."]
+  ["What is the difference between the Desk Suite and mentorship?", "The Desk Suite puts the tools on your own chart for €99 a month. Mentorship is me teaching you to read the market one to one: 24 private sessions over twelve weeks, €6,000 (plus VAT where applicable), strictly by application."]
 ];
 /* 21 Nov 2026, his word of 19:57 ("i don't use the record anymore") and 20:18 (showcase the lab): the line under the desk story points
    to the lab. It read: Every level I name is graded in public on the close: <a href="record.html">the record</a>. */
@@ -338,7 +340,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Your chart. <span class="hm-gold">The desk&rsquo;s read.</span></h1>
       <p class="hm-fromx"><img src="avatar_square.jpg" width="28" height="28" alt="" decoding="async">From @TheSimplifier7 on X</p>
-      <p class="hm-say">Ten years on a London metals derivatives desk and two decades of trading, distilled into empirical research, structural TradingView tools and 1:1 desk mentorship. No buy or sell arrows. No macro fairy tales.</p>
+      <p class="hm-say">Ten years on a London metals derivatives desk and over two decades in metals, distilled into empirical 30-minute gold research, institutional TradingView tools and 1:1 desk mentorship. No buy arrows. No macro fairy tales.</p>
       <p class="hm-acts">${BTN("hero")}<a class="hm-alt" href="#mentorship" data-x="home-hero-mentorship">Apply for 1:1 mentorship</a></p>
       <p class="hm-micro">The Desk Suite: 7 days free, then €99 a month. ${MICRO.replace("Nothing charged for 7 days. ", "")}</p>
     </div>
@@ -351,7 +353,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
 
 <section class="hm-strip" aria-label="Who and how">
   <div class="hm-in"><ul>
-    <li>Since 2003</li><li>London metals derivatives desk</li><li>On your chart within the hour</li><li>Cancel before day 8</li>
+    <li>Since 2003</li><li>London metals derivatives desk</li><li>On your TradingView chart within the hour</li><li>7 days free, cancel before day 8</li>
   </ul></div>
 </section>
 
@@ -407,6 +409,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
   <div class="hm-in"><div>
     <div class="hm-side" data-plate-copy><h2 id="set-h">The Desk Suite</h2></div>
     <div class="hm-main">
+      <p class="hm-intro">Six invite-only TradingView tools built to read cleanly together on gold, silver and platinum. Each tool answers one structural question, and together they show where a thesis is wrong before you commit risk. Zero clutter. Confirmed on bar close. Zero buy arrows.</p>
       <div class="hm-row" data-plate data-seal="${SEAL}">
         ${SET.map(x => `<article class="hm-card gl">
           <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.name)} on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
@@ -445,9 +448,9 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
     <div class="hm-side"><h2 id="desk-h">From the desk</h2></div>
     <div class="hm-main">
       <div class="hm-story">
-        <p>May 2011, silver. We sat through five CME margin hikes in eight trading days, and the room sounded like a slaughterhouse with the doors welded shut.</p>
-        <p>The ones who lasted were not the ones with the best story. They knew the exit before they were in, and took it without praying.</p>
-        <p>That is the habit these tools put on your chart.</p>
+        <p>May 2011, silver. Five CME margin hikes hit in eight trading days. Nothing changed about the macro story that week, only the cost of holding leverage. The room sounded like a slaughterhouse with the doors welded shut.</p>
+        <p>The traders who survived were not the ones with the loudest thesis. They knew their invalidation before they entered, sized for expanded volatility, and took the exit without praying.</p>
+        <p>Today I trade my own book from Andalusia with that exact discipline. The Desk Suite puts those same habits directly onto your chart.</p>
       </div>
       <p class="hm-links"><a href="${H.LESSONS}" rel="noopener" data-x="home-desk-lesson">Today's lesson is on X</a></p>
       <p class="hm-fine">Every concept the crowd swears by, counted on gold since 2013: <a href="lab.html">the lab</a>.</p>
@@ -510,7 +513,7 @@ const IDS = Array.from(new Set(["main"].concat((MAIN.match(/\sid="([^"]+)"/g) ||
 const KEEP = "{" + IDS.map(id => JSON.stringify("#" + id) + ":1").join(",") + "}";
 
 const html = H.leanHead({ title: TITLE, description: DESC, canonical: "https://thesimplifier7.com/", image: CARD,
-  alt: "The Simplifier. Five TradingView tools for gold, silver and platinum.", css: CSS + CSS10,
+  alt: "The Simplifier: Your chart. The desk\u2019s read. Six structural TradingView tools for gold, silver and platinum, the lab and 1:1 desk mentorship.", css: CSS + CSS10,
   pre: '<script>(function(){var h=location.hash;var keep=' + KEEP + ';if(h&&!keep[h])location.replace("record.html"+location.search+h);})();</script>' }) + `
 ${H.band(null, "home")}
 ${MAIN}

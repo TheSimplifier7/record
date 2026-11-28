@@ -46,14 +46,17 @@ const CSS = `
 @media (max-width:640px){.tool{grid-template-columns:1fr}.tool .go{grid-column:1;grid-row:auto;justify-self:start}}
 `;
 
+/* 28 Nov 2026, his copy polish of 11:18: one line each, sharper. */
 const BLURB = {
-  week: "Last week's high, low and closing price on your chart.",
-  clockface: "A view of whether the day's high or low may already have formed.",
-  atlas: "A view of which daily levels price may still reach before the close.",
-  ama: "A summary of direction and where price stands.",
-  sessions: "Compare gold's market sessions with their usual range.",
-  stopodds: "Explore how often prices moved a chosen distance in the tool's sample.",
-  tether: "A reference line for checking the current move."
+  week: "Maps last week's high, low and close with multi-year base rates on how often weekly edges break.",
+  clockface: "Measures by the clock whether the session's high or low is statistically likely to be in.",
+  atlas: "Shows historical touch probabilities for key daily levels before the session close.",
+  ama: "A single clean readout of adaptive trend direction and structural position.",
+  sessions: "Measures Asia, London and New York ranges against their historical norms so you spot stretched sessions early.",
+  stopodds: "Shows how often a chosen stop distance actually got tagged at that hour on historical gold.",
+  tether: "Marks the exact structural invalidation line where the current move is proven wrong.",
+  assay: "Tests its own marks automatically on your chart, separating real structural holds from noise.",
+  flow: "Reads whether 30-minute gold is pushing cleanly or pulling back, summarized in one calm word at the chart edge."
 };
 const names = live.map(t => t.name);
 const list = names.length === 1 ? names[0] : names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
@@ -70,15 +73,16 @@ const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
 /* 15 Nov 2026, HALLMARK, his brief of 15 November: a route from the free tools to the paid set, and the partner block under the intro. */
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("tools-page", "tools")}
-${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: "These are separate free tools I published on TradingView. Each adds one view of price. They do not place trades or make decisions for you. Choose a tool below to read its full description on TradingView.", under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
+${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: `${["No","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve"][live.length]} free, open-source TradingView scripts built from our Empirical Lab. Put them on your own 30-minute gold chart, verify the math yourself, and decide. Confirmed on bar close. Zero buy arrows.`, under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
-  <p class="tools-set">These are free. The paid set of five goes further, on the same chart. <a href="method.html#plans" data-tv="tools-set">See the set</a></p>
+  <p class="tools-set">These are free. The Desk Suite (six tools) goes further, on the same chart. <a href="method.html#plans" data-tv="tools-set">See the Desk Suite</a></p>
   ${require("./house_parts.js").partner("tools", "h2")}
   <section class="tools" aria-label="The tools">
   ${cards}
   </section>
   ${P.doors("tools-foot", { sell: true })}
 </div></main>
+${require("./house_parts.js").signup("tools", { last: true })}
 ${P.foot({ counsel: false, current: "tools" })}`;
 
 fs.writeFileSync(path.join(HERE, "tools.html"), html);
