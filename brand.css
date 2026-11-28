@@ -497,3 +497,11 @@ html .hs-menu{display:none}
 .vx-full[open]{padding-top:2px}
 .vx-full[open]>summary{margin-bottom:14px}
 .vx-full .vx-p{font-size:15px;line-height:1.6;color:var(--c-sec)}
+/* 28 Nov 2026, 01:15, his word: the eye goes to Now. Before steps back in the muted grey; Now carries the gold label, a gold
+   rule at its left and the ivory text. */
+.vx-ba>div:first-child dt{color:var(--c-mut)}
+.vx-ba>div:first-child dd{color:var(--c-mut)}
+.vx-ba>div:last-child{padding-left:14px;border-left:2px solid var(--c-gold)}
+.vx-ba>div:last-child dt{color:var(--c-gold)}
+.vx-ba>div:last-child dd{color:var(--c-ink);font-weight:500}
+@media (max-width:760px){.vx-ba>div:last-child{padding-left:12px}}
