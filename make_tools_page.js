@@ -73,7 +73,7 @@ const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
 /* 15 Nov 2026, HALLMARK, his brief of 15 November: a route from the free tools to the paid set, and the partner block under the intro. */
 const html = P.head({ title, description, canonical: SITE + "tools.html", image: img.url, imageW: img.w, imageH: img.h, extraCss: CSS }) + `
 ${P.band("tools-page", "tools")}
-${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: `${["No","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve"][live.length]} free, open-source TradingView scripts built from our Empirical Lab. Inspect every line of code, verify the math on your own 30-minute gold chart, and decide for yourself. Zero repainting. Zero buy arrows.`, under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
+${P.hero({ eyebrow: "<span>Free and open source</span>", title: "Free tools for your TradingView chart", lede: `${["No","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve"][live.length]} free, open-source TradingView scripts built from our Empirical Lab. Put them on your own 30-minute gold chart, verify the math yourself, and decide. Confirmed on bar close. Zero buy arrows.`, under: `<a class="hs-btn hs-ghost" href="${TV}" data-tv="tools-page">Join me on TradingView</a><span>Free. Not investment advice.</span>` })}
 <main><div class="wrap">
   <p class="tools-set">These are free. The Desk Suite (six tools) goes further, on the same chart. <a href="method.html#plans" data-tv="tools-set">See the Desk Suite</a></p>
   ${require("./house_parts.js").partner("tools", "h2")}

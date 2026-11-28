@@ -409,7 +409,7 @@ const MAIN = `<main id="main" class="hm hm10 hm11" tabindex="-1">
   <div class="hm-in"><div>
     <div class="hm-side" data-plate-copy><h2 id="set-h">The Desk Suite</h2></div>
     <div class="hm-main">
-      <p class="hm-intro">Six invite-only TradingView tools built to read cleanly together on gold, silver and platinum. Each tool answers one structural question, and together they show where a thesis is wrong before you commit risk. Zero clutter. Zero repainting. Zero buy arrows.</p>
+      <p class="hm-intro">Six invite-only TradingView tools built to read cleanly together on gold, silver and platinum. Each tool answers one structural question, and together they show where a thesis is wrong before you commit risk. Zero clutter. Confirmed on bar close. Zero buy arrows.</p>
       <div class="hm-row" data-plate data-seal="${SEAL}">
         ${SET.map(x => `<article class="hm-card gl">
           <figure><img src="${x.img}-640.webp" srcset="${x.img}-640.webp 640w, ${x.img}-1200.webp 1200w" sizes="(min-width: 900px) 220px, 78vw" width="1200" height="${x.h}" alt="${esc(x.name)} on Bradley's gold chart on TradingView" loading="lazy" decoding="async"></figure>
