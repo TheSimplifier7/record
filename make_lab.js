@@ -93,7 +93,7 @@ for (const b of DESKF.bench) if (b.passed.length !== DESKF.checks.length) throw 
 
 const TITLE = "The lab · The Simplifier";
 const DESC = "How THE SIMPLIFIER's gold indicators get made: six checks and a desk that throws most of it out. What survives goes on your chart. What dies stays on the page.";
-const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
+const CARD = H.OG_LAB();   /* 28 Nov 2026: the lab's own card (make_og_cards.js); it read card_daily.jpg, the levels card */
 const BTN = where => `<a class="hs-btn hs-gold" href="${H.SET_CHECKOUT}" data-tv="lab-${where}">${H.BUY}</a>`;
 const MICRO = "Nothing charged for 7 days. Cancel before day 8 and pay nothing.";
 

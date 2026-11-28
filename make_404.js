@@ -28,9 +28,9 @@ html body .nf h1{margin:0;font:700 clamp(44px,6vw,72px)/.95 "Barlow Condensed","
 
 const head = H.leanHead({
   title: "Not here · The Simplifier",
-  description: "This address does not exist. The daily levels, the record and the set are one tap away.",
+  description: "This address does not exist. The lab, the Desk Suite and mentorship are one tap away.",
   canonical: "https://thesimplifier7.com/404.html",
-  image: "https://thesimplifier7.com/tally_card_landscape_dark.png",
+  image: H.OG_DESK(),   /* 28 Nov 2026: the site's card; it read the record's tally card */
   alt: "The Simplifier. Gold, silver and platinum levels, graded on the close.",
   css: CSS
 }).replace("<head>\n", '<head>\n<base href="/">\n<meta name="robots" content="noindex">\n');

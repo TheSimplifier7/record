@@ -47,7 +47,7 @@ const html = H.leanHead({
   title: "Aviso legal · The Simplifier",
   description: "Who runs thesimplifier7.com, as Spanish law asks.",
   canonical: "https://thesimplifier7.com/aviso-legal.html",
-  image: "https://thesimplifier7.com/tally_card_landscape_dark.png",
+  image: H.OG_DESK(),   /* 28 Nov 2026: the site's card; it read the record's tally card */
   alt: "The Simplifier. Gold, silver and platinum levels, graded on the close.",
   css: CSS,
   noindex: true

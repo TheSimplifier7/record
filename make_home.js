@@ -34,7 +34,7 @@ if (dprobs.length) { console.error("daily.json cannot be drawn:\n  " + dprobs.jo
 const M = D.model(DAILY);
 
 const X = D.X;
-const CARD = "https://thesimplifier7.com/card_daily.jpg?v=" + H.vOf("card_daily.jpg");
+const CARD = H.OG_DESK();   /* 28 Nov 2026: the site's card (make_og_cards.js); it read card_daily.jpg, the levels card */
 const TITLE = "Your chart, the desk\u2019s read · Gold, silver and platinum · The Simplifier";
 const DESC = `Gold, silver and platinum from a former London metals derivatives desk: free research in the lab, ${["no","one","two","three","four","five","six","seven"][H.SET_TOOLS.length]} structural tools for your TradingView chart, 7 days free then €99 a month, and 1:1 desk mentorship by application.`;
 const CW = "Why a card? So the licence carries on after day 7 without you coming back. Nothing is charged for 7 days. Cancel before day 8 from your billing page, or send me one message on X, and you pay nothing.";
