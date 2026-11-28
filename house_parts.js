@@ -43,7 +43,7 @@ const SPACE = "https://www.tradingview.com/scripts/marketplace/TheSimplifier7/?a
 const SPACE_LIVE = false;
 const OUT = 'target="_blank" rel="sponsored noopener"';
 const PARTNER_LINE = "TradingView links on this site are partner links. If you sign up through one and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.";
-const BOTH = "Same five tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
+const BOTH = "Same Desk Suite either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
 /* 28 Nov 2026, his word of 09:00: the link card under every page is the site's own (make_og_cards.js), under new names. */
@@ -214,7 +214,7 @@ function proof(R) {
 function partner(id, tag = "h2") {
   return `<aside class="as-partner" data-partner="${esc(id)}" aria-labelledby="pb-${esc(id)}">
   <${tag} class="as-partner-h" id="pb-${esc(id)}">New to TradingView?</${tag}>
-  <p>The five tools, and every free one I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
+  <p>The Desk Suite, and every free tool I publish, run on TradingView. If you do not have an account yet, open one through my link. The Basic plan is free.<span data-bf-off> TradingView says that once you buy your first paid plan through a partner link, you get $15 off your next one.</span></p>
   <a class="hs-btn hs-ghost" href="${PARTNER}" ${OUT} data-tv="partner-block" data-bf-href="${BLACK_FRIDAY}" data-bf-text="TradingView's Black Friday sale">Open a free TradingView account</a>
   <p class="as-partner-d">Partner link. If you sign up through it and later buy a TradingView plan, TradingView pays me a commission. It costs you nothing extra.</p>
 </aside>`;
@@ -313,7 +313,10 @@ const VOICES = [
     also: "If you want a guy that is going to lay it straight and he is brutally honest, he is going to tell you exactly what you are doing wrong and he will ask you why you did it.",
     summary: true }
 ];
-const VOICE_FINE = "In their own words, shared with their permission. Each is one trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
+/* 28 Nov 2026, his copy polish of 11:18: the summary note leaves the cards for the shared small print, naming whose lines
+   are summaries (Jim's Before and Now are his own answers). */
+const SUMMARISED = VOICES.filter(v => v.summary).map(v => v.who.split(",")[0] + "'s");
+const VOICE_FINE = "In their own words, shared with their permission." + (SUMMARISED.length ? ` ${SUMMARISED.join(SUMMARISED.length > 2 ? ", " : " and ")} Before and Now lines summarize their full notes.` : "") + " Each is one trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
 /* 28 Nov 2026, 00:36, his word: every card has one shape, Jim's: the pull-quote, Before and Now, a second quote, the full
    note behind "From a longer note. Read it in full" (opened in place, no script), and the name. A quote is always the
    client's own whole sentence(s); verify_record checks each against the full note. Where Before and Now are Bradley's
@@ -324,7 +327,7 @@ function voices(where) {
       ${VOICES.map(v => `<figure class="vx-c gl">
         <blockquote>
           <p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>
-          ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>${v.summary ? `<p class="vx-sum">Before and now: my summary of his note.</p>` : ""}` : ""}
+          ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>` : ""}
           ${v.also ? `<p class="vx-also">&ldquo;${esc(v.also)}&rdquo;</p>` : ""}
         </blockquote>
         ${v.paras ? `<details class="vx-full"><summary>From a longer note. <span>Read it in full</span></summary>
@@ -346,11 +349,11 @@ const SET_TERMS = "7 days free, then €99 a month, VAT included. Card at checko
 function plans(R) {
   const site = `<div class="s4-route" data-route="site">
       ${SPACE_LIVE ? '<p class="s4-route-h">On this site</p>' : ""}
-      <p class="s4-price"><b>€99</b> a month for all five, VAT included</p>
+      <p class="s4-price"><b>€99</b> a month for the whole Desk Suite, VAT included</p>
       <ol class="s4-steps">
         <li>Start the 7-day trial. Nothing is charged for 7 days.</li>
         <li>Give your TradingView username at checkout, never your password.</li>
-        <li>The five tools are added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
+        <li>The Desk Suite is added to it within the hour, or by 09:00 Madrid if you join overnight.</li>
       </ol>
       <a class="hs-btn hs-gold plan-btn s4-btn" href="${SET_CHECKOUT}" data-tv="plans-site-trial" data-plan="set">${BUY}</a>
       <p class="s4-fine">${SET_TERMS}</p>
@@ -358,17 +361,17 @@ function plans(R) {
   const tv = SPACE_LIVE ? `
     <div class="s4-route" data-route="tradingview">
       <p class="s4-route-h">On TradingView</p>
-      <p class="s4-price"><b>$99</b> a month for all five, billed by TradingView</p>
+      <p class="s4-price"><b>$99</b> a month for the whole Desk Suite, billed by TradingView</p>
       <ol class="s4-steps">
         <li>Subscribe on TradingView's website with your TradingView account.</li>
-        <li>TradingView adds the five tools to your account automatically.</li>
+        <li>TradingView adds the Desk Suite to your account automatically.</li>
       </ol>
       <a class="hs-btn hs-ghost s4-btn" href="${SPACE}" ${OUT} data-tv="plans-tv-space">Subscribe on TradingView</a>
       <p class="s4-fine">$99 a month, billed by TradingView. VAT added at checkout where it applies. No free trial. You can ask TradingView for a refund within 14 days of a payment. Cancel in your TradingView account.</p>
     </div>` : "";
   /* 25 Nov 2026, glass on every thing: the plan is a pane of the house glass over the record's rosette (plate.js) */
   return `<section id="plans" class="s4-plan gl${SPACE_LIVE ? " s4-two" : ""}" data-plate data-seal="${recordSeal(R)}" aria-labelledby="plans-h">
-    <h2 id="plans-h">The set of five</h2>
+    <h2 id="plans-h">The Desk Suite</h2>
     <div class="s4-routes">
     ${site}${tv}
     </div>

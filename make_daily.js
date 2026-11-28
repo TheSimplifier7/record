@@ -29,10 +29,15 @@ if (probs.length) { console.error("daily.json cannot be drawn:\n  " + probs.join
 const M = D.model(data);
 const R = JSON.parse(fs.readFileSync(path.join(HERE, "record.json"), "utf8"));
 const t = R.tally;
-const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js draws the rosette under the levels from it */
+const SEAL = H.recordSeal(R);
+/* 28 Nov 2026: the archive line counts the daily levels still waiting for their close, and names their days. */
+const NUMW = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const OPEN_N = M.tally.open, OPEN_DAYS = [...new Set(M.days.filter(d => (d.rows || []).some(r => r.grade === "open")).map(d => D.longDate(d.date).replace(/ \d{4}$/, "")))];
+const OPEN_LINE = OPEN_N ? ` ${OPEN_N === 1 ? "One daily level" : NUMW[OPEN_N][0].toUpperCase() + NUMW[OPEN_N].slice(1) + " daily levels"} from ${OPEN_DAYS.join(" and ")} ${OPEN_N === 1 ? "is" : "are"} still open and will be graded when ${OPEN_N === 1 ? "its close is" : "their closes are"} on file.` : "";   /* the record's seal, as ASSAY keys it: plate.js draws the rosette under the levels from it */
 
 const title = "Daily gold, silver and platinum levels · The Simplifier";
-const description = "A level for gold, silver and platinum on every trading day, posted before the London open. Each one is graded on that day's close, and the wrong ones stay up.";
+/* 28 Nov 2026, his copy polish of 11:18: the levels are an archive. Every row stays; the page says the desk has moved on. */
+const description = "The archived public record: every level for gold, silver and platinum from the weekly and daily series, graded against the close, with nothing deleted.";
 
 const html = H.leanHead({ title, description, canonical: SITE + "levels.html", image: H.OG_DESK(),   /* 28 Nov 2026: the site's card; it read card_daily.jpg */
   alt: "The Simplifier. Gold, silver and platinum levels, every trading day before the London open, each one graded at the close.", css: D.CSS }) + `
@@ -43,8 +48,8 @@ ${H.band("today", "levels")}
   <div class="hm-in">
     <div class="hm-copy">
       <h1 class="hm-h1" id="hm-h1">Daily levels</h1>
-      <p class="hm-say">A level for gold, silver and platinum on every trading day, posted on X before the London open. Each one is graded on that day's close, and the wrong ones stay up.</p>
-      <p class="hm-acts">${D.followBtn("levels-top")}<a href="${H.SET_CHECKOUT}" data-tv="levels-top">${H.BUY}</a></p>
+      <p class="hm-say hm-arch"><b>Archived public record, June to November 2026.</b> Every level posted in the weekly and daily series stays public here, graded against the close, with nothing deleted.${OPEN_LINE} The desk has since moved from daily price calls to open-source TradingView tools, empirical 30-minute research in the lab, and the Sunday Desk Note.</p>
+      <p class="hm-acts"><a class="hs-btn hs-ghost" href="lab.html" data-tv="levels-top-lab">Explore the Empirical Lab</a><a href="${H.SET_CHECKOUT}" data-tv="levels-top">${H.BUY}</a></p>
       <div class="hm-rec">
         <p data-daily="tally">${D.tally(M)}</p>
         <p class="as-hall"><span><b>${t.held}</b> held</span><span><b>${t.wrong}</b> wrong</span><span><b>0</b> deleted</span></p>
