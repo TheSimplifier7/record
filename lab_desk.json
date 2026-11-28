@@ -14,6 +14,7 @@
   {"name": "The Flow", "state": "Live on TradingView", "url": "https://www.tradingview.com/script/gLSvGcL4-The-Flow-TheSimplifier7/", "src": "his message of 27 Nov 2026, 14:32 Madrid"}
  ],
  "bin": [
+  {"kind": "concept", "what": "One more idea", "why": "Written down in full before the data was opened, then counted on gold and silver. It did not beat what traders already use, so it does not get built.", "date": "27 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-017, run SLVR)"},
   {"kind": "concept", "what": "Two more ideas", "why": "Each was written down in full before the data was opened, then set against what traders already have on their charts and against chance. Neither did better, so neither gets built.", "date": "27 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-015 and C-016, run KMRV)"},
   {"kind": "concept", "what": "Three more ideas", "why": "Each was written down in full before the data was opened, then counted against chance on gold. None beat it.", "date": "27 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-012 to C-014, runs HZRQ and BQXE)"},
   {"kind": "concept", "what": "Four ideas", "why": "Each was counted against chance on gold before anything was built. None beat it.", "date": "26 Nov", "figures": [], "src": "lab records (SCOUT_CARDS C-008 to C-011; QUANT_CARDS D-114, V-109)"},
@@ -29,6 +30,7 @@
   {"kind": "call", "what": "My own call on the slow half", "why": "I filed it as holding. The shuffle proved me wrong, and the verdict says so.", "date": "23 Nov", "figures": [], "src": "FINDINGS.json F-000c then F-003"}
  ],
  "log": [
+  {"date": "28 Nov", "text": "Two ideas in overnight. One thrown out by its own count. The other passed its first count on ten years held back, and now faces a harder test against simpler rivals before anything is built.", "figures": [], "src": "lab records (SCOUT_CARDS C-017, C-018; QUANT_CARDS D-121)"},
   {"date": "27 Nov", "text": "Two more ideas thrown out. Neither beat what is already on the shelf, one of them on two years held back on purpose.", "figures": [], "src": "lab records (SCOUT_CARDS C-015 and C-016)"},
   {"date": "27 Nov", "text": "Project 06 held up on ten more years of gold that nobody had counted before, every one of them.", "figures": [6], "src": "lab records (QUANT_CARDS D-120)"},
   {"date": "27 Nov", "text": "Three more ideas thrown out overnight. One was tested on two years held back on purpose, and failed there too.", "figures": [], "src": "lab records (SCOUT_CARDS C-012 to C-014)"},
