@@ -59,7 +59,7 @@ const names = live.map(t => t.name);
 const list = names.length === 1 ? names[0] : names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
 const title = "Free tools for your TradingView chart · The Simplifier";
 const description = "Separate free tools on TradingView. Each adds one view of price. They do not place trades or make decisions for you.";
-const img = { url: P.imageOf("tally_card_landscape_dark.png"), w: 1920, h: 1080 };
+const img = { url: require("./house_parts.js").OG_DESK(), w: 1200, h: 630 };   /* 28 Nov 2026: the site's card; it read the record's tally card at 1920 x 1080 */
 
 const cards = live.map(t => `<article class="tool" id="${esc(t.key)}">
     <h2><span class="n">${esc(t.name)}</span>${esc(t.title)}</h2>

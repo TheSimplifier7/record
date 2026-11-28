@@ -34,7 +34,7 @@ const SEAL = H.recordSeal(R);   /* the record's seal, as ASSAY keys it: plate.js
 const title = "Daily gold, silver and platinum levels · The Simplifier";
 const description = "A level for gold, silver and platinum on every trading day, posted before the London open. Each one is graded on that day's close, and the wrong ones stay up.";
 
-const html = H.leanHead({ title, description, canonical: SITE + "levels.html", image: SITE + "card_daily.jpg?v=" + H.vOf("card_daily.jpg"),
+const html = H.leanHead({ title, description, canonical: SITE + "levels.html", image: H.OG_DESK(),   /* 28 Nov 2026: the site's card; it read card_daily.jpg */
   alt: "The Simplifier. Gold, silver and platinum levels, every trading day before the London open, each one graded at the close.", css: D.CSS }) + `
 ${H.band("today", "levels")}
 <main id="main" class="hm" tabindex="-1">

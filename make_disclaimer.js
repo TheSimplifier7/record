@@ -57,9 +57,9 @@ html body .dc h2{margin:0 0 12px;font:500 20px/1.3 var(--c-ui)!important;color:v
 
 const html = H.leanHead({
   title: "Disclaimer · The Simplifier",
-  description: "What the levels, the record, the tools and the partner links are, and what they are not. Education, not advice.",
+  description: "What the tools, the lab, the mentorship and the partner links are, and what they are not. Education, not advice.",
   canonical: "https://thesimplifier7.com/disclaimer.html",
-  image: "https://thesimplifier7.com/tally_card_landscape_dark.png",
+  image: H.OG_DESK(),   /* 28 Nov 2026: the site's card; it read the record's tally card */
   alt: "The Simplifier. Gold, silver and platinum levels, graded on the close.",
   css: CSS
 }) + `

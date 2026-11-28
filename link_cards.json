@@ -1,132 +1,122 @@
 {
- "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
- "generated": "2026-11-12T11:41:26.606Z",
- "cards": [
-  {
-   "name": "misses",
-   "page": "misses.html",
-   "file": "link_misses.png",
-   "v": "abf464373e",
-   "image": "https://thesimplifier7.com/link_misses.png?v=abf464373e",
-   "figures": {
-    "tally": {
-     "resolved": 47,
-     "held": 36,
-     "wrong": 11,
-     "never_reached": 5,
-     "open": 0
+  "note": "Written by make_link_cards.js. Each page's link card, the address its og:image carries, and the figures it was drawn from. verify_record.js check 16 compares these figures with record.json.",
+  "generated": "2026-11-12T11:41:26.606Z",
+  "cards": [
+    {
+      "name": "misses",
+      "page": "misses.html",
+      "file": "link_misses.png",
+      "v": "abf464373e",
+      "image": "https://thesimplifier7.com/link_misses.png?v=abf464373e",
+      "figures": {
+        "tally": {
+          "resolved": 47,
+          "held": 36,
+          "wrong": 11,
+          "never_reached": 5,
+          "open": 0
+        },
+        "latest_close": "2026-11-06",
+        "latest": [
+          {
+            "metal": "Silver",
+            "level": "51.406",
+            "close": "51.9020",
+            "anchor": "r-2026-11-02-silver-51-406"
+          },
+          {
+            "metal": "Platinum",
+            "level": "1,486.31",
+            "close": "1,535.70",
+            "anchor": "r-2026-11-02-platinum-1486-31"
+          }
+        ]
+      }
     },
-    "latest_close": "2026-11-06",
-    "latest": [
-     {
-      "metal": "Silver",
-      "level": "51.406",
-      "close": "51.9020",
-      "anchor": "r-2026-11-02-silver-51-406"
-     },
-     {
-      "metal": "Platinum",
-      "level": "1,486.31",
-      "close": "1,535.70",
-      "anchor": "r-2026-11-02-platinum-1486-31"
-     }
-    ]
-   }
-  },
-  {
-   "name": "targets",
-   "page": "targets.html",
-   "file": "link_targets.png",
-   "v": "c7b14fecf3",
-   "image": "https://thesimplifier7.com/link_targets.png?v=c7b14fecf3",
-   "figures": {
-    "open": 7,
-    "held": 4,
-    "wrong": 4,
-    "left_off": 13,
-    "next": {
-     "house": "Citi",
-     "level": 4800,
-     "metal": "Gold",
-     "window_text": "0 to 3 months",
-     "grades_on": "2026-12-04",
-     "page": "citi-gold-4800-2026-12-04.html"
+    {
+      "name": "targets",
+      "page": "targets.html",
+      "file": "link_targets.png",
+      "v": "c7b14fecf3",
+      "image": "https://thesimplifier7.com/link_targets.png?v=c7b14fecf3",
+      "figures": {
+        "open": 7,
+        "held": 4,
+        "wrong": 4,
+        "left_off": 13,
+        "next": {
+          "house": "Citi",
+          "level": 4800,
+          "metal": "Gold",
+          "window_text": "0 to 3 months",
+          "grades_on": "2026-12-04",
+          "page": "citi-gold-4800-2026-12-04.html"
+        }
+      }
+    },
+    {
+      "name": "year",
+      "page": "year.html",
+      "file": "link_year.png",
+      "v": "d144af243b",
+      "image": "https://thesimplifier7.com/link_year.png?v=d144af243b",
+      "figures": {
+        "tally": {
+          "resolved": 47,
+          "held": 36,
+          "wrong": 11,
+          "never_reached": 5,
+          "open": 0
+        }
+      }
+    },
+    {
+      "name": "guest",
+      "page": "guest.html",
+      "file": "link_guest.png",
+      "v": "1e4bb3291c",
+      "image": "https://thesimplifier7.com/link_guest.png?v=1e4bb3291c",
+      "figures": {
+        "tally": {
+          "resolved": 47,
+          "held": 36,
+          "wrong": 11,
+          "never_reached": 5,
+          "open": 0
+        }
+      }
+    },
+    {
+      "name": "advisers",
+      "page": "advisers.html",
+      "file": "link_advisers.png",
+      "v": "b4bd7f7882",
+      "image": "https://thesimplifier7.com/link_advisers.png?v=b4bd7f7882",
+      "figures": {
+        "tally": {
+          "resolved": 47,
+          "held": 36,
+          "wrong": 11,
+          "never_reached": 5,
+          "open": 0
+        }
+      }
+    },
+    {
+      "name": "embed",
+      "page": "embed.html",
+      "file": "link_embed.png",
+      "v": "5f9d86bd06",
+      "image": "https://thesimplifier7.com/link_embed.png?v=5f9d86bd06",
+      "figures": {
+        "tally": {
+          "resolved": 47,
+          "held": 36,
+          "wrong": 11,
+          "never_reached": 5,
+          "open": 0
+        }
+      }
     }
-   }
-  },
-  {
-   "name": "method",
-   "page": "method.html",
-   "file": "link_method.png",
-   "v": "acb0fe07f5",
-   "image": "https://thesimplifier7.com/link_method.png?v=acb0fe07f5",
-   "figures": {
-    "chart": "fan_gold_1h_2026-10-31.png"
-   }
-  },
-  {
-   "name": "year",
-   "page": "year.html",
-   "file": "link_year.png",
-   "v": "d144af243b",
-   "image": "https://thesimplifier7.com/link_year.png?v=d144af243b",
-   "figures": {
-    "tally": {
-     "resolved": 47,
-     "held": 36,
-     "wrong": 11,
-     "never_reached": 5,
-     "open": 0
-    }
-   }
-  },
-  {
-   "name": "guest",
-   "page": "guest.html",
-   "file": "link_guest.png",
-   "v": "1e4bb3291c",
-   "image": "https://thesimplifier7.com/link_guest.png?v=1e4bb3291c",
-   "figures": {
-    "tally": {
-     "resolved": 47,
-     "held": 36,
-     "wrong": 11,
-     "never_reached": 5,
-     "open": 0
-    }
-   }
-  },
-  {
-   "name": "advisers",
-   "page": "advisers.html",
-   "file": "link_advisers.png",
-   "v": "b4bd7f7882",
-   "image": "https://thesimplifier7.com/link_advisers.png?v=b4bd7f7882",
-   "figures": {
-    "tally": {
-     "resolved": 47,
-     "held": 36,
-     "wrong": 11,
-     "never_reached": 5,
-     "open": 0
-    }
-   }
-  },
-  {
-   "name": "embed",
-   "page": "embed.html",
-   "file": "link_embed.png",
-   "v": "5f9d86bd06",
-   "image": "https://thesimplifier7.com/link_embed.png?v=5f9d86bd06",
-   "figures": {
-    "tally": {
-     "resolved": 47,
-     "held": 36,
-     "wrong": 11,
-     "never_reached": 5,
-     "open": 0
-    }
-   }
-  }
- ]
+  ]
 }

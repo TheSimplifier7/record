@@ -202,16 +202,8 @@ const CARDS = [
     <div class="line"><b>${esc(n.house)} ${fmt(n.level, n.level % 1 ? 2 : 0)}</b> ${esc(n.metal.toLowerCase())} · ${esc(n.window_text)}</div>
     <div class="line">${n.grades_on ? `on the ${esc(long(n.grades_on).replace(/ \d{4}$/, ""))} close` : "on the last weekly close of 2026"}</div></div>` : ""}
 </div>`; } },
-  /* 6 Oct 2026. The card read "The Method" in its label and its kicker, and "Gold, 8 hour, TVC, 24 September 2026" under the line. */
-  { name: "method", page: "method.html", label: "The Fan", css: `.two{display:grid;grid-template-columns:400px 1fr;gap:40px;margin-top:30px;flex:1;min-height:0;align-items:center}
-.shot{border:1px solid ${C.soft};border-radius:8px;overflow:hidden;background:#111}
-.shot img{display:block;width:100%;height:auto}`, html: (F, img) => `<div class="two">
-  <div><div class="k" style="margin-top:0">The Fan</div>
-    <h1 style="font-size:54px">The indicator the record is read from.</h1>
-    <div class="sub" style="font-size:24px">It draws structure. It does not tell you what to do.</div>
-    <div class="line" style="margin-top:22px;font-size:15px;color:${C.ink5}">Gold, 1 hour, TVC, 30 October 2026</div></div>
-  <div class="shot"><img src="${img}" alt=""></div>
-</div>` },
+  /* 28 Nov 2026, his word of 09:00: method.html, the Desk Suite's page, takes the site's own card (make_og_cards.js,
+     og-desk-v2.png), so its entry here is retired. It drew The Fan's chart under "The indicator the record is read from." */
   { name: "year", page: "year.html", label: "By introduction", html: (F) => `<div class="k">The Year</div>
 <h1 style="max-width:21ch">Twelve weeks to build the method on your own chart.</h1>
 <div class="sub">Nine months to run it with the desk beside you. One person at a time, by introduction.</div>

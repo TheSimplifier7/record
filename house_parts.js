@@ -46,6 +46,9 @@ const PARTNER_LINE = "TradingView links on this site are partner links. If you s
 const BOTH = "Same five tools either way. Pick one route. If you already pay on this site, do not also subscribe on TradingView, and the other way round.";
 const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const vOf = file => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, file))).digest("hex").slice(0, 10);
+/* 28 Nov 2026, his word of 09:00: the link card under every page is the site's own (make_og_cards.js), under new names. */
+const OG_DESK = () => "https://thesimplifier7.com/og-desk-v2.png?v=" + vOf("og-desk-v2.png");
+const OG_LAB = () => "https://thesimplifier7.com/og-lab-v2.png?v=" + vOf("og-lab-v2.png");
 
 const FONTS = '<link rel="preload" href="barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +
   '<link rel="preload" href="barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>\n' +  /* 12 Nov 2026, note 70: titles are Barlow at 500. It read: barlow-condensed-latin-700-normal.woff2 */
@@ -411,4 +414,4 @@ ol.house li.here{background:linear-gradient(90deg,var(--hs-here),transparent)}
 `;
 const stoneStyle = () => `<style id="hs-stone">${STONE_CSS}</style>`;
 
-module.exports = { ANNUAL, VOICES, VOICE_FINE, voices, menu, LESSONS, BUY, RISK, SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };
+module.exports = { OG_DESK, OG_LAB, ANNUAL, VOICES, VOICE_FINE, voices, menu, LESSONS, BUY, RISK, SET_TOOLS, aff, AFF, SET_CHECKOUT, MAIL_ENDPOINT, signup, PARTNER_LINE, PARTNER, BLACK_FRIDAY, SPACE, SPACE_LIVE, OUT, BOTH, SET_TERMS, proof, partner, plans, BILLING, recordSeal, leanHead, fanFoot, TV, esc, vOf, FONTS, THEME_JS, headTags, earlyTags, strip, band, hero, bot, tail, top, STONE_CSS, stoneStyle, NAV };

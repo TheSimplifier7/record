@@ -26,7 +26,7 @@ const NAV = H.band("", "x").match(/<nav class="hs-nav"[\s\S]*?<\/nav>/)[0];
 const navFor = cur => NAV.replace(/<a href="([^"]+)">/g, (m, href) => KEY[href] === cur ? `<a href="${href}" aria-current="page">` : m);
 const menuFor = cur => H.menu().replace(/<a href="([^"]+)"( rel="noopener")?>/g, (m, href, r) => KEY[href] === cur ? `<a href="${href}"${r || ""} aria-current="page">` : m);
 const botLinks = cur => H.bot(cur).replace(/^<nav[^>]*>/, "").replace(/<\/nav>$/, "");
-const SHARED = ["brand.css", "house.js", "refcarry.js", "plate.js", "assay-site.css", "sharp.css", "assay.css", "lamp.css", "plans.css"];
+const SHARED = ["brand.css", "house.js", "refcarry.js", "plate.js", "assay-site.css", "sharp.css", "assay.css", "lamp.css", "plans.css", "og-desk-v2.png", "og-lab-v2.png"];
 const SLOTS = {
   "welcome-space": () => H.SPACE_LIVE ? `<p class="as-both">If you already pay for the set on TradingView, do not also subscribe here. Email <a href="mailto:hello@thesimplifier7.com">hello@thesimplifier7.com</a> and I will sort it.</p>` : "",
   "faq-both": () => H.SPACE_LIVE ? `<p>${H.BOTH}</p>` : ""
