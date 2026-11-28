@@ -288,40 +288,45 @@ const VOICES = [
       "He showed me to be fluid, to take myself out of the equation and to see how price is interacting with the key levels and mean lines. He showed me to view the market with perspective, where is it coming from and to where it will deliver.",
       "Sign up with him if you want the best mentor and a no nonsense approach. He is worth his weight in gold."
     ],
-    home: 2 },
+    /* 28 Nov 2026, 00:36, his word: the same card as Jim's. The two quotes are David's whole sentences, word for word; the
+       Before and Now lines are Bradley's summary of the note, labelled as his, since David did not write them. */
+    lead: "He showed me to be fluid, to take myself out of the equation and to see how price is interacting with the key levels and mean lines.",
+    before: "Portfolio manager at a large multinational bank. Only saw the market going up and talked himself into buying.",
+    now: "Views the market with perspective: where price is coming from and where it will deliver, on both sides.",
+    also: "Sign up with him if you want the best mentor and a no nonsense approach. He is worth his weight in gold.",
+    summary: true },
   /* 27 Nov 2026, 17:11, his word: Justin's written OK received; his words verbatim, his own capitals kept. The front page
-     runs his first two paragraphs and the first sentence of his third, whole sentences in his order, and points to the full
-     text on mentorship.html, where all three paragraphs run. */
+     runs his first two paragraphs and the first sentence of his third (until 28 Nov; now the card below). */
   { who: "Justin, Cape Town", what: "Mentorship client",
     paras: [
       "I did some great trades but then because of financial stress I would just keep going and gave back all the money to the markets. I was impatient because I never had a strategy, I would think that every candle is worth a go.",
       "When you showed me that we need to make our decisions at the key levels and mean lines, the rest is just the price delivery from those levels, that's when I had the biggest aha moment in my trading life.",
       "If you want a guy that is going to lay it straight and he is brutally honest, he is going to tell you exactly what you are doing wrong and he will ask you why you did it. He makes you think logically and if you want to be profitable, Do not hesitate to hit him up. He is the best of the best with so much knowledge that it's scary."
     ],
-    home: 2 + 1 / 10 }
+    /* 28 Nov 2026, 00:36: the same card as Jim's; quotes are Justin's whole sentences, Before and Now are Bradley's summary. */
+    lead: "When you showed me that we need to make our decisions at the key levels and mean lines, the rest is just the price delivery from those levels, that's when I had the biggest aha moment in my trading life.",
+    before: "Impatient, with no strategy. Treated every candle as worth a go and gave the money back to the markets.",
+    now: "Waits for the key levels and mean lines. Thinks logically before he acts.",
+    also: "If you want a guy that is going to lay it straight and he is brutally honest, he is going to tell you exactly what you are doing wrong and he will ask you why you did it.",
+    summary: true }
 ];
 const VOICE_FINE = "In their own words, shared with their permission. Each is one trader's experience, not a promise of your result. Trading involves risk and you can lose money.";
-/* A voice's paragraphs: in full, or on the front page the first whole paragraphs and the first whole sentence(s) of the
-   next, never a word changed or moved. home: 2 + 1/10 reads two paragraphs and one sentence. */
-function paras(v, where) {
-  if (where !== "home" || v.home == null) return v.paras;
-  const whole = Math.floor(v.home), sent = Math.round((v.home - whole) * 10);
-  const out = v.paras.slice(0, whole);
-  if (sent && v.paras[whole]) out.push((v.paras[whole].match(/[^.?!]+[.?!]+/g) || []).slice(0, sent).join("").trim());
-  return out;
-}
-function cut(v, where) { return paras(v, where).join(" ") !== v.paras.join(" "); }
+/* 28 Nov 2026, 00:36, his word: every card has one shape, Jim's: the pull-quote, Before and Now, a second quote, the full
+   note behind "From a longer note. Read it in full" (opened in place, no script), and the name. A quote is always the
+   client's own whole sentence(s); verify_record checks each against the full note. Where Before and Now are Bradley's
+   summary and not the client's words, the card says so. */
 function voices(where) {
   if (!VOICES.length) return "";
   return `<div class="vx" data-n="${VOICES.length}">
       ${VOICES.map(v => `<figure class="vx-c gl">
         <blockquote>
-          ${v.lead ? `<p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>` : ""}
-          ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>` : ""}
+          <p class="vx-q">&ldquo;${esc(v.lead)}&rdquo;</p>
+          ${v.before ? `<dl class="vx-ba"><div><dt>Before</dt><dd>${esc(v.before)}</dd></div><div><dt>Now</dt><dd>${esc(v.now)}</dd></div></dl>${v.summary ? `<p class="vx-sum">Before and now: my summary of his note.</p>` : ""}` : ""}
           ${v.also ? `<p class="vx-also">&ldquo;${esc(v.also)}&rdquo;</p>` : ""}
-          ${v.paras ? paras(v, where).map((t, i, a) => `<p class="vx-p">${i === 0 ? "&ldquo;" : ""}${esc(t)}${i === a.length - 1 ? (cut(v, where) ? " &hellip;&rdquo;" : "&rdquo;") : ""}</p>`).join("\n          ") : ""}
         </blockquote>
-        ${v.paras && cut(v, where) ? `<p class="vx-more">From a longer note. <a href="mentorship.html">Read it in full</a></p>` : ""}
+        ${v.paras ? `<details class="vx-full"><summary>From a longer note. <span>Read it in full</span></summary>
+          ${v.paras.map((t, i, a) => `<p class="vx-p">${i === 0 ? "&ldquo;" : ""}${esc(t)}${i === a.length - 1 ? "&rdquo;" : ""}</p>`).join("\n          ")}
+        </details>` : ""}
         <figcaption><b>${esc(v.who)}</b>${v.what ? `<span>${esc(v.what)}</span>` : ""}</figcaption>
       </figure>`).join("\n      ")}
     </div>
